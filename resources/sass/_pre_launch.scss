@@ -1,0 +1,41 @@
+body{
+    background-color: $secundary-color;
+}
+
+.main-header{
+    background-color: $primary-color;
+    box-shadow: 0 4px 2px -2px $secundary-color;
+    color: white;
+    left: 0;
+    max-height: 90px;
+    padding: 10px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 99;
+    .logo{
+        display: block;
+        margin: -10px auto 0 auto;
+        width: 40vw;
+        filter: drop-shadow(0px 0px 3px black) drop-shadow(3px 5px 11px black)
+    }
+}
+
+.header-info{
+    background-image: url(/images/sam-moghadam-1211505-unsplash.jpg);
+    height: 32vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    &::before{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: $primary-color;
+        opacity: 0.6;
+    }
+}
