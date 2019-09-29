@@ -3,6 +3,26 @@
   <component name="StickySelectionHighlights">
     <option name="editorHighlights">
       <map>
+        <entry key="$PROJECT_DIR$/resources/js/app.js">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/resources/js/bootstrap.js">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/resources/js/pre_launch.js">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/resources/sass/_carrousel.scss">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/resources/sass/_pre_launch.scss">
           <value>
             <PaintGroupHighlightMap />
@@ -14,6 +34,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/resources/sass/app.scss">
+          <value>
+            <PaintGroupHighlightMap />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/resources/views/_carrousel.blade.php">
           <value>
             <PaintGroupHighlightMap />
           </value>
