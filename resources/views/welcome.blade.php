@@ -48,7 +48,7 @@
                     <div class="form-group mb-2 mb-md-0">
                         <input type="email" class="form-control" placeholder="Type Email..." required>
                     </div>
-                    <button type="submit" class="btn text-white font-weight-bold ml-md-4">GE ME ON THE WAITING LIST</button>
+                    <button type="submit" class="btn text-white font-weight-bold ml-md-4">GET ME ON THE WAITING LIST</button>
                 </form>
             </section>
             <section class="content-creators">
@@ -71,7 +71,7 @@
                     <p class="m-0 text-center font-up font-weight-bold">DON'T LEAVE YOURSELF BEHIND!</p>
                 </div>
                 <div class="text-center my-5">
-                    <button type="submit" class="btn font-weight-bold">GE ME ON THE WAITING LIST</button>
+                    <button type="submit" class="btn font-weight-bold">GET ME ON THE WAITING LIST</button>
                 </div>
             </section>
         </main>
