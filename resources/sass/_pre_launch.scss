@@ -256,7 +256,6 @@ main{
             background-color: $fourth-color;
             color: white;
             padding: 20px;
-            font-size: .4em !important;
             @include media-breakpoint-up(xl){
                 font-size: .5em;
             }
