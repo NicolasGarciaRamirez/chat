@@ -45,10 +45,10 @@
                 </div>
 
                 <form action="{{ route('pre_launch') }}" class="form form-inline position-relative d-flex justify-content-center my-3 my-lg-5">
-                    <div class="form-group mb-2">
+                    <div class="form-group mb-2 mb-md-0">
                         <input type="email" class="form-control" placeholder="Type Email..." required>
                     </div>
-                    <button type="submit" class="btn text-white font-weight-bold">Join Waiting List > </button>
+                    <button type="submit" class="btn text-white font-weight-bold ml-md-4">GE ME ON THE WAITING LIST</button>
                 </form>
             </section>
             <section class="content-creators">
@@ -61,8 +61,8 @@
                     <p class="ml-5 my-5">HOME MUSICIANS THAT WANT TO IMPROVISE AND JAM TO A GENRE SPECIFIC AUDIENCE</p>
                 </div>
             </section>
-            <section class="sneek-peak">
-                <p class="titul text-center my-5">SNEEK PEAK</p>
+            <section class="sneak-peak">
+                <p class="titul text-center my-5">SNEAK PEAK</p>
                 @include('_carrousel')
             </section>
             <section class="enjoy-music">
@@ -71,14 +71,14 @@
                     <p class="m-0 text-center font-up font-weight-bold">DON'T LEAVE YOURSELF BEHIND!</p>
                 </div>
                 <div class="text-center my-5">
-                    <button type="submit" class="btn font-weight-bold">Join Waiting List > </button>
+                    <button type="submit" class="btn font-weight-bold">GE ME ON THE WAITING LIST</button>
                 </div>
             </section>
         </main>
         <footer class="footer">
             <div class="information">
                 <img src="/images/logo-white.svg" alt="">
-                <ul>
+                <ul class="mt-md-4">
                     <li>Term</li>
                     <li>Privacy</li>
                     <li>Help</li>
@@ -92,7 +92,7 @@
                     <img src="/images/twitter.svg" alt="twitter">
                     <img src="/images/instagram.svg" alt="instagram">
                 </div>
-                <p class="text-right">© 2019 Noisesharks ® Registered in England and Wales No. 10670071</p>
+                <p class="text-right mt-md-4">© 2019 Noisesharks ® Registered in England and Wales No. 10670071</p>
             </div>
         </footer>
         <script src="{{ mix('/js/app.js') }}"></script>
