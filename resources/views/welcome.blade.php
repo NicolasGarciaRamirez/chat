@@ -28,17 +28,17 @@
                 <p class="titul pt-3 font-weight-bold my-lg-5">THE SOCIAL PLATFORM FOR MUSICIANS & MUSIC CONTENT CREATORS</p>
                 <div class="row">
                     <div class="col-sm-12 col-md-4 text-center information mb-3 my-lg-5">
-                        <img src="/images/piggy_banks.svg" alt="piggy_banks">
+                        <img src="/images/financially_support.svg" alt="financially_support">
                         <p class="c-fourth m-0 font-weight-bold mt-lg-4">FINANCIALLY SUPPORT</p>
                         <p class="text-white m-0">CONTENT CREATORS & MUSICIANS</p>
                     </div>
                     <div class="col-sm-12 col-md-4 text-center information mb-3 my-lg-5">
-                        <img src="/images/live_stream.svg" alt="piggy_banks">
+                        <img src="/images/post_live_stream.svg" alt="post_live_stream">
                         <p class="c-fourth m-0 font-weight-bold mt-lg-4">POST & LIVE STREAM</p>
                         <p class="text-white m-0">YOUR CONTENT & MUSIC</p>
                     </div>
                     <div class="col-sm-12 col-md-4 text-center information mb-3 my-lg-5">
-                        <img src="/images/piggy_banks.svg" alt="piggy_banks">
+                        <img src="/images/socialise_interact.svg" alt="socialise_interact">
                         <p class="c-fourth m-0 font-weight-bold mt-lg-4">SOCIALISE & INTERACT</p>
                         <p class="text-white m-0">WITH OTHER MUSICIANS & CONTENT CREATORS <br> OF THE SAME INTEREST</p>
                     </div>
@@ -51,6 +51,9 @@
                     <button type="submit" class="btn text-white font-weight-bold ml-md-4">GET ME ON THE WAITING LIST</button>
                 </form>
             </section>
+            <div class="sound_icon">
+                <img src="/images/sound_icon.svg" alt="">
+            </div>
             <section class="content-creators">
                 <p class="titul my-5 font-weight-bold text-center">WHO DO WE MEAN BY <br> MUSIC CONTENT CREATORS?</p>
                 <div class="information">
@@ -61,10 +64,16 @@
                     <p class="ml-5 my-5">HOME MUSICIANS THAT WANT TO IMPROVISE AND JAM TO A GENRE SPECIFIC AUDIENCE</p>
                 </div>
             </section>
+            <div class="sound_icon">
+                <img src="/images/sound_icon.svg" alt="">
+            </div>
             <section class="sneak-peak">
-                <p class="titul text-center my-5">SNEAK PEAK</p>
+                <p class="titul text-center my-5 font-weight-bold">SNEAK PEEK</p>
                 @include('_carrousel')
             </section>
+            <div class="sound_icon">
+                <img src="/images/sound_icon.svg" alt="">
+            </div>
             <section class="enjoy-music">
                 <div class="titul my-5">
                     <p class="m-0 text-center">IF YOU ENJOY MUSIC</p>

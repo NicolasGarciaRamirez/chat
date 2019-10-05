@@ -18,7 +18,7 @@
                 <img src="/images/carrousel/5.png" class="img-fluid" >
             </a>
         </div>
-        <ol class="button" id="lightButton">
+        <ol class="button p-0" id="lightButton">
             <li index="0">
             <li index="1">
             <li index="2">
