@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 const getRemainingTime = deadline => {
-    let now = new Date(),
+    var now = new Date(),
         remainTime = (new Date(deadline) - now + 1000) / 1000,
         remainSeconds = ('0' + Math.floor(remainTime % 60)).slice(-2),
         remainMinutes = ('0' + Math.floor(remainTime / 60 % 60)).slice(-2),
@@ -27,7 +27,7 @@ const countdown = (deadline, elem, finalMessage) => {
     const el = document.getElementById(elem);
 
     const timerUpdate = setInterval( () => {
-        let t = getRemainingTime(deadline);
+        var t = getRemainingTime(deadline);
         el.innerHTML = `${t.remainDays} DAYS : ${t.remainHours} HRS : ${t.remainMinutes} MINS : ${t.remainSeconds} SEC`;
 
         if(t.remainTime <= 1) {
