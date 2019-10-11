@@ -19,7 +19,7 @@
         <header class="main-header">
             <div class="information">
                 <h5 class="text-center font-weight-bold">THE LAUNCH YOU DON’T WANT TO MISS</h5>
-                <h5 class="text-center font-weight-bold">60 DAYS : 24 HRS : 60 MINS : 60 SEC</h5>
+                <h5 class="text-center font-weight-bold" id="text-time"></h5>
             </div>
             <img src="/images/logo-border-black.svg" alt="logo" class="logo">
         </header>
