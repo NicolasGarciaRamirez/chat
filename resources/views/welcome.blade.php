@@ -105,5 +105,35 @@
             </div>
         </footer>
         <script src="{{ mix('/js/app.js') }}"></script>
+        <script>
+            var end = new Date('12/15/2019 12:00 AM');
+            var _second = 1000;
+            var _minute = _second * 60;
+            var _hour = _minute * 60;
+            var _day = _hour * 24;
+            var timer;
+
+            function showRemaining() {
+                var now = new Date();
+                var distance = end - now;
+                if (distance < 0) {
+
+                    clearInterval(timer);
+                    document.getElementById('text-time').innerHTML = 'EXPIRED!';
+
+                    return;
+                }
+                var days = Math.floor(distance / _day);
+                var hours = Math.floor((distance % _day) / _hour);
+                var minutes = Math.floor((distance % _hour) / _minute);
+                var seconds = Math.floor((distance % _minute) / _second);
+
+                document.getElementById('text-time').innerHTML = `${days} DAYS : ${hours} HRS : ${minutes} MINS : ${seconds} SEC`;
+
+            }
+
+            timer = setInterval(showRemaining, 1000);
+
+        </script>
     </body>
 </html>
