@@ -38,4 +38,7 @@ const countdown = (deadline, elem, finalMessage) => {
     }, 1000)
 };
 
-countdown('Dec 15 2019 24:00:00 GMT-0500', 'text-time', 'EXPIRED');
+document.addEventListener("DOMContentLoaded", function() {
+    countdown('Dec 15 2019 24:00:00 GMT-0500', 'text-time', 'EXPIRED');
+ });
+
