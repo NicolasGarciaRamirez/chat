@@ -43,10 +43,27 @@
                         <p class="text-white m-0">WITH OTHER MUSICIANS & CONTENT CREATORS <br> OF THE SAME INTEREST</p>
                     </div>
                 </div>
-
-                <form action="{{ route('pre_launch') }}" class="form form-inline position-relative d-flex justify-content-center my-3 my-lg-5">
+                @if(session()->has('message'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session()->get('message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form action="{{ route('pre_launch') }}" class="form form-inline position-relative d-flex justify-content-center my-3 my-lg-5" method="post">
+                    @csrf
                     <div class="form-group mb-2 mb-md-0">
-                        <input type="email" class="form-control" placeholder="Type Email..." required>
+                        <input type="email" name="email" class="form-control" placeholder="Type Email..." required>
                     </div>
                     <button type="submit" class="btn text-white font-weight-bold ml-md-4">GET ME ON THE WAITING LIST</button>
                 </form>
@@ -87,19 +104,18 @@
         <footer class="footer">
             <div class="information">
                 <img src="/images/logo-white.svg" alt="">
-                <ul class="mt-md-4">
-                    <li>Term</li>
-                    <li>Privacy</li>
-                    <li>Help</li>
-                    <li>Contact</li>
-                    <li>About</li>
-                </ul>
             </div>
             <div class="social-media">
                 <div class="icons">
-                    <img src="/images/facebook.svg" alt="facebook">
-                    <img src="/images/twitter.svg" alt="twitter">
-                    <img src="/images/instagram.svg" alt="instagram">
+                    <a href="https://www.facebook.com/noisesharks/" target="new">
+                        <img src="/images/facebook.svg" alt="facebook">
+                    </a>
+                    <a href="https://twitter.com/noisesharks" target="new">
+                        <img src="/images/twitter.svg" alt="twitter">
+                    </a>
+                    <a href="https://www.instagram.com/noisesharks/" target="new">
+                        <img src="/images/instagram.svg" alt="instagram">
+                    </a>
                 </div>
                 <p class="text-right mt-md-4">© 2019 Noisesharks ® Registered in England and Wales No. 10670071</p>
             </div>
