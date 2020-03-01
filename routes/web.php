@@ -12,6 +12,7 @@
 */
 
 Route::view('/', 'welcome');
+Route::view('/profile', 'profile');
 
 Route::name('pre_launch')->post('/join', 'LandingController@store');
 
