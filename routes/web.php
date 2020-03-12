@@ -15,3 +15,7 @@ Route::view('/', 'welcome');
 
 Route::name('pre_launch')->post('/join', 'LandingController@store');
 
+Route::get('/report', function(){
+    return view('reports');
+});
+
