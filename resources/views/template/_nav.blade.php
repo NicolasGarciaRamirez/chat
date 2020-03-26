@@ -2,7 +2,7 @@
 <div class="left-nav">
     <h3>Filter Stream</h3>
     <h4>Genre</h4>
-    <form>
+    <form class="genre-filter">
         <label class="container">Pop
             <input type="checkbox">
             <span class="checkmark"></span>
@@ -34,7 +34,7 @@
      </form>
      <br>
      <h4>Category</h4>
-     <form>
+     <form class="category-filter">
         <label class="container">Production & Engineering
             <input type="checkbox">
             <span class="checkmark"></span>
@@ -62,32 +62,34 @@
      </form>
      <hr></hr>
      <h4>Following</h4>
-     <form>
+     <form class="following">
          <!--<label class="container" > For para los usuarios que sigue
             <span class="dot"></span>
          </label>-->
-         <label class="container">SoundStorming
+         <label class="container">SoundStorming 
             <span class="dot"></span>
          </label>
      </form>
      <hr></hr>
-     <div>
-        <a class="footer-link" href="#">Terms</a>
-        <a class="footer-link" href="#">Privacy</a>
-        <a class="footer-link" href="#">Help</a>
-        <a class="footer-link" href="#">Suggestions</a>
-     </div>
-     <div>
-        <a class="footer-link" href="#">Contact</a>
-        <a class="footer-link" href="#">About</a>
-        <a class="footer-link" href="#">Carrers</a>
-        <a class="footer-link" href="#">Merch</a>
-     </div>
-     <div>
-        <label class="footer-info">For Music Companies
-     </div>
-     <div>
-        <label class="footer-info">© 2019 Noisesharks® Registered in England and Wales No. 10670071
+     <div class="nav-footer">
+         <div>
+            <a class="footer-link" href="#">Terms</a>
+            <a class="footer-link" href="#">Privacy</a>
+            <a class="footer-link" href="#">Help</a>
+            <a class="footer-link" href="#">Suggestions</a>
+         </div>
+         <div>
+            <a class="footer-link" href="#">Contact</a>
+            <a class="footer-link" href="#">About</a>
+            <a class="footer-link" href="#">Carrers</a>
+            <a class="footer-link" href="#">Merch</a>
+         </div>
+         <div>
+            <label class="footer-info">For Music Companies
+         </div>
+         <div>
+            <label class="footer-info">© 2019 Noisesharks® Registered in England and Wales No. 10670071
+        </div>
     </div>
  </div>
 

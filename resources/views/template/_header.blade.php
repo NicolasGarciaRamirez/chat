@@ -2,10 +2,10 @@
     <a class="navbar-brand" href="#"><img src="/images/logo-white.svg" class='logo'></a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" href="#">Stream</a>
+            <a class="nav-link" id="stream" href="#">Stream</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" id="profile" href="#">Profile</a>
         </li>
     </ul>
     <div class="form-inline">
@@ -15,6 +15,8 @@
         <button  >Become A Contributor</button>
     </div>
     <div class= "nav-img">
-        <img class="perfil"  src="/images/audience-1850119_1920.jpg">
+        <a href="#">
+            <img class="perfil"  src="/images/audience-1850119_1920.jpg">
+        </a>
     </div>
 </nav>

@@ -11,10 +11,46 @@
     text-justify: auto;
     display: grid;
     grid-template-columns: 20%;
-  }
-.boxMargin{
-    float: right ;
-   
+}
+.boxMargin {
+    float: right;
+    width:900px;
+    }
+.background-img{
+    height:300px;
+    width:800px;
+}
+.btn-profile{
+    color:#ffffff;
+    border:solid 2px #ffffff;
+    background-color:transparent;
+    border-radius:2.5rem;
+    font-weight:bold;
+}
+
+.profile-link {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #6c757d;
+    text-decoration: none;
+
+    &:visited {
+        color: #808080;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+        border-bottom: 1px solid red;
+    }
+
+    &:active {
+        text-decoration: none;
+        color: white;
+        border-bottom-color: red;
+    }
 }
 
 
