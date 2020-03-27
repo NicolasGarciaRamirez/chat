@@ -11444,11 +11444,15 @@ main .enjoy-music button {
   background: black;
 }
 
-.grid-container {
+.profile-container {
   margin: auto;
   text-justify: auto;
   display: grid;
-  grid-template-columns: 20%;
+  position: absolute;
+  background-color: #000000;
+  left: 260px;
+  top: 80px;
+  overflow: hidden;
 }
 
 .grid-containerM {
@@ -11458,14 +11462,13 @@ main .enjoy-music button {
   grid-template-columns: 20%;
 }
 
-.boxMargin {
-  float: right;
-  width: 900px;
+.profile-name {
+  padding-left: 10px;
 }
 
 .background-img {
-  height: 300px;
-  width: 800px;
+  height: 230px;
+  width: 100%;
 }
 
 .btn-profile {
@@ -11501,6 +11504,59 @@ main .enjoy-music button {
   border-bottom-color: red;
 }
 
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  position: absolute;
+  top: 150px;
+  left: 15px;
+}
+
+.profile-info,
+.btn-group {
+  padding-left: 190px;
+  padding-top: 10px;
+}
+
+.btn-group {
+  float: left;
+  padding-left: 200px;
+  vertical-align: top;
+}
+
+.btn-profile {
+  margin-left: 10px;
+}
+
+.info {
+  width: 100px;
+  font-size: 10px;
+  margin-right: 2px;
+  padding: 2px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#info1 {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+
+#info2 {
+  background-color: #ffffff;
+  color: #ff0000;
+}
+
+.profile-links {
+  padding-left: 20px;
+}
+
+.profile-link {
+  margin-right: 10px;
+  font-size: 1.4rem;
+}
+
 h4,
 h3 {
   color: #ffffff;
@@ -11521,7 +11577,8 @@ label {
 }
 
 .left-nav {
-  width: 257px;
+  width: 15%;
+  min-width: 260px;
   padding: 20px 0px 0px 20px;
 }
 
