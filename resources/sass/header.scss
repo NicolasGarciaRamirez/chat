@@ -1,0 +1,74 @@
+
+.nav-link {
+    font-size: 1.1rem;
+    font-weight:bold;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #6c757d;
+    text-decoration: none;
+    &:visited {
+        color: #808080;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+        border-bottom: 1px solid red;
+    }
+
+    &:active {
+        text-decoration: none;
+        color: white;
+        border-bottom-color: red;
+    }
+}
+button {
+    border: solid 2px #808080;
+    background-color: transparent;
+    border-radius: 2.5rem;
+    color: #808080;
+    padding: 5px 15px 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    &:focus {
+        outline: none;
+    }
+}
+.perfil{
+    border-radius:50%;
+    height:50px;
+    width:50px;
+}
+.navbar-brand{
+    padding-right:30px;
+    border:none;
+}
+.logo{
+    padding:10px 20px 2px 20px;
+   width:200px;
+}
+.nav-item{
+    padding-left:20px;
+}
+
+.form-buscar {
+    border: solid 2px #808080;
+    background-color: transparent;
+    border-radius: 2.5rem;
+    color: #808080;
+    padding: 7px 15px 7px 15px;
+    width: 260px;
+    font-size: 0.8rem;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+.nav-btn, .form-inline {
+    padding-right: 20px;
+   
+}
+

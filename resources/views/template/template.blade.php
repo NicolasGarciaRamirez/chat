@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css')  }}">
 </head>
 <body>
+    @include('template._header')
+    @include('template._nav')
     <main id="app">
         @yield('content')
     </main>
