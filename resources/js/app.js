@@ -7,3 +7,16 @@
 require('./bootstrap');
 
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
+
+import Vue from 'vue'
+
+import AppHeader from './components/template/Header'
+import AppNav from './components/template/Nav'
+
+new Vue({
+    el: '#app',
+    components:{
+        AppHeader,
+        AppNav
+    }
+});
