@@ -6,3 +6,4 @@
 
 require('./bootstrap');
 
+import { Sidebar, Alert, Popover } from '@coreui/coreui';

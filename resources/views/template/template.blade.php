@@ -13,14 +13,20 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon-152x152.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
-    <link rel="stylesheet" href="{{ mix('/css/app.css')  }}">
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
-<body>
-    @include('template._header')
-    @include('template._nav')
-    <main id="app">
-        @yield('content')
-    </main>
+<body class="c-app">
+    <div id="app">
+        @include('template._nav')
+        <div class="c-wrapper">
+            @include('template._header')
+            <div class="c-body">
+                <main class="c-main">
+                    @yield('content')
+                </main>
+            </div>
+        </div>
+    </div>
     <script src="{{ mix('/js/app.js') }}"></script>
 </body>
 </html>

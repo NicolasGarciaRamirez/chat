@@ -4,11 +4,19 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~@coreui/coreui/scss/coreui";
+@import "~@coreui/icons/scss/free/free-icons";
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
-@import "pre_launch";
-@import "carrousel";
-@import "profile";
+@import "helpers";
 @import "nav";
-@import "header";
+@import "footer";
+
+.c-sidebar-backdrop{
+    background-color: black;
+}
+
+.c-app{
+    color: white;
+}
