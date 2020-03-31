@@ -122,7 +122,7 @@
         </footer>
         <script src="{{ mix('/js/app.js') }}"></script>
         <script>
-            var end = new Date('03/31/2020 12:00 AM');
+            var end = new Date('05/31/2020 12:00 AM');
             var _second = 1000;
             var _minute = _second * 60;
             var _hour = _minute * 60;
