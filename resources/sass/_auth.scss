@@ -1,0 +1,54 @@
+.modal-login{
+    button[type=submit]{
+        &:hover{
+            color: $fifth-color;
+        }
+    }
+    a:not(.btn){
+        text-decoration: none;
+        &:hover{
+            color: $fourth-color;
+        }
+    }
+    .or{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+    }
+    .social-login{
+        a{
+            font-weight: bold;
+            border-radius: 20px;
+            &.bg-white{
+                &:hover{
+                    color: $fifth-color !important;
+                }
+            }
+        }
+    }
+    .divider{
+        background-color: $third-color;
+        height: 3px;
+        width: 100%;
+    }
+    .sign-me{
+        width: 100%;
+        border-radius: 20px;
+    }
+}

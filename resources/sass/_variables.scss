@@ -8,12 +8,14 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 $primary-color: #141414;
-$secundary-color: #535353;
-$tertiary-color: #ff0000;
+$second-color: #181818;
+$third-color: #262626;
+$fourth-color: #535353;
+$fifth-color: #FF0000;
 
 $theme-colors: (
     "primary": $primary-color,
-    "danger": $tertiary-color
+    "danger": $fifth-color
 );
 
 $coreui-icons-font-path: "../../fonts";

@@ -23,6 +23,10 @@
             <div class="c-body">
                 <main class="c-main">
                     @yield('content')
+                    @php
+                        isset($is_login_view) ? $is_login_view = true : $is_login_view = false
+                    @endphp
+                    <login is_login_view="{{ $is_login_view }}"/>
                 </main>
             </div>
         </div>

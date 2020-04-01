@@ -81,7 +81,7 @@
     .divider{
         height: 1px;
         width: 100%;
-        background-color: rgba($secundary-color, .5);
+        background-color: rgba($second-color, .5);
         margin: 20px 0;
     }
 }
@@ -92,7 +92,7 @@
     padding: 10px 0;
 
     .login{
-        background-color: $tertiary-color;
+        background-color: $fifth-color;
         color: white !important;
         padding: 10px 20px;
         border-radius: 20px;
@@ -101,8 +101,8 @@
     .become-contributor{
         padding: 10px 20px;
         border-radius: 20px;
-        color: $secundary-color !important;
-        border: 1px solid $secundary-color;
+        color: $fourth-color !important;
+        border: 1px solid $fourth-color;
     }
 
     .header-form-search{
@@ -114,9 +114,9 @@
                 border-radius: 20px 0px 0px 20px;
                 background-color: $primary-color;
                 color: white;
-                border-color: $secundary-color;
+                border-color: $fourth-color;
                 &::placeholder{
-                    color: $secundary-color;
+                    color: $fourth-color;
                 }
             }
         }
@@ -125,9 +125,9 @@
             .input-group-text{
                 border-radius: 0px 20px 20px 0px;
                 background-color: $primary-color;
-                border-color: $secundary-color;
+                border-color: $fourth-color;
                 i{
-                    color: $secundary-color;
+                    color: $fourth-color;
                 }
             }
         }
@@ -135,11 +135,11 @@
 }
 
 .c-header .c-header-nav .c-header-nav-link:not(.other-link), .c-header .c-header-nav .c-header-nav-btn:not(.other-link){
-    color: $secundary-color;
+    color: $fourth-color;
     position: relative;
     &:after{
         content: '';
-        background-color: $secundary-color;
+        background-color: $fourth-color;
         height: 3px;
         width: 100%;
         left: 0;
@@ -156,7 +156,7 @@
     &.active{
         color: $white;
         &:after{
-            background-color: $tertiary-color;
+            background-color: $fifth-color;
         }
     }
 }

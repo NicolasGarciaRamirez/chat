@@ -9,9 +9,10 @@
 @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
-@import "helpers";
+@import "utils";
 @import "nav";
 @import "footer";
+@import "auth";
 
 .c-sidebar-backdrop{
     background-color: black;

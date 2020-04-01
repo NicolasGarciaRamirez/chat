@@ -2,7 +2,7 @@
     <button class="c-header-toggler c-class-toggler d-lg-none" type="button" data-target="#sidebar" data-class="c-sidebar-show">
         <i class="cil-hamburger-menu text-white"></i>
     </button>
-    <a class="c-header-brand d-lg-none" href="#">
+    <a class="c-header-brand d-lg-none" href="/">
         <img src="/images/logo-white.svg" width="118" height="46" alt="Logo">
     </a>
     <button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">

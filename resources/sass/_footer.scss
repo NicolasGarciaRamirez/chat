@@ -1,7 +1,8 @@
 .footer{
     font-size: .8em;
+    color: $fourth-color;
     a{
-        color: $secundary-color;
+        color: $fourth-color;
         text-decoration: none;
         &:hover{
             color: white;
