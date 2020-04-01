@@ -12,11 +12,15 @@ import Vue from 'vue'
 
 import AppHeader from './components/template/Header'
 import AppNav from './components/template/Nav'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 new Vue({
     el: '#app',
     components:{
         AppHeader,
-        AppNav
+        AppNav,
+        Login,
+        Register
     }
 });

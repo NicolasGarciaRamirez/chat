@@ -13,12 +13,16 @@
             </div>
         </form>
         <li class="c-header-nav-item pl-2"><a class="c-header-nav-link other-link become-contributor d-none d-md-block" href="#">Become A Contributor </a></li>
-        <li class="c-header-nav-item px-2"><a class="c-header-nav-link other-link login" href="#">Login</a></li>
+        <li class="c-header-nav-item px-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
     </ul>
 </template>
 
 <script>
     export default {
-
+        methods:{
+            showModalLogin(){
+                $('#ModalLogin').modal('show')
+            }
+        }
     }
 </script>

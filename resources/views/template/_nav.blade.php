@@ -1,6 +1,6 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show main-nav" id="sidebar">
-    <div class="c-sidebar-brand d-md-down-none">
+    <a class="c-sidebar-brand d-md-down-none" href="/">
         <img src="/images/logo-white.svg" class="logo" alt="Logo">
-    </div>
+    </a>
     <app-nav />
 </div>

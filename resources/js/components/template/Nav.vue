@@ -70,7 +70,7 @@
         </li>
         <li class="c-sidebar-nav-item">
             SoundStorming
-            <span class="float-sm-right c-tertiary dot">•</span>
+            <span class="float-sm-right c-fifth dot">•</span>
         </li>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
