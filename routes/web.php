@@ -14,3 +14,10 @@
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@login');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
+
+// Route::group(['middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'User'], function () {
+        Route::name('user.profile')->get('/profile', 'User\UserController@profile');
+        Route::name('user.channel')->get('/channel', 'User\UserController@channel');    
+    });
+// });

@@ -14,13 +14,16 @@ import AppHeader from './components/template/Header'
 import AppNav from './components/template/Nav'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-
+import Profile from './components/User/Profile'
+import Channel from './components/User/Channel'
 new Vue({
     el: '#app',
     components:{
         AppHeader,
         AppNav,
         Login,
-        Register
+        Register,
+        Profile,
+        Channel
     }
 });
