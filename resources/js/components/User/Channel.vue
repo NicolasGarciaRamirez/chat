@@ -3,17 +3,16 @@
         <div class="channel-container">
             <div class="row ">
                 <div class="col-8">
-                    <div class="mb-5">
+                    <div class="mb-5 mt-5">
                         <h2 class="text-white">Why Support Channel?</h2>
                         <p>I help msuic enthusiasts to find financial settelment or growth</p>
                     </div>
                     <div class="col border">
-                        <div class="row nav">
-                            
-                            <a class="bg-black text-white mr-2" href="">
+                        <div class="row nav m-3">
+                            <a class="btn btn-primary text-white mr-2" href="">
                                 Activity
                             </a>
-                            <a class="bg-black text-white border-top-danger" href="">
+                            <a class="btn btn-primary text-white" href="">
                                 Playlist
                             </a>
                         </div>
@@ -22,7 +21,7 @@
                                 <div class="card mt-1">
                                     <div class="bg-black card-body">
                                         <img src="/images/profile.png" alt="" >
-                                        <h4 class="m-1">This is a title of a the video iI created</h4><br>
+                                        <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                         <div class="d-flex justify-content-around">
                                             <i>100</i>
                                             <i>100</i>
@@ -41,7 +40,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
+                                        <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                         <div class="d-flex justify-content-around">
                                             <i>100</i>
                                             <i>100</i>
@@ -60,121 +59,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4>This is a title of a the video iI created</h4><br>
+                                        <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                         <div class="d-flex justify-content-around">
                                             <i>100</i>
                                             <i>100</i>

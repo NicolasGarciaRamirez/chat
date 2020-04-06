@@ -27380,8 +27380,9 @@ readers do not read off random characters that represent icons */
 
 .img-container {
   width: 100%;
-  height: 40%;
-  position: static;
+  height: 20%;
+  position: -webkit-sticky;
+  position: sticky;
 }
 
 .body-container {
@@ -27401,17 +27402,13 @@ readers do not read off random characters that represent icons */
 }
 
 .img-profile {
-  width: 13%;
-  height: 26%;
+  width: 14%;
+  height: 60%;
   border-radius: 50%;
   position: absolute;
-  margin-top: 10%;
-  margin-left: 1%;
+  margin-top: 15%;
+  margin-left: 4%;
   z-index: 3;
-}
-
-.pointer {
-  cursor: pointer;
 }
 
 .img-profile-container {
@@ -27443,6 +27440,39 @@ readers do not read off random characters that represent icons */
   margin: 0.4em;
 }
 
+.border {
+  border: 1px solid #535353 !important;
+}
+
+.border-top {
+  border-top: 1px solid #535353 !important;
+}
+
+.nav h2 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #6c757d;
+  text-decoration: none;
+}
+
+.nav h2:visited {
+  color: #808080;
+  text-decoration: none;
+}
+
+.nav h2:hover {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid red;
+}
+
+.nav h2:active {
+  text-decoration: none;
+  color: white;
+  border-bottom-color: red;
+}
+
 @media (min-width: 320px) and (max-width: 1024px) {
   img.img-profile {
     width: 27%;
@@ -27452,8 +27482,7 @@ readers do not read off random characters that represent icons */
   }
 
   img.img-portada {
-    width: 99%;
-    height: 25%;
+    width: 100%;
     margin-left: 0.15em;
   }
 
@@ -27490,31 +27519,14 @@ readers do not read off random characters that represent icons */
 }
 
 @media only screen and (min-width: 600px) {
-  img.img-profile {
-    width: 14%;
-    height: 23%;
-    margin-top: 15em;
-    margin-left: 1em;
-  }
-
   img.img-portada {
-    width: 86%;
+    width: 100%;
     margin-left: 0.15em;
   }
 
   .container-profile {
-    width: 97%;
-    height: 99%;
-    margin-left: 0.15%;
-    margin-right: 0.15%;
-    display: block;
-  }
-
-  .img-container {
     width: 100%;
-    height: 20%;
-    position: static;
-    display: block;
+    height: 99%;
   }
 
   .col.m {
@@ -27525,12 +27537,9 @@ readers do not read off random characters that represent icons */
     border: 3px solid white !important;
   }
 
-  .channel-container .row {
-    margin: 2em;
-  }
-
   .channel-container .card {
     border: 0px solid !important;
+    margin: 1%;
   }
 
   .channel-container .card .card-body {
@@ -27545,6 +27554,7 @@ readers do not read off random characters that represent icons */
 
   .channel-container .card .card-footer {
     background: black;
+    border: 0px solid !important;
   }
 }
 

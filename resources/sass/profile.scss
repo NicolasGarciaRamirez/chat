@@ -1,7 +1,7 @@
 .img-container{
     width: 100%;
-    height: 40%;
-    position: static;
+    height: 20%;
+    position: sticky;
 }
 .body-container{
     width: 100%;
@@ -16,16 +16,13 @@
     z-index: 1;
 }
 .img-profile{
-    width: 13%;
-    height: 26%;
+    width: 14%;
+    height: 60%;
     border-radius: 50%;
     position: absolute;
-    margin-top: 10%;
-    margin-left: 1%;
+    margin-top: 15%;
+    margin-left: 4%;
     z-index: 3;
-}
-.pointer{
-    cursor: pointer;
 }
 .img-profile-container{
     width: 100%;
@@ -54,6 +51,36 @@
     margin: 0.40em;
 } 
 
+.border{
+    border: 1px solid $fourth-color !important;
+}
+.border-top {
+    border-top: 1px solid $fourth-color !important;
+}
+
+.nav h2 {
+    font-size: 1.1rem;
+    font-weight:bold;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #6c757d;
+    text-decoration: none;
+    &:visited {
+        color: #808080;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: white;
+        text-decoration: none;
+        border-bottom: 1px solid red;
+    }
+
+    &:active {
+        text-decoration: none;
+        color: white;
+        border-bottom-color: red;
+    }
+}
 
 // for mobile phones
 @media (min-width: 320px) and (max-width: 1024px){
@@ -64,8 +91,8 @@
         margin-left: 1em;
     }
     img.img-portada {
-        width: 99%;
-        height: 25%;
+        width: 100%;
+        // height: 25%;
         margin-left: 0.15em;
     }
     .row{
@@ -99,28 +126,14 @@
 
 // for tables and destktop
 @media only screen and (min-width: 600px){
-    img.img-profile {
-        width: 14%;
-        height: 23%;
-        margin-top: 15em;
-        margin-left: 1em;
-    }
     img.img-portada {
-        width: 86%;
+        width: 100%;
         margin-left: 0.15em;
     }
     .container-profile{
-        width: 97%;
-        height: 99%;
-        margin-left: 0.15%;
-        margin-right: 0.15%;
-        display: block;
-    }
-    .img-container{
         width: 100%;
-        height: 20%;
-        position: static;
-        display: block;
+        height: 99%;
+        
     }
     .col.m{
         margin-left: 20%;
@@ -133,9 +146,6 @@
         }
     }
     .channel-container{
-        .row{
-            margin: 2em;
-        }
         .card{
             .card-body{
                 img{
@@ -147,8 +157,10 @@
             }
             .card-footer{
                 background: black;
+                border: 0px solid !important;
             }
             border: 0px solid !important;
+            margin: 1%;
         }
     }
     
