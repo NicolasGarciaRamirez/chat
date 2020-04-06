@@ -1,6 +1,6 @@
 <template>
   <section>
-    <!-- <div class="profile-container">
+    <div class="profile-container">
 
         <div class="d-flex justify-content-around bg-black mt-5">
           <div >
@@ -405,7 +405,7 @@
           <button class="btn rounded-pill bg-black text-white">Cancel</button>
           <button class="btn rounded-pill text-white bg-fifth" type="submit">Save</button>
         </div> 
-    </div> -->
+    </div>
     
   </section>
 </template>

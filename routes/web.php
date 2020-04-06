@@ -18,6 +18,7 @@ Route::post('/login', 'Auth\AuthController@login')->name('login');
 // Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'User'], function () {
         Route::name('user.profile')->get('/profile', 'User\UserController@profile');
+        Route::name('user.edit.profile')->get('/profile/edit', 'User\UserController@editProfile');
         Route::name('user.channel')->get('/channel', 'User\UserController@channel');    
     });
 // });

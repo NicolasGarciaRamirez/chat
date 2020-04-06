@@ -11,7 +11,7 @@
             </div>
         </div>
         <div class="collapse mt-5" id="profile">
-            <profile :user="{{ $user }}" />
+            {{-- <profile :user="{{ $user }}" /> --}}
         </div>
         <div class="collapse show" id="channel">
             <channel />

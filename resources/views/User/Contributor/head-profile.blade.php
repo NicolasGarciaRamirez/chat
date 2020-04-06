@@ -9,8 +9,8 @@
         <a href="#" class="btn bg-white c-fifth">CONTRIBUTOR <i class="fas fa-music ml-2"></i></a>
     </div>
     <div class="col text-right">
-        <button class="btn bg-black rounded-pill mr-2 text-white">Edit Profile <i class="fas fa-pencil-alt ml-2"></i></button>
-        <button class="btn bg-black rounded-pill mr-2 text-white">Share Profile <i class="fas fa-share text-white ml-2"></i></button>
-        <button class="btn bg-black rounded-pill text-white">Preview Profile</button>
+        <a class="btn bg-black rounded-pill mr-2 text-white" href="{{ route('user.edit.profile') }}">Edit Profile <i class="fas fa-pencil-alt ml-2"></i></a>
+        <a class="btn bg-black rounded-pill mr-2 text-white" href="#">Share Profile <i class="fas fa-share text-white ml-2"></i>
+        <a class="btn bg-black rounded-pill text-white" href="#">Preview Profile</a>
     </div>
 </div>

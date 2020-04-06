@@ -27533,7 +27533,7 @@ readers do not read off random characters that represent icons */
     margin-left: 20%;
   }
 
-  .head-container .col button {
+  .head-container .col.text-right a {
     border: 3px solid white !important;
   }
 

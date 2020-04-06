@@ -17,4 +17,9 @@ class UserController extends Controller
     {
         return view('User.Contributor.channel');
     }
+
+    public function editProfile()
+    {
+        return view('User.Contributor.edit-profile');
+    }
 }
