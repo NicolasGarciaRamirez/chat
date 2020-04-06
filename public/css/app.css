@@ -27028,6 +27028,10 @@ readers do not read off random characters that represent icons */
   background-color: #FF0000;
 }
 
+.bg-black {
+  background: black;
+}
+
 .modal .modal-dialog .modal-content {
   border: 0;
   background-color: #141414;
@@ -27380,6 +27384,13 @@ readers do not read off random characters that represent icons */
   position: static;
 }
 
+.body-container {
+  width: 100%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 4%;
+}
+
 .img-portada {
   width: 100%;
   height: -webkit-fit-content;
@@ -27397,6 +27408,10 @@ readers do not read off random characters that represent icons */
   margin-top: 10%;
   margin-left: 1%;
   z-index: 3;
+}
+
+.pointer {
+  cursor: pointer;
 }
 
 .img-profile-container {
@@ -27428,51 +27443,108 @@ readers do not read off random characters that represent icons */
   margin: 0.4em;
 }
 
-@media only screen and (min-width: 320px) {
+@media (min-width: 320px) and (max-width: 1024px) {
   img.img-profile {
-    width: 29%;
-    height: 20%;
-    margin-top: 15em;
+    width: 27%;
+    height: 17%;
+    margin-top: 7em;
     margin-left: 1em;
   }
 
   img.img-portada {
-    width: 87%;
-    height: -webkit-fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
+    width: 99%;
+    height: 25%;
+    margin-left: 0.15em;
   }
 
   .row {
     z-index: 2;
+    margin: auto;
   }
 
-  .col.m {
-    margin-left: 20%;
+  .container-profile {
+    width: 90%;
+    height: 99%;
+    margin-left: 0.15%;
+    float: inline-start;
   }
-}
 
-@media only screen and (min-width: 1025px) {
-  img.img-profile {
-    width: 16%;
-    height: 26%;
-    margin-top: 15em;
-    margin-left: 1em;
+  i.fa-1x {
+    font-size: 0.85em;
+  }
+
+  a.btn {
+    font-size: 78%;
+    width: 100%;
+  }
+
+  button.btn {
+    font-size: 78%;
+    width: 100%;
+  }
+
+  .container-body {
+    width: 100%;
+    position: fixed;
   }
 }
 
 @media only screen and (min-width: 600px) {
   img.img-profile {
-    width: 16%;
-    height: 26%;
+    width: 14%;
+    height: 23%;
     margin-top: 15em;
     margin-left: 1em;
   }
-}
 
-@media only screen and (min-width: 768px) {
-  .col-1 {
-    width: 8.33%;
+  img.img-portada {
+    width: 86%;
+    margin-left: 0.15em;
+  }
+
+  .container-profile {
+    width: 97%;
+    height: 99%;
+    margin-left: 0.15%;
+    margin-right: 0.15%;
+    display: block;
+  }
+
+  .img-container {
+    width: 100%;
+    height: 20%;
+    position: static;
+    display: block;
+  }
+
+  .col.m {
+    margin-left: 20%;
+  }
+
+  .head-container .col button {
+    border: 3px solid white !important;
+  }
+
+  .channel-container .row {
+    margin: 2em;
+  }
+
+  .channel-container .card {
+    border: 0px solid !important;
+  }
+
+  .channel-container .card .card-body {
+    padding: 1% !important;
+    background: black;
+  }
+
+  .channel-container .card .card-body img {
+    width: 100%;
+    height: 15em;
+  }
+
+  .channel-container .card .card-footer {
+    background: black;
   }
 }
 

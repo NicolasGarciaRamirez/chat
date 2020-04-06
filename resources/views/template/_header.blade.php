@@ -9,8 +9,8 @@
         <i class="cil-hamburger-menu text-white"></i>
     </button>
     <ul class="c-header-nav d-md-down-none">
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link active" href="#">Stream</a></li>
-        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Profile</a></li>
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link active" href="/">Stream</a></li>
+        <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="{{ route('user.profile') }}">Profile</a></li>
     </ul>
     <app-header />
 </header>

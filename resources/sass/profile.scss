@@ -3,6 +3,12 @@
     height: 40%;
     position: static;
 }
+.body-container{
+    width: 100%;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-top: 4%;
+}
 .img-portada{
     width: 100%;
     height: fit-content;
@@ -18,7 +24,9 @@
     margin-left: 1%;
     z-index: 3;
 }
-
+.pointer{
+    cursor: pointer;
+}
 .img-profile-container{
     width: 100%;
     height: auto;
@@ -46,63 +54,102 @@
     margin: 0.40em;
 } 
 
-// for mobile phones
-// [class*="col-"]{
-//     width: 100%;
-// }
-// for desktop
-// @media (min-width:  360px) and (min-width: 320px){
-//     img.img-profile {
-//         width: 29%;
-//         height: 20%;
-//         margin-top: 15em;
-//         margin-left: 1em;
-//     }
-//     img.img-portada {
-//         width: 87%;
-//         height: fit-content;
-//     }
-// }
 
-@media only screen and(min-width: 320px){
+// for mobile phones
+@media (min-width: 320px) and (max-width: 1024px){
     img.img-profile {
-        width: 29%;
-        height: 20%;
+        width: 27%;
+        height: 17%;
+        margin-top: 7em;
+        margin-left: 1em;
+    }
+    img.img-portada {
+        width: 99%;
+        height: 25%;
+        margin-left: 0.15em;
+    }
+    .row{
+        z-index: 2;
+        margin: auto;
+    }
+    .container-profile{
+        width: 90%;
+        height: 99%;
+        margin-left: 0.15%;
+        float: inline-start;
+    }
+    i.fa-1x {
+        font-size: 0.85em;
+    }
+    a.btn{
+        font-size: 78%;
+        width: 100%;
+    }
+    
+    button.btn{
+        font-size: 78%;
+        width: 100%;
+    }
+    .container-body{
+        width: 100%;
+        position: fixed;
+    }
+}
+
+
+// for tables and destktop
+@media only screen and (min-width: 600px){
+    img.img-profile {
+        width: 14%;
+        height: 23%;
         margin-top: 15em;
         margin-left: 1em;
     }
     img.img-portada {
-        width: 87%;
-        height: fit-content;
+        width: 86%;
+        margin-left: 0.15em;
     }
-    .row{
-        z-index: 2;
+    .container-profile{
+        width: 97%;
+        height: 99%;
+        margin-left: 0.15%;
+        margin-right: 0.15%;
+        display: block;
+    }
+    .img-container{
+        width: 100%;
+        height: 20%;
+        position: static;
+        display: block;
     }
     .col.m{
         margin-left: 20%;
     }
-}
-
-@media only screen and(min-width: 1025px){
-    img.img-profile {
-        width: 16%;
-        height: 26%;
-        margin-top: 15em;
-        margin-left: 1em;
+    .head-container{
+        .col{
+            button{
+                border: 3px solid white !important;
+            }
+        }
     }
-}
-
-// for tables
-@media only screen and (min-width: 600px){
-    img.img-profile {
-        width: 16%;
-        height: 26%;
-        margin-top: 15em;
-        margin-left: 1em;
+    .channel-container{
+        .row{
+            margin: 2em;
+        }
+        .card{
+            .card-body{
+                img{
+                    width: 100%;
+                    height: 15em;
+                }
+                padding: 1% !important;
+                background: black;
+            }
+            .card-footer{
+                background: black;
+            }
+            border: 0px solid !important;
+        }
+    }
     
-    }
-}
-// for Desktop
-@media  only screen and(min-width: 768px){
-    .col-1 {width: 8.33%}
 }

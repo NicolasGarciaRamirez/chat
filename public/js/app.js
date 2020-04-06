@@ -11118,6 +11118,243 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -11131,6 +11368,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -31438,20 +31676,497 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-body" }, [
-            _c("img", { attrs: { src: "", alt: "" } }),
+      _c("div", { staticClass: "channel-container" }, [
+        _c("div", { staticClass: "row " }, [
+          _c("div", { staticClass: "col-8" }, [
+            _c("div", { staticClass: "mb-5" }, [
+              _c("h2", { staticClass: "text-white" }, [
+                _vm._v("Why Support Channel?")
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._v(
+                  "I help msuic enthusiasts to find financial settelment or growth"
+                )
+              ])
+            ]),
             _vm._v(" "),
-            _c("h2", [_vm._v("adfasd")])
+            _c("div", { staticClass: "col border" }, [
+              _c("div", { staticClass: "row nav" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "bg-black text-white mr-2",
+                    attrs: { href: "" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Activity\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "bg-black text-white border-top-danger",
+                    attrs: { href: "" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                            Playlist\n                        "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card mt-1" }, [
+                    _c("div", { staticClass: "bg-black card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", { staticClass: "m-1" }, [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "bg-black text-white card-footer" },
+                      [
+                        _c("div", { staticClass: "pt-2 c-fourth" }, [
+                          _c("span", { staticClass: "text-left" }, [
+                            _vm._v("11k views")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "text-right" }, [
+                            _vm._v("3 hrs ago")
+                          ])
+                        ])
+                      ]
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-4" }, [
+                  _c("div", { staticClass: "card" }, [
+                    _c("div", { staticClass: "card-body" }, [
+                      _c("img", {
+                        attrs: { src: "/images/profile.png", alt: "" }
+                      }),
+                      _vm._v(" "),
+                      _c("h4", [
+                        _vm._v("This is a title of a the video iI created")
+                      ]),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "d-flex justify-content-around" },
+                        [
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")]),
+                          _vm._v(" "),
+                          _c("i", [_vm._v("100")])
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "card-footer" }, [
+                      _c("div", { staticClass: "pt-2 c-fourth" }, [
+                        _c("span", { staticClass: "text-left" }, [
+                          _vm._v("11k views")
+                        ]),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "text-right" }, [
+                          _vm._v("3 hrs ago")
+                        ])
+                      ])
+                    ])
+                  ])
+                ])
+              ])
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-footer" }, [
-            _c("i", { staticClass: "fas fa-angle-up" }),
+          _c("div", { staticClass: "col-4 text-center" }, [
+            _c("div", { staticClass: "row p-5 " }, [
+              _c("div", { staticClass: "col p-1" }, [
+                _c("h2", [_vm._v("Monthly Goal")]),
+                _vm._v("\n                        £500 _______________ £150 "),
+                _c("br"),
+                _vm._v(
+                  "\n                        243 Followers · 98 Supporters \n                    "
+                )
+              ])
+            ]),
             _vm._v(" "),
-            _c("i", { staticClass: "fas fa-angle-up" }),
+            _c("div", { staticClass: "row p-5 border-top" }, [
+              _c("div", { staticClass: "col " }, [
+                _c("h2", [_vm._v("What Will Supporters Get?")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("h5", [_vm._v("The Nickels")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                            For the $1 supporters I will send give you a\n                            shoutout and mentions when you comment\n                            on my content \n                        "
+                  )
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("button", { staticClass: "bg-fifth btn rounded-pill" }, [
+                  _vm._v("$1")
+                ]),
+                _c("br")
+              ])
+            ]),
             _vm._v(" "),
-            _c("i", { staticClass: "fas fa-angle-up" })
+            _c("div", { staticClass: "row p-5 border-top" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("h2", { staticClass: "pb-1" }, [_vm._v("The Silvers")]),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                            For the $1 supporters I will send give you a\n                            shoutout and mentions when you comment\n                            on my content \n                        "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("button", { staticClass: "bg-fifth btn rounded-pill" }, [
+                  _vm._v("$1.99")
+                ]),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row p-5 border-top" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("h2", [_vm._v("The Platinums")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                            For the $1 supporters I will send give you a\n                            shoutout and mentions when you comment\n                            on my content \n                        "
+                  )
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("button", { staticClass: "bg-fifth btn rounded-pill" }, [
+                  _vm._v("$4.99")
+                ]),
+                _c("br")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row p-5 border-top" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("h2", [_vm._v("The Golds")]),
+                _c("br"),
+                _vm._v(" "),
+                _c("p", [
+                  _vm._v(
+                    "\n                            For the $1 supporters I will send give you a\n                            shoutout and mentions when you comment\n                            on my content \n                        "
+                  )
+                ]),
+                _c("br"),
+                _vm._v(" "),
+                _c("button", { staticClass: "bg-fifth btn rounded-pill" }, [
+                  _vm._v("$7.77")
+                ]),
+                _c("br")
+              ])
+            ])
           ])
         ])
       ])
@@ -46139,8 +46854,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp\www\Nueva carpeta (5)\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp\www\Nueva carpeta (5)\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp\www\NoiseShark\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp\www\NoiseShark\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

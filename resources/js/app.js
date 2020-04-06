@@ -16,6 +16,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/User/Profile'
 import Channel from './components/User/Channel'
+
 new Vue({
     el: '#app',
     components:{
