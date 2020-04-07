@@ -27380,7 +27380,7 @@ readers do not read off random characters that represent icons */
 
 .img-container {
   width: 100%;
-  height: 20%;
+  height: 24em;
   position: -webkit-sticky;
   position: sticky;
 }
@@ -27448,29 +27448,60 @@ readers do not read off random characters that represent icons */
   border-top: 1px solid #535353 !important;
 }
 
-.nav h2 {
+.profile-container .nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  list-style: none;
   font-size: 1.1rem;
   font-weight: bold;
   padding-bottom: 8px;
-  border-bottom: 1px solid #6c757d;
   text-decoration: none;
 }
 
-.nav h2:visited {
+.profile-container .nav-container h2 {
+  border-bottom: 4px solid #808080;
+  cursor: pointer;
+}
+
+.profile-container .nav-container h2:visited {
   color: #808080;
   text-decoration: none;
 }
 
-.nav h2:hover {
+.profile-container .nav-container h2:hover {
   color: white;
   text-decoration: none;
-  border-bottom: 1px solid red;
+  border-bottom: 4px solid red;
 }
 
-.nav h2:active {
+.profile-container .nav-container h2:active {
   text-decoration: none;
   color: white;
   border-bottom-color: red;
+}
+
+.profile-container .nav-container button {
+  background-color: transparent;
+  border-radius: 2.5rem;
+  color: #808080;
+  padding: 5px 15px 5px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.profile-container .nav-container button:focus {
+  outline: none;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 
 @media (min-width: 320px) and (max-width: 1024px) {

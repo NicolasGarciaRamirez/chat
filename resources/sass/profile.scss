@@ -1,6 +1,6 @@
 .img-container{
     width: 100%;
-    height: 20%;
+    height: 24em;
     position: sticky;
 }
 .body-container{
@@ -58,30 +58,58 @@
     border-top: 1px solid $fourth-color !important;
 }
 
-.nav h2 {
-    font-size: 1.1rem;
-    font-weight:bold;
-    padding-bottom: 8px;
-    border-bottom: 1px solid #6c757d;
-    text-decoration: none;
-    &:visited {
-        color: #808080;
+.profile-container {
+    .nav-container{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        list-style: none;
+        font-size: 1.1rem;
+        font-weight:bold;
+        padding-bottom: 8px;
+        // border-bottom: 1px solid #6c757d;
         text-decoration: none;
-    }
-
-    &:hover {
-        color: white;
-        text-decoration: none;
-        border-bottom: 1px solid red;
-    }
-
-    &:active {
-        text-decoration: none;
-        color: white;
-        border-bottom-color: red;
+        h2{
+            border-bottom: 4px solid #808080;
+            cursor: pointer;
+            &:visited {
+                color: #808080;
+                text-decoration: none;
+            }
+        
+            &:hover {
+                color: white;
+                text-decoration: none;
+                border-bottom: 4px solid red;
+            }
+        
+            &:active {
+                text-decoration: none;
+                color: white;
+                border-bottom-color:red;
+            }
+        }
+        button {
+           
+            background-color: transparent;
+            border-radius: 2.5rem;
+            color: #808080;
+            padding: 5px 15px 5px 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
-
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s
+  }
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+opacity: 0
+}
 // for mobile phones
 @media (min-width: 320px) and (max-width: 1024px){
     img.img-profile {
