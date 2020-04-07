@@ -3,82 +3,148 @@
         <div class="channel-container">
             <div class="row ">
                 <div class="col-8">
-                    <div class="mb-5 mt-5">
+                    <div class="my-5">
                         <h2 class="text-white">Why Support Channel?</h2>
                         <p>I help msuic enthusiasts to find financial settelment or growth</p>
                     </div>
                     <div class="col border">
-                        <div class="row nav m-3">
-                            <a class="btn btn-primary text-white mr-2" href="">
+                        <div class=" nav-container m-3">
+                            <a class="btn btn-primary text-white mr-2" @click="show">
                                 Activity
                             </a>
-                            <a class="btn btn-primary text-white" href="">
+                            <a class="btn btn-primary text-white" @click="show">
                                 Playlist
                             </a>
                         </div>
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="card mt-1">
-                                    <div class="bg-black card-body">
-                                        <img src="/images/profile.png" alt="" >
-                                        <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
+                        <transition name="fade">
+                            <div v-if="activity">
+                                <h2>Activity</h2>
+                                <div class="row" >
+                                    <div class="col-4">
+                                        <div class="card mt-1">
+                                            <div class="bg-black card-body">
+                                                <img src="/images/profile.png" alt="" >
+                                                <h4  class="m-2">This is a title of a the video iI created</h4><br>
+                                                <div class="d-flex justify-content-around">
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                </div>
+                                            </div>
+                                            <div class="bg-black text-white card-footer">
+                                                <div class="pt-2 c-fourth">
+                                                    <span class="text-left">11k views</span>
+                                                    <span class="text-right">3 hrs ago</span>    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="bg-black text-white card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img src="/images/profile.png" alt="">
+                                                <h4  class="m-2">This is a title of a the video iI created</h4><br>
+                                                <div class="d-flex justify-content-around">
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="pt-2 c-fourth">
+                                                    <span class="text-left">11k views</span>
+                                                    <span class="text-right">3 hrs ago</span>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img src="/images/profile.png" alt="">
+                                                <h4  class="m-2">This is a title of a the video iI created</h4><br>
+                                                <div class="d-flex justify-content-around">
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="pt-2 c-fourth">
+                                                    <span class="text-left">11k views</span>
+                                                    <span class="text-right">3 hrs ago</span>    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
+                            <div v-else-if="playlist">
+                                <h2>Playlist</h2>
+                                <div class="row" >
+                                    <div class="col-4">
+                                        <div class="card mt-1">
+                                            <div class="bg-black card-body">
+                                                <img src="/images/profile.png" alt="" >
+                                                <h4  class="m-2">This is a title of a the video iI created</h4><br>
+                                                <div class="d-flex justify-content-around">
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                </div>
+                                            </div>
+                                            <div class="bg-black text-white card-footer">
+                                                <div class="pt-2 c-fourth">
+                                                    <span class="text-left">11k views</span>
+                                                    <span class="text-right">3 hrs ago</span>    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img src="/images/profile.png" alt="">
+                                                <h4  class="m-2">This is a title of a the video iI created</h4><br>
+                                                <div class="d-flex justify-content-around">
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="pt-2 c-fourth">
+                                                    <span class="text-left">11k views</span>
+                                                    <span class="text-right">3 hrs ago</span>    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <img src="/images/profile.png" alt="">
+                                                <h4  class="m-2">This is a title of a the video iI created</h4><br>
+                                                <div class="d-flex justify-content-around">
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                    <i>100</i>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="pt-2 c-fourth">
+                                                    <span class="text-left">11k views</span>
+                                                    <span class="text-right">3 hrs ago</span>    
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <img src="/images/profile.png" alt="">
-                                        <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                        <div class="d-flex justify-content-around">
-                                            <i>100</i>
-                                            <i>100</i>
-                                            <i>100</i>
-                                        </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="pt-2 c-fourth">
-                                            <span class="text-left">11k views</span>
-                                            <span class="text-right">3 hrs ago</span>    
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        </transition>
                     </div>
                 </div>
-            <!-- </div>
-            <div class="row"> -->
                 
                 <div class="col-4 text-center">
                     <div class="row p-5 ">
@@ -141,6 +207,25 @@
 
 <script>
 export default {
-    
+    data(){
+        return {
+            activity: true,
+            playlist: false
+        }
+    },
+
+    methods:{
+        show(){
+            if (this.activity && this.playlist == false) {
+                this.playlist = true
+                this.activity = false
+            }
+            else if (this.activity == false && this.playlist) {
+                this.activity = true
+                this.playlist = false
+            }
+            
+        }
+    }
 }
 </script>
