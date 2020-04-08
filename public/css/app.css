@@ -27411,6 +27411,10 @@ readers do not read off random characters that represent icons */
   height: 15em;
 }
 
+.channel-container .card .card-body .icons-container img {
+  height: 1.8em;
+}
+
 .channel-container .card .card-footer {
   background: black;
   border: 0px solid !important;
@@ -27615,9 +27619,8 @@ readers do not read off random characters that represent icons */
     margin: 2em;
   }
 
-  .channel-container .card .card-body i img {
+  .channel-container .card .card-body .icons-container img {
     height: 1em;
-    font-size: 1em;
   }
 
   .channel-container .nav-container .nav-container {

@@ -25,8 +25,8 @@
                                             <div class="bg-black card-body">
                                                 <img src="/images/profile.png" alt="" >
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                                <div class="d-flex justify-content-around bg-primary">
-                                                    <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon">100</i>
+                                                <div class="d-flex justify-content-around bg-primary icons-container">
+                                                    <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon" class="float-left">100</i>
                                                     <i class="c-fourth"><img src="/images/flame.svg" alt="flame-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/chat.svg" alt="chat-icon">100</i>
                                                 </div>
@@ -44,7 +44,7 @@
                                             <div class="card-body">
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                                <div class="d-flex justify-content-around bg-primary">
+                                                <div class="d-flex justify-content-around bg-primary icons-container">
                                                     <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/flame.svg" alt="flame-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/chat.svg" alt="chat-icon">100</i>
@@ -63,7 +63,7 @@
                                             <div class="card-body">
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                                <div class="d-flex justify-content-around bg-primary">
+                                                <div class="d-flex justify-content-around bg-primary icons-container">
                                                     <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/flame.svg" alt="flame-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/chat.svg" alt="chat-icon">100</i>
@@ -87,7 +87,7 @@
                                             <div class="bg-black card-body">
                                                 <img src="/images/profile.png" alt="" >
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                                <div class="d-flex justify-content-around bg-primary">
+                                                <div class="d-flex justify-content-around bg-primary icons-container">
                                                     <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/flame.svg" alt="flame-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/chat.svg" alt="chat-icon">100</i>
@@ -106,7 +106,7 @@
                                             <div class="card-body">
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                                <div class="d-flex justify-content-around bg-primary">
+                                                <div class="d-flex justify-content-around bg-primary icons-container">
                                                     <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/flame.svg" alt="flame-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/chat.svg" alt="chat-icon">100</i>
@@ -125,7 +125,7 @@
                                             <div class="card-body">
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
-                                                <div class="d-flex justify-content-around bg-primary">
+                                                <div class="d-flex justify-content-around bg-primary icons-container">
                                                     <i class="c-fourth"><img src="/images/percentage.svg" alt="percentage-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/flame.svg" alt="flame-icon">100</i>
                                                     <i class="c-fourth"><img src="/images/chat.svg" alt="chat-icon">100</i>
