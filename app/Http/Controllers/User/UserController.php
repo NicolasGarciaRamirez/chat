@@ -10,16 +10,16 @@ class UserController extends Controller
 {
     public function profile(User $user)
     {
-        return view('User.Contributor.profile', compact('user'));
+        return view('user.contributor.profile', compact('user'));
     }
 
     public function channel()
     {
-        return view('User.Contributor.channel');
+        return view('user.contributor.channel');
     }
 
     public function editProfile()
     {
-        return view('User.Contributor.edit-profile');
+        return view('user.contributor.edit-profile');
     }
 }
