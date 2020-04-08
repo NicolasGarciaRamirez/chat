@@ -27413,6 +27413,8 @@ readers do not read off random characters that represent icons */
 
 .channel-container .card .card-body .icons-container img {
   height: 1.8em;
+  width: 1.6em;
+  margin-right: 0.4em;
 }
 
 .channel-container .card .card-footer {
@@ -27442,11 +27444,6 @@ readers do not read off random characters that represent icons */
   margin-top: 16%;
   margin-left: 3%;
   z-index: 3;
-}
-
-.img-profile-container {
-  width: 100%;
-  height: auto;
 }
 
 .icon-check {
@@ -27541,6 +27538,79 @@ readers do not read off random characters that represent icons */
   outline: none;
 }
 
+.profile-container .details-container .nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-bottom: 8px;
+  border-top: 1px solid #6c757d;
+  border-bottom: 0px !important;
+  text-decoration: none;
+}
+
+.profile-container .details-container .nav-container h2 {
+  font-size: 1.4rem;
+  border-top: 1px solid #6c757d;
+  border-bottom: 0px !important;
+  cursor: pointer;
+}
+
+.profile-container .details-container .nav-container h2:visited {
+  color: #808080;
+  text-decoration: none;
+}
+
+.profile-container .details-container .nav-container h2:hover {
+  color: red;
+  text-decoration: none;
+  border-top: 2px solid red;
+}
+
+.profile-container .details-container .nav-container h2:active {
+  text-decoration: none;
+  color: red;
+  border-top-color: red;
+}
+
+.profile-container .channel-container .nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+  list-style: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-bottom: 8px;
+  border-bottom: 0px !important;
+  text-decoration: none;
+}
+
+.profile-container .channel-container .nav-container h2 {
+  font-size: 1.4rem;
+  border-top: 1px solid #535353;
+  border-bottom: 0px !important;
+  cursor: pointer;
+}
+
+.profile-container .channel-container .nav-container h2:visited {
+  color: #808080;
+  text-decoration: none;
+}
+
+.profile-container .channel-container .nav-container h2:hover {
+  color: red !important;
+  text-decoration: none;
+  border-top: 1px solid red;
+}
+
+.profile-container .channel-container .nav-container h2:active {
+  text-decoration: none;
+  color: red;
+  border-top-color: red;
+}
+
 @media (min-width: 320px) and (max-width: 1024px) {
   .img-container {
     width: 100%;
@@ -27580,7 +27650,7 @@ readers do not read off random characters that represent icons */
   }
 
   .profile-container .nav-container h2 {
-    font-size: 6em !important;
+    font-size: 0.9rem !important;
     border-bottom: 4px solid #808080;
     cursor: pointer;
   }
@@ -27620,41 +27690,8 @@ readers do not read off random characters that represent icons */
   }
 
   .channel-container .card .card-body .icons-container img {
-    height: 1em;
-  }
-
-  .channel-container .nav-container .nav-container {
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 0;
-    list-style: none;
-    font-size: 0.15rem;
-    font-weight: bold;
-    padding-bottom: 8px;
-    text-decoration: none;
-  }
-
-  .channel-container .nav-container .nav-container h2 {
-    font-size: 6em !important;
-    border-bottom: 4px solid #808080;
-    cursor: pointer;
-  }
-
-  .channel-container .nav-container .nav-container h2:visited {
-    color: #808080;
-    text-decoration: none;
-  }
-
-  .channel-container .nav-container .nav-container h2:hover {
-    color: white;
-    text-decoration: none;
-    border-bottom: 4px solid red;
-  }
-
-  .channel-container .nav-container .nav-container h2:active {
-    text-decoration: none;
-    color: white;
-    border-bottom-color: red;
+    height: 1.8em;
+    width: 1.6em;
   }
 
   i.fa-1x {
