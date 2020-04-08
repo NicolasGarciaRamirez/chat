@@ -29,7 +29,7 @@
 					</div>
 				</div>
 
-				<div id="accordionExample">
+				<div id="accordionProfile" class="accordion-container">
 					<div class="m-5">
 						<div class="row">
 							<div class="col">
@@ -43,7 +43,7 @@
 										</h2>
 									</div>
 
-									<div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample" >
+									<div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionProfile" >
 										<div class="card-body  bg-black">
 											<div class="row text-justify">
 											<div class="col text-right">
@@ -73,7 +73,7 @@
 
 									</h2>
 								</div>
-								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+								<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionProfile">
 									<div class="card-body text-white bg-black">
 									<div class="row text-justify ">
 										<div class="col text-center">
@@ -92,101 +92,101 @@
 						<div class="row">
 							<div class="col">
 								<div class="card border">
-								<div class="card-header bg-black" id="headingThree">
-									<h2 class="mb-0">
-									<button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-										Artistic Name <small>(If Applicable)</small>
-									</button>
-									<i class="fas fa-angle-down text-white float-right"></i>
-									</h2>
-								</div>
-								<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-									<div class="card-body text-white bg-black">
-									<input type="text" class="bg-primary forms-text"><br>
-									Use Artistic Name Instead of Personal Name <label></label>
+									<div class="card-header bg-black" id="headingThree">
+										<h2 class="mb-0">
+											<button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+												Artistic Name <small>(If Applicable)</small>
+											</button>
+											<i class="fas fa-angle-down text-white float-right"></i>
+										</h2>
 									</div>
-								</div>
+									<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionProfile">
+										<div class="card-body text-white bg-black">
+											<input type="text" class="bg-primary forms-text"><br>
+											Use Artistic Name Instead of Personal Name <label></label>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col">
 								<div class="card border">
-								<div class="card-header bg-black" id="headingFourth">
-									<h2 class="mb-0">
-									<button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
-										About You
-									</button>
-									<i class="fas fa-angle-down text-white float-right"></i>
-									</h2>
-								</div>
-								<div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordionExample">
-									<div class="card-body text-white bg-black">
-									<textarea class="bg-primary rounded form-control" cols="190" rows="10" placeholder="Write About You..." ></textarea>
+									<div class="card-header bg-black" id="headingFourth">
+										<h2 class="mb-0">
+											<button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
+												About You
+											</button>
+											<i class="fas fa-angle-down text-white float-right"></i>
+										</h2>
 									</div>
-								</div>
+									<div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordionProfile">
+										<div class="card-body text-white bg-black">
+											<textarea class="bg-primary rounded forms-text" cols="180" rows="10" placeholder="Write About You..." ></textarea>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col">
 								<div class="card border">
-								<div class="card-header bg-black" id="headingFifth">
-									<h2 class="mb-0">
-									<button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-										Members <small>(If Applicable)</small>
-									</button>
-									<i class="fas fa-angle-down text-white float-right"></i>
-									</h2>
-								</div>
-								<div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordionExample">
-									<div class="card-body text-white bg-black">
-									<div class="row">
-										<div class="col">
-										<h5>Current Members</h5>
-										<input type="text" class="forms-text" placeholder="Member Name">
-										<input type="text" class="forms-text" placeholder="Role/Instrument">
-										<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+									<div class="card-header bg-black" id="headingFifth">
+										<h2 class="mb-0">
+											<button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
+												Members <small>(If Applicable)</small>
+											</button>
+											<i class="fas fa-angle-down text-white float-right"></i>
+										</h2>
+									</div>
+									<div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordionProfile">
+										<div class="card-body text-white bg-black">
+											<div class="row">
+												<div class="col">
+												<h5>Current Members</h5>
+												<input type="text" class="forms-text" placeholder="Member Name">
+												<input type="text" class="forms-text" placeholder="Role/Instrument">
+												<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col">
+												<input type="text" class="forms-text" placeholder="Member Name">
+												<input type="text" class="forms-text" placeholder="Role/Instrument">
+												<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col">
+												<input type="text" class="forms-text" placeholder="Member Name">
+												<input type="text" class="forms-text" placeholder="Role/Instrument">
+												<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col mt-2">
+												<h5>Former Members</h5>
+												<input type="text" class="forms-text" placeholder="Member Name">
+												<input type="text" class="forms-text" placeholder="Role/Instrument">
+												<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col">
+												<input type="text" class="forms-text" placeholder="Member Name">
+												<input type="text" class="forms-text" placeholder="Role/Instrument">
+												<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+												</div>
+											</div>
+											<div class="row mt-2">
+												<div class="col">
+												<input type="text" class="forms-text" placeholder="Member Name">
+												<input type="text" class="forms-text" placeholder="Role/Instrument">
+												<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
+												</div>
+											</div>
 										</div>
 									</div>
-									<div class="row mt-2">
-										<div class="col">
-										<input type="text" class="forms-text" placeholder="Member Name">
-										<input type="text" class="forms-text" placeholder="Role/Instrument">
-										<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
-										</div>
-									</div>
-									<div class="row mt-2">
-										<div class="col">
-										<input type="text" class="forms-text" placeholder="Member Name">
-										<input type="text" class="forms-text" placeholder="Role/Instrument">
-										<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
-										</div>
-									</div>
-									<div class="row mt-2">
-										<div class="col mt-2">
-										<h5>Former Members</h5>
-										<input type="text" class="forms-text" placeholder="Member Name">
-										<input type="text" class="forms-text" placeholder="Role/Instrument">
-										<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
-										</div>
-									</div>
-									<div class="row mt-2">
-										<div class="col">
-										<input type="text" class="forms-text" placeholder="Member Name">
-										<input type="text" class="forms-text" placeholder="Role/Instrument">
-										<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
-										</div>
-									</div>
-									<div class="row mt-2">
-										<div class="col">
-										<input type="text" class="forms-text" placeholder="Member Name">
-										<input type="text" class="forms-text" placeholder="Role/Instrument">
-										<input type="text" class="forms-text" placeholder="Link to noisesharks profile">
-										</div>
-									</div>
-									</div>
-								</div>
 								</div>
 							</div>
 						</div>
@@ -201,7 +201,7 @@
 									<i class="fas fa-angle-down text-white float-right"></i>
 									</h2>
 								</div>
-								<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
+								<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionProfile">
 									<div class="card-body text-white bg-black">
 									
 										<div class="row">
@@ -247,7 +247,7 @@
 									<i class="fas fa-angle-down text-white float-right"></i>
 									</h2>
 								</div>
-								<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample">
+								<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionProfile">
 									<div class="card-body text-white bg-black">
 									<div class="row">
 										<div class="col text-center">
@@ -270,7 +270,7 @@
 									<i class="fas fa-angle-down text-white float-right"></i>
 									</h2>
 								</div>
-								<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample">
+								<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionProfile">
 									<div class="card-body text-white bg-black">
 									<div class="row">
 										<div class="col text-center">
@@ -298,7 +298,7 @@
 									<i class="fas fa-angle-down text-white float-right"></i>
 									</h2>
 								</div>
-								<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionExample">
+								<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionProfile">
 									<div class="card-body text-white bg-black">
 									<div class="ro">
 										<div class="col text-center">
@@ -325,7 +325,7 @@
 										<i class="fas fa-angle-down text-white float-right"></i>
 										</h2>
 									</div>
-								<div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionExample">
+								<div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionProfile">
 									<div class="card-body text-white bg-black">
 									<div class="d-flex flex-row align-items-center justify-content-start bd-highlight mb-1">
 									<div class="p-2 bd-highlight text-left">

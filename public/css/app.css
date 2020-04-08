@@ -27392,6 +27392,35 @@ readers do not read off random characters that represent icons */
   margin-top: 4%;
 }
 
+.head-container .col.text-right a {
+  border: 3px solid white !important;
+}
+
+.channel-container .card {
+  border: 0px solid !important;
+  margin: 1%;
+}
+
+.channel-container .card .card-body {
+  padding: 1% !important;
+  background: black;
+}
+
+.channel-container .card .card-body img {
+  width: 100%;
+  height: 15em;
+}
+
+.channel-container .card .card-footer {
+  background: black;
+  border: 0px solid !important;
+}
+
+.container-profile {
+  width: 100%;
+  height: 99%;
+}
+
 .img-portada {
   width: 100%;
   height: -webkit-fit-content;
@@ -27402,22 +27431,18 @@ readers do not read off random characters that represent icons */
 }
 
 .img-profile {
-  width: 14%;
+  width: 15%;
   height: 60%;
   border-radius: 50%;
   position: absolute;
-  margin-top: 15%;
-  margin-left: 4%;
+  margin-top: 16%;
+  margin-left: 3%;
   z-index: 3;
 }
 
 .img-profile-container {
   width: 100%;
   height: auto;
-}
-
-.acordions {
-  border-collapse: collapse;
 }
 
 .icon-check {
@@ -27440,12 +27465,30 @@ readers do not read off random characters that represent icons */
   margin: 0.4em;
 }
 
+.col.m {
+  margin-left: 20%;
+}
+
 .border {
   border: 1px solid #535353 !important;
 }
 
 .border-top {
   border-top: 1px solid #535353 !important;
+}
+
+.accordion-container .card .card-header {
+  border: 1px solid #262626 !important;
+}
+
+.accordion-container .card .card-body {
+  border: 1px solid #262626 !important;
+}
+
+.check-icon {
+  height: 1em;
+  background: white;
+  border-radius: 1pc;
 }
 
 .profile-container .nav-container {
@@ -27494,20 +27537,15 @@ readers do not read off random characters that represent icons */
   outline: none;
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
-
 @media (min-width: 320px) and (max-width: 1024px) {
+  .img-container {
+    width: 100%;
+    height: 12rem;
+  }
+
   img.img-profile {
-    width: 27%;
-    height: 17%;
+    width: 30%;
+    height: 45%;
     margin-top: 7em;
     margin-left: 1em;
   }
@@ -27515,18 +27553,105 @@ readers do not read off random characters that represent icons */
   img.img-portada {
     width: 100%;
     margin-left: 0.15em;
+    height: 75%;
   }
 
-  .row {
-    z-index: 2;
-    margin: auto;
+  h2 {
+    font-size: 1.4em !important;
   }
 
-  .container-profile {
-    width: 90%;
-    height: 99%;
-    margin-left: 0.15%;
-    float: inline-start;
+  .head-container .col.m {
+    margin: 1% !important;
+  }
+
+  .profile-container .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    list-style: none;
+    font-size: 0.15rem;
+    font-weight: bold;
+    padding-bottom: 8px;
+    text-decoration: none;
+  }
+
+  .profile-container .nav-container h2 {
+    font-size: 6em !important;
+    border-bottom: 4px solid #808080;
+    cursor: pointer;
+  }
+
+  .profile-container .nav-container h2:visited {
+    color: #808080;
+    text-decoration: none;
+  }
+
+  .profile-container .nav-container h2:hover {
+    color: white;
+    text-decoration: none;
+    border-bottom: 4px solid red;
+  }
+
+  .profile-container .nav-container h2:active {
+    text-decoration: none;
+    color: white;
+    border-bottom-color: red;
+  }
+
+  .profile-container .nav-container button {
+    background-color: transparent;
+    border-radius: 2.5rem;
+    color: #808080;
+    padding: 5px 15px 5px 15px;
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .profile-container .nav-container button:focus {
+    outline: none;
+  }
+
+  .channel-container .card {
+    margin: 2em;
+  }
+
+  .channel-container .card .card-body i img {
+    height: 1em;
+    font-size: 1em;
+  }
+
+  .channel-container .nav-container .nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    list-style: none;
+    font-size: 0.15rem;
+    font-weight: bold;
+    padding-bottom: 8px;
+    text-decoration: none;
+  }
+
+  .channel-container .nav-container .nav-container h2 {
+    font-size: 6em !important;
+    border-bottom: 4px solid #808080;
+    cursor: pointer;
+  }
+
+  .channel-container .nav-container .nav-container h2:visited {
+    color: #808080;
+    text-decoration: none;
+  }
+
+  .channel-container .nav-container .nav-container h2:hover {
+    color: white;
+    text-decoration: none;
+    border-bottom: 4px solid red;
+  }
+
+  .channel-container .nav-container .nav-container h2:active {
+    text-decoration: none;
+    color: white;
+    border-bottom-color: red;
   }
 
   i.fa-1x {
@@ -27546,46 +27671,6 @@ readers do not read off random characters that represent icons */
   .container-body {
     width: 100%;
     position: fixed;
-  }
-}
-
-@media only screen and (min-width: 600px) {
-  img.img-portada {
-    width: 100%;
-    margin-left: 0.15em;
-  }
-
-  .container-profile {
-    width: 100%;
-    height: 99%;
-  }
-
-  .col.m {
-    margin-left: 20%;
-  }
-
-  .head-container .col.text-right a {
-    border: 3px solid white !important;
-  }
-
-  .channel-container .card {
-    border: 0px solid !important;
-    margin: 1%;
-  }
-
-  .channel-container .card .card-body {
-    padding: 1% !important;
-    background: black;
-  }
-
-  .channel-container .card .card-body img {
-    width: 100%;
-    height: 15em;
-  }
-
-  .channel-container .card .card-footer {
-    background: black;
-    border: 0px solid !important;
   }
 }
 
