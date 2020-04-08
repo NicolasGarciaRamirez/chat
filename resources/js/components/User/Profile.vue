@@ -1,8 +1,8 @@
 <template>
-  <section>
-    <div class="profile-container">
+  <section class="profile-container">
+    <div>
 		<div class="nav-container text-white">
-			
+
 			<h2 class="m-2 bg-black active" @click="show">
 				Channel
 			</h2>
@@ -10,10 +10,9 @@
 				Profile
 			</h2>
 		</div>
-		
+
 		<transition  name="fade" >
 			<div v-if="profile">
-
 				<div class="d-flex justify-content-around bg-black mt-5" >
 					<div >
 						<h2 class="c-white">Personal Details <i class="fas fa-pencil-alt"></i></h2>
@@ -49,16 +48,16 @@
 											<div class="col text-right">
 												<input type="checkbox" id="pop">
 												<label for="pop"><span>A person or A Project</span></label>
-												
+
 											</div>
 											<div class="col">
 												A Band
 											</div>
 											</div>
-											
+
 										</div>
 									</div>
-								</div> 
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -86,7 +85,7 @@
 									</div>
 									</div>
 								</div>
-								</div> 
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -203,7 +202,7 @@
 								</div>
 								<div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
 									<div class="card-body text-white bg-black">
-									
+
 										<div class="row">
 										<div class="col text-center">
 											<button class="btn bg-black text-white border rounded-pill">Add Release</button>
@@ -406,7 +405,7 @@
 									</div>
 									</div>
 									</div>
-								</div> 
+								</div>
 								</div>
 							</div>
 						</div>
@@ -416,16 +415,15 @@
 				<div class="d-flex justify-content-center text-center m-5">
 					<button class="btn rounded-pill bg-black text-white">Cancel</button>
 					<button class="btn rounded-pill text-white bg-fifth" type="submit">Save</button>
-				</div> 
+				</div>
 			</div>
-		
+
 			<div v-else-if="channel">
 				<channel />
 			</div>
 		</transition>
 
     </div>
-    
   </section>
 </template>
 
@@ -451,7 +449,7 @@ export default {
 				$(".collapse.show").each(function(){
 					$(this).prev(".card-header").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
 				});
-				
+
 				$(".collapse").on('show.bs.collapse', function(){
 					$(this).prev(".card-header").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
 				}).on('hide.bs.collapse', function(){

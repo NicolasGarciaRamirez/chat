@@ -1,10 +1,8 @@
 @extends('template.template')
 
 @section('content')
-    @include("user.contributor.head-profile")
-    <div class="body-container">
-        <div id="app">
-            <profile />
-        </div>
+    <div class="container-fluid">
+        @include("user.contributor.head-profile")
+        <profile />
     </div>
 @endsection
