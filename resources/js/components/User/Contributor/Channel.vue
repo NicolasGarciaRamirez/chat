@@ -26,9 +26,9 @@
                                                 <img src="/images/profile.png" alt="" >
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                                 <div class="d-flex justify-content-around icons-container">
-                                                    <i class="c-fourth"><img src="/images/percentage-gray.png" alt="percentage-icon" class="float-left">100</i>
-                                                    <i class="c-fourth"><img src="/images/flame-gray.png" alt="flame-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/chat-gray.png" alt="chat-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-percentage-up.svg" alt="percentage-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-flame.svg" alt="flame-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-comment.svg" alt="chat-icon">100</i>
                                                 </div>
                                             </div>
                                             <div class="bg-black text-white card-footer">
@@ -45,9 +45,9 @@
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                                 <div class="d-flex justify-content-around icons-container">
-                                                    <i class="c-fourth"><img src="/images/percentage-gray.png" alt="percentage-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/flame-gray.png" alt="flame-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/chat-gray.png" alt="chat-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-percentage-up.svg" alt="percentage-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-flame.svg" alt="flame-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-comment.svg" alt="chat-icon">100</i>
                                                 </div>
                                             </div>
                                             <div class="card-footer">
@@ -64,9 +64,9 @@
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                                 <div class="d-flex justify-content-around icons-container">
-                                                    <i class="c-fourth"><img src="/images/percentage-gray.png" alt="percentage-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/flame-gray.png" alt="flame-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/chat-gray.png" alt="chat-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-percentage-up.svg" alt="percentage-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-flame.svg" alt="flame-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-comment.svg" alt="chat-icon">100</i>
                                                 </div>
                                             </div>
                                             <div class="card-footer">
@@ -88,9 +88,9 @@
                                                 <img src="/images/profile.png" alt="" >
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                                 <div class="d-flex justify-content-around icons-container">
-                                                    <i class="c-fourth"><img src="/images/percentage-gray.png" alt="percentage-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/flame-gray.png" alt="flame-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/chat-gray.png" alt="chat-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-percentage-up.svg" alt="percentage-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-flame.svg" alt="flame-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-comment.svg" alt="chat-icon">100</i>
                                                 </div>
                                             </div>
                                             <div class="bg-black text-white card-footer">
@@ -107,9 +107,9 @@
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                                 <div class="d-flex justify-content-around icons-container">
-                                                    <i class="c-fourth"><img src="/images/percentage-gray.png" alt="percentage-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/flame-gray.png" alt="flame-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/chat-gray.png" alt="chat-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-percentage-up.svg" alt="percentage-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-flame.svg" alt="flame-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-comment.svg" alt="chat-icon">100</i>
                                                 </div>
                                             </div>
                                             <div class="card-footer">
@@ -126,9 +126,9 @@
                                                 <img src="/images/profile.png" alt="">
                                                 <h4  class="m-2">This is a title of a the video iI created</h4><br>
                                                 <div class="d-flex justify-content-around icons-container">
-                                                    <i class="c-fourth"><img src="/images/percentage-gray.png" alt="percentage-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/flame-gray.png" alt="flame-icon">100</i>
-                                                    <i class="c-fourth"><img src="/images/chat-gray.png" alt="chat-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-percentage-up.svg" alt="percentage-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-flame.svg" alt="flame-icon">100</i>
+                                                    <i class="c-fourth"><img src="/images/icons/post-comment.svg" alt="chat-icon">100</i>
                                                 </div>
                                             </div>
                                             <div class="card-footer">

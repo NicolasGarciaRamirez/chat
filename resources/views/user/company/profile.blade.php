@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        @include("user.head-profile")
-        <profile />
+        @include('user.head-profile')
+        <company-profile />
     </div>
 @endsection
