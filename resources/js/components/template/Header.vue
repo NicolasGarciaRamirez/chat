@@ -13,12 +13,24 @@
             </div>
         </form>
         <li class="c-header-nav-item pl-2"><a class="c-header-nav-link other-link become-contributor d-none d-md-block" href="#">Become A Contributor </a></li>
-        <li class="c-header-nav-item px-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
+        <div v-if="!is_login_view">
+            <li class="c-header-nav-item px-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
+        </div>
+        <div v-else>
+            <li class="c-header-nav-item px-2"><img src="/images/profile.png" alt="img-head-profile" class="img-head-profile rounded-pill"></li>
+            
+        </div>
+        
     </ul>
 </template>
 
 <script>
     export default {
+        data(){
+            return {
+                is_login_view: true
+            }
+        },
         methods:{
             showModalLogin(){
                 $('#ModalLogin').modal('show')

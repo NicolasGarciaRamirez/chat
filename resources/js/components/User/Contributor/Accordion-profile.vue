@@ -381,6 +381,10 @@
                 </div>
             </div>
         </div>
+        <div class="d-flex justify-content-center text-center m-5">
+            <button class="btn rounded-pill bg-black text-white">Cancel</button>
+            <button class="btn rounded-pill text-white bg-fifth" type="submit">Save</button>
+        </div>
     </section>
 </template>
 

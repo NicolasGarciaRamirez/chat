@@ -27099,6 +27099,89 @@ readers do not read off random characters that represent icons */
   opacity: 0.5 !important;
 }
 
+.nav-link {
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #6c757d;
+  text-decoration: none;
+}
+
+.nav-link:visited {
+  color: #808080;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px solid red;
+}
+
+.nav-link:active {
+  text-decoration: none;
+  color: white;
+  border-bottom-color: red;
+}
+
+button {
+  border: solid 2px #808080;
+  background-color: transparent;
+  border-radius: 2.5rem;
+  color: #808080;
+  padding: 5px 15px 5px 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+button:focus {
+  outline: none;
+}
+
+.perfil {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+
+.navbar-brand {
+  padding-right: 30px;
+  border: none;
+}
+
+.logo {
+  padding: 10px 20px 2px 20px;
+  width: 200px;
+}
+
+.nav-item {
+  padding-left: 20px;
+}
+
+.form-buscar {
+  border: solid 2px #808080;
+  background-color: transparent;
+  border-radius: 2.5rem;
+  color: #808080;
+  padding: 7px 15px 7px 15px;
+  width: 260px;
+  font-size: 0.8rem;
+}
+
+.form-buscar:focus {
+  outline: none;
+}
+
+.nav-btn,
+.form-inline {
+  padding-right: 20px;
+}
+
+.img-head-profile {
+  width: 4em;
+  height: 4em;
+}
+
 .main-nav {
   background-color: #141414;
   padding: 10px 0;
@@ -27374,6 +27457,62 @@ readers do not read off random characters that represent icons */
 }
 
 .modal-login .sign-me {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.modal-register button[type=submit]:hover {
+  color: #FF0000;
+}
+
+.modal-register a:not(.btn) {
+  text-decoration: none;
+}
+
+.modal-register a:not(.btn):hover {
+  color: #535353;
+}
+
+.modal-register .or {
+  position: relative;
+}
+
+.modal-register .or:after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  background-color: #262626;
+  height: 3px;
+  top: 10px;
+  width: 40%;
+}
+
+.modal-register .or:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  background-color: #262626;
+  height: 3px;
+  top: 10px;
+  width: 40%;
+}
+
+.modal-register .social-register a {
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.modal-register .social-register a.bg-white:hover {
+  color: #FF0000 !important;
+}
+
+.modal-register .divider {
+  background-color: #262626;
+  height: 3px;
+  width: 100%;
+}
+
+.modal-register .sign-up {
   width: 100%;
   border-radius: 20px;
 }

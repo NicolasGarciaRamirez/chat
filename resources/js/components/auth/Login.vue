@@ -29,15 +29,17 @@
                     <div class="divider"></div>
                     <p class="text-center text-white mt-4">Don’t have an ccount yet?!</p>
                     <div class="text-center mb-3">
-                        <a href="#" class="btn bg-fifth text-white sign-me"><b>SIGN ME UP NOW!</b></a>
+                        <a class="btn bg-fifth text-white sign-me" @click="showModalRegister()"><b>SIGN ME UP NOW!</b></a>
                     </div>
                 </div>
             </div>
+            <modal-register />
         </div>
     </div>
 </template>
 
 <script>
+    import ModalRegister from './Register'
     export default {
         props: ['is_login_view'],
         data(){
@@ -48,6 +50,9 @@
                 }
             }
         },
+        components:{
+            'modal-register' : ModalRegister
+        },
         mounted() {
             if (this.is_login_view) {
                 $('#ModalLogin').modal('show')
@@ -56,7 +61,12 @@
         methods:{
             login(){
                 alert('login')
+            },
+            showModalRegister(){
+                // $('#ModalLogin').modal('toggle')
+                $('#ModalRegister').modal('show')
             }
+
         }
     }
 </script>

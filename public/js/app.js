@@ -11724,9 +11724,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      channel: {
+        support: '',
+        monthly_goal: '',
+        tier_name: '',
+        tier_amount: '',
+        teir_description: ''
+      }
+    };
+  },
+  methods: {
+    save: function save() {
+      axios.post("/User/Contributor/profile/save/".concat(this.user), this.channel).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -11739,6 +11758,10 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
 //
 //
 //
@@ -12438,11 +12461,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -12503,6 +12521,88 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Register */ "./resources/js/components/auth/Register.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['is_login_view'],
+  data: function data() {
+    return {
+      user: {
+        email: '',
+        password: ''
+      }
+    };
+  },
+  components: {
+    'modal-register': _Register__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  mounted: function mounted() {
+    if (this.is_login_view) {
+      $('#ModalLogin').modal('show');
+    }
+  },
+  methods: {
+    login: function login() {
+      alert('login');
+    },
+    showModalRegister: function showModalRegister() {
+      // $('#ModalLogin').modal('toggle')
+      $('#ModalRegister').modal('show');
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/Register.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/Register.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 //
 //
 //
@@ -12543,43 +12643,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['is_login_view'],
   data: function data() {
     return {
       user: {
+        first_name: '',
+        last_name: '',
         email: '',
-        password: ''
+        confirm_email: '',
+        password: '',
+        confirm_password: ''
       }
     };
   },
-  mounted: function mounted() {
-    if (this.is_login_view) {
-      $('#ModalLogin').modal('show');
-    }
-  },
   methods: {
-    login: function login() {
-      alert('login');
+    save: function save() {
+      axios.post("/Register/save/", this.user).then(function (res) {
+        if (res.data.saved) {
+          window.location.replace('/User/Contributor/profile');
+        } else {
+          alert('ERROR 500');
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/Register.vue?vue&type=script&lang=js&":
-/*!************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/Register.vue?vue&type=script&lang=js& ***!
-  \************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -12611,7 +12700,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      is_login_view: true
+    };
+  },
   methods: {
     showModalLogin: function showModalLogin() {
       $('#ModalLogin').modal('show');
@@ -33092,579 +33193,778 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("section", [
+    _c(
+      "div",
+      { staticClass: "accordion-container", attrs: { id: "accordionChannel" } },
+      [
+        _c(
+          "form",
+          {
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.save()
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("div", { staticClass: "card border" }, [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "collapse ",
+                      attrs: {
+                        id: "collapseOne",
+                        "aria-labelledby": "headingOne",
+                        "data-parent": "#accordionChannel"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-body  bg-black" }, [
+                        _c("div", { staticClass: "row text-justify" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("textarea", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.channel.support,
+                                  expression: "channel.support"
+                                }
+                              ],
+                              staticClass: "forms-text",
+                              attrs: { cols: "30", rows: "10" },
+                              domProps: { value: _vm.channel.support },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.channel,
+                                    "support",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("div", { staticClass: "card border" }, [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "collapse ",
+                      attrs: {
+                        id: "collapseTwo",
+                        "aria-labelledby": "headingTwo",
+                        "data-parent": "#accordionChannel"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-body  bg-black" }, [
+                        _c("div", { staticClass: "row text-justify" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _vm._v(
+                              "\n                                        $"
+                            ),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.channel.monthly_goal,
+                                  expression: "channel.monthly_goal"
+                                }
+                              ],
+                              staticClass: "forms-text",
+                              attrs: { type: "text", placeholder: "0.00" },
+                              domProps: { value: _vm.channel.monthly_goal },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.channel,
+                                    "monthly_goal",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(2),
+                        _vm._v(" "),
+                        _vm._m(3)
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col" }, [
+                _c("div", { staticClass: "card border" }, [
+                  _vm._m(4),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "collapse ",
+                      attrs: {
+                        id: "collapseThree",
+                        "aria-labelledby": "headingThree",
+                        "data-parent": "#accordionChannel"
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "card-body  bg-black" }, [
+                        _vm._m(5),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "row" }, [
+                          _c("div", { staticClass: "col" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.channel.tier_name,
+                                  expression: "channel.tier_name"
+                                }
+                              ],
+                              staticClass: "forms-text",
+                              staticStyle: { width: "22%" },
+                              attrs: { type: "text", placeholder: "Tier Name" },
+                              domProps: { value: _vm.channel.tier_name },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.channel,
+                                    "tier_name",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.channel.tier_amount,
+                                  expression: "channel  .tier_amount"
+                                }
+                              ],
+                              staticClass: "forms-text",
+                              staticStyle: { width: "13%" },
+                              attrs: { type: "text", placeholder: "Amount" },
+                              domProps: { value: _vm.channel.tier_amount },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.channel,
+                                    "tier_amount",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.channel.teir_description,
+                                  expression: "channel.teir_description"
+                                }
+                              ],
+                              staticClass: "forms-text",
+                              staticStyle: { width: "55%" },
+                              attrs: {
+                                type: "text",
+                                placeholder: "Teir description"
+                              },
+                              domProps: { value: _vm.channel.teir_description },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.channel,
+                                    "teir_description",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ])
+                        ])
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _vm._m(6),
+            _vm._v(" "),
+            _vm._m(7),
+            _vm._v(" "),
+            _vm._m(8),
+            _vm._v(" "),
+            _vm._m(9),
+            _vm._v(" "),
+            _vm._m(10),
+            _vm._v(" "),
+            _vm._m(11),
+            _vm._v(" "),
+            _vm._m(12)
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", [
-      _c(
-        "div",
-        {
-          staticClass: "accordion-container",
-          attrs: { id: "accordionChannel" }
-        },
-        [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingOne" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseOne",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseOne"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Why Support Channel? (Contributors Only)\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseOne",
-                      "aria-labelledby": "headingOne",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "card-body  bg-black" }, [
-                      _c("div", { staticClass: "row text-justify" }, [
-                        _c("div", { staticClass: "col" }, [
-                          _c("textarea", {
-                            staticClass: "forms-text",
-                            attrs: { cols: "30", rows: "10" }
-                          })
-                        ])
-                      ])
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
+    return _c(
+      "div",
+      {
+        staticClass: "card-header bg-black border",
+        attrs: { id: "headingOne" }
+      },
+      [
+        _c("h2", { staticClass: "mb-0" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-link text-white",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#collapseOne",
+                "aria-expanded": "false",
+                "aria-controls": "collapseOne"
+              }
+            },
+            [
+              _vm._v(
+                "\n                                    Why Support Channel? (Contributors Only)\n                                "
+              )
+            ]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingTwo" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseTwo",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseTwo"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Edit Monthly Goal (Contributors Only)\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseTwo",
-                      "aria-labelledby": "headingTwo",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "card-body  bg-black" }, [
-                      _c("div", { staticClass: "row text-justify" }, [
-                        _c("div", { staticClass: "col" }, [
-                          _vm._v("\n                                    $"),
-                          _c("input", {
-                            staticClass: "forms-text",
-                            attrs: { type: "text", placeholder: "0.00" }
-                          })
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col" }, [
-                          _vm._v(
-                            "\n                                    Current total earnings from supporters = $2,143\n                                "
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col text-center" }, [
-                          _vm._v(
-                            "\n                                    Monthly Goal\n                                    $2,143----------------------$3,000\n                                "
-                          )
-                        ])
-                      ])
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
+          _c("i", { staticClass: "fas fa-angle-down text-white float-right" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card-header bg-black border",
+        attrs: { id: "headingTwo" }
+      },
+      [
+        _c("h2", { staticClass: "mb-0" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-link text-white",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#collapseTwo",
+                "aria-expanded": "false",
+                "aria-controls": "collapseTwo"
+              }
+            },
+            [
+              _vm._v(
+                "\n                                    Edit Monthly Goal (Contributors Only)\n                                "
+              )
+            ]
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingThree" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseThree",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseThree"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                Edit Tiers (Contributors Only)\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseThree",
-                      "aria-labelledby": "headingThree",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "card-body  bg-black" }, [
-                      _c("div", { staticClass: "row " }, [
-                        _c("div", { staticClass: "col text-center" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn bg-black text-white border rounded-pill"
-                            },
-                            [_vm._v("Add Tiers")]
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "row" }, [
-                        _c("div", { staticClass: "col" }, [
-                          _c("input", {
-                            staticClass: "forms-text",
-                            staticStyle: { width: "22%" },
-                            attrs: { type: "text", placeholder: "Tier Name" }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "forms-text",
-                            staticStyle: { width: "13%" },
-                            attrs: { type: "text", placeholder: "Amount" }
-                          }),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "forms-text",
-                            staticStyle: { width: "55%" },
-                            attrs: {
-                              type: "text",
-                              placeholder: "Teir description"
-                            }
-                          })
-                        ])
-                      ])
-                    ])
-                  ]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingFourth" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseFourth",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseFourth"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                View Supporters (Contributors Only)\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseFourth",
-                      "aria-labelledby": "headingFourth",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [_c("div", { staticClass: "card-body  bg-black" })]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingFifth" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseFifth",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseFifth"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                View Rewards (Contributors Only)\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseFifth",
-                      "aria-labelledby": "headingFifth",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [_c("div", { staticClass: "card-body  bg-black" })]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingSix" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseSix",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseSix"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                View Followers\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseSix",
-                      "aria-labelledby": "headingSix",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [_c("div", { staticClass: "card-body  bg-black" })]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingSeven" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseSeven",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseSeven"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                View Supporting\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseSeven",
-                      "aria-labelledby": "headingSeven",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [_c("div", { staticClass: "card-body  bg-black" })]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingEight" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseEight",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseEight"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                View Rewarded\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseEight",
-                      "aria-labelledby": "headingEight",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [_c("div", { staticClass: "card-body  bg-black" })]
-                )
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col" }, [
-              _c("div", { staticClass: "card border" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card-header bg-black border",
-                    attrs: { id: "headingNine" }
-                  },
-                  [
-                    _c("h2", { staticClass: "mb-0" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "btn btn-link text-white",
-                          attrs: {
-                            type: "button",
-                            "data-toggle": "collapse",
-                            "data-target": "#collapseNine",
-                            "aria-expanded": "false",
-                            "aria-controls": "collapseNine"
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                                View Following\n                            "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("i", {
-                        staticClass: "fas fa-angle-down text-white float-right"
-                      })
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse ",
-                    attrs: {
-                      id: "collapseNine",
-                      "aria-labelledby": "headingNine",
-                      "data-parent": "#accordionChannel"
-                    }
-                  },
-                  [_c("div", { staticClass: "card-body  bg-black" })]
-                )
-              ])
-            ])
-          ])
-        ]
-      )
+          _c("i", { staticClass: "fas fa-angle-down text-white float-right" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _vm._v(
+          "\n                                        Current total earnings from supporters = $2,143\n                                    "
+        )
+      ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col text-center" }, [
+        _vm._v(
+          "\n                                        Monthly Goal\n                                        $2,143----------------------$3,000\n                                    "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "card-header bg-black border",
+        attrs: { id: "headingThree" }
+      },
+      [
+        _c("h2", { staticClass: "mb-0" }, [
+          _c(
+            "a",
+            {
+              staticClass: "btn btn-link text-white",
+              attrs: {
+                type: "button",
+                "data-toggle": "collapse",
+                "data-target": "#collapseThree",
+                "aria-expanded": "false",
+                "aria-controls": "collapseThree"
+              }
+            },
+            [
+              _vm._v(
+                "\n                                    Edit Tiers (Contributors Only)\n                                "
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("i", { staticClass: "fas fa-angle-down text-white float-right" })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row " }, [
+      _c("div", { staticClass: "col text-center" }, [
+        _c(
+          "button",
+          { staticClass: "btn bg-black text-white border rounded-pill" },
+          [_vm._v("Add Tiers")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card border" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header bg-black border",
+              attrs: { id: "headingFourth" }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link text-white",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseFourth",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseFourth"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                    View Supporters (Contributors Only)\n                                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-angle-down text-white float-right"
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse ",
+              attrs: {
+                id: "collapseFourth",
+                "aria-labelledby": "headingFourth",
+                "data-parent": "#accordionChannel"
+              }
+            },
+            [_c("div", { staticClass: "card-body  bg-black" })]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card border" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header bg-black border",
+              attrs: { id: "headingFifth" }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link text-white",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseFifth",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseFifth"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                    View Rewards (Contributors Only)\n                                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-angle-down text-white float-right"
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse ",
+              attrs: {
+                id: "collapseFifth",
+                "aria-labelledby": "headingFifth",
+                "data-parent": "#accordionChannel"
+              }
+            },
+            [_c("div", { staticClass: "card-body  bg-black" })]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card border" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header bg-black border",
+              attrs: { id: "headingSix" }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link text-white",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseSix",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseSix"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                    View Followers\n                                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-angle-down text-white float-right"
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse ",
+              attrs: {
+                id: "collapseSix",
+                "aria-labelledby": "headingSix",
+                "data-parent": "#accordionChannel"
+              }
+            },
+            [_c("div", { staticClass: "card-body  bg-black" })]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card border" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header bg-black border",
+              attrs: { id: "headingSeven" }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link text-white",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseSeven",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseSeven"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                    View Supporting\n                                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-angle-down text-white float-right"
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse ",
+              attrs: {
+                id: "collapseSeven",
+                "aria-labelledby": "headingSeven",
+                "data-parent": "#accordionChannel"
+              }
+            },
+            [_c("div", { staticClass: "card-body  bg-black" })]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card border" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header bg-black border",
+              attrs: { id: "headingEight" }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link text-white",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseEight",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseEight"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                    View Rewarded\n                                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-angle-down text-white float-right"
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse ",
+              attrs: {
+                id: "collapseEight",
+                "aria-labelledby": "headingEight",
+                "data-parent": "#accordionChannel"
+              }
+            },
+            [_c("div", { staticClass: "card-body  bg-black" })]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col" }, [
+        _c("div", { staticClass: "card border" }, [
+          _c(
+            "div",
+            {
+              staticClass: "card-header bg-black border",
+              attrs: { id: "headingNine" }
+            },
+            [
+              _c("h2", { staticClass: "mb-0" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-link text-white",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "collapse",
+                      "data-target": "#collapseNine",
+                      "aria-expanded": "false",
+                      "aria-controls": "collapseNine"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                                    View Following\n                                "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-angle-down text-white float-right"
+                })
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "collapse ",
+              attrs: {
+                id: "collapseNine",
+                "aria-labelledby": "headingNine",
+                "data-parent": "#accordionChannel"
+              }
+            },
+            [_c("div", { staticClass: "card-body  bg-black" })]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "d-flex justify-content-center text-center m-5" },
+      [
+        _c("button", { staticClass: "btn rounded-pill bg-black text-white" }, [
+          _vm._v("Cancel")
+        ]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn rounded-pill text-white bg-fifth",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Save")]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -34894,6 +35194,27 @@ var staticRenderFns = [
             ])
           ])
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "d-flex justify-content-center text-center m-5" },
+        [
+          _c(
+            "button",
+            { staticClass: "btn rounded-pill bg-black text-white" },
+            [_vm._v("Cancel")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn rounded-pill text-white bg-fifth",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Save")]
+          )
+        ]
       )
     ])
   }
@@ -35653,31 +35974,7 @@ var render = function() {
                       : _vm.accordionchannel
                       ? _c("div", [_c("accordion-channel")], 1)
                       : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "d-flex justify-content-center text-center m-5"
-                    },
-                    [
-                      _c(
-                        "button",
-                        { staticClass: "btn rounded-pill bg-black text-white" },
-                        [_vm._v("Cancel")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn rounded-pill text-white bg-fifth",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v("Save")]
-                      )
-                    ]
-                  )
+                  ])
                 ],
                 1
               )
@@ -35825,10 +36122,26 @@ var render = function() {
                 _vm._v("Don’t have an ccount yet?!")
               ]),
               _vm._v(" "),
-              _vm._m(4)
+              _c("div", { staticClass: "text-center mb-3" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn bg-fifth text-white sign-me",
+                    on: {
+                      click: function($event) {
+                        return _vm.showModalRegister()
+                      }
+                    }
+                  },
+                  [_c("b", [_vm._v("SIGN ME UP NOW!")])]
+                )
+              ])
             ])
-          ])
-        ]
+          ]),
+          _vm._v(" "),
+          _c("modal-register")
+        ],
+        1
       )
     ]
   )
@@ -35900,21 +36213,6 @@ var staticRenderFns = [
         _vm._v("Google Quick Login")
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-center mb-3" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn bg-fifth text-white sign-me",
-          attrs: { href: "#" }
-        },
-        [_c("b", [_vm._v("SIGN ME UP NOW!")])]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -35938,9 +36236,303 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c(
+    "div",
+    {
+      staticClass: "modal fade modal-register",
+      attrs: {
+        tabindex: "-1",
+        role: "dialog",
+        "aria-labelledby": "ModalRegister",
+        "aria-hidden": "true",
+        id: "ModalRegister"
+      }
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass: "modal-dialog modal-dialog-centered",
+          attrs: { role: "document" }
+        },
+        [
+          _c("div", { staticClass: "modal-content modal-border-white" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body pt-4" }, [
+              _c("h5", { staticClass: "text-center" }, [
+                _vm._v("FREE USER SIGNUP")
+              ]),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { autocomplete: "off" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.save($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "d-flex justify-content-between" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.user.first_name,
+                          expression: "user.first_name"
+                        }
+                      ],
+                      staticClass: "form-control mr-5",
+                      attrs: {
+                        type: "text",
+                        placeholder: "First Name",
+                        required: ""
+                      },
+                      domProps: { value: _vm.user.first_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.user, "first_name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.user.last_name,
+                          expression: "user.last_name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: {
+                        type: "text",
+                        placeholder: "Last Name",
+                        required: ""
+                      },
+                      domProps: { value: _vm.user.last_name },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.user, "last_name", $event.target.value)
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.email,
+                        expression: "user.email"
+                      }
+                    ],
+                    staticClass: "form-control my-3",
+                    attrs: {
+                      type: "email",
+                      placeholder: "Email Address",
+                      required: ""
+                    },
+                    domProps: { value: _vm.user.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "email", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.confirm_email,
+                        expression: "user.confirm_email"
+                      }
+                    ],
+                    staticClass: "form-control ",
+                    attrs: {
+                      type: "email",
+                      placeholder: "Confirm Email Address"
+                    },
+                    domProps: { value: _vm.user.confirm_email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "confirm_email", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.password,
+                        expression: "user.password"
+                      }
+                    ],
+                    staticClass: "form-control my-3",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Password",
+                      required: ""
+                    },
+                    domProps: { value: _vm.user.password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.user, "password", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.user.confirm_password,
+                        expression: "user.confirm_password"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "password",
+                      placeholder: "Confirm Password",
+                      required: ""
+                    },
+                    domProps: { value: _vm.user.confirm_password },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.user,
+                          "confirm_password",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm._m(1)
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _c("p", { staticClass: "c-fourth text-center mt-3 mb-5" }, [
+                _vm._v(
+                  "By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy"
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "divider" }),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-center text-white mt-4" }, [
+                _vm._v("Don’t have an ccount yet?!")
+              ])
+            ])
+          ])
+        ]
+      )
+    ]
+  )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header border-0" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "mt-2 p-2 d-flex justify-content-center" },
+      [
+        _c(
+          "button",
+          {
+            staticClass: "btn bg-fifth text-white  sign-up",
+            attrs: { type: "submit" }
+          },
+          [_vm._v("Sign Up")]
+        )
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("p", { staticClass: "text-center or" }, [_vm._v("OR")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "d-flex flex-column social-login" }, [
+      _c(
+        "a",
+        { staticClass: "btn bg-facebook text-white", attrs: { href: "#" } },
+        [_vm._v("Facebook Quick Singup")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn bg-twitter text-white my-3", attrs: { href: "#" } },
+        [_vm._v("Twitter Quick Singup")]
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn bg-white c-fifth", attrs: { href: "#" } }, [
+        _vm._v("Google Quick Singup")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -35967,17 +36559,21 @@ var render = function() {
     _vm._v(" "),
     _vm._m(1),
     _vm._v(" "),
-    _c("li", { staticClass: "c-header-nav-item px-2" }, [
-      _c(
-        "a",
-        {
-          staticClass: "c-header-nav-link other-link login",
-          attrs: { href: "#" },
-          on: { click: _vm.showModalLogin }
-        },
-        [_vm._v("Login")]
-      )
-    ])
+    !_vm.is_login_view
+      ? _c("div", [
+          _c("li", { staticClass: "c-header-nav-item px-2" }, [
+            _c(
+              "a",
+              {
+                staticClass: "c-header-nav-link other-link login",
+                attrs: { href: "#" },
+                on: { click: _vm.showModalLogin }
+              },
+              [_vm._v("Login")]
+            )
+          ])
+        ])
+      : _c("div", [_vm._m(2)])
   ])
 }
 var staticRenderFns = [
@@ -36027,6 +36623,17 @@ var staticRenderFns = [
         },
         [_vm._v("Become A Contributor ")]
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "c-header-nav-item px-2" }, [
+      _c("img", {
+        staticClass: "img-head-profile rounded-pill",
+        attrs: { src: "/images/profile.png", alt: "img-head-profile" }
+      })
     ])
   }
 ]
