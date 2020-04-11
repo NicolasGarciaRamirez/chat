@@ -35946,7 +35946,7 @@ var render = function() {
                         expression: "user.password"
                       }
                     ],
-                    staticClass: "forms-text",
+                    staticClass: "form-control",
                     attrs: {
                       type: "password",
                       placeholder: "Password",
@@ -36147,7 +36147,7 @@ var render = function() {
                           expression: "user.first_name"
                         }
                       ],
-                      staticClass: "forms-text mr-5",
+                      staticClass: "form-control mr-5",
                       attrs: {
                         type: "text",
                         placeholder: "First Name",
@@ -36173,7 +36173,7 @@ var render = function() {
                           expression: "user.last_name"
                         }
                       ],
-                      staticClass: "forms-text",
+                      staticClass: "form-control",
                       attrs: {
                         type: "text",
                         placeholder: "Last Name",
@@ -36200,7 +36200,7 @@ var render = function() {
                         expression: "user.email"
                       }
                     ],
-                    staticClass: "forms-text my-3",
+                    staticClass: "form-control my-3",
                     attrs: {
                       type: "email",
                       placeholder: "Email Address",
@@ -36226,7 +36226,7 @@ var render = function() {
                         expression: "user.confirm_email"
                       }
                     ],
-                    staticClass: "forms-text ",
+                    staticClass: "form-control ",
                     attrs: {
                       type: "email",
                       placeholder: "Confirm Email Address"
@@ -36251,7 +36251,7 @@ var render = function() {
                         expression: "user.password"
                       }
                     ],
-                    staticClass: "forms-text my-3",
+                    staticClass: "form-control my-3",
                     attrs: {
                       type: "password",
                       placeholder: "Password",
@@ -36277,7 +36277,7 @@ var render = function() {
                         expression: "user.confirm_password"
                       }
                     ],
-                    staticClass: "forms-text",
+                    staticClass: "form-control",
                     attrs: {
                       type: "password",
                       placeholder: "Confirm Password",

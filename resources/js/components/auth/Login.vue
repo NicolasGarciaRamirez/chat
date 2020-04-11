@@ -13,7 +13,7 @@
                     <h5 class="text-center">Login</h5>
                     <form @submit.prevent="login" autocomplete="off">
                         <input type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
-                        <input type="password" class="forms-text" placeholder="Password" v-model="user.password" required>
+                        <input type="password" class="form-control" placeholder="Password" v-model="user.password" required>
                         <div class="mt-2 p-2 d-flex justify-content-between">
                             <button type="submit" class="btn c-fifth p-0"><b>Login</b></button>
                             <a href="#" class="c-fourth">Forgot Password?</a>
