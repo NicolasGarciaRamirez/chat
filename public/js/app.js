@@ -36147,7 +36147,7 @@ var render = function() {
                           expression: "user.first_name"
                         }
                       ],
-                      staticClass: "form-control mr-5",
+                      staticClass: "forms-text mr-5",
                       attrs: {
                         type: "text",
                         placeholder: "First Name",
@@ -36200,7 +36200,7 @@ var render = function() {
                         expression: "user.email"
                       }
                     ],
-                    staticClass: "form-control my-3",
+                    staticClass: "forms-text my-3",
                     attrs: {
                       type: "email",
                       placeholder: "Email Address",
@@ -36226,7 +36226,7 @@ var render = function() {
                         expression: "user.confirm_email"
                       }
                     ],
-                    staticClass: "form-control ",
+                    staticClass: "forms-text ",
                     attrs: {
                       type: "email",
                       placeholder: "Confirm Email Address"
@@ -36251,7 +36251,7 @@ var render = function() {
                         expression: "user.password"
                       }
                     ],
-                    staticClass: "form-control my-3",
+                    staticClass: "forms-text my-3",
                     attrs: {
                       type: "password",
                       placeholder: "Password",
