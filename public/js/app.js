@@ -36452,7 +36452,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "form-group m-0" }, [
           _c("div", { staticClass: "input-group" }, [
             _c("input", {
-              staticClass: "forms-text",
+              staticClass: "form-control",
               attrs: {
                 type: "text",
                 placeholder: "Search for posts, hashtags, etc...",
