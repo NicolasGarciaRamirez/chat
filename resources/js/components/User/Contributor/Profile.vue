@@ -1,7 +1,7 @@
 <template>
   <section class="profile-container">
     <div>
-		<div class="nav-container text-white my-2">
+		<div class="nav-container text-white my-2" v-if="!profile">
 
 			<h2 class="m-2 bg-black active" @click="show('channel')">
 				Channel
@@ -71,28 +71,13 @@ export default {
 			accordionprofile: false,
 		}
 	},
-	mounted(){
-		this.accordion()
-	},
 	components:{
 		channel,
 		accordionProfile,
 		accordionChannel
 	},
 	methods:{
-		accordion(){
-			$(document).ready(function(){
-				$(".collapse.show").each(function(){
-					$(this).prev(".card-header").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
-				});
-
-				$(".collapse").on('show.bs.collapse', function(){
-					$(this).prev(".card-header").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
-				}).on('hide.bs.collapse', function(){
-					$(this).prev(".card-header").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
-				});
-			});
-		},
+		
 		show(name){
 			if (name == 'channel') {
 				if (this.channel && this.profile) {

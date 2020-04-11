@@ -12115,40 +12115,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.accordion();
+  },
+  methods: {
+    accordion: function accordion() {}
+  }
+});
 
 /***/ }),
 
@@ -12473,27 +12447,12 @@ __webpack_require__.r(__webpack_exports__);
       accordionprofile: false
     };
   },
-  mounted: function mounted() {
-    this.accordion();
-  },
   components: {
     channel: _Channel__WEBPACK_IMPORTED_MODULE_0__["default"],
     accordionProfile: _Accordion_profile__WEBPACK_IMPORTED_MODULE_1__["default"],
     accordionChannel: _Accordion_channel__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   methods: {
-    accordion: function accordion() {
-      $(document).ready(function () {
-        $(".collapse.show").each(function () {
-          $(this).prev(".card-header").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
-        });
-        $(".collapse").on('show.bs.collapse', function () {
-          $(this).prev(".card-header").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
-        }).on('hide.bs.collapse', function () {
-          $(this).prev(".card-header").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
-        });
-      });
-    },
     show: function show(name) {
       if (name == 'channel') {
         if (this.channel && this.profile) {
@@ -12681,7 +12640,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -34945,252 +34903,153 @@ var staticRenderFns = [
                       })
                     ])
                   ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    staticClass: "collapse",
-                    attrs: {
-                      id: "collapseTen",
-                      "aria-labelledby": "headingTen",
-                      "data-parent": "#accordionProfile"
-                    }
-                  },
-                  [
-                    _c(
-                      "div",
-                      { staticClass: "card-body text-white bg-black" },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "d-flex flex-row align-items-center justify-content-start bd-highlight mb-1"
-                          },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "p-2 bd-highlight text-left" },
-                              [
-                                _vm._v(
-                                  "\n                        Youtube\n                    "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              { staticClass: "p-2 bd-highlight text-right" },
-                              [
-                                _c("input", {
-                                  staticClass: "forms-text",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Link to Noisesharks proﬁle"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "d-flex flex-row align-items-center justify-content-start bd-highlight mb-1"
-                          },
-                          [
-                            _c(
-                              "div",
-                              { staticClass: "p-2 bd-higlight text-left" },
-                              [
-                                _vm._v(
-                                  "\n                        Twitch\n                        "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "p-2 bd-higlight" }, [
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "collapse",
+                  attrs: {
+                    id: "collapseTen",
+                    "aria-labelledby": "headingTen",
+                    "data-parent": "#accordionProfile"
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "card-body text-white bg-black border" },
+                    [
+                      _c("div", { staticClass: "row" }, [
+                        _c("div", { staticClass: "col-3" }, [
+                          _c("div", { staticClass: "d-flex flex-column" }, [
+                            _c("div", [
+                              _c("label", [_vm._v("Youtube")]),
+                              _vm._v(" "),
                               _c("input", {
-                                staticClass: "forms-text",
+                                staticClass: "forms-text float-right",
                                 attrs: {
                                   type: "text",
                                   placeholder: "Link to Noisesharks proﬁle"
                                 }
                               })
-                            ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "d-flex flex-row align-items-center justify-content-start bd-highlight mb-1"
-                          },
-                          [
-                            _c("div", { staticClass: "p2 bd-higlight" }, [
-                              _vm._v(
-                                "\n                        Instagram\n                    "
-                              )
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "p2 bd-higlight" }, [
+                            _c("div", [
+                              _c("label", [_vm._v("Twitch")]),
+                              _vm._v(" "),
                               _c("input", {
-                                staticClass: "forms-text",
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("Instagram")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("Facebook")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("TikTok")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("LinkedIn")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("SnapChat")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("SoundCloud")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("Bandcamp")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Link to Noisesharks proﬁle"
+                                }
+                              })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", [
+                              _c("label", [_vm._v("Spotify")]),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass: "forms-text float-right",
                                 attrs: {
                                   type: "text",
                                   placeholder: "Link to Noisesharks proﬁle"
                                 }
                               })
                             ])
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _vm._v(
-                              "\n                        Facebook\n                        "
-                            ),
-                            _c("input", {
-                              staticClass: "forms-text",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Link to Noisesharks proﬁle"
-                              }
-                            })
                           ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _vm._v(
-                              "\n                        TikTok\n                        "
-                            ),
-                            _c("input", {
-                              staticClass: "forms-text",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Link to Noisesharks proﬁle"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _vm._v(
-                              "\n                        LinkedIn\n                        "
-                            ),
-                            _c("input", {
-                              staticClass: "forms-text",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Link to Noisesharks proﬁle"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c("div", { staticClass: "col" }, [
-                            _vm._v(
-                              "\n                        SnapChat\n                        "
-                            ),
-                            _c("input", {
-                              staticClass: "forms-text",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Link to Noisesharks proﬁle"
-                              }
-                            })
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "col-2 d-flex flex-justify-content"
-                            },
-                            [
-                              _c("div", { staticClass: "col" }, [
-                                _vm._v(
-                                  "\n                            SoundCloud\n                        "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col text-right" }, [
-                                _c("input", {
-                                  staticClass: "forms-text",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Link to Noisesharks proﬁle"
-                                  }
-                                })
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "col-2 d-flex flex-justify-content"
-                            },
-                            [
-                              _c("div", { staticClass: "col" }, [
-                                _vm._v(
-                                  "\n                        Spotify\n                        "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col text-right" }, [
-                                _c("input", {
-                                  staticClass: "forms-text text-right",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Link to Noisesharks proﬁle"
-                                  }
-                                })
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "row" }, [
-                          _c(
-                            "div",
-                            {
-                              staticClass: "col-2 d-flex flex-justify-content"
-                            },
-                            [
-                              _c("div", { staticClass: "col" }, [
-                                _vm._v(
-                                  "\n                        Bandcamp\n                        "
-                                )
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "col" }, [
-                                _c("input", {
-                                  staticClass: "forms-text",
-                                  attrs: {
-                                    type: "text",
-                                    placeholder: "Link to Noisesharks proﬁle"
-                                  }
-                                })
-                              ])
-                            ]
-                          )
                         ])
-                      ]
-                    )
-                  ]
-                )
-              ])
+                      ])
+                    ]
+                  )
+                ]
+              )
             ])
           ])
         ]
@@ -35852,33 +35711,35 @@ var render = function() {
     _c(
       "div",
       [
-        _c("div", { staticClass: "nav-container text-white my-2" }, [
-          _c(
-            "h2",
-            {
-              staticClass: "m-2 bg-black active",
-              on: {
-                click: function($event) {
-                  return _vm.show("channel")
-                }
-              }
-            },
-            [_vm._v("\n\t\t\t\tChannel\n\t\t\t")]
-          ),
-          _vm._v(" "),
-          _c(
-            "h2",
-            {
-              staticClass: "m-2 bg-black",
-              on: {
-                click: function($event) {
-                  _vm.profile = !_vm.profile
-                }
-              }
-            },
-            [_vm._v("\n\t\t\t\tProfile\n\t\t\t")]
-          )
-        ]),
+        !_vm.profile
+          ? _c("div", { staticClass: "nav-container text-white my-2" }, [
+              _c(
+                "h2",
+                {
+                  staticClass: "m-2 bg-black active",
+                  on: {
+                    click: function($event) {
+                      return _vm.show("channel")
+                    }
+                  }
+                },
+                [_vm._v("\n\t\t\t\tChannel\n\t\t\t")]
+              ),
+              _vm._v(" "),
+              _c(
+                "h2",
+                {
+                  staticClass: "m-2 bg-black",
+                  on: {
+                    click: function($event) {
+                      _vm.profile = !_vm.profile
+                    }
+                  }
+                },
+                [_vm._v("\n\t\t\t\tProfile\n\t\t\t")]
+              )
+            ])
+          : _vm._e(),
         _vm._v(" "),
         _c("transition", { attrs: { name: "fade" } }, [
           _vm.profile
@@ -36085,7 +35946,7 @@ var render = function() {
                         expression: "user.password"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "forms-text",
                     attrs: {
                       type: "password",
                       placeholder: "Password",
@@ -36312,7 +36173,7 @@ var render = function() {
                           expression: "user.last_name"
                         }
                       ],
-                      staticClass: "form-control",
+                      staticClass: "forms-text",
                       attrs: {
                         type: "text",
                         placeholder: "Last Name",
@@ -36416,7 +36277,7 @@ var render = function() {
                         expression: "user.confirm_password"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "forms-text",
                     attrs: {
                       type: "password",
                       placeholder: "Confirm Password",
@@ -36591,7 +36452,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "form-group m-0" }, [
           _c("div", { staticClass: "input-group" }, [
             _c("input", {
-              staticClass: "form-control",
+              staticClass: "forms-text",
               attrs: {
                 type: "text",
                 placeholder: "Search for posts, hashtags, etc...",

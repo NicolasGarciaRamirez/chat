@@ -9,7 +9,7 @@
         <a href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/music-red.png" style="height: 1rem" alt="music-red-icon" ></a>
     </div>
     <div class="col text-right">
-        <a class="btn bg-black rounded-pill mr-2 text-white" href="{{ route('user.edit.profile') }}">Edit Profile <i class="fas fa-pencil-alt ml-2"></i></a>
+        <a class="btn bg-black rounded-pill mr-2 text-white">Edit Profile <i class="fas fa-pencil-alt ml-2"></i></a>
         <a class="btn bg-black rounded-pill mr-2 text-white" href="#">Share Profile <i class="fas fa-share text-white ml-2"></i>
         <a class="btn bg-black rounded-pill text-white" href="#">Preview Profile</a>
     </div>

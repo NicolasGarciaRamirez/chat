@@ -25,7 +25,6 @@
                                         A Band
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -295,88 +294,56 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                             </h2>
                         </div>
-                    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionProfile">
-                        <div class="card-body text-white bg-black">
-                        <div class="d-flex flex-row align-items-center justify-content-start bd-highlight mb-1">
-                        <div class="p-2 bd-highlight text-left">
-                            Youtube
-                        </div>
-                        <div class="p-2 bd-highlight text-right">
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center justify-content-start bd-highlight mb-1">
-                        <div class="p-2 bd-higlight text-left">
-                            Twitch
-                            </div>
-                        <div class="p-2 bd-higlight">
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="d-flex flex-row align-items-center justify-content-start bd-highlight mb-1">
-                        <div class="p2 bd-higlight">
-                            Instagram
-                        </div>
-                        <div class="p2 bd-higlight">
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col">
-                            Facebook
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col">
-                            TikTok
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col">
-                            LinkedIn
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col">
-                            SnapChat
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-2 d-flex flex-justify-content">
-                            <div class="col">
-                                SoundCloud
-                            </div>
-                            <div class="col text-right">
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-2 d-flex flex-justify-content">
-                            <div class="col">
-                            Spotify
-                            </div>
-                            <div class="col text-right">
-                            <input type="text" class="forms-text text-right" placeholder="Link to Noisesharks proﬁle">
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                        <div class="col-2 d-flex flex-justify-content">
-                            <div class="col">
-                            Bandcamp
-                            </div>
-                            <div class="col">
-                            <input type="text" class="forms-text" placeholder="Link to Noisesharks proﬁle">
-                            </div>
-                        </div>
-                        </div>
-                        </div>
                     </div>
+                    <div id="collapseTen" class="collapse" aria-labelledby="headingTen" data-parent="#accordionProfile">
+                        <div class="card-body text-white bg-black border">
+                            <div class="row">
+                                <div class="col-3">
+                                    <div class="d-flex flex-column">
+                                        <div>
+                                            <label>Youtube</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>Twitch</label> 
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>Instagram</label> 
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>Facebook</label> 
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>TikTok</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>LinkedIn</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>SnapChat</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>SoundCloud</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>Bandcamp</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                        <div>
+                                            <label>Spotify</label>
+                                            <input type="text" class="forms-text float-right" placeholder="Link to Noisesharks proﬁle">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -390,6 +357,12 @@
 
 <script>
 export default {
-    
+    mounted(){
+        this.accordion()
+    },
+    methods:{
+        accordion(){
+		},
+    }
 }
 </script>

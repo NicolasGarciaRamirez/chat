@@ -12,12 +12,12 @@
                     <form @submit.prevent="save" autocomplete="off">
                         <div class="d-flex justify-content-between">
                             <input type="text" class="form-control mr-5" placeholder="First Name" v-model="user.first_name" required>
-                            <input type="text" class="form-control" placeholder="Last Name" v-model="user.last_name" required>
+                            <input type="text" class="forms-text" placeholder="Last Name" v-model="user.last_name" required>
                         </div>
                         <input type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
                         <input type="email" class="form-control " placeholder="Confirm Email Address" v-model="user.confirm_email">
                         <input type="password" class="form-control my-3" placeholder="Password" v-model="user.password"  required>
-                        <input type="password" class="form-control" placeholder="Confirm Password" v-model="user.confirm_password" required>
+                        <input type="password" class="forms-text" placeholder="Confirm Password" v-model="user.confirm_password" required>
                         <div class="mt-2 p-2 d-flex justify-content-center">
                             <button type="submit" class="btn bg-fifth text-white  sign-up" >Sign Up</button>
                         </div>

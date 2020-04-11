@@ -3,7 +3,7 @@
         <form action="/" class="header-form-search d-none d-md-block">
             <div class="form-group m-0">
                 <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none">
+                    <input class="forms-text" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none">
                     <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="cil-search"></i>
@@ -18,7 +18,6 @@
         </div>
         <div v-else>
             <li class="c-header-nav-item px-2"><img src="/images/profile.png" alt="img-head-profile" class="img-head-profile rounded-pill"></li>
-            
         </div>
         
     </ul>

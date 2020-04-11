@@ -27625,6 +27625,42 @@ button:focus {
   border: 1px solid #262626 !important;
 }
 
+#container-main {
+  width: 100%;
+}
+
+.accordion-container {
+  width: 100%;
+  margin: 0 0 20px;
+  clear: both;
+}
+
+.accordion-titulo span.toggle-icon:before {
+  content: "^";
+}
+
+.accordion-titulo.open span.toggle-icon:before {
+  content: ">";
+}
+
+.accordion-titulo span.toggle-icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 38px;
+  font-weight: bold;
+}
+
+.accordion-content {
+  display: none;
+  padding: 20px;
+  overflow: auto;
+}
+
+.accordion-content p {
+  margin: 0;
+}
+
 .check-icon {
   height: 1em;
   background: white;
