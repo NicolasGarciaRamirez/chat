@@ -27,7 +27,7 @@
     export default {
         data(){
             return {
-                is_login_view: true
+                is_login_view: false
             }
         },
         methods:{

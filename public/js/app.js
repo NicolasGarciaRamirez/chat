@@ -12668,7 +12668,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      is_login_view: true
+      is_login_view: false
     };
   },
   methods: {
