@@ -14,9 +14,10 @@ import AppHeader from './components/template/Header'
 import AppNav from './components/template/Nav'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import Profile from './components/User/Contributor/Profile'
-import Channel from './components/User/Contributor/Channel'
-import CompanyProfile from './components/User/Company/Company-profile'
+import ChannelActivity from './components/user/profile/ChannelActivity'
+import ProfileEdit from './components/user/profile/ProfileEdit'
+import ChannelEdit from './components/user/profile/ChannelEdit'
+import CompanyProfile from './components/user/company/Company-profile'
 
 new Vue({
     el: '#app',
@@ -25,8 +26,9 @@ new Vue({
         AppNav,
         Login,
         Register,
-        Profile,
-        Channel,
+        ChannelActivity,
+        ProfileEdit,
+        ChannelEdit,
         CompanyProfile
     }
 });

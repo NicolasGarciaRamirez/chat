@@ -29,21 +29,4 @@ class HomeController extends Controller
     {
         return view('register');
     }
-
-    public function saveUser(Request $request)
-    {
-        $user = new \App\Models\User\User();
-        $user->name = $request->first_name.''.$request->last_name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-        $user->remember_token = \Str::random(80);
-        $user->save();
-
-        return view('user.contributor.profile', ['is_login_view' => true]);
-        // return response()->json([
-        //     'user' => $user,
-        //     'saved' => true
-        // ]);
-
-    }
 }

@@ -9,6 +9,11 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
+        return redirect('/');
+    }
 
+    public function register(Request $request)
+    {
+        return redirect('/');
     }
 }

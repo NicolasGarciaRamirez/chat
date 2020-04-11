@@ -8,18 +8,52 @@ use App\Models\User\User;
 
 class UserController extends Controller
 {
-    public function profile(User $user)
+    /**
+     * @var
+     */
+    private $user;
+
+    /**
+     * UserController constructor.
+     */
+    public function __construct()
     {
-        return view('user.contributor.profile', compact('user'));
+//        $this->middleware(function ($request, $next) {
+//            if (!\Auth::check()) return redirect('login');
+//            $this->user = Auth::user();
+//            return $next($request);
+//        });
     }
 
-    public function channel()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function channelActivity()
     {
-        return view('user.contributor.channel');
+        return view('user.profile.channel');
     }
 
-    public function editProfile()
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function channelPlaylist()
     {
-        return view('user.contributor.edit-profile');
+        return view('user.profile.channel-activity');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function profileEdit()
+    {
+        return view('user.profile.edit');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function channelEdit()
+    {
+        return view('user.profile.channel-edit');
     }
 }
