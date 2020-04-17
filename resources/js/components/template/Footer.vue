@@ -1,15 +1,15 @@
 <template>
     <footer class="footer c-secundary">
         <div class="d-flex justify-content-between">
-            <a href="#">Terms</a>
+            <a href="/Terms">Terms</a>
             <a href="#">Privacy</a>
-            <a href="#">Help</a>
+            <a href="/Help">Help</a>
             <a href="#">Suggestions</a>
         </div>
         <div class="d-flex justify-content-between my-2">
             <a href="#">Contact</a>
-            <a href="#">About</a>
-            <a href="#">Careers</a>
+            <a href="/About">About</a>
+            <a href="/Carrers">Careers</a>
             <a href="#">Merch</a>
         </div>
         <div class="my-2">

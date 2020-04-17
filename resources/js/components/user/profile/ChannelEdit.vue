@@ -11,7 +11,7 @@
             <div>
                 <h2 class="c-white">Subscription</h2>
                 <label>Acount Type: <span class="c-fifth">FREE</span></label><br>
-                <a href="#" class="btn bg-black text-white border rounded-pill">
+                <a href="/Profile/Settings" class="btn bg-black text-white border rounded-pill">
                     Account Setings <i class="fas fa-cog ml-2"></i>
                 </a>
             </div>

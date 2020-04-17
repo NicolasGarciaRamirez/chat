@@ -166,7 +166,7 @@ export default {
     },
     methods: {
         save(){
-            axios.post(`/User/Contributor/profile/save/${this.user}` , this.channel).then(res => {
+            axios.post(`/User/Free/profile/save/${this.user}` , this.channel).then(res => {
                 console.log(res)
             }).catch(err => {
                 console.log(err)

@@ -110,7 +110,7 @@
             }
         }
     }
-    .edit-profile, .edit-channel{
+    .edit-profile, .edit-channel, .account-settings, .post{
         input.form-control, select.form-control, textarea.form-control{
             border-radius: 20px;
             background-color: $third-color;
@@ -151,6 +151,56 @@
                     }
                     i.fas{
                         cursor: pointer;
+                    }
+                }
+            }
+        }
+        .icon{
+            width: 2pc;
+            margin: 1rem;
+        }
+        .btn-facebook{
+            width: 35%;
+            background: #111cf6;
+            color: white;
+            box-shadow: 0px 1px 10px 6px;
+        }
+        .btn-twitter{
+            width: 35%;
+            background: #2ea2e0;
+            color: white;
+            box-shadow: 0px 1px 10px 6px;
+        }
+        .btn-google{
+            width: 35%;
+            background: white;
+            color: orangered;
+            box-shadow: 0px 1px 10px 6px;
+        }
+        .form-search{
+            @include media-breakpoint-up(md){
+                width: 280px;
+            }
+            .form-group{
+                input.form-control{
+                    border-radius: 20px 0px 0px 20px;
+                    background-color: $primary-color;
+                    color: white;
+                    border-color: $fourth-color;
+                    border: 1px solid #535353;
+                    &::placeholder{
+                        color: $fourth-color;
+                    }
+                }
+            }
+            .input-group-append{
+                .input-group-text{
+                    border-radius: 0px 20px 20px 0px;
+                    background-color: $primary-color;
+                    border-color: $fourth-color;
+                    height: 2.3rem;
+                    i{
+                        color: $fourth-color;
                     }
                 }
             }

@@ -1,0 +1,73 @@
+.post{
+    input.form-control ,textarea.form-control{
+        border-radius: 20px;
+        background-color: $third-color;
+        color: white;
+        border: 0;
+        margin-bottom: 0.5rem;
+        &::placeholder{
+            color: $fourth-color;
+        }
+        &:focus{
+            background-color: $third-color;
+            color: white;
+            border: 0;
+        }
+    }
+    .icon{
+        width: 1.9em;
+        height: 1.6em;
+    }
+    .c-head{
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;   
+    }
+    .c-body{
+        display: flex;
+        flex-direction: row;
+        .go-live{
+            padding: 0.8em;
+            border-top: 3px solid black;
+            border-left: 3px solid black;
+            border-right: 3px solid black;
+        }
+    }
+    .c-post{
+        .head-post{
+            line-height: 2rem;
+            .img-user-post{
+                width: 20%;
+                border-radius: 50%;
+                float: left;
+                margin: 0.8em;
+                @include media-breakpoint-up(md){
+                    width: 5rem;
+                    bottom: -4rem;
+                }
+                
+            }
+        }
+        .body-post{
+            .img-post{
+                height: 25em;
+                width: 100%;
+            }
+
+        }
+        .footer-post{
+            line-height: 4rem;
+            .img-user-comment{
+                width: 5%;
+                border-radius: 50%;
+                float: left;
+                margin: 0.8em;
+                @include media-breakpoint-up(md){
+                    width: 2.5rem;
+                    bottom: -4rem;
+                }
+            }
+        }
+    }
+    
+}

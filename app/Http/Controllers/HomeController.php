@@ -29,4 +29,36 @@ class HomeController extends Controller
     {
         return view('register');
     }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function help()
+    {
+        return view('extras.help');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function about()
+    {
+        return view('extras.about');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function carrers()
+    {
+        return view('extras.carrers');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function terms()
+    {
+        return view('extras.terms');
+    }
 }

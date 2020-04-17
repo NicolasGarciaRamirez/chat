@@ -38,7 +38,7 @@ class UserController extends Controller
      */
     public function channelPlaylist()
     {
-        return view('user.profile.channel-activity');
+        return view('user.profile.channel-playlist');
     }
 
     /**
@@ -55,5 +55,21 @@ class UserController extends Controller
     public function channelEdit()
     {
         return view('user.profile.channel-edit');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function accountSettings()
+    {
+        return view('user.profile.account-settings');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function viewProfile()
+    {
+        return view('user.view-profile');
     }
 }

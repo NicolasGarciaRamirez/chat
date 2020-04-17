@@ -1,0 +1,145 @@
+.help{
+    margin-top: -2rem;
+    display: flex;
+    flex-direction: column;
+    .c-head{
+        position: relative;
+        background-image: url(/images/help-head.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 100%;
+        height: 12rem;
+        h1{
+            margin: 2%;
+            position: absolute;
+        }
+        @include media-breakpoint-down(xs){
+            height: 4rem;
+            h1{
+                font-size: 1rem;
+            }
+        }
+    }
+    .c-body{
+        position: relative;
+        width: 100%;
+        height: 100rem;
+        background-image: url(/images/help-body.svg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        .container-form{
+            width: 80%;
+            margin: auto;
+            margin-top: 10rem;
+            height: 70rem;
+            @include media-breakpoint-down(md){
+                width: 90%;
+                margin: auto;
+                margin-top: 5rem;
+                height: 50rem;
+                .form-input-group{
+                    padding: 2rem !important;
+                }  
+            }      
+            form{
+                height: 100%;
+                box-shadow: 0px 0px 15px 7px $third-color;
+                background-color: $primary-color;
+                input.form-control, textarea.form-control{
+                    border-radius: 20px;
+                    background-color: $third-color;
+                    color: white;
+                    border: 0;
+                    margin-bottom: 0.5rem;
+                    &::placeholder{
+                        color: $fourth-color;
+                    }
+                    &:focus{
+                        background-color: $third-color;
+                        color: white;
+                        border: 0;
+                    }
+                }
+            }
+            .form-input-group{
+                padding: 4rem;
+            }   
+        }
+    }
+}
+.terms{
+    margin-top: -2rem;
+    background-image: url(/images/terms-body.svg);
+    .c-body{
+        padding: 2%;
+        width: 100%;
+    }
+    h1{
+        font-size: 4rem;
+    }
+}
+.carrers{
+    display: flex;
+    flex-direction: column;
+    margin-top: -2rem;
+    .c-head {
+        background-image: url(/images/help-head.svg);
+        background-position: top;
+        background-size: 100rem;
+        height: 12rem;
+        h1, label{
+            margin: 2%;
+        }
+    }
+    .c-body{
+        position: relative;
+        background-image: url(/images/carrers-body.svg);
+        background-position: bottom;
+        background-repeat: no-repeat;
+        align-items: center;
+        background-size: 100rem;
+        height: 100rem;
+        .icon{
+            width: 3em;
+            height: 3em;
+        }
+        .box{
+            display: flex;
+            flex-direction: row !important;
+            width: 100%;
+            @include media-breakpoint-down(xs){
+                flex-direction: column !important;
+                flex-wrap: wrap !important;
+                max-width: 100%;
+            }
+            @include media-breakpoint-up(lg){
+                max-width: 100%;
+            }
+        }
+        .box-shadow{
+            margin: 5%;
+            background-color: $third-color;
+            box-shadow: 0px 0px 11px 5px $third-color;
+            .card-body{
+                height: 13rem !important;
+                width: 18rem !important;
+            }
+        }
+        h2{
+            margin: 2%;
+        }
+        p{
+            color: dimgrey;
+        }
+    }
+}
+
+.about{
+    width: auto;
+    height: 100rem;
+    margin-top: -2rem;
+    img{
+        max-width: 100%;
+        width: 90%;
+    }
+}
