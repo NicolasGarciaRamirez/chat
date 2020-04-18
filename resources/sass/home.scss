@@ -1,0 +1,70 @@
+@import "post";
+
+.home{
+    .post-form{
+        input.form-control ,textarea.form-control{
+            border-radius: 20px;
+            background-color: $third-color;
+            color: $fifth-color;
+            border: 0;
+            padding: 1rem;
+            &::placeholder{
+                color: $fourth-color;
+            }
+            &:focus{
+                background-color: $third-color;
+                color: $fifth-color;
+                border: 0;
+            }
+        }
+        .post-footer{
+            margin-top: 2px;
+            img{
+                width: 1.8rem;
+                cursor: pointer;
+                margin: .5rem;
+                @include media-breakpoint-up(md){
+                    &:first-child{
+                        margin-left: 1rem;
+                    }
+                }
+            }
+            a{
+                color: $fourth-color;
+                position: relative;
+                display: block;
+                text-decoration: none;
+                &:hover{
+                    color: $fourth-color;
+                }
+                span{
+                    font-size: 1.5rem;
+                }
+                &:after{
+                    content: "";
+                    position: absolute;
+                    width: 2px;
+                    top: -3px;
+                    bottom: -3px;
+                    right: -8px;
+                    background-color: black;
+                }
+                &:before{
+                    content: "";
+                    position: absolute;
+                    width: 2px;
+                    top: -3px;
+                    bottom: -3px;
+                    left: -8px;
+                    background-color: black;
+                }
+            }
+            button{
+                padding: .2rem;
+                @include media-breakpoint-up(md){
+                    padding: 0 0.75rem;
+                }
+            }
+        }
+    }
+}

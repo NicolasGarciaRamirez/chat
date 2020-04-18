@@ -155,28 +155,7 @@
                 }
             }
         }
-        .icon{
-            width: 2pc;
-            margin: 1rem;
-        }
-        .btn-facebook{
-            width: 35%;
-            background: #111cf6;
-            color: white;
-            box-shadow: 0px 1px 10px 6px;
-        }
-        .btn-twitter{
-            width: 35%;
-            background: #2ea2e0;
-            color: white;
-            box-shadow: 0px 1px 10px 6px;
-        }
-        .btn-google{
-            width: 35%;
-            background: white;
-            color: orangered;
-            box-shadow: 0px 1px 10px 6px;
-        }
+
         .form-search{
             @include media-breakpoint-up(md){
                 width: 280px;
@@ -202,6 +181,24 @@
                     i{
                         color: $fourth-color;
                     }
+                }
+            }
+        }
+    }
+    .account-settings{
+        .card-header, .card-body{
+            .icon, img.icon{
+                width: 2rem;
+                margin-right: 1rem;
+            }
+        }
+        .btn-social-media{
+            @include media-breakpoint-up(md){
+                width: 35%;
+            }
+            &.bg-white{
+                &:hover{
+                    color: $fifth-color;
                 }
             }
         }

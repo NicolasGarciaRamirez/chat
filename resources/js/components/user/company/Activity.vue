@@ -26,7 +26,7 @@
                                 <div class="bg-black text-white card-footer">
                                     <div class="pt-2 c-fourth">
                                         <span>11k views</span>
-                                        <span class="float-right">3 hrs ago</span>    
+                                        <span class="float-right">3 hrs ago</span>
                                     </div>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                                 <div class="card-footer">
                                     <div class="pt-2 c-fourth">
                                         <span>11k views</span>
-                                        <span class="float-right">3 hrs ago</span>      
+                                        <span class="float-right">3 hrs ago</span>
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                 <div class="card-footer">
                                     <div class="pt-2 c-fourth">
                                         <span>11k views</span>
-                                        <span class="float-right">3 hrs ago</span>      
+                                        <span class="float-right">3 hrs ago</span>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        
+
                         <div class="col">
                             <img src="/images/email.png" alt="" class="m-2"><i>support@spootify.com</i>
                         </div>
@@ -135,6 +135,6 @@
 
 <script>
 export default {
-    
+
 }
 </script>

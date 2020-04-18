@@ -117,18 +117,18 @@
                     <div id="collapseFifth" class="collapse"
                     aria-labelledby="headingFifth" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
-                            <div class="d-flex flex-column text-center ">
-                                <div>
-                                    <img src="/images/facebook.svg" alt="" class="icon">
-                                    <button class="btn btn-facebook">link With facebook</button>
+                            <div class="d-flex flex-column text-center">
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <img src="/images/icons/facebook.svg" alt="" class="icon">
+                                    <button class="btn btn-social-media bg-facebook text-white rounded-pill font-weight-bold">link With facebook</button>
                                 </div>
-                                <div>
-                                    <img src="/images/twitter-blue.svg" alt="" class="icon">
-                                    <button class="btn btn-twitter">Disconnect From Twitter</button>
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <img src="/images/icons/twitter.svg" alt="" class="icon">
+                                    <button class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">Disconnect From Twitter</button>
                                 </div>
-                                <div>
-                                    <img src="/images/google.svg" alt="" class="icon">
-                                    <button class="btn btn-google">Link With Google</button>
+                                <div class="d-flex justify-content-center align-items-center mb-2">
+                                    <img src="/images/icons/google.svg" alt="" class="icon">
+                                    <button class="btn btn-social-media c-fifth bg-white rounded-pill font-weight-bold">Link With Google</button>
                                 </div>
                             </div>
                         </div>
