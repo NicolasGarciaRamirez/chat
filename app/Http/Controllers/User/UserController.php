@@ -64,12 +64,4 @@ class UserController extends Controller
     {
         return view('user.profile.account-settings');
     }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function viewProfile()
-    {
-        return view('user.view-profile');
-    }
 }

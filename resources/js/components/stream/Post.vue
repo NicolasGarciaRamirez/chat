@@ -98,7 +98,7 @@
                                 <a href="#"><i class="fas fa-ellipsis-h c-third fa-2x"></i></a>
                             </div>
                             <div class="flex-column">
-                                <label>Denkmark <img src="/images/icons/check.svg" alt="" class="icon "></label><br>
+                                <a href="/Profile/View/Channel/Activity" class="text-white">Denkmark <img src="/images/icons/check.svg" alt="" class="icon "></a><br>
                                 <button class="btn bg-fifth text-white ">BAND</button>
                             </div><br>
                         </div>

@@ -30,5 +30,18 @@ Route::group(['prefix' => 'Profile'], function(){
     Route::get('/Channel/Edit', 'User\UserController@channelEdit')->name('profile.channel.edit');
     Route::get('/Settings', 'User\UserController@accountSettings')->name('profile.account.settings');
 
-    Route::get('/View', 'User\UserController@viewProfile')->name('view.profile');
+    Route::group(['prefix' => 'View'], function () {
+        Route::group(['prefix' => 'Channel'], function () {
+            Route::get('/Activity', 'User\ViewUserController@activity')->name('view.profile.channel.activity');
+            Route::get('/Playlist', 'User\ViewUserController@playlist')->name('view.profile.channel.playlist');
+        });
+        Route::group(['prefix' => 'Profile'], function () {
+            Route::get('/Releases', 'User\ViewUserController@releases')->name('view.profile.releases');
+            Route::get('/Members', 'User\ViewUserController@members')->name('view.profile.members');
+            Route::get('/WorkHistory', 'User\ViewUserController@workHistory')->name('view.profile.work.history');
+            Route::get('/Genres', 'User\ViewUserController@genres')->name('view.profile.genres');
+            Route::get('/Services', 'User\ViewUserController@services')->name('view.profile.services');
+            Route::get('/Rates', 'User\ViewUserController@rates')->name('view.profile.rates');
+        });
+    });
 });
