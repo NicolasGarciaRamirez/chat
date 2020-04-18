@@ -8,7 +8,7 @@
         <a href="#" class="btn bg-black rounded-pill mr-2 text-white">Share Profile <i class="fas fa-share text-white ml-2"></i></a>
     </div>
     <div>
-        <h2>Namek <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
+        <h2 class="font-weight-bold">Namek <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
         <div class="d-flex">
             <a href="#" class="btn bg-danger text-white mr-3">MIXING ENGINEER</a>
     {{--        <a href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>--}}

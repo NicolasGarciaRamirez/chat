@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('content')
-    <div>
-        <post />
+    <div class="container-fluid home">
+        <home />
     </div>
 @endsection
