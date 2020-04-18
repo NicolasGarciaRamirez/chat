@@ -33549,7 +33549,7 @@ var staticRenderFns = [
                     "a",
                     {
                       staticClass: "text-white",
-                      attrs: { href: "/Profile/View" }
+                      attrs: { href: "/Profile/View/Profile/Releases" }
                     },
                     [
                       _vm._v("Jhonathan Holland "),

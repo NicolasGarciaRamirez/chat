@@ -32,7 +32,7 @@
                                 <a href="#"><i class="fas fa-ellipsis-h c-third fa-2x"></i></a>
                             </div>
                             <div class="flex-column">
-                                <a href="/Profile/View" class="text-white">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="icon "></a><br>
+                                <a href="/Profile/View/Profile/Releases" class="text-white">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="icon "></a><br>
                                 <button class="btn bg-fifth text-white ">MIXING ENGENIERY</button>
                                 <button class="btn bg-white c-fifth ">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red" class="ml-2 icon"></button>
                             </div><br>
