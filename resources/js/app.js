@@ -20,7 +20,16 @@ import ProfileEdit from './components/user/profile/ProfileEdit'
 import ChannelEdit from './components/user/profile/ChannelEdit'
 import AccountSettings from './components/user/profile/AccountSettings'
 import CompanyProfile from './components/user/company/Company-profile'
-import ViewProfile from './components/user/profile/ViewProfile'
+
+import ProfileActivity from './components/user/view/channel/Activity'
+import ProfilePlaylist from './components/user/view/channel/Playlist'
+
+import ProfileGenres from './components/user/view/profile/Genres'
+import ProfileMembers from './components/user/view/profile/Members'
+import ProfileRates from './components/user/view/profile/Rates'
+import ProfileReleases from './components/user/view/profile/Releases'
+import ProfileServices from './components/user/view/profile/Services'
+import ProfileWorkHistory from './components/user/view/profile/WorkHistory'
 
 new Vue({
     el: '#app',
@@ -35,6 +44,13 @@ new Vue({
         ChannelEdit,
         AccountSettings,
         CompanyProfile,
-        ViewProfile
+        ProfileActivity,
+        ProfilePlaylist,
+        ProfileGenres,
+        ProfileMembers,
+        ProfileRates,
+        ProfileReleases,
+        ProfileServices,
+        ProfileWorkHistory  
     }
 });

@@ -10,7 +10,7 @@
             <div class="d-flex align-items-start">
                 <img src="/images/profile.jpg" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-2">
-                    <a href="/Profile/View" class="text-white post-user-name">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
+                    <a href="/Profile/View/Profile/Releases" class="text-white post-user-name">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
                     <div class="d-flex justify-content-center align-items-center post-user-type">
                         <button class="btn bg-fifth text-white mr-2">MIXING ENGENIERY</button>
                         <button class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
