@@ -1,6 +1,6 @@
 <template>
     <section class="releases container-fluid">
-        <div class="d-flex flex-row release ">
+        <div class="  release">
             <img src="/images/activity.jpg" alt="release" class="img-fluid">
             <div class="m-3">
                 <label>Artist: </label><b class="font-weight-bold text-white ml-2">Slipknot</b><br>
@@ -11,7 +11,7 @@
                 <label>Credits: </label><b class="font-weight-bold text-white ml-2">Songwriting, Preforming</b>
             </div>
         </div>
-        <div class="d-flex flex-row release mt-5">
+        <div class=" release mt-5">
             <img src="/images/activity3.jpg" alt="release" class="img-fluid">
             <div class="m-3">
                 <label>Artist: </label><b class="font-weight-bold text-white ml-2">Slipknot</b><br>
@@ -22,7 +22,7 @@
                 <label>Credits: </label><b class="font-weight-bold text-white ml-2">Songwriting, Preforming</b>
             </div>
         </div>
-        <div class="d-flex flex-row release mt-5">
+        <div class=" release mt-5">
             <img src="/images/activity2.jpg" alt="release" class="img-fluid">
             <div class="m-3">
                 <label>Artist: </label><b class="font-weight-bold text-white ml-2">Slipknot</b><br>
@@ -33,7 +33,7 @@
                 <label>Credits: </label><b class="font-weight-bold text-white ml-2">Songwriting, Preforming</b>
             </div>
         </div>
-        <div class="d-flex flex-row release mt-5">
+        <div class=" release mt-5">
             <img src="/images/activity3.jpg" alt="release" class="img-fluid">
             <div class="m-3">
                 <label>Artist: </label><b class="font-weight-bold text-white ml-2">Slipknot</b><br>

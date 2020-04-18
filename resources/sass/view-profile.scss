@@ -22,8 +22,8 @@
     .head-container{
         margin-top: 4rem;
         padding: 0 10px;
-        @include media-breakpoint-up(md){
-            margin-top: 2rem;
+        @include media-breakpoint-down(md){
+            margin-top: 0.5rem;
         }
         @include media-breakpoint-up(lg){
             display: flex;
@@ -87,6 +87,9 @@
                 position: absolute;
             }
         }
+        @include media-breakpoint-down(sm){
+            font-size: 0.765rem;
+        }
     }
     .movement{
         .activities{
@@ -114,9 +117,16 @@
     }
     .releases{
         .release{
+            display: flex;
             img{
                 width: 15rem;
                 height: 13rem;
+            }
+            @include media-breakpoint-down(sm){
+                flex-direction: column;
+                img{
+                    width: auto;
+                }
             }
         }
     }

@@ -38556,7 +38556,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("section", { staticClass: "releases container-fluid" }, [
-      _c("div", { staticClass: "d-flex flex-row release " }, [
+      _c("div", { staticClass: "  release" }, [
         _c("img", {
           staticClass: "img-fluid",
           attrs: { src: "/images/activity.jpg", alt: "release" }
@@ -38600,7 +38600,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "d-flex flex-row release mt-5" }, [
+      _c("div", { staticClass: " release mt-5" }, [
         _c("img", {
           staticClass: "img-fluid",
           attrs: { src: "/images/activity3.jpg", alt: "release" }
@@ -38644,7 +38644,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "d-flex flex-row release mt-5" }, [
+      _c("div", { staticClass: " release mt-5" }, [
         _c("img", {
           staticClass: "img-fluid",
           attrs: { src: "/images/activity2.jpg", alt: "release" }
@@ -38688,7 +38688,7 @@ var staticRenderFns = [
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "d-flex flex-row release mt-5" }, [
+      _c("div", { staticClass: " release mt-5" }, [
         _c("img", {
           staticClass: "img-fluid",
           attrs: { src: "/images/activity3.jpg", alt: "release" }
