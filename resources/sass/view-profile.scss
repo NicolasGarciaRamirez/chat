@@ -113,6 +113,12 @@
     .playlist{
         .play{
             margin-bottom: 1rem;
+            .fa-video{
+                margin-top: 1em;
+                transform: translateX(-1.9em);
+                opacity: 1;
+                transition: all 0.4s ease-in-out;
+            }
         }
     }
     .releases{

@@ -13101,6 +13101,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -38329,7 +38331,7 @@ var staticRenderFns = [
               attrs: { src: "/images/activity.jpg", alt: "play" }
             }),
             _vm._v(" "),
-            _c("i", { staticClass: "fas fa-star float-top" }),
+            _c("i", { staticClass: "fas fa-video  position-absolute" }),
             _vm._v(" "),
             _c("h3", { staticClass: "my-1" }, [
               _vm._v("This is the title of the video I created")
@@ -38342,6 +38344,8 @@ var staticRenderFns = [
               attrs: { src: "/images/activity2.jpg", alt: "play" }
             }),
             _vm._v(" "),
+            _c("i", { staticClass: "fas fa-video  position-absolute" }),
+            _vm._v(" "),
             _c("h3", { staticClass: "my-1" }, [
               _vm._v("This is the title of the video I created")
             ])
@@ -38352,6 +38356,8 @@ var staticRenderFns = [
               staticClass: "img-fluid",
               attrs: { src: "/images/activity3.jpg", alt: "play" }
             }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fas fa-video  position-absolute" }),
             _vm._v(" "),
             _c("h3", { staticClass: "my-1" }, [
               _vm._v("This is the title of the video I created")

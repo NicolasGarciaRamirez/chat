@@ -28477,6 +28477,13 @@ button:focus {
   margin-bottom: 1rem;
 }
 
+.view-profile .playlist .play .fa-video {
+  margin-top: 1em;
+  transform: translateX(-1.9em);
+  opacity: 1;
+  transition: all 0.4s ease-in-out;
+}
+
 .view-profile .releases .release {
   display: flex;
 }
