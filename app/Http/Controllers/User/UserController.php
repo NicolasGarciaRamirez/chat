@@ -16,13 +16,17 @@ class UserController extends Controller
     /**
      * UserController constructor.
      */
+    // public function __construct()
+    // {
+    //    $this->middleware(function ($request, $next) {
+    //        if (!\Auth::check()) return redirect('/View/Channel/Playlist');
+    //        $this->user = \Auth::user();
+    //        return $next($request);
+    //    });
+    // }
     public function __construct()
     {
-//        $this->middleware(function ($request, $next) {
-//            if (!\Auth::check()) return redirect('login');
-//            $this->user = Auth::user();
-//            return $next($request);
-//        });
+        $this->middleware('auth');
     }
 
     /**

@@ -9,17 +9,17 @@
                 </div>
                 <div class="modal-body pt-4">
                     <h5 class="text-center">FREE USER SIGNUP</h5>
-                    <form @submit.prevent="save" autocomplete="off">
+                    <form @submit.prevent="verifyCredentials" autocomplete="off">
                         <div class="d-flex justify-content-between">
-                            <input type="text" class="form-control mr-5" placeholder="First Name" v-model="user.first_name" required>
-                            <input type="text" class="form-control" placeholder="Last Name" v-model="user.last_name" required>
+                            <input  type="text" class="form-control mr-5" placeholder="First Name" v-model="user.first_name" required>
+                            <input  type="text" class="form-control" placeholder="Last Name" v-model="user.last_name" required>
                         </div>
-                        <input type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
-                        <input type="email" class="form-control " placeholder="Confirm Email Address" v-model="user.confirm_email">
-                        <input type="password" class="form-control my-3" placeholder="Password" v-model="user.password"  required>
-                        <input type="password" class="form-control" placeholder="Confirm Password" v-model="user.confirm_password" required>
+                        <input id="inputEmail" type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
+                        <input id="inputConfirmEmail" type="email" class="form-control " placeholder="Confirm Email Address" v-model="user.confirm_email">
+                        <input id="inputPassword" type="password" class="form-control my-3" placeholder="Password" v-model="user.password"  required>
+                        <input id="inputConfirmPassword" type="password" class="form-control" placeholder="Confirm Password" v-model="user.confirm_password" required>
                         <div class="mt-2 p-2 d-flex justify-content-center">
-                            <button type="submit" class="btn bg-fifth text-white  sign-up" >Sign Up</button>
+                            <button type="submit" class="btn bg-fifth text-white sign-up ">Sign Up</button>
                         </div>
                     </form>
                     <div><p class="text-center or">OR</p></div>
@@ -48,15 +48,47 @@
                     confirm_email:'',
                     password: '',
                     confirm_password: ''
-                }
-
+                },
+                validate_email:false,
+                validate_password:false
             }
         },
         methods: {
+            verifyCredentials(){
+                
+                if (this.user.email == this.user.confirm_email) {
+                    $('#inputEmail').addClass("border-success")
+                    $('#inputConfirmEmail').addClass("border-success")  
+                    this.validate_email = true 
+                }else{
+                    $('#inputEmail').addClass("border-danger")
+                    $('#inputConfirmEmail').addClass("border-danger")  
+                }
+                if (this.user.password === this.user.confirm_password) {
+                    $('#inputPassword').addClass("border-success")
+                    $('#inputConfirmPassword').addClass("border-success")
+                    this.validate_password = true
+                }else{
+                    $('#inputPassword').addClass("border-danger")
+                    $('#inputConfirmPassword').addClass("border-danger")
+                }
+
+                if (!this.validate_email && !this.validate_password || !this.validate_password || !this.validate_email) {
+                    alert('you have error')
+                }else{
+                    this.save()
+                }
+            },
             save(){
-                axios.post(`/Register/save/`, this.user).then(res => {
+                this.user = {
+                    first_name: this.user.first_name,
+                    last_name: this.user.last_name,
+                    email: this.user.email,
+                    password: this.user.password
+                }
+                axios.post(`/Register`, this.user).then(res => {
                     if (res.data.saved) {
-                        window.location.replace('/User/Contributor/profile')
+                        window.location.replace('/')
                     }else{
                         alert('ERROR 500')
                     }

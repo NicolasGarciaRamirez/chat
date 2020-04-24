@@ -5,10 +5,10 @@
         @include('user.view.profile.header')
         <div class="navigation-header my-5 mx-3 d-flex">
             <h3>
-                <a href="/Profile/View/Channel/Activity" class="c-fourth font-weight-bold pt-2 mr-3">Channel</a>
+                <a href="/View/Channel/Activity" class="c-fourth font-weight-bold pt-2 mr-3">Channel</a>
             </h3>
             <h3>
-                <a href="/Profile/View/Profile/Members" class="text-white font-weight-bold active">Profile</a>
+                <a href="/View/Profile/Members" class="text-white font-weight-bold active">Profile</a>
             </h3><br>
         </div>
         <p class="text-white p-3">
@@ -18,12 +18,12 @@
             There are only a few exceptions to this concept, like Goodbye, has got a piano arrangement live.
         </p>
         <div class="navigation-body">
-            <a href="/Profile/View/Profile/Releases" class="font-weight-bold mr-3 active c-fifth">Releases</a>
-            <a href="/Profile/View/Profile/Members" class="text-white font-weight-bold mr-3">Members</a>
-            <a href="/Profile/View/Profile/WorkHistory" class="text-white font-weight-bold mr-3">Work History</a>
-            <a href="/Profile/View/Profile/Genres" class="text-white font-weight-bold mr-3">Genres</a>
-            <a href="/Profile/View/Profile/Services" class="text-white font-weight-bold mr-3">Services</a>
-            <a href="/Profile/View/Profile/Rates" class="text-white font-weight-bold">Rates</a>
+            <a href="/View/Profile/Releases" class="font-weight-bold mr-3 active c-fifth">Releases</a>
+            <a href="/View/Profile/Members" class="text-white font-weight-bold mr-3">Members</a>
+            <a href="/View/Profile/WorkHistory" class="text-white font-weight-bold mr-3">Work History</a>
+            <a href="/View/Profile/Genres" class="text-white font-weight-bold mr-3">Genres</a>
+            <a href="/View/Profile/Services" class="text-white font-weight-bold mr-3">Services</a>
+            <a href="/View/Profile/Rates" class="text-white font-weight-bold">Rates</a>
         </div>
         <profile-releases />
     </div>

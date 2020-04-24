@@ -1,6 +1,6 @@
 <template>
-    <section>
-        <div class="form-group post-form">
+    <section >
+        <div class="form-group post-form" v-if="auth">
             <div class="bg-primary">
                 <textarea  rows="5" class="form-control bg-primary" placeholder="Add Some value to the music industry..."></textarea>
             </div>
@@ -22,8 +22,23 @@
 <script>
     import Posts from "../stream/Posts";
     export default {
+        data(){
+            return {
+                auth : false
+            }
+        },
         components:{
             Posts
+        },
+        mounted(){
+            this.authCheck()
+        },
+        methods:{
+            authCheck(){
+                axios.post('/Auth/Check').then(res => {
+                    this.auth = res.data.auth 
+                })
+            }
         }
     }
 </script>

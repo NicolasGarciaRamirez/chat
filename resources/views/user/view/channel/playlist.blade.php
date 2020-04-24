@@ -12,8 +12,8 @@
         </h3>
     </div>
     <div class="navigation-body">
-        <a href="/Profile/View/Channel/Activity" class="text-white font-weight-bold mr-3">Activity</a>
-        <a href="/Profile/View/Channel/Playlist" class="font-weight-bold active c-fifth">Playlist</a>
+        <a href="/View/Channel/Activity" class="text-white font-weight-bold mr-3">Activity</a>
+        <a href="/View/Channel/Playlist" class="font-weight-bold active c-fifth">Playlist</a>
        
     </div>
     <div class="container-fluid">

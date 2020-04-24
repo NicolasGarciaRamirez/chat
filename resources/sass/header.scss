@@ -75,3 +75,26 @@ button {
     height: 4em;
 }
 
+.top-menu{
+    img{
+        cursor: pointer;
+    }
+    .dropdown-menu{
+        border: 0px;
+        box-shadow: 01px 0px 11px 11px $primary-color;
+        margin-right: 1.6rem;
+        .dropdown-item{
+            color: $fourth-color;
+            &:hover{
+                background-color: $primary-color;
+                color: white;
+            }
+            &:active{
+                color: white;
+            }
+        }
+        .dropdown-divider{
+            border-top: 1px solid $fourth-color;
+        }
+    }
+}

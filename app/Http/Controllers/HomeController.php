@@ -19,7 +19,7 @@ class HomeController extends Controller
      */
     public function login()
     {
-        return view('login', ['is_login_view' => true]);
+        return view('login', ['is_login_view' => \Auth::check()]);
     }
 
     /**

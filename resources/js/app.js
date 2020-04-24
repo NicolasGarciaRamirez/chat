@@ -31,6 +31,8 @@ import ProfileReleases from './components/user/view/profile/Releases'
 import ProfileServices from './components/user/view/profile/Services'
 import ProfileWorkHistory from './components/user/view/profile/WorkHistory'
 
+import ModalContributorSingup from './components/auth/include/ModalContributorSingup'
+
 new Vue({
     el: '#app',
     components:{
@@ -51,6 +53,7 @@ new Vue({
         ProfileRates,
         ProfileReleases,
         ProfileServices,
-        ProfileWorkHistory  
+        ProfileWorkHistory,
+        ModalContributorSingup
     }
 });

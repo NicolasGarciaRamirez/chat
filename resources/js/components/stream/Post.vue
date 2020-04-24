@@ -3,14 +3,14 @@
         <div class="post-head bg-primary p-2 d-md-flex align-items-start justify-content-between">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
                 <button class="bg-primary">FOLLOW <img src="/images/icons/star.svg" class="icon c-fifth ml-1"></button>
-                <button class="bg-primary border-danger">SUPPORT <img src="/images/icons/heart.svg" class="ml-1"></button>
-                <button class="bg-primary border-danger">REWARD <img src="/images/icons/lightning.svg" class="ml-1"></button>
+                <button class="bg-primary border-danger" @click="showModalSupport">SUPPORT <img src="/images/icons/heart.svg" class="ml-1"></button>
+                <button class="bg-primary border-danger" @click="showModalReward">REWARD <img src="/images/icons/lightning.svg" class="ml-1"></button>
                 <a href="#"><i class="fas fa-ellipsis-h c-third fa-2x"></i></a>
             </div>
             <div class="d-flex align-items-start">
                 <img src="/images/profile.jpg" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-2">
-                    <a href="/Profile/View/Profile/Releases" class="text-white post-user-name">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
+                    <a href="/View/Profile/Releases" class="text-white post-user-name">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
                     <div class="d-flex justify-content-center align-items-center post-user-type">
                         <button class="btn bg-fifth text-white mr-2">MIXING ENGENIERY</button>
                         <button class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
@@ -41,14 +41,29 @@
             </div>
         </div>
         <comments />
+        <modal-support />
+        <modal-reward /> 
     </section>
 </template>
 
 <script>
     import Comments from './comments/Comments'
+    import ModalReward from './ModalReward'
+    import ModalSupport from './ModalSupport'
+    
     export default {
         components:{
-            Comments
+            Comments,
+            ModalSupport,
+            ModalReward
+        },
+        methods:{
+            showModalSupport(){
+                $('#modalSupport').modal('show')
+            },
+            showModalReward(){
+                $('#modalReward').modal('show')
+            }
         }
     }
 </script>

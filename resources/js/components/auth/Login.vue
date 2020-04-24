@@ -21,7 +21,7 @@
                     </form>
                     <div><p class="text-center or">OR</p></div>
                     <div class="d-flex flex-column social-login">
-                        <a href="#" class="btn bg-facebook text-white">Facebook Quick Login</a>
+                        <a href="/login/facebook" class="btn bg-facebook text-white">Facebook Quick Login</a>
                         <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Login</a>
                         <a href="#" class="btn bg-white c-fifth">Google Quick Login</a>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="divider"></div>
                     <p class="text-center text-white mt-4">Don’t have an ccount yet?!</p>
                     <div class="text-center mb-3">
-                        <a class="btn bg-fifth text-white sign-me" @click="showModalRegister()"><b>SIGN ME UP NOW!</b></a>
+                        <a class="btn bg-fifth text-white sign-me" href="/Register"><b>SIGN ME UP NOW!</b></a>
                     </div>
                 </div>
             </div>
@@ -59,14 +59,13 @@
             }
         },
         methods:{
-            login(){
-                alert('login')
+            async login(){
+                await axios.post('/login', this.user).then(res =>{
+                    window.location.replace('/Profile/Edit')
+                }).catch(err => {
+                    alert('your credentials not have any match')
+                })
             },
-            showModalRegister(){
-                // $('#ModalLogin').modal('toggle')
-                $('#ModalRegister').modal('show')
-            }
-
         }
     }
 </script>
