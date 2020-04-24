@@ -23,9 +23,9 @@
                 <button class="btn bg-fifth text-white my-4" @click="showComponents('free')">COUNT ME IN</button>
             </div>
 
-            <div class="bg-third flex-column mr-5 p-4 text-center content bg-primary" v-if="singupFreeForm">
+            <div class="flex-column mr-5 p-4 text-center content bg-primary" v-if="singupFreeForm">
                 <h5 class="text-center">FREE USER SIGNUP</h5><br>
-                <form @submit.prevent="verifyCredentials" autocomplete="off">
+                <form @submit.prevent="save" autocomplete="off">
                     <div class="d-flex justify-content-between">
                         <input  type="text" class="form-control mr-5" placeholder="First Name" v-model="user.first_name" required>
                         <input  type="text" class="form-control" placeholder="Last Name" v-model="user.last_name" required>
@@ -37,8 +37,8 @@
                     <div class="mt-2 p-2 d-flex justify-content-center">
                         <button type="submit" class="btn bg-fifth text-white sign-up ">Sign Up</button>
                     </div>
-                </form><br>
-                <div><p class="text-center or">OR</p></div><br>
+                </form>
+                <div><p class="text-center or">OR</p></div>
                 <div class="d-flex flex-column social-login">
                     <a href="#" class="btn bg-facebook text-white">Facebook Quick Singup</a>
                     <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Singup</a>
