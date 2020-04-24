@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade modal-reward" tabindex="-1" role="dialog" aria-labelledby="ModalRegister" aria-hidden="true" id="modalReward">
+    <div class="modal fade modal-reward" tabindex="-1" role="dialog" aria-labelledby="ModalReward" aria-hidden="true" id="modalReward">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modal-border-white">
                 <div class="modal-header border-0 p-0">
@@ -19,7 +19,23 @@
                     </button>
                 </div>
                 <div class="modal-body pt-4">
-                    
+                    <div class="d-flex flex-column text-center align-items-center">
+                        <h4 class="font-weigh-bold">Reward A One-off Donation</h4><br>
+                        <p class="my-4">
+                            By entering an amount below below, you will directly reward  Jonathon Holland  ﬁnancially
+                            with a one-off donation. This amount is for this single time only and it doesn’t auto-renew.
+                            Noisesharks DOES NOT take any cut from this support.
+                        </p> 
+                        <div class="divider my-4"></div>
+                        <h4 class="font-weigh-bold">Why Support Channel?</h4><br>
+                        <p class="my-4">I help msuic enthusiasts to ﬁnd ﬁnancial settelment or growth</p>
+                        <div class="divider my-4"></div>
+                        <h4 class="font-weigh-bold">Enter Desired One-off Reward Amount </h4>
+                        <div class="input-amount my-5">
+                            <input  placeholder="0.00" class="c-fifth form-control">
+                        </div>
+                        <button class="btn bg-fifth rounded-pill text-white font-weigh-bold w-25">CONTINUE</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -171,11 +171,7 @@
         .modal-body{
             max-height: calc(100vh - 210px);
             overflow-y: auto;
-            .divider{
-                background-color: #262626;
-                height: 3px;
-                width: 100%;
-            }
+            
             h4{
                 font-size: 1.4rem;
                 font-weight: bold;
@@ -269,6 +265,11 @@
     }
     .modal-body::-webkit-scrollbar-thumb:active {
         background-color: $fourth-color;
+    }
+    .divider{
+        background-color: #262626;
+        height: 3px;
+        width: 100%;
     }
     
 }

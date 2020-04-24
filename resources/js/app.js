@@ -14,6 +14,7 @@ import AppHeader from './components/template/Header'
 import AppNav from './components/template/Nav'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+import RegisterIndex from './components/auth/include/RegisterIndex'
 import Home from './components/home'
 import ChannelActivity from './components/user/profile/ChannelActivity'
 import ProfileEdit from './components/user/profile/ProfileEdit'
@@ -32,7 +33,6 @@ import ProfileServices from './components/user/view/profile/Services'
 import ProfileWorkHistory from './components/user/view/profile/WorkHistory'
 
 import ModalContributorSingup from './components/auth/include/ModalContributorSingup'
-
 new Vue({
     el: '#app',
     components:{
@@ -54,6 +54,7 @@ new Vue({
         ProfileReleases,
         ProfileServices,
         ProfileWorkHistory,
-        ModalContributorSingup
+        ModalContributorSingup,
+        RegisterIndex
     }
 });

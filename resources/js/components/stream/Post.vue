@@ -33,7 +33,7 @@
                 <div class="d-flex c-fourth my-3">
                     <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>
                     <div class="information"><img src="/images/icons/post-percentage-down-red.svg" alt=""><span class="c-fifth">100</span></div>
-                    <div class="information"><img src="/images/icons/post-flame.svg" alt="">100</div>
+                    <div class="information" @click="showModalRegister"><img src="/images/icons/post-flame.svg" alt="">100</div>
                     <div class="information"><img src="/images/icons/post-comment.svg" alt="">100</div>
                     <div class="information"><img src="/images/icons/post-up.svg" alt="">100</div>
                     <div class="information"><img src="/images/icons/post-down.svg" alt="">100</div>
@@ -43,6 +43,7 @@
         <comments />
         <modal-support />
         <modal-reward /> 
+        <register />
     </section>
 </template>
 
@@ -50,12 +51,14 @@
     import Comments from './comments/Comments'
     import ModalReward from './ModalReward'
     import ModalSupport from './ModalSupport'
+    import Register from '../auth/Register'
     
     export default {
         components:{
             Comments,
             ModalSupport,
-            ModalReward
+            ModalReward,
+            Register
         },
         methods:{
             showModalSupport(){
@@ -63,6 +66,9 @@
             },
             showModalReward(){
                 $('#modalReward').modal('show')
+            },
+            showModalRegister(){
+                $('#ModalRegister').modal('show')
             }
         }
     }

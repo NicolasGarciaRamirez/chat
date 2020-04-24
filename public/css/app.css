@@ -26989,43 +26989,43 @@ readers do not read off random characters that represent icons */
 }
 
 .c-primary {
-  color: #141414;
+  color: #141414 !important;
 }
 
 .bg-primary {
-  background-color: #141414;
+  background-color: #141414 !important;
 }
 
 .c-second {
-  color: #181818;
+  color: #181818 !important;
 }
 
 .bg-second {
-  background-color: #181818;
+  background-color: #181818 !important;
 }
 
 .c-third {
-  color: #262626;
+  color: #262626 !important;
 }
 
 .bg-third {
-  background-color: #262626;
+  background-color: #262626 !important;
 }
 
 .c-fourth {
-  color: #535353;
+  color: #535353 !important;
 }
 
 .bg-fourth {
-  background-color: #535353;
+  background-color: #535353 !important;
 }
 
 .c-fifth {
-  color: #FF0000;
+  color: #FF0000 !important;
 }
 
 .bg-fifth {
-  background-color: #FF0000;
+  background-color: #FF0000 !important;
 }
 
 .bg-black {
@@ -27551,6 +27551,76 @@ button:focus {
 .modal-register .sign-up {
   width: 100%;
   border-radius: 20px;
+}
+
+.register .contain .or {
+  position: relative;
+}
+
+.register .contain .or:after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  background-color: #262626;
+  height: 3px;
+  top: 10px;
+  width: 40%;
+}
+
+.register .contain .or:before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  background-color: #262626;
+  height: 3px;
+  top: 10px;
+  width: 40%;
+}
+
+.register .contain .social-register a {
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.register .contain .social-register a.bg-white:hover {
+  color: #FF0000 !important;
+}
+
+.register .contain input.form-control,
+.register .contain textarea.form-control {
+  border-radius: 20px;
+  background-color: #262626;
+  color: #FF0000;
+  border: 0;
+  padding: 1rem;
+}
+
+.register .contain input.form-control::-webkit-input-placeholder, .register .contain textarea.form-control::-webkit-input-placeholder {
+  color: #535353;
+}
+
+.register .contain input.form-control::-moz-placeholder, .register .contain textarea.form-control::-moz-placeholder {
+  color: #535353;
+}
+
+.register .contain input.form-control:-ms-input-placeholder, .register .contain textarea.form-control:-ms-input-placeholder {
+  color: #535353;
+}
+
+.register .contain input.form-control::-ms-input-placeholder, .register .contain textarea.form-control::-ms-input-placeholder {
+  color: #535353;
+}
+
+.register .contain input.form-control::placeholder,
+.register .contain textarea.form-control::placeholder {
+  color: #535353;
+}
+
+.register .contain input.form-control:focus,
+.register .contain textarea.form-control:focus {
+  background-color: #262626;
+  color: #FF0000;
+  border: 0;
 }
 
 .register .contain .content {
@@ -28397,12 +28467,6 @@ button:focus {
   overflow-y: auto;
 }
 
-.posts .modal-support .modal-body .divider {
-  background-color: #262626;
-  height: 3px;
-  width: 100%;
-}
-
 .posts .modal-support .modal-body h4 {
   font-size: 1.4rem;
   font-weight: bold;
@@ -28523,6 +28587,12 @@ button:focus {
 
 .posts .modal-body::-webkit-scrollbar-thumb:active {
   background-color: #535353;
+}
+
+.posts .divider {
+  background-color: #262626;
+  height: 3px;
+  width: 100%;
 }
 
 .home .post-form input.form-control,

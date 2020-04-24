@@ -108,6 +108,53 @@
 }
 .register{
     .contain{
+        .or{
+            position: relative;
+            &:after{
+                content: "";
+                position: absolute;
+                right: 10px;
+                background-color: #262626;
+                height: 3px;
+                top: 10px;
+                width: 40%;
+            }
+            &:before{
+                content: "";
+                position: absolute;
+                left: 10px;
+                background-color: #262626;
+                height: 3px;
+                top: 10px;
+                width: 40%;
+            }
+        }
+        .social-register{
+            a{
+                font-weight: bold;
+                border-radius: 20px;
+                &.bg-white{
+                    &:hover{
+                        color: $fifth-color !important;
+                    }
+                }
+            }
+        }
+        input.form-control ,textarea.form-control{
+            border-radius: 20px;
+            background-color: $third-color;
+            color: $fifth-color;
+            border: 0;
+            padding: 1rem;
+            &::placeholder{
+                color: $fourth-color;
+            }
+            &:focus{
+                background-color: $third-color;
+                color: $fifth-color;
+                border: 0;
+            }
+        }
         .content{
             width: 30rem;
             height: 40rem;
