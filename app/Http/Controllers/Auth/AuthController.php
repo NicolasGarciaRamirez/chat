@@ -63,7 +63,6 @@ class AuthController extends Controller
         $user = new \App\Models\User\User($request->all());
         $user->full_name = $request->first_name .' '. $request->last_name;
         $user->suscription_type = 'FREE';
-        $user->remember_token = \Str::random(80);
         $user->save();
 
         return response()->json([
@@ -81,6 +80,6 @@ class AuthController extends Controller
     //     $user = Socialite::driver('facebook')->user();
 
     //     dd($user);
-        
+
     // }
 }
