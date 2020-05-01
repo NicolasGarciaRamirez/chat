@@ -11,7 +11,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $posts = \App\Models\User\UserPost::all();
+        return view('home', compact('posts'));
     }
 
     /**

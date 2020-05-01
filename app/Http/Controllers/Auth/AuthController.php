@@ -62,9 +62,23 @@ class AuthController extends Controller
     {
         $user = new \App\Models\User\User($request->all());
         $user->full_name = $request->first_name .' '. $request->last_name;
-        $user->suscription_type = 'FREE';
-        $user->remember_token = \Str::random(80);
+        $user->suscription_type = 'CONTRIBUTOR';
         $user->save();
+
+        $personal_information = new \App\Models\User\UserPersonalInformation();
+        $personal_information->user_id = $user->id;
+        $personal_information->members = json_encode($request->personal_information['members']);
+        $personal_information->releases = json_encode($request->personal_information['releases']);
+        $personal_information->social_media = json_encode($request->personal_information['social_media']);
+        $personal_information->save($request->personal_information);
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+        } else {
+            session()->flash('message', 'Email or password incorrect');
+            return back()->withInput();
+        }
 
         return response()->json([
             'saved' => true,

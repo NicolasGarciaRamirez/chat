@@ -17,7 +17,6 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding: .5rem;
                     @include media-breakpoint-up(md){
                         margin-right: 1rem;
                     }
@@ -25,7 +24,13 @@
                         width: 1rem;
                     }
                     &:hover{
-                        background-color: $primary-color !important;
+                        background-color: white !important;
+                        color: black;
+                        border: 0 !important;
+                    }
+                    &:active{
+                        background-color: $fifth-color !important;
+                        color: white !important;
                     }
                 }
                 button.border-danger{
@@ -33,6 +38,39 @@
                         border: 0px !important;
                         background: white !important;
                         color: $fifth-color;
+                    }
+                    &:active{
+                        background-color: $fifth-color !important;
+                        color: white !important;
+                    }
+                }
+                i{
+                    &:hover{
+                        color: white !important;
+                    }
+                    &:active{
+                        color: white !important;
+                    }
+                }
+                .dowpdown-menu-post{
+                    border: 0px;
+                    box-shadow: 0px 0px 5px 5px black;
+                    margin-right: 1.6rem;
+                    margin-left: 0.8rem;
+                    .dropdown-item{
+                        padding: 0.28rem;
+                        color: $fourth-color !important;
+                        &:hover{
+                            color: white !important;
+                            background-color: $primary-color !important;
+                        }
+                        &:active{
+                            color: white !important;
+                            background-color: $primary-color !important;
+                        }
+                    }
+                    .dropdown-divider{
+                        border-top: 1px solid $fourth-color;
                     }
                 }
             }

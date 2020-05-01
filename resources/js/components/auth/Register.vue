@@ -8,29 +8,7 @@
                     </button>
                 </div>
                 <div class="modal-body pt-4">
-                    <h5 class="text-center">FREE USER SIGNUP</h5>
-                    <form @submit.prevent="save" autocomplete="off">
-                        <div class="d-flex justify-content-between">
-                            <input  type="text" class="form-control mr-5" placeholder="First Name" v-model="user.first_name" required>
-                            <input  type="text" class="form-control" placeholder="Last Name" v-model="user.last_name" required>
-                        </div>
-                        <input type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
-                        <input type="email" class="form-control " placeholder="Confirm Email Address" v-model="user.confirm_email">
-                        <input type="password" class="form-control my-3" placeholder="Password" v-model="user.password"  required>
-                        <input type="password" class="form-control" placeholder="Confirm Password" v-model="user.confirm_password" required>
-                        <div class="mt-2 p-2 d-flex justify-content-center">
-                            <button type="submit" class="btn bg-fifth text-white sign-up ">Sign Up</button>
-                        </div>
-                    </form>
-                    <div><p class="text-center or">OR</p></div>
-                    <div class="d-flex flex-column social-login">
-                        <a href="#" class="btn bg-facebook text-white">Facebook Quick Singup</a>
-                        <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Singup</a>
-                        <a href="#" class="btn bg-white c-fifth">Google Quick Singup</a>
-                    </div>
-                    <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy</p>
-                    <div class="divider"></div>
-                    <p class="text-center text-white mt-4">Don’t have an ccount yet?!</p>
+                    <form-singup />
                 </div>
             </div>
         </div>
@@ -38,37 +16,10 @@
 </template>
 
 <script>
+    import FormSingup from './include/FormSingup'
     export default {
-        data(){
-            return {
-                user:{
-                    first_name:'',
-                    last_name:'',
-                    email:'',
-                    confirm_email:'',
-                    password: '',
-                    confirm_password: ''
-                }
-            }
-        },
-        methods: {
-            save(){
-                this.user = {
-                    first_name: this.user.first_name,
-                    last_name: this.user.last_name,
-                    email: this.user.email,
-                    password: this.user.password
-                }
-                axios.post(`/Register`, this.user).then(res => {
-                    if (res.data.saved) {
-                        window.location.replace('/')
-                    }else{
-                        alert('ERROR 500')
-                    }
-                }).catch(err => {
-                    console.log(err)
-                })
-            }
-        },
+       components:{
+           FormSingup
+       }
     }
 </script>

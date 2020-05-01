@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="profile">
-        <account-settings />
+        <account-settings :user="{{ $user }}"/>
     </div>
 @endsection

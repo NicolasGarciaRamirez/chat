@@ -48,4 +48,24 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+
+    /**
+     * personalInformation function
+     *
+     * @return void
+     */
+    public function personal_information()
+    {
+        return $this->hasOne("\App\Models\User\UserPersonalInformation", "user_id");
+    }
+
+    /**
+     * post function
+     *
+     * @return void
+     */
+    public function posts()
+    {
+        return $this->hasMany(\App\Models\User\UserPost::class);
+    }
 }

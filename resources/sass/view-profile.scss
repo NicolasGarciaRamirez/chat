@@ -87,6 +87,9 @@
                 position: absolute;
             }
         }
+        a:hover{
+            color: $fifth-color;
+        }
         @include media-breakpoint-down(sm){
             font-size: 0.765rem;
         }
