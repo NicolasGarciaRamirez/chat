@@ -77,7 +77,7 @@ class ViewUserController extends Controller
     public function rates(User $user)
     {
         $user->load('personal_information');
-        return view('user.view.profile.rates',compact('user'), compact('user'));
+        return view('user.view.profile.rates', compact('user'), compact('user'));
     }
 
 }

@@ -61,7 +61,7 @@
         methods:{
             async login(){
                 await axios.post('/login', this.user).then(res =>{
-                    window.location.replace('/Profile/Edit')
+                    location.reload();
                 }).catch(err => {
                     alert('your credentials not have any match')
                 })

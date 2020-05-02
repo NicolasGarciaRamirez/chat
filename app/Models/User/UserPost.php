@@ -21,7 +21,7 @@ class UserPost extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'deleted_at','updated_at'
+        'created_at', 'deleted_at', 'updated_at'
     ];
 
     /**

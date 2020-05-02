@@ -36,7 +36,7 @@ class UserController extends Controller
     {
         $user = \Auth::user();
         $user->load('personal_information');
-        
+
         return view('user.profile.channel', compact('user'));
     }
 
@@ -47,7 +47,7 @@ class UserController extends Controller
     {
         $user = \Auth::user();
         $user->load('personal_information');
-        
+
         return view('user.profile.channel-playlist', compact('user'));
     }
 

@@ -27,7 +27,7 @@
                                 <img src="/images/icons/image.svg" alt=""   name="sound">
                             </label>
                             <input id="input-image" name="sound" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" >
-                        
+
                         </div>
                         <div class="img-upload">
                             <label for="input-docs">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </form>
-        <posts :posts="posts" />
+        <posts :posts="posts_send" />
     </section>
 </template>
 
@@ -96,7 +96,8 @@
                     image: null,
                     genre:"",
                     category: "",
-                }
+                },
+                posts_send: []
             }
         },
         components:{
@@ -104,11 +105,12 @@
         },
         mounted(){
             this.authCheck()
+            this.posts_send = this.posts
         },
         methods:{
             authCheck(){
                 axios.post('/Auth/Check').then(res => {
-                    this.auth = res.data.auth 
+                    this.auth = res.data.auth
                     this.user = res.data.user
                 })
             },
@@ -124,7 +126,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             },
-            save(){
+            async save(){
                 var imagePost = new FormData();
                 imagePost.append('imagePost', this.post.image)
                 imagePost.append('imageName', this.post.image.name)
@@ -132,12 +134,26 @@
                 imagePost.append('postGenre', this.post.genre)
                 imagePost.append('postCategory', this.post.category)
 
-                axios.post(`/Profile/Post/Save/${this.user.id}`, imagePost).then(res =>{
-                    console.log(res)
-                    window.location.reload()
+                await axios.post(`/Profile/Post/Save/${this.user.id}`, imagePost).then(res =>{
+                    this.initializeVariables()
+                    this.posts_send.unshift(res.data.post)
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
                 }).catch(err=>{
                     console.log(err)
                 })
+            },
+            initializeVariables(){
+                this.post = {
+                    replace_caption:"",
+                    allow_download:"",
+                    description:"",
+                    image: null,
+                    genre:"",
+                    category: "",
+                }
+                this.replace_caption= false
+                this.allow_download= false
+                this.imageData= ""
             }
         }
     }

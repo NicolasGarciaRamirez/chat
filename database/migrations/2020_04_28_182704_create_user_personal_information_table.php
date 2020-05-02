@@ -15,7 +15,9 @@ class CreateUserPersonalInformationTable extends Migration
     {
         Schema::create('user_personal_information', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('full_name');
             $table->string('profile_type')->default('N/A');
             $table->string('title')->default('N/A');
             $table->string('artistic_name')->default('N/A');
@@ -26,7 +28,10 @@ class CreateUserPersonalInformationTable extends Migration
             $table->string('genre')->default('N/A');
             $table->string('services')->default('N/A');
             $table->json('social_media')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

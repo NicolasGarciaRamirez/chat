@@ -13,3 +13,4 @@ yarn-error.log
 *.pdf
 .DS_Store
 .idea
+public/images/post/*

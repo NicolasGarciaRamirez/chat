@@ -8,6 +8,10 @@ use App\Models\User\User;
 
 class UserPostController extends Controller
 {
+    /**
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function get(User $user)
     {
         return response()->json([
@@ -15,15 +19,20 @@ class UserPostController extends Controller
         ]);
     }
 
+    /**
+     * @param User $user
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function save(User $user, Request $request)
     {
         $request->validate([
             'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        $imagePost = $user->full_name. '-' .now()->format('Y-m-dHis').'.'.request()->imagePost->getClientOriginalExtension();
+        $imagePost = $user->full_name . '-' . now()->format('Y-m-dHis') . '.' . request()->imagePost->getClientOriginalExtension();
         request()->imagePost->move(base_path('public/images/post'), $imagePost);
-        
+
         $post = new \App\Models\User\UserPost();
         $post->description = $request->postDescription;
         $post->genre = $request->postGenre;
@@ -33,11 +42,11 @@ class UserPostController extends Controller
         $user->posts()->save($post);
 
         return response()->json([
-            'saved' => true ,
+            'saved' => true,
             'post' => $post
         ]);
     }
-
+    
     public function update()
     {
 

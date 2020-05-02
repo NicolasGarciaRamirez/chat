@@ -16,10 +16,16 @@ class CreateUserTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('full_name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
-            $table->string('suscription_type');
+            $table->string('subscription_type')->default('FREE');
+            $table->string('token', 80)->nullable();
+            $table->string('avatar')->default('/images/profile/default.png');
+            $table->boolean('enable')->default(true);
+            $table->boolean('validated')->default(false);
+            $table->boolean('banned')->default(false);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +38,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }

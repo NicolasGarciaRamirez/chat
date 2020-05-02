@@ -1,5 +1,5 @@
 <template>
-    <section class="posts"  v-if="posts">
+    <section class="posts mb-4"  v-if="posts">
         <div v-for="(post, index) in posts" :key="index" >
             <post :post="post" />
         </div>
