@@ -10,6 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/test', function () {
+    $user = App\Models\User\User::find(1);
+    $user->password = ('123456');
+    $user->update();
+
+});
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@login');
@@ -32,24 +38,36 @@ Route::post('/Auth/Check', 'Auth\AuthController@authCheck');
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'Profile'], function(){
-        Route::get('/Edit', 'User\UserController@profileEdit')->name('profile.edit');
-        Route::get('/Channel/Activity', 'User\UserController@channelActivity')->name('profile.channel.activity');
-        Route::get('/Channel/Playlist', 'User\UserController@channelPlaylist')->name('profile.channel.playlist');
-        Route::get('/Channel/Edit', 'User\UserController@channelEdit')->name('profile.channel.edit');
-        Route::get('/Settings', 'User\UserController@accountSettings')->name('profile.account.settings');
+        Route::name('profile.edit')->get('/Edit', 'User\UserController@profileEdit');
+        Route::name('profile.get')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
+        Route::name('profile.edit.update')->post('/Edit/Update/{user}', 'User\UserPersonalInformationController@update');
+
+        Route::name('profile.channel.activity')->get('/Channel/Activity', 'User\UserController@channelActivity');
+        Route::name('profile.channel.playlist')->get('/Channel/Playlist', 'User\UserController@channelPlaylist');
+        Route::name('profile.channel.edit')->get('/Channel/Edit/', 'User\UserController@channelEdit');
+        Route::name('profile.account.settings')->get('/Settings', 'User\UserController@accountSettings');
+
+        Route::group(['prefix' => 'Post'], function () {
+            Route::name('post.get')->get('/get/{user}', 'User\UserPostController@get');
+            Route::name('post.save')->post('/Save/{user}', 'User\UserPostController@save');
+            Route::name('post.update')->get('/update/{user}', 'User\UserPostController@update');
+        });
     });
 });
 Route::group(['prefix' => 'View'], function () {
     Route::group(['prefix' => 'Channel'], function () {
-        Route::get('/Activity', 'User\ViewUserController@activity')->name('view.profile.channel.activity');
-        Route::get('/Playlist', 'User\ViewUserController@playlist')->name('view.profile.channel.playlist');
+        Route::name('view.profile.channel.activity')->get('/Activity/{user}', 'User\ViewUserController@activity');
+        Route::name('view.profile.channel.playlist')->get('/Playlist/{user}', 'User\ViewUserController@playlist');
     });
     Route::group(['prefix' => 'Profile'], function () {
-        Route::get('/Releases', 'User\ViewUserController@releases')->name('view.profile.releases');
-        Route::get('/Members', 'User\ViewUserController@members')->name('view.profile.members');
-        Route::get('/WorkHistory', 'User\ViewUserController@workHistory')->name('view.profile.work.history');
-        Route::get('/Genres', 'User\ViewUserController@genres')->name('view.profile.genres');
-        Route::get('/Services', 'User\ViewUserController@services')->name('view.profile.services');
-        Route::get('/Rates', 'User\ViewUserController@rates')->name('view.profile.rates');
+        Route::name('view.profile.releases')->get('/Releases/{user}', 'User\ViewUserController@releases');
+        Route::name('view.profile.members')->get('/Members/{user}', 'User\ViewUserController@members');
+        Route::name('view.profile.work.history')->get('/WorkHistory/{user}', 'User\ViewUserController@workHistory');
+        Route::name('view.profile.genres')->get('/Genres/{user}', 'User\ViewUserController@genres');
+        Route::name('view.profile.services')->get('/Services/{user}', 'User\ViewUserController@services');
+        Route::name('view.profile.rates')->get('/Rates/{user}', 'User\ViewUserController@rates');
+    });
+    Route::group(['prefix' => 'Post'], function () {
+        Route::name('post.get')->get('/get/{user}', 'User\UserPostController@get');
     });
 });

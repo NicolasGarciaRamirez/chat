@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('content')
-    <div class="container-fluid home">
-        <home />
+    <div class="container home">
+        <home :posts="{{ $posts }}" />
     </div>
 @endsection

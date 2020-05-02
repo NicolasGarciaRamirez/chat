@@ -4,71 +4,80 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User\User;
 
 class ViewUserController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function activity()
+    public function activity(User $user)
     {
-        return view('user.view.channel.activity');
+        $user->load('personal_information');
+        return view('user.view.channel.activity', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function playlist()
+    public function playlist(User $user)
     {
-        return view('user.view.channel.playlist');
+        $user->load('personal_information');
+        return view('user.view.channel.playlist', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function releases()
+    public function releases(User $user)
     {
-        return view('user.view.profile.releases');
+        $user->load('personal_information');
+        return view('user.view.profile.releases', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function members()
+    public function members(User $user)
     {
-        return view('user.view.profile.members');
+        $user->load('personal_information');
+        return view('user.view.profile.members', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function workHistory()
+    public function workHistory(User $user)
     {
-        return view('user.view.profile.work-history');
+        $user->load('personal_information');
+        return view('user.view.profile.work-history', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function genres()
+    public function genres(User $user)
     {
-        return view('user.view.profile.genres');
+        $user->load('personal_information');
+        return view('user.view.profile.genres', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function services()
+    public function services(User $user)
     {
-        return view('user.view.profile.services');
+        $user->load('personal_information');
+        return view('user.view.profile.services', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function rates()
+    public function rates(User $user)
     {
-        return view('user.view.profile.rates');
+        $user->load('personal_information');
+        return view('user.view.profile.rates', compact('user'), compact('user'));
     }
 
 }

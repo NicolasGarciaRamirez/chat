@@ -34,7 +34,10 @@ class UserController extends Controller
      */
     public function channelActivity()
     {
-        return view('user.profile.channel');
+        $user = \Auth::user();
+        $user->load('personal_information');
+
+        return view('user.profile.channel', compact('user'));
     }
 
     /**
@@ -42,7 +45,10 @@ class UserController extends Controller
      */
     public function channelPlaylist()
     {
-        return view('user.profile.channel-playlist');
+        $user = \Auth::user();
+        $user->load('personal_information');
+
+        return view('user.profile.channel-playlist', compact('user'));
     }
 
     /**
@@ -50,7 +56,9 @@ class UserController extends Controller
      */
     public function profileEdit()
     {
-        return view('user.profile.edit');
+        $user = \Auth::user();
+        $user->load('personal_information');
+        return view('user.profile.edit', compact('user'));
     }
 
     /**
@@ -58,7 +66,9 @@ class UserController extends Controller
      */
     public function channelEdit()
     {
-        return view('user.profile.channel-edit');
+        $user = \Auth::user();
+        $user->load('personal_information');
+        return view('user.profile.channel-edit', compact('user'));
     }
 
     /**
@@ -66,6 +76,8 @@ class UserController extends Controller
      */
     public function accountSettings()
     {
-        return view('user.profile.account-settings');
+        $user = \Auth::user();
+        $user->load('personal_information');
+        return view('user.profile.account-settings', compact('user'));
     }
 }

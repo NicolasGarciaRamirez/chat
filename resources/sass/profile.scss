@@ -40,10 +40,30 @@
         .functions{
             a{
                 border: 1px solid white;
+                color: #FFFFFF;
+                &:hover{
+                    background-color: #FFFFFF !important;
+                    color: black !important;
+                }
+                &:active{
+                    background-color: #FFFFFF !important;
+                    color: black !important;
+                }
             }
         }
         .check-icon{
             width: 1.2rem;
+        }
+    }
+    .content-personal-details{
+        .settings{
+            &:hover{
+                background-color: #ffffff !important;
+                color: black;
+                .fas.fa-cog{
+                    color: black;
+                }
+            }
         }
     }
     .navigation-header{

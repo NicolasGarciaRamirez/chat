@@ -1,12 +1,15 @@
 <template>
-    <section class="posts">
-        <post />
+    <section class="posts mb-4"  v-if="posts">
+        <div v-for="(post, index) in posts" :key="index" >
+            <post :post="post" />
+        </div>
     </section>
 </template>
 
 <script>
     import Post from './Post'
     export default {
+        props:['posts'],
         components:{
             Post
         }

@@ -37,6 +37,19 @@
     background: black;
 }
 
+select.select-form{
+    
+    border-radius: 18px;
+    background: black;
+    color: white;
+    padding: 6px;
+    &:hover{
+        content:"";
+        background-color: $third-color;
+        color: white;
+    }
+}
+
 .modal{
     .modal-dialog{
         .modal-content{

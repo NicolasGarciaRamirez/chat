@@ -47,6 +47,12 @@
  * Licensed under MIT
  */
 
+/**
+  * vee-validate v3.0.0
+  * (c) 2019 Abdelrahman Awad
+  * @license MIT
+  */
+
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
  * @version 1.16.1
