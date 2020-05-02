@@ -19,7 +19,7 @@
             <div class="d-flex align-items-start">
                 <img src="/images/profile.jpg" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-2">
-                    <a :href="`/View/Profile/Releases/${user.id}`" class="text-white post-user-name">{{ user.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
+                    <a :href="`/View/Profile/Releases/${user.id}`" class="text-white post-user-name">{{ user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
                     <div class="d-flex justify-content-center align-items-center post-user-type mt-2">
                         <button class="btn bg-fifth text-white mr-2">MIXING ENGENIERY</button>
                         <button v-if="user.suscription_type == 'CONTRIBUTOR'" class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
@@ -51,7 +51,7 @@
         </div>
         <comments />
         <modal-support />
-        <modal-reward /> 
+        <modal-reward />
         <register />
     </section>
 </template>
@@ -61,7 +61,7 @@
     import ModalReward from './ModalReward'
     import ModalSupport from './ModalSupport'
     import Register from '../auth/Register'
-    
+
     export default {
         props:['post'],
         data(){
