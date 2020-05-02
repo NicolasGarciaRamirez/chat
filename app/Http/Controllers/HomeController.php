@@ -11,7 +11,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = \App\Models\User\UserPost::latest()->get();
+        $posts = \App\Models\User\UserPost::with('user.personal_information')->latest()->get();
         return view('home', compact('posts'));
     }
 
