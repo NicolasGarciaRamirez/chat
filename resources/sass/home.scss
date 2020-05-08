@@ -5,7 +5,7 @@
         input.form-control ,textarea.form-control{
             border-radius: 20px;
             background-color: $third-color;
-            color: $fifth-color;
+            color: white;
             border: 0;
             padding: 1rem;
             &::placeholder{
@@ -13,7 +13,7 @@
             }
             &:focus{
                 background-color: $third-color;
-                color: $fifth-color;
+                color: white;
                 border: 0;
             }
         }
@@ -35,10 +35,14 @@
                     }
                 }
             }
-            .img-upload > input{
-                display: none;
+            .img-upload{
+                width: 48px;
+                input{
+                    display: none;
+                }
             }
             a{
+                transform: translate(15px, -4px);
                 color: $fourth-color;
                 position: relative;
                 display: block;
@@ -47,7 +51,7 @@
                     color: $fourth-color;
                 }
                 span{
-                    font-size: 1.5rem;
+                    font-size: 1.4rem;
                 }
                 &:after{
                     content: "";
@@ -70,6 +74,7 @@
             }
             button{
                 padding: .2rem;
+                font-weight: 700;
                 @include media-breakpoint-up(md){
                     padding: 0 0.75rem;
                 }

@@ -1,4 +1,4 @@
-@extends('template.template')
+@extends('user.profile.template.template')
 
 @section('content')
     

@@ -5,10 +5,10 @@
         @include('user.view.profile.header', $user)
         <div class="navigation-header my-5 mx-3 d-flex">
             <h3>
-                <a href="/View/Channel/Activity" class="text-white font-weight-bold pt-2 mr-3 active">Channel</a>
+                <a href="/View/Channel/Activity/{{ $user->id }}" class="text-white font-weight-bold pt-2 mr-3 active">Channel</a>
             </h3>
             <h3>
-                <a href="/View/Profile/Releases" class="c-fourth font-weight-bold">Profile</a>
+                <a href="/View/Profile/Releases/{{ $user->id }}" class="c-fourth font-weight-bold">Profile</a>
             </h3>
         </div>
         <div class="navigation-body">

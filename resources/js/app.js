@@ -5,7 +5,6 @@
  */
 
 require('./bootstrap');
-
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'

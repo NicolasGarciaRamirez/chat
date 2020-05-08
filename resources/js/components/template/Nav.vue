@@ -7,7 +7,7 @@
         <li class="c-sidebar-nav-title p-0 m-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <li class="c-sidebar-nav-title">Gender</li>
+        <li class="c-sidebar-nav-title">Genre</li>
         <li class="c-sidebar-nav-item">
             <input type="checkbox" id="pop">
             <label for="pop"><span>Pop</span></label>

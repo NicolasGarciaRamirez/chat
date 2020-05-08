@@ -4,7 +4,7 @@
          id="ModalLogin">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-border-white">
-                <div class="modal-header border-0" v-if="!is_login_view">
+                <div class="modal-header border-0">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

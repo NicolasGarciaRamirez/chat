@@ -50,8 +50,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'Post'], function () {
             Route::name('post.get')->get('/get/{user}', 'User\UserPostController@get');
             Route::name('post.save')->post('/Save/{user}', 'User\UserPostController@save');
-            Route::name('post.update')->get('/update/{user}', 'User\UserPostController@update');
+            Route::name('post.update')->put('/update/{user}', 'User\UserPostController@update');
         });
+    });
+
+    Route::group(['prefix' => 'Comments'], function () {
+        Route::name('comment.get')->get('/get/{userPost}', 'Comments\CommentsController@get');
+        Route::name('comment.save')->post('/save/{userPost}', 'Comments\CommentsController@save');
+        Route::name('comment.update')->put('/update/{userPost}', 'Comments\CommentsController@update');
+        Route::name('comment.delete')->delete('/delete/{userPost}', 'Comments\CommentsController@delete');
     });
 });
 Route::group(['prefix' => 'View'], function () {
@@ -69,5 +76,8 @@ Route::group(['prefix' => 'View'], function () {
     });
     Route::group(['prefix' => 'Post'], function () {
         Route::name('post.get')->get('/get/{user}', 'User\UserPostController@get');
+    });
+    Route::group(['prefix' => 'Comments'], function () {
+        Route::name('comment.get')->get('/get/{userPost}', 'Comments\CommentsController@get');
     });
 });

@@ -39,7 +39,7 @@
 
 select.select-form{
     
-    border-radius: 18px;
+    border-radius: 30px;
     background: black;
     color: white;
     padding: 6px;
@@ -72,13 +72,15 @@ select.select-form{
         }
     }
     .modal-border-white{
-        box-shadow: 0px 0px 25px -10px white;
+        -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
     }
     .modal-border-red{
         box-shadow: 0px 0px 25px -10px $third-color;
     }
     input{
-        border-radius: 20px;
+        border-radius: 30px;
         background-color: $third-color;
         color: white;
         border: 0;
@@ -102,6 +104,6 @@ textarea{
 }
 
 .icon{
-    height: 25px;
-    width: 25px;
+    height: 15px;
+    width: 15px;
 }

@@ -3,24 +3,29 @@
         <form @submit.prevent="save" enctype="multipart/form-data">
             <div class="form-group post-form" v-if="auth">
                 <div class="bg-primary">
-                    <textarea  rows="5" class="form-control bg-primary" placeholder="Add Some value to the music industry..." v-model="post.description"></textarea>
+                        <textarea
+                            class="form-control bg-primary" 
+                            rows="5"
+                            placeholder="Add Some value to the music industry..." 
+                            v-model="post.description">
+                        </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData">
                     </div>
                 </div>
-                <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-2">
+                <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="img-upload">
                             <label for="input-sound">
                                 <img  src="/images/icons/sound.svg" alt="">
                             </label>
-                            <input id="input-sound" name="sound" type="file" accept=".mp3">
+                            <input id="input-sound" name="sound" type="file" accept=".mp3"  @change="previewImage">
                         </div>
                         <div class="img-upload">
                             <label for="input-video">
                                 <img src="/images/icons/video-camera.svg" alt="">
                             </label>
-                            <input id="input-video" name="sound" type="file" accept=".mp4">
+                            <input id="input-video" name="sound" type="file" accept=".mp4"  @change="previewImage">
                         </div>
                         <div class="img-upload">
                             <label for="input-image">
@@ -29,16 +34,16 @@
                             <input id="input-image" name="sound" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" >
 
                         </div>
-                        <div class="img-upload">
+                        <div class="img-upload pr-2">
                             <label for="input-docs">
-                                <img src="/images/icons/paperclip.svg" alt="">
+                                <img src="/images/icons/paperclip.svg"  style="transform: translateX(-6px);">
                             </label>
                             <input id="input-docs" name="sound" type="file" accept=".pdf, .docx">
                         </div>
 
-                        <a href="#">GO LIVE <span class="c-fifth">•</span></a>
+                        <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit">POST</button>
+                    <button class="btn bg-fifth text-white rounded-pill" type="submit">Post</button>
                 </div>
                 <div class="config-post  bg-primary"  v-if="imageData.length > 0 ">
                     <div class="d-flex flex-column">
@@ -101,7 +106,7 @@
             }
         },
         components:{
-            Posts
+            Posts, 
         },
         mounted(){
             this.authCheck()

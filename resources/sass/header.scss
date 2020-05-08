@@ -1,7 +1,18 @@
-
+.c-header{
+    .cil-hamburger-menu{
+        color: $third-color;
+        font-size: 30px;
+        &:hover{
+            color: white;
+        }
+        &:active{
+            color: white;
+        }
+    }
+}
 .nav-link {
     font-size: 1.1rem;
-    font-weight:bold;
+    font-weight: 700;
     padding-bottom: 8px;
     border-bottom: 1px solid #6c757d;
     text-decoration: none;
@@ -25,11 +36,11 @@
 button {
     border: solid 2px #808080;
     background-color: transparent;
-    border-radius: 2.5rem;
+    border-radius: 30px;
     color: #808080;
     padding: 5px 15px 5px 15px;
     font-size: 0.8rem;
-    font-weight: bold;
+    font-weight: 700;
 
     &:focus {
         outline: none;
@@ -55,7 +66,7 @@ button {
 .form-buscar {
     border: solid 2px #808080;
     background-color: transparent;
-    border-radius: 2.5rem;
+    border-radius: 30px;
     color: #808080;
     padding: 7px 15px 7px 15px;
     width: 260px;
@@ -78,16 +89,46 @@ button {
 .top-menu{
     img{
         cursor: pointer;
+        &:hover{
+            opacity: 0.3;
+            transition: opacity .6s;
+        }
+        &:active{
+            border-radius: 60rem !important;
+            border-color: white !important;
+            border: 3px solid white !important;
+            opacity: 1;
+            transition: opacity .5s;
+        }
+        &:visited{
+            border-radius: 60rem !important;
+            border-color: white !important;
+            border: 3px solid white !important;
+            opacity: 1;
+            transition: opacity .5s;
+        }
+
     }
     .dropdown-menu{
+        -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
         border: 0px;
-        box-shadow: 01px 0px 11px 11px $primary-color;
         margin-right: 1.6rem;
+       
         .dropdown-item{
             color: $fourth-color;
             &:hover{
                 background-color: $primary-color;
                 color: white;
+                svg.svg-icon{
+                    path{
+                        fill: white;
+                    }
+                }
+                img{
+                    fill: white
+                }
             }
             &:active{
                 color: white;

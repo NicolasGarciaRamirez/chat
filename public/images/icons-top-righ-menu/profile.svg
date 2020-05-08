@@ -2,11 +2,15 @@
 <!-- Generator: Adobe Illustrator 16.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="1.42px" height="1.42px" viewBox="0 0 1.42 1.42" enable-background="new 0 0 1.42 1.42" xml:space="preserve">
-<path fill="#545454" d="M0.71,0.153c0.179,0,0.325,0.116,0.325,0.258S0.889,0.67,0.71,0.67c-0.18,0-0.325-0.116-0.325-0.258
-	S0.53,0.153,0.71,0.153"/>
-<ellipse fill="none" stroke="#545454" stroke-width="0.25" stroke-miterlimit="10" cx="0.71" cy="0.412" rx="0.325" ry="0.258"/>
-<path fill="#545454" d="M0.71,0.799c-0.325,0-0.589,0.278-0.589,0.621h1.177C1.298,1.077,1.035,0.799,0.71,0.799"/>
-<path fill="none" stroke="#545454" stroke-width="0.25" stroke-miterlimit="10" d="M0.71,0.799c-0.325,0-0.589,0.209-0.589,0.468
-	h1.177C1.298,1.008,1.035,0.799,0.71,0.799z"/>
+	 width="939.162px" height="1079.12px" viewBox="0 0 939.162 1079.12" enable-background="new 0 0 939.162 1079.12"
+	 xml:space="preserve">
+<path fill="#545454" d="M469.607,0c143.015,0,259.101,112.041,259.101,250.259c0,138.215-116.086,250.256-259.101,250.256
+	c-143.068,0-259.038-112.041-259.038-250.256C210.569,112.041,326.54,0,469.607,0"/>
+<path fill="none" stroke="#545454" stroke-width="0.25" stroke-miterlimit="10" d="M469.607,0
+	c143.015,0,259.101,112.041,259.101,250.259c0,138.215-116.086,250.256-259.101,250.256c-143.068,0-259.038-112.041-259.038-250.256
+	C210.569,112.041,326.54,0,469.607,0z"/>
+<path fill="#545454" d="M469.607,625.616C210.281,625.616,0,828.64,0,1079.12h939.162
+	C939.162,828.64,728.939,625.616,469.607,625.616"/>
+<path fill="none" stroke="#545454" stroke-width="0.25" stroke-miterlimit="10" d="M469.607,625.616
+	C210.281,625.616,0,828.64,0,1079.12h939.162C939.162,828.64,728.939,625.616,469.607,625.616z"/>
 </svg>

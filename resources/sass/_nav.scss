@@ -47,7 +47,7 @@
                     width: 7px;
                     height: 4px;
                     border-bottom: 2px solid white;
-                    border-left: 2px solid white;
+                    color: 2px solid white;
                     transform: rotate(-45deg) scale(0);
                     transition: transform ease 0.25s;
                     position: absolute;
@@ -90,30 +90,33 @@
     background-color: $primary-color;
     border-bottom: none;
     padding: 10px 0;
-  
     .login{
         background-color: $fifth-color;
         color: white !important;
         padding: 10px 20px;
-        border-radius: 20px;
+        border-radius: 30px;
+        font-weight: 700;
+        height: calc(2.18em + 0.75rem + 2px) !important;
     }
 
     .become-contributor{
         padding: 10px 20px;
-        border-radius: 20px;
+        border-radius: 30px;
+        height: calc(2.18em + 0.75rem + 2px) !important;
         color: $fourth-color !important;
         border: 2px solid $fourth-color;
+        font-weight: 700;
         &:hover{
             padding: 10px 20px;
-            border-radius: 20px;
+            border-radius: 30px;
             color: white !important;
             border: 2px solid white;
         }
         &:active{
             padding: 10px 20px;
-            border-radius: 20px;
+            border-radius: 30px;
             color: white;
-            border: 0px !important;
+            border: 2px solid  $fifth-color !important;
             background-color: $fifth-color;
         }
     }
@@ -124,12 +127,14 @@
         }
        
         .form-group{
-           
-            input.form-control{
-                border-radius: 20px 0px 0px 20px;
+            width: 19rem;
+            transform: translateX(-22px);
+            input.form-control {
+                border-radius: 30px;
                 background-color: $primary-color;
-                color: $fifth-color;
+                color: white;
                 border: 2px solid $fourth-color ;
+                height: calc(2.18em + 0.75rem + 2px) !important;
                 &::placeholder{
                     color: $fourth-color;
                 }
@@ -140,26 +145,31 @@
                     border: 2px solid white !important;
                 }
             }
-        }
-        
-        .input-group-append{
-            background-color: $primary-color;
-            .input-group-text{
-                border-radius: 0px 20px 20px 0px;
-                background-color: $primary-color;
-                border-color: $fourth-color;
-                i{
-                    color: $fourth-color;
+            .divider-vertical{
+                border-left: 2px solid $fourth-color;
+                transform: translate(-43px, 8px);
+                height: 30px;
+                &:hover{
+                    border-left: 2px solid $fourth-color;
                 }
-               
+            }
+            svg{
+                transform: translate(-35px, 12px);
+                color: $fourth-color;
+                &:hover{
+                    color: white !important;
+                }
+                
             }
         }
+        
     }
 }
 
 .c-header .c-header-nav .c-header-nav-link:not(.other-link), .c-header .c-header-nav .c-header-nav-btn:not(.other-link){
     color: $fourth-color;
     position: relative;
+    font-weight: 700;
     &:after{
         content: '';
         background-color: $fourth-color;

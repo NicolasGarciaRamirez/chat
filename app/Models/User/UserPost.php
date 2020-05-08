@@ -25,12 +25,22 @@ class UserPost extends Model
     ];
 
     /**
-     * user function
+     * user relations
      *
      * @return void
      */
     public function user()
     {
         return $this->belongsTo(\App\Models\User\User::class);
+    }
+
+    /**
+     * comments relations
+     *
+     * @return void
+     */
+    public function comments()
+    {
+        return $this->hasMany('\App\Models\Comments\Comments', 'post_id');
     }
 }

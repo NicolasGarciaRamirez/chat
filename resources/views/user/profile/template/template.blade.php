@@ -17,10 +17,10 @@
 </head>
 <body class="c-app">
     <div id="app">
-        @include('template._nav')
+        @include('user.profile.template._nav')
         <div class="c-wrapper">
             <div class="c-body">
-                @include('template._header')
+                @include('user.profile.template._header')
                 <main class="c-main">
                     @yield('content')
                     @php

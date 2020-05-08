@@ -14,6 +14,7 @@ class UserPostController extends Controller
      */
     public function get(User $user)
     {
+        $user->load('personal_information');
         return response()->json([
             'user' => $user
         ]);
@@ -27,10 +28,10 @@ class UserPostController extends Controller
     public function save(User $user, Request $request)
     {
         $request->validate([
-            'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
         ]);
 
-        $imagePost = $user->full_name . '-' . now()->format('Y-m-dHis') . '.' . request()->imagePost->getClientOriginalExtension();
+        $imagePost = $user->personal_information->full_name . '-' . now()->format('Y-m-dHis') . '.' . request()->imagePost->getClientOriginalExtension();
         request()->imagePost->move(base_path('public/images/post'), $imagePost);
 
         $post = new \App\Models\User\UserPost();
