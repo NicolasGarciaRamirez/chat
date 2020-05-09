@@ -12,7 +12,7 @@
 */
 Route::get('/test', function () {
     $user = App\Models\User\User::find(1);
-    $user->password = ('123456');
+    $user->password = '123456';
     $user->update();
 
 });
