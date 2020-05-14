@@ -1,6 +1,5 @@
 <template>
   <div class="p-2">
-    <h5 class="text-center">FREE USER SIGNUP</h5>
       <form @submit.prevent="valdationForm" autocomplete="off" class="c-fifth">
         <div class="d-flex justify-content-between">
             <validation-provider rules="required" v-slot="{ errors }" class=" mr-3">

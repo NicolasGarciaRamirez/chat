@@ -61,7 +61,7 @@
         methods:{
             async login(){
                 await axios.post('/login', this.user).then(res =>{
-                    location.reload();
+                    window.location.replace('/Profile/Channel/Activity')
                 }).catch(err => {
                     alert('your credentials not have any match')
                 })

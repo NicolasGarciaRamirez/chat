@@ -37,6 +37,14 @@
     background: black;
 }
 
+.border-danger{
+    border: 2px solid $fifth-color !important;
+}
+
+.border-white{
+    border: 2px solid #ffffff !important;
+}
+
 select.select-form{
     
     border-radius: 30px;
@@ -104,6 +112,6 @@ textarea{
 }
 
 .icon{
-    height: 15px;
-    width: 15px;
+    height: 15px !important;
+    width: 15px !important;
 }

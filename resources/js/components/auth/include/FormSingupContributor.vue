@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex flex-column ml-5 p-5">
+    <div class="d-flex flex-column p-1">
         <p>
-            REMEMBER!: You don’t stprt paying until you get
+            REMEMBER!: You don’t start paying until you get
             financially supported or rewarded by a user
         </p>
         <input type="text" class="form-control my-3" placeholder="Name on Bank Account">
@@ -14,7 +14,6 @@
         </span>
         <button class="btn bg-fifth text-white my-3 rounded-pill">Check Bank Account</button>
         <button class="btn text-white bg-third rounded-pill">Sing Up</button>
-
     </div>
 </template>
 

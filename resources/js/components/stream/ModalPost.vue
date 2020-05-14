@@ -1,5 +1,5 @@
 <template>
-  <div class="modal fade post" tabindex="-1" role="dialog" aria-labelledby="ModalPost" aria-hidden="true" id="ModalPost">
+  <div class="modal fade post modal-post" tabindex="-1" role="dialog" aria-labelledby="ModalPost" aria-hidden="true" id="ModalPost">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
             <div class="modal-content modal-border-white">
                 <div class="modal-header border-0">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column">
-                        <img :src="`/images/post/${ post.image }`" width="820" height="720" alt="img-post"  class="cursor-point">
+                        <img :src="`/images/post/${ post.image }`" width="820" height="720" alt="img-post"  class="img-fluid cursor-point">
                     </div>
                 </div>
             </div>

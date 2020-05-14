@@ -1,12 +1,12 @@
 <template>
     <section>
-        <div class="d-flex flex-row align-items-start contain">
+        <div class="align-items-start contain">
             <div class="bg-third flex-column mr-5 border-danger p-4 text-center content" v-if="singupFree">
                 <h4 class="mt-5  font-weigh-bold">FREE USER</h4><br>
                 <div class="divider free"></div>
-                <div>
+                <div class="my-5">
                     <img src="/images/icons/success.svg" alt="" class="float-left m-3 ">
-                    <p class="my-5 text-left pl-5">
+                    <p class="text-left pl-5">
                         Full access to the stream and all social
                         activities such as live streaming, posting
                         content, interacting with users, and 
@@ -15,16 +15,19 @@
                 </div>
                 <div>
                     <img src="/images/icons/cancel.svg" alt="" class="float-left m-3 ">
-                    <p class="my-5 text-left c-fourth">
+                    <p class="text-left c-fourth pl-5">
                         Free users are unable to get financially
                         supported or rewarded by other users.
                     </p>
                 </div>
-                <button class="btn bg-fifth text-white my-4" @click="showComponents('free')">COUNT ME IN</button>
+                <button class="btn bg-fifth text-white my-5" @click="showComponents('free')">COUNT ME IN</button>
             </div>
 
             <div class="flex-column mr-5 p-4 text-center content bg-primary" v-if="singupFreeForm">
-                <form-singup />
+                <div class="p-2 text-center">
+                    <h5>FREE USER SINGUP</h5>
+                    <form-singup />
+                </div>
             </div>
 
             <div class="bg-third flex-column mr-5 text-white border-danger p-4 text-center content" v-if="singupContributor">
@@ -43,16 +46,16 @@
                         financially supporting Contributors.
                     </p>
                 </div>
-                <div>
-                    <img src="/images/icons/success.svg" alt="" class="float-left m-3 ">
-                    <p class="text-left my-3">
+                <div class="my-3">
+                    <img src="/images/icons/success.svg" alt="" class="float-left m-3">
+                    <p class="text-left pl-5">
                         Unlock the SUPPORT & REWARD buttons 
                         so that users can financially support you
                     </p>
                 </div>
                 <div>
                     <img src="/images/icons/success.svg" alt="" class="float-left m-3 ">
-                    <p class="text-left">
+                    <p class="text-left pl-5">
                         0% Commision (Noisesharks doesn’t take
                         a cut when you get supported or rewarded)
                     </p>
@@ -60,9 +63,14 @@
                 <button class="btn bg-fifth text-white my-5"  @click="showComponents('contributor')">BECOME A CONTRIBUTOR</button>
             </div>
 
-            <div class="d-flex flex-row justify-content-between bg-primary mr-3 ml-3" v-if="singupContributorForm">
-                <form-singup />
-                <form-singup-contributor />
+            <div class="justify-content-between bg-primary mr-3 ml-3 contributor-form" v-if="singupContributorForm">
+                <div class="p-3 text-center">
+                    <h5>CONTRIBUTOR USER SINGUP</h5>
+                    <form-singup />
+                </div>
+                <div class="p-3">
+                    <form-singup-contributor />
+                </div>
             </div>
 
             <div class=" flex-column align-items-center content">

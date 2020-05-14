@@ -115,7 +115,6 @@ button {
         box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
         border: 0px;
         margin-right: 1.6rem;
-       
         .dropdown-item{
             color: $fourth-color;
             &:hover{
@@ -126,8 +125,10 @@ button {
                         fill: white;
                     }
                 }
-                img{
-                    fill: white
+                svg.star{
+                    path{
+                        fill: #FFFFFF ;
+                    }
                 }
             }
             &:active{
@@ -135,7 +136,7 @@ button {
             }
         }
         .dropdown-divider{
-            border-top: 1px solid $fourth-color;
+            border-top: 1px solid $third-color;
         }
     }
 }

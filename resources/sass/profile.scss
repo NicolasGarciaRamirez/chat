@@ -6,7 +6,11 @@
     .img-container{
         position: relative;     
         .edit-cover-photo{
-            transform: translate(71rem, -212px);
+            transform: translate(73rem, -212px);
+            @include media-breakpoint-down(sm){
+                transform: translate(12rem, -178px);
+                padding: 0px 6px 0px 6px;
+            }
             border: 2px solid white;
             &:hover{
                 background: white;
@@ -31,6 +35,10 @@
             @include media-breakpoint-up(md){
                 width: 10rem;
                 bottom: -4rem;
+            }
+            @include media-breakpoint-down(sm){
+                transform: translateY(-2rem);
+                width: 5.6rem;
             }
         }
         .dowpdown-menu-profile{
@@ -65,7 +73,6 @@
         }
     }
     .head-container{
-        margin-top: 4rem;
         padding: 0 10px;
         @include media-breakpoint-up(md){
             margin-top: 2rem;
@@ -76,11 +83,19 @@
             margin-left: 11rem;
             margin-top: 0;
         }
+        @include media-breakpoint-down(sm){
+            margin-top: 2rem;
+        }
         a>img{
             width: 15px;
         }
         .functions{
             a{
+                @include media-breakpoint-down(sm){
+                    padding: 0px 6px 0px 6px !important;
+                    font-size: 0.77rem !important;
+                    margin-top: 2rem;
+                }
                 border: 2px solid white;
                 color: #FFFFFF;
                 &:hover{
@@ -191,7 +206,7 @@
         .accordion{
             .card{
                 border: 0;
-                border-radius: 30px;
+                border-radius: 0;
                 position: relative;
                 &:after{
                     content: '';

@@ -35,7 +35,7 @@
                 }
                 button.border-danger{
                     &:hover{
-                        border: 1px solid white;
+                        border: 2px solid white;
                         background: white !important;
                         color: $fifth-color;
                         svg.svg-icon{
@@ -56,6 +56,7 @@
                         }
                     }
                 }
+                
                 .dowpdown-menu-post{
                     border: 0px;
                     -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
@@ -76,8 +77,13 @@
                         }
                     }
                     .dropdown-divider{
-                        border-top: 1px solid $fourth-color;
+                        border-top: 1px solid  $third-color;
                     }
+                }
+            }
+            i{
+                &:hover{
+                    color: white !important;
                 }
             }
             .post-user-type{
@@ -109,16 +115,16 @@
                 }
             }
         }
-        .post-body{
-            .content{
-                width: 100%;
-                max-height: 20rem;
-                overflow: hidden;
-                img{
-                    width: 100%;
-                }
-            }
-        }
+        //.post-body{
+            // .content{
+            //     width: 100%;
+            //     max-height: 100%;
+            //     overflow: hidden;
+            //     img{
+            //         width: 100%;
+            //     }
+            // }
+        // }
         .post-footer{
             .information{
                 display: flex;
@@ -308,6 +314,12 @@
         .modal-body{
             max-height: calc(100vh - 210px);
             overflow-y: auto;
+        }
+    }
+    .modal-post{
+        @include media-breakpoint-down(sm){
+            display: flex;
+            flex-direction: column;
         }
     }
     .modal-body::-webkit-scrollbar{

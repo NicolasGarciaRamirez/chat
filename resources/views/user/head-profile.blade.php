@@ -9,10 +9,10 @@
     </div>
 </div>
 <div class="head-container align-items-center" style="transform: translateY(-2rem)">
-    <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2">
-        <a href="/Profile/Edit" class="btn bg-black rounded-pill mr-2 text-white">Edit Profile <i class="cil-pencil ml-2"></i></a>
-        <a href="#" class="btn bg-black rounded-pill mr-2 text-white">Share Profile <i class="cil-share  ml-2"></i></a>
-        <a href="/View/Profile/Releases" class="btn bg-black rounded-pill text-white">Preview Profile</a>
+    <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2">
+        <a href="/Profile/Edit" class="btn bg-black rounded-pill text-white">Edit Profile <i class="cil-pencil ml-2"></i></a>
+        <a href="#" class="btn bg-black rounded-pill text-white mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
+        <a href="/View/Profile/Releases/{{ $user->user_name }}" class="btn bg-black rounded-pill text-white">Preview Profile</a>
     </div>
     <div>
         <h2 class="font-weight-bold">{{ $user->personal_information->full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>

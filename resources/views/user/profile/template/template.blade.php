@@ -17,7 +17,7 @@
 </head>
 <body class="c-app">
     <div id="app">
-        @include('user.profile.template._nav')
+        @include('template._nav')
         <div class="c-wrapper">
             <div class="c-body">
                 @include('user.profile.template._header')

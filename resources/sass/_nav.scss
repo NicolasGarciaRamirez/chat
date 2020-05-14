@@ -33,12 +33,12 @@
                     content: "";
                     position: absolute;
                     right: 0;
-                    top: 0;
+                    top: 0.46em;
                     margin: 4px;
-                    width: 20px;
-                    height: 20px;
+                    width: 15px;
+                    height: 15px;
                     transition: transform 0.28s ease;
-                    border-radius: 3px;
+                    border-radius: 0px;
                     border: 1px solid white;
                 }
                 &:after {
@@ -47,11 +47,11 @@
                     width: 7px;
                     height: 4px;
                     border-bottom: 2px solid white;
-                    color: 2px solid white;
+                    color:white;
                     transform: rotate(-45deg) scale(0);
                     transition: transform ease 0.25s;
                     position: absolute;
-                    top: 12px;
+                    top: 16px;
                     right: 10px;
                 }
             }
@@ -147,19 +147,18 @@
             }
             .divider-vertical{
                 border-left: 2px solid $fourth-color;
-                transform: translate(-43px, 8px);
-                height: 30px;
+                transform: translate(-43px, 10px);
+                height: 25px;
                 &:hover{
                     border-left: 2px solid $fourth-color;
                 }
             }
             svg{
-                transform: translate(-35px, 12px);
+                transform: translate(-35px, 14px);
                 color: $fourth-color;
                 &:hover{
                     color: white !important;
-                }
-                
+                }  
             }
         }
         

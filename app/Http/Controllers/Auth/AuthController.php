@@ -60,6 +60,7 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $user = new \App\Models\User\User($request->all());
+        $user->user_name = $request->first_name.'.'.$request->last_name.'.'.\Str::random(5);
         $user->subscription_type = 'CONTRIBUTOR';
         $user->token = \Str::random(80);
         $user->save();

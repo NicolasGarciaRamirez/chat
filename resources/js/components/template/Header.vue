@@ -15,16 +15,15 @@
                 </div>
             </div>
         </form>
-        <li class="c-header-nav-item mr-1"><a class="c-header-nav-link other-link become-contributor d-none d-md-block" href="#" @click="showModalContributor">Become A Contributor </a></li>
+        <li class="c-header-nav-item mr-2"><a class="c-header-nav-link other-link become-contributor d-md-down-none d-md-block" href="#" @click="showModalContributor">Become A Contributor </a></li>
         <div v-if="!is_login_view">
-            <li class="c-header-nav-item "><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
+            <li class="c-header-nav-item mx-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
         </div>
         <div v-else>
             <li class="c-header-nav-item mx-2 top-menu">
                 <img src="/images/profile.jpg" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <div class="dropdown-menu bg-primary text-white dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                <div class="dropdown-menu bg-primary text-white dropdown-menu-right p-3" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/Profile/Edit">
-                        <!-- <img src="/images/icons-top-righ-menu/profile.svg" alt="" class="float-left mr-3" style="height: 15px;">  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 939.162 1079.12" enable-background="new 0 0 939.162 1079.12"
                             xml:space="preserve" class="mr-3 svg-icon">
@@ -41,7 +40,6 @@
                     Profile
                     </a>
                     <a class="dropdown-item" href="/Profile/Channel/Activity">
-                    <!-- <img src="/images/icons-top-righ-menu/channel.svg" alt="" class="float-left mr-3" width="20" height="20"> -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                             <path fill="#545454" d="M580.365,361.065L753.976,1.598h-70.156L541.8,295.646L394.814,1.598h-70.658l179.681,359.468H0V1080
@@ -58,13 +56,10 @@
                     Channel
                     </a>
                     <a class="dropdown-item" href="#">
-                        <!-- <img src="/images/icons-top-righ-menu/heart.svg" alt="" class="float-left mr-3" width="20" height="20"> -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
-                        <path fill="#545454" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
-                            C140.316,0.807,5.113,143.518,5.113,319.004c0,137.825,77.957,297.373,231.784,474.343
-                            c118.566,136.343,247.543,241.941,284.236,271.054l19.945,15.792l19.889-15.792c36.693-29.112,165.67-134.653,284.237-271.054
-                            c153.823-176.912,231.84-336.519,231.84-474.343C1077.045,143.518,941.842,0.807,775.617,0.807"/>
+                            width="20px" height="15px" viewBox="0 0 1264.782 1080" enable-background="new 0 0 1264.782 1080" xml:space="preserve" class="mr-3 svg-star">
+                        <polygon stroke="white" stroke-width="80" stroke-miterlimit="10" points="1264.782,410.982 829.748,353.176 
+                            630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "/>
                         </svg>
                     Relationships
                     </a>
@@ -172,7 +167,6 @@
                     Earnings <small class="ml-1">(contributor only)</small>
                     </a>
                     <a class="dropdown-item" href="#">
-                        <!-- img src="/images/icons-top-righ-menu/heart.svg" alt="" class="float-left mr-3">  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
@@ -182,7 +176,6 @@
                         </svg>
                     Supporters <small class="ml-1">(contributor only)</small></a>
                     <a class="dropdown-item" href="#">
-                        <!-- <img src="/images/icons-top-righ-menu/lightning.svg" alt="" class="float-left mr-3">  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z
@@ -193,9 +186,8 @@
                     Rewarders <small class="ml-1">(contributor only)</small></a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
-                        <!-- <img src="/images/icons-top-righ-menu/payments.svg" alt="" class="float-left mr-3">  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="18px" height="23px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M856.362,110.157c0-23.235,28.358-42.046,63.201-42.046V5.07H350.814
                             c-87.154,0-158.092,47.135-158.092,105.087v277.472h663.64V110.157z"/>
                         <path fill="none" stroke="#545454" stroke-width="0.25" stroke-miterlimit="10" d="M856.362,110.157
@@ -253,7 +245,6 @@
                     Account Settings</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">
-                        <!-- <img src="/images/icons-top-righ-menu/logout.svg" alt="" class="float-left mr-3 svg-icon">  -->
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                             <path fill="#545454" d="M917.973,160.942c-210.085-211.265-551.77-211.265-761.743-0.056

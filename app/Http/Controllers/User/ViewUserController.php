@@ -11,72 +11,80 @@ class ViewUserController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function activity(User $user)
+    public function activity($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.channel.activity', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function playlist(User $user)
+    public function playlist($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.channel.playlist', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function releases(User $user)
+    public function releases($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.profile.releases', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function members(User $user)
+    public function members($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.profile.members', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function workHistory(User $user)
+    public function workHistory($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.profile.work-history', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function genres(User $user)
+    public function genres($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.profile.genres', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function services(User $user)
+    public function services($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.profile.services', compact('user'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function rates(User $user)
+    public function rates($user_name)
     {
-        $user->load('personal_information');
+        $user = User::where('user_name' , $user_name)->first();
+        $user->with('personal_information');
         return view('user.view.profile.rates', compact('user'), compact('user'));
     }
 

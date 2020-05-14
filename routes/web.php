@@ -63,16 +63,16 @@ Route::group(['middleware' => ['auth']], function () {
 });
 Route::group(['prefix' => 'View'], function () {
     Route::group(['prefix' => 'Channel'], function () {
-        Route::name('view.profile.channel.activity')->get('/Activity/{user}', 'User\ViewUserController@activity');
-        Route::name('view.profile.channel.playlist')->get('/Playlist/{user}', 'User\ViewUserController@playlist');
+        Route::name('view.profile.channel.activity')->get('/Activity/{user_name}', 'User\ViewUserController@activity');
+        Route::name('view.profile.channel.playlist')->get('/Playlist/{user_name}', 'User\ViewUserController@playlist');
     });
     Route::group(['prefix' => 'Profile'], function () {
-        Route::name('view.profile.releases')->get('/Releases/{user}', 'User\ViewUserController@releases');
-        Route::name('view.profile.members')->get('/Members/{user}', 'User\ViewUserController@members');
-        Route::name('view.profile.work.history')->get('/WorkHistory/{user}', 'User\ViewUserController@workHistory');
-        Route::name('view.profile.genres')->get('/Genres/{user}', 'User\ViewUserController@genres');
-        Route::name('view.profile.services')->get('/Services/{user}', 'User\ViewUserController@services');
-        Route::name('view.profile.rates')->get('/Rates/{user}', 'User\ViewUserController@rates');
+        Route::name('view.profile.releases')->get('/Releases/{user_name}', 'User\ViewUserController@releases');
+        Route::name('view.profile.members')->get('/Members/{user_name}', 'User\ViewUserController@members');
+        Route::name('view.profile.work.history')->get('/WorkHistory/{user_name}', 'User\ViewUserController@workHistory');
+        Route::name('view.profile.genres')->get('/Genres/{user_name}', 'User\ViewUserController@genres');
+        Route::name('view.profile.services')->get('/Services/{user_name}', 'User\ViewUserController@services');
+        Route::name('view.profile.rates')->get('/Rates/{user_name}', 'User\ViewUserController@rates');
     });
     Route::group(['prefix' => 'Post'], function () {
         Route::name('post.get')->get('/get/{user}', 'User\UserPostController@get');

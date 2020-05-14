@@ -27032,6 +27032,14 @@ readers do not read off random characters that represent icons */
   background: black;
 }
 
+.border-danger {
+  border: 2px solid #FF0000 !important;
+}
+
+.border-white {
+  border: 2px solid #ffffff !important;
+}
+
 select.select-form {
   border-radius: 30px;
   background: black;
@@ -27117,8 +27125,8 @@ textarea {
 }
 
 .icon {
-  height: 15px;
-  width: 15px;
+  height: 15px !important;
+  width: 15px !important;
 }
 
 .c-header .cil-hamburger-menu {
@@ -27261,8 +27269,8 @@ button:focus {
   fill: white;
 }
 
-.top-menu .dropdown-menu .dropdown-item:hover img {
-  fill: white;
+.top-menu .dropdown-menu .dropdown-item:hover svg.star path {
+  fill: #FFFFFF;
 }
 
 .top-menu .dropdown-menu .dropdown-item:active {
@@ -27270,7 +27278,7 @@ button:focus {
 }
 
 .top-menu .dropdown-menu .dropdown-divider {
-  border-top: 1px solid #535353;
+  border-top: 1px solid #262626;
 }
 
 .main-nav {
@@ -27322,12 +27330,12 @@ button:focus {
   content: "";
   position: absolute;
   right: 0;
-  top: 0;
+  top: 0.46em;
   margin: 4px;
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   transition: transform 0.28s ease;
-  border-radius: 3px;
+  border-radius: 0px;
   border: 1px solid white;
 }
 
@@ -27338,11 +27346,11 @@ button:focus {
   width: 7px;
   height: 4px;
   border-bottom: 2px solid white;
-  color: 2px solid white;
+  color: white;
   transform: rotate(-45deg) scale(0);
   transition: transform ease 0.25s;
   position: absolute;
-  top: 12px;
+  top: 16px;
   right: 10px;
 }
 
@@ -27470,8 +27478,8 @@ button:focus {
 
 .main-header .header-form-search .form-group .divider-vertical {
   border-left: 2px solid #535353;
-  transform: translate(-43px, 8px);
-  height: 30px;
+  transform: translate(-43px, 10px);
+  height: 25px;
 }
 
 .main-header .header-form-search .form-group .divider-vertical:hover {
@@ -27479,7 +27487,7 @@ button:focus {
 }
 
 .main-header .header-form-search .form-group svg {
-  transform: translate(-35px, 12px);
+  transform: translate(-35px, 14px);
   color: #535353;
 }
 
@@ -27657,6 +27665,17 @@ button:focus {
   border-radius: 20px;
 }
 
+.register .contain {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 991.98px) {
+  .register .contain {
+    flex-direction: column !important;
+  }
+}
+
 .register .contain .or {
   position: relative;
 }
@@ -27729,7 +27748,7 @@ button:focus {
 
 .register .contain .content {
   width: 30rem;
-  height: 40rem;
+  height: auto;
   border-left: 2px solid #262626;
 }
 
@@ -27737,20 +27756,29 @@ button:focus {
   .register .contain .content {
     width: 100%;
     margin-bottom: 5rem;
+    display: flex;
+    flex-direction: column;
   }
 }
 
 .register .contain .content .for-music {
   margin-top: 18rem;
-  margin-left: 6rem;
+  margin-left: 2.89rem;
+  margin-bottom: 18rem;
 }
 
 .register .contain .content .for-music a {
   border-bottom: 1px solid #FF0000;
 }
 
-@media (max-width: 991.98px) {
-  .register .contain {
+.register .contain .contributor-form {
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 767.98px) {
+  .register .contain .contributor-form {
+    display: flex;
     flex-direction: column !important;
   }
 }
@@ -27772,8 +27800,15 @@ button:focus {
 }
 
 .profile .img-container .edit-cover-photo {
-  transform: translate(71rem, -212px);
+  transform: translate(73rem, -212px);
   border: 2px solid white;
+}
+
+@media (max-width: 767.98px) {
+  .profile .img-container .edit-cover-photo {
+    transform: translate(12rem, -178px);
+    padding: 0px 6px 0px 6px;
+  }
 }
 
 .profile .img-container .edit-cover-photo:hover {
@@ -27805,6 +27840,13 @@ button:focus {
   .profile .img-container .img-profile {
     width: 10rem;
     bottom: -4rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .profile .img-container .img-profile {
+    transform: translateY(-2rem);
+    width: 5.6rem;
   }
 }
 
@@ -27846,7 +27888,6 @@ button:focus {
 }
 
 .profile .head-container {
-  margin-top: 4rem;
   padding: 0 10px;
 }
 
@@ -27865,6 +27906,12 @@ button:focus {
   }
 }
 
+@media (max-width: 767.98px) {
+  .profile .head-container {
+    margin-top: 2rem;
+  }
+}
+
 .profile .head-container a > img {
   width: 15px;
 }
@@ -27872,6 +27919,14 @@ button:focus {
 .profile .head-container .functions a {
   border: 2px solid white;
   color: #FFFFFF;
+}
+
+@media (max-width: 767.98px) {
+  .profile .head-container .functions a {
+    padding: 0px 6px 0px 6px !important;
+    font-size: 0.77rem !important;
+    margin-top: 2rem;
+  }
 }
 
 .profile .head-container .functions a:hover {
@@ -28046,7 +28101,7 @@ button:focus {
 .profile .post .accordion .card,
 .profile .comments .accordion .card {
   border: 0;
-  border-radius: 30px;
+  border-radius: 0;
   position: relative;
 }
 
@@ -28490,7 +28545,7 @@ button:focus {
 }
 
 .posts .post .post-head .post-user-actions button.border-danger:hover {
-  border: 1px solid white;
+  border: 2px solid white;
   background: white !important;
   color: #FF0000;
 }
@@ -28533,7 +28588,11 @@ button:focus {
 }
 
 .posts .post .post-head .post-user-actions .dowpdown-menu-post .dropdown-divider {
-  border-top: 1px solid #535353;
+  border-top: 1px solid #262626;
+}
+
+.posts .post .post-head i:hover {
+  color: white !important;
 }
 
 .posts .post .post-head .post-user-type {
@@ -28573,16 +28632,6 @@ button:focus {
 
 .posts .post .post-head .post-user-type button.bg-white:hover {
   color: #FF0000;
-}
-
-.posts .post .post-body .content {
-  width: 100%;
-  max-height: 20rem;
-  overflow: hidden;
-}
-
-.posts .post .post-body .content img {
-  width: 100%;
 }
 
 .posts .post .post-footer .information {
@@ -28844,6 +28893,13 @@ button:focus {
 .posts .modal-reward .modal-body {
   max-height: calc(100vh - 210px);
   overflow-y: auto;
+}
+
+@media (max-width: 767.98px) {
+  .posts .modal-post {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .posts .modal-body::-webkit-scrollbar {

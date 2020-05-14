@@ -11262,7 +11262,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.next = 2;
                 return axios.post('/login', _this.user).then(function (res) {
-                  location.reload();
+                  window.location.replace('/Profile/Channel/Activity');
                 })["catch"](function (err) {
                   alert('your credentials not have any match');
                 });
@@ -11333,7 +11333,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-//
 //
 //
 //
@@ -11533,7 +11532,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {}
 });
@@ -11549,6 +11547,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FormSingup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSingup */ "./resources/js/components/auth/include/FormSingup.vue");
+/* harmony import */ var _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSingupContributor */ "./resources/js/components/auth/include/FormSingupContributor.vue");
 //
 //
 //
@@ -11569,49 +11569,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      user: {
-        first_name: "",
-        last_name: "",
-        email: "",
-        confirm_email: "",
-        password: "",
-        confirm_password: "",
-        vemail: false,
-        vpassword: false
-      }
-    };
+  components: {
+    FormSingup: _FormSingup__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FormSingupContributor: _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -11696,6 +11659,14 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _FormSingup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSingup */ "./resources/js/components/auth/include/FormSingup.vue");
 /* harmony import */ var _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSingupContributor */ "./resources/js/components/auth/include/FormSingupContributor.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12529,15 +12500,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -38427,8 +38389,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "p-2" }, [
-    _c("h5", { staticClass: "text-center" }, [_vm._v("FREE USER SIGNUP")]),
-    _vm._v(" "),
     _c(
       "form",
       {
@@ -38800,10 +38760,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-column ml-5 p-5" }, [
+    return _c("div", { staticClass: "d-flex flex-column p-1" }, [
       _c("p", [
         _vm._v(
-          "\n        REMEMBER!: You don’t stprt paying until you get\n        financially supported or rewarded by a user\n    "
+          "\n        REMEMBER!: You don’t start paying until you get\n        financially supported or rewarded by a user\n    "
         )
       ]),
       _vm._v(" "),
@@ -38881,223 +38841,33 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "modal-content modal-border-white" }, [
-            _c("div", { staticClass: "modal-body pt-4" }, [
+            _c("div", { staticClass: "modal-body p-1" }, [
               _c(
                 "div",
-                { staticClass: "d-flex flex-row justify-content-between" },
+                {
+                  staticClass:
+                    "d-flex flex-row justify-content-between contributor-form"
+                },
                 [
-                  _c("div", { staticClass: "d-flex flex-column p-4" }, [
-                    _c("h5", { staticClass: "text-center" }, [
-                      _vm._v("CONTRIBUTOR USER SIGNUP")
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "form",
-                      {
-                        attrs: { autocomplete: "off" },
-                        on: {
-                          submit: function($event) {
-                            $event.preventDefault()
-                            return _vm.verifyCredentials($event)
-                          }
-                        }
-                      },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "d-flex justify-content-between" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.user.first_name,
-                                  expression: "user.first_name"
-                                }
-                              ],
-                              staticClass: "form-control mr-5",
-                              attrs: {
-                                type: "text",
-                                placeholder: "First Name",
-                                required: ""
-                              },
-                              domProps: { value: _vm.user.first_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.user,
-                                    "first_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.user.last_name,
-                                  expression: "user.last_name"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                placeholder: "Last Name",
-                                required: ""
-                              },
-                              domProps: { value: _vm.user.last_name },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.user,
-                                    "last_name",
-                                    $event.target.value
-                                  )
-                                }
-                              }
-                            })
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.user.email,
-                              expression: "user.email"
-                            }
-                          ],
-                          staticClass: "form-control my-3",
-                          attrs: {
-                            type: "email",
-                            placeholder: "Email Address",
-                            required: ""
-                          },
-                          domProps: { value: _vm.user.email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(_vm.user, "email", $event.target.value)
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.user.confirm_email,
-                              expression: "user.confirm_email"
-                            }
-                          ],
-                          staticClass: "form-control ",
-                          attrs: {
-                            type: "email",
-                            placeholder: "Confirm Email Address"
-                          },
-                          domProps: { value: _vm.user.confirm_email },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.user,
-                                "confirm_email",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.user.password,
-                              expression: "user.password"
-                            }
-                          ],
-                          staticClass: "form-control my-3",
-                          attrs: {
-                            type: "password",
-                            placeholder: "Password",
-                            required: ""
-                          },
-                          domProps: { value: _vm.user.password },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.user,
-                                "password",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.user.confirm_password,
-                              expression: "user.confirm_password"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: {
-                            type: "password",
-                            placeholder: "Confirm Password",
-                            required: ""
-                          },
-                          domProps: { value: _vm.user.confirm_password },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.$set(
-                                _vm.user,
-                                "confirm_password",
-                                $event.target.value
-                              )
-                            }
-                          }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "c-fourth text-center mt-3 mb-5" }, [
-                      _vm._v(
-                        "By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy"
-                      )
-                    ])
-                  ]),
+                  _c(
+                    "div",
+                    { staticClass: "d-flex flex-column p-4" },
+                    [
+                      _c("h5", { staticClass: "text-center" }, [
+                        _vm._v("CONTRIBUTOR USER SIGNUP")
+                      ]),
+                      _vm._v(" "),
+                      _c("form-singup")
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
-                  _vm._m(2)
+                  _c(
+                    "div",
+                    { staticClass: "d-flex flex-column ml-5 p-4" },
+                    [_c("form-singup-contributor")],
+                    1
+                  )
                 ]
               )
             ])
@@ -39107,92 +38877,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("p", { staticClass: "text-center or" }, [_vm._v("OR")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-column social-login" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn bg-facebook text-white rounded-pill",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Facebook Quick Singup")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn bg-twitter text-white my-3 rounded-pill",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Twitter Quick Singup")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn bg-white c-fifth rounded-pill",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Google Quick Singup")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "d-flex flex-column ml-5 p-4" }, [
-      _c("p", [
-        _vm._v(
-          "\n                            REMEMBER!: You don’t stprt paying until you get\n                            financially supported or rewarded by a user\n                        "
-        )
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control my-3",
-        attrs: { type: "text", placeholder: "Name on Bank Account" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Account Number" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control my-3",
-        attrs: { type: "text", placeholder: "Sort Code" }
-      }),
-      _vm._v(" "),
-      _c("span", { staticClass: "c-secondary" }, [
-        _vm._v(
-          "\n                            To check your bank account, we will send you\n                            $1.00. If the account was correct, we will charge\n                            you that $1.00 back\n                        "
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn bg-fifth text-white my-3 rounded-pill" },
-        [_vm._v("Check Bank Account")]
-      ),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn text-white bg-third rounded-pill" }, [
-        _vm._v("Sing Up")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39361,7 +39046,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c("div", { staticClass: "d-flex flex-row align-items-start contain" }, [
+    _c("div", { staticClass: "align-items-start contain" }, [
       _vm.singupFree
         ? _c(
             "div",
@@ -39384,7 +39069,7 @@ var render = function() {
               _c(
                 "button",
                 {
-                  staticClass: "btn bg-fifth text-white my-4",
+                  staticClass: "btn bg-fifth text-white my-5",
                   on: {
                     click: function($event) {
                       return _vm.showComponents("free")
@@ -39403,8 +39088,18 @@ var render = function() {
             {
               staticClass: "flex-column mr-5 p-4 text-center content bg-primary"
             },
-            [_c("form-singup")],
-            1
+            [
+              _c(
+                "div",
+                { staticClass: "p-2 text-center" },
+                [
+                  _c("h5", [_vm._v("FREE USER SINGUP")]),
+                  _vm._v(" "),
+                  _c("form-singup")
+                ],
+                1
+              )
+            ]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -39461,10 +39156,27 @@ var render = function() {
             "div",
             {
               staticClass:
-                "d-flex flex-row justify-content-between bg-primary mr-3 ml-3"
+                "justify-content-between bg-primary mr-3 ml-3 contributor-form"
             },
-            [_c("form-singup"), _vm._v(" "), _c("form-singup-contributor")],
-            1
+            [
+              _c(
+                "div",
+                { staticClass: "p-3 text-center" },
+                [
+                  _c("h5", [_vm._v("CONTRIBUTOR USER SINGUP")]),
+                  _vm._v(" "),
+                  _c("form-singup")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "p-3" },
+                [_c("form-singup-contributor")],
+                1
+              )
+            ]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -39477,13 +39189,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "my-5" }, [
       _c("img", {
         staticClass: "float-left m-3 ",
         attrs: { src: "/images/icons/success.svg", alt: "" }
       }),
       _vm._v(" "),
-      _c("p", { staticClass: "my-5 text-left pl-5" }, [
+      _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
           "\n                    Full access to the stream and all social\n                    activities such as live streaming, posting\n                    content, interacting with users, and \n                    financially supporting Contributors.\n                "
         )
@@ -39500,7 +39212,7 @@ var staticRenderFns = [
         attrs: { src: "/images/icons/cancel.svg", alt: "" }
       }),
       _vm._v(" "),
-      _c("p", { staticClass: "my-5 text-left c-fourth" }, [
+      _c("p", { staticClass: "text-left c-fourth pl-5" }, [
         _vm._v(
           "\n                    Free users are unable to get financially\n                    supported or rewarded by other users.\n                "
         )
@@ -39528,13 +39240,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "my-3" }, [
       _c("img", {
-        staticClass: "float-left m-3 ",
+        staticClass: "float-left m-3",
         attrs: { src: "/images/icons/success.svg", alt: "" }
       }),
       _vm._v(" "),
-      _c("p", { staticClass: "text-left my-3" }, [
+      _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
           "\n                    Unlock the SUPPORT & REWARD buttons \n                    so that users can financially support you\n                "
         )
@@ -39551,7 +39263,7 @@ var staticRenderFns = [
         attrs: { src: "/images/icons/success.svg", alt: "" }
       }),
       _vm._v(" "),
-      _c("p", { staticClass: "text-left" }, [
+      _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
           "\n                    0% Commision (Noisesharks doesn’t take\n                    a cut when you get supported or rewarded)\n                "
         )
@@ -40104,7 +39816,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "modal fade post",
+      staticClass: "modal fade post modal-post",
       attrs: {
         tabindex: "-1",
         role: "dialog",
@@ -40201,7 +39913,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "d-flex flex-column" }, [
                 _c("img", {
-                  staticClass: "cursor-point",
+                  staticClass: "img-fluid cursor-point",
                   attrs: {
                     src: "/images/post/" + _vm.post.image,
                     width: "820",
@@ -40749,7 +40461,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
-                      staticClass: "bg-primary border-danger d-md-down-none",
+                      staticClass: "bg-primary border-danger d-sm-down-none ",
                       on: { click: _vm.showModalSupport }
                     },
                     [
@@ -40757,7 +40469,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "svg-icon ml-3",
+                          staticClass: "svg-icon ml-2",
                           attrs: {
                             version: "1.1",
                             id: "Capa_1",
@@ -40792,7 +40504,7 @@ var render = function() {
                 ? _c(
                     "button",
                     {
-                      staticClass: "bg-primary border-danger d-md-down-none",
+                      staticClass: "bg-primary border-danger d-sm-down-none ",
                       on: { click: _vm.showModalReward }
                     },
                     [
@@ -40800,7 +40512,7 @@ var render = function() {
                       _c(
                         "svg",
                         {
-                          staticClass: "svg-icon ml-3",
+                          staticClass: "svg-icon ml-2",
                           attrs: {
                             version: "1.1",
                             id: "Capa_1",
@@ -40856,7 +40568,9 @@ var render = function() {
                 "a",
                 {
                   staticClass: "text-white post-user-name",
-                  attrs: { href: "/View/Profile/Releases/" + _vm.post.user.id }
+                  attrs: {
+                    href: "/View/Profile/Releases/" + _vm.post.user.user_name
+                  }
                 },
                 [
                   _vm._v(
@@ -40916,19 +40630,23 @@ var render = function() {
           _vm._v("... See More..\n        ")
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "d-flex flex-column mt-1 content" }, [
-          _c("img", {
-            staticClass: "cursor-point",
-            attrs: { src: "/images/post/" + _vm.post.image, alt: "img-post" },
-            on: { click: _vm.showModalPost }
-          })
-        ]),
+        _c(
+          "div",
+          { staticClass: "d-flex flex-column mt-1 content img-fluid" },
+          [
+            _c("img", {
+              staticClass: "img-fluid cursor-point",
+              attrs: { src: "/images/post/" + _vm.post.image, alt: "img-post" },
+              on: { click: _vm.showModalPost }
+            })
+          ]
+        ),
         _vm._v(" "),
         _c(
           "div",
           {
             staticClass:
-              "d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none"
+              "d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none d-md-none"
           },
           [
             _vm.post.user.subscription_type == "CONTRIBUTOR"
@@ -41068,13 +40786,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "bg-primary align-items-right" }, [
-      _vm._v("FOLLOW "),
-      _c("img", {
-        staticClass: "c-fifth ml-3",
-        attrs: { src: "/images/icons/star.svg" }
-      })
-    ])
+    return _c(
+      "button",
+      { staticClass: "bg-primary align-items-right border-white" },
+      [
+        _vm._v("FOLLOW "),
+        _c("img", {
+          staticClass: "c-fifth ml-2",
+          attrs: { src: "/images/icons/star.svg" }
+        })
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -41083,7 +40805,8 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "dropdown-menu bg-primary text-white dowpdown-menu-post",
+        staticClass:
+          "dropdown-menu bg-primary text-white dowpdown-menu-post p-2",
         attrs: { "aria-labelledby": "dropdownMenuPost" }
       },
       [
@@ -41436,12 +41159,12 @@ var render = function() {
       ]
     ),
     _vm._v(" "),
-    _c("li", { staticClass: "c-header-nav-item mr-1" }, [
+    _c("li", { staticClass: "c-header-nav-item mr-2" }, [
       _c(
         "a",
         {
           staticClass:
-            "c-header-nav-link other-link become-contributor d-none d-md-block",
+            "c-header-nav-link other-link become-contributor d-md-down-none d-md-block",
           attrs: { href: "#" },
           on: { click: _vm.showModalContributor }
         },
@@ -41451,7 +41174,7 @@ var render = function() {
     _vm._v(" "),
     !_vm.is_login_view
       ? _c("div", [
-          _c("li", { staticClass: "c-header-nav-item " }, [
+          _c("li", { staticClass: "c-header-nav-item mx-2" }, [
             _c(
               "a",
               {
@@ -41482,7 +41205,7 @@ var render = function() {
               "div",
               {
                 staticClass:
-                  "dropdown-menu bg-primary text-white dropdown-menu-right",
+                  "dropdown-menu bg-primary text-white dropdown-menu-right p-3",
                 attrs: { "aria-labelledby": "dropdownMenuButton" }
               },
               [
@@ -41635,7 +41358,7 @@ var render = function() {
                     _c(
                       "svg",
                       {
-                        staticClass: "svg-icon mr-3",
+                        staticClass: "mr-3 svg-star",
                         attrs: {
                           version: "1.1",
                           id: "Capa_1",
@@ -41644,18 +41367,20 @@ var render = function() {
                           x: "0px",
                           y: "0px",
                           width: "20px",
-                          height: "20px",
-                          viewBox: "0 0 1078.387 1080",
-                          "enable-background": "new 0 0 1078.387 1080",
+                          height: "15px",
+                          viewBox: "0 0 1264.782 1080",
+                          "enable-background": "new 0 0 1264.782 1080",
                           "xml:space": "preserve"
                         }
                       },
                       [
-                        _c("path", {
+                        _c("polygon", {
                           attrs: {
-                            fill: "#545454",
-                            d:
-                              "M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807\n                        C140.316,0.807,5.113,143.518,5.113,319.004c0,137.825,77.957,297.373,231.784,474.343\n                        c118.566,136.343,247.543,241.941,284.236,271.054l19.945,15.792l19.889-15.792c36.693-29.112,165.67-134.653,284.237-271.054\n                        c153.823-176.912,231.84-336.519,231.84-474.343C1077.045,143.518,941.842,0.807,775.617,0.807"
+                            stroke: "white",
+                            "stroke-width": "80",
+                            "stroke-miterlimit": "10",
+                            points:
+                              "1264.782,410.982 829.748,353.176 \n                        630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "
                           }
                         })
                       ]
@@ -42001,8 +41726,8 @@ var render = function() {
                           "xmlns:xlink": "http://www.w3.org/1999/xlink",
                           x: "0px",
                           y: "0px",
-                          width: "20px",
-                          height: "20px",
+                          width: "18px",
+                          height: "23px",
                           viewBox: "0 0 1078.387 1080",
                           "enable-background": "new 0 0 1078.387 1080",
                           "xml:space": "preserve"
@@ -61638,15 +61363,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*******************************************************************!*\
   !*** ./resources/js/components/stream/comments/SimpleComment.vue ***!
   \*******************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SimpleComment_vue_vue_type_template_id_4272fc06___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SimpleComment.vue?vue&type=template&id=4272fc06& */ "./resources/js/components/stream/comments/SimpleComment.vue?vue&type=template&id=4272fc06&");
 /* harmony import */ var _SimpleComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SimpleComment.vue?vue&type=script&lang=js& */ "./resources/js/components/stream/comments/SimpleComment.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _SimpleComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _SimpleComment_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -61676,7 +61400,7 @@ component.options.__file = "resources/js/components/stream/comments/SimpleCommen
 /*!********************************************************************************************!*\
   !*** ./resources/js/components/stream/comments/SimpleComment.vue?vue&type=script&lang=js& ***!
   \********************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
