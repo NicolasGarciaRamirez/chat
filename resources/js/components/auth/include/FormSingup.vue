@@ -1,32 +1,43 @@
 <template>
   <div class="p-2">
+      <div class=" text-left c-fifth" v-if="this.error">
+          <div v-for="(error, index) in this.error" :key="index">
+                <ul>
+                    <li>
+                        {{ error[0] }}  
+                    </li>
+                </ul>
+          </div>
+      </div>
       <form @submit.prevent="valdationForm" autocomplete="off" class="c-fifth">
         <div class="d-flex justify-content-between">
             <validation-provider rules="required" v-slot="{ errors }" class=" mr-3">
-                <input  type="text" class="form-control" placeholder="First Name" v-model="user.first_name"  />
+                <input  type="text" class="form-control mb-3" placeholder="First Name" v-model="user.first_name"  name="first_name"/>
                 <span>{{ errors[0] }}</span>
             </validation-provider>
             <validation-provider rules="required" v-slot="{ errors }" class="">
-                <input  name="last_name" type="text" class="form-control" placeholder="Last Name" v-model="user.last_name" />
+                <input  name="last_name" type="text" class="form-control mb-3" placeholder="Last Name" v-model="user.last_name" />
                 <span>{{ errors[0] }}</span>
             </validation-provider>
         </div>
-        <ValidationObserver>
+
+        <ValidationObserver >
             <ValidationProvider rules="required|email" v-slot={errors}>
-                <input  type="email" class="form-control my-3" placeholder="Email Address" name="email" v-model="user.email" > 
+                <input  type="email" class="form-control mb-3 " placeholder="Email Address" name="email" v-model="user.email" > 
                 <span>{{ errors[0] }}</span>
             </ValidationProvider>
             <ValidationProvider rules="required|email" v-slot={errors}> 
-                <input  type="email" class="form-control " placeholder="Confirm Email Address" name="confirm_email" v-model="user.confirm_email" >
+                <input  type="email" class="form-control mb-3 " placeholder="Confirm Email Address" name="confirm_email" v-model="user.confirm_email" >
                 <span>{{ errors[0] }}</span>
             </ValidationProvider>
         </ValidationObserver>
-        <ValidationProvider v-slot="{errors}" rules="required">
-            <input  type="password" class="form-control my-3" placeholder="Password" v-model="user.password" >    
+
+        <ValidationProvider v-slot="{errors}" rules="required|min:6|verify_password">
+            <input  type="password" class="form-control mb-3 " placeholder="Password" v-model="user.password" name="password">    
             <span>{{ errors[0] }}</span>            
         </ValidationProvider>
-        <ValidationProvider v-slot="{errors}" rules="required">
-            <input  type="password" class="form-control" placeholder="Confirm Password" v-model="user.confirm_password" >
+        <ValidationProvider v-slot="{errors}" rules="required|min:6|verify_password">
+            <input  type="password" class="form-control mb-3" placeholder="Confirm Password" v-model="user.confirm_password" name="confirm_password">
             <span>{{ errors[0] }}</span>
         </ValidationProvider>
         
@@ -47,19 +58,34 @@
 <script>
 
 import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
-import { required, email } from 'vee-validate/dist/rules'
+import { required, email, length} from 'vee-validate/dist/rules'
 
 extend('required', {
   ...required,
-  message: 'the field is required'
+  message: 'the {_field_} field is required'
 });
 extend('email', {
     ...email,
     message: 'the email is not valid'
 });
+extend('min', {
+  validate(value, args) {
+    return value.length >= args.length;
+  },
+  params: ['length'],
+  message: 'the field must be 6 characters minimum'
+});
+extend('verify_password',{
+    validate: value => {
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
+        return strongRegex.test(value);
+    },
+    message: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
+})
 export default {
     data(){
         return {
+            error:null,
             user:{
                 first_name:"",
                 last_name:"",
@@ -145,12 +171,10 @@ export default {
             }  
             
             if (!this.user.vemail) {
-                alert("the emails not match")
-                // return;
+                this.error = [["the emails not match"]]
             }
             if (!this.user.vpassword){
-                alert('the passwords not match')
-                // return;
+                this.error = [['the passwords not match']]
             }
             if (this.user.vemail && this.user.vpassword) {
                 this.save()
@@ -161,11 +185,9 @@ export default {
                 if (res.data.saved) {   
                     alert('user create successfull')
                     window.location.replace('/Profile/Edit')
-                }else{
-                    alert('ERROR 500')
                 }
             }).catch(err => {
-                console.log(err)
+                this.error = err.response.data.errors
             })
         }
     }

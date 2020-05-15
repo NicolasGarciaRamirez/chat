@@ -44,7 +44,37 @@
 .border-white{
     border: 2px solid #ffffff !important;
 }
-
+.social-login{
+    a{
+        font-weight: bold;
+        border-radius: 20px;
+        &.bg-white{
+            color: #FF3C03 !important;
+            opacity: 0.8 !important;
+            &:hover{
+                opacity: 1 !important;
+            }
+            &:active{
+                background: #FF3C03 !important;
+                color: white !important;
+            }
+        }
+    }
+    a.bg-facebook{
+        background: #0055FF !important;
+        opacity: 0.8 !important;
+        &:hover{
+            opacity: 1 !important;
+        } 
+    }
+    a.bg-twitter{ 
+        background: #00AAFF !important;
+        opacity: 0.8 !important;
+        &:hover{
+            opacity: 1 !important;
+        }
+    }
+}
 select.select-form{
     
     border-radius: 30px;

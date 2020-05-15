@@ -46,6 +46,7 @@
                         }
                     }
                     &:active{
+                        border: 2px solid $fifth-color !important;
                         background-color: $fifth-color !important;
                         color: white !important;
                         svg.svg-icon{

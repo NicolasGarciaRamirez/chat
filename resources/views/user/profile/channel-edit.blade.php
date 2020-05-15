@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="profile">
-        @include("user.head-profile", $user)
+        <div>
+            @include("user.head-profile", $user)
+        </div>
         <channel-edit :user="{{ $user }}" />
     </div>
 @endsection

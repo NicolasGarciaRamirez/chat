@@ -2,10 +2,12 @@
     <section class="post mt-3">
         <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
-                <button class="bg-primary align-items-right border-white">FOLLOW <img src="/images/icons/star.svg" class="c-fifth ml-2"></button>
+                <button class="bg-primary align-items-right border-white">FOLLOW 
+                    <img src="/images/icons/star.svg" class="c-fifth ml-2">
+                </button>
                 <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger d-sm-down-none " @click="showModalSupport">SUPPORT 
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        width="18px" height="18px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
+                        width="23px" height="18px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
                     <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
                         C140.316,0.807,5.113,143.518,5.113,319.004c0,137.825,77.957,297.373,231.784,474.343
                         c118.566,136.343,247.543,241.941,284.236,271.054l19.945,15.792l19.889-15.792c36.693-29.112,165.67-134.653,284.237-271.054
@@ -30,6 +32,7 @@
                     <a href="#" class="dropdown-item">Copy Link</a>
                     <a href="#" class="dropdown-item">Hide Post</a>
                     <a href="#" class="dropdown-item">Report</a>
+                    <a href="#" class="dropdown-item">Add To Playlist</a>
                 </div>
             </div>
             <div class="d-flex align-items-start">

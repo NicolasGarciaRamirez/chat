@@ -7,7 +7,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body pt-4">
+                <div class="modal-body pt-4 text-center">
+                    <h3 class="font-weight-bold">FREE USER SINGUP</h3>
                     <form-singup />
                 </div>
             </div>

@@ -20,6 +20,7 @@ import ChannelEdit from './components/user/profile/ChannelEdit'
 import AccountSettings from './components/user/profile/AccountSettings'
 import CompanyProfile from './components/user/company/Company-profile'
 
+import HeadProfile from './components/user/profile/HeadProfile'
 import ProfileActivity from './components/user/view/channel/Activity'
 import ProfilePlaylist from './components/user/view/channel/Playlist'
 
@@ -43,6 +44,7 @@ new Vue({
         ProfileEdit,
         ChannelEdit,
         AccountSettings,
+        HeadProfile,
         CompanyProfile,
         ProfileActivity,
         ProfilePlaylist,

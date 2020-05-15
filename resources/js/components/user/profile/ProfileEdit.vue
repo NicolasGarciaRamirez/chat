@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="navigation-body">
-            <a href="/Profile/Edit" class="c-fifth font-weight-bold mr-3 active">Profile</a>
+            <a href="/Profile/Edit/`" class="c-fifth font-weight-bold mr-3 active">Profile</a>
             <a href="/Profile/Channel/Edit" class="text-white font-weight-bold">Channel</a>
         </div>
         <accordion-profile :user="user" />

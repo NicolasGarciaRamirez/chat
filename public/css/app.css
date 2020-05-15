@@ -27040,6 +27040,43 @@ readers do not read off random characters that represent icons */
   border: 2px solid #ffffff !important;
 }
 
+.social-login a {
+  font-weight: bold;
+  border-radius: 20px;
+}
+
+.social-login a.bg-white {
+  color: #FF3C03 !important;
+  opacity: 0.8 !important;
+}
+
+.social-login a.bg-white:hover {
+  opacity: 1 !important;
+}
+
+.social-login a.bg-white:active {
+  background: #FF3C03 !important;
+  color: white !important;
+}
+
+.social-login a.bg-facebook {
+  background: #0055FF !important;
+  opacity: 0.8 !important;
+}
+
+.social-login a.bg-facebook:hover {
+  opacity: 1 !important;
+}
+
+.social-login a.bg-twitter {
+  background: #00AAFF !important;
+  opacity: 0.8 !important;
+}
+
+.social-login a.bg-twitter:hover {
+  opacity: 1 !important;
+}
+
 select.select-form {
   border-radius: 30px;
   background: black;
@@ -27553,8 +27590,20 @@ button:focus {
   color: white;
 }
 
-.modal-login button[type=submit]:hover {
-  color: #FF0000;
+.modal-login button.login:hover {
+  color: #FC4444 !important;
+}
+
+.modal-login button.login:active {
+  color: white !important;
+}
+
+.modal-login a.forgot-password {
+  color: #535353;
+}
+
+.modal-login a.forgot-password:hover {
+  color: white !important;
 }
 
 .modal-login a:not(.btn) {
@@ -27594,8 +27643,28 @@ button:focus {
   border-radius: 20px;
 }
 
+.modal-login .social-login a.bg-white {
+  color: #FF3C03 !important;
+}
+
 .modal-login .social-login a.bg-white:hover {
-  color: #FF0000 !important;
+  opacity: 5 !important;
+}
+
+.modal-login .social-login a.bg-facebook {
+  background: #0055FF !important;
+}
+
+.modal-login .social-login a.bg-facebook:hover {
+  opacity: 5 !important;
+}
+
+.modal-login .social-login a.bg-twitter {
+  background: #00AAFF !important;
+}
+
+.modal-login .social-login a.bg-twitter:hover {
+  opacity: 5 !important;
 }
 
 .modal-login .divider {
@@ -27748,7 +27817,7 @@ button:focus {
 
 .register .contain .content {
   width: 30rem;
-  height: auto;
+  height: 45rem;
   border-left: 2px solid #262626;
 }
 
@@ -28556,6 +28625,7 @@ button:focus {
 }
 
 .posts .post .post-head .post-user-actions button.border-danger:active {
+  border: 2px solid #FF0000 !important;
   background-color: #FF0000 !important;
   color: white !important;
 }

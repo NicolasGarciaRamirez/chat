@@ -10,13 +10,20 @@
                     </button>
                 </div>
                 <div class="modal-body pt-4">
-                    <h5 class="text-center">Login</h5>
+                    <h5 class="text-center font-weight-bold">Login</h5>
+                    <div class="c-fifth p-3" v-if="this.error">
+                        <ul>
+                            <li>
+                                {{ this.error }}
+                            </li>
+                        </ul>
+                    </div>
                     <form @submit.prevent="login" autocomplete="off">
                         <input type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
                         <input type="password" class="form-control" placeholder="Password" v-model="user.password" required>
                         <div class="mt-2 p-2 d-flex justify-content-between">
-                            <button type="submit" class="btn c-fifth p-0"><b>Login</b></button>
-                            <a href="#" class="c-fourth">Forgot Password?</a>
+                            <button type="submit" class="btn c-fifth p-0 login"><b>Login</b></button>
+                            <a href="#" class="forgot-password font-weight-bold">Forgot Password?</a>
                         </div>
                     </form>
                     <div><p class="text-center or">OR</p></div>
@@ -27,7 +34,7 @@
                     </div>
                     <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy</p>
                     <div class="divider"></div>
-                    <p class="text-center text-white mt-4">Don’t have an ccount yet?!</p>
+                    <p class="text-center text-white mt-4">Don’t have an account yet?!</p>
                     <div class="text-center mb-3">
                         <a class="btn bg-fifth text-white sign-me" href="/Register"><b>SIGN ME UP NOW!</b></a>
                     </div>
@@ -44,6 +51,7 @@
         props: ['is_login_view'],
         data(){
             return{
+                error:null,
                 user:{
                     email:'',
                     password: ''
@@ -61,7 +69,12 @@
         methods:{
             async login(){
                 await axios.post('/login', this.user).then(res =>{
-                    window.location.replace('/Profile/Channel/Activity')
+                    if (res.data.errors) {
+                        this.error = res.data.errors[0]
+                    }else{
+                        window.location.replace('/Profile/Channel/Activity')
+                    }
+                    console.log(res)
                 }).catch(err => {
                     alert('your credentials not have any match')
                 })

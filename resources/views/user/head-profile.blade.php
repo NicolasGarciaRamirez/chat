@@ -1,4 +1,4 @@
-<div class="img-container">
+{{-- <div class="img-container">
     <img src="/images/portada.jpg" alt="ImagePortada" class="img-portada img-fluid">
     <button class="edit-cover-photo btn text-white rounded-pill mr-5">Edit Cover Photo <i class="cil-pencil ml-2"></i></button>
     <img src="/images/profile.jpg" alt="ImagePortada" class="img-profile rounded-circle" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,4 +23,5 @@
             @endif
         </div>
     </div>
-</div>
+</div> --}}
+<head-profile :user="{{ $user }}">

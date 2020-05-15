@@ -3,12 +3,12 @@
         <form @submit.prevent="save" enctype="multipart/form-data">
             <div class="form-group post-form" v-if="auth">
                 <div class="bg-primary">
-                        <textarea
-                            class="form-control bg-primary" 
-                            rows="5"
-                            placeholder="Add Some value to the music industry..." 
-                            v-model="post.description">
-                        </textarea>
+                    <textarea
+                        class="form-control bg-primary" 
+                        rows="5"
+                        placeholder="Add Some value to the music industry..." 
+                        v-model="post.description">
+                    </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData">
                     </div>
@@ -19,26 +19,25 @@
                             <label for="input-sound">
                                 <img  src="/images/icons/sound.svg" alt="">
                             </label>
-                            <input id="input-sound" name="sound" type="file" accept=".mp3"  @change="previewImage">
+                            <input id="input-sound" name="sound" type="file" accept=".mp3">
                         </div>
                         <div class="img-upload">
                             <label for="input-video">
                                 <img src="/images/icons/video-camera.svg" alt="">
                             </label>
-                            <input id="input-video" name="sound" type="file" accept=".mp4"  @change="previewImage">
+                            <input id="input-video" name="video" type="file" accept=".mp4">
                         </div>
                         <div class="img-upload">
                             <label for="input-image">
                                 <img src="/images/icons/image.svg" alt=""   name="sound">
                             </label>
-                            <input id="input-image" name="sound" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" >
-
+                            <input id="input-image" name="img" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" />
                         </div>
                         <div class="img-upload pr-2">
                             <label for="input-docs">
                                 <img src="/images/icons/paperclip.svg"  style="transform: translateX(-6px);">
                             </label>
-                            <input id="input-docs" name="sound" type="file" accept=".pdf, .docx">
+                            <input id="input-docs" name="docs" type="file" accept=".pdf, .docx">
                         </div>
 
                         <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
