@@ -5,7 +5,7 @@
                 <div class="modal-body p-1">
                     <div class="d-flex flex-row justify-content-between contributor-form">
                         <div class="d-flex flex-column p-4">
-                            <h5 class="text-center">CONTRIBUTOR USER SIGNUP</h5>
+                            <h5 class="text-center font-weight-bold">CONTRIBUTOR USER SIGNUP</h5>
                             <form-singup />
                         </div>
                         <div class="d-flex flex-column ml-5 p-4">

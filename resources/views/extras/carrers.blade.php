@@ -3,7 +3,7 @@
 @section('content')
 <div class="carrers">
         <div class="c-head">
-            <h1>If you want to have an impact on the
+            <h1 class="font-weight-bold">If you want to have an impact on the
                 music industry...<br> <label class="c-fifth">Then this is where you belong!</label> 
             </div>
         </h1>
@@ -11,7 +11,7 @@
             <br>
             <div>
                 <div class="text-center my-5">
-                    <h2>What we're currently looking for</h2><br>
+                    <h2 class="font-weight-bold">What we're currently looking for</h2><br>
                 </div>
             </div>
             <div class="box">

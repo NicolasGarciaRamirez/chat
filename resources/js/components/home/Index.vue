@@ -142,6 +142,7 @@
                     this.initializeVariables()
                     this.posts_send.unshift(res.data.post)
                     $('html, body').animate({ scrollTop: 0 }, 'fast');
+                    window.location.reload()
                 }).catch(err=>{
                     console.log(err)
                 })

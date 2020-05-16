@@ -31,9 +31,9 @@
             </div>
 
             <div class="bg-third flex-column mr-5 text-white border-danger p-4 text-center content" v-if="singupContributor">
-                <h4 class="mt-5">CONTRIBUTOR</h4><br>
-                <h2 class="c-fifth">FREE</h2>
-                <h5 class="c-fifth">UNTIL YOU START EARNING MONEY FROM USERS</h5>
+                <h4 class="mt-5 font-weight-bold">CONTRIBUTOR</h4><br>
+                <h2 class="c-fifth font-weight-bold">FREE</h2>
+                <h5 class="c-fifth font-weight-bold">UNTIL YOU START EARNING MONEY FROM USERS</h5>
                 <small class="c-fifth my-3">(You don’t pay until you earn)</small><br>
                 <small>It will be $6.99/m thereafter </small>
                 <div class="divider my-3"></div>
@@ -65,7 +65,7 @@
 
             <div class="justify-content-between bg-primary mr-3 ml-3 contributor-form" v-if="singupContributorForm">
                 <div class="p-3 text-center">
-                    <h5>CONTRIBUTOR USER SINGUP</h5>
+                    <h5 class="font-weight-bold">CONTRIBUTOR USER SINGUP</h5>
                     <form-singup />
                 </div>
                 <div class="p-3">

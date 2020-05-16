@@ -3,6 +3,8 @@
         .post-head{
             .post-user-image{
                 width: 4.5rem;
+                min-height: 4.5rem;
+                max-width: 4.5rem;
             }
             .check-icon{
                 width: 1.2rem;
@@ -161,6 +163,9 @@
                 .comment-user-image{
                     width: 2.64rem;
                     transform: translateY(-11px);
+                    max-width: 2.64rem;
+                    min-height: 2.64rem;
+                    max-height: 2.64rem;
                 }
                 .icon{
                     width: 1rem;

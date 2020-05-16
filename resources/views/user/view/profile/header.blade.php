@@ -1,6 +1,6 @@
 <div class="img-container">
-    <img src="/images/portada.jpg" alt="ImagePortada" class="img-portada img-fluid">
-    <img src="/images/profile.jpg" alt="ImagePortada" class="img-profile rounded-circle">
+    <img src="/images/profile/{{ $user->cover }}" alt="ImagePortada" class="img-portada img-fluid">
+    <img src="/images/profile/{{ $user->avatar }}" alt="ImagePortada" class="img-profile rounded-circle">
 </div>
 <div class="head-container align-items-center">
     <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2">

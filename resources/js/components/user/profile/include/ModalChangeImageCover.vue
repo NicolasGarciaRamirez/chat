@@ -1,6 +1,6 @@
 <template>
   <section>
-        <div class="modal fade modal-picture-profile" tabindex="-1" role="dialog" aria-labelledby="ModalChangeImageProfile" aria-hidden="true" id="ModalChangeImageProfile">
+        <div class="modal fade modal-picture-profile" tabindex="-1" role="dialog" aria-labelledby="ModalChangeImageCover" aria-hidden="true" id="ModalChangeImageCover">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-border-white">
                     <div class="modal-header border-0">
@@ -32,12 +32,12 @@ export default {
     data(){
         return {
             imageData:'',
-            avatar: ''
+            cover: ''
         }
     },
     methods:{
         previewImage(w) {
-            this.avatar = w.target.files[0]
+            this.cover = w.target.files[0]
             var input = w.target;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -48,10 +48,10 @@ export default {
             }
         },
         save(){
-            var avatar = new FormData()
-            avatar.append('avatar', this.avatar, this.avatar.name)
+            var cover = new FormData()
+            cover.append('cover', this.cover, this.cover.name)
         
-            axios.post(`/User/Edit/imageProfile/${this.user.id}`, avatar ).then(res => {
+            axios.post(`/User/Edit/imageCover/${this.user.id}`, cover ).then(res => {
                  if (res.data.updated){
                      window.location.reload()
                  }else{

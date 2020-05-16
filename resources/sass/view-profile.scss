@@ -7,9 +7,21 @@
             bottom: -3rem;
             left: 1rem;
             width: 30%;
+            max-width: 10rem;
+            min-height: 10rem;
+            max-height: 10rem;
             @include media-breakpoint-up(md){
                 width: 10rem;
                 bottom: -4rem;
+                max-width: 10rem;
+                min-height: 10rem;
+                max-height: 10rem;
+            }
+            @include media-breakpoint-down(sm){
+                min-height: 6rem;
+                max-width: 5.6rem;
+                max-height: 6rem;
+                min-width: 5.6rem;
             }
         }
         .img-portada{
@@ -45,6 +57,7 @@
     }
     .navigation-header{
         a{
+            text-decoration: none;
             position: relative;
             padding-bottom: 5px;
             &:before{
@@ -95,19 +108,27 @@
         }
     }
     .movement{
-        .activities{
-            .activity{
-                margin-bottom: 1rem;
-                .information{
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    &:not(:first-child){
-                        margin-left: 20px;
-                    }
-                    img{
-                        width: 1.5rem;
-                        margin-right: 5px;
+        .channel{
+            .activities{
+                img.img-activity{
+                    max-width: 260px !important;
+                    min-height: 260px !important;
+                    max-height: 260px !important;
+                    min-width: 260px !important;
+                }
+                .activity{
+                    margin-bottom: 1rem;
+                    .information{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        &:not(:first-child){
+                            margin-left: 20px;
+                        }
+                        img{
+                            width: 1.5rem;
+                            margin-right: 5px;
+                        }
                     }
                 }
             }

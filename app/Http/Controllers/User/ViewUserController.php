@@ -14,7 +14,7 @@ class ViewUserController extends Controller
     public function activity($user_name)
     {
         $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
+        $user->load('personal_information','posts');
         return view('user.view.channel.activity', compact('user'));
     }
 

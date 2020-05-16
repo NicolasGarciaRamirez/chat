@@ -1,7 +1,7 @@
 <template>
     <div class="comment">
         <div class="d-flex align-items-center p-2">
-            <img src="/images/profile.jpg" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
+            <img :src="`/images/profile/${user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
             <div class="w-100">
                 <div class="text-white d-flex align-items-center justify-content-between">
                     <div>

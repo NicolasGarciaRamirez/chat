@@ -21,7 +21,7 @@
         </div>
         <div v-else>
             <li class="c-header-nav-item mx-2 top-menu">
-                <img src="/images/profile.jpg" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img :src="`/images/profile/${user.avatar}`" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="dropdown-menu bg-primary text-white dropdown-menu-right p-3" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" href="/Profile/Edit">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -282,7 +282,8 @@
     export default {
         data(){
             return {
-                is_login_view : Boolean
+                is_login_view : Boolean,
+                user: ''
             }
         },
         mounted(){
@@ -298,6 +299,7 @@
             authCheck(){
                 axios.post('/Auth/Check').then(res => {
                     this.is_login_view = res.data.auth
+                    this.user = res.data.user
                 }).catch(err => {
                     this.is_login_view = false
                 })

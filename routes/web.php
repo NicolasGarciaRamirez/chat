@@ -37,11 +37,16 @@ Route::post('/Auth/Check', 'Auth\AuthController@authCheck');
 
 
 Route::group(['middleware' => ['auth']], function () {
+
+    Route::group(['prefix' => 'User'], function () {
+        Route::name('profile.edit.image.profle')->post('/Edit/imageProfile/{user}', 'User\UserController@updateImage');
+        Route::name('profile.edit.image.cover')->post('/Edit/imageCover/{user}', 'User\UserController@updateCover');
+    });
+
     Route::group(['prefix' => 'Profile'], function(){
         Route::name('profile.edit')->get('/Edit', 'User\UserController@profileEdit');
         Route::name('profile.get')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
         Route::name('profile.edit.update')->post('/Edit/Update/{user}', 'User\UserPersonalInformationController@update');
-
         Route::name('profile.channel.activity')->get('/Channel/Activity', 'User\UserController@channelActivity');
         Route::name('profile.channel.playlist')->get('/Channel/Playlist', 'User\UserController@channelPlaylist');
         Route::name('profile.channel.edit')->get('/Channel/Edit/', 'User\UserController@channelEdit');

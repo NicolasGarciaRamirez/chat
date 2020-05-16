@@ -1,9 +1,9 @@
 <template>
 <section>
     <div class="img-container">
-        <img src="/images/portada.jpg" alt="ImagePortada" class="img-portada img-fluid">
-        <button class="edit-cover-photo btn text-white rounded-pill mr-5">Edit Cover Photo <i class="cil-pencil ml-2"></i></button>
-        <img src="/images/profile.jpg" alt="ImagePortada" class="img-profile rounded-circle" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img :src="`/images/profile/${user.cover}`" alt="ImagePortada" class="img-portada img-fluid">
+        <button class="edit-cover-photo btn text-white rounded-pill mr-5" @click="showChangeImageCover">Edit Cover Photo <i class="cil-pencil ml-2"></i></button>
+        <img :src="`/images/profile/${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="dropdown-menu bg-primary text-white dowpdown-menu-profile" aria-labelledby="dropdownMenuProfile">
             <a href="#" class="dropdown-item">View Image</a>
             <a href="#" class="dropdown-item">Edit Crop</a>
@@ -24,21 +24,28 @@
             </div>
         </div>
     </div>
-    <ModalChangeImageProfile />
+
+    <modal-change-image-cover :user="user" />
+    <modal-change-image-profile :user="user"/>
 </section>
 </template>
 
 <script>
 import ModalChangeImageProfile from './include/ModalChangeImageProfile'
+import ModalChangeImageCover from './include/ModalChangeImageCover'
 export default {
     props:['user'],
     components:{
-        ModalChangeImageProfile
+        ModalChangeImageProfile,
+        ModalChangeImageCover
     },
     methods: {
         showChangeImageProfile(){
             $('#ModalChangeImageProfile').modal('show')
-        }
+        },
+        showChangeImageCover(){
+            $('#ModalChangeImageCover').modal('show')
+        },
     },
 }
 </script>

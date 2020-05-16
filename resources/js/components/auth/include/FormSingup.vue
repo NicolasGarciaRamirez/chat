@@ -1,6 +1,6 @@
 <template>
   <div class="p-2">
-      <div class=" text-left c-fifth" v-if="this.error">
+    <div class=" text-left c-fifth" v-if="this.error">
           <div v-for="(error, index) in this.error" :key="index">
                 <ul>
                     <li>
@@ -8,8 +8,8 @@
                     </li>
                 </ul>
           </div>
-      </div>
-      <form @submit.prevent="valdationForm" autocomplete="off" class="c-fifth">
+    </div>
+    <form @submit.prevent="valdationForm" autocomplete="off" class="c-fifth">
         <div class="d-flex justify-content-between">
             <validation-provider rules="required" v-slot="{ errors }" class=" mr-3">
                 <input  type="text" class="form-control mb-3" placeholder="First Name" v-model="user.first_name"  name="first_name"/>
@@ -44,13 +44,13 @@
         <div class="mt-2 p-2 d-flex justify-content-center">
             <button type="submit" class="btn bg-fifth text-white sign-up ">Sign Up</button>
         </div>
+        <div><p class="text-center or">OR</p></div>
+        <div class="d-flex flex-column social-login">
+            <a href="#" class="btn bg-facebook text-white">Facebook Quick Singup</a>
+            <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Singup</a>
+            <a href="#" class="btn bg-white c-fifth">Google Quick Singup</a>
+        </div>
     </form>
-    <div><p class="text-center or">OR</p></div>
-    <div class="d-flex flex-column social-login">
-        <a href="#" class="btn bg-facebook text-white">Facebook Quick Singup</a>
-        <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Singup</a>
-        <a href="#" class="btn bg-white c-fifth">Google Quick Singup</a>
-    </div>
     <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy</p>
   </div>
 </template>

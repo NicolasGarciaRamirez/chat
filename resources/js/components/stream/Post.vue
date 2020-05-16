@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="d-flex align-items-start">
-                <img src="/images/profile.jpg" alt="" class="post-user-image rounded-pill">
+                <img :src="`/images/profile/${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-3">
                     <a :href="`/View/Profile/Releases/${post.user.user_name}`" class="text-white post-user-name">{{ post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
                     <div class="d-flex justify-content-center align-items-center post-user-type mt-2">

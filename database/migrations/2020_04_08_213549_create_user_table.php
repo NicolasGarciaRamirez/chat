@@ -21,7 +21,8 @@ class CreateUserTable extends Migration
             $table->string('password');
             $table->string('subscription_type')->default('FREE');
             $table->string('token', 80)->nullable();
-            $table->string('avatar')->default('/images/profile/default.png');
+            $table->string('avatar')->default('default.png');
+            $table->string('cover')->default('default.png');
             $table->boolean('enable')->default(true);
             $table->boolean('validated')->default(false);
             $table->boolean('banned')->default(false);
