@@ -1,7 +1,7 @@
 <template>
     <section class="movement">
         <div class="activities">
-            <channel-activity :user="this.user" />
+            <channel-activity :user="user" />
         </div>
     </section>
 </template>

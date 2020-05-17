@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="view-profile">
-        @include('user.view.profile.header', $user)
+        @include('user.view.profile._header', $user)
         <div>
             <profile-activity :user="{{ $user }}" />
         </div>

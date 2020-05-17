@@ -16,7 +16,7 @@
         <div class="mr-5 p-4 text-center content bg-primary w-100 auth-type" v-if="type === 'Free'">
             <div class="p-2 text-center">
                 <h5>FREE USER SIGN UP</h5>
-                <form-sign-up/>
+                <form-sign-up :type="type"/>
             </div>
         </div>
 
@@ -44,10 +44,10 @@
         <div class="justify-content-between bg-primary mr-3 ml-3 contributor-form w-100" v-if="type === 'Contributor'">
             <div class="p-3 text-center">
                 <h5>CONTRIBUTOR USER SIGN UP</h5>
-                <form-sign-up/>
+                <form-sign-up :type="type"/>
             </div>
             <div class="p-3">
-                <form-sign-up-contributor/>
+                <form-sign-up-contributor :type="type"/>
             </div>
         </div>
 

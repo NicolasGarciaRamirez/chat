@@ -27174,6 +27174,10 @@ textarea {
   text-decoration: none !important;
 }
 
+.list-style-none {
+  list-style: none;
+}
+
 .c-header .cil-hamburger-menu {
   color: #262626;
   font-size: 30px;
@@ -29315,6 +29319,7 @@ button:focus {
 
 .view-profile .navigation-body a.active {
   position: relative;
+  color: #FF0000 !important;
 }
 
 .view-profile .navigation-body a.active:before {

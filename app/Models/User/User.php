@@ -49,6 +49,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @param $value
+     */
+    public function setSubscriptionTypeAttribute($value)
+    {
+        $this->attributes['subscription_type'] = strtoupper($value);
+    }
+
+    /**
      * personalInformation function
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

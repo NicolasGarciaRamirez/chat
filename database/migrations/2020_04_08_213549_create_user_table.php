@@ -16,13 +16,13 @@ class CreateUserTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_name')->unique();
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('subscription_type')->default('FREE');
             $table->string('token', 80)->nullable();
-            $table->string('avatar')->default('default.png');
-            $table->string('cover')->default('default.png');
+            $table->string('avatar')->default('/profile/default.png');
+            $table->string('cover')->default('/profile/default-cover.png');
             $table->boolean('enable')->default(true);
             $table->boolean('validated')->default(false);
             $table->boolean('banned')->default(false);

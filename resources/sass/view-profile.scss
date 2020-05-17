@@ -91,6 +91,7 @@
         }
         a.active{
             position: relative;
+            color: $fifth-color !important;
             &:before{
                 content: '';
                 top: -8px;

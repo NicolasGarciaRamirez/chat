@@ -1,52 +1,31 @@
 <template>
     <div class="p-2">
-        <div class=" text-left c-fifth" v-if="this.error">
-            <div v-for="(error, index) in this.error" :key="index">
-                <ul>
-                    <li>
-                        {{ error[0] }}
-                    </li>
-                </ul>
-            </div>
+        <div class="alert bg-fifth text-white" v-if="backend_errors != null">
+            <ul class="p-0 m-0 list-style-none">
+                <li v-for="(error, index) in backend_errors" :key="index">{{ error[0] }}</li>
+            </ul>
         </div>
-        <form @submit.prevent="valdationForm" autocomplete="off" class="c-fifth">
-            <div class="d-flex justify-content-between">
-                <validation-provider rules="required" v-slot="{ errors }" class=" mr-3">
-                    <input type="text" class="form-control mb-3" placeholder="First Name" v-model="user.first_name"
-                           name="first_name"/>
-                    <span>{{ errors[0] }}</span>
-                </validation-provider>
-                <validation-provider rules="required" v-slot="{ errors }" class="">
-                    <input name="last_name" type="text" class="form-control mb-3" placeholder="Last Name"
-                           v-model="user.last_name"/>
-                    <span>{{ errors[0] }}</span>
-                </validation-provider>
+        <form @submit.prevent="save" autocomplete="off" class="c-fifth">
+            <div class="form-group row mx-0">
+                <div class="col mr-1 p-0">
+                    <span>{{ errors.first('first_name') }}</span>
+                    <input type="text" class="form-control"  name="first_name"  placeholder="First Name" v-model="user.first_name" v-validate="'required|alpha'" required/>
+                </div>
+                <div class="col ml-1 p-0">
+                    <span>{{ errors.first('last_name') }}</span>
+                    <input type="text" class="form-control" name="last_name" placeholder="Last Name" v-model="user.last_name" v-validate="'required|alpha'" required/>
+                </div>
             </div>
-
-            <ValidationObserver>
-                <ValidationProvider rules="required|email" v-slot={errors}>
-                    <input type="email" class="form-control mb-3 " placeholder="Email Address" name="email"
-                           v-model="user.email">
-                    <span>{{ errors[0] }}</span>
-                </ValidationProvider>
-                <ValidationProvider rules="required|email" v-slot={errors}>
-                    <input type="email" class="form-control mb-3 " placeholder="Confirm Email Address"
-                           name="confirm_email" v-model="user.confirm_email">
-                    <span>{{ errors[0] }}</span>
-                </ValidationProvider>
-            </ValidationObserver>
-
-            <ValidationProvider v-slot="{errors}" rules="required|min:6|verify_password">
-                <input type="password" class="form-control mb-3 " placeholder="Password" v-model="user.password"
-                       name="password">
-                <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-            <ValidationProvider v-slot="{errors}" rules="required|min:6|verify_password">
-                <input type="password" class="form-control mb-3" placeholder="Confirm Password"
-                       v-model="user.confirm_password" name="confirm_password">
-                <span>{{ errors[0] }}</span>
-            </ValidationProvider>
-
+            <div class="form-group">
+                <span>{{ errors.first('email') }}</span>
+                <input type="email" class="form-control mb-3" name="email" placeholder="Email Address" v-model="user.email" v-validate="'required|email'" ref="email" required>
+                <span>{{ errors.first('email_confirmation') }}</span>
+                <input type="email" class="form-control mb-3" name="email_confirmation" placeholder="Confirm Email Address" v-model="user.email_confirmation" v-validate="'required|email|confirmed:email'" data-vv-as="email" required>
+                <span>{{ errors.first('password') }}</span>
+                <input type="password" class="form-control mb-3" name="password" placeholder="Password" v-model="user.password" v-validate="'required|min_value:6'" ref="password" required>
+                <span>{{ errors.first('password_confirmation') }}</span>
+                <input type="password" class="form-control mb-3" name="password_confirmation" placeholder="Confirm Password" v-model="user.password_confirmation" v-validate="'required|min_value:6|confirmed:password'" data-vv-as="password" required>
+            </div>
             <div class="mt-2 p-2 d-flex justify-content-center">
                 <button type="submit" class="btn bg-fifth text-white sign-up ">Sign Up</button>
             </div>
@@ -57,51 +36,36 @@
                 <a href="#" class="btn bg-white c-fifth">Google Quick Singup</a>
             </div>
         </form>
-        <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy
-            Policy, & Copyright Policy</p>
+        <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy</p>
     </div>
 </template>
 
 <script>
+    import { Validator } from 'vee-validate';
 
-    import {ValidationProvider, ValidationObserver, extend} from 'vee-validate';
-    import {required, email, length} from 'vee-validate/dist/rules'
+    const dictionary = {
+        en: {
+            attributes: {
+                first_name: 'first name',
+                last_name: 'last name',
+                email_confirmation: 'email confirmation',
+                password_confirmation: 'password'
+            }
+        }
+    };
+    Validator.localize(dictionary);
 
-    extend('required', {
-        ...required,
-        message: 'the {_field_} field is required'
-    });
-    extend('email', {
-        ...email,
-        message: 'the email is not valid'
-    });
-    extend('min', {
-        validate(value, args) {
-            return value.length >= args.length;
-        },
-        params: ['length'],
-        message: 'the field must be 6 characters minimum'
-    });
-    extend('verify_password', {
-        validate: value => {
-            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
-            return strongRegex.test(value);
-        },
-        message: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
-    })
     export default {
+        props: ['type'],
         data() {
             return {
-                error: null,
                 user: {
                     first_name: "",
                     last_name: "",
                     email: "",
-                    confirm_email: "",
+                    email_confirmation: "",
                     password: "",
-                    confirm_password: "",
-                    vemail: false,
-                    vpassword: false,
+                    password_confirmation: "",
                     personal_information: {
                         profile_type: 'N/A',
                         title: 'N/A',
@@ -161,41 +125,26 @@
                             Spotify: 'N/A',
                         }
                     }
-                }
+                },
+                backend_errors: null
             }
         },
-        components: {
-            ValidationProvider,
-            ValidationObserver
-        },
         methods: {
-            valdationForm() {
-                if (this.user.email == this.user.confirm_email) {
-                    this.user.vemail = true
-                }
-                if (this.user.password == this.user.confirm_password) {
-                    this.user.vpassword = true
-                }
-
-                if (!this.user.vemail) {
-                    this.error = [["the emails not match"]]
-                }
-                if (!this.user.vpassword) {
-                    this.error = [['the passwords not match']]
-                }
-                if (this.user.vemail && this.user.vpassword) {
-                    this.save()
-                }
-            },
             save() {
-                axios.post(`/Register`, this.user).then(res => {
-                    if (res.data.saved) {
-                        alert('user create successfull')
-                        window.location.replace('/Profile/Edit')
+                this.$validator.validate().then(valid => {
+                    if (!valid) {
+                       return false
                     }
-                }).catch(err => {
-                    this.error = err.response.data.errors
-                })
+                    this.user.subscription_type = this.type
+                    axios.post(`/Register`, this.user).then(res => {
+                        if (res.data.saved) {
+                            alert('user create successfull')
+                            window.location.replace('/Profile/Edit')
+                        }
+                    }).catch(err => {
+                        this.backend_errors = err.response.data.errors
+                    })
+                });
             }
         }
     }

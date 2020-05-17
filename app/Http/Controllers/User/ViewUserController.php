@@ -8,64 +8,64 @@ use App\Models\User\User;
 
 class ViewUserController extends Controller
 {
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function activity($user_name)
+    private $user;
+
+    public function __construct()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->load('personal_information','posts');
-        return view('user.view.channel.activity', compact('user'));
+        $this->middleware(function ($request, $next) {
+            if (!$user = User::whereUsername($request->username)->first()) return abort(404);
+            $this->user = $user;
+            $this->user->load('personal_information', 'posts');
+            return $next($request);
+        });
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function playlist($user_name)
+    public function activity()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.channel.playlist', compact('user'));
+        return view('user.view.channel.activity', ['user' => $this->user]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function releases($user_name)
+    public function playlist()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.profile.releases', compact('user'));
+        return view('user.view.channel.playlist', ['user' => $this->user]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function members($user_name)
+    public function releases()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.profile.members', compact('user'));
+        return view('user.view.profile.releases', ['user' => $this->user]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function workHistory($user_name)
+    public function members()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.profile.work-history', compact('user'));
+        return view('user.view.profile.members', ['user' => $this->user]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function genres($user_name)
+    public function workHistory()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.profile.genres', compact('user'));
+        return view('user.view.profile.work-history', ['user' => $this->user]);
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function genres()
+    {
+        return view('user.view.profile.genres', ['user' => $this->user]);
     }
 
     /**
@@ -73,19 +73,15 @@ class ViewUserController extends Controller
      */
     public function services($user_name)
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.profile.services', compact('user'));
+        return view('user.view.profile.services', ['user' => $this->user]);
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function rates($user_name)
+    public function rates()
     {
-        $user = User::where('user_name' , $user_name)->first();
-        $user->with('personal_information');
-        return view('user.view.profile.rates', compact('user'), compact('user'));
+        return view('user.view.profile.rates', ['user' => $this->user]);
     }
 
 }

@@ -2,7 +2,7 @@
     <section class="channel">
         <div class="d-flex my-5 mx-3 navigation-header">
             <h3><a href="/Profile/Channel/Activity" class="text-white font-weight-bold pt-2 mr-3 active">Channel</a></h3>
-            <h3><a :href="`/View/Profile/Releases/${this.user.user_name}`" class="c-fourth font-weight-bold">Profile</a></h3>
+            <h3><a :href="`/View/Profile/Releases/${user.username}`" class="c-fourth font-weight-bold">Profile</a></h3>
         </div>
         <div class="navigation-body">
             <a href="/Profile/Channel" class="c-fifth font-weight-bold mr-3 active">Activity</a>

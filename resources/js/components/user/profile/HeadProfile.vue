@@ -1,9 +1,9 @@
 <template>
 <section>
     <div class="img-container">
-        <img :src="`/images/profile/${user.cover}`" alt="ImagePortada" class="img-portada img-fluid">
+        <img :src="`/images/${user.cover}`" alt="ImagePortada" class="img-portada img-fluid">
         <button class="edit-cover-photo btn text-white rounded-pill mr-5" @click="showChangeImageCover">Edit Cover Photo <i class="cil-pencil ml-2"></i></button>
-        <img :src="`/images/profile/${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img :src="`/images/${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <div class="dropdown-menu bg-primary text-white dowpdown-menu-profile" aria-labelledby="dropdownMenuProfile">
             <a href="#" class="dropdown-item">View Image</a>
             <a href="#" class="dropdown-item">Edit Crop</a>
@@ -14,7 +14,7 @@
         <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2">
             <a href="/Profile/Edit" class="btn bg-black rounded-pill text-white">Edit Profile <i class="cil-pencil ml-2"></i></a>
             <a href="#" class="btn bg-black rounded-pill text-white mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
-            <a :href="`/View/Profile/Releases/${ user.user_name }`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
+            <a :href="`/View/Profile/Releases/${ user.username }`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
         </div>
         <div>
             <h2 class="font-weight-bold">{{ user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>

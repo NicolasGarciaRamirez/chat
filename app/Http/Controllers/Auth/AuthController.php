@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
@@ -54,50 +54,41 @@ class AuthController extends Controller
     }
 
     /**
-     * Undocumented function
-     *
-     * @param Request $request
+     * @param StoreUser $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function register(Request $request)
+    public function register(StoreUser $request)
     {
-        try{
+        \DB::beginTransaction();
 
-            $request->validate([
-                'first_name' => 'required',
-                'last_name' => 'required',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|min:6|alpha_num',
-            ]);
-            
+        try {
             $user = new \App\Models\User\User($request->all());
-            $user->user_name = $request->first_name.'.'.$request->last_name.'.'.\Str::random(5);
-            $user->subscription_type = 'CONTRIBUTOR';
+            $user->username = \Str::random(25);
             $user->token = \Str::random(80);
             $user->save();
-    
+
             $personal_information = new \App\Models\User\UserPersonalInformation($request->all());
             $personal_information->full_name = $request->first_name . ' ' . $request->last_name;
             $personal_information->members = json_encode($request->personal_information['members']);
             $personal_information->releases = json_encode($request->personal_information['releases']);
             $personal_information->social_media = json_encode($request->personal_information['social_media']);
-    
+
             $user->personal_information()->save($personal_information);
-    
-            $credentials = $request->only('email', 'password');
-    
-            if (Auth::attempt($credentials)) 
-    
+
+            Auth::login($user);
+
             return response()->json([
                 'saved' => true,
-                'user' => $user
+                'user' => $user,
+                'errors' => null
             ]);
-        }
-        catch(ValidationException $e){
+        } catch (\Exception $e) {
+            \DB::rollback();
             return response()->json([
-                'status' => 'Error',
-                'msg' => 'data invalid',
-                'errors' => $e->errors()
+                'saved' => false,
+                'user' => null,
+                'errors' => $e
             ], 422);
         }
     }

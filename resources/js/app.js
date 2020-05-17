@@ -8,6 +8,10 @@ require('./bootstrap');
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'
+
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
 import AppHeader from './components/template/Header'
 import AppNav from './components/template/Nav'
 import Login from './components/auth/Login'
