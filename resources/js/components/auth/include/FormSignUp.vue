@@ -22,7 +22,7 @@
                 <span>{{ errors.first('email_confirmation') }}</span>
                 <input type="email" class="form-control mb-3" name="email_confirmation" placeholder="Confirm Email Address" v-model="user.email_confirmation" v-validate="'required|email|confirmed:email'" data-vv-as="email" required>
                 <span>{{ errors.first('password') }}</span>
-                <input type="password" class="form-control mb-3" name="password" placeholder="Password" v-model="user.password" v-validate="'required|min_value:6'" ref="password" required>
+                <input type="password" class="form-control mb-3" name="password" placeholder="Password" v-model="user.password" v-validate="'required|min_value:6|verify_password'" ref="password" required>
                 <span>{{ errors.first('password_confirmation') }}</span>
                 <input type="password" class="form-control mb-3" name="password_confirmation" placeholder="Confirm Password" v-model="user.password_confirmation" v-validate="'required|min_value:6|confirmed:password'" data-vv-as="password" required>
             </div>
@@ -42,6 +42,14 @@
 
 <script>
     import { Validator } from 'vee-validate';
+
+    Validator.extend('verify_password', {
+        validate: value => {
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
+            return strongRegex.test(value);
+        },
+        getMessage: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
+    })
 
     const dictionary = {
         en: {

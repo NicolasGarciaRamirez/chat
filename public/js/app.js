@@ -11384,6 +11384,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+vee_validate__WEBPACK_IMPORTED_MODULE_0__["Validator"].extend('verify_password', {
+  validate: function validate(value) {
+    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
+    return strongRegex.test(value);
+  },
+  getMessage: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
+});
 var dictionary = {
   en: {
     attributes: {
@@ -47052,8 +47059,8 @@ var render = function() {
               {
                 name: "validate",
                 rawName: "v-validate",
-                value: "required|min_value:6",
-                expression: "'required|min_value:6'"
+                value: "required|min_value:6|verify_password",
+                expression: "'required|min_value:6|verify_password'"
               }
             ],
             ref: "password",
