@@ -58,7 +58,7 @@
                     <a class="dropdown-item" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="15px" viewBox="0 0 1264.782 1080" enable-background="new 0 0 1264.782 1080" xml:space="preserve" class="mr-3 svg-star">
-                        <polygon stroke="white" stroke-width="80" stroke-miterlimit="10" points="1264.782,410.982 829.748,353.176 
+                        <polygon stroke="white" stroke-width="80" stroke-miterlimit="10" points="1264.782,410.982 829.748,353.176
                             630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "/>
                         </svg>
                     Relationships
@@ -212,7 +212,7 @@
                             M856.362,703.025H704.671v-63.068h151.691V703.025z M856.362,576.861h-663.64v-63.067h663.64V576.861z"/>
                         </svg>
                     Payments</a>
-                    <a class="dropdown-item" href="/Profile/Settings"> 
+                    <a class="dropdown-item" href="/Profile/Settings">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M935.22,408.356l-5.16-1.821l-20.028-48.652l2.108-4.917c60.862-140.053,56.59-144.25,46.549-154.301
@@ -241,7 +241,7 @@
                             l4.769-1.932c142.811-56.276,142.811-61.745,142.811-76.269V480.98C1078.084,466.29,1078.084,460.269,935.22,408.356z
                             M538.359,725.133c-102.252,0-185.42-83.003-185.42-184.84c0-101.837,83.167-184.676,185.42-184.676
                             c102.253,0,185.474,82.839,185.474,184.676C723.833,642.13,640.612,725.133,538.359,725.133z"/>
-                        </svg>                    
+                        </svg>
                     Account Settings</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">
@@ -278,12 +278,13 @@
 </template>
 
 <script>
-
     export default {
         data(){
             return {
                 is_login_view : Boolean,
-                user: ''
+                user: {
+                    avatar: 'default.png'
+                }
             }
         },
         mounted(){

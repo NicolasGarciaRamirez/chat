@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body pt-4 text-center">
                     <h3 class="font-weight-bold">FREE USER SINGUP</h3>
-                    <form-singup />
+                    <form-sign-up />
                 </div>
             </div>
         </div>
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-    import FormSingup from './include/FormSingup'
+    import FormSignUp from './include/FormSignUp'
     export default {
        components:{
-           FormSingup
+           FormSignUp
        }
     }
 </script>

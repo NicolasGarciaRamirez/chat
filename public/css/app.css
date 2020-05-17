@@ -27166,6 +27166,14 @@ textarea {
   width: 15px !important;
 }
 
+.no-underline {
+  text-decoration: none;
+}
+
+.no-underline:hover {
+  text-decoration: none !important;
+}
+
 .c-header .cil-hamburger-menu {
   color: #262626;
   font-size: 30px;
@@ -27734,22 +27742,16 @@ button:focus {
   border-radius: 20px;
 }
 
-.register .contain {
-  display: flex;
-  flex-direction: row;
+.register .auth-type {
+  margin-bottom: 5rem;
+  min-height: 80vh;
 }
 
-@media (max-width: 991.98px) {
-  .register .contain {
-    flex-direction: column !important;
-  }
-}
-
-.register .contain .or {
+.register .or {
   position: relative;
 }
 
-.register .contain .or:after {
+.register .or:after {
   content: "";
   position: absolute;
   right: 10px;
@@ -27759,7 +27761,7 @@ button:focus {
   width: 40%;
 }
 
-.register .contain .or:before {
+.register .or:before {
   content: "";
   position: absolute;
   left: 10px;
@@ -27769,17 +27771,17 @@ button:focus {
   width: 40%;
 }
 
-.register .contain .social-register a {
+.register .social-register a {
   font-weight: bold;
   border-radius: 20px;
 }
 
-.register .contain .social-register a.bg-white:hover {
+.register .social-register a.bg-white:hover {
   color: #FF0000 !important;
 }
 
-.register .contain input.form-control,
-.register .contain textarea.form-control {
+.register input.form-control,
+.register textarea.form-control {
   border-radius: 20px;
   background-color: #262626;
   color: #FF0000;
@@ -27787,67 +27789,49 @@ button:focus {
   padding: 1rem;
 }
 
-.register .contain input.form-control::-webkit-input-placeholder, .register .contain textarea.form-control::-webkit-input-placeholder {
+.register input.form-control::-webkit-input-placeholder, .register textarea.form-control::-webkit-input-placeholder {
   color: #535353;
 }
 
-.register .contain input.form-control::-moz-placeholder, .register .contain textarea.form-control::-moz-placeholder {
+.register input.form-control::-moz-placeholder, .register textarea.form-control::-moz-placeholder {
   color: #535353;
 }
 
-.register .contain input.form-control:-ms-input-placeholder, .register .contain textarea.form-control:-ms-input-placeholder {
+.register input.form-control:-ms-input-placeholder, .register textarea.form-control:-ms-input-placeholder {
   color: #535353;
 }
 
-.register .contain input.form-control::-ms-input-placeholder, .register .contain textarea.form-control::-ms-input-placeholder {
+.register input.form-control::-ms-input-placeholder, .register textarea.form-control::-ms-input-placeholder {
   color: #535353;
 }
 
-.register .contain input.form-control::placeholder,
-.register .contain textarea.form-control::placeholder {
+.register input.form-control::placeholder,
+.register textarea.form-control::placeholder {
   color: #535353;
 }
 
-.register .contain input.form-control:focus,
-.register .contain textarea.form-control:focus {
+.register input.form-control:focus,
+.register textarea.form-control:focus {
   background-color: #262626;
   color: #FF0000;
   border: 0;
 }
 
-.register .contain .content {
-  width: 30rem;
-  height: 45rem;
+.register .for-music-company {
   border-left: 2px solid #262626;
 }
 
-@media (max-width: 991.98px) {
-  .register .contain .content {
-    width: 100%;
-    margin-bottom: 5rem;
-    display: flex;
-    flex-direction: column;
-    height: 50rem;
-  }
-}
-
-.register .contain .content .for-music {
-  margin-top: 18rem;
-  margin-left: 2.89rem;
-  margin-bottom: 18rem;
-}
-
-.register .contain .content .for-music a {
+.register .for-music-company a {
   border-bottom: 1px solid #FF0000;
 }
 
-.register .contain .contributor-form {
+.register .contributor-form {
   display: flex;
   flex-direction: row;
 }
 
 @media (max-width: 767.98px) {
-  .register .contain .contributor-form {
+  .register .contributor-form {
     display: flex;
     flex-direction: column !important;
   }

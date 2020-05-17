@@ -11303,7 +11303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _include_FormSingup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./include/FormSingup */ "./resources/js/components/auth/include/FormSingup.vue");
+/* harmony import */ var _include_FormSignUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./include/FormSignUp */ "./resources/js/components/auth/include/FormSignUp.vue");
 //
 //
 //
@@ -11325,15 +11325,15 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    FormSingup: _include_FormSingup__WEBPACK_IMPORTED_MODULE_0__["default"]
+    FormSignUp: _include_FormSignUp__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingup.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUp.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSingup.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSignUp.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -11348,6 +11348,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -11545,9 +11552,9 @@ Object(vee_validate__WEBPACK_IMPORTED_MODULE_0__["extend"])('verify_password', {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=script&lang=js&":
 /*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=script&lang=js& ***!
   \*********************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -11588,8 +11595,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormSingup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSingup */ "./resources/js/components/auth/include/FormSingup.vue");
-/* harmony import */ var _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSingupContributor */ "./resources/js/components/auth/include/FormSingupContributor.vue");
+/* harmony import */ var _FormSignUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSignUp */ "./resources/js/components/auth/include/FormSignUp.vue");
+/* harmony import */ var _FormSignUpContributor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSignUpContributor */ "./resources/js/components/auth/include/FormSignUpContributor.vue");
 //
 //
 //
@@ -11614,8 +11621,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    FormSingup: _FormSingup__WEBPACK_IMPORTED_MODULE_0__["default"],
-    FormSingupContributor: _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__["default"]
+    FormSignUp: _FormSignUp__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FormSignUpContributor: _FormSignUpContributor__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -11698,31 +11705,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormSingup__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSingup */ "./resources/js/components/auth/include/FormSingup.vue");
-/* harmony import */ var _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSingupContributor */ "./resources/js/components/auth/include/FormSingupContributor.vue");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _FormSignUp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSignUp */ "./resources/js/components/auth/include/FormSignUp.vue");
+/* harmony import */ var _FormSignUpContributor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSignUpContributor */ "./resources/js/components/auth/include/FormSignUpContributor.vue");
 //
 //
 //
@@ -11785,30 +11769,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: function data() {
-    return {
-      singupFree: true,
-      singupFreeForm: false,
-      singupContributor: true,
-      singupContributorForm: false
-    };
-  },
+  props: ['type'],
   components: {
-    FormSingup: _FormSingup__WEBPACK_IMPORTED_MODULE_0__["default"],
-    FormSingupContributor: _FormSingupContributor__WEBPACK_IMPORTED_MODULE_1__["default"]
-  },
-  methods: {
-    showComponents: function showComponents(name) {
-      if (name == 'free') {
-        this.singupFreeForm = true;
-        this.singupFree = false;
-      } else if (name == 'contributor') {
-        this.singupContributorForm = true;
-        this.singupContributor = false;
-        this.singupFreeForm = false;
-        this.singupFree = false;
-      }
-    }
+    FormSignUp: _FormSignUp__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FormSignUpContributor: _FormSignUpContributor__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
 });
 
@@ -11993,7 +11957,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   $('html, body').animate({
                     scrollTop: 0
                   }, 'fast');
-                  window.location.reload();
                 })["catch"](function (err) {
                   console.log(err);
                 });
@@ -12827,7 +12790,9 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       is_login_view: Boolean,
-      user: ''
+      user: {
+        avatar: 'default.png'
+      }
     };
   },
   mounted: function mounted() {
@@ -38488,7 +38453,7 @@ var render = function() {
                   _vm._v("FREE USER SINGUP")
                 ]),
                 _vm._v(" "),
-                _c("form-singup")
+                _c("form-sign-up")
               ],
               1
             )
@@ -38525,9 +38490,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingup.vue?vue&type=template&id=01b90881&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUp.vue?vue&type=template&id=6641594f&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSingup.vue?vue&type=template&id=01b90881& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSignUp.vue?vue&type=template&id=6641594f& ***!
   \**************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -38550,9 +38515,9 @@ var render = function() {
               _c("ul", [
                 _c("li", [
                   _vm._v(
-                    "\n                      " +
+                    "\n                    " +
                       _vm._s(error[0]) +
-                      "  \n                  "
+                      "\n                "
                   )
                 ])
               ])
@@ -38858,7 +38823,7 @@ var render = function() {
     _vm._v(" "),
     _c("p", { staticClass: "c-fourth text-center mt-3 mb-5" }, [
       _vm._v(
-        "By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy"
+        "By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy\n        Policy, & Copyright Policy"
       )
     ])
   ])
@@ -38888,7 +38853,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("p", { staticClass: "text-center or" }, [_vm._v("OR")])
+      _c("p", { staticClass: "text-center or text-white" }, [_vm._v("OR")])
     ])
   },
   function() {
@@ -38920,9 +38885,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=template&id=3374176c&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=template&id=dd429288&":
 /*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=template&id=3374176c& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=template&id=dd429288& ***!
   \*************************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -39041,7 +39006,7 @@ var render = function() {
                         [_vm._v("CONTRIBUTOR USER SIGNUP")]
                       ),
                       _vm._v(" "),
-                      _c("form-singup")
+                      _c("form-sign-up")
                     ],
                     1
                   ),
@@ -39049,7 +39014,7 @@ var render = function() {
                   _c(
                     "div",
                     { staticClass: "d-flex flex-column ml-5 p-4" },
-                    [_c("form-singup-contributor")],
+                    [_c("form-sign-up-contributor")],
                     1
                   )
                 ]
@@ -39236,149 +39201,133 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", [
-    _c("div", { staticClass: "align-items-start contain" }, [
-      _vm.singupFree
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "bg-third flex-column mr-5 border-danger p-4 text-center content"
-            },
-            [
-              _c("h4", { staticClass: "mt-5  font-weigh-bold" }, [
-                _vm._v("FREE USER")
-              ]),
-              _c("br"),
-              _vm._v(" "),
-              _c("div", { staticClass: "divider free" }),
-              _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._m(1),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn bg-fifth text-white my-5",
-                  on: {
-                    click: function($event) {
-                      return _vm.showComponents("free")
-                    }
-                  }
-                },
-                [_vm._v("COUNT ME IN")]
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.singupFreeForm
-        ? _c(
-            "div",
-            {
-              staticClass: "flex-column mr-5 p-4 text-center content bg-primary"
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "p-2 text-center" },
-                [
-                  _c("h5", [_vm._v("FREE USER SINGUP")]),
-                  _vm._v(" "),
-                  _c("form-singup")
-                ],
-                1
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.singupContributor
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "bg-third flex-column mr-5 text-white border-danger p-4 text-center content"
-            },
-            [
-              _c("h4", { staticClass: "mt-5 font-weight-bold" }, [
-                _vm._v("CONTRIBUTOR")
-              ]),
-              _c("br"),
-              _vm._v(" "),
-              _c("h2", { staticClass: "c-fifth font-weight-bold" }, [
-                _vm._v("FREE")
-              ]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "c-fifth font-weight-bold" }, [
-                _vm._v("UNTIL YOU START EARNING MONEY FROM USERS")
-              ]),
-              _vm._v(" "),
-              _c("small", { staticClass: "c-fifth my-3" }, [
-                _vm._v("(You don’t pay until you earn)")
-              ]),
-              _c("br"),
-              _vm._v(" "),
-              _c("small", [_vm._v("It will be $6.99/m thereafter ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "divider my-3" }),
-              _vm._v(" "),
-              _vm._m(2),
-              _vm._v(" "),
-              _vm._m(3),
-              _vm._v(" "),
-              _vm._m(4),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass: "btn bg-fifth text-white my-5",
-                  on: {
-                    click: function($event) {
-                      return _vm.showComponents("contributor")
-                    }
-                  }
-                },
-                [_vm._v("BECOME A CONTRIBUTOR")]
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.singupContributorForm
-        ? _c(
-            "div",
-            {
-              staticClass:
-                "justify-content-between bg-primary mr-3 ml-3 contributor-form"
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "p-3 text-center" },
-                [
-                  _c("h5", { staticClass: "font-weight-bold" }, [
-                    _vm._v("CONTRIBUTOR USER SINGUP")
-                  ]),
-                  _vm._v(" "),
-                  _c("form-singup")
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "p-3" },
-                [_c("form-singup-contributor")],
-                1
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._m(5)
-    ])
+  return _c("section", { staticClass: "d-xl-flex justify-content-between" }, [
+    _vm.type === "Index"
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "bg-third mr-5 border-danger p-4 text-center w-100 auth-type"
+          },
+          [
+            _c("h4", { staticClass: "mt-5  font-weigh-bold" }, [
+              _vm._v("FREE USER")
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("div", { staticClass: "divider free" }),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _vm._m(2)
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "Free"
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "mr-5 p-4 text-center content bg-primary w-100 auth-type"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "p-2 text-center" },
+              [
+                _c("h5", [_vm._v("FREE USER SIGN UP")]),
+                _vm._v(" "),
+                _c("form-sign-up")
+              ],
+              1
+            )
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "Index" || _vm.type === "Free"
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "bg-third mr-5 border-danger p-4 text-center w-100 auth-type"
+          },
+          [
+            _c("h4", { staticClass: "mt-5 font-weight-bold" }, [
+              _vm._v("CONTRIBUTOR")
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("h2", { staticClass: "c-fifth font-weight-bold" }, [
+              _vm._v("FREE")
+            ]),
+            _vm._v(" "),
+            _c("h5", { staticClass: "c-fifth font-weight-bold" }, [
+              _vm._v("UNTIL YOU START EARNING MONEY FROM USERS")
+            ]),
+            _vm._v(" "),
+            _c("small", { staticClass: "c-fifth my-3" }, [
+              _vm._v("(You don’t pay until you earn)")
+            ]),
+            _c("br"),
+            _vm._v(" "),
+            _c("small", [_vm._v("It will be $6.99/m thereafter ")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "divider my-3" }),
+            _vm._v(" "),
+            _vm._m(3),
+            _vm._v(" "),
+            _vm._m(4),
+            _vm._v(" "),
+            _vm._m(5),
+            _vm._v(" "),
+            _vm._m(6)
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.type === "Contributor"
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "justify-content-between bg-primary mr-3 ml-3 contributor-form w-100"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: "p-3 text-center" },
+              [
+                _c("h5", [_vm._v("CONTRIBUTOR USER SIGN UP")]),
+                _vm._v(" "),
+                _c("form-sign-up")
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "p-3" },
+              [_c("form-sign-up-contributor")],
+              1
+            )
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        class: [
+          _vm.type === "Contributor" ? "w-50" : "w-100",
+          "d-flex justify-content-center align-items-center auth-type for-music-company"
+        ]
+      },
+      [_vm._m(7)]
+    )
   ])
 }
 var staticRenderFns = [
@@ -39394,7 +39343,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
-          "\n                    Full access to the stream and all social\n                    activities such as live streaming, posting\n                    content, interacting with users, and \n                    financially supporting Contributors.\n                "
+          "Full access to the stream and all social activities such as live streaming, posting content, interacting with users, and financially supporting Contributors."
         )
       ])
     ])
@@ -39411,9 +39360,24 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "text-left c-fourth pl-5" }, [
         _vm._v(
-          "\n                    Free users are unable to get financially\n                    supported or rewarded by other users.\n                "
+          "Free users are unable to get financially supported or rewarded by other users."
         )
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "btn bg-fifth my-5" }, [
+      _c(
+        "a",
+        {
+          staticClass: "text-white no-underline",
+          attrs: { href: "/Register/Free" }
+        },
+        [_vm._v("COUNT ME IN")]
+      )
     ])
   },
   function() {
@@ -39428,7 +39392,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
-          "\n                    Full access to the stream and all social\n                    activities such as live streaming, posting\n                    content, interacting with users, and \n                    financially supporting Contributors.\n                "
+          "Full access to the stream and all social activities such as live streaming, posting content, interacting with users, and financially supporting Contributors."
         )
       ])
     ])
@@ -39445,7 +39409,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
-          "\n                    Unlock the SUPPORT & REWARD buttons \n                    so that users can financially support you\n                "
+          "Unlock the SUPPORT & REWARD buttons so that users can financially support you"
         )
       ])
     ])
@@ -39462,7 +39426,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "text-left pl-5" }, [
         _vm._v(
-          "\n                    0% Commision (Noisesharks doesn’t take\n                    a cut when you get supported or rewarded)\n                "
+          "0% Commision (Noisesharks doesn’t take a cut when you get supported or rewarded)"
         )
       ])
     ])
@@ -39471,15 +39435,22 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: " flex-column align-items-center content" },
-      [
-        _c("h6", { staticClass: "for-music" }, [
-          _c("a", [_vm._v("FOR MUSIC COMPANIES >")])
-        ])
-      ]
-    )
+    return _c("button", { staticClass: "btn bg-fifth text-white my-5" }, [
+      _c(
+        "a",
+        {
+          staticClass: "text-white no-underline",
+          attrs: { href: "/Register/Contributor" }
+        },
+        [_vm._v("BECOME A CONTRIBUTOR")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h6", [_c("a", [_vm._v("FOR MUSIC COMPANIES >")])])
   }
 ]
 render._withStripped = true
@@ -41582,7 +41553,7 @@ var render = function() {
                             "stroke-width": "80",
                             "stroke-miterlimit": "10",
                             points:
-                              "1264.782,410.982 829.748,353.176 \n                        630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "
+                              "1264.782,410.982 829.748,353.176\n                        630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "
                           }
                         })
                       ]
@@ -42044,9 +42015,7 @@ var render = function() {
                         })
                       ]
                     ),
-                    _vm._v(
-                      "                    \n                Account Settings"
-                    )
+                    _vm._v("\n                Account Settings")
                   ]
                 ),
                 _vm._v(" "),
@@ -60666,17 +60635,17 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/include/FormSingup.vue":
+/***/ "./resources/js/components/auth/include/FormSignUp.vue":
 /*!*************************************************************!*\
-  !*** ./resources/js/components/auth/include/FormSingup.vue ***!
+  !*** ./resources/js/components/auth/include/FormSignUp.vue ***!
   \*************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormSingup_vue_vue_type_template_id_01b90881___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSingup.vue?vue&type=template&id=01b90881& */ "./resources/js/components/auth/include/FormSingup.vue?vue&type=template&id=01b90881&");
-/* harmony import */ var _FormSingup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSingup.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/include/FormSingup.vue?vue&type=script&lang=js&");
+/* harmony import */ var _FormSignUp_vue_vue_type_template_id_6641594f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSignUp.vue?vue&type=template&id=6641594f& */ "./resources/js/components/auth/include/FormSignUp.vue?vue&type=template&id=6641594f&");
+/* harmony import */ var _FormSignUp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSignUp.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/include/FormSignUp.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -60686,9 +60655,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _FormSingup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FormSingup_vue_vue_type_template_id_01b90881___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FormSingup_vue_vue_type_template_id_01b90881___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FormSignUp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormSignUp_vue_vue_type_template_id_6641594f___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormSignUp_vue_vue_type_template_id_6641594f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -60698,54 +60667,54 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/auth/include/FormSingup.vue"
+component.options.__file = "resources/js/components/auth/include/FormSignUp.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/include/FormSingup.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/auth/include/FormSignUp.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************!*\
-  !*** ./resources/js/components/auth/include/FormSingup.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/auth/include/FormSignUp.vue?vue&type=script&lang=js& ***!
   \**************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSingup.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingup.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingup_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSignUp.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/include/FormSingup.vue?vue&type=template&id=01b90881&":
+/***/ "./resources/js/components/auth/include/FormSignUp.vue?vue&type=template&id=6641594f&":
 /*!********************************************************************************************!*\
-  !*** ./resources/js/components/auth/include/FormSingup.vue?vue&type=template&id=01b90881& ***!
+  !*** ./resources/js/components/auth/include/FormSignUp.vue?vue&type=template&id=6641594f& ***!
   \********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingup_vue_vue_type_template_id_01b90881___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSingup.vue?vue&type=template&id=01b90881& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingup.vue?vue&type=template&id=01b90881&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingup_vue_vue_type_template_id_01b90881___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUp_vue_vue_type_template_id_6641594f___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSignUp.vue?vue&type=template&id=6641594f& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUp.vue?vue&type=template&id=6641594f&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUp_vue_vue_type_template_id_6641594f___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingup_vue_vue_type_template_id_01b90881___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUp_vue_vue_type_template_id_6641594f___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/include/FormSingupContributor.vue":
+/***/ "./resources/js/components/auth/include/FormSignUpContributor.vue":
 /*!************************************************************************!*\
-  !*** ./resources/js/components/auth/include/FormSingupContributor.vue ***!
+  !*** ./resources/js/components/auth/include/FormSignUpContributor.vue ***!
   \************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _FormSingupContributor_vue_vue_type_template_id_3374176c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSingupContributor.vue?vue&type=template&id=3374176c& */ "./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=template&id=3374176c&");
-/* harmony import */ var _FormSingupContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSingupContributor.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=script&lang=js&");
+/* harmony import */ var _FormSignUpContributor_vue_vue_type_template_id_dd429288___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FormSignUpContributor.vue?vue&type=template&id=dd429288& */ "./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=template&id=dd429288&");
+/* harmony import */ var _FormSignUpContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FormSignUpContributor.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -60755,9 +60724,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _FormSingupContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _FormSingupContributor_vue_vue_type_template_id_3374176c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _FormSingupContributor_vue_vue_type_template_id_3374176c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _FormSignUpContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FormSignUpContributor_vue_vue_type_template_id_dd429288___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FormSignUpContributor_vue_vue_type_template_id_dd429288___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -60767,38 +60736,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/auth/include/FormSingupContributor.vue"
+component.options.__file = "resources/js/components/auth/include/FormSignUpContributor.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************!*\
-  !*** ./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingupContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSingupContributor.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingupContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUpContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSignUpContributor.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUpContributor_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=template&id=3374176c&":
+/***/ "./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=template&id=dd429288&":
 /*!*******************************************************************************************************!*\
-  !*** ./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=template&id=3374176c& ***!
+  !*** ./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=template&id=dd429288& ***!
   \*******************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingupContributor_vue_vue_type_template_id_3374176c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSingupContributor.vue?vue&type=template&id=3374176c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSingupContributor.vue?vue&type=template&id=3374176c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingupContributor_vue_vue_type_template_id_3374176c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUpContributor_vue_vue_type_template_id_dd429288___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FormSignUpContributor.vue?vue&type=template&id=dd429288& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/include/FormSignUpContributor.vue?vue&type=template&id=dd429288&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUpContributor_vue_vue_type_template_id_dd429288___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSingupContributor_vue_vue_type_template_id_3374176c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FormSignUpContributor_vue_vue_type_template_id_dd429288___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -63237,8 +63206,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp\www\NoiseShark\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp\www\NoiseShark\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\noisesharks\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\noisesharks\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

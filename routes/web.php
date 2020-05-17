@@ -22,7 +22,7 @@ Route::get('/login', 'HomeController@login');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
 
-Route::get('/Register', 'HomeController@register');
+Route::get('/Register/{type?}', 'HomeController@register');
 Route::post('/Register', 'Auth\AuthController@register')->name('register');
 
 Route::get('/Help', 'HomeController@help')->name('help');

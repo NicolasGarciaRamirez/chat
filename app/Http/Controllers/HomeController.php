@@ -24,11 +24,12 @@ class HomeController extends Controller
     }
 
     /**
+     * @param string $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function register()
+    public function register($type = 'Index')
     {
-        return view('register');
+        return view('register', compact('type'));
     }
 
     /**

@@ -4,9 +4,9 @@
             <div class="form-group post-form" v-if="auth">
                 <div class="bg-primary">
                     <textarea
-                        class="form-control bg-primary" 
+                        class="form-control bg-primary"
                         rows="5"
-                        placeholder="Add Some value to the music industry..." 
+                        placeholder="Add Some value to the music industry..."
                         v-model="post.description">
                     </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
@@ -105,7 +105,7 @@
             }
         },
         components:{
-            Posts, 
+            Posts,
         },
         mounted(){
             this.authCheck()
@@ -142,7 +142,6 @@
                     this.initializeVariables()
                     this.posts_send.unshift(res.data.post)
                     $('html, body').animate({ scrollTop: 0 }, 'fast');
-                    window.location.reload()
                 }).catch(err=>{
                     console.log(err)
                 })

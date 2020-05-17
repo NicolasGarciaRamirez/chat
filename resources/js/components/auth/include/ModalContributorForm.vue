@@ -6,10 +6,10 @@
                     <div class="d-flex flex-row justify-content-between contributor-form">
                         <div class="d-flex flex-column p-4">
                             <h5 class="text-center font-weight-bold">CONTRIBUTOR USER SIGNUP</h5>
-                            <form-singup />
+                            <form-sign-up />
                         </div>
                         <div class="d-flex flex-column ml-5 p-4">
-                            <form-singup-contributor />
+                            <form-sign-up-contributor />
                         </div>
                     </div>
                 </div>
@@ -19,12 +19,12 @@
 </template>
 
 <script>
-import FormSingup from './FormSingup'
-import FormSingupContributor from './FormSingupContributor'
+import FormSignUp from './FormSignUp'
+import FormSignUpContributor from './FormSignUpContributor'
 export default {
     components:{
-        FormSingup,
-        FormSingupContributor
+        FormSignUp,
+        FormSignUpContributor
     }
 }
 </script>

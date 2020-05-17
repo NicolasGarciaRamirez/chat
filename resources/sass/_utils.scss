@@ -65,9 +65,9 @@
         opacity: 0.8 !important;
         &:hover{
             opacity: 1 !important;
-        } 
+        }
     }
-    a.bg-twitter{ 
+    a.bg-twitter{
         background: #00AAFF !important;
         opacity: 0.8 !important;
         &:hover{
@@ -76,7 +76,7 @@
     }
 }
 select.select-form{
-    
+
     border-radius: 30px;
     background: black;
     color: white;
@@ -144,4 +144,11 @@ textarea{
 .icon{
     height: 15px !important;
     width: 15px !important;
+}
+
+.no-underline{
+    text-decoration: none;
+    &:hover{
+        text-decoration: none !important;
+    }
 }

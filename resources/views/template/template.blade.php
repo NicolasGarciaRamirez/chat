@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 </head>
 <body class="c-app">
+    @php
+        isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
+    @endphp
     <div id="app">
         @include('template._nav')
         <div class="c-wrapper">
@@ -23,9 +26,6 @@
                 @include('template._header')
                 <main class="c-main">
                     @yield('content')
-                    @php
-                        isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
-                    @endphp
                     <login is_login_view="{{ $is_login_view }}" />
                 </main>
                 <modal-contributor-singup />

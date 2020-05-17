@@ -57,7 +57,7 @@
                 opacity: 5 !important;
             }
         }
-        a.bg-twitter{ 
+        a.bg-twitter{
             background: #00AAFF !important;
             &:hover{
                 opacity: 5 !important;
@@ -129,86 +129,71 @@
     }
 }
 .register{
-    .contain{
-        display: flex;
-        flex-direction: row;
-        @include media-breakpoint-down(md){
-            flex-direction: column !important;
+    .auth-type{
+        margin-bottom: 5rem;
+        min-height: 80vh;
+    }
+
+    .or{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
         }
-        .or{
-            position: relative;
-            &:after{
-                content: "";
-                position: absolute;
-                right: 10px;
-                background-color: #262626;
-                height: 3px;
-                top: 10px;
-                width: 40%;
-            }
-            &:before{
-                content: "";
-                position: absolute;
-                left: 10px;
-                background-color: #262626;
-                height: 3px;
-                top: 10px;
-                width: 40%;
-            }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
         }
-        .social-register{
-            a{
-                font-weight: bold;
-                border-radius: 20px;
-                &.bg-white{
-                    &:hover{
-                        color: $fifth-color !important;
-                    }
+    }
+    .social-register{
+        a{
+            font-weight: bold;
+            border-radius: 20px;
+            &.bg-white{
+                &:hover{
+                    color: $fifth-color !important;
                 }
             }
         }
-        input.form-control ,textarea.form-control{
-            border-radius: 20px;
+    }
+    input.form-control ,textarea.form-control{
+        border-radius: 20px;
+        background-color: $third-color;
+        color: $fifth-color;
+        border: 0;
+        padding: 1rem;
+        &::placeholder{
+            color: $fourth-color;
+        }
+        &:focus{
             background-color: $third-color;
             color: $fifth-color;
             border: 0;
-            padding: 1rem;
-            &::placeholder{
-                color: $fourth-color;
-            }
-            &:focus{
-                background-color: $third-color;
-                color: $fifth-color;
-                border: 0;
-            }
         }
-        .content{
-            width: 30rem;
-            height: 45rem;
-            border-left: 2px solid $third-color;
-            @include media-breakpoint-down(md){
-                width: 100%;
-                margin-bottom: 5rem;
-                display: flex;
-                flex-direction: column;
-                height: 50rem;
-            }
-            .for-music{
-                margin-top: 18rem;
-                margin-left: 2.89rem;
-                margin-bottom: 18rem;
-                a{
-                    border-bottom: 1px solid $fifth-color;
-                }
-            }
+    }
+
+    .for-music-company{
+        border-left: 2px solid #262626;
+        a{
+            border-bottom: 1px solid $fifth-color;
         }
-        .contributor-form{
+    }
+    .contributor-form{
+        display: flex;
+        flex-direction: row;
+        @include media-breakpoint-down(sm){
             display: flex;
-            flex-direction: row;
-            @include media-breakpoint-down(sm){
-                display: flex;
-                flex-direction: column !important;
-            }
+            flex-direction: column !important;
         }
     }
     .divider{

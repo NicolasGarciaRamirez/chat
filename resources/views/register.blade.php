@@ -2,6 +2,6 @@
 
 @section('content')
 <div class="container-fluid register">
-    <register-index />
+    <register-index type="{{ $type }}" />
 </div>
 @endsection
