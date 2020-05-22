@@ -12,8 +12,8 @@
             $1.00. If the account was correct, we will charge
             you that $1.00 back
         </span>
-        <button class="btn bg-fifth text-white my-3 rounded-pill">Check Bank Account</button>
-        <button class="btn text-white bg-third rounded-pill">Sing Up</button>
+        <button class="btn bg-fifth text-white my-3 rounded-pill font-weight-bold">Check Bank Account</button>
+        <button class="btn text-white bg-third rounded-pill font-weight-bold">Sign Up</button>
     </div>
 </template>
 

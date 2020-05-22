@@ -36,11 +36,11 @@
                 </div>
             </div>
             <div class="d-flex align-items-start">
-                <img :src="`/images/profile/${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
+                <img :src="`/images/${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-3">
-                    <a :href="`/View/Profile/Releases/${post.user.user_name}`" class="text-white post-user-name">{{ post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
-                    <div class="d-flex justify-content-center align-items-center post-user-type mt-2">
-                        <button class="btn bg-fifth text-white mr-2">MIXING ENGENIERY</button>
+                    <a :href="`/${post.user.username}/Profile/Releases`" class="text-white post-user-name">{{ post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
+                    <div class="d-flex align-items-center post-user-type mt-2">
+                        <button class="btn bg-fifth text-white mr-2">{{ post.user.personal_information.title }}</button>
                         <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
                     </div>
                 </div>
@@ -51,7 +51,7 @@
                 {{ post.description }} <span class="c-fifth">#mixingengineer</span> <span class="c-fifth">#m</span>... See More..
             </div>
             <div class="d-flex flex-column mt-1 content img-fluid">
-                <img :src="`/images/post/${ post.image }`"  alt="img-post" @click="showModalPost" class="img-fluid cursor-point">
+                <img :src="`/images/post/${ post.image }`"  alt="img-post" class="img-fluid cursor-point">
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none d-md-none">
                  <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger mx-2  w-100" @click="showModalSupport">SUPPORT 
@@ -87,30 +87,18 @@
                     <div class="information"><img src="/images/icons/post-down.svg" alt="">100</div>
                 </div>
             </div>
+            <comments :post="post" />
         </div>
-        <comments :post="post" />
-        <modal-support :post=post />
-        <modal-reward :post=post />
-        <modal-post :post="post" />
-        <register />
+        
     </section>
 </template>
 
 <script>
     import Comments from './comments/Comments'
-    import ModalReward from './ModalReward'
-    import ModalSupport from './ModalSupport'
-    import ModalPost from './ModalPost'
-    import Register from '../auth/Register'
-
     export default {
         props:['post'],
         components:{
-            Comments,
-            ModalSupport,
-            ModalReward,
-            ModalPost,
-            Register
+            Comments
         },
         methods:{
             showModalSupport(){
@@ -122,9 +110,9 @@
             showModalRegister(){
                 $('#ModalRegister').modal('show')
             },
-            showModalPost(){
-                $('#ModalPost').modal('show')
-            }
+            // showModalPost(){
+            //     $('#ModalPost').modal('show')
+            // }
         }
     }
 </script>

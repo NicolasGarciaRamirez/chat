@@ -51,7 +51,7 @@ export default {
             var avatar = new FormData()
             avatar.append('avatar', this.avatar, this.avatar.name)
         
-            axios.post(`/User/Edit/imageProfile/${this.user.id}`, avatar ).then(res => {
+            axios.post(`/User/Edit/imageProfile/${this.user.username}`, avatar ).then(res => {
                  if (res.data.updated){
                      window.location.reload()
                  }else{

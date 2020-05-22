@@ -22,27 +22,29 @@
                 <span>{{ errors.first('email_confirmation') }}</span>
                 <input type="email" class="form-control mb-3" name="email_confirmation" placeholder="Confirm Email Address" v-model="user.email_confirmation" v-validate="'required|email|confirmed:email'" data-vv-as="email" required>
                 <span>{{ errors.first('password') }}</span>
-                <input type="password" class="form-control mb-3" name="password" placeholder="Password" v-model="user.password" v-validate="'required|min_value:6|verify_password'" ref="password" required>
+                <input type="password" class="form-control mb-3" name="password" placeholder="Password" v-model="user.password" v-validate="'required|verify_password'" ref="password" required>
                 <span>{{ errors.first('password_confirmation') }}</span>
-                <input type="password" class="form-control mb-3" name="password_confirmation" placeholder="Confirm Password" v-model="user.password_confirmation" v-validate="'required|min_value:6|confirmed:password'" data-vv-as="password" required>
+                <input type="password" class="form-control mb-3" name="password_confirmation" placeholder="Confirm Password" v-model="user.password_confirmation" v-validate="'required|confirmed:password'" data-vv-as="password" required>
             </div>
-            <div class="mt-2 p-2 d-flex justify-content-center">
-                <button type="submit" class="btn bg-fifth text-white sign-up ">Sign Up</button>
+            <div class="m-2 p-0 d-flex justify-content-center">
+                <button type="submit" class="btn bg-fifth text-white sign-up font-weight-bold rounded-pill w-100 sign-up">Sign Up</button>
             </div>
-            <div><p class="text-center or text-white">OR</p></div>
+            <div class="py-3">
+                <p class="text-center or text-white">OR</p>
+            </div>
             <div class="d-flex flex-column social-login">
-                <a href="#" class="btn bg-facebook text-white">Facebook Quick Singup</a>
-                <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Singup</a>
-                <a href="#" class="btn bg-white c-fifth">Google Quick Singup</a>
+                <a href="#" class="btn bg-facebook text-white">Facebook Quick Signup</a>
+                <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Signup</a>
+                <a href="#" class="btn bg-white c-fifth">Google Quick Signup</a>
             </div>
         </form>
-        <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy</p>
+        <p class="c-fourth text-center mt-3 mb-5">By logging in up you are agreeing to Noisesharks’ <a href="/terms" class="c-fourth"><b>Terms of Use</b></a>, <a href="#" class="c-fourth"><b>Privacy Policy</b></a> , & <a href="#" class="c-fourth"><b>Copyright Policy</b></a></p>
     </div>
 </template>
 
 <script>
-    import { Validator } from 'vee-validate';
-
+    import { Validator } from 'vee-validate'
+    import Auth from '../../../helpers/Auth'
     Validator.extend('verify_password', {
         validate: value => {
             var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
@@ -68,6 +70,7 @@
         data() {
             return {
                 user: {
+                    avatar: "Profile/default.png",
                     first_name: "",
                     last_name: "",
                     email: "",
@@ -110,12 +113,13 @@
                             }
                         },
                         releases: {
-                            artist: 'N/A',
-                            album: 'N/A',
+                            image: '/images/profile/default.png',
+                            artist_name: 'N/A',
+                            album_name: 'N/A',
                             genre: 'N/A',
                             release_date: 'N/A',
                             label: 'N/A',
-                            credits: 'N/A'
+                            // credits: 'N/A'
                         },
                         worked_with: 'N/A',
                         genre: 'N/A',
@@ -146,8 +150,9 @@
                     this.user.subscription_type = this.type
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
+                            Auth.setAuthUser(true, this.user.avatar, res.data.user.username)
                             alert('user create successfull')
-                            window.location.replace('/Profile/Edit')
+                            window.location.replace(`/${res.data.user.username}/Profile/Releases`)
                         }
                     }).catch(err => {
                         this.backend_errors = err.response.data.errors

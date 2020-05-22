@@ -62,18 +62,23 @@
                         <textarea type="text" class="form-control m-2" v-model="post.allow_download" placeholder="Add Description.."></textarea>
                     </div>
                     <div class="d-flex flex-row justify-content-start">
-                        <select class="select-form m-2" v-model="post.genre">
-                            <option value="">Select Genre</option>
-                            <option value="Rock">Rock</option>
-                        </select>
-                        <select class="select-form m-2" v-model="post.category">
-                            <option value="">Select Category</option>
-                            <option value="Sax">sax</option>
-                        </select>
-
-                        <select class="select-form m-2" >
-                            <option value="">Everyone</option>
-                        </select>
+                        <div class="select">
+                            <select class="select-form m-2" v-model="post.genre">
+                                <option value="">Select Genre</option>
+                                <option value="Rock">Rock</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select class="select-form m-2" v-model="post.category">
+                                <option value="">Select Category</option>
+                                <option value="Sax">sax</option>
+                            </select>
+                        </div>
+                        <div class="select">
+                            <select class="select-form m-2" >
+                                <option value="">Everyone</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,6 +89,7 @@
 
 <script>
     import Posts from "../stream/Posts";
+    import Auth from "../../helpers/Auth"
     export default {
         props:['posts'],
         data(){
@@ -92,7 +98,6 @@
                 allow_download: false,
                 auth : false,
                 imageData: "",
-                user: {},
                 post:{
                     replace_caption:"",
                     allow_download:"",
@@ -108,15 +113,12 @@
             Posts,
         },
         mounted(){
-            this.authCheck()
+            this.getAuth()
             this.posts_send = this.posts
         },
         methods:{
-            authCheck(){
-                axios.post('/Auth/Check').then(res => {
-                    this.auth = res.data.auth
-                    this.user = res.data.user
-                })
+            getAuth(){
+                this.auth = Auth.getAuthUser()
             },
             previewImage(event) {
                 this.post.image = event.target.files[0]
@@ -131,6 +133,7 @@
                 }
             },
             async save(){
+                let username = Auth.getUserName();
                 var imagePost = new FormData();
                 imagePost.append('imagePost', this.post.image)
                 imagePost.append('imageName', this.post.image.name)
@@ -138,10 +141,11 @@
                 imagePost.append('postGenre', this.post.genre)
                 imagePost.append('postCategory', this.post.category)
 
-                await axios.post(`/Profile/Post/Save/${this.user.id}`, imagePost).then(res =>{
+                await axios.post(`/${username}/Post/Save`, imagePost).then(res =>{
                     this.initializeVariables()
                     this.posts_send.unshift(res.data.post)
                     $('html, body').animate({ scrollTop: 0 }, 'fast');
+                    window.location.reload()
                 }).catch(err=>{
                     console.log(err)
                 })

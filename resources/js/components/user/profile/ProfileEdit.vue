@@ -11,21 +11,21 @@
             <div>
                 <h2 class="c-white">Subscription</h2>
                 <label>Acount Type: <span class="c-fifth">{{ user.subscription_type }}</span></label><br>
-                <a href="/Profile/Settings" class="btn bg-black text-white border rounded-pill settings">
+                <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white border rounded-pill settings">
                     Account Setings <i class="fas fa-cog ml-2"></i>
                 </a>
             </div>
         </div>
         <div class="navigation-body">
-            <a href="/Profile/Edit/`" class="c-fifth font-weight-bold mr-3 active">Profile</a>
-            <a href="/Profile/Channel/Edit" class="text-white font-weight-bold">Channel</a>
+            <a :href="`/${user.username}/Edit/`" class="c-fifth font-weight-bold mr-3 active">Profile</a>
+            <a :href="`/${user.username}/Channel/Edit`" class="text-white font-weight-bold">Channel</a>
         </div>
         <accordion-profile :user="user" />
     </section>
 </template>
 
 <script>
-    import AccordionProfile from "./AccordionProfile";
+    import AccordionProfile from "./include/AccordionProfile";
     export default {
         props:['user'],
         data(){

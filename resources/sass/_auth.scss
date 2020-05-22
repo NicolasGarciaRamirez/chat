@@ -14,9 +14,14 @@
         }
     }
     a:not(.btn){
+        color: $third-color;
         text-decoration: none;
         &:hover{
-            color: $fourth-color;
+            text-decoration: underline;
+        }
+        &:active{
+            text-decoration: underline;
+            color: white !important;
         }
     }
     .or{
@@ -43,25 +48,7 @@
     .social-login{
         a{
             font-weight: bold;
-            border-radius: 20px;
-            &.bg-white{
-                color: #FF3C03 !important;
-                &:hover{
-                    opacity: 5 !important;
-                }
-            }
-        }
-        a.bg-facebook{
-            background: #0055FF !important;
-            &:hover{
-                opacity: 5 !important;
-            }
-        }
-        a.bg-twitter{
-            background: #00AAFF !important;
-            &:hover{
-                opacity: 5 !important;
-            }
+            border-radius: 300px;
         }
     }
     .divider{
@@ -71,7 +58,14 @@
     }
     .sign-me{
         width: 100%;
-        border-radius: 20px;
+        border-radius: 30px;
+        &:hover{
+            background: $six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
     }
 }
 .modal-register{
@@ -110,25 +104,37 @@
     .social-register{
         a{
             font-weight: bold;
-            border-radius: 20px;
-            &.bg-white{
-                &:hover{
-                    color: $fifth-color !important;
-                }
-            }
+            border-radius: 30px;
         }
     }
     .divider{
-        background-color: $third-color;
+        background-color: $third-color !important;
         height: 3px;
         width: 100%;
     }
     .sign-up{
         width: 100%;
-        border-radius: 20px;
+        border-radius: 30px;
+        &:hover{
+            background: $six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
     }
 }
 .register{
+    position: relative;
+    background-image: url(/images/backgroud-contributor.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: -2rem;
+    img.index{
+        min-width: 100%;
+        min-height: 10rem;
+        max-height: 10rem;
+    }
     .auth-type{
         margin-bottom: 5rem;
         min-height: 80vh;
@@ -153,17 +159,6 @@
             height: 3px;
             top: 10px;
             width: 40%;
-        }
-    }
-    .social-register{
-        a{
-            font-weight: bold;
-            border-radius: 20px;
-            &.bg-white{
-                &:hover{
-                    color: $fifth-color !important;
-                }
-            }
         }
     }
     input.form-control ,textarea.form-control{

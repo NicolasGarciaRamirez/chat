@@ -51,7 +51,7 @@ export default {
             var cover = new FormData()
             cover.append('cover', this.cover, this.cover.name)
         
-            axios.post(`/User/Edit/imageCover/${this.user.id}`, cover ).then(res => {
+            axios.post(`/User/Edit/imageCover/${this.user.username}`, cover ).then(res => {
                  if (res.data.updated){
                      window.location.reload()
                  }else{

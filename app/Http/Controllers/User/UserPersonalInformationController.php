@@ -9,6 +9,24 @@ use App\Models\User\UserPersonalInformation;
 
 class UserPersonalInformationController extends Controller
 {
+
+     /**
+     * @var
+     */
+    private $user;
+
+    /**
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (!$user = User::whereUsername($request->username)->first()) return abort(404);
+            $this->user = $user;
+            $this->user->load('personal_information', 'posts');
+            return $next($request);
+        });
+    }
     /**
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
@@ -25,8 +43,10 @@ class UserPersonalInformationController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(User $user , Request $request)
+    public function update(Request $request)
     {
+        $user = User::whereUsername($this->user->username)->first();
+
         $personal_information = new UserPersonalInformation($request->all());
         $personal_information->members = json_encode($request->members);
         $personal_information->releases = json_encode($request->releases);

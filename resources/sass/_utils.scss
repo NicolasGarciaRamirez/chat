@@ -50,9 +50,9 @@
         border-radius: 20px;
         &.bg-white{
             color: #FF3C03 !important;
-            opacity: 0.8 !important;
+            opacity: 1 !important;
             &:hover{
-                opacity: 1 !important;
+                opacity: 0.8 !important;
             }
             &:active{
                 background: #FF3C03 !important;
@@ -62,29 +62,33 @@
     }
     a.bg-facebook{
         background: #0055FF !important;
-        opacity: 0.8 !important;
+        opacity: 1 !important;
         &:hover{
-            opacity: 1 !important;
+            opacity: 0.8 !important;
         }
     }
     a.bg-twitter{
         background: #00AAFF !important;
-        opacity: 0.8 !important;
+        opacity: 1 !important;
         &:hover{
-            opacity: 1 !important;
+            opacity: 0.8 !important;
         }
     }
 }
-select.select-form{
-
-    border-radius: 30px;
-    background: black;
-    color: white;
-    padding: 6px;
-    &:hover{
-        content:"";
-        background-color: $third-color;
+.select{
+    select.select-form{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        border-radius: 30px;
+        background: black;
         color: white;
+        padding: 6px;
+        &:hover{
+            background-color: $third-color;
+            color: white;
+        }
     }
 }
 

@@ -8,15 +8,26 @@ use App\Models\User\User;
 
 class UserPostController extends Controller
 {
+
+    private $user;
+
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (!$user = User::whereUsername($request->username)->first()) return abort(404);
+            $this->user = $user;
+            $this->user->load('personal_information', 'posts');
+            return $next($request);
+        });
+    }
     /**
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function get(User $user)
+    public function get()
     {
-        $user->load('personal_information');
         return response()->json([
-            'user' => $user
+            'user' => $this->user
         ]);
     }
 
@@ -25,13 +36,14 @@ class UserPostController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function save(User $user, Request $request)
+    public function save(Request $request)
     {
+        $user = $this->user;
         $request->validate([
             'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
         ]);
 
-        $imagePost = $user->personal_information->full_name . '-' . now()->format('Y-m-dHis') . '.' . request()->imagePost->getClientOriginalExtension();
+        $imagePost = \Str::random(150).'-'. request()->imagePost->getClientOriginalExtension();
         request()->imagePost->move(base_path('public/images/post'), $imagePost);
 
         $post = new \App\Models\User\UserPost();

@@ -97,6 +97,13 @@
         border-radius: 30px;
         font-weight: 700;
         height: calc(2.18em + 0.75rem + 2px) !important;
+        &:hover{
+            background:$six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
     }
 
     .become-contributor{

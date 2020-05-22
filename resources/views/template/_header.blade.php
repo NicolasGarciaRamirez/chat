@@ -6,9 +6,9 @@
         <img src="/images/logo-white.svg" width="118" height="56" alt="Logo">
     </a>
     <ul class="c-header-nav d-lg-down-none ml-5">
-        <li class="c-header-nav-item px-1"><a class="c-header-nav-link active mx-2" href="/" id="stream">Stream</a></li>
-        <li class="c-header-nav-item px-1"><a class="c-header-nav-link" href="/Profile/Channel/Activity" id="profile">Profile</a></li>
+        <li class="c-header-nav-item px-1"><a class="c-header-nav-link mx-2 {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="/" id="stream">Stream</a></li>
+        <li class="c-header-nav-item px-1"><a class="c-header-nav-link {{ Route::currentRouteName() == 'profile'  ? 'active' : '' }}" href="{{ \Auth::check() ? '/'.\Auth::user()->username.'/Profile/Releases' : 'login' }}" id="profile"> Profile</a></li>
     </ul>
-    <app-header />
+    <app-header :user="{{ \Auth::check() ? \Auth::user() : 'user' }}" />
 </header>
 

@@ -11,22 +11,23 @@
             <div>
                 <h2 class="c-white">Subscription</h2>
                 <label>Acount Type: <span class="c-fifth">FREE</span></label><br>
-                <a href="/Profile/Settings" class="btn bg-black text-white border rounded-pill">
+                <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white border rounded-pill">
                     Account Setings <i class="fas fa-cog ml-2"></i>
                 </a>
             </div>
         </div>
         <div class="navigation-body">
-            <a href="/Profile/Edit" class="text-white font-weight-bold mr-3">Profile</a>
-            <a href="/Profile/Channel/Edit" class="c-fifth font-weight-bold active">Channel</a>
+            <a :href="`/${user.username}/Edit`" class="text-white font-weight-bold mr-3">Profile</a>
+            <a :href="`/${user.username}/Channel/Edit`" class="c-fifth font-weight-bold active">Channel</a>
         </div>
-        <accordion-channel />
+        <accordion-channel :user="user" />
     </section>
 </template>
 
 <script>
-    import AccordionChannel from "./AccordionChannel";
+    import AccordionChannel from "../profile/include/AccordionChannel";
     export default {
+        props:['user'],
         components:{
             AccordionChannel
         }

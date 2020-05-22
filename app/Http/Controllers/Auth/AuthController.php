@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\loginUser;
 use App\Http\Requests\StoreUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User\User;
 
 class AuthController extends Controller
 {
@@ -28,17 +30,19 @@ class AuthController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function login(Request $request)
+    public function login(loginUser $request)
     {
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $is_login_view = true;
-            return view('template.template', compact('is_login_view'));
+            return response()->json([
+                'user' => Auth::user(),
+                'auth' => true
+            ], 200);
         } else {
             return response()->json([
-                'errors' => ['email or password incorrect']
-            ]);
+                'errors' => [ 'errors' => "Credentials not match"],
+            ], 422);
         }
     }
 

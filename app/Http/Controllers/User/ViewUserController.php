@@ -25,7 +25,7 @@ class ViewUserController extends Controller
      */
     public function activity()
     {
-        return view('user.view.channel.activity', ['user' => $this->user]);
+        return view('user.channel.channel.activity', ['user' => $this->user]);
     }
 
     /**
@@ -33,7 +33,7 @@ class ViewUserController extends Controller
      */
     public function playlist()
     {
-        return view('user.view.channel.playlist', ['user' => $this->user]);
+        return view('user.channel.channel.playlist', ['user' => $this->user]);
     }
 
     /**
@@ -41,7 +41,7 @@ class ViewUserController extends Controller
      */
     public function releases()
     {
-        return view('user.view.profile.releases', ['user' => $this->user]);
+        return view('user.profile.releases', ['user' => $this->user]);
     }
 
     /**
@@ -49,7 +49,7 @@ class ViewUserController extends Controller
      */
     public function members()
     {
-        return view('user.view.profile.members', ['user' => $this->user]);
+        return view('user.profile.members', ['user' => $this->user]);
     }
 
     /**
@@ -57,7 +57,7 @@ class ViewUserController extends Controller
      */
     public function workHistory()
     {
-        return view('user.view.profile.work-history', ['user' => $this->user]);
+        return view('user.profile.work-history', ['user' => $this->user]);
     }
 
     /**
@@ -65,7 +65,7 @@ class ViewUserController extends Controller
      */
     public function genres()
     {
-        return view('user.view.profile.genres', ['user' => $this->user]);
+        return view('user.profile.genres', ['user' => $this->user]);
     }
 
     /**
@@ -73,7 +73,7 @@ class ViewUserController extends Controller
      */
     public function services($user_name)
     {
-        return view('user.view.profile.services', ['user' => $this->user]);
+        return view('user.profile.services', ['user' => $this->user]);
     }
 
     /**
@@ -81,7 +81,7 @@ class ViewUserController extends Controller
      */
     public function rates()
     {
-        return view('user.view.profile.rates', ['user' => $this->user]);
+        return view('user.profile.rates', ['user' => $this->user]);
     }
 
 }

@@ -41,6 +41,6 @@ class UserPost extends Model
      */
     public function comments()
     {
-        return $this->hasMany('\App\Models\Comments\Comments', 'post_id');
+        return $this->hasMany('\App\Models\User\Comments', 'post_id');
     }
 }

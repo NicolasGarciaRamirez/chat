@@ -8,7 +8,7 @@
                     </button>
                 </div>
                 <div class="modal-body pt-4 text-center">
-                    <h3 class="font-weight-bold">FREE USER SINGUP</h3>
+                    <h3 class="font-weight-bold">Free User Signup</h3>
                     <form-sign-up />
                 </div>
             </div>

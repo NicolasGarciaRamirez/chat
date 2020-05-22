@@ -18,9 +18,10 @@
 <body class="c-app">
     @php
         isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
+        // dd($user);
     @endphp
     <div id="app">
-        @include('template._nav')
+        @include('template._nav' )
         <div class="c-wrapper">
             <div class="c-body">
                 @include('template._header')
@@ -28,7 +29,7 @@
                     @yield('content')
                     <login is_login_view="{{ $is_login_view }}" />
                 </main>
-                <modal-contributor-singup />
+                <modal-contributor-signup />
             </div>
         </div>
     </div>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="view-profile">
-        @include('user.view.profile._header', $user)
-        <profile-services />
+        @include('user.profile._header')
+        <profile-work-history />
     </div>
 @endsection

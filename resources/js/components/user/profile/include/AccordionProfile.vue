@@ -13,11 +13,11 @@
                         <div class="card-body  bg-black">
                             <div class="row text-justify">
                                 <div class="col-md-6">
-                                    <input type="checkbox" v-model="personal_information.profile_type">
+                                    <input type="radio" id="personProject" value="A Person or A Project" v-model="personal_information.profile_type">
                                     <label>A person or A Project</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="checkbox" v-model="personal_information.profile_type">
+                                    <input type="radio" id="aBand" value="A Band" v-model="personal_information.profile_type">
                                     <label>A Band</label>
                                 </div>
                             </div>
@@ -34,12 +34,39 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
                             <div class="row text-justify ">
-                                <div class="col text-center">
+                                <div class="col text-center select">
                                     <select name="title" class="select-form" v-model="personal_information.title">
-                                        <option value="">Select Title</option>
-                                        <option value="Person">Person</option>
-                                        <option value="Band">Band</option>
-                                        <option value="Company">Company</option>
+                                        <optgroup  v-if="personal_information.profile_type == 'A Person or A Project'">
+                                            <option value="N/A">Select Title</option>
+                                            <option value="Vlog Channel">Vlog Channel</option>
+                                            <option value="Podcast">Podcast</option>
+                                            <option value="Composer">Composer</option>
+                                            <option value="Vocal Coach">Vocal Coach</option>
+                                            <option value="Mixing Engineer">Mixing Engineer</option>
+                                            <option value="Music Producer">Music Producer</option>
+                                            <option value="Mastering Engineer">Mastering Engineer</option>
+                                            <option value="Recording Engineer">Recording Engineer</option>
+                                            <option value="Sound Designer">Sound Designer</option>
+                                            <option value="Instrument Tutor">Instrument Tutor</option>
+                                            <option value="Rapper">Rapper</option>
+                                            <option value="Singer">Singer</option>
+                                            <option value="Singer Songwriter">Singer Songwriter</option>
+                                            <option value="Guitarist">Guitarist</option>
+                                            <option value="Drummer">Drummer</option>
+                                            <option value="Bassist">Bassist</option>
+                                            <option value="Keyboardist">Keyboardist</option>
+                                            <option value="DJ">DJ</option>
+                                            <option value="Beatmaker">Beatmaker</option>
+                                            <option value="Music Studio">Music Studio</option>
+                                            <option value="Manager">Manager</option>
+                                            <option value="A&R">A&R</option>
+                                        </optgroup>
+                                        <optgroup v-if="personal_information.profile_type == 'A Band'">
+                                            <option value="N/A">Select Title</option>
+                                            <option value="Band">Band</option>
+                                            <option value="Duet">Duet</option>
+                                            <option value="Orchestra">Orchestra</option>
+                                        </optgroup>
                                     </select>
                                 </div>
                             </div>
@@ -181,44 +208,43 @@
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
-                    <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionProfile">
-                        <div class="card-body text-white bg-black align-items-center">
-                            <div class="form-group row">
-                                <label class="col-sm-1">Artist</label> 
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="personal_information.releases.artist">
+                    <div id="collapseSix" class="collapse text-center bg-black" aria-labelledby="headingSix" data-parent="#accordionProfile">
+                        <button class="bg-primary c-white rounded-pill" >Add Release</button>
+                        <div class="card-body d-flex flex-row text-white bg-black align-items-center justify-content-between">
+                            <div class="d-flex flex-row">
+                                <div class="d-flex flex-column">
+                                    <label for="imgRelease">
+                                        <img class="img-fluid pr-3" :src="imageData" height="190px" width="180px">
+                                    </label>
+                                    <input type="file" id="imgRelease" name="imageRelease" class="form-control d-none" ref="imageRelease" @change="previewImage">
+                                  
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <input type="text" class="form-control" placeholder="Artist Name" v-model="personal_information.releases.artist_name">
+                                    <input type="text" class="form-control" placeholder="Album Name" v-model="personal_information.releases.album_name">
+                                    <input type="text" class="form-control" placeholder="Release Date" v-model="personal_information.releases.release_date" >
+                                    <input type="text" class="form-control" placeholder="Genre" v-model="personal_information.releases.genre">
+                                    <input type="text" class="form-control" placeholder="Label name" v-model="personal_information.releases.label">
+                                    <!-- <input type="text" class="form-control" placeholder="Credits" v-model="personal_information.releases.credits"> -->
                                 </div>
                             </div>
-                            <div class="form-group row my-3">
-                                <label class="col-sm-1">Album</label> 
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="personal_information.releases.album">
+                            <div class="d-flex flex-row">
+                                <div class="d-flex flex-column">
+                                    <label for="imgRelease">
+                                        <img class="img-fluid pr-3" :src="imageData" height="190px" width="180px">
+                                    </label>
+                                    <input type="file" id="imgRelease" name="imageRelease" class="form-control d-none" ref="imageRelease" @change="previewImage">
+                                  
                                 </div>
-                            </div>    
-                            <div class="form-group row">
-                                <label class="col-sm-1">Genre</label> 
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="personal_information.releases.genre">
+                                <div class="d-flex flex-column">
+                                    <input type="text" class="form-control" placeholder="Artist Name" v-model="personal_information.releases.artist_name">
+                                    <input type="text" class="form-control" placeholder="Album Name" v-model="personal_information.releases.album_name">
+                                    <input type="text" class="form-control" placeholder="Release Date" v-model="personal_information.releases.release_date" >
+                                    <input type="text" class="form-control" placeholder="Genre" v-model="personal_information.releases.genre">
+                                    <input type="text" class="form-control" placeholder="Label name" v-model="personal_information.releases.label">
+                                    <!-- <input type="text" class="form-control" placeholder="Credits" v-model="personal_information.releases.credits"> -->
                                 </div>
-                            </div>    
-                            <div class="form-group row my-3">
-                                <label class="col-sm-1">Release Date</label> 
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="personal_information.releases.release_date" >
-                                </div>
-                            </div>    
-                            <div class="form-group row">
-                                <label class="col-sm-1">Label</label> 
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="personal_information.releases.label">
-                                </div>
-                            </div>    
-                            <div class="form-group row my-3">
-                                <label class="col-sm-1">Credits</label> 
-                                <div class="col-sm-6">
-                                    <input type="text" class="form-control" v-model="personal_information.releases.credits">
-                                </div>
-                            </div>    
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -235,7 +261,7 @@
                         <div class="card-body text-white bg-black">
                             <div class="row">
                                 <div class="col text-center">
-                                    <button class="btn bg-black text-white rounded-pill">Add Worked With</button>
+                                    <button class="bg-primary text-white rounded-pill">Add Worked With</button>
                                 </div>
                             </div>
                         </div>
@@ -252,7 +278,7 @@
                     </div>
                     <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
-                            <div class="text-center">
+                            <div class="text-center select">
                                 <select class="select-form" v-model="personal_information.genre" >
                                     <option value="">Select A Genre</option>
                                     <option value="Male">Male</option>
@@ -274,10 +300,85 @@
                     </div>
                     <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
-                            <div class="text-center">
-                                <select name="" class="select-form" v-model="personal_information.services">
-                                    <option value="">Select Services</option>
-                                    <option value="N/A">N/A</option>
+                            <div class="text-center select">
+                                <select class="select-form" v-model="personal_information.services">
+                                    <optgroup v-if="personal_information.title == 'Audio Engineering'">
+                                        <option value="">Select Services</option>
+                                        <option value="N/A">N/A</option>
+                                        <option value="Audio Repairing">Audio Repairing</option>
+                                        <option value="Broadcasting">Broadcasting</option>
+                                        <option value="Consultation">Consultation</option>
+                                        <option value="Equipment Repairing">Equipment Repairing</option>
+                                        <option value="Live Stage Setup">Live Stage Setup</option>
+                                        <option value="Live TV Audio Engineering">Live TV Audio Engineering</option>
+                                        <option value="Mastering">Mastering</option>
+                                        <option value="Mixing">Mixing</option>
+                                        <option value="Podcasting">Podcasting</option>
+                                        <option value="Post-Production">Post-Production</option>
+                                        <option value="Radio Engineering">Radio Engineering</option>
+                                        <option value="Recording">Recording</option>
+                                        <option value="Song Re-Mixing">Song Re-Mixing</option>
+                                        <option value="Studio Setup">Studio Setup</option>
+                                    </optgroup>
+                                    <optgroup v-if="personal_information.title == 'Music Production'">
+                                        <option value="">Select Services</option>
+                                        <option value="N/A">N/A</option>
+                                        <oprion value="Beat Making">Beat Making</oprion>
+                                        <oprion value="Drum Sampling">Drum Sampling</oprion>
+                                        <oprion value="Editing (Bass Guitar)">Editing (Bass Guitar)</oprion>
+                                        <oprion value="Editing (Drums)">Editing (Drums)</oprion>
+                                        <oprion value="Editing (Guitar)">Editing (Guitar)</oprion>  
+                                        <oprion value="Editing (Samples)">Editing (Samples)</oprion>
+                                        <oprion value="Editing (Vocals)">Editing (Vocals)</oprion>
+                                        <oprion value="MIDI Programming">MIDI Programming</oprion>
+                                        <oprion value="Re-Amping (Bass Guitar)">Re-Amping (Bass Guitar)</oprion>
+                                        <oprion value="Re-Amping (Drums)">Re-Amping (Drums)</oprion>
+                                        <oprion value="Re-Amping (Guitar)">Re-Amping (Guitar)</oprion>
+                                        <oprion value="Re-Amping (Samples)">Re-Amping (Samples)</oprion>
+                                        <oprion value="Re-Sampling">Re-Sampling</oprion>
+                                        <oprion value="Sampling">Sampling</oprion>
+                                        <oprion value="Song Arranging">Song Arranging</oprion>
+                                        <oprion value="Song Re-Arranging">Song Re-Arranging</oprion>
+                                        <oprion value="Sound Design">Sound Design</oprion>
+                                    </optgroup>
+                                    <optgroup v-if="personal_information.title == 'Composing'">
+                                        <option value="Advertisements Composing">Advertisements Composing</option>
+                                        <option value="Anime Composing">Anime Composing</option>
+                                        <option value="Cartoon Composing">Cartoon Composing</option>
+                                        <option value="Film & Cinema Composing">Film & Cinema Composing</option>
+                                        <option value="Social Media Videos Composing">Social Media Videos Composing</option>
+                                        <option value="Trailers Composing">Trailers Composing</option>
+                                        <option value="TV Series Composing">TV Series Composing</option>
+                                        <option value="Video Games Composing">Video Games Composing</option>
+                                        <option value="YouTube Videos Composing">YouTube Videos Composing</option>
+                                    </optgroup>
+                                    <optgroup v-if="personal_information.title == 'DJ'">
+                                        <option value="Bars & Pubs">Bars & Pubs</option>
+                                        <option value="Ceremonies">Ceremonies</option>
+                                        <option value="Clubs">Clubs</option>
+                                        <option value="Dj Remixing">Dj Remixing</option>
+                                        <option value="Events (Live)">Events (Live)</option>
+                                        <option value="Events (Pre-Recorded)">Events (Pre-Recorded)</option>
+                                        <option value="House Parties">House Parties</option>
+                                        <option value="Touring Hire (National)">Touring Hire (National)</option>
+                                        <option value="Touring Hire (Overseas)">Touring Hire (Overseas)</option>
+                                        <option value="Weddings">Weddings</option>
+                                    </optgroup>
+                                    <optgroup v-if="personal_information.title == 'Musicians'">
+                                        <option value="Bars & Pubs">Bars & Pubs</option>
+                                        <option value="Ceremonies">Ceremonies</option>
+                                        <option value="Clubs">Clubs</option>
+                                        <option value="Instruments Repair">Instruments Repair</option>
+                                        <option value="Live Session (National)">Live Session (National)</option>
+                                        <option value="Live Session (Overseas)">Live Session (Overseas)</option>
+                                        <option value="Recording Session">Recording Session</option>
+                                        <option value="Songwriting">Songwriting</option>
+                                        <option value="Teacher (Face to Face)">Teacher (Face to Face)</option>
+                                        <option value="Teacher (Online)">Teacher (Online)</option>
+                                        <option value="Touring (National)">Touring (National)</option>
+                                        <option value="Touring (Overseas)">Touring (Overseas)</option>
+                                        <option value="Weddings">Weddings</option>
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>
@@ -371,6 +472,8 @@ export default {
     props:['user'],
     data(){
         return {
+            imageReleases:'',
+            imageData: '/images/profile/default.png',
             personal_information:{
                 profile_type: '',
                 title: '',
@@ -407,12 +510,13 @@ export default {
                     }
                 },
                 releases: {
-                    artist:'',
-                    album:'',
+                    image: '',
+                    artist_name:'',
+                    album_name:'',
                     genre:'',
                     release_date: '',
                     label:'',
-                    credits:''
+                    // credits:''
                 },
                 worked_with: '',
                 genre: '',
@@ -436,6 +540,18 @@ export default {
         this.getUser()
     },
     methods:{
+        previewImage(event) {
+            this.personal_information.releases.image = event.target.files[0]
+
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imageData = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
         getUser(){
             if (this.user.personal_information) {
                 this.personal_information = this.user.personal_information
@@ -445,10 +561,11 @@ export default {
             }
         },
         save(){
-            axios.post(`/Profile/Edit/Update/${this.user.id}`, this.personal_information).then(res => {
-                console.log(res)
-                alert('the personal information has been updated')
-                window.location.reload()
+            axios.post(`/${this.user.username}/Edit/Profile/`, this.personal_information).then(res => {
+                if (res.data.updated) {
+                    alert('the personal information has been updated')
+                    window.location.reload()
+                }
             }).catch(err => {
                 console.log(err)
             })

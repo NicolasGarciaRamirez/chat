@@ -16,17 +16,14 @@ class UserController extends Controller
     /**
      * UserController constructor.
      */
-    // public function __construct()
-    // {
-    //    $this->middleware(function ($request, $next) {
-    //        if (!\Auth::check()) return redirect('/View/Channel/Playlist');
-    //        $this->user = \Auth::user();
-    //        return $next($request);
-    //    });
-    // }
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            if (!$user = User::whereUsername($request->username)->first()) return abort(404);
+            $this->user = $user;
+            $this->user->load('personal_information', 'posts');
+            return $next($request);
+        });
     }
 
     /**
@@ -34,10 +31,7 @@ class UserController extends Controller
      */
     public function channelActivity()
     {
-        $user = \Auth::user();
-        $user->load('personal_information','posts');
-
-        return view('user.profile.channel', compact('user'));
+        return view('user.channel.channel-activity', ['user' => $this->user]);
     }
 
     /**
@@ -45,10 +39,7 @@ class UserController extends Controller
      */
     public function channelPlaylist()
     {
-        $user = \Auth::user();
-        $user->load('personal_information');
-
-        return view('user.profile.channel-playlist', compact('user'));
+        return view('user.channel.channel-playlist', ['user' => $this->user]);
     }
 
     /**
@@ -56,9 +47,7 @@ class UserController extends Controller
      */
     public function profileEdit()
     {
-        $user = \Auth::user();
-        $user->load('personal_information');
-        return view('user.profile.edit', compact('user'));
+       return view('user.profile.profile-edit', ['user' => $this->user]);
     }
 
     /**
@@ -66,9 +55,7 @@ class UserController extends Controller
      */
     public function channelEdit()
     {
-        $user = \Auth::user();
-        $user->load('personal_information');
-        return view('user.profile.channel-edit', compact('user'));
+       return view('user.channel.channel-edit', ['user' => $this->user]);
     }
 
     /**
@@ -76,39 +63,38 @@ class UserController extends Controller
      */
     public function accountSettings()
     {
-        $user = \Auth::user();
-        $user->load('personal_information');
-        return view('user.profile.account-settings', compact('user'));
+       return view('user.profile.account-settings', ['user' => $this->user]);
     }
 
-    public function updateImage(User $user, Request $request)
+
+    public function updateImage(Request $request)
     {
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
         ]);
 
-        $avatar = $user->personal_information->full_name . '-avatar-' . now()->format('Y-m-dHis') . '.' . request()->avatar->getClientOriginalExtension();
+        $avatar = 'profile'.'/'.\Str::random(150).request()->avatar->getClientOriginalExtension();
         request()->avatar->move(base_path('public/images/profile'), $avatar);
 
-        $user->avatar = $avatar;
-        $user->update();
+        $this->user->avatar = $avatar;
+        $this->user->update();
 
         return response()->json([
             'updated' => true
         ]);
     }
     
-    public function updateCover(User $user, Request $request)
+    public function updateCover(Request $request)
     {
         $request->validate([
             'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
         ]);
 
-        $cover = $user->personal_information->full_name . '-cover-' . now()->format('Y-m-dHis') . '.' . request()->cover->getClientOriginalExtension();
+        $cover = 'profile'.'/'.\Str::random(150).request()->cover->getClientOriginalExtension();
         request()->cover->move(base_path('public/images/profile'), $cover);
 
-        $user->cover = $cover;
-        $user->update();
+        $this->user->cover = $cover;
+        $this->user->update();
 
         return response()->json([
             'updated' => true

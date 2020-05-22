@@ -80,6 +80,7 @@
         margin-bottom: 2rem;
         padding: 0 15px;
         font-size: 1.2rem;
+        text-decoration: none;
         &:before{
             content: '';
             top: -5px;
@@ -103,6 +104,7 @@
         }
         a:hover{
             color: $fifth-color;
+            text-decoration: none;
         }
         @include media-breakpoint-down(sm){
             font-size: 0.765rem;

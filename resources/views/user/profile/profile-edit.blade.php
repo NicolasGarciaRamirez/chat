@@ -1,9 +1,9 @@
-@extends('user.profile.template.template')
+@extends('template.template')
 
 @section('content')
     <div class="profile">
         <div>
-            @include("user.head-profile", $user)
+            @include("user._header-profile", $user)
         </div>
         <profile-edit :user="{{ $user }}"/>
     </div>

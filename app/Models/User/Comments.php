@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Comments;
+namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -31,6 +31,11 @@ class Comments extends Model
      */
     public function post()
     {
-        return $this->belongsTo(\App\Models\User\UserPost::class);
+        return $this->belongsTo('\App\Models\User\UserPost', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('\App\Models\User\User', 'id');
     }
 }

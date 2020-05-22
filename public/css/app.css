@@ -27047,11 +27047,11 @@ readers do not read off random characters that represent icons */
 
 .social-login a.bg-white {
   color: #FF3C03 !important;
-  opacity: 0.8 !important;
+  opacity: 1 !important;
 }
 
 .social-login a.bg-white:hover {
-  opacity: 1 !important;
+  opacity: 0.8 !important;
 }
 
 .social-login a.bg-white:active {
@@ -27061,31 +27061,34 @@ readers do not read off random characters that represent icons */
 
 .social-login a.bg-facebook {
   background: #0055FF !important;
-  opacity: 0.8 !important;
+  opacity: 1 !important;
 }
 
 .social-login a.bg-facebook:hover {
-  opacity: 1 !important;
+  opacity: 0.8 !important;
 }
 
 .social-login a.bg-twitter {
   background: #00AAFF !important;
-  opacity: 0.8 !important;
-}
-
-.social-login a.bg-twitter:hover {
   opacity: 1 !important;
 }
 
-select.select-form {
+.social-login a.bg-twitter:hover {
+  opacity: 0.8 !important;
+}
+
+.select select.select-form {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
   border-radius: 30px;
   background: black;
   color: white;
   padding: 6px;
 }
 
-select.select-form:hover {
-  content: "";
+.select select.select-form:hover {
   background-color: #262626;
   color: white;
 }
@@ -27454,6 +27457,15 @@ button:focus {
   height: calc(2.18em + 0.75rem + 2px) !important;
 }
 
+.main-header .login:hover {
+  background: #FC4444 !important;
+}
+
+.main-header .login:active {
+  background: white !important;
+  color: #FF0000 !important;
+}
+
 .main-header .become-contributor {
   padding: 10px 20px;
   border-radius: 30px;
@@ -27619,11 +27631,17 @@ button:focus {
 }
 
 .modal-login a:not(.btn) {
+  color: #262626;
   text-decoration: none;
 }
 
 .modal-login a:not(.btn):hover {
-  color: #535353;
+  text-decoration: underline;
+}
+
+.modal-login a:not(.btn):active {
+  text-decoration: underline;
+  color: white !important;
 }
 
 .modal-login .or {
@@ -27652,31 +27670,7 @@ button:focus {
 
 .modal-login .social-login a {
   font-weight: bold;
-  border-radius: 20px;
-}
-
-.modal-login .social-login a.bg-white {
-  color: #FF3C03 !important;
-}
-
-.modal-login .social-login a.bg-white:hover {
-  opacity: 5 !important;
-}
-
-.modal-login .social-login a.bg-facebook {
-  background: #0055FF !important;
-}
-
-.modal-login .social-login a.bg-facebook:hover {
-  opacity: 5 !important;
-}
-
-.modal-login .social-login a.bg-twitter {
-  background: #00AAFF !important;
-}
-
-.modal-login .social-login a.bg-twitter:hover {
-  opacity: 5 !important;
+  border-radius: 300px;
 }
 
 .modal-login .divider {
@@ -27687,7 +27681,16 @@ button:focus {
 
 .modal-login .sign-me {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 30px;
+}
+
+.modal-login .sign-me:hover {
+  background: #FC4444 !important;
+}
+
+.modal-login .sign-me:active {
+  background: white !important;
+  color: #FF0000 !important;
 }
 
 .modal-register button[type=submit]:hover {
@@ -27728,22 +27731,41 @@ button:focus {
 
 .modal-register .social-register a {
   font-weight: bold;
-  border-radius: 20px;
-}
-
-.modal-register .social-register a.bg-white:hover {
-  color: #FF0000 !important;
+  border-radius: 30px;
 }
 
 .modal-register .divider {
-  background-color: #262626;
+  background-color: #262626 !important;
   height: 3px;
   width: 100%;
 }
 
 .modal-register .sign-up {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 30px;
+}
+
+.modal-register .sign-up:hover {
+  background: #FC4444 !important;
+}
+
+.modal-register .sign-up:active {
+  background: white !important;
+  color: #FF0000 !important;
+}
+
+.register {
+  position: relative;
+  background-image: url(/images/backgroud-contributor.jpeg);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-top: -2rem;
+}
+
+.register img.index {
+  min-width: 100%;
+  min-height: 10rem;
+  max-height: 10rem;
 }
 
 .register .auth-type {
@@ -27773,15 +27795,6 @@ button:focus {
   height: 3px;
   top: 10px;
   width: 40%;
-}
-
-.register .social-register a {
-  font-weight: bold;
-  border-radius: 20px;
-}
-
-.register .social-register a.bg-white:hover {
-  color: #FF0000 !important;
 }
 
 .register input.form-control,
@@ -28054,6 +28067,10 @@ button:focus {
   background-color: #181818;
   position: absolute;
   left: 0;
+}
+
+.profile .navigation-body a {
+  text-decoration: none;
 }
 
 .profile .navigation-body a.active {
@@ -28738,36 +28755,36 @@ button:focus {
   margin-top: 3px;
 }
 
-.posts .post .comments input {
+.posts .post .comments input.input-comment {
   border-radius: 30px !important;
   border: 1px solid #262626;
 }
 
-.posts .post .comments input::-webkit-input-placeholder {
+.posts .post .comments input.input-comment::-webkit-input-placeholder {
   color: #535353;
 }
 
-.posts .post .comments input::-moz-placeholder {
+.posts .post .comments input.input-comment::-moz-placeholder {
   color: #535353;
 }
 
-.posts .post .comments input:-ms-input-placeholder {
+.posts .post .comments input.input-comment:-ms-input-placeholder {
   color: #535353;
 }
 
-.posts .post .comments input::-ms-input-placeholder {
+.posts .post .comments input.input-comment::-ms-input-placeholder {
   color: #535353;
 }
 
-.posts .post .comments input::placeholder {
+.posts .post .comments input.input-comment::placeholder {
   color: #535353;
 }
 
-.posts .post .comments input:hover {
+.posts .post .comments input.input-comment:hover {
   border: 1px solid white;
 }
 
-.posts .post .comments input:focus {
+.posts .post .comments input.input-comment:focus {
   border: 1px solid #262626;
 }
 
@@ -29305,6 +29322,7 @@ button:focus {
   margin-bottom: 2rem;
   padding: 0 15px;
   font-size: 1.2rem;
+  text-decoration: none;
 }
 
 .view-profile .navigation-body:before {
@@ -29333,6 +29351,7 @@ button:focus {
 
 .view-profile .navigation-body a:hover {
   color: #FF0000;
+  text-decoration: none;
 }
 
 @media (max-width: 767.98px) {

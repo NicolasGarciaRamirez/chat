@@ -11,16 +11,16 @@
                 </div>
                 <div class="modal-body pt-4">
                     <h5 class="text-center font-weight-bold">Login</h5>
-                    <div class="c-fifth p-3" v-if="this.error">
-                        <ul>
-                            <li>
-                                {{ this.error }}
-                            </li>
+                    <div class="alert bg-fifth text-white" v-if="backend_errors != null">
+                        <ul class="p-0 m-0 list-style-none">
+                            <li v-for="(error, index) in backend_errors" :key="index">{{ error }}</li>
                         </ul>
                     </div>
                     <form @submit.prevent="login" autocomplete="off">
-                        <input type="email" class="form-control my-3" placeholder="Email Address" v-model="user.email" required>
-                        <input type="password" class="form-control" placeholder="Password" v-model="user.password" required>
+                        <span class="c-fifth">{{ errors.first('email') }}</span>
+                        <input type="email" class="form-control my-3" name="email" placeholder="Email Address" v-model="user.email" v-validate="'required|email'" required>
+                        <span class="c-fifth">{{ errors.first('password') }}</span>
+                        <input type="password" class="form-control" name="password" placeholder="Password" v-model="user.password" v-validate="'required|verify_password'" required>
                         <div class="mt-2 p-2 d-flex justify-content-between">
                             <button type="submit" class="btn c-fifth p-0 login"><b>Login</b></button>
                             <a href="#" class="forgot-password font-weight-bold">Forgot Password?</a>
@@ -32,7 +32,7 @@
                         <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Login</a>
                         <a href="#" class="btn bg-white c-fifth">Google Quick Login</a>
                     </div>
-                    <p class="c-fourth text-center mt-3 mb-5">By loging in up you are agreeing to Noisesharks’ Terms of Use, Privacy Policy, & Copyright Policy</p>
+                    <p class="c-fourth text-center mt-3 mb-5">By logging in up you are agreeing to Noisesharks’ <a href="/terms" class="c-fourth"><b>Terms of Use</b></a>, <a href="#" class="c-fourth"><b>Privacy Policy</b></a> , & <a href="#" class="c-fourth"><b>Copyright Policy</b></a></p>
                     <div class="divider"></div>
                     <p class="text-center text-white mt-4">Don’t have an account yet?!</p>
                     <div class="text-center mb-3">
@@ -47,15 +47,25 @@
 
 <script>
     import ModalRegister from './Register'
+    import { Validator } from 'vee-validate';
+    import Auth from '../../helpers/Auth'
+
+    Validator.extend('verify_password', {
+        validate: value => {
+            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
+            return strongRegex.test(value);
+        },
+        getMessage: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
+    })
     export default {
         props: ['is_login_view'],
         data(){
             return{
-                error:null,
                 user:{
                     email:'',
                     password: ''
-                }
+                },
+                backend_errors :null
             }
         },
         components:{
@@ -69,14 +79,14 @@
         methods:{
             async login(){
                 await axios.post('/login', this.user).then(res =>{
-                    if (res.data.errors) {
-                        this.error = res.data.errors[0]
+                    if (res.data.auth) {
+                        Auth.setAuthUser(true, res.data.user.avatar, res.data.user.username)
+                        window.location.replace(`/${res.data.user.username}/Profile/Releases`)
                     }else{
-                        window.location.replace('/Profile/Channel/Activity')
+                        return
                     }
-                    console.log(res)
                 }).catch(err => {
-                    alert('your credentials not have any match')
+                    this.backend_errors = err.response.data.errors
                 })
             },
         }
