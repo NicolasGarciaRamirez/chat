@@ -280,7 +280,7 @@
 <script>
 import Auth from '../../helpers/Auth'
     export default {
-        props:['user'],
+        props:['users'],
         data(){
             return {
                 auth : false,
@@ -298,9 +298,14 @@ import Auth from '../../helpers/Auth'
             },
             getAuth(){
                 this.auth = Auth.getAuthUser()
-                // this.user.avatar = Auth.getUserAvatar()
-                // this.user.username = Auth.getUserName()
-                // console.log(this.user)
+                if (this.users == true) {
+                    this.user = {
+                        username : '',
+                        avatar: ''
+                    }
+                }else{
+                    this.user = this.users
+                }
             },
             deleteAuth(){
                 Auth.deleteAuthUser()

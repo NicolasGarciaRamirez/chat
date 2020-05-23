@@ -9,6 +9,7 @@
         <li class="c-header-nav-item px-1"><a class="c-header-nav-link mx-2 {{ Route::currentRouteName() == 'home' ? 'active' : '' }}" href="/" id="stream">Stream</a></li>
         <li class="c-header-nav-item px-1"><a class="c-header-nav-link {{ Route::currentRouteName() == 'profile'  ? 'active' : '' }}" href="{{ \Auth::check() ? '/'.\Auth::user()->username.'/Profile/Releases' : 'login' }}" id="profile"> Profile</a></li>
     </ul>
-    <app-header :user="{{ \Auth::check() ? \Auth::user() : 'user' }}" />
+
+    <app-header :users="{{ \Auth::check() ? \Auth::user() : true }}" />
 </header>
 
