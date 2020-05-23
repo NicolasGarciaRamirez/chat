@@ -1,21 +1,19 @@
-import Cookies from "js-cookie";
-
 export default {
     setAuthUser(Boolean, avatar, username ) {
-        Cookies.set("username", username , {expires: 1})
-        Cookies.set("avatar", avatar , {expires: 1})
-        Cookies.set("auth", Boolean , {expires: 1});
+        localStorage.setItem("username", username , {expires: 1})
+        localStorage.setItem("avatar", avatar , {expires: 1})
+        localStorage.setItem("auth", Boolean , {expires: 1});
     },
     getAuthUser() {
-        return Cookies.get("auth");
+        return localStorage.getItem("auth");
     },
     getUserAvatar(){
-        return Cookies.get("avatar")
+        return localStorage.getItem("avatar")
     },
     getUserName(){
-        return Cookies.get("username");
+        return localStorage.getItem("username");
     },
     deleteAuthUser() {
-        Cookies.remove('auth','avatar', 'username');
+        localStorage.removeItem("auth","avatar","username");
     }
 };
