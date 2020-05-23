@@ -11,6 +11,14 @@
   */
 
 /*!
+ * JavaScript Cookie v2.2.1
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+
+/*!
  * Sizzle CSS Selector Engine v2.3.5
  * https://sizzlejs.com/
  *
@@ -46,12 +54,6 @@
  * Copyright 2020 Hyunje Jun, MDBootstrap and Contributors
  * Licensed under MIT
  */
-
-/**
-  * vee-validate v3.3.0
-  * (c) 2020 Abdelrahman Awad
-  * @license MIT
-  */
 
 /**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
