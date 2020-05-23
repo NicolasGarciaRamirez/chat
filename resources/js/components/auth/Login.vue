@@ -20,7 +20,7 @@
                         <span class="c-fifth">{{ errors.first('email') }}</span>
                         <input type="email" class="form-control my-3" name="email" placeholder="Email Address" v-model="user.email" v-validate="'required|email'" required>
                         <span class="c-fifth">{{ errors.first('password') }}</span>
-                        <input type="password" class="form-control" name="password" placeholder="Password" v-model="user.password" v-validate="'required|verify_password'" required>
+                        <input type="password" class="form-control" name="password" placeholder="Password" v-model="user.password" v-validate="'required'" required>
                         <div class="mt-2 p-2 d-flex justify-content-between">
                             <button type="submit" class="btn c-fifth p-0 login"><b>Login</b></button>
                             <a href="#" class="forgot-password font-weight-bold">Forgot Password?</a>
@@ -50,13 +50,6 @@
     import { Validator } from 'vee-validate';
     import Auth from '../../helpers/Auth'
 
-    Validator.extend('verify_password', {
-        validate: value => {
-            var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
-            return strongRegex.test(value);
-        },
-        getMessage: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
-    })
     export default {
         props: ['is_login_view'],
         data(){

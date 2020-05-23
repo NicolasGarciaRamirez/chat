@@ -63,19 +63,19 @@
                     </div>
                     <div class="d-flex flex-row justify-content-start">
                         <div class="select">
-                            <select class="select-form m-2" v-model="post.genre">
+                            <select class="select-form m-2" v-model="post.genre" required>
                                 <option value="">Select Genre</option>
                                 <option value="Rock">Rock</option>
                             </select>
                         </div>
                         <div class="select">
-                            <select class="select-form m-2" v-model="post.category">
+                            <select class="select-form m-2" v-model="post.category" required>
                                 <option value="">Select Category</option>
                                 <option value="Sax">sax</option>
                             </select>
                         </div>
                         <div class="select">
-                            <select class="select-form m-2" >
+                            <select class="select-form m-2">
                                 <option value="">Everyone</option>
                             </select>
                         </div>
@@ -145,7 +145,6 @@
                     this.initializeVariables()
                     this.posts_send.unshift(res.data.post)
                     $('html, body').animate({ scrollTop: 0 }, 'fast');
-                    window.location.reload()
                 }).catch(err=>{
                     console.log(err)
                 })

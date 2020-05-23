@@ -11244,13 +11244,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-vee_validate__WEBPACK_IMPORTED_MODULE_2__["Validator"].extend('verify_password', {
-  validate: function validate(value) {
-    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
-    return strongRegex.test(value);
-  },
-  getMessage: 'The password must contain at least: 1 uppercase letter, 1 lowercase letter, 1 number'
-});
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['is_login_view'],
   data: function data() {
@@ -11932,7 +11925,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   $('html, body').animate({
                     scrollTop: 0
                   }, 'fast');
-                  window.location.reload();
                 })["catch"](function (err) {
                   console.log(err);
                 });
@@ -46506,8 +46498,8 @@ var render = function() {
                       {
                         name: "validate",
                         rawName: "v-validate",
-                        value: "required|verify_password",
-                        expression: "'required|verify_password'"
+                        value: "required",
+                        expression: "'required'"
                       }
                     ],
                     staticClass: "form-control",
@@ -48031,6 +48023,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "select-form m-2",
+                                attrs: { required: "" },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -48077,6 +48070,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "select-form m-2",
+                                attrs: { required: "" },
                                 on: {
                                   change: function($event) {
                                     var $$selectedVal = Array.prototype.filter
@@ -71152,8 +71146,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp\www\NoiseShark\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\wamp\www\NoiseShark\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\wamp64\www\noisesharks\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\noisesharks\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

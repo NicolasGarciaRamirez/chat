@@ -38,12 +38,11 @@ class UserPostController extends Controller
      */
     public function save(Request $request)
     {
-        $user = $this->user;
         $request->validate([
             'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
         ]);
 
-        $imagePost = \Str::random(150).'-'. request()->imagePost->getClientOriginalExtension();
+        $imagePost = \Str::random(80).'.'. request()->imagePost->getClientOriginalExtension();
         request()->imagePost->move(base_path('public/images/post'), $imagePost);
 
         $post = new \App\Models\User\UserPost();
@@ -51,15 +50,15 @@ class UserPostController extends Controller
         $post->genre = $request->postGenre;
         $post->category = $request->postCategory;
         $post->image = $imagePost;
-        $post->user_id = $user->id;
-        $user->posts()->save($post);
+        $post->user_id = $this->user->id;
+        $this->user->posts()->save($post);
 
         return response()->json([
             'saved' => true,
-            'post' => $post
+            'post' => $post->load('user.personal_information', 'comments')
         ]);
     }
-    
+
     public function update()
     {
 
