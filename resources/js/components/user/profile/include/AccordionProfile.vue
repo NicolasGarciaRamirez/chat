@@ -228,23 +228,6 @@
                                     <!-- <input type="text" class="form-control" placeholder="Credits" v-model="personal_information.releases.credits"> -->
                                 </div>
                             </div>
-                            <div class="d-flex flex-row">
-                                <div class="d-flex flex-column">
-                                    <label for="imgRelease">
-                                        <img class="img-fluid pr-3" :src="imageData" height="190px" width="180px">
-                                    </label>
-                                    <input type="file" id="imgRelease" name="imageRelease" class="form-control d-none" ref="imageRelease" @change="previewImage">
-                                  
-                                </div>
-                                <div class="d-flex flex-column">
-                                    <input type="text" class="form-control" placeholder="Artist Name" v-model="personal_information.releases.artist_name">
-                                    <input type="text" class="form-control" placeholder="Album Name" v-model="personal_information.releases.album_name">
-                                    <input type="text" class="form-control" placeholder="Release Date" v-model="personal_information.releases.release_date" >
-                                    <input type="text" class="form-control" placeholder="Genre" v-model="personal_information.releases.genre">
-                                    <input type="text" class="form-control" placeholder="Label name" v-model="personal_information.releases.label">
-                                    <!-- <input type="text" class="form-control" placeholder="Credits" v-model="personal_information.releases.credits"> -->
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
