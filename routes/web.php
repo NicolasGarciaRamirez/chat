@@ -11,10 +11,6 @@
 |
 */
 Route::get('/test', function () {
-    $user = App\Models\User\User::find(1);
-    $user->password = ('123456');
-    $user->update();
-
 });
 
 Route::get('/', 'HomeController@index')->name('home');
@@ -26,6 +22,7 @@ Route::get('/Register/{type?}', 'HomeController@register')->where([
     'type' => 'Free|Contributor'
 ]);;;
 Route::post('/Register', 'Auth\AuthController@register')->name('register');
+Route::post('/ForgotPassword', 'Auth\AuthController@sedEmailForgotPassword');
 
 Route::get('/Help', 'HomeController@help')->name('help');
 Route::get('/About', 'HomeController@about')->name('about');
@@ -37,18 +34,16 @@ Route::post('/Auth/Check', 'Auth\AuthController@authCheck');
 // Route::get('/login/facebook', 'Auth\AuthController@redirectToProvider');
 // Route::get('/login/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 
-
-
-Route::group(['prefix' => 'User','middleware' => ['auth']],  function () {
+Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/imageProfile/{username}', 'User\UserController@updateImage');
     Route::name('profile.edit.image.cover')->post('/Edit/imageCover/{username}', 'User\UserController@updateCover');
     Route::name('profile.edit.user.settings')->get('/Settings/{username}', 'User\UserController@accountSettings');
 });
 
-Route::group(['prefix' => '/{username}'], function(){
+Route::group(['prefix' => '/{username}'], function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::name('profile')->get('/Edit', 'User\UserController@profileEdit');
-        Route::name('profile')->get('/Edit/get/', 'User\UserPersonalInformationController@get'); 
+        Route::name('profile')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
         Route::name('profile')->post('/Edit/Profile', 'User\UserPersonalInformationController@update');
     });
 
@@ -76,7 +71,7 @@ Route::group(['prefix' => '/{username}'], function(){
             Route::name('post.update')->put('/update', 'User\UserPostController@update');
         });
     });
-    
+
     Route::group(['prefix' => 'Comments'], function () {
         Route::name('comment.get')->get('/get/{userPost}', 'Comments\CommentsController@get');
         Route::group(['middleware' => ['auth']], function () {
@@ -87,5 +82,5 @@ Route::group(['prefix' => '/{username}'], function(){
     });
 });
 
-    
+
 

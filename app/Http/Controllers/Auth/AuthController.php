@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\loginUser;
 use App\Http\Requests\StoreUser;
+use App\Notifications\NewUserFree;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User\User;
@@ -28,7 +29,7 @@ class AuthController extends Controller
      * Undocumented function
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\JsonResponse
      */
     public function login(loginUser $request)
     {
@@ -41,7 +42,7 @@ class AuthController extends Controller
             ], 200);
         } else {
             return response()->json([
-                'errors' => [ 'errors' => "Credentials not match"],
+                'errors' => ['errors' => "Credentials not match"],
             ], 422);
         }
     }
@@ -80,6 +81,8 @@ class AuthController extends Controller
 
             $user->personal_information()->save($personal_information);
 
+//            if($user->subscription_type == 'FREE') $user->notify(new NewUserFree());
+
             Auth::login($user);
 
             return response()->json([
@@ -95,6 +98,18 @@ class AuthController extends Controller
                 'errors' => $e
             ], 422);
         }
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function sedEmailForgotPassword(Request $request)
+    {
+        \Mail::to($request->email)->send(new \App\Mail\ForgotPassword());
+        return response()->json([
+            'message' => 'We send you an email to follow the instructions'
+        ]);
     }
 
     // public function redirectToProvider()
