@@ -10,6 +10,6 @@
         <li class="c-header-nav-item px-1"><a class="c-header-nav-link {{ Route::currentRouteName() == 'profile'  ? 'active' : '' }}" href="{{ \Auth::check() ? '/'.\Auth::user()->username.'/Profile/Releases' : 'login' }}" id="profile"> Profile</a></li>
     </ul>
 
-    <app-header :users="{{ \Auth::check() ? \Auth::user() : true }}" />
+    <app-header />
 </header>
 

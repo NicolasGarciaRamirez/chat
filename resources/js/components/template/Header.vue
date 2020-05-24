@@ -280,10 +280,13 @@
 <script>
 import Auth from '../../helpers/Auth'
     export default {
-        props:['users'],
         data(){
             return {
                 auth : false,
+                user: {
+                    avatar: '',
+                    username: ''
+                }
             }
         },
         mounted(){
@@ -297,14 +300,10 @@ import Auth from '../../helpers/Auth'
                 $('#ModalContributorSignup').modal('show')
             },
             getAuth(){
-                this.auth = Auth.getAuthUser()
-                if (this.users == true) {
-                    this.user = {
-                        username : '',
-                        avatar: ''
-                    }
-                }else{
-                    this.user = this.users
+                if(Auth.getAuthUser()){
+                    this.auth = Auth.getAuthUser()
+                    this.user.avatar = Auth.getUserAvatar()
+                    this.user.username = Auth.getUserName()
                 }
             },
             deleteAuth(){
