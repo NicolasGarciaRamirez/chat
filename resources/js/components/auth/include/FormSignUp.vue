@@ -150,8 +150,7 @@
                     this.user.subscription_type = this.type
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
-                            Auth.setAuthUser(res.data.user.username)
-                            alert('user create successfull')
+                            Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
                             window.location.replace(`/${res.data.user.username}/Profile/Releases`)
                         }
                     }).catch(err => {

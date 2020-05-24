@@ -16,14 +16,14 @@
             </div>
         </form>
         <li class="c-header-nav-item mr-2"><a class="c-header-nav-link other-link become-contributor d-md-down-none d-md-block" href="#" @click="showModalContributor">Become A Contributor </a></li>
-        <div v-if="!auth">
+        <div v-if="!auth.token">
             <li class="c-header-nav-item mx-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
         </div>
-        <div v-if="auth">
+        <div v-else>
             <li class="c-header-nav-item mx-2 top-menu">
-                <img :src="`/images/${user.avatar}`" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img :src="`/images/${auth.avatar}`" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="dropdown-menu bg-primary text-white dropdown-menu-right p-3" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" :href="`/${user.username}/Profile/Releases`">
+                    <a class="dropdown-item" :href="`/${auth.username}/Profile/Releases`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 939.162 1079.12" enable-background="new 0 0 939.162 1079.12"
                             xml:space="preserve" class="mr-3 svg-icon">
@@ -39,7 +39,7 @@
                         </svg>
                     Profile
                     </a>
-                    <a class="dropdown-item" :href="`/${user.username}/Channel/Activity`">
+                    <a class="dropdown-item" :href="`/${auth.username}/Channel/Activity`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                             <path fill="#545454" d="M580.365,361.065L753.976,1.598h-70.156L541.8,295.646L394.814,1.598h-70.658l179.681,359.468H0V1080
@@ -212,7 +212,7 @@
                             M856.362,703.025H704.671v-63.068h151.691V703.025z M856.362,576.861h-663.64v-63.067h663.64V576.861z"/>
                         </svg>
                     Payments</a>
-                    <a class="dropdown-item" :href="`/User/Settings/${user.username}`">
+                    <a class="dropdown-item" :href="`/User/Settings/${auth.username}`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M935.22,408.356l-5.16-1.821l-20.028-48.652l2.108-4.917c60.862-140.053,56.59-144.25,46.549-154.301
@@ -244,7 +244,7 @@
                         </svg>
                     Account Settings</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/logout" @click="deleteAuth">
+                    <a class="dropdown-item" href="/logout" @click="logout()">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                             <path fill="#545454" d="M917.973,160.942c-210.085-211.265-551.77-211.265-761.743-0.056
@@ -282,15 +282,11 @@ import Auth from '../../helpers/Auth'
     export default {
         data(){
             return {
-                auth : false,
-                user: {
-                    avatar: '',
-                    username: ''
-                }
+                auth : Auth.state,
             }
         },
         mounted(){
-            this.getAuth()
+            Auth.initialize()
         },
         methods:{
             showModalLogin(){
@@ -299,15 +295,11 @@ import Auth from '../../helpers/Auth'
             showModalContributor(){
                 $('#ModalContributorSignup').modal('show')
             },
-            getAuth(){
-                if(Auth.getAuthUser()){
-                    this.auth = Auth.getAuthUser()
-                    this.user.avatar = Auth.getUserAvatar()
-                    this.user.username = Auth.getUserName()
-                }
-            },
-            deleteAuth(){
-                Auth.deleteAuthUser()
+            async logout(){
+                await axios.get('/logout').then(res => {
+                    Auth.remove()
+                    window.location.replace('/')
+                })
             }
         }
     }

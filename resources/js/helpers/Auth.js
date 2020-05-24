@@ -1,15 +1,24 @@
-export default {
-    setAuthUser(username ) {
-        localStorage.setItem("username", username , {expires: 1})
-        localStorage.setItem("auth", true , {expires: 1});
+export default{
+    state:{
+        token: null,
+        username: null,
+        avatar: null
     },
-    getAuthUser() {
-        return localStorage.getItem("auth");
+    initialize(){
+        this.state.token = localStorage.getItem('token')
+        this.state.username = localStorage.getItem('username')
+        this.state.avatar = localStorage.getItem('avatar')
     },
-    getUserName(){
-        return localStorage.getItem("username");
+    set(token, username, avatar){
+        localStorage.setItem('token', token)
+        localStorage.setItem('username', username)
+        localStorage.setItem('avatar', avatar)
+        this.initialize()
     },
-    deleteAuthUser() {
-        localStorage.removeItem("auth", "username");
+    remove(){
+        localStorage.removeItem('token')
+        localStorage.removeItem('username')
+        localStorage.removeItem('avatar')
+        this.initialize()
     }
-};
+}

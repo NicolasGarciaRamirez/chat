@@ -1,7 +1,7 @@
 <template>
     <section >
-        <form @submit.prevent="save" enctype="multipart/form-data">
-            <div class="form-group post-form" v-if="auth">
+        <form @submit.prevent="save" enctype="multipart/form-data" v-if="auth.token">
+            <div class="form-group post-form">
                 <div class="bg-primary">
                     <textarea
                         class="form-control bg-primary"
@@ -90,13 +90,14 @@
 <script>
     import Posts from "../stream/Posts";
     import Auth from "../../helpers/Auth"
+
     export default {
         props:['posts'],
         data(){
             return {
                 replace_caption: false,
                 allow_download: false,
-                auth : false,
+                auth : Auth.state,
                 imageData: "",
                 post:{
                     replace_caption:"",
@@ -113,13 +114,10 @@
             Posts,
         },
         mounted(){
-            this.getAuth()
+            Auth.initialize()
             this.posts_send = this.posts
         },
         methods:{
-            getAuth(){
-                this.auth = Auth.getAuthUser()
-            },
             previewImage(event) {
                 this.post.image = event.target.files[0]
 

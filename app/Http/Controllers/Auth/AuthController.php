@@ -50,12 +50,15 @@ class AuthController extends Controller
     /**
      * Undocumented function
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
     {
         Auth::logout();
-        return redirect('/');
+
+        return response()->json([
+            'logout' => true
+        ]);
     }
 
     /**
@@ -68,7 +71,7 @@ class AuthController extends Controller
         \DB::beginTransaction();
 
         try {
-            $user = new \App\Models\User\User($request->all());
+            $user = new User($request->all());
             $user->username = \Str::random(25);
             $user->token = \Str::random(80);
             $user->save();
@@ -87,7 +90,7 @@ class AuthController extends Controller
 
             return response()->json([
                 'saved' => true,
-                'user' => $user,
+                'user' => User::find($user->id),
                 'errors' => null
             ]);
         } catch (\Exception $e) {

@@ -73,7 +73,7 @@
             async login(){
                 await axios.post('/login', this.user).then(res =>{
                     if (res.data.auth) {
-                        Auth.setAuthUser(true, res.data.user.avatar, res.data.user.username)
+                        Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
                         window.location.replace(`/${res.data.user.username}/Profile/Releases`)
                     }else{
                         return
