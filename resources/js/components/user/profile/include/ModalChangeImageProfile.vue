@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import Auth from '../../../../helpers/Auth'
 export default {
     props:['user'],
     data(){
@@ -52,12 +53,19 @@ export default {
             avatar.append('avatar', this.avatar, this.avatar.name)
         
             axios.post(`/User/Edit/imageProfile/${this.user.username}`, avatar ).then(res => {
-                 if (res.data.updated){
-                     window.location.reload()
-                 }else{
-                     alert('error')
-                 }
-            }).then(err =>{
+                try {
+                    if (res.data.updated){
+                    Auth.remove()
+                    Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar )
+                    console.log(res)
+                    window.location.reload()
+                    }else{
+                        alert('error')
+                    }
+                } catch (error) {
+                    console.log(error)
+                }
+            }).catch(err =>{
 
             })
         }

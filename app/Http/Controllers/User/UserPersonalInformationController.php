@@ -45,17 +45,29 @@ class UserPersonalInformationController extends Controller
      */
     public function update(Request $request)
     {
-        $user = User::whereUsername($this->user->username)->first();
+        \DB::beginTransaction();
 
-        $personal_information = new UserPersonalInformation($request->all());
-        $personal_information->members = json_encode($request->members);
-        $personal_information->releases = json_encode($request->releases);
-        $personal_information->social_media = json_encode($request->social_media);
-        $user->personal_information()->update($personal_information->toArray());
+        try{
+            $user = User::whereUsername($this->user->username)->first();
+    
+            $personal_information = new UserPersonalInformation($request->all());
+            $personal_information->members = json_encode($request->members);
+            $personal_information->releases = json_encode($request->releases);
+            $personal_information->social_media = json_encode($request->social_media);
 
-        return response()->json([
-            'updated' => true,
-            'personal_information' => $user->personal_information
-        ]);
+            $user->personal_information()->update($personal_information->toArray());
+    
+            return response()->json([
+                'updated' => true,
+                'user' => User::find($this->user->id),
+                'errros' => null
+            ],200);
+        } catch (\Exception $e){
+            return response()->json([
+                'updated' => false,
+                'user' => null,
+                'errros' => $e
+            ],422);
+        }
     }
 }

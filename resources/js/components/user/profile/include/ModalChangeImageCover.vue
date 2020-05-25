@@ -52,12 +52,12 @@ export default {
             cover.append('cover', this.cover, this.cover.name)
         
             axios.post(`/User/Edit/imageCover/${this.user.username}`, cover ).then(res => {
-                 if (res.data.updated){
-                     window.location.reload()
-                 }else{
-                     alert('error')
-                 }
-            }).then(err =>{
+                if (res.data.updated){
+                    window.location.reload()
+                }else{
+                    alert('error')
+                }
+            }).catch(err =>{
 
             })
         }

@@ -6,9 +6,9 @@
     .img-container{
         position: relative;     
         .edit-cover-photo{
-            transform: translate(73rem, -212px);
+            transform: translate(72rem, -150px);
             @include media-breakpoint-down(sm){
-                transform: translate(12rem, -178px);
+                transform: translate(13rem, -140px);
                 padding: 0px 6px 0px 6px;
             }
             border: 2px solid white;
@@ -77,6 +77,7 @@
         }
         .img-portada{
             width: 100%;
+            min-height: 10rem;
             @include media-breakpoint-up(lg){
                 max-height: 15rem;
             }

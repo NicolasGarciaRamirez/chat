@@ -131,7 +131,6 @@
                 }
             },
             async save(){
-                let username = Auth.getUserName();
                 var imagePost = new FormData();
                 imagePost.append('imagePost', this.post.image)
                 imagePost.append('imageName', this.post.image.name)
@@ -139,10 +138,15 @@
                 imagePost.append('postGenre', this.post.genre)
                 imagePost.append('postCategory', this.post.category)
 
-                await axios.post(`/${username}/Post/Save`, imagePost).then(res =>{
-                    this.initializeVariables()
-                    this.posts_send.unshift(res.data.post)
-                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+                await axios.post(`/${this.auth.username}/Post/Save`, imagePost).then(res =>{
+                    if (res.data.saved) {
+                        this.initializeVariables()
+                        this.posts_send.unshift(res.data.post)
+                        $('html, body').animate({ scrollTop: 0 }, 'fast');
+                    }else{
+
+                        console.log(res)
+                    }
                 }).catch(err=>{
                     console.log(err)
                 })

@@ -549,6 +549,9 @@ export default {
                     alert('the personal information has been updated')
                     window.location.reload()
                 }
+                else{
+                    console.log(res)
+                }
             }).catch(err => {
                 console.log(err)
             })

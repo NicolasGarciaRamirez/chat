@@ -69,35 +69,63 @@ class UserController extends Controller
 
     public function updateImage(Request $request)
     {
-        $request->validate([
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
-        ]);
+        \DB::beginTransaction();
+        try {
+            $request->validate([
+                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+            ]);
+    
+            $avatar = 'profile'.'/'.\Str::random(150).request()->avatar->getClientOriginalExtension();
+            request()->avatar->move(base_path('public/images/profile'), $avatar);
+    
+            $this->user->avatar = $avatar;
+            $this->user->update();
+            \DB::commit();
 
-        $avatar = 'profile'.'/'.\Str::random(150).request()->avatar->getClientOriginalExtension();
-        request()->avatar->move(base_path('public/images/profile'), $avatar);
-
-        $this->user->avatar = $avatar;
-        $this->user->update();
-
-        return response()->json([
-            'updated' => true
-        ]);
+            return response()->json([
+                'updated' => true,
+                'user' => $this->user,
+                'errors' => null
+            ]);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return response()->json([
+                'updated' => false,
+                'user' => null,
+                'errors' => $e
+            ],422);
+        }
+        
     }
     
     public function updateCover(Request $request)
     {
-        $request->validate([
-            'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
-        ]);
+        \DB::beginTransaction();
 
-        $cover = 'profile'.'/'.\Str::random(150).request()->cover->getClientOriginalExtension();
-        request()->cover->move(base_path('public/images/profile'), $cover);
-
-        $this->user->cover = $cover;
-        $this->user->update();
-
-        return response()->json([
-            'updated' => true
-        ]);
+        try {
+            $request->validate([
+                'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+            ]);
+    
+            $cover = 'profile'.'/'.\Str::random(150).request()->cover->getClientOriginalExtension();
+            request()->cover->move(base_path('public/images/profile'), $cover);
+    
+            $this->user->cover = $cover;
+            $this->user->update();
+            
+            \DB::commit();
+            return response()->json([
+                'updated' => true,
+                'user' => $this->user,
+                'errors' => null
+            ]);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return response()->json([
+                'updated' => true,
+                'user' => $this->user,
+                'errors' => null
+            ],422);
+        }
     }
 }
