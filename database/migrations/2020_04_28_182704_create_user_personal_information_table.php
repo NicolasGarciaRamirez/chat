@@ -18,16 +18,6 @@ class CreateUserPersonalInformationTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('full_name');
-            $table->string('profile_type')->default('N/A');
-            $table->string('title')->default('N/A');
-            $table->string('artistic_name')->default('N/A');
-            $table->text('about_you')->nullable();
-            $table->json('members')->nullable();
-            $table->json('releases')->nullable();
-            $table->string('worked_with')->nullable();
-            $table->string('genre')->default('N/A');
-            $table->string('services')->default('N/A');
-            $table->json('social_media')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

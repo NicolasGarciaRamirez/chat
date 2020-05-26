@@ -44,7 +44,7 @@ Route::group(['prefix' => '/{username}'], function () {
     Route::group(['middleware' => ['auth']], function () {
         Route::name('profile')->get('/Edit', 'User\UserController@profileEdit');
         Route::name('profile')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
-        Route::name('profile')->post('/Edit/Profile', 'User\UserPersonalInformationController@update');
+        Route::name('profile')->post('/Edit/Profile', 'User\UserProfileInformationController@update');
     });
 
     Route::group(['prefix' => 'Channel'], function () {

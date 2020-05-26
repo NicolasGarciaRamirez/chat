@@ -15,7 +15,7 @@ class ViewUserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'posts');
+            $this->user->load('personal_information', 'posts', 'profile_information');
             return $next($request);
         });
     }

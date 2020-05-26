@@ -26,7 +26,7 @@
         <div>
             <h2 class="font-weight-bold">{{ user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
             <div class="d-flex">
-                <a href="#" class="btn bg-danger text-white mr-3">{{ user.personal_information.title }}</a>
+                <a href="#" class="btn bg-danger text-white mr-3">{{ user.profile_information.title }}</a>
                 <a v-if="user.subscription_type  == 'CONTRIBUTOR'" href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
             </div>
         </div>

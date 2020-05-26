@@ -76,8 +76,18 @@ class User extends Authenticatable
         return $this->hasMany(\App\Models\User\UserPost::class);
     }
 
+    /**
+     * comment function
+     *
+     * @return void
+     */
     public function comment()
     {
         return $this->hasMany('\App\Models\User\Comments', 'user_id');
+    }
+
+    public function profile_information()
+    {
+        return $this->hasOne(\App\Models\User\UserProfileInformation::class);
     }
 }

@@ -78,12 +78,13 @@ class AuthController extends Controller
 
             $personal_information = new \App\Models\User\UserPersonalInformation($request->all());
             $personal_information->full_name = $request->first_name . ' ' . $request->last_name;
-            $personal_information->members = json_encode($request->personal_information['members']);
-            $personal_information->releases = json_encode($request->personal_information['releases']);
-            $personal_information->social_media = json_encode($request->personal_information['social_media']);
 
             $user->personal_information()->save($personal_information);
 
+            $profile_information = new \App\Models\User\UserProfileInformation();
+            $profile_information->user_id = $user->id;
+            $user->profile_information()->save($profile_information);
+            
 //            if($user->subscription_type == 'FREE') $user->notify(new NewUserFree());
             \DB::commit();
             Auth::login($user);
