@@ -10,10 +10,8 @@ use App\Models\User\Comments;
 
 class CommentsController extends Controller
 {
- 
-    
     public function get($username)
-    {   
+    {
         // $user = User::whereUsername($username)->first();
         // $post = $user->load('posts.comments.user');
         // return response()->json([
@@ -23,7 +21,7 @@ class CommentsController extends Controller
 
     public function save($username, Request $request)
     {
-        
+
         $user = User::whereUsername($username)->first();
 
         $comment = new \App\Models\User\Comments();

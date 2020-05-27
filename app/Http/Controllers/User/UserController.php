@@ -47,7 +47,7 @@ class UserController extends Controller
      */
     public function profileEdit()
     {
-       return view('user.profile.profile-edit', ['user' => $this->user]);
+        return view('user.profile.profile-edit', ['user' => $this->user]);
     }
 
     /**
@@ -55,7 +55,7 @@ class UserController extends Controller
      */
     public function channelEdit()
     {
-       return view('user.channel.channel-edit', ['user' => $this->user]);
+        return view('user.channel.channel-edit', ['user' => $this->user]);
     }
 
     /**
@@ -63,21 +63,26 @@ class UserController extends Controller
      */
     public function accountSettings()
     {
-       return view('user.profile.account-settings', ['user' => $this->user]);
+        return view('user.profile.account-settings', ['user' => $this->user]);
     }
 
-
-    public function updateImage(Request $request)
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function updateImage(Request $request) //hacer form request para validar
     {
         \DB::beginTransaction();
+
         try {
             $request->validate([
                 'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
-    
-            $avatar = 'profile'.'/'.\Str::random(150).request()->avatar->getClientOriginalExtension();
+
+            $avatar = 'profile' . '/' . \Str::random(150) . request()->avatar->getClientOriginalExtension();
             request()->avatar->move(base_path('public/images/profile'), $avatar);
-    
+
             $this->user->avatar = $avatar;
             $this->user->update();
             \DB::commit();
@@ -93,12 +98,16 @@ class UserController extends Controller
                 'updated' => false,
                 'user' => null,
                 'errors' => $e
-            ],422);
+            ], 422);
         }
-        
     }
-    
-    public function updateCover(Request $request)
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function updateCover(Request $request) //hacer form request para validar
     {
         \DB::beginTransaction();
 
@@ -106,13 +115,13 @@ class UserController extends Controller
             $request->validate([
                 'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
-    
-            $cover = 'profile'.'/'.\Str::random(150).request()->cover->getClientOriginalExtension();
+
+            $cover = 'profile' . '/' . \Str::random(150) . request()->cover->getClientOriginalExtension();
             request()->cover->move(base_path('public/images/profile'), $cover);
-    
+
             $this->user->cover = $cover;
             $this->user->update();
-            
+
             \DB::commit();
             return response()->json([
                 'updated' => true,
@@ -125,7 +134,7 @@ class UserController extends Controller
                 'updated' => true,
                 'user' => $this->user,
                 'errors' => null
-            ],422);
+            ], 422);
         }
     }
 }

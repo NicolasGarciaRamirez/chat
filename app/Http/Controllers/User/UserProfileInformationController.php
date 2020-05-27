@@ -9,7 +9,7 @@ use App\Models\User\UserProfileInformation;
 
 class UserProfileInformationController extends Controller
 {
-     /**
+    /**
      * @var
      */
     private $user;
@@ -32,30 +32,29 @@ class UserProfileInformationController extends Controller
      * @param User $user
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function update(Request $request)
     {
         \DB::beginTransaction();
 
-        try{
-            $user = User::whereUsername($this->user->username)->first();
-    
+        try {
             $profile_information = new UserProfileInformation($request->all());
             $profile_information->social_media = json_encode($request->social_media);
 
-            $user->profile_information()->update($profile_information->toArray());
-    
+            $this->user->profile_information()->update($profile_information->toArray());
+
             return response()->json([
                 'updated' => true,
                 'user' => User::find($this->user->id),
                 'errros' => null
-            ],200);
-        } catch (\Exception $e){
+            ], 200);
+        } catch (\Exception $e) {
             return response()->json([
                 'updated' => false,
                 'user' => null,
                 'errros' => $e
-            ],422);
+            ], 422);
         }
     }
 }
