@@ -14054,6 +14054,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -14068,8 +14072,8 @@ __webpack_require__.r(__webpack_exports__);
         title: '',
         artistic_name: '',
         about_you: '',
-        genre: '',
-        services: '',
+        genres: [],
+        services: [],
         social_media: {
           Youtube: '',
           Twitch: '',
@@ -14129,6 +14133,10 @@ __webpack_require__.r(__webpack_exports__);
       axios.post("/".concat(this.user.username, "/Edit/Profile/"), this.profile_information).then(function (res) {
         if (res.data.updated) {
           alert('the personal information has been updated'); // window.location.reload()
+
+          $('html, body').animate({
+            scrollTop: 0
+          }, 'fast');
         } else {
           console.log(res);
         }
@@ -14592,7 +14600,8 @@ __webpack_require__.r(__webpack_exports__);
         values: []
       }
     };
-  }
+  },
+  methods: {}
 });
 
 /***/ }),
@@ -53837,17 +53846,28 @@ var render = function() {
                       "div",
                       { staticClass: "card-body text-white bg-black" },
                       [
-                        _c("div", { staticClass: "text-center select" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "text-white font-weight-bold",
-                              attrs: { type: "button" },
-                              on: { click: _vm.showModalSelectGenres }
-                            },
-                            [_vm._v("Select Genre(s)")]
-                          )
-                        ])
+                        _c(
+                          "div",
+                          { staticClass: "text-center select" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "text-white font-weight-bold",
+                                attrs: { type: "button" },
+                                on: { click: _vm.showModalSelectGenres }
+                              },
+                              [_vm._v("Select Genre(s)")]
+                            ),
+                            _vm._v(" "),
+                            _vm._l(_vm.genre, function(item, index) {
+                              return _c("ul", { key: index }, [
+                                _c("li", [_vm._v(_vm._s(item))])
+                              ])
+                            })
+                          ],
+                          2
+                        )
                       ]
                     )
                   ]
@@ -55153,8 +55173,8 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.genres.categorys,
-                              expression: "genres.categorys"
+                              value: _vm.$parent.profile_information.genres,
+                              expression: "$parent.profile_information.genres"
                             }
                           ],
                           attrs: {
@@ -55163,13 +55183,18 @@ var render = function() {
                             value: "Alternative"
                           },
                           domProps: {
-                            checked: Array.isArray(_vm.genres.categorys)
-                              ? _vm._i(_vm.genres.categorys, "Alternative") > -1
-                              : _vm.genres.categorys
+                            checked: Array.isArray(
+                              _vm.$parent.profile_information.genres
+                            )
+                              ? _vm._i(
+                                  _vm.$parent.profile_information.genres,
+                                  "Alternative"
+                                ) > -1
+                              : _vm.$parent.profile_information.genres
                           },
                           on: {
                             change: function($event) {
-                              var $$a = _vm.genres.categorys,
+                              var $$a = _vm.$parent.profile_information.genres,
                                 $$el = $event.target,
                                 $$c = $$el.checked ? true : false
                               if (Array.isArray($$a)) {
@@ -55178,22 +55203,26 @@ var render = function() {
                                 if ($$el.checked) {
                                   $$i < 0 &&
                                     _vm.$set(
-                                      _vm.genres,
-                                      "categorys",
+                                      _vm.$parent.profile_information,
+                                      "genres",
                                       $$a.concat([$$v])
                                     )
                                 } else {
                                   $$i > -1 &&
                                     _vm.$set(
-                                      _vm.genres,
-                                      "categorys",
+                                      _vm.$parent.profile_information,
+                                      "genres",
                                       $$a
                                         .slice(0, $$i)
                                         .concat($$a.slice($$i + 1))
                                     )
                                 }
                               } else {
-                                _vm.$set(_vm.genres, "categorys", $$c)
+                                _vm.$set(
+                                  _vm.$parent.profile_information,
+                                  "genres",
+                                  $$c
+                                )
                               }
                             }
                           }
@@ -55219,8 +55248,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.genres.categorys,
-                                expression: "genres.categorys"
+                                value: _vm.$parent.profile_information.genres,
+                                expression: "$parent.profile_information.genres"
                               }
                             ],
                             attrs: {
@@ -55229,13 +55258,19 @@ var render = function() {
                               value: "Blues"
                             },
                             domProps: {
-                              checked: Array.isArray(_vm.genres.categorys)
-                                ? _vm._i(_vm.genres.categorys, "Blues") > -1
-                                : _vm.genres.categorys
+                              checked: Array.isArray(
+                                _vm.$parent.profile_information.genres
+                              )
+                                ? _vm._i(
+                                    _vm.$parent.profile_information.genres,
+                                    "Blues"
+                                  ) > -1
+                                : _vm.$parent.profile_information.genres
                             },
                             on: {
                               change: function($event) {
-                                var $$a = _vm.genres.categorys,
+                                var $$a =
+                                    _vm.$parent.profile_information.genres,
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
@@ -55244,22 +55279,26 @@ var render = function() {
                                   if ($$el.checked) {
                                     $$i < 0 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a.concat([$$v])
                                       )
                                   } else {
                                     $$i > -1 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a
                                           .slice(0, $$i)
                                           .concat($$a.slice($$i + 1))
                                       )
                                   }
                                 } else {
-                                  _vm.$set(_vm.genres, "categorys", $$c)
+                                  _vm.$set(
+                                    _vm.$parent.profile_information,
+                                    "genres",
+                                    $$c
+                                  )
                                 }
                               }
                             }
@@ -55282,8 +55321,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55292,16 +55332,19 @@ var render = function() {
                                 value: "Acoustic Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Acoustic Blues"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55310,22 +55353,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55347,8 +55394,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55357,14 +55405,19 @@ var render = function() {
                                 value: "Chicago Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Chicago Blues") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Chicago Blues"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55373,22 +55426,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55410,8 +55467,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55420,14 +55478,19 @@ var render = function() {
                                 value: "Classic Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Classic Blues") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Classic Blues"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55436,22 +55499,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55473,8 +55540,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55483,16 +55551,19 @@ var render = function() {
                                 value: "Contemporary Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Contemporary Blues"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55501,22 +55572,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55538,8 +55613,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55548,14 +55624,19 @@ var render = function() {
                                 value: "Country Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Country Blues") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Country Blues"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55564,22 +55645,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55601,8 +55686,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55611,14 +55697,19 @@ var render = function() {
                                 value: "Delta Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Delta Blues") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Delta Blues"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55627,22 +55718,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55664,8 +55759,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55674,16 +55770,19 @@ var render = function() {
                                 value: "Electric Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Electric Blues"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55692,22 +55791,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55729,8 +55832,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55739,14 +55843,19 @@ var render = function() {
                                 value: "Ragtime Blues"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Ragtime Blues") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Ragtime Blues"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55755,22 +55864,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55797,8 +55910,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.genres.categorys,
-                                expression: "genres.categorys"
+                                value: _vm.$parent.profile_information.genres,
+                                expression: "$parent.profile_information.genres"
                               }
                             ],
                             attrs: {
@@ -55807,16 +55920,19 @@ var render = function() {
                               value: "Children’s Music"
                             },
                             domProps: {
-                              checked: Array.isArray(_vm.genres.categorys)
+                              checked: Array.isArray(
+                                _vm.$parent.profile_information.genres
+                              )
                                 ? _vm._i(
-                                    _vm.genres.categorys,
+                                    _vm.$parent.profile_information.genres,
                                     "Children’s Music"
                                   ) > -1
-                                : _vm.genres.categorys
+                                : _vm.$parent.profile_information.genres
                             },
                             on: {
                               change: function($event) {
-                                var $$a = _vm.genres.categorys,
+                                var $$a =
+                                    _vm.$parent.profile_information.genres,
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
@@ -55825,22 +55941,26 @@ var render = function() {
                                   if ($$el.checked) {
                                     $$i < 0 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a.concat([$$v])
                                       )
                                   } else {
                                     $$i > -1 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a
                                           .slice(0, $$i)
                                           .concat($$a.slice($$i + 1))
                                       )
                                   }
                                 } else {
-                                  _vm.$set(_vm.genres, "categorys", $$c)
+                                  _vm.$set(
+                                    _vm.$parent.profile_information,
+                                    "genres",
+                                    $$c
+                                  )
                                 }
                               }
                             }
@@ -55863,8 +55983,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55873,13 +55994,19 @@ var render = function() {
                                 value: "Lullabies"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Lullabies") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Lullabies"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55888,22 +56015,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55925,8 +56056,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55935,13 +56067,19 @@ var render = function() {
                                 value: "Sing-Along"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Sing-Along") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Sing-Along"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -55950,22 +56088,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -55987,8 +56129,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -55997,13 +56140,19 @@ var render = function() {
                                 value: "Stories"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Stories") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Stories"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56012,22 +56161,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56052,8 +56205,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.genres.categorys,
-                                expression: "genres.categorys"
+                                value: _vm.$parent.profile_information.genres,
+                                expression: "$parent.profile_information.genres"
                               }
                             ],
                             attrs: {
@@ -56062,13 +56215,19 @@ var render = function() {
                               value: "Classical"
                             },
                             domProps: {
-                              checked: Array.isArray(_vm.genres.categorys)
-                                ? _vm._i(_vm.genres.categorys, "Classical") > -1
-                                : _vm.genres.categorys
+                              checked: Array.isArray(
+                                _vm.$parent.profile_information.genres
+                              )
+                                ? _vm._i(
+                                    _vm.$parent.profile_information.genres,
+                                    "Classical"
+                                  ) > -1
+                                : _vm.$parent.profile_information.genres
                             },
                             on: {
                               change: function($event) {
-                                var $$a = _vm.genres.categorys,
+                                var $$a =
+                                    _vm.$parent.profile_information.genres,
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
@@ -56077,22 +56236,26 @@ var render = function() {
                                   if ($$el.checked) {
                                     $$i < 0 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a.concat([$$v])
                                       )
                                   } else {
                                     $$i > -1 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a
                                           .slice(0, $$i)
                                           .concat($$a.slice($$i + 1))
                                       )
                                   }
                                 } else {
-                                  _vm.$set(_vm.genres, "categorys", $$c)
+                                  _vm.$set(
+                                    _vm.$parent.profile_information,
+                                    "genres",
+                                    $$c
+                                  )
                                 }
                               }
                             }
@@ -56115,8 +56278,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56125,14 +56289,19 @@ var render = function() {
                                 value: "Avant-Garde"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Avant-Garde") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Avant-Garde"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56141,22 +56310,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56178,8 +56351,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56188,13 +56362,19 @@ var render = function() {
                                 value: "Baroque"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Baroque") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Baroque"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56203,22 +56383,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56240,8 +56424,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56250,14 +56435,19 @@ var render = function() {
                                 value: "Chamber Music"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Chamber Music") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Chamber Music"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56266,22 +56456,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56303,8 +56497,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56313,13 +56508,19 @@ var render = function() {
                                 value: "Chant"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Chant") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Chant"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56328,22 +56529,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56365,8 +56570,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56375,13 +56581,19 @@ var render = function() {
                                 value: "Choral"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Choral") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Choral"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56390,22 +56602,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56427,8 +56643,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56437,16 +56654,19 @@ var render = function() {
                                 value: "Classical Crossover"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Classical Crossover"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56455,22 +56675,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56492,8 +56716,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56502,16 +56727,19 @@ var render = function() {
                                 value: "Contemporary Classical"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Contemporary Classical"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56520,22 +56748,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56557,8 +56789,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56567,14 +56800,19 @@ var render = function() {
                                 value: "Early Music"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Early Music") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Early Music"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56583,22 +56821,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56620,8 +56862,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56630,14 +56873,19 @@ var render = function() {
                                 value: "Expressionist"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Expressionist") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Expressionist"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56646,22 +56894,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56683,8 +56935,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56693,16 +56946,19 @@ var render = function() {
                                 value: "High Classical"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "High Classical"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56711,22 +56967,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56748,8 +57008,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56758,14 +57019,19 @@ var render = function() {
                                 value: "Impressionist"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Impressionist") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Impressionist"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56774,22 +57040,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56811,8 +57081,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56821,13 +57092,19 @@ var render = function() {
                                 value: "Medieval"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Medieval") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Medieval"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56836,22 +57113,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56873,8 +57154,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56883,13 +57165,19 @@ var render = function() {
                                 value: "Minimalism"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Minimalism") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Minimalism"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56898,22 +57186,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -56935,8 +57227,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -56945,16 +57238,19 @@ var render = function() {
                                 value: "Modern Composition"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Modern Composition"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -56963,22 +57259,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57000,8 +57300,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57010,14 +57311,19 @@ var render = function() {
                                 value: "Renaissance"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Renaissance") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Renaissance"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57026,22 +57332,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57063,8 +57373,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57073,13 +57384,19 @@ var render = function() {
                                 value: "Romantic"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Romantic") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Romantic"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57088,22 +57405,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57125,8 +57446,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57135,13 +57457,19 @@ var render = function() {
                                 value: "Wedding"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Wedding") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Wedding"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57150,22 +57478,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57190,8 +57522,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.genres.categorys,
-                                expression: "genres.categorys"
+                                value: _vm.$parent.profile_information.genres,
+                                expression: "$parent.profile_information.genres"
                               }
                             ],
                             attrs: {
@@ -57200,13 +57532,19 @@ var render = function() {
                               value: "comedy"
                             },
                             domProps: {
-                              checked: Array.isArray(_vm.genres.categorys)
-                                ? _vm._i(_vm.genres.categorys, "comedy") > -1
-                                : _vm.genres.categorys
+                              checked: Array.isArray(
+                                _vm.$parent.profile_information.genres
+                              )
+                                ? _vm._i(
+                                    _vm.$parent.profile_information.genres,
+                                    "comedy"
+                                  ) > -1
+                                : _vm.$parent.profile_information.genres
                             },
                             on: {
                               change: function($event) {
-                                var $$a = _vm.genres.categorys,
+                                var $$a =
+                                    _vm.$parent.profile_information.genres,
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
@@ -57215,22 +57553,26 @@ var render = function() {
                                   if ($$el.checked) {
                                     $$i < 0 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a.concat([$$v])
                                       )
                                   } else {
                                     $$i > -1 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a
                                           .slice(0, $$i)
                                           .concat($$a.slice($$i + 1))
                                       )
                                   }
                                 } else {
-                                  _vm.$set(_vm.genres, "categorys", $$c)
+                                  _vm.$set(
+                                    _vm.$parent.profile_information,
+                                    "genres",
+                                    $$c
+                                  )
                                 }
                               }
                             }
@@ -57253,8 +57595,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57263,13 +57606,19 @@ var render = function() {
                                 value: "Novelty"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Novelty") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Novelty"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57278,22 +57627,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57315,8 +57668,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57325,16 +57679,19 @@ var render = function() {
                                 value: "Standup Comedy"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Standup Comedy"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57343,22 +57700,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57380,8 +57741,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57390,13 +57752,19 @@ var render = function() {
                                 value: "Vaudeville"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Vaudeville") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Vaudeville"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57405,22 +57773,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57445,8 +57817,8 @@ var render = function() {
                               {
                                 name: "model",
                                 rawName: "v-model",
-                                value: _vm.genres.categorys,
-                                expression: "genres.categorys"
+                                value: _vm.$parent.profile_information.genres,
+                                expression: "$parent.profile_information.genres"
                               }
                             ],
                             attrs: {
@@ -57455,13 +57827,19 @@ var render = function() {
                               value: "Country"
                             },
                             domProps: {
-                              checked: Array.isArray(_vm.genres.categorys)
-                                ? _vm._i(_vm.genres.categorys, "Country") > -1
-                                : _vm.genres.categorys
+                              checked: Array.isArray(
+                                _vm.$parent.profile_information.genres
+                              )
+                                ? _vm._i(
+                                    _vm.$parent.profile_information.genres,
+                                    "Country"
+                                  ) > -1
+                                : _vm.$parent.profile_information.genres
                             },
                             on: {
                               change: function($event) {
-                                var $$a = _vm.genres.categorys,
+                                var $$a =
+                                    _vm.$parent.profile_information.genres,
                                   $$el = $event.target,
                                   $$c = $$el.checked ? true : false
                                 if (Array.isArray($$a)) {
@@ -57470,22 +57848,26 @@ var render = function() {
                                   if ($$el.checked) {
                                     $$i < 0 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a.concat([$$v])
                                       )
                                   } else {
                                     $$i > -1 &&
                                       _vm.$set(
-                                        _vm.genres,
-                                        "categorys",
+                                        _vm.$parent.profile_information,
+                                        "genres",
                                         $$a
                                           .slice(0, $$i)
                                           .concat($$a.slice($$i + 1))
                                       )
                                   }
                                 } else {
-                                  _vm.$set(_vm.genres, "categorys", $$c)
+                                  _vm.$set(
+                                    _vm.$parent.profile_information,
+                                    "genres",
+                                    $$c
+                                  )
                                 }
                               }
                             }
@@ -57508,8 +57890,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57518,16 +57901,19 @@ var render = function() {
                                 value: "Alternative Country"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Alternative Country"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57536,22 +57922,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57573,8 +57963,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57583,13 +57974,19 @@ var render = function() {
                                 value: "Americana"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Americana") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Americana"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57598,22 +57995,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57635,8 +58036,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57645,13 +58047,19 @@ var render = function() {
                                 value: "Bluegrass"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Bluegrass") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Bluegrass"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57660,22 +58068,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57697,8 +58109,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57707,16 +58120,19 @@ var render = function() {
                                 value: "Contemporary Bluegrass"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Contemporary Bluegrass"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57725,22 +58141,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57762,8 +58182,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57772,16 +58193,19 @@ var render = function() {
                                 value: "Contemporary Country"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Contemporary Country"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57790,22 +58214,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57827,8 +58255,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57837,16 +58266,19 @@ var render = function() {
                                 value: "Country Gospel"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Country Gospel"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57855,22 +58287,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57892,8 +58328,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57902,14 +58339,19 @@ var render = function() {
                                 value: "Country Pop"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Country Pop") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Country Pop"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57918,22 +58360,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -57955,8 +58401,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -57965,13 +58412,19 @@ var render = function() {
                                 value: "Honky Tonk"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Honky Tonk") > -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Honky Tonk"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -57980,22 +58433,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -58017,8 +58474,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -58027,16 +58485,19 @@ var render = function() {
                                 value: "Outlaw Country"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Outlaw Country"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -58045,22 +58506,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -58082,8 +58547,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -58092,16 +58558,19 @@ var render = function() {
                                 value: "Traditional Bluegrass"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Traditional Bluegrass"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -58110,22 +58579,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -58147,8 +58620,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -58157,16 +58631,19 @@ var render = function() {
                                 value: "Traditional Country"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
                                   ? _vm._i(
-                                      _vm.genres.values,
+                                      _vm.$parent.profile_information.genres,
                                       "Traditional Country"
                                     ) > -1
-                                  : _vm.genres.values
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -58175,22 +58652,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }
@@ -58212,8 +58693,9 @@ var render = function() {
                                 {
                                   name: "model",
                                   rawName: "v-model",
-                                  value: _vm.genres.values,
-                                  expression: "genres.values"
+                                  value: _vm.$parent.profile_information.genres,
+                                  expression:
+                                    "$parent.profile_information.genres"
                                 }
                               ],
                               attrs: {
@@ -58222,14 +58704,19 @@ var render = function() {
                                 value: "Urban Cowboy"
                               },
                               domProps: {
-                                checked: Array.isArray(_vm.genres.values)
-                                  ? _vm._i(_vm.genres.values, "Urban Cowboy") >
-                                    -1
-                                  : _vm.genres.values
+                                checked: Array.isArray(
+                                  _vm.$parent.profile_information.genres
+                                )
+                                  ? _vm._i(
+                                      _vm.$parent.profile_information.genres,
+                                      "Urban Cowboy"
+                                    ) > -1
+                                  : _vm.$parent.profile_information.genres
                               },
                               on: {
                                 change: function($event) {
-                                  var $$a = _vm.genres.values,
+                                  var $$a =
+                                      _vm.$parent.profile_information.genres,
                                     $$el = $event.target,
                                     $$c = $$el.checked ? true : false
                                   if (Array.isArray($$a)) {
@@ -58238,22 +58725,26 @@ var render = function() {
                                     if ($$el.checked) {
                                       $$i < 0 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a.concat([$$v])
                                         )
                                     } else {
                                       $$i > -1 &&
                                         _vm.$set(
-                                          _vm.genres,
-                                          "values",
+                                          _vm.$parent.profile_information,
+                                          "genres",
                                           $$a
                                             .slice(0, $$i)
                                             .concat($$a.slice($$i + 1))
                                         )
                                     }
                                   } else {
-                                    _vm.$set(_vm.genres, "values", $$c)
+                                    _vm.$set(
+                                      _vm.$parent.profile_information,
+                                      "genres",
+                                      $$c
+                                    )
                                   }
                                 }
                               }

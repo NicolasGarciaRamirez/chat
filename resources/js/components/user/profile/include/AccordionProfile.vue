@@ -186,6 +186,10 @@
                         <div class="card-body text-white bg-black">
                             <div class="text-center select">
                                 <button type="button" class="text-white font-weight-bold" @click="showModalSelectGenres">Select Genre(s)</button>
+
+                                <ul v-for="(item , index) in genre" :key="index" >
+                                    <li>{{ item }}</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -308,8 +312,8 @@ export default {
                 title: '',
                 artistic_name: '',
                 about_you: '',
-                genre: '',
-                services: '',
+                genres: [],
+                services: [],
                 social_media: {
                     Youtube: '',
                     Twitch: '',
@@ -383,6 +387,7 @@ export default {
                 if (res.data.updated) {
                     alert('the personal information has been updated')
                     // window.location.reload()
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
                 }
                 else{
                     console.log(res)

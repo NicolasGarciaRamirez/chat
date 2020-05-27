@@ -35,6 +35,7 @@ class UserProfileInformationController extends Controller
      */
     public function update(Request $request)
     {
+        // return $request;
         \DB::beginTransaction();
 
         try{
@@ -47,7 +48,7 @@ class UserProfileInformationController extends Controller
     
             return response()->json([
                 'updated' => true,
-                'user' => User::find($this->user->id),
+                'user' => User::find($this->user->id)->load('profile_information'),
                 'errros' => null
             ],200);
         } catch (\Exception $e){
