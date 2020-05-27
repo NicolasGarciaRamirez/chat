@@ -12,7 +12,7 @@ class UserPersonalInformation extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'full_name'
+        'first_name', 'last_name', 'full_name', 'user_id'
     ];
 
     /**
