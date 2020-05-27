@@ -10,7 +10,7 @@ use App\Models\User\UserPersonalInformation;
 class UserPersonalInformationController extends Controller
 {
 
-     /**
+    /**
      * @var
      */
     private $user;
@@ -27,6 +27,7 @@ class UserPersonalInformationController extends Controller
             return $next($request);
         });
     }
+
     /**
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
@@ -42,32 +43,31 @@ class UserPersonalInformationController extends Controller
      * @param User $user
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function update(Request $request)
     {
         \DB::beginTransaction();
 
-        try{
-            $user = User::whereUsername($this->user->username)->first();
-    
+        try {
             $personal_information = new UserPersonalInformation($request->all());
             $personal_information->members = json_encode($request->members);
             $personal_information->releases = json_encode($request->releases);
             $personal_information->social_media = json_encode($request->social_media);
 
-            $user->personal_information()->update($personal_information->toArray());
-    
+            $this->user->personal_information()->update($personal_information->toArray());
+
             return response()->json([
                 'updated' => true,
                 'user' => User::find($this->user->id),
                 'errros' => null
-            ],200);
-        } catch (\Exception $e){
+            ], 200);
+        } catch (\Exception $e) {
             return response()->json([
                 'updated' => false,
                 'user' => null,
                 'errros' => $e
-            ],422);
+            ], 422);
         }
     }
 }

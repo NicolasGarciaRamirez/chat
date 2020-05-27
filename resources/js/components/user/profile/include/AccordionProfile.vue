@@ -84,7 +84,7 @@
                     </div>
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
-                            <input type="text" class="form-control mb-3" placeholder="Artistic Name" v-model="profile_information.artistic_name"> 
+                            <input type="text" class="form-control mb-3" placeholder="Artistic Name" v-model="profile_information.artistic_name">
                             <input type="checkbox"> Use Artistic Name Instead of Personal Name
                         </div>
                     </div>
@@ -147,10 +147,8 @@
                     </div>
                     <div id="collapseSix" class="collapse text-center bg-black" aria-labelledby="headingSix" data-parent="#accordionProfile">
                         <button type="button" class="bg-primary c-white rounded-pill" v-on:click="addRelease">Add Release</button>
-                        <div id="releases" class="card-body d-flex flex-row text-white bg-black align-items-center justify-content-between" v-if="cont <= 3">
-                        </div>
-                        <div  id="releases" class="card-body d-flex flex-column text-white bg-black align-items-center justify-content-between" v-if="cont > 3">
-
+                        <div id="releases" class="card-body d-flex text-white bg-black align-items-center flex-wrap">
+                            <single-release v-for="(release, index) in releases_information" :key="index" :release="release" :index="index" />
                         </div>
                     </div>
                 </div>
@@ -300,8 +298,14 @@
 <script>
 import ModalSelectGenres from './ModalSelectGenres'
 import ModalSelectServices from './ModalSelectServices'
+import SingleRelease from "./SingleRelease";
 export default {
     props:['user'],
+    components:{
+        ModalSelectGenres,
+        ModalSelectServices,
+        SingleRelease
+    },
     data(){
         return {
             cont:0,
@@ -332,55 +336,19 @@ export default {
                 link_profile:'',
                 role_instrument:'',
             },
-            releases_information:{
-                album_name:'',
-                artitstic_name:'',
-                genre:'',
-                image:'',
-                label:'',
-                release_date:''
-            }
+            releases_information: []
         }
-    },
-    components:{
-        ModalSelectGenres,
-        ModalSelectServices
-    },
-    mounted(){
-        
     },
     methods:{
         addRelease(){
-            var cont = this.cont++
-            var template = `<div class="d-flex flex-row">
-                            <div class="d-flex flex-column">
-                                <label for="imgRelease">
-                                    <img class="img-fluid pr-3" :src="releases_information.image" height="190px" width="180px" />
-                                </label>
-                                <input type="file" id="imgRelease" name="imageRelease" class="form-control d-none" ref="imageRelease" v-on:change="previewImage" />
-                            </div>
-                            <div class="d-flex flex-column">
-                                <input type="text" class="form-control" placeholder="Artist Name" v-model='releases_information.artist_name' />
-                                <input type="text" class="form-control" placeholder="Album Name" v-model="releases_information.album_name" />
-                                <input type="text" class="form-control" placeholder="Release Date" v-model="releases_information.release_date"  />
-                                <input type="text" class="form-control" placeholder="Genre" v-model="releases_information.genre" />
-                                <input type="text" class="form-control" placeholder="Label name" v-model="releases_information.label" />
-                            </div>
-                        </div>`
-            $(template).appendTo('#releases')
-
-        },
-        previewImage(event) {
-            this.profile_information.releases.image = event.target.files[0]
-
-            var input = event.target;
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = (e) => {
-                    this.imageData = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+            this.releases_information.push({
+                album_name:'',
+                artitstic_name:'',
+                genre:'',
+                image:'/images/default.png',
+                label:'',
+                release_date:''
+            })
         },
         save(){
             axios.post(`/${this.user.username}/Edit/Profile/`, this.profile_information).then(res => {

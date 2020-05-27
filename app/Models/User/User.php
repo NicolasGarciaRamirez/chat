@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_name','full_name', 'email', 'password', 'subscription_type'
+        'username', 'full_name', 'email', 'password', 'subscription_type'
     ];
 
     /**
@@ -86,8 +86,19 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\User\Comments', 'user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function profile_information()
     {
         return $this->hasOne(\App\Models\User\UserProfileInformation::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function social_auth()
+    {
+        return $this->hasMany(\App\Models\User\UserSocialAuth::class);
     }
 }

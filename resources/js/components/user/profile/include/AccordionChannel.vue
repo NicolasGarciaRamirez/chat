@@ -11,7 +11,7 @@
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
-                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionChannel" >
+                    <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
                             <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
@@ -27,7 +27,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionChannel" >
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
                             <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
@@ -43,7 +43,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionChannel" >
+                    <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
                             <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
@@ -53,7 +53,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingFourth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
-                            <button class="btn btn-link text-white" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
+                            <button type="button" class="btn btn-link text-white">
                                 View Supporters (Contributors Only)
                             </button>
                             <i class="fas fa-angle-down text-white float-right"></i>
@@ -61,7 +61,7 @@
                     </div>
                     <div id="collapseFourth" class="collapse " aria-labelledby="headingFourth" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
-                            <button type="button" class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
+                            <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseFifth" class="collapse " aria-labelledby="headingFifth" data-parent="#accordionChannel" >
+                    <div id="collapseFifth" class="collapse " aria-labelledby="headingFifth" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
                             <button type="button" class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
@@ -91,7 +91,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseSix" class="collapse " aria-labelledby="headingSix" data-parent="#accordionChannel" >
+                    <div id="collapseSix" class="collapse " aria-labelledby="headingSix" data-parent="#accordionChannel">
                         <div class="card-body bg-black">
 
                         </div>
@@ -106,7 +106,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseSeven" class="collapse " aria-labelledby="headingSeven" data-parent="#accordionChannel" >
+                    <div id="collapseSeven" class="collapse " aria-labelledby="headingSeven" data-parent="#accordionChannel">
                         <div class="card-body bg-black">
 
                         </div>
@@ -121,7 +121,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseEight" class="collapse " aria-labelledby="headingEight" data-parent="#accordionChannel" >
+                    <div id="collapseEight" class="collapse " aria-labelledby="headingEight" data-parent="#accordionChannel">
                         <div class="card-body bg-black">
 
                         </div>
@@ -136,7 +136,7 @@
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseNine" class="collapse " aria-labelledby="headingNine" data-parent="#accordionChannel" >
+                    <div id="collapseNine" class="collapse " aria-labelledby="headingNine" data-parent="#accordionChannel">
                         <div class="card-body bg-black">
 
                         </div>

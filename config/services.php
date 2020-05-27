@@ -33,19 +33,18 @@ return [
     'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => 'http:/localhost/login/facebook/callback'
+        'redirect' => env('FACEBOOK_CLIENT_URL')
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'GOOGLE_CLIENT_ID' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => 'localhost:8000/'
+        'redirect' => env('GOOGLE_CLIENT_URL')
     ],
 
     'twitter' => [
         'client_id' => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => 'localhost:8000/'
+        'redirect' => env('TWITTER_CLIENT_URL')
     ]
-
 ];

@@ -84,7 +84,7 @@ class AuthController extends Controller
             $profile_information = new \App\Models\User\UserProfileInformation();
             $profile_information->user_id = $user->id;
             $user->profile_information()->save($profile_information);
-            
+
 //            if($user->subscription_type == 'FREE') $user->notify(new NewUserFree());
             \DB::commit();
             Auth::login($user);
