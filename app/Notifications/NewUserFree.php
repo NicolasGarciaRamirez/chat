@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +12,16 @@ class NewUserFree extends Notification
 {
     use Queueable;
 
+    protected $full_name;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($full_name)
     {
-        //
+        $this->full_name = $full_name;
     }
 
     /**
@@ -43,7 +46,7 @@ class NewUserFree extends Notification
         return (new MailMessage)
             ->from('noreply@noisesharks.com')
             ->subject('Noisesharks - Free Profile Created!')
-            ->view('emails.new-free-user', ['user' => $notifiable]);
+            ->view('emails.new-free-user', ['user' => $notifiable, 'full_name' => $this->full_name]);
     }
 
     /**
