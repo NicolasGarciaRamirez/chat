@@ -85,7 +85,8 @@ class AuthController extends Controller
             $profile_information->user_id = $user->id;
             $user->profile_information()->save($profile_information);
 
-//            if($user->subscription_type == 'FREE') $user->notify(new NewUserFree());
+            if ($user->subscription_type == 'FREE') $user->notify(new NewUserFree($personal_information->full_name));
+
             \DB::commit();
             Auth::login($user);
 
@@ -110,7 +111,15 @@ class AuthController extends Controller
      */
     public function sedEmailForgotPassword(Request $request)
     {
-        \Mail::to($request->email)->send(new \App\Mail\ForgotPassword());
+        $user = User::with('personal_information')->whereEmail($request->email)->first();
+
+        if (!$user) {
+            return response()->json([
+                'message' => 'We send you an email to follow the instructions'
+            ]);
+        }
+
+        \Mail::to($request->email)->send(new \App\Mail\ForgotPassword($user, $user->personal_information->full_name));
         return response()->json([
             'message' => 'We send you an email to follow the instructions'
         ]);

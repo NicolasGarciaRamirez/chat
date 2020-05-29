@@ -221,7 +221,7 @@
                                             style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
                                             <p style="font-size: 15px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 18px; margin: 0;">
                                                 <span
-                                                    style="color: #999999; font-size: 15px;">Hi <strong>[User Name]</strong>,</span>
+                                                    style="color: #999999; font-size: 15px;">Hi <strong>{{ $full_name }}</strong>,</span>
                                             </p>
                                         </div>
                                     </div>
@@ -238,7 +238,7 @@
                                             <p style="font-size: 14px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
                                                 <span style="color: #999999;"><span style="font-size: 15px;">We <span
                                                             style="color: #999999;"><span style="font-size: 15px;">received</span></span> your request to reset your password for your Noisesharks account: <span
-                                                            style="color: #ff0000;"><u>[user email@email.com]</u><span
+                                                            style="color: #ff0000;"><u>{{ $user->email }}</u><span
                                                                 style="color: #999999;">. </span></span></span></span>
                                             </p>
                                             <p style="font-size: 14px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">

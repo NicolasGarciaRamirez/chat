@@ -60,6 +60,10 @@
             color: inherit !important;
             text-decoration: none !important;
         }
+        a{
+            text-decoration: none;
+            color: white;
+        }
     </style>
     <style id="media-query" type="text/css">
         @media (max-width: 670px) {
@@ -354,7 +358,7 @@
                                                  </p>
                                             <p style="font-size: 14px; line-height: 1.2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
                                                 <span
-                                                    style="color: #999999;"><strong>Congratulations [User Name]!</strong> You have successfully become a Noiseshark. You can now enjoy discovering and connecting with other Noisesharks, and most importantly support your favourite Noisesharks Contributors!</span>
+                                                    style="color: #999999;"><strong>Congratulations {{ $full_name }}!</strong> You have successfully become a Noiseshark. You can now enjoy discovering and connecting with other Noisesharks, and most importantly support your favourite Noisesharks Contributors!</span>
                                             </p>
                                         </div>
                                     </div>
@@ -460,7 +464,8 @@
                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0006;border-radius:60px;-webkit-border-radius:60px;-moz-border-radius:60px;width:auto; width:auto;;border-top:1px solid #ff0006;border-right:1px solid #ff0006;border-bottom:1px solid #ff0006;border-left:1px solid #ff0006;padding-top:5px;padding-bottom:5px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
                                             <span
                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
-                                                    style="font-size: 16px; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong>Take Me To My Profile</strong></span></span>
+                                                    style="font-size: 16px; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a
+                                                            href="{{ route('profile.releases', $user->username) }}">Take Me To My Profile</a></strong></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>
@@ -548,7 +553,8 @@
                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0005;border-radius:60px;-webkit-border-radius:60px;-moz-border-radius:60px;width:auto; width:auto;;border-top:1px solid #ff0005;border-right:1px solid #ff0005;border-bottom:1px solid #ff0005;border-left:1px solid #ff0005;padding-top:5px;padding-bottom:5px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
                                             <span
                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
-                                                    style="font-size: 16px; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong>Take Me To The Stream Page</strong></span></span>
+                                                    style="font-size: 16px; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a
+                                                            href="{{ route('home') }}">Take Me To The Stream Page</a></strong></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>
