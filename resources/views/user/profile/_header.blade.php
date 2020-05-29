@@ -16,18 +16,18 @@
 </div>
 <div class="navigation-body">
     @if ($user->profile_information)
-        @if ($user->profile_information->releases[0])
+        @if ($user->profile_information->releases)
             <a href="/{{ $user->username }}/Profile/Releases" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.releases' ? 'active' : '' }}">Releases</a>
         @endif
-        @if ($user->profile_information->members[0])
+        @if ($user->profile_information->members)
             <a href="/{{ $user->username }}/Profile/Members" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.members' ? 'active' : '' }}">Members</a>
         @endif
         <a href="/{{ $user->username }}/Profile/WorkHistory" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.work.history' ? 'active' : '' }}">Work History</a>
         @if ($user->profile_information->genres)
-        <a href="/{{ $user->username }}/Profile/Genres" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.genres' ? 'active' : '' }}">Genres</a>
+            <a href="/{{ $user->username }}/Profile/Genres" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.genres' ? 'active' : '' }}">Genres</a>
         @endif
         @if ($user->profile_information->services)
-        <a href="/{{ $user->username }}/Profile/Services" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.services' ? 'active' : '' }}">Services</a>
+            <a href="/{{ $user->username }}/Profile/Services" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.services' ? 'active' : '' }}">Services</a>
         @endif
     @endif
     <a href="/{{ $user->username }}/Profile/Rates" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.rates' ? 'active' : '' }}">Rates</a>
