@@ -12,7 +12,7 @@ class Releases extends Model
      * @var array
      */
     protected $fillable = [
-        'album_name','artitstic_name','genre','image', 'label', 'release_date'
+        'album_name','artistic_name','genre','image', 'label', 'profile_information_id','release_date'
     ];
 
     /**
@@ -21,7 +21,7 @@ class Releases extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at','updated_at','delete_at'
+        'created_at','updated_at','delete_at','profile_information_id'
     ];
 
     /**

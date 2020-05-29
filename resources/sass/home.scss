@@ -102,7 +102,6 @@
                         position: absolute;
                         top: 10%;
                         transform: translateX(30px);
-                        // color: $fourth-color;
                     }
                     &:before {
                         content: "";
@@ -122,8 +121,7 @@
                         top: 0;
                         margin: 4px;
                         width: 20px;
-                        height: 20px;
-                        // transition: transform 0.28s ease;
+                        height: 20px;  
                         border-radius: 3px;
                         border: 1px solid white;
                         color: $fifth-color;

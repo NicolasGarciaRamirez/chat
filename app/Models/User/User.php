@@ -77,9 +77,7 @@ class User extends Authenticatable
     }
 
     /**
-     * comment function
-     *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function comment()
     {

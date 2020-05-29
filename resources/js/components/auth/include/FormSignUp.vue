@@ -151,7 +151,7 @@
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
                             Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
-                            window.location.replace(`/${res.data.user.username}/Profile/Releases`)
+                            window.location.replace(`/${res.data.user.username}/Profile/Rates`)
                         }
                     }).catch(err => {
                         this.backend_errors = err.response.data.errors

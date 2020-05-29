@@ -16,9 +16,9 @@
                     aria-labelledby="headingOne" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="c-fourth flex-column mx-5">
-                                <div><label>Accont Type :</label><b class="c-fifth">FREE</b></div>
-                                <div><label>Joined :</label><b class="text-white">01/10/2019</b></div>
-                                <div><label>Email :</label><b class="text-white">t.ghanamek@noisesharls.com</b></div>
+                                <div><label>Accont Type :</label><b class="c-fifth">{{user.subscription_type}}</b></div>
+                                <div><label>Joined :</label><b class="text-white">{{ user.created_at }}</b></div>
+                                <div><label>Email :</label><b class="text-white">{{ user.email }}</b></div>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button>Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
@@ -38,7 +38,7 @@
                     aria-labelledby="headingTwo" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="c-fourth flex-column mx-5">
-                                <div><label>Name :</label><b class="text-white">Tarek Ghanamek</b></div>
+                                <div><label>Name :</label><b class="text-white"></b>{{ user.personal_information.full_name }}</div>
                                 <div><label>Date of birth :</label><b class="text-white">10/11/1993</b></div>
                                 <div><label>Gender :</label><b class="text-white">Male</b></div>
                                 <div><label>Location :</label><b class="text-white">London, U.K</b></div>
@@ -176,6 +176,7 @@
 
 <script>
 export default {
+    props:['user']
 
 }
 </script>

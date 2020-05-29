@@ -1,18 +1,11 @@
 <template>
     <section class="members container-fluid">
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column" v-if="user.profile_information.members">
             <h3 class="font-weight-bold text-white">Current Members:</h3><br>
-            <div>
-                <label class="text-white">{{ members.current_members.role_instrument_1 }} </label> <b class="c-fourth font-weight-bold">{{ members.current_members.member_name_1 }}</b><br>
-            </div>
-            <div>
-                <label class="text-white">{{ members.current_members.role_instrument_2 }}</label><b class="c-fourth font-weight-bold"> {{ members.current_members.member_name_2 }}</b><br>
-            </div>
-            <div>
-                <label class="text-white">{{ members.current_members.role_instrument_3 }}</label><b class="c-fourth font-weight-bold">{{ members.current_members.member_name_3 }}</b><br>
-            </div>
-            <div>
-                <label class="text-white">{{ members.current_members.role_instrument_4 }}</label><b class="c-fourth font-weight-bold">{{ members.current_members.member_name_4 }}</b>
+            <div v-for="(member, index) in user.profile_information.members" :key="index">
+                <div>
+                    <label class="text-white">{{ member.role_instrument }} : </label> <b class="c-fourth font-weight-bold"><a :href="`/${member.link_profile}`" class="c-fourth">{{ member.member_name }}</a></b><br>
+                </div>
             </div>
         </div>
         <div class="d-flex flex-column mt-4">
@@ -35,23 +28,6 @@
 
 <script>
 export default {
-    props: ['user'],
-    data(){
-        return {
-            members:{
-                current_members: '',
-                past_members: ''
-            },
-        }
-    },
-    mounted(){
-        this.getMembers()
-    },
-    methods:{
-        getMembers(){
-            this.members = JSON.parse(this.user.personal_information.members)
-
-        }
-    }
+    props: ['user']
 }
 </script>

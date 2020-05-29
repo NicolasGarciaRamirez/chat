@@ -3,6 +3,6 @@
 @section('content')
     <div class="view-profile">
         @include('user.profile._header', $user)
-        <profile-genres />
+        <profile-genres :user="{{ $user }}" />
     </div>
 @endsection

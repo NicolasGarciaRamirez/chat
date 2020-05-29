@@ -15,7 +15,7 @@
         <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token">
             <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white">Edit Profile <i class="cil-pencil ml-2"></i></a>
             <a href="#" class="btn bg-black rounded-pill text-white mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
-            <a :href="`/${ user.username}/Profile/Releases`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
+            <a :href="`/${ user.username}/Profile/Rates`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
         </div>
         <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token">
             <img src="/images/chat.svg" alt="chat" class="icon mr-3">
@@ -24,9 +24,9 @@
             <i class="fas fa-ellipsis-h c-third fa-2x"></i>
         </div>
         <div>
-            <h2 class="font-weight-bold">{{ user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
+            <h2 class="font-weight-bold">{{ user.profile_information ? user.profile_information.artistic_name : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
             <div class="d-flex">
-                <a href="#" class="btn bg-danger text-white mr-3">{{ user.profile_information.title }}</a>
+                <a href="#" class="btn bg-danger text-white mr-3">{{ user.profile_information ? user.profile_information.title : 'N/A' }}</a>
                 <a v-if="user.subscription_type  == 'CONTRIBUTOR'" href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
             </div>
         </div>

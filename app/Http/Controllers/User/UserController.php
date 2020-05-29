@@ -21,7 +21,7 @@ class UserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'posts', 'profile_information');
+            $this->user->load('personal_information', 'posts', 'profile_information.members', 'profile_information.releases');
             return $next($request);
         });
     }

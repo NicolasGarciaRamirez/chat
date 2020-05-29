@@ -81,10 +81,6 @@ class AuthController extends Controller
 
             $user->personal_information()->save($personal_information);
 
-            $profile_information = new \App\Models\User\UserProfileInformation();
-            $profile_information->user_id = $user->id;
-            $user->profile_information()->save($profile_information);
-
 //            if($user->subscription_type == 'FREE') $user->notify(new NewUserFree());
             \DB::commit();
             Auth::login($user);
@@ -115,16 +111,4 @@ class AuthController extends Controller
             'message' => 'We send you an email to follow the instructions'
         ]);
     }
-
-    // public function redirectToProvider()
-    // {
-    //     return Socialite::driver('facebook')->redirect();
-    // }
-    // public function handleProviderCallback()
-    // {
-    //     $user = Socialite::driver('facebook')->user();
-
-    //     dd($user);
-
-    // }
 }

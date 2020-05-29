@@ -7,9 +7,9 @@
             <input type="file" :id="`imgRelease${index}`" name="imageRelease" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="previewImage" />
         </div>
         <div class="d-flex flex-column">
-            <input type="text" class="form-control" placeholder="Artist Name" v-model='release_update.artist_name' />
+            <input type="text" class="form-control" placeholder="Artist Name" v-model='release_update.artistic_name' />
             <input type="text" class="form-control" placeholder="Album Name" v-model="release_update.album_name" />
-            <input type="text" class="form-control" placeholder="Release Date" v-model="release_update.release_update_date"  />
+            <input type="text" class="form-control" placeholder="Release Date" v-model="release_update.release_date"  />
             <input type="text" class="form-control" placeholder="Genre" v-model="release_update.genre" />
             <input type="text" class="form-control" placeholder="Label name" v-model="release_update.label" />
         </div>
@@ -32,6 +32,13 @@
             previewImage(event) {
                 this.image = event.target.files[0]
                 this.release_update.image = URL.createObjectURL(this.image);
+
+                var image = new FormData()
+                append('image', this.image, this.image.name)
+
+                this.release.image = image
+
+
             },
         }
     }

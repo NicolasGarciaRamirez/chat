@@ -15,12 +15,12 @@ class CreateUserProfileInformationTable extends Migration
     {
         Schema::create('user_profile_information', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('profile_type')->nullable();
-            $table->string('title')->nullable();
+            $table->string('profile_type');
+            $table->string('title');
             $table->string('artistic_name')->nullable();
             $table->text('about_you')->nullable();
-            $table->string('genre')->nullable();
-            $table->string('services')->nullable();
+            $table->text('genres')->nullable();
+            $table->text('services')->nullable();
             $table->json('social_media')->nullable();
             $table->string('user_id');
             $table->timestamps();

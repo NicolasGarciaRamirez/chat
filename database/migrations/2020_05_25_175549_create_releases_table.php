@@ -16,7 +16,7 @@ class CreateReleasesTable extends Migration
         Schema::create('releases', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('album_name');
-            $table->string('artitstic_name');
+            $table->string('artistic_name')->nullable();
             $table->string('genre');
             $table->string('image');
             $table->string('label');

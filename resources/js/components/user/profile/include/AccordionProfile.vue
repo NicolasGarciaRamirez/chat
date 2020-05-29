@@ -13,11 +13,11 @@
                         <div class="card-body  bg-black">
                             <div class="row text-justify">
                                 <div class="col-md-6">
-                                    <input type="radio" id="personProject" value="A Person or A Project" v-model="profile_information.profile_type">
+                                    <input type="radio" id="personProject" value="A Person or A Project" v-model="profile_information.profile_type" required>
                                     <label>A person or A Project</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="radio" id="aBand" value="A Band" v-model="profile_information.profile_type">
+                                    <input type="radio" id="aBand" value="A Band" v-model="profile_information.profile_type" required>
                                     <label>A Band</label>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                         <div class="card-body text-white bg-black">
                             <div class="row text-justify ">
                                 <div class="col text-center select">
-                                    <select name="title" class="select-form" v-model="profile_information.title">
+                                    <select class="select-form" v-model="profile_information.title" required>
                                         <optgroup  v-if="profile_information.profile_type == 'A Person or A Project'">
                                             <option value="N/A">Select Title</option>
                                             <option value="Vlog Channel">Vlog Channel</option>
@@ -113,22 +113,13 @@
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
-                    <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordionProfile">
-                        <div class="card-body text-white bg-black">
-                            <h5 class="my-4">Current Members</h5>
-                            <button class="btn text-white-white rounded-pill">Add Current Member</button>
-
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control mb-2" placeholder="Member Name" >
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="Role/Instrument" >
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="text" class="form-control" placeholder="Link to noisesharks profile" >
-                                </div>
+                    <div id="collapseFifth" class="collapse bg-black" aria-labelledby="headingFifth" data-parent="#accordionProfile">
+                        <div class="card-body text-white bg-black text-center">
+                            <div class="d-flex flex-row mb-4">
+                                <h5>Current Members</h5>
+                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember">Add Current Member</button>
                             </div>
+                            <single-member v-for="(member, index) in members_information" :key="index" :member="member" :index="index" />
                             <div class="d-flex justify-content-between my-4">
                                 <h5>Former Members</h5>
                                 <button class="btn text-white-white rounded-pill">Add Former Member</button>
@@ -184,8 +175,9 @@
                         <div class="card-body text-white bg-black">
                             <div class="text-center select">
                                 <button type="button" class="text-white font-weight-bold" @click="showModalSelectGenres">Select Genre(s)</button>
-
-                                <ul v-for="(item , index) in genre" :key="index" >
+                            </div>
+                            <div class="text-left">
+                                <ul v-for="(item , index) in profile_information.genres" :key="index" >
                                     <li>{{ item }}</li>
                                 </ul>
                             </div>
@@ -205,6 +197,11 @@
                         <div class="card-body text-white bg-black">
                             <div class="text-center select">
                                 <button type="button" class="text-white font-weight-bold" @click="showModalSelectServices">Select Service(s)</button>
+                                <div class="text-left">
+                                    <ul v-for="(item , index) in profile_information.services" :key="index" >
+                                        <li>{{ item }}</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -286,7 +283,11 @@
             </div>
             <div class="d-flex justify-content-center text-center m-5">
                 <button class="btn rounded-pill bg-black text-white">Cancel</button>
-                <button class="btn rounded-pill text-white bg-fifth" type="submit">Save</button>
+                <button class="btn rounded-pill text-white bg-fifth" type="submit" v-if="!disable">Save</button>
+                <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </button>
+
             </div>
         </form>
         <modal-select-genres />
@@ -299,16 +300,19 @@
 import ModalSelectGenres from './ModalSelectGenres'
 import ModalSelectServices from './ModalSelectServices'
 import SingleRelease from "./SingleRelease";
+import SingleMember from "./SingleMember";
 export default {
     props:['user'],
     components:{
         ModalSelectGenres,
         ModalSelectServices,
-        SingleRelease
+        SingleRelease,
+        SingleMember
     },
     data(){
         return {
-            cont:0,
+            disable: false,
+            url: `/${this.user.username}/Save/Profile/`,
             imageReleases:'/images/profile/default.png',
             imageData: '/images/profile/default.png',
             profile_information:{
@@ -331,31 +335,57 @@ export default {
                     Spotify: '',
                 }
             },
-            members_information:{
-                member_name:"",
-                link_profile:'',
-                role_instrument:'',
-            },
+            members_information:[],
             releases_information: []
         }
     },
+    mounted(){
+       this.initializeVariable()
+    },
     methods:{
+        initializeVariable(){
+            if (this.user.profile_information) {
+                this.url = `/${this.user.username}/Edit/Profile/`
+                this.profile_information = this.user.profile_information
+                this.profile_information.genres = this.user.profile_information.genres.split(",")
+                this.profile_information.services = this.user.profile_information.services.split(",")
+                this.profile_information.social_media = JSON.parse(this.user.profile_information.social_media)
+
+                this.members_information = this.user.profile_information.members
+                this.releases_information = this.user.profile_information.releases
+            }
+
+        },
         addRelease(){
             this.releases_information.push({
                 album_name:'',
-                artitstic_name:'',
+                artistic_name:'',
                 genre:'',
                 image:'/images/default.png',
                 label:'',
                 release_date:''
             })
         },
+        addMember(){
+            this.members_information.push({
+                member_name:"",
+                link_profile:'',
+                role_instrument:'',
+            })
+        },
         save(){
-            axios.post(`/${this.user.username}/Edit/Profile/`, this.profile_information).then(res => {
-                if (res.data.updated) {
+            this.disable = true
+
+            var data = {
+                profile_information: this.profile_information,
+                members_information: this.members_information,
+                releases_information: this.releases_information
+            }
+            axios.post(this.url, data).then(res => {
+                if (res.data.updated || res.data.saved) {
+                    this.disable = false
                     alert('the personal information has been updated')
-                    // window.location.reload()
-                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+                    window.location.reload()
                 }
                 else{
                     console.log(res)

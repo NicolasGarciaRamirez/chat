@@ -253,6 +253,67 @@
                 }
             }
         }
+        .modal-select{
+            .checkbox{
+                position: relative;
+                padding: 0 18px;
+                display: flex;
+                align-items: center;
+                label {
+                    min-height: 34px;
+                    margin-bottom: 0;
+                    font-weight: normal;
+                    span {
+                        position: absolute;
+                        // top: 10%;
+                        transform: translateX(30px);
+                    }
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        margin: 4px;
+                        width: 15px;
+                        height: 15px;
+                        transition: transform 0.28s ease;
+                        border-radius: 0px;
+                        border: 1px solid white;
+
+                    }
+                    &:after {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        margin: 4px;
+                        width: 15px;
+                        height: 15px;  
+                        border: 1px solid white;
+                        color: $fifth-color;
+                    }
+                }
+                input[type="checkbox"] {
+                    width: auto;
+                    opacity: 0.00000001;
+                    position: absolute;
+                    margin-left: -20px;
+                    &:checked ~ label{
+                        &:before {
+                            border: 2px solid white;
+                        }
+                        &:after {
+                            transform: rotate(180deg) scale(1);
+                            background-color: $fifth-color;
+                        }
+                    }
+                    &:focus + label::before {
+                        outline: 0;
+                    }
+                }
+            }
+            .divider{
+                border-top: 1px solid $third-color;
+            }
+        }
 
         .form-search{
             @include media-breakpoint-up(md){
