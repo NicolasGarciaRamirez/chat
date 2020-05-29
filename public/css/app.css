@@ -27029,7 +27029,7 @@ readers do not read off random characters that represent icons */
 }
 
 .bg-black {
-  background: black;
+  background: black !important;
 }
 
 .border-danger {
@@ -27085,7 +27085,8 @@ readers do not read off random characters that represent icons */
   border-radius: 30px;
   background: black;
   color: white;
-  padding: 6px;
+  border-color: white;
+  padding: 0px 50px 0px 10px;
 }
 
 .select select.select-form:hover {
@@ -27165,8 +27166,8 @@ textarea {
 }
 
 .icon {
-  height: 15px !important;
-  width: 15px !important;
+  height: 20px !important;
+  width: 25px !important;
 }
 
 .no-underline {
@@ -27182,7 +27183,7 @@ textarea {
 }
 
 .c-header .cil-hamburger-menu {
-  color: #262626;
+  color: #535353;
   font-size: 30px;
 }
 
@@ -27646,6 +27647,7 @@ button:focus {
 
 .modal-login .or {
   position: relative;
+  color: #535353;
 }
 
 .modal-login .or:after {

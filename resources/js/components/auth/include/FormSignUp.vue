@@ -27,7 +27,10 @@
                 <input type="password" class="form-control mb-3" name="password_confirmation" placeholder="Confirm Password" v-model="user.password_confirmation" v-validate="'required|confirmed:password'" data-vv-as="password" required>
             </div>
             <div class="m-2 p-0 d-flex justify-content-center">
-                <button type="submit" class="btn bg-fifth text-white sign-up font-weight-bold rounded-pill w-100 sign-up">Sign Up</button>
+                <button type="submit" class="btn bg-fifth text-white sign-up font-weight-bold rounded-pill w-100 sign-up" v-if="!disable">Sign Up</button>
+                <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                </button>
             </div>
             <div class="py-3">
                 <p class="text-center or text-white">OR</p>
@@ -69,6 +72,7 @@
         props: ['type'],
         data() {
             return {
+                disable: false,
                 user: {
                     avatar: "Profile/default.png",
                     first_name: "",
@@ -77,72 +81,13 @@
                     email_confirmation: "",
                     password: "",
                     password_confirmation: "",
-                    personal_information: {
-                        profile_type: 'N/A',
-                        title: 'N/A',
-                        artistic_name: 'N/A',
-                        about_you: 'N/A',
-                        members: {
-                            current_members: {
-                                member_name_1: 'N/A',
-                                role_instrument_1: 'N/A',
-                                link_noisesharks_profile_1: 'N/A',
-                                member_name_2: 'N/A',
-                                role_instrument_2: 'N/A',
-                                link_noisesharks_profile_2: 'N/A',
-                                member_name_3: 'N/A',
-                                role_instrument_3: 'N/A',
-                                link_noisesharks_profile_3: 'N/A',
-                                member_name_4: 'N/A',
-                                role_instrument_4: 'N/A',
-                                link_noisesharks_profile_4: 'N/A'
-                            },
-                            former_members: {
-                                member_name_1: 'N/A',
-                                role_instrument_1: 'N/A',
-                                link_noisesharks_profile_1: 'N/A',
-                                member_name_2: 'N/A',
-                                role_instrument_2: 'N/A',
-                                link_noisesharks_profile_2: 'N/A',
-                                member_name_3: 'N/A',
-                                role_instrument_3: 'N/A',
-                                link_noisesharks_profile_3: 'N/A',
-                                member_name_4: 'N/A',
-                                role_instrument_4: 'N/A',
-                                link_noisesharks_profile_4: 'N/A'
-                            }
-                        },
-                        releases: {
-                            image: '/images/profile/default.png',
-                            artist_name: 'N/A',
-                            album_name: 'N/A',
-                            genre: 'N/A',
-                            release_date: 'N/A',
-                            label: 'N/A',
-                            // credits: 'N/A'
-                        },
-                        worked_with: 'N/A',
-                        genre: 'N/A',
-                        services: 'N/A',
-                        social_media: {
-                            Youtube: 'N/A',
-                            Twitch: 'N/A',
-                            Instagram: 'N/A',
-                            Facebook: 'N/A',
-                            TikTok: 'N/A',
-                            LinkedIn: 'N/A',
-                            SnapChat: 'N/A',
-                            SoundCloud: 'N/A',
-                            Bandcamp: 'N/A',
-                            Spotify: 'N/A',
-                        }
-                    }
                 },
                 backend_errors: null
             }
         },
         methods: {
             save() {
+                this.disable = true
                 this.$validator.validate().then(valid => {
                     if (!valid) {
                        return false
@@ -150,10 +95,12 @@
                     this.user.subscription_type = this.type
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
+                            // this.disable = false
                             Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
                             window.location.replace(`/${res.data.user.username}/Profile/Rates`)
                         }
                     }).catch(err => {
+                        this.disable = false
                         this.backend_errors = err.response.data.errors
                     })
                 });

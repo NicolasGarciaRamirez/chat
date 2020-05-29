@@ -24,7 +24,7 @@
             <i class="fas fa-ellipsis-h c-third fa-2x"></i>
         </div>
         <div>
-            <h2 class="font-weight-bold">{{ user.profile_information ? user.profile_information.artistic_name : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
+            <h2 class="font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
             <div class="d-flex">
                 <a href="#" class="btn bg-danger text-white mr-3">{{ user.profile_information ? user.profile_information.title : 'N/A' }}</a>
                 <a v-if="user.subscription_type  == 'CONTRIBUTOR'" href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>

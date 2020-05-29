@@ -34,7 +34,7 @@
 }
 
 .bg-black{
-    background: black;
+    background: black !important;
 }
 
 .border-danger{
@@ -84,7 +84,8 @@
         border-radius: 30px;
         background: black;
         color: white;
-        padding: 6px;
+        border-color: white;
+        padding: 0px 50px 0px 10px;
         &:hover{
             background-color: $third-color;
             color: white;
@@ -146,8 +147,8 @@ textarea{
 }
 
 .icon{
-    height: 15px !important;
-    width: 15px !important;
+    height: 20px !important;
+    width: 25px !important;
 }
 
 .no-underline{

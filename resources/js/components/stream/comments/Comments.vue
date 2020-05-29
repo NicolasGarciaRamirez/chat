@@ -28,14 +28,14 @@
         components:{
             SimpleComment,
         },
+        mounted(){
+            Auth.initialize()
+        },
         methods:{
             save(){
-                let username = Auth.getUserName()
-                console.log(username)
-                axios.post(`${username}/Comments/save`, this.comments).then(res => {
+                axios.post(`/${Auth.username}/Comments/save`, this.comments).then(res => {
                     if (res.data.saved) {
-                        // window.location.reload()
-                        console.log()
+                        $('html, body').animate({ scrollTop: 0 }, 'fast');
                     }
                 }).catch(err =>{
                     window.location.replace('/login')

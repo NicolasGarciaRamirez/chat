@@ -3,10 +3,10 @@
         <div class="container-fluid justify-content-between d-md-flex bg-black my-5">
             <div class="mb-3">
                 <h2 class="c-white">Personal Details <img src="/images/icons/pencil.svg" alt="pencil" style="width: 1.2rem"></h2>
-                <label>Name: Thamek</label><br>
-                <label>Gender: Male</label><br>
-                <label>Location: asd</label><br>
-                <label>Email: asd@gmail.com</label>
+                <label>Name: <label class="text-white">{{ user.personal_information.full_name }}</label></label><br>
+                <label>Gender: <label class="text-white">{{ user.personal_information.gender }}</label></label><br>
+                <label>Location: <label class="text-white">{{ user.personal_information.location }}</label></label><br>
+                <label>Email: <label class="text-white">{{ user.email }}</label></label>
             </div>
             <div>
                 <h2 class="c-white">Subscription</h2>

@@ -50,12 +50,8 @@ class UserPersonalInformationController extends Controller
         \DB::beginTransaction();
 
         try {
-            $personal_information = new UserPersonalInformation($request->all());
-            $personal_information->members = json_encode($request->members);
-            $personal_information->releases = json_encode($request->releases);
-            $personal_information->social_media = json_encode($request->social_media);
-
-            $this->user->personal_information()->update($personal_information->toArray());
+            $this->user->personal_information()->update($request->all());
+            \DB::commit();
 
             return response()->json([
                 'updated' => true,
@@ -63,6 +59,7 @@ class UserPersonalInformationController extends Controller
                 'errros' => null
             ], 200);
         } catch (\Exception $e) {
+            \DB::rollBack();
             return response()->json([
                 'updated' => false,
                 'user' => null,

@@ -38,15 +38,12 @@ Route::get('/About', 'HomeController@about')->name('about');
 Route::get('/Carrers', 'HomeController@carrers')->name('carrers');
 Route::get('/Terms', 'HomeController@terms')->name('terms');
 
-Route::post('/Auth/Check', 'Auth\AuthController@authCheck');
-
-// Route::get('/login/facebook', 'Auth\AuthController@redirectToProvider');
-// Route::get('/login/facebook/callback', 'Auth\AuthController@handleProviderCallback');
-
 Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/imageProfile/{username}', 'User\UserController@updateImage');
     Route::name('profile.edit.image.cover')->post('/Edit/imageCover/{username}', 'User\UserController@updateCover');
     Route::name('profile.edit.user.settings')->get('/Settings/{username}', 'User\UserController@accountSettings');
+    Route::name('profile.update.user')->post('/Settings/Update/{username}', 'User\UserController@updateUser');
+    Route::name('profile.update.user.personal')->post('/Settings/Personal/Update/{username}', 'User\UserPersonalInformationController@update');
 });
 
 Route::group(['prefix' => '/{username}'], function () {

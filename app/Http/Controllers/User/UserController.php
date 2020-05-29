@@ -137,4 +137,26 @@ class UserController extends Controller
             ], 422);
         }
     }
+
+    public function updateUser(Request $request)
+    {
+        \DB::beginTransaction();
+
+        try {
+            $this->user->update($request->all());
+            \DB::commit();
+            return response()->json([
+                'updated' => true,
+                'user' => User::find($this->user->id),
+                'errors' => null
+            ], 200);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return response()->json([
+                'updated' => false,
+                'user' => null,
+                'errors' => $e
+            ], 422);
+        }
+    }
 }

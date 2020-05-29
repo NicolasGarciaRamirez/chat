@@ -4,8 +4,8 @@
             <div class="mb-3">
                 <h2 class="c-white">Personal Details <div class="fa-pencil"></div></h2>
                 <label>Name: {{ user.personal_information.full_name  }}</label><br>
-                <label>Gender: {{ user.personal_information ? user.personal_information.genre : "--" }}</label><br>
-                <label>Location: asd</label><br>
+                <label>Gender: {{ user.personal_information.gender }}</label><br>
+                <label>Location: {{ user.personal_information.location }}</label><br>
                 <label>Email: {{ user.email }}</label>
             </div>
             <div>

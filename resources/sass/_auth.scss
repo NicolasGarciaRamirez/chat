@@ -26,6 +26,7 @@
     }
     .or{
         position: relative;
+        color: $fourth-color;
         &:after{
             content: "";
             position: absolute;

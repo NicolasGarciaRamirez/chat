@@ -18,6 +18,9 @@ class CreateUserPersonalInformationTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('full_name');
+            $table->date('date_of_birth')->nullable();
+            $table->string('gender')->default('N/A');
+            $table->string('location')->default('N/A');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

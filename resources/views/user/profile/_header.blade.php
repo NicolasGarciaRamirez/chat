@@ -16,10 +16,10 @@
 </div>
 <div class="navigation-body">
     @if ($user->profile_information)
-        @if ($user->profile_information->releases)
+        @if ($user->profile_information->releases[0])
             <a href="/{{ $user->username }}/Profile/Releases" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.releases' ? 'active' : '' }}">Releases</a>
         @endif
-        @if ($user->profile_information->members)
+        @if ($user->profile_information->members[0])
             <a href="/{{ $user->username }}/Profile/Members" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.members' ? 'active' : '' }}">Members</a>
         @endif
         <a href="/{{ $user->username }}/Profile/WorkHistory" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.work.history' ? 'active' : '' }}">Work History</a>
