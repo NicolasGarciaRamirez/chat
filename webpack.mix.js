@@ -12,4 +12,6 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/prelaunch.js', 'public/js/prelaunch')
+    .sass('resources/sass/prelaunch.scss', 'public/css/prelaunch')
    .sass('resources/sass/app.scss', 'public/css').version();

@@ -13,6 +13,11 @@
 Route::get('/test', function () {
 });
 
+Route::get('/prelaunch', function () {
+    return view('prelaunch.welcome');
+});
+Route::name('prelaunch')->post('/join', 'LandingController@store');
+
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/login', 'HomeController@login');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
