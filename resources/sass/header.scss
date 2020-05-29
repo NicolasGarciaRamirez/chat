@@ -1,0 +1,142 @@
+.c-header{
+    .cil-hamburger-menu{
+        color: $third-color;
+        font-size: 30px;
+        &:hover{
+            color: white;
+        }
+        &:active{
+            color: white;
+        }
+    }
+}
+.nav-link {
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #6c757d;
+    text-decoration: none;
+    &:visited {
+        color: #808080;
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: white !important;
+        text-decoration: none !important;
+        border-bottom: 1px solid #6c757d !important;
+    }
+
+    &:active {
+        text-decoration: none !important;
+        color: white !important;
+        border-bottom-color: red !important;
+    }
+}
+button {
+    border: solid 2px #808080;
+    background-color: transparent;
+    border-radius: 30px;
+    color: #808080;
+    padding: 5px 15px 5px 15px;
+    font-size: 0.8rem;
+    font-weight: 700;
+
+    &:focus {
+        outline: none;
+    }
+}
+.perfil{
+    border-radius:50%;
+    height:50px;
+    width:50px;
+}
+.navbar-brand{
+    padding-right:30px;
+    border:none;
+}
+.logo{
+    padding:10px 20px 2px 20px;
+   width:200px;
+}
+.nav-item{
+    padding-left:20px;
+}
+
+.form-buscar {
+    border: solid 2px #808080;
+    background-color: transparent;
+    border-radius: 30px;
+    color: #808080;
+    padding: 7px 15px 7px 15px;
+    width: 260px;
+    font-size: 0.8rem;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.nav-btn, .form-inline {
+    padding-right: 20px;   
+}
+
+.img-head-profile{
+    width: 4em;
+    height: 4em;
+}
+
+.top-menu{
+    img{
+        cursor: pointer;
+        &:hover{
+            opacity: 0.3;
+            transition: opacity .6s;
+        }
+        &:active{
+            border-radius: 60rem !important;
+            border-color: white !important;
+            border: 3px solid white !important;
+            opacity: 1;
+            transition: opacity .5s;
+        }
+        &:visited{
+            border-radius: 60rem !important;
+            border-color: white !important;
+            border: 3px solid white !important;
+            opacity: 1;
+            transition: opacity .5s;
+        }
+
+    }
+    .dropdown-menu{
+        -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        border: 0px;
+        margin-right: 1.6rem;
+        .dropdown-item{
+            color: $fourth-color;
+            &:hover{
+                background-color: $primary-color;
+                color: white;
+                svg.svg-icon{
+                    path{
+                        fill: white;
+                    }
+                }
+                svg.star{
+                    path{
+                        fill: #FFFFFF ;
+                    }
+                }
+            }
+            &:active{
+                color: white;
+            }
+        }
+        .dropdown-divider{
+            border-top: 1px solid $third-color;
+        }
+    }
+}

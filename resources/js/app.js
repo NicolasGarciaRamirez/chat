@@ -5,4 +5,63 @@
  */
 
 require('./bootstrap');
+import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
+import Vue from 'vue'
+
+import VeeValidate from 'vee-validate';
+Vue.use(VeeValidate);
+
+import AppHeader from './components/template/Header'
+import AppNav from './components/template/Nav'
+
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
+import RegisterIndex from './components/auth/include/RegisterIndex'
+
+import Home from './components/home'
+
+import ChannelActivity from './components/user/channel/ChannelActivity'
+import ChannelPlaylist from './components/user/channel/ChannelPlaylist'
+import ChannelEdit from './components/user/channel/ChannelEdit'
+
+import ProfileEdit from './components/user/profile/ProfileEdit'
+import AccountSettings from './components/user/profile/AccountSettings'
+
+import HeadProfile from './components/user/profile/HeadProfile'
+// import ProfileActivity from './components/user/view/channel/Activity'
+// import ProfilePlaylist from './components/user/view/channel/Playlist'
+
+import ProfileGenres from './components/user/profile/Genres'
+import ProfileMembers from './components/user/profile/Members'
+import ProfileRates from './components/user/profile/Rates'
+import ProfileReleases from './components/user/profile/Releases'
+import ProfileServices from './components/user/profile/Services'
+import ProfileWorkHistory from './components/user/profile/WorkHistory'
+
+import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
+
+new Vue({
+    el: '#app',
+    components:{
+        AppHeader,
+        AppNav,
+        Login,
+        Register,
+        RegisterIndex,
+        Home,
+        ChannelActivity,
+        ChannelPlaylist,
+        ChannelEdit,
+        ProfileEdit,
+        AccountSettings,
+        HeadProfile,
+        ProfileGenres,
+        ProfileMembers,
+        ProfileRates,
+        ProfileReleases,
+        ProfileServices,
+        ProfileWorkHistory,
+        ModalContributorSignup,
+    }
+});

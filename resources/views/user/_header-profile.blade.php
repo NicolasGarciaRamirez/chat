@@ -1,0 +1,1 @@
+<head-profile :user="{{ $user }}">

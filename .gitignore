@@ -11,3 +11,7 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 *.pdf
+.DS_Store
+.idea
+public/images/post/*
+public/images/profile/*

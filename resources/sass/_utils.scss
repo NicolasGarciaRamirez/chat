@@ -1,0 +1,162 @@
+.c-primary{
+    color: $primary-color !important;
+}
+.bg-primary{
+    background-color: $primary-color !important;
+}
+
+.c-second{
+    color: $second-color !important;
+}
+.bg-second{
+    background-color: $second-color !important;
+}
+
+.c-third{
+    color: $third-color !important;
+}
+.bg-third{
+    background-color: $third-color !important;
+}
+
+.c-fourth{
+    color: $fourth-color !important;
+}
+.bg-fourth{
+    background-color: $fourth-color !important;
+}
+
+.c-fifth{
+    color: $fifth-color !important;
+}
+.bg-fifth{
+    background-color: $fifth-color !important;
+}
+
+.bg-black{
+    background: black;
+}
+
+.border-danger{
+    border: 2px solid $fifth-color !important;
+}
+
+.border-white{
+    border: 2px solid #ffffff !important;
+}
+.social-login{
+    a{
+        font-weight: bold;
+        border-radius: 20px;
+        &.bg-white{
+            color: #FF3C03 !important;
+            opacity: 1 !important;
+            &:hover{
+                opacity: 0.8 !important;
+            }
+            &:active{
+                background: #FF3C03 !important;
+                color: white !important;
+            }
+        }
+    }
+    a.bg-facebook{
+        background: #0055FF !important;
+        opacity: 1 !important;
+        &:hover{
+            opacity: 0.8 !important;
+        }
+    }
+    a.bg-twitter{
+        background: #00AAFF !important;
+        opacity: 1 !important;
+        &:hover{
+            opacity: 0.8 !important;
+        }
+    }
+}
+.select{
+    select.select-form{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        border-radius: 30px;
+        background: black;
+        color: white;
+        padding: 6px;
+        &:hover{
+            background-color: $third-color;
+            color: white;
+        }
+    }
+}
+
+.modal{
+    .modal-dialog{
+        .modal-content{
+            border: 0;
+            background-color: $primary-color;
+            .modal-header{
+                padding: 10px 10px 0 0;
+                button{
+                    &:focus{
+                        outline:0;
+                    }
+                    span{
+                        color: white;
+                    }
+                }
+            }
+            .modal-body{
+                padding: 1rem 3rem;
+            }
+        }
+    }
+    .modal-border-white{
+        -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+        box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    }
+    .modal-border-red{
+        box-shadow: 0px 0px 25px -10px $third-color;
+    }
+    input{
+        border-radius: 30px;
+        background-color: $third-color;
+        color: white;
+        border: 0;
+        &::placeholder{
+            color: $fourth-color;
+        }
+        &:focus{
+            background-color: $third-color;
+            color: white;
+            border: 0;
+        }
+    }
+}
+.modal-backdrop{
+    background-color: $primary-color;
+    opacity: 0.5 !important;
+}
+
+textarea{
+    resize: none;
+}
+
+.icon{
+    height: 15px !important;
+    width: 15px !important;
+}
+
+.no-underline{
+    text-decoration: none;
+    &:hover{
+        text-decoration: none !important;
+    }
+}
+
+.list-style-none{
+    list-style: none;
+}

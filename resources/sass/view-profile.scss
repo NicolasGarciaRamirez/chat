@@ -1,0 +1,166 @@
+.view-profile{
+    margin-top: -2rem;
+    .img-container{
+        position: relative;
+        .img-profile{
+            position: absolute;
+            bottom: -3rem;
+            left: 1rem;
+            width: 30%;
+            max-width: 10rem;
+            min-height: 10rem;
+            max-height: 10rem;
+            @include media-breakpoint-up(md){
+                width: 10rem;
+                bottom: -4rem;
+                max-width: 10rem;
+                min-height: 10rem;
+                max-height: 10rem;
+            }
+            @include media-breakpoint-down(sm){
+                min-height: 6rem;
+                max-width: 5.6rem;
+                max-height: 6rem;
+                min-width: 5.6rem;
+            }
+        }
+        .img-portada{
+            width: 100%;
+            @include media-breakpoint-up(lg){
+                max-height: 15rem;
+            }
+        }
+    }
+    .head-container{
+        margin-top: 4rem;
+        padding: 0 10px;
+        @include media-breakpoint-down(md){
+            margin-top: 0.5rem;
+        }
+        @include media-breakpoint-up(lg){
+            display: flex;
+            justify-content: space-between;
+            margin-left: 11rem;
+            margin-top: 0;
+        }
+        a>img{
+            width: 15px;
+        }
+        .functions{
+            a{
+                border: 1px solid white;
+            }
+        }
+        .check-icon{
+            width: 1.2rem;
+        }
+    }
+    .navigation-header{
+        a{
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 5px;
+            &:before{
+                content: '';
+                bottom: 0;
+                height: 3px;
+                width: 100%;
+                background-color: $fourth-color;
+                position: absolute;
+            }
+        }
+        a.active{
+            &:before{
+                background-color: $fifth-color;
+            }
+        }
+    }
+    .navigation-body{
+        position: relative;
+        margin-bottom: 2rem;
+        padding: 0 15px;
+        font-size: 1.2rem;
+        text-decoration: none;
+        &:before{
+            content: '';
+            top: -5px;
+            height: 3px;
+            width: 100%;
+            background-color: $second-color;
+            position: absolute;
+            left: 0;
+        }
+        a.active{
+            position: relative;
+            color: $fifth-color !important;
+            &:before{
+                content: '';
+                top: -8px;
+                height: 3px;
+                width: 100%;
+                background-color: $fifth-color;
+                position: absolute;
+            }
+        }
+        a:hover{
+            color: $fifth-color;
+            text-decoration: none;
+        }
+        @include media-breakpoint-down(sm){
+            font-size: 0.765rem;
+        }
+    }
+    .movement{
+        .channel{
+            .activities{
+                img.img-activity{
+                    max-width: 260px !important;
+                    min-height: 260px !important;
+                    max-height: 260px !important;
+                    min-width: 260px !important;
+                }
+                .activity{
+                    margin-bottom: 1rem;
+                    .information{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        &:not(:first-child){
+                            margin-left: 20px;
+                        }
+                        img{
+                            width: 1.5rem;
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .playlist{
+        .play{
+            margin-bottom: 1rem;
+            .fa-video{
+                margin-top: 1em;
+                transform: translateX(-1.9em);
+                opacity: 1;
+                transition: all 0.4s ease-in-out;
+            }
+        }
+    }
+    .releases{
+        .release{
+            display: flex;
+            img{
+                width: 15rem;
+                height: 13rem;
+            }
+            @include media-breakpoint-down(sm){
+                flex-direction: column;
+                img{
+                    width: auto;
+                }
+            }
+        }
+    }
+}

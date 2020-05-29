@@ -1,11 +1,34 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Encode+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&display=swap');
 
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~@coreui/coreui/scss/coreui";
+@import "~@coreui/icons/scss/free/free-icons";
+@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
-@import "pre_launch";
-@import "carrousel";
+@import "utils";
+@import "header";
+@import "nav";
+@import "footer";
+@import "auth";
+@import "profile";
+@import "company";
+@import "extras";
+@import "home";
+@import "view-profile";
+
+.c-sidebar-backdrop{
+    background-color: black;
+}
+
+.c-app{
+    color: white;
+}
+
+.c-main{
+    padding-top: 5.8rem;
+}

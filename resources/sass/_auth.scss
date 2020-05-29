@@ -1,0 +1,197 @@
+.modal-login{
+    button.login{
+        &:hover{
+            color:$six-color !important;
+        }
+        &:active{
+            color: white !important;
+        }
+    }
+    a.forgot-password{
+        color: $fourth-color;
+        &:hover{
+            color: white !important;
+        }
+    }
+    a:not(.btn){
+        color: $third-color;
+        text-decoration: none;
+        &:hover{
+            text-decoration: underline;
+        }
+        &:active{
+            text-decoration: underline;
+            color: white !important;
+        }
+    }
+    .or{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+    }
+    .social-login{
+        a{
+            font-weight: bold;
+            border-radius: 300px;
+        }
+    }
+    .divider{
+        background-color: $third-color;
+        height: 3px;
+        width: 100%;
+    }
+    .sign-me{
+        width: 100%;
+        border-radius: 30px;
+        &:hover{
+            background: $six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
+    }
+}
+.modal-register{
+    button[type=submit]{
+        &:hover{
+            color: $fifth-color;
+        }
+    }
+    a:not(.btn){
+        text-decoration: none;
+        &:hover{
+            color: $fourth-color;
+        }
+    }
+    .or{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+    }
+    .social-register{
+        a{
+            font-weight: bold;
+            border-radius: 30px;
+        }
+    }
+    .divider{
+        background-color: $third-color !important;
+        height: 3px;
+        width: 100%;
+    }
+    .sign-up{
+        width: 100%;
+        border-radius: 30px;
+        &:hover{
+            background: $six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
+    }
+}
+.register{
+    position: relative;
+    background-image: url(/images/backgroud-contributor.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    margin-top: -2rem;
+    img.index{
+        min-width: 100%;
+        min-height: 10rem;
+        max-height: 10rem;
+    }
+    .auth-type{
+        margin-bottom: 5rem;
+        min-height: 80vh;
+    }
+
+    .or{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: #262626;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+    }
+    input.form-control ,textarea.form-control{
+        border-radius: 20px;
+        background-color: $third-color;
+        color: $fifth-color;
+        border: 0;
+        padding: 1rem;
+        &::placeholder{
+            color: $fourth-color;
+        }
+        &:focus{
+            background-color: $third-color;
+            color: $fifth-color;
+            border: 0;
+        }
+    }
+
+    .for-music-company{
+        border-left: 2px solid #262626;
+        a{
+            border-bottom: 1px solid $fifth-color;
+        }
+    }
+    .contributor-form{
+        display: flex;
+        flex-direction: row;
+        @include media-breakpoint-down(sm){
+            display: flex;
+            flex-direction: column !important;
+        }
+    }
+    .divider{
+        border-top: 1px solid white;
+    }
+}
