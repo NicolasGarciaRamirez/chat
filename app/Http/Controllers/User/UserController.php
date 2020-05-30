@@ -116,7 +116,7 @@ class UserController extends Controller
                 'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
 
-            $cover = 'profile' . '/' . \Str::random(150) . request()->cover->getClientOriginalExtension();
+            $cover = '/images/profile' . '/' . \Str::random(150) . request()->cover->getClientOriginalExtension();
             request()->cover->move(base_path('public/images/profile'), $cover);
 
             $this->user->cover = $cover;

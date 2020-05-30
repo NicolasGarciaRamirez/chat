@@ -1,7 +1,7 @@
 <template>
 <section class="profile">
     <div class="img-container">
-        <img :src="`/images/${user.cover}`" alt="ImagePortada" class="img-portada img-fluid">
+        <img :src="`${user.cover}`" alt="ImagePortada" class="img-portada img-fluid">
         <button class="edit-cover-photo btn text-white rounded-pill mr-5" @click="showChangeImageCover" v-if="auth.token">Edit Cover Photo <i class="cil-pencil ml-2"></i></button>
         <div v-if="!auth.token" class="btn my-2"></div>
         <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
