@@ -18,6 +18,7 @@ import AppNav from './components/template/Nav'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import RegisterIndex from './components/auth/include/RegisterIndex'
+import ValidateLogin from "./components/auth/ValidateLogin";
 
 import Home from './components/home'
 
@@ -41,6 +42,7 @@ import ProfileWorkHistory from './components/user/profile/WorkHistory'
 
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
 
+
 new Vue({
     el: '#app',
     components:{
@@ -63,5 +65,6 @@ new Vue({
         ProfileServices,
         ProfileWorkHistory,
         ModalContributorSignup,
+        ValidateLogin
     }
 });

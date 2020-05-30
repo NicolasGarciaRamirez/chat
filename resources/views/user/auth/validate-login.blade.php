@@ -1,4 +1,7 @@
-<div id="app">
-    <validate-login :user="{{ $user }}" />
-</div>
-<script src="{{ mix('/js/app.js') }}"></script>
+@extends('template.template')
+
+@section('content')
+    <div class="container home">
+        <validate-login :user="{{ $user }}" />
+    </div>
+@endsection
