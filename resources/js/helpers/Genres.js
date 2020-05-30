@@ -1,14 +1,14 @@
 export default {
-    genres: [ 
+    genres: [
         {
             principal_genre: "Alternative",
-            especific_genre: [
-                "Aleternative Music"
+            specific_genre: [
+                "Alternative Music"
             ]
         },
         {
             principal_genre: "Blues",
-            especific_genre: [
+            specific_genre: [
                 'Acoustic Blues',
                 'Chicago Blues',
                 'Classic Blues',
@@ -21,7 +21,7 @@ export default {
         },
         {
             principal_genre: 'Children’s Music',
-            especific_genre:[
+            specific_genre:[
                 "Lullabies",
                 "Sing-Along",
                 "Stories",
@@ -30,7 +30,7 @@ export default {
         },
         {
             principal_genre: 'Classical',
-            especific_genre:[
+            specific_genre:[
                 "Avant-Garde",
                 "Baroque",
                 "Chamber Music",
@@ -53,7 +53,7 @@ export default {
         },
         {
             principal_genre: 'Comedy',
-            especific_genre:[
+            specific_genre:[
                 "Novelty",
                 "Standup Comedy",
                 "Vaudeville",
@@ -62,7 +62,7 @@ export default {
         },
         {
             principal_genre: 'Country',
-            especific_genre:[
+            specific_genre:[
                 "Alternative Country",
                 "Americana",
                 "Bluegrass",
@@ -80,8 +80,8 @@ export default {
         },
         {
             principal_genre: 'Dance (EDM)',
-            especific_genre:[
-                "Breakbeat ",
+            specific_genre:[
+                "Breakbeat",
                 "Breakcore",
                 "Breakstep",
                 "Brostep",
@@ -114,7 +114,7 @@ export default {
         },
         {
             principal_genre: "Easy Listening",
-            especific_genre:[
+            specific_genre:[
                 "Bop",
                 "Lounge",
                 "Swing",
@@ -123,7 +123,7 @@ export default {
         },
         {
             principal_genre: "Electronic",
-            especific_genre:[
+            specific_genre:[
                 "2-Step",
                 "8bit",
                 "Ambient",
@@ -146,19 +146,19 @@ export default {
         },
         {
             principal_genre: "Enka",
-            especific_genre:[
+            specific_genre:[
                 "Enka"
             ]
         },
         {
             principal_genre: "French Pop",
-            especific_genre:[
+            specific_genre:[
                 "French Pop"
             ]
         },
         {
             principal_genre: "German",
-            especific_genre:[
+            specific_genre:[
                 "German Folk",
                 "German Pop",
 
@@ -166,13 +166,13 @@ export default {
         },
         {
             principal_genre: "Fitness & Workout",
-            especific_genre:[
+            specific_genre:[
                 "Fitness & Workout"
             ]
         },
         {
             principal_genre: "Hip-Hop/Rap",
-            especific_genre:[
+            specific_genre:[
                 "Alternative Rap",
                 "Bounce",
                 "East Coast Rap",
@@ -190,7 +190,7 @@ export default {
         },
         {
             principal_genre: "Holiday",
-            especific_genre:[
+            specific_genre:[
                 "Chanukah",
                 "Christmas",
                 "Christmas: Children’s",
@@ -212,19 +212,19 @@ export default {
         },
         {
             principal_genre: "Indie Pop",
-            especific_genre:[
+            specific_genre:[
                 "Indie Pop"
             ]
         },
         {
             principal_genre: "Industrial",
-            especific_genre:[
+            specific_genre:[
                 "Industrial"
             ]
         },
         {
             principal_genre: "Inspirational – Christian & Gospel",
-            especific_genre:[
+            specific_genre:[
                 "CCM",
                 "Christian & Gospel",
                 "Christian Metal",
@@ -242,7 +242,7 @@ export default {
         },
         {
             principal_genre: "J-Pop",
-            especific_genre:[
+            specific_genre:[
                 "J-Punk",
                 "J-Rock",
                 "J-Ska",
@@ -251,7 +251,7 @@ export default {
         },
         {
             principal_genre: "Jazz",
-            especific_genre:[
+            specific_genre:[
                 "Acid Jazz",
                 "Avant-Garde Jazz",
                 "Bebop",
@@ -262,7 +262,7 @@ export default {
                 "Crossover Jazz",
                 "Dixieland",
                 "Ethio-jazz",
-                "Fusion ",
+                "Fusion",
                 "Gypsy Jazz",
                 "Hard Bop",
                 "Latin Jazz",
@@ -274,7 +274,7 @@ export default {
         },
         {
             principal_genre: "K-Pop",
-            especific_genre:[
+            specific_genre:[
                 "K-Punk",
                 "K-Rock",
                 "K-Ska",
@@ -284,7 +284,7 @@ export default {
         },
         {
             principal_genre:"Latin",
-            especific_genre:[
+            specific_genre:[
                 "Alternativo & Rock Latino",
                 "Argentine tango",
                 "Baladas y Boleros",
@@ -306,7 +306,7 @@ export default {
         },
         {
             principal_genre: "Metal",
-            especific_genre:[
+            specific_genre:[
                 "Black Metal",
                 "Death Metal",
                 "Deathcore",
@@ -362,7 +362,7 @@ export default {
         },
         {
             principal_genre:"New Age",
-            especific_genre:[
+            specific_genre:[
                 "Environmental",
                 "Healing",
                 "Meditation",
@@ -373,13 +373,13 @@ export default {
         },
         {
             principal_genre: "Opera",
-            especific_genre:[
+            specific_genre:[
                 "Opera"
             ]
         },
         {
             principal_genre: "Orchestral",
-            especific_genre:[
+            specific_genre:[
                 "Choir Orchestra",
                 "Classic Orchestra",
                 "EDM Orchestra",
@@ -393,7 +393,7 @@ export default {
         },
         {
             principal_genre: "Pop",
-            especific_genre:[
+            specific_genre:[
                 "Britpop",
                 "Bubblegum Pop",
                 "Chamber Pop",
@@ -410,7 +410,7 @@ export default {
         },
         {
             principal_genre: "R&B/Soul",
-            especific_genre: [
+            specific_genre: [
                 "Contemporary R&B",
                 "Disco",
                 "Doo Wop",
@@ -428,7 +428,7 @@ export default {
         },
         {
             principal_genre: "Reggae",
-            especific_genre:[
+            specific_genre:[
                 "2-Tone Reggae",
                 "Dancehall Reggae",
                 "Dub Reggae",
@@ -438,7 +438,7 @@ export default {
         },
         {
             principal_genre: "Rock",
-            especific_genre:[
+            specific_genre:[
                 "Acid Rock",
                 "Afro Punk",
                 "Alternative Rock",
@@ -501,7 +501,7 @@ export default {
         },
         {
             principal_genre: "Tex-Mex / Tejano",
-            especific_genre:[
+            specific_genre:[
                 "Chicano",
                 "Classic",
                 "Conjunto",
@@ -512,7 +512,7 @@ export default {
         },
         {
             principal_genre: "Vocal",
-            especific_genre:[
+            specific_genre:[
                 "Gregorian Chant",
                 "Jazz Vocal",
                 "Metal Vocal",
@@ -525,7 +525,7 @@ export default {
         },
         {
             principal_genre: "World",
-            especific_genre:[
+            specific_genre:[
                 "Africa",
                 "Afro-Beat",
                 "Afro-Pop",
@@ -566,18 +566,12 @@ export default {
 
             ]
         }
-
-
     ],
-
-    getEspecificGenre(genre){
-        // console.log(genre)
-        var gen =  _.find(this.genres, ['principal_genre', genre])
-        return gen.especific_genre
-    },
-
     getAllGenres(){
         return this.genres
-    }
-
+    },
+    getSpecificGenre(principal_genre){
+        let principal_genre_find = _.find(this.genres, function (o) { return o.principal_genre == principal_genre; });
+        return principal_genre_find.specific_genre
+    },
 }
