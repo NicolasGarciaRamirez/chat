@@ -80,7 +80,7 @@ class UserController extends Controller
                 'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
 
-            $avatar = 'profile' . '/' . \Str::random(150) . request()->avatar->getClientOriginalExtension();
+            $avatar = '/images/profile' . '/' . \Str::random(150) . request()->avatar->getClientOriginalExtension();
             request()->avatar->move(base_path('public/images/profile'), $avatar);
 
             $this->user->avatar = $avatar;
