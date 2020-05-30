@@ -55,10 +55,33 @@ class UserSocialAuthController extends Controller
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
             if ($providerName == 'google') {
-                $user = $this->createUserGoogle($providerUser);
+               $first_name = $providerUser->user['given_name'];
+               $last_name = $providerUser->user['family_name'];
+            }
+            if ($providerName == 'facebook') {
+                $full_name = explode(" ", $providerUser->name);
+                $first_name = $full_name[0];
+                $last_name = $full_name[1];
             }
 
-            $user->notify(new NewUserFree());
+            $user = User::create([
+                'email' => $providerUser->email,
+                'username' => $providerUser->nickname ?? \Str::random(25),
+                'password' => bcrypt(\Str::random(10)),
+                'token' => \Str::random(80),
+                'subscription_type' => 'FREE',
+                'email_verified_at' => \Carbon\Carbon::now(),
+                'avatar' => $providerUser->avatar
+            ]);
+
+            UserPersonalInformation::create([
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'full_name' => $providerUser->name,
+                'user_id' => $user->id
+            ]);
+
+            $user->notify(new NewUserFree($user->personal_information->full_name));
         }
 
         if (!UserSocialAuth::where('provider_id', $providerUser->id)->where('provider', $providerName)->first()) {
@@ -95,32 +118,4 @@ class UserSocialAuthController extends Controller
     {
         return abort(404);
     }
-
-    /**
-     * @param $providerUser
-     * @return mixed
-     */
-    public function createUserGoogle($providerUser)
-    {
-        $user = User::create([
-            'email' => $providerUser->email,
-            'username' => $providerUser->nickname ?? \Str::random(25),
-            'password' => bcrypt(\Str::random(10)),
-            'token' => \Str::random(80),
-            'subscription_type' => 'FREE',
-            'email_verified_at' => \Carbon\Carbon::now(),
-            'avatar' => $providerUser->avatar
-        ]);
-
-        UserPersonalInformation::create([
-            'first_name' => $providerUser->user['given_name'],
-            'last_name' => $providerUser->user['family_name'],
-            'full_name' => $providerUser->name,
-            'user_id' => $user->id
-        ]);
-
-        return $user;
-    }
-
-
 }
