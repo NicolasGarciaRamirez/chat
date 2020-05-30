@@ -220,61 +220,61 @@
                             <div class="form-group row">
                                 <label class="col-sm-2">Youtube</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.Youtube">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Youtube">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">Twitch</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.Twitch">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Twitch">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">Instagram</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.Instagram">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Instagram">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">Facebook</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.Facebook">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Facebook">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">TikTok</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.TikTok">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.TikTok">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">LinkedIn</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.LinkedIn">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.LinkedIn">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">SnapChat</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.SnapChat">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.SnapChat">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">SoundCloud</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.SoundCloud">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.SoundCloud">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">Bandcamp</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.Bandcamp">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Bandcamp">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-2">Spotify</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" placeholder="Link to Noisesharks proﬁle" v-model="profile_information.social_media.Spotify">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Spotify">
                                 </div>
                             </div>
                         </div>
@@ -312,7 +312,7 @@ export default {
     data(){
         return {
             disable: false,
-            url: `/${this.user.username}/Save/Profile/`,
+            url: `/${this.user.username}/Save/Profile`,
             imageReleases:'/images/profile/default.png',
             imageData: '/images/profile/default.png',
             profile_information:{
@@ -345,7 +345,7 @@ export default {
     methods:{
         initializeVariable(){
             if (this.user.profile_information) {
-                this.url = `/${this.user.username}/Edit/Profile/`
+                this.url = `/${this.user.username}/Edit/Profile`
                 this.profile_information = this.user.profile_information
                 this.profile_information.genres = this.user.profile_information.genres.split(",")
                 this.profile_information.services = this.user.profile_information.services.split(",")
@@ -373,7 +373,7 @@ export default {
                 role_instrument:'',
             })
         },
-        save(){
+        async save(){
             this.disable = true
 
             var data = {
@@ -381,7 +381,7 @@ export default {
                 members_information: this.members_information,
                 releases_information: this.releases_information
             }
-            axios.post(this.url, data).then(res => {
+            await axios.post(this.url, data).then(res => {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
                     alert('the personal information has been updated')
