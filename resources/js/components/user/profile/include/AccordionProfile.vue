@@ -358,6 +358,7 @@ export default {
         },
         addRelease(){
             this.releases_information.push({
+                id: null,
                 album_name:'',
                 artistic_name:'',
                 genre:'',
@@ -368,6 +369,7 @@ export default {
         },
         addMember(){
             this.members_information.push({
+                id: null,
                 member_name:"",
                 link_profile:'',
                 role_instrument:'',
@@ -388,9 +390,12 @@ export default {
                     window.location.reload()
                 }
                 else{
-                    console.log(res)
+                    // console.log(res)
                 }
             }).catch(err => {
+                this.disable = false
+                alert('there was an error trying to save the information')
+                window.location.reload()
                 console.log(err)
             })
         },

@@ -85,6 +85,7 @@ class UserProfileInformationController extends Controller
             
             collect($request->members_information)->each(function ($value ){
                 Members::updateOrCreate(
+                    [ 'id' => $value['id'] ],
                     [
                         'member_name'           => $value['member_name'],
                         'link_profile'          => $value['link_profile'],
@@ -97,6 +98,7 @@ class UserProfileInformationController extends Controller
 
             collect($request->releases_information)->each(function ($query){
                 Releases::updateOrCreate(
+                    ['id' => $query['id']],
                     [
                         'album_name'    	    => $query['album_name'],
                         'artistic_name'         => $query['artistic_name'],
