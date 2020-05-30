@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Contracts\Provider;
 use App\Models\User\{User, UserPersonalInformation, UserSocialAuth};
 
 class UserSocialAuthController extends Controller
@@ -49,25 +50,13 @@ class UserSocialAuthController extends Controller
      */
     public function createOrGetUser(Provider $provider)
     {
-        dd($provider);
         $providerUser = $provider->user();
         $providerName = class_basename($provider);
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
-            $user = User::create([
-                'email' => $providerUser->email,
-                'username' => $providerUser->username,
-                'password' => bcrypt(\Str::random(10)),
-                'token' => \Str::random(80),
-                'subscription_type' => 'FREE',
-                'email_verified_at' => \Carbon\Carbon::now()
-            ]);
-            UserPersonalInformation::create([
-                'first_name' => $providerUser->name,
-                'last_name' => $providerUser->name,
-                'full_name' => $providerUser->name,
-                'user_id' => $user->id
-            ]);
+            if ($providerName == 'google') {
+                $user = $this->createUserGoogle($providerUser);
+            }
 
             $user->notify(new NewUserFree());
         }
@@ -98,9 +87,40 @@ class UserSocialAuthController extends Controller
 
         abort(404);
     }
-    
+
+    /**
+     * @return void
+     */
     public function error()
     {
-        return redirect('/');
+        return abort(404);
     }
+
+    /**
+     * @param $providerUser
+     * @return mixed
+     */
+    public function createUserGoogle($providerUser)
+    {
+        $user = User::create([
+            'email' => $providerUser->email,
+            'username' => $providerUser->nickname ?? \Str::random(25),
+            'password' => bcrypt(\Str::random(10)),
+            'token' => \Str::random(80),
+            'subscription_type' => 'FREE',
+            'email_verified_at' => \Carbon\Carbon::now(),
+            'avatar' => $providerUser->avatar
+        ]);
+
+        UserPersonalInformation::create([
+            'first_name' => $providerUser->user['given_name'],
+            'last_name' => $providerUser->user['family_name'],
+            'full_name' => $providerUser->name,
+            'user_id' => $user->id
+        ]);
+
+        return $user;
+    }
+
+
 }
