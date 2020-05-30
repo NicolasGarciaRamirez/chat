@@ -17,19 +17,18 @@
                             <div class="d-flex flex-row mt-5" style="flex-grow: 4">
                                 <div class="col-6 " >
                                     <div class="d-flex flex-row checkbox">
-                                        <input type="checkbox" :id="genre.principal_genre" :value="genre.principal_genre" v-model="$parent.profile_information.genres">
+                                        <input type="checkbox" :id="genre.principal_genre" :value="genre.principal_genre" @click="selectAllSpecificGenre(genre.principal_genre)" v-model="$parent.profile_information.genres">
                                         <label :for="genre.principal_genre" class="text-white font-weight-bold" ><span>{{ genre.principal_genre }}</span></label>
                                     </div>
-                                    <div v-for="(genr, index) in genre.especific_genre" :key="index">
+                                    <div v-for="(genr, index) in genre.specific_genre" :key="index">
                                         <div class="d-flex flex-row ml-3 checkbox">
-                                            <input type="checkbox" :id="genr" :value="genr" v-model="$parent.profile_information.genres">
+                                            <input type="checkbox" :data-specific="`${genr}`" :id="genr" :value="genr" v-model="$parent.profile_information.genres">
                                             <label :for="genr" class="text-white"><span>{{ genr }}</span></label>
                                         </div>
                                     </div>
                                     <div class="divider"></div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div>
@@ -53,14 +52,19 @@ export default {
         }
     },
     mounted(){
-
         this.getGenres()
     },
     methods:{
         getGenres(){
             this.genres = Genres.getAllGenres()
+        },
+        selectAllSpecificGenre(principal_genre){
+            var self = this
+            let specific_genres = Genres.getSpecificGenre(principal_genre)
+            specific_genres.map(value =>{
+                self.$parent.profile_information.genres.push(value)
+            })
         }
-
     }
 }
 </script>

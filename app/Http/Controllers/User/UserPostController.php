@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
+use Intervention\Image\Facades\Image;
 
 class UserPostController extends Controller
 {
@@ -46,8 +47,7 @@ class UserPostController extends Controller
                 'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
 
-            $imagePost = \Str::random(80) . '.' . request()->imagePost->getClientOriginalExtension();
-            request()->imagePost->move(base_path('public/images/post'), $imagePost);
+            $imagePost = $this->setImage($request);
 
             $post = new \App\Models\User\UserPost();
             $post->description = $request->postDescription;
@@ -76,5 +76,30 @@ class UserPostController extends Controller
     public function update()
     {
 
+    }
+
+    /**
+     * @param $request
+     * @return string
+     */
+    public function setImage($request): string
+    {
+        $key = md5(\Auth::user()->id);
+        $hash = \Str::random(10);
+        $imageName = "/images/post/{$key}/{$hash}{$request->imagePost->getClientOriginalName()}";
+        $request->imagePost->move(public_path("/images/post/{$key}/"), $imageName);
+
+        $background = Image::canvas(1200, 600);
+        $background->fill('#141414');
+
+        $image = Image::make(public_path($imageName))->resize(1200, 600, function ($c) {
+            $c->aspectRatio();
+            $c->upsize();
+        });
+
+        $background->insert($image, 'center');
+        $background->save(public_path($imageName));
+
+        return $imageName;
     }
 }
