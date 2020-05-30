@@ -10,7 +10,7 @@
                 <div class="d-flex flex-row">
                     <div class="d-flex align-items-start flex-column p-3 mt-3">
                         <div class="d-flex justify-content-start align-items-center post-user-actions ">
-                            <img :src="`/images/${ post.user.avatar }`" alt="" class="post-user-image rounded-pill" width="50">
+                            <img :src="`${ post.user.avatar }`" alt="" class="post-user-image rounded-pill" width="50">
                             <a :href="`/View/Profile/Releases/${post.user.id}`" class="text-white post-user-name">{{ post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" width="18"></a>
                         </div>
                         <div class="post-body bg-primary">
@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column">
-                        <img :src="`/images/post/${ post.image }`" width="820" height="720" alt="img-post"  class="img-fluid cursor-point">
+                        <img :src="`${ post.image }`" width="820" height="720" alt="img-post"  class="img-fluid cursor-point">
                     </div>
                 </div>
             </div>

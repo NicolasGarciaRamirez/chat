@@ -4,7 +4,7 @@
         border-top: 1px solid $fourth-color;
     }
     .img-container{
-        position: relative;     
+        position: relative;
         .edit-cover-photo{
             transform: translate(72rem, -150px);
             @include media-breakpoint-down(sm){
@@ -185,12 +185,6 @@
     }
     .channel{
         .activities{
-            img.img-activity{
-                max-width: 260px !important;
-                min-height: 260px !important;
-                max-height: 260px !important;
-                min-width: 260px !important;
-            }
             .activity{
                 margin-bottom: 1rem;
                 .information{
@@ -286,7 +280,7 @@
                         top: 0;
                         margin: 4px;
                         width: 15px;
-                        height: 15px;  
+                        height: 15px;
                         border: 1px solid white;
                         color: $fifth-color;
                     }

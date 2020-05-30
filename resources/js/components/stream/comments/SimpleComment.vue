@@ -1,7 +1,7 @@
 <template>
     <div class="comment">
         <div class="d-flex align-items-center p-2">
-            <img :src="`/images/${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
+            <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
             <div class="w-100">
                 <div class="text-white d-flex align-items-center justify-content-between">
                     <div>
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    export default {  
+    export default {
         props:['comment'],
     }
 </script>

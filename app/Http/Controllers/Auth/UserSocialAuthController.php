@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
 use Laravel\Socialite\Facades\Socialite;
+use Laravel\Socialite\Contracts\Provider;
 use App\Models\User\{User, UserPersonalInformation, UserSocialAuth};
 
 class UserSocialAuthController extends Controller
@@ -49,27 +50,46 @@ class UserSocialAuthController extends Controller
      */
     public function createOrGetUser(Provider $provider)
     {
-        dd($provider);
         $providerUser = $provider->user();
         $providerName = class_basename($provider);
+        $cover = '/images/profile/default-cover.png';
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
+            if ($providerName == 'GoogleProvider') {
+               $first_name = $providerUser->user['given_name'];
+               $last_name = $providerUser->user['family_name'];
+            }
+            if ($providerName == 'FacebookProvider') {
+                $full_name = explode(" ", $providerUser->name);
+                $first_name = $full_name[0];
+                $last_name = $full_name[1];
+            }
+            if ($providerName == 'TwitterProvider') {
+                $full_name = explode(" ", $providerUser->name);
+                $first_name = $full_name[0];
+                $last_name = $full_name[1];
+                $cover = $providerUser->user['profile_banner_url'];
+            }
+
             $user = User::create([
                 'email' => $providerUser->email,
-                'username' => $providerUser->username,
+                'username' => $providerUser->nickname ?? \Str::random(25),
                 'password' => bcrypt(\Str::random(10)),
                 'token' => \Str::random(80),
                 'subscription_type' => 'FREE',
-                'email_verified_at' => \Carbon\Carbon::now()
+                'email_verified_at' => \Carbon\Carbon::now(),
+                'avatar' => $providerUser->avatar,
+                'cover' => $cover
             ]);
+
             UserPersonalInformation::create([
-                'first_name' => $providerUser->name,
-                'last_name' => $providerUser->name,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
                 'full_name' => $providerUser->name,
                 'user_id' => $user->id
             ]);
 
-            $user->notify(new NewUserFree());
+            $user->notify(new NewUserFree($user->personal_information->full_name));
         }
 
         if (!UserSocialAuth::where('provider_id', $providerUser->id)->where('provider', $providerName)->first()) {
@@ -97,5 +117,13 @@ class UserSocialAuthController extends Controller
         }
 
         abort(404);
+    }
+
+    /**
+     * @return void
+     */
+    public function error()
+    {
+        return abort(404);
     }
 }

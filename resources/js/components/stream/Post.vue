@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="d-flex align-items-start">
-                <img :src="`/images/${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
+                <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-3">
 
                     <a :href="`/${post.user.username}/Profile/Rates`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" ></a>
