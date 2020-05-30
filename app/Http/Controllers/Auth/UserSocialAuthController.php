@@ -54,11 +54,11 @@ class UserSocialAuthController extends Controller
         $providerName = class_basename($provider);
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
-            if ($providerName == 'google') {
+            if ($providerName == 'GoogleProvider') {
                $first_name = $providerUser->user['given_name'];
                $last_name = $providerUser->user['family_name'];
             }
-            if ($providerName == 'facebook') {
+            if ($providerName == 'FacebookProvider') {
                 $full_name = explode(" ", $providerUser->name);
                 $first_name = $full_name[0];
                 $last_name = $full_name[1];
