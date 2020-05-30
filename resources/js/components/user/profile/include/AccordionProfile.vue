@@ -120,9 +120,9 @@
                                 <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember">Add Current Member</button>
                             </div>
                             <single-member v-for="(member, index) in members_information" :key="index" :member="member" :index="index" />
-                            <div class="d-flex justify-content-between my-4">
+                            <div class="d-flex flex-row mb-4">
                                 <h5>Former Members</h5>
-                                <button class="btn text-white-white rounded-pill">Add Former Member</button>
+                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember">Add Former Member</button>
                             </div>
                         </div>
                     </div>
@@ -177,6 +177,7 @@
                                 <button type="button" class="text-white font-weight-bold" @click="showModalSelectGenres">Select Genre(s)</button>
                             </div>
                             <div class="text-left">
+
                                 <ul v-for="(item , index) in profile_information.genres" :key="index" >
                                     <li>{{ item }}</li>
                                 </ul>

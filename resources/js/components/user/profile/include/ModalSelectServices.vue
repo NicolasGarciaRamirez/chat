@@ -18,12 +18,12 @@
                             <div class="d-flex flex-row mt-5" style="flex-grow: 4">
                                 <div class="col-6 " >
                                     <div class="d-flex flex-row checkbox">
-                                        <input type="checkbox" :id="service.principal_service" :value="service.principal_service" v-model="$parent.profile_information.services">
+                                        <input type="checkbox" :id="service.principal_service" :value="service.principal_service"  @click="selectAllSpecificService(service.principal_service)" v-model="$parent.profile_information.services">
                                         <label :for="service.principal_service" class="text-white font-weight-bold" ><span>{{ service.principal_service }}</span></label>
                                     </div>
-                                    <div v-for="(servic, index) in service.especific_service" :key="index">
+                                    <div v-for="(servic, index) in service.specific_service" :key="index">
                                         <div class="d-flex flex-row ml-3 checkbox">
-                                            <input type="checkbox" :id="servic" :value="servic" v-model="$parent.profile_information.services">
+                                            <input type="checkbox" :data-specific="`${servic}`" :id="servic" :value="servic" v-model="$parent.profile_information.services">
                                             <label :for="servic" class="text-white"><span>{{ servic }}</span></label>
                                         </div>
                                     </div>
@@ -56,8 +56,14 @@ export default {
     methods:{
         getServices(){
             this.services = Services.getAllServices()
+        },
+        selectAllSpecificService(principal_service){
+            var self = this
+            let specific_service = Services.getSpecificService(principal_service)
+            specific_service.map(value =>{
+                self.$parent.profile_information.services.push(value)
+            })
         }
-
     }
 }
 </script>

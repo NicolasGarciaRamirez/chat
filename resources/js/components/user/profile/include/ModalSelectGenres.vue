@@ -14,8 +14,8 @@
                             <img src="/images/modal-shark.svg" alt="" style="max-width: 44rem; padding-bottom: 1rem">
                         </div>
                         <div v-for="(genre, index) in genres" :key="index">
-                            <div class="d-flex flex-row mt-5" style="flex-grow: 4">
-                                <div class="col-6 " >
+                            <div class="d-flex flex-row mt-5" style="flex-grow: 2">
+                                <div class="col">
                                     <div class="d-flex flex-row checkbox">
                                         <input type="checkbox" :id="genre.principal_genre" :value="genre.principal_genre" @click="selectAllSpecificGenre(genre.principal_genre)" v-model="$parent.profile_information.genres">
                                         <label :for="genre.principal_genre" class="text-white font-weight-bold" ><span>{{ genre.principal_genre }}</span></label>

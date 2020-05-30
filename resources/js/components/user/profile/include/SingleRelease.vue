@@ -5,6 +5,9 @@
                 <img class="img-fluid pr-3" :src="release_update.image"/>
             </label>
             <input type="file" :id="`imgRelease${index}`" name="imageRelease" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="previewImage" />
+            <button type="button" class="btn text-white rounded-pill bg-fifth w-90" @click="deleteRelease(index)">
+                Delete Release
+            </button>
         </div>
         <div class="d-flex flex-column">
             <input type="text" class="form-control" placeholder="Artist Name" v-model='release_update.artistic_name' />
@@ -37,9 +40,11 @@
                 append('image', this.image, this.image.name)
 
                 this.release.image = image
-
-
             },
+            deleteRelease(index){
+                var self = this
+                self.$parent.releases_information.splice(index, 1)
+            }
         }
     }
 </script>
