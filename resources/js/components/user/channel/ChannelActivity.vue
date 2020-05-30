@@ -16,7 +16,7 @@
         <div class="container activities">
             <div class="row">
                 <div class="col-md-3 activity" v-for="(activity , index) in this.user.posts" :key="index">
-                    <img :src="`/images/post/${activity.image}`" alt="activity" class="img-activity img-fluid">
+                    <img :src="`${activity.image}`" alt="activity" class="img-activity img-fluid">
                     <h3 class="my-1">{{ activity.description }}</h3>
                     <div class="d-flex c-fourth my-3">
                         <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>

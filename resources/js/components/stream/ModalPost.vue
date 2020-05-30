@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column">
-                        <img :src="`/images/post/${ post.image }`" width="820" height="720" alt="img-post"  class="img-fluid cursor-point">
+                        <img :src="`${ post.image }`" width="820" height="720" alt="img-post"  class="img-fluid cursor-point">
                     </div>
                 </div>
             </div>
