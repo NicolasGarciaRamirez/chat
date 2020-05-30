@@ -28,9 +28,9 @@
                     </form>
                     <div><p class="text-center or">OR</p></div>
                     <div class="d-flex flex-column social-login">
-                        <a href="/login/facebook" class="btn bg-facebook text-white">Facebook Quick Login</a>
-                        <a href="#" class="btn bg-twitter text-white my-3">Twitter Quick Login</a>
-                        <a href="#" class="btn bg-white c-fifth">Google Quick Login</a>
+                        <a href="/auth/facebook" class="btn bg-facebook text-white">Facebook Quick Login</a>
+                        <a href="/auth/twitter" class="btn bg-twitter text-white my-3">Twitter Quick Login</a>
+                        <a href="/auth/google" class="btn bg-white c-fifth">Google Quick Login</a>
                     </div>
                     <p class="c-fourth text-center mt-3 mb-5">By logging in up you are agreeing to Noisesharks’ <a href="/terms" class="c-fourth"><b>Terms of Use</b></a>, <a href="#" class="c-fourth"><b>Privacy Policy</b></a> , & <a href="#" class="c-fourth"><b>Copyright Policy</b></a></p>
                     <div class="divider"></div>

@@ -98,4 +98,9 @@ class UserSocialAuthController extends Controller
 
         abort(404);
     }
+    
+    public function error()
+    {
+        return redirect('/');
+    }
 }

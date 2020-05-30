@@ -23,8 +23,9 @@ Route::get('/login', 'HomeController@login');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
 
-Route::get('auth/{provider}', 'Auth\SocialAuthController@redirectToProvider');
+Route::get('auth/{provider}', 'Auth\UserSocialAuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\UserSocialAuthController@handleProviderCallback');
+Route::get('auth/{provider}/callback/error', 'Auth\UserSocialAuthController@error');
 Route::get('ValidateLogin/{id}/{hash}', 'Auth\UserSocialAuthController@validateLogin')->name('validate.login')->middleware('signed');
 
 Route::get('/Register/{type?}', 'HomeController@register')->where([
