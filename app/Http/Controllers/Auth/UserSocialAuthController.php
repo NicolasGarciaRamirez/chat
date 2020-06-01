@@ -53,6 +53,7 @@ class UserSocialAuthController extends Controller
         $providerUser = $provider->user();
         $providerName = class_basename($provider);
         $cover = '/images/profile/default-cover.png';
+        $avatar = $providerUser->avatar;
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
             if ($providerName == 'GoogleProvider') {
@@ -68,6 +69,7 @@ class UserSocialAuthController extends Controller
                 $full_name = explode(" ", $providerUser->name);
                 $first_name = $full_name[0];
                 $last_name = $full_name[1];
+                $avatar = $providerUser->user['profile_image_url_https'];
                 $cover = $providerUser->user['profile_banner_url'];
             }
 
@@ -78,7 +80,7 @@ class UserSocialAuthController extends Controller
                 'token' => \Str::random(80),
                 'subscription_type' => 'FREE',
                 'email_verified_at' => \Carbon\Carbon::now(),
-                'avatar' => $providerUser->avatar,
+                'avatar' => $avatar,
                 'cover' => $cover
             ]);
 

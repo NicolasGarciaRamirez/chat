@@ -74,7 +74,6 @@
             return {
                 disable: false,
                 user: {
-                    avatar: "Profile/default.png",
                     first_name: "",
                     last_name: "",
                     email: "",
