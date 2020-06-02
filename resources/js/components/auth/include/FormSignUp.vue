@@ -27,7 +27,7 @@
                 <input type="password" class="form-control mb-3" name="password_confirmation" placeholder="Confirm Password" v-model="user.password_confirmation" v-validate="'required|confirmed:password'" data-vv-as="password" required>
             </div>
             <div class="m-2 p-0 d-flex justify-content-center">
-                <button type="submit" class="btn bg-fifth text-white sign-up font-weight-bold rounded-pill w-100 sign-up" v-if="!disable">Sign Up</button>
+                <button type="submit" class="btn bg-fifth text-white sign-up font-weight-bold rounded-pill w-100" v-if="!disable">Sign Up</button>
                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 </button>
@@ -89,12 +89,12 @@
                 this.disable = true
                 this.$validator.validate().then(valid => {
                     if (!valid) {
-                       return false
+                        this.disable = false
+                        return false
                     }
                     this.user.subscription_type = this.type
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
-                            // this.disable = false
                             Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
                             window.location.replace(`/${res.data.user.username}/Profile/Rates`)
                         }

@@ -15,19 +15,6 @@ class AuthController extends Controller
     /**
      * Undocumented function
      *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function authCheck()
-    {
-        return response()->json([
-            'auth' => \Auth::check(),
-            'user' => \Auth::user()
-        ]);
-    }
-
-    /**
-     * Undocumented function
-     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */

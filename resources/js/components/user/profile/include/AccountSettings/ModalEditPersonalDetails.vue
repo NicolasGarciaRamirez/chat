@@ -91,8 +91,8 @@ export default {
             this.data.full_name = this.data.first_name+' '+this.data.last_name
             axios.post(`/User/Settings/Personal/Update/${this.user.username}`, this.data).then(res => {
                 if (res.data.updated) {
+                    $('html, body ').animate({ scrollTop: 0 }, 'fast');
                     alert('Has been information updated')
-                    window.location.reload()
                 }
             }).catch(err =>{
                 alert('Error')

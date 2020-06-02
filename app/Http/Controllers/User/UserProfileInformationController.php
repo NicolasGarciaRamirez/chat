@@ -88,6 +88,7 @@ class UserProfileInformationController extends Controller
                     [ 'id' => $value['id'] ],
                     [
                         'member_name'           => $value['member_name'],
+                        'member_type'           => $value['member_type'],
                         'link_profile'          => $value['link_profile'],
                         'role_instrument'       => $value['role_instrument'],
                         'profile_information_id'=> $this->user->profile_information->id
@@ -97,6 +98,7 @@ class UserProfileInformationController extends Controller
             });
 
             collect($request->releases_information)->each(function ($query){
+                
                 Releases::updateOrCreate(
                     ['id' => $query['id']],
                     [

@@ -117,13 +117,15 @@
                         <div class="card-body text-white bg-black text-center">
                             <div class="d-flex flex-row mb-4">
                                 <h5>Current Members</h5>
-                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember">Add Current Member</button>
+                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember('current')">Add Current Member</button>
                             </div>
-                            <single-member v-for="(member, index) in members_information" :key="index" :member="member" :index="index" />
+                            <single-member v-for="(current, index) in current_members" :key="index" :member="current" :index="index" :type="'current'" />
                             <div class="d-flex flex-row mb-4">
                                 <h5>Former Members</h5>
-                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember">Add Former Member</button>
+                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember('past')">Add Former Member</button>
                             </div>
+                            <single-member  v-for="(past, index) in past_members" :key="index" :member="past" :index="index" :type="'past'" />
+                        
                         </div>
                     </div>
                 </div>
@@ -336,7 +338,8 @@ export default {
                     Spotify: '',
                 }
             },
-            members_information:[],
+            current_members:[],
+            past_members:[],
             releases_information: []
         }
     },
@@ -352,7 +355,14 @@ export default {
                 this.profile_information.services = this.user.profile_information.services.split(",")
                 this.profile_information.social_media = JSON.parse(this.user.profile_information.social_media)
 
-                this.members_information = this.user.profile_information.members
+        	    this.profile_information.members.map(val =>{
+                    if (val.member_type === 'current') {
+                        this.current_members.push(val)
+                    }
+                    if (val.member_type === 'past') {
+                        this.past_members.push(val)
+                    }
+                })
                 this.releases_information = this.user.profile_information.releases
             }
 
@@ -368,20 +378,32 @@ export default {
                 release_date:''
             })
         },
-        addMember(){
-            this.members_information.push({
-                id: null,
-                member_name:"",
-                link_profile:'',
-                role_instrument:'',
-            })
+        addMember(type){
+            if (type == 'current') {
+                this.current_members.push({
+                    id: null,
+                    member_type: type,
+                    member_name:"",
+                    link_profile:'',
+                    role_instrument:'',
+                })
+            }
+            if (type == 'past') {
+                this.past_members.push({
+                    id: null,
+                    member_type: type,
+                    member_name:"",
+                    link_profile:'',
+                    role_instrument:'',
+                })
+            }
         },
         async save(){
             this.disable = true
 
             var data = {
                 profile_information: this.profile_information,
-                members_information: this.members_information,
+                members_information: this.current_members.concat(this.past_members),
                 releases_information: this.releases_information
             }
             await axios.post(this.url, data).then(res => {

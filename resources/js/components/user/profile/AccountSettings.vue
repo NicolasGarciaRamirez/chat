@@ -49,6 +49,33 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="user.subscription_type == 'CONTRIBUTOR'">
+                    <div class="card">
+                        <div class="card-header bg-black" id="headingSubscriptionSettings">
+                            <h2 class="mb-0" data-toggle="collapse" data-target="#collapseSubscriptionSettings" aria-expanded="false" aria-controls="collapseSubscriptionSettings">
+                                <img class="icon" src="/images/icons/user-pencil.svg" />
+                                <button type="button" class="btn btn-link text-white">Subscription Settings</button>
+                                <i class="fas fa-angle-up float-right"></i>
+                            </h2>
+                        </div>
+                        <div id="collapseSubscriptionSettings" class="collapse"
+                        aria-labelledby="headingSubscriptionSettings" data-parent="#accordionAccountSettings">
+                            <div class="card-body bg-black">
+                                <div class="c-fourth flex-column mx-5">
+                                    <div><label>Amount :</label><label class="text-white">$7.99</label></div>
+                                    <div><label>Subscription Started :</label><label class="text-white">Yes</label></div>
+                                    <div><label>Subscription Start Date :</label><label class="text-white">16/11/2020</label></div>
+                                    <div><label>Payment Cycle :</label><label class="text-white">the 1st of every month</label></div>
+                                    <div><label>Payment Method :</label><label class="text-white">****1234 Bank Account</label></div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button @click="showModalSubscriptionEdit">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header bg-black" id="headingThree">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -57,8 +84,7 @@
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseThree" class="collapse"
-                    aria-labelledby="headingThree" data-parent="#accordionAccountSettings">
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="row text-justify">
                                 <div class="table-responsive mx-5">
@@ -76,11 +102,11 @@
                                         <tbody>
                                             <tr>
                                                 <td>01/11/2019</td>
-                                                <td>Support</td>
+                                                <td>NS Free</td>
                                                 <td><img /> Henrry cadbury</td>
                                                 <td>$7.00</td>
                                                 <td><img src="/images/icons/payment.svg" class="icon" /></td>
-                                                <td>x</td>
+                                                <td><i class="fas fa-times-circle c-fifth pointer" @click="showModalCancel"></i></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -89,6 +115,44 @@
                         </div>
                     </div>
                 </div>
+                <div v-if="user.subscription_type === 'CONTRIBUTOR'">
+                    <div class="card">
+                        <div class="card-header bg-black" id="headingEarnings">
+                            <h2 class="mb-0" data-toggle="collapse" data-target="#collapseEarnings" aria-expanded="false" aria-controls="collapseEarnings">
+                                <img class="icon" src="/images/icons/change-password.svg" />
+                                <button type="button" class="btn btn-link text-white">Support Earnings</button>
+                                <i class="fas fa-angle-up float-right"></i>
+                            </h2>
+                        </div>
+                        <div id="collapseEarnings" class="collapse" aria-labelledby="headingEarnings" data-parent="#accordionAccountSettings">
+                            <div class="card-body bg-black">
+                                <div class="c-fourth flex-column mx-5">
+                                    <div><label>Total Lifetime Earnings:</label><label class="text-white">$12,546.00</label></div>
+                                    <div><label>Current Money In Pot:</label><label class="text-white">$600.00</label></div>
+                                    <div><label>Money Released To You:</label><label class="text-white">The 3rd of every month.</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header bg-black" id="headingFourth">
+                            <h2 class="mb-0" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
+                                <img class="icon" src="/images/icons/change-password.svg" />
+                                <button type="button" class="btn btn-link text-white">Reward Earnings</button>
+                                <i class="fas fa-angle-up float-right"></i>
+                            </h2>
+                        </div>
+                        <div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordionAccountSettings">
+                            <div class="card-body bg-black">
+                                <div class="c-fourth flex-column mx-5">
+                                    <div><label>Total Lifetime Rewards:</label><label class="text-white">$1005.00</label></div>
+                                    <div><label>Total Rewards This Calendar Month:</label><label class="text-white">$65.00</label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <div class="card-header bg-black" id="headingFourth">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
@@ -175,6 +239,7 @@
         <modal-edit-account :user="user" />
         <modal-edit-password :user="user" />
         <modal-edit-personal-details :user="user" />
+        <modal-cancel :user="user" />
 
     </section>
 </template>
@@ -183,13 +248,15 @@
 import ModalEditAccount from './include/AccountSettings/ModalEditAccount'
 import ModalEditPassword from './include/AccountSettings/ModalEditPassword'
 import ModalEditPersonalDetails from './include/AccountSettings/ModalEditPersonalDetails'
+import ModalCancel from './include/AccountSettings/ModalCancel'
 
 export default {
     props:['user'],
     components:{
         ModalEditAccount,
         ModalEditPassword,
-        ModalEditPersonalDetails
+        ModalEditPersonalDetails,
+        ModalCancel
     },
     methods:{
         showModalEditAccount(){
@@ -200,6 +267,9 @@ export default {
         },
         showModalEditPassword(){
             $('#ModalEditPassword').modal('show')
+        },
+        showModalCancel(){
+            $('#ModalCancel').modal('show')
         }
     }
 

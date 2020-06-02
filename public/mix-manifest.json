@@ -1,17 +1,6 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    "/js/app.js": "/js/app.js?id=e70d912ee9210f0d4090",
+    "/js/app.js": "/js/app.js?id=e628371a6532257b54d8",
     "/css/prelaunch/prelaunch.css": "/css/prelaunch/prelaunch.css?id=99f991adcfde3279a316",
-    "/css/app.css": "/css/app.css?id=2e6c312741f1890884eb",
+    "/css/app.css": "/css/app.css?id=ebaae789c5cd118deb45",
     "/js/prelaunch/prelaunch.js": "/js/prelaunch/prelaunch.js?id=f28e3437389302f6ee26"
-=======
-    "/js/app.js": "/js/app.js?id=003461dd2571e149c64f",
-=======
-    "/js/app.js": "/js/app.js?id=a9593fb8f590d8832f08",
->>>>>>> 46483e9be9f580ed28d04aef79f36f219d3f3f31
-    "/css/prelaunch/prelaunch.css": "/css/prelaunch/prelaunch.css?id=d4fb34649fe7b667fd3f",
-    "/css/app.css": "/css/app.css?id=ae3e2c8994461a98f3dc",
-    "/js/prelaunch/prelaunch.js": "/js/prelaunch/prelaunch.js?id=e5b44ff47e1e9348f92c"
->>>>>>> e43c858667ec25dba5c37bd8016cdf636e33c822
 }

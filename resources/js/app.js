@@ -9,6 +9,9 @@ import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'
 
+import Croppa from 'vue-croppa'
+Vue.use(Croppa, { componentName: 'Cropper' })        
+
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 

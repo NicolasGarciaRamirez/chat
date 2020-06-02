@@ -12,7 +12,7 @@ class Members extends Model
      * @var array
      */
     protected $fillable = [
-        'member_name', 'link_profile','role_instrument','profile_information_id'
+        'member_name', 'member_type' ,'link_profile','role_instrument','profile_information_id'
     ];
 
     /**
