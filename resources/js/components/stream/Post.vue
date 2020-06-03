@@ -39,7 +39,7 @@
                 <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-3">
 
-                    <a :href="`/${post.user.username}/Profile/Rates`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" ></a>
+                    <a :href="`/${post.user.username}/Profile/WorkHistory`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" ></a>
 
                     <div class="d-flex align-items-center post-user-type mt-2">
                         <button class="btn bg-fifth text-white mr-2">{{ post.user.profile_information ? post.user.profile_information.title : 'N/A' }}</button>

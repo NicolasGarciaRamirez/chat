@@ -8,27 +8,25 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body pt-4 text-center">
-                        <h2 class="font-weight-bold">Change Image Profile</h2>
+                    <div class="text-center">
+                        <h2 class="font-weight-bold p-4">Change Image Profile</h2>
+                    </div>
+                    <div class="d-flex text-center">
                         <form @submit.prevent="save">
-                            <cropper v-model="myCroppa"
-                                :initial-image="user.avatar"
-                                initial-size="contain"
-                                initial-position="center"
-                                :width="700"
-                                :height="360"
-                                :show-loading="true"
-                                :placeholder-font-size="50"
-                                :rotating="true"
-                                prevent-white-space
-                                @init="onInit"
-                            >
-                            </cropper>
-                            <img :src="avatar" alt="">
-                            <div class="text-right">
-                                <button @click="rotate" class="btn bg-primary text-white rounded-pill">Rotate</button>
-                                <button class="btn bg-primary text-white rounded-pill" data-dismiss="modal">cancel</button>
-                                <button class="btn bg-fifth mr-2 text-white rounded-pill" :disabled="myCroppa.length <= 0">save</button>
+                            <div >
+                                <label for="img">
+                                    <img :src="imageData" alt="img-profile" id="image-profile" width="800" height="300">
+                                </label>
+                            </div>
+                            <input type="file" class="d-none" id="img" @change="previewImage">
+                            <div class="d-flex flex-row">
+                                <i class="fas fa-minus c-fourth"></i>
+                                <input type="range" class="bg-fourth mx-2" />
+                                <i class="fas fa-plus c-fourth"></i>
+                            </div>
+                            <div class="text-right p-4">
+                                <button class="btn bg-primary text-white" data-dismis="modal">Cancel</button>
+                                <button class="btn bg-fifth text-white" >Save</button>
                             </div>
                         </form>
                     </div>
@@ -40,28 +38,47 @@
 
 <script>
 import Auth from '../../../../helpers/Auth'
+import Cropper from 'cropperjs'
 
 export default {
     props:['user'],
+    components:{
+
+    },
     data(){
         return {
-            imageData:'',
+            imageData: this.user.avatar,
             avatar: '',
-            myCroppa:{}
         }
     },
     methods:{
-         onInit() {
-            this.avatar = this.myCroppa.generateDataUrl()
-            this.myCroppa.addClipPlugin(function (ctx, x, y, w, h) {
-                console.log(x, y, w, h)
-                ctx.beginPath()
-                ctx.arc(600, 350, 350, 0, 2 * Math.PI, true)
-                ctx.closePath()
-            })
+        async previewImage(w){
+            this.avatar = w.target.files[0]
+            
+            var input = w.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imageData = e.target.result;
+                }
+                // await this.getImage(w)
+                reader.readAsDataURL(input.files[0]);
+            }
+            
         },
-        rotate(){
-            this.myCroppa.rotate()
+        async getImage(w){
+            this.user.avatar = w.target.files[0]
+            var element = $('#image-profile')
+            console.log(element)
+
+            const cropper = new Cropper(element[0],{
+                autoCrop:true,
+                ready() {
+                    this.cropper.crop()
+                },
+            })
+            
+            console.log(cropper)
         },
         save(){
             var avatar = new FormData()
@@ -83,7 +100,7 @@ export default {
             }).catch(err =>{
 
             })
-        }
+        },
     }
 }
 </script>

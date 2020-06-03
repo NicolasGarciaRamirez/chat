@@ -28702,6 +28702,7 @@ button:focus {
   width: 4.5rem;
   min-height: 4.5rem;
   max-width: 4.5rem;
+  max-height: 4.5rem;
 }
 
 .posts .post .post-head .check-icon {

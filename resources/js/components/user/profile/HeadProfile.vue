@@ -15,7 +15,7 @@
         <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token">
             <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white">Edit Profile <i class="cil-pencil ml-2"></i></a>
             <a href="#" class="btn bg-black rounded-pill text-white mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
-            <a :href="`/${ user.username}/Profile/Rates`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
+            <a :href="`/${ user.username}/Profile/WorkHistory`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
         </div>
         <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token">
             <img src="/images/chat.svg" alt="chat" class="icon mr-3">

@@ -1,7 +1,7 @@
 <template>
     <ul class="c-sidebar-nav ps ps--active-y px-3">
         <li class="c-sidebar-nav-title p-0 m-0 d-md-none text-center">
-            <a href="/Profile/Channel/Activity" class="text-white">Profile</a>
+            <a :href="`/${auth.username}/Profile/WorkHistory`" class="text-white">Profile</a>
         </li>
         <li class="c-sidebar-nav-title pb-0">Filter Stream</li>
         <li class="c-sidebar-nav-title p-0 m-0">
@@ -84,9 +84,18 @@
 
 <script>
     import AppFooter from './footer'
+    import Auth from '../../helpers/Auth'
     export default {
+        data(){
+            return {
+                auth: Auth.state
+            }
+        },
         components: {
             AppFooter
+        },
+        mounted(){
+            Auth.initialize()
         }
     }
 </script>

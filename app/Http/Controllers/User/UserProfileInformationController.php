@@ -82,7 +82,8 @@ class UserProfileInformationController extends Controller
             $profile_information->social_media = json_encode($request->profile_information['social_media']);
             $this->user->profile_information()->update($profile_information->toArray());
 
-            
+            Members::whereProfileInformationId( $this->user->profile_information->id)->delete();
+
             collect($request->members_information)->each(function ($value ){
                 Members::updateOrCreate(
                     [ 'id' => $value['id'] ],

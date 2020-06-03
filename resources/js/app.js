@@ -9,8 +9,6 @@ import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'
 
-import Croppa from 'vue-croppa'
-Vue.use(Croppa, { componentName: 'Cropper' })        
 
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
@@ -33,12 +31,9 @@ import ProfileEdit from './components/user/profile/ProfileEdit'
 import AccountSettings from './components/user/profile/AccountSettings'
 
 import HeadProfile from './components/user/profile/HeadProfile'
-// import ProfileActivity from './components/user/view/channel/Activity'
-// import ProfilePlaylist from './components/user/view/channel/Playlist'
 
 import ProfileGenres from './components/user/profile/Genres'
 import ProfileMembers from './components/user/profile/Members'
-import ProfileRates from './components/user/profile/Rates'
 import ProfileReleases from './components/user/profile/Releases'
 import ProfileServices from './components/user/profile/Services'
 import ProfileWorkHistory from './components/user/profile/WorkHistory'
@@ -63,7 +58,6 @@ new Vue({
         HeadProfile,
         ProfileGenres,
         ProfileMembers,
-        ProfileRates,
         ProfileReleases,
         ProfileServices,
         ProfileWorkHistory,

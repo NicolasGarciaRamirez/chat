@@ -119,13 +119,16 @@
                                 <h5>Current Members</h5>
                                 <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember('current')">Add Current Member</button>
                             </div>
-                            <single-member v-for="(current, index) in current_members" :key="index" :member="current" :index="index" :type="'current'" />
+                            <div>
+                                <single-member v-for="(current, index) in current_members" :key="index" :member="current" :index="index" :type="'current'" />
+                            </div>
                             <div class="d-flex flex-row mb-4">
                                 <h5>Former Members</h5>
                                 <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember('past')">Add Former Member</button>
                             </div>
-                            <single-member  v-for="(past, index) in past_members" :key="index" :member="past" :index="index" :type="'past'" />
-                        
+                            <div>
+                                <single-member  v-for="(past, index) in past_members" :key="index" :member="past" :index="index" :type="'past'" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -290,7 +293,6 @@
                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 </button>
-
             </div>
         </form>
         <modal-select-genres />
@@ -410,15 +412,10 @@ export default {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
                     alert('the personal information has been updated')
-                    window.location.reload()
-                }
-                else{
-                    // console.log(res)
                 }
             }).catch(err => {
                 this.disable = false
                 alert('there was an error trying to save the information')
-                window.location.reload()
                 console.log(err)
             })
         },
