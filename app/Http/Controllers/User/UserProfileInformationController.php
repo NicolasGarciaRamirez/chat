@@ -98,6 +98,8 @@ class UserProfileInformationController extends Controller
                 
             });
 
+            Releases::whereProfileInformationId( $this->user->profile_information->id)->delete();
+            
             collect($request->releases_information)->each(function ($query){
                 
                 Releases::updateOrCreate(

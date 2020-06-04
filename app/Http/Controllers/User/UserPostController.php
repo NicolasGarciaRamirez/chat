@@ -43,17 +43,21 @@ class UserPostController extends Controller
         \DB::beginTransaction();
 
         try {
-            $request->validate([
-                'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
-            ]);
-
-            $imagePost = $this->setImage($request);
+            if ($request->imagePost != null) {
+                $request->validate([
+                    'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+                ]);
+                $imagePost = $this->setImage($request);
+            }else{
+                $imagePost = null;
+            }
 
             $post = new \App\Models\User\UserPost();
             $post->description = $request->postDescription;
             $post->genre = $request->postGenre;
             $post->category = $request->postCategory;
-            $post->image = $imagePost;
+            $post->resource = $imagePost;
+            $post->resource_type = $request->imageType;
             $post->user_id = $this->user->id;
             $this->user->posts()->save($post);
 

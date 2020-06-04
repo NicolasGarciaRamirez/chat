@@ -12,7 +12,7 @@ class Comments extends Model
      * @var array
      */
     protected $fillable = [
-        'post_id', 'user_id' ,'comment'
+        'post_id', 'user_id' , 'comment_parent_id', 'description'
     ];
 
     /**
@@ -31,11 +31,11 @@ class Comments extends Model
      */
     public function post()
     {
-        return $this->belongsTo('\App\Models\User\UserPost', 'id');
+        return $this->belongsTo(\App\Models\User\UserPost::class);
     }
 
     public function user()
     {
-        return $this->belongsTo('\App\Models\User\User', 'id');
+        return $this->belongsTo(\App\Models\User\User::class);
     }
 }

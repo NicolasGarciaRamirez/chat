@@ -11727,6 +11727,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _stream_Posts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stream/Posts */ "./resources/js/components/stream/Posts.vue");
 /* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/Auth */ "./resources/js/helpers/Auth.js");
+/* harmony import */ var vue_hashtag_textarea_src_vue_hashtag_textarea__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-hashtag-textarea/src/vue-hashtag-textarea */ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -11822,12 +11823,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['posts'],
   data: function data() {
     return {
+      option: {
+        textColor: 'white',
+        hashtagColor: '#ff0000',
+        placeholder: 'Add Some value to the music industry...',
+        font: 'Encode Sans'
+      },
       replace_caption: false,
       allow_download: false,
       auth: _helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state,
@@ -11836,7 +11849,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         replace_caption: "",
         allow_download: "",
         description: "",
-        image: null,
+        resource: null,
+        resource_type: null,
         genre: "",
         category: ""
       },
@@ -11844,17 +11858,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   components: {
-    Posts: _stream_Posts__WEBPACK_IMPORTED_MODULE_1__["default"]
+    Posts: _stream_Posts__WEBPACK_IMPORTED_MODULE_1__["default"],
+    VueHashtagTextarea: vue_hashtag_textarea_src_vue_hashtag_textarea__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   mounted: function mounted() {
     _helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].initialize();
     this.posts_send = this.posts;
   },
   methods: {
+    onChangeHashtag: function onChangeHashtag(obj) {
+      console.log(obj);
+    },
     previewImage: function previewImage(event) {
       var _this = this;
 
-      this.post.image = event.target.files[0];
+      this.post.resource = event.target.files[0];
+      this.post.resource_type = 'image';
       var input = event.target;
 
       if (input.files && input.files[0]) {
@@ -11876,9 +11895,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _this2.post.description = $('.hastag').val();
                 imagePost = new FormData();
-                imagePost.append('imagePost', _this2.post.image);
-                imagePost.append('imageName', _this2.post.image.name);
+
+                if (_this2.post.resource) {
+                  imagePost.append('imagePost', _this2.post.resource, _this2.post.resource);
+                  imagePost.append('imageType', _this2.post.resource_type);
+                }
+
                 imagePost.append('postDescription', _this2.post.description);
                 imagePost.append('postGenre', _this2.post.genre);
                 imagePost.append('postCategory', _this2.post.category);
@@ -12232,6 +12256,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Comments: _comments_Comments__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  // mounted(){
+  //     this.seeMore()
+  // },
   methods: {
     showModalSupport: function showModalSupport() {
       $('#modalSupport').modal('show');
@@ -12243,6 +12270,15 @@ __webpack_require__.r(__webpack_exports__);
       $('#ModalRegister').modal('show');
     } // showModalPost(){
     //     $('#ModalPost').modal('show')
+    // }
+    // seeMore(){
+    //     var text =  $('.item')
+    //     new Readmore( text,{
+    //         speed: 75,
+    //         moreLink: '<a href="#" class="c-fifth">Read more</a>',
+    //         collapsedHeight: 1,
+    //         blockCSS: ''
+    //     })
     // }
 
   }
@@ -13050,7 +13086,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _include_AccountSettings_ModalEditAccount__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./include/AccountSettings/ModalEditAccount */ "./resources/js/components/user/profile/include/AccountSettings/ModalEditAccount.vue");
-/* harmony import */ var _include_AccountSettings_ModalEditPassword__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./include/AccountSettings/ModalEditPassword */ "./resources/js/components/user/profile/include/AccountSettings/ModalEditPassword.vue");
+/* harmony import */ var _include_AccountSettings_ModalEditPassword__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./include/AccountSettings/ModalEditPassword */ "./resources/js/components/user/profile/include/AccountSettings/ModalEditPassword.vue");
 /* harmony import */ var _include_AccountSettings_ModalEditPersonalDetails__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./include/AccountSettings/ModalEditPersonalDetails */ "./resources/js/components/user/profile/include/AccountSettings/ModalEditPersonalDetails.vue");
 /* harmony import */ var _include_AccountSettings_ModalCancel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./include/AccountSettings/ModalCancel */ "./resources/js/components/user/profile/include/AccountSettings/ModalCancel.vue");
 //
@@ -13307,7 +13343,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ['user'],
   components: {
     ModalEditAccount: _include_AccountSettings_ModalEditAccount__WEBPACK_IMPORTED_MODULE_0__["default"],
-    ModalEditPassword: _include_AccountSettings_ModalEditPassword__WEBPACK_IMPORTED_MODULE_4__["default"],
+    ModalEditPassword: _include_AccountSettings_ModalEditPassword__WEBPACK_IMPORTED_MODULE_1__["default"],
     ModalEditPersonalDetails: _include_AccountSettings_ModalEditPersonalDetails__WEBPACK_IMPORTED_MODULE_2__["default"],
     ModalCancel: _include_AccountSettings_ModalCancel__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
@@ -14247,19 +14283,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
-        var data;
+        var data_send;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.disable = true;
-                data = {
+                _this2.disable = true; // var data = new FormData()
+                // this.releases_information.map(val  =>{
+                //     let cont = 0
+                //     cont++
+                //     data.append('imageRelease'+cont, val.image)
+                // })
+
+                data_send = {
                   profile_information: _this2.profile_information,
                   members_information: _this2.current_members.concat(_this2.past_members),
                   releases_information: _this2.releases_information
                 };
                 _context.next = 4;
-                return axios.post(_this2.url, data).then(function (res) {
+                return axios.post(_this2.url, data_send).then(function (res) {
                   if (res.data.updated || res.data.saved) {
                     _this2.disable = false;
                     alert('the personal information has been updated');
@@ -15193,9 +15235,6 @@ __webpack_require__.r(__webpack_exports__);
     previewImage: function previewImage(event) {
       this.image = event.target.files[0];
       this.release_update.image = URL.createObjectURL(this.image);
-      var image = new FormData();
-      append('image', this.image, this.image.name);
-      this.release.image = image;
     },
     deleteRelease: function deleteRelease(index) {
       var self = this;
@@ -23359,6 +23398,112 @@ __webpack_require__.r(__webpack_exports__);
   return Cropper;
 
 })));
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".hashtag-textarea {\n  position: relative;\n  background: #141414;\n  min-height: 120px;\n  height: 100%;\n  width: 100%;\n}\n.hashtag-textarea__true-text {\n  border: 0;\n  background: transparent;\n  position: absolute;\n  top: 5px;\n  color: transparent;\n  caret-color: #ff0000;\n  outline: none;\n}\n.hashtag-textarea__overlay {\n  -webkit-tap-highlight-color: transparent;\n}\n.hashtag-textarea__overlay, .hashtag-textarea__true-text {\n  padding: 2px 15px;\n  margin: 0px;\n  height: 100%;\n  width: 100%;\n  white-space: pre-wrap;\n  overflow-wrap: break-word;\n}\n.hashtag-textarea__placeholder {\n  font: \"Encode Sans\", sans-serif;\n  padding: 2px 15px;\n  position: absolute;\n  color: #535353;\n}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -55542,6 +55687,429 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/readmore-js/dist/readmore.es6.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/readmore-js/dist/readmore.es6.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+ * @preserve
+ * 
+ * Readmore.js plugin
+ * Author: @jed_foster
+ * Project home: jedfoster.com/Readmore.js
+ * Version: 3.0.0-beta-1
+ * Licensed under the MIT license
+ * 
+ * Debounce function from davidwalsh.name/javascript-debounce-function
+ */
+let uniqueIdCounter = 0;
+
+const isCssEmbeddedFor = [];
+
+// from:https://github.com/jserz/js_piece/blob/master/DOM/ChildNode/remove()/remove().md
+((function removePolyfill(arr) {
+  arr.forEach((item) => {
+    if (Object.prototype.hasOwnProperty.call(item, 'remove')) {
+      return;
+    }
+    Object.defineProperty(item, 'remove', {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function remove() {
+        if (this.parentNode !== null) {
+          this.parentNode.removeChild(this);
+        }
+      }
+    });
+  });
+})([Element.prototype, CharacterData.prototype, DocumentType.prototype]));
+
+function forEach(arr, callback, scope) {
+  for (let i = 0; i < arr.length; i += 1) {
+    callback.call(scope, arr[i], i);
+  }
+}
+
+function extend(...objects) {
+  const hasProp = {}.hasOwnProperty;
+  let child = objects[0];
+  let parent = objects[1];
+
+  if (objects.length > 2) {
+    const args = [];
+
+    Object.keys(objects).forEach((key) => {
+      args.push(objects[key]);
+    });
+
+    while (args.length > 2) {
+      const c1 = args.shift();
+      const p1 = args.shift();
+      args.unshift(extend(c1, p1));
+    }
+
+    child = args.shift();
+    parent = args.shift();
+  }
+
+  if (parent) {
+    Object.keys(parent).forEach((key) => {
+      if (hasProp.call(parent, key)) {
+        if (typeof parent[key] === 'object') {
+          child[key] = child[key] || {};
+          child[key] = extend(child[key], parent[key]);
+        } else {
+          child[key] = parent[key];
+        }
+      }
+    });
+  }
+
+  return child;
+}
+
+function debounce(func, wait, immediate) {
+  let timeout;
+
+  return function debouncedFunc(...args) {
+    const callNow = immediate && !timeout;
+    const later = () => {
+      timeout = null;
+      if (!immediate) func.apply(this, args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+
+    if (callNow) func.apply(this, args);
+  };
+}
+
+function uniqueId() {
+  uniqueIdCounter += 1;
+
+  return `rmjs-${uniqueIdCounter}`;
+}
+
+function setBoxHeights(element) {
+  element.style.height = 'auto';
+
+  const expandedHeight = parseInt(element.getBoundingClientRect().height, 10);
+  const cssMaxHeight = parseInt(window.getComputedStyle(element).maxHeight, 10);
+  const defaultHeight = parseInt(element.readmore.defaultHeight, 10);
+
+  // Store our measurements.
+  element.readmore.expandedHeight = expandedHeight;
+  element.readmore.maxHeight = cssMaxHeight;
+  element.readmore.collapsedHeight = cssMaxHeight || element.readmore.collapsedHeight || defaultHeight;
+
+  element.style.maxHeight = 'none';
+}
+
+function createElementFromString(htmlString) {
+  const div = document.createElement('div');
+  div.innerHTML = htmlString;
+
+  return div.firstChild;
+}
+
+function embedCSS(selector, options) {
+  if (!isCssEmbeddedFor[selector]) {
+    let styles = '';
+
+    if (options.embedCSS && options.blockCSS !== '') {
+      styles += `${selector} + [data-readmore-toggle], ${selector}[data-readmore] {
+        ${options.blockCSS}
+      }`;
+    }
+
+    // Include the transition CSS even if embedCSS is false
+    styles += `${selector}[data-readmore] {
+      transition: height ${options.speed}ms;
+      overflow: hidden;
+    }`;
+
+    (((d, u) => {
+      const css = d.createElement('style');
+      css.type = 'text/css';
+
+      if (css.styleSheet) {
+        css.styleSheet.cssText = u;
+      } else {
+        css.appendChild(d.createTextNode(u));
+      }
+
+      d.getElementsByTagName('head')[0].appendChild(css);
+    })(document, styles));
+
+    isCssEmbeddedFor[selector] = true;
+  }
+}
+
+function buildToggle(link, element, scope) {
+  function clickHandler(event) {
+    this.toggle(element, event);
+  }
+
+  let text = link;
+  if (typeof link === 'function') {
+    text = link(element);
+  }
+
+  const toggleLink = createElementFromString(text);
+  toggleLink.setAttribute('data-readmore-toggle', element.id);
+  toggleLink.setAttribute('aria-controls', element.id);
+  toggleLink.addEventListener('click', clickHandler.bind(scope));
+
+  return toggleLink;
+}
+
+function isEnvironmentSupported() {
+  return (typeof window !== 'undefined' && typeof document !== 'undefined')
+    && !!document.querySelectorAll && !!window.addEventListener;
+}
+
+const resizeBoxes = debounce(() => {
+  const elements = document.querySelectorAll('[data-readmore]');
+
+  forEach(elements, (element) => {
+    const expanded = element.getAttribute('aria-expanded') === 'true';
+
+    setBoxHeights(element);
+
+    element.style.height = `${expanded ? element.readmore.expandedHeight : element.readmore.collapsedHeight}px`;
+  });
+}, 100);
+
+const defaults = {
+  speed: 100,
+  collapsedHeight: 200,
+  heightMargin: 16,
+  moreLink: '<a href="#">Read More</a>',
+  lessLink: '<a href="#">Close</a>',
+  embedCSS: true,
+  blockCSS: 'display: block; width: 100%;',
+  startOpen: false,
+  sourceOrder: 'after',
+
+  // callbacks
+  blockProcessed: () => {},
+  beforeToggle: () => {},
+  afterToggle: () => {}
+};
+
+class Readmore {
+  constructor(...args) {
+    if (!isEnvironmentSupported()) return;
+
+    const [selector, options] = args;
+    let elements;
+
+    if (typeof selector === 'string') {
+      elements = document.querySelectorAll(selector);
+    } else if (selector.nodeName) {
+      elements = [selector]; // emulate a NodeList by casting a single Node as an array
+    } else {
+      elements = selector;
+    }
+
+    // After all that, if we _still_ don't have iteratable NodeList, bail out.
+    if (!elements.length) return;
+
+    this.options = extend({}, defaults, options);
+
+    if (typeof selector === 'string') {
+      embedCSS(selector, this.options);
+    } else {
+      // Instances need distinct selectors so they don't stomp on each other.
+      this.instanceSelector = `.${uniqueId()}`;
+      embedCSS(this.instanceSelector, this.options);
+    }
+
+    // Need to resize boxes when the page has fully loaded.
+    window.addEventListener('load', resizeBoxes);
+    window.addEventListener('resize', resizeBoxes);
+
+    this.elements = [];
+
+    forEach(elements, (element) => {
+      if (this.instanceSelector) {
+        element.classList.add(this.instanceSelector.substr(1));
+      }
+
+      const expanded = this.options.startOpen;
+
+      element.readmore = {
+        defaultHeight: this.options.collapsedHeight,
+        heightMargin: this.options.heightMargin
+      };
+
+      setBoxHeights(element);
+
+      const { heightMargin } = element.readmore;
+
+      if (element.getBoundingClientRect().height <= element.readmore.collapsedHeight + heightMargin) {
+        if (typeof this.options.blockProcessed === 'function') {
+          this.options.blockProcessed(element, false);
+        }
+        return;
+      }
+
+      element.setAttribute('data-readmore', '');
+      element.setAttribute('aria-expanded', expanded);
+      element.id = element.id || uniqueId();
+
+      const toggleLink = expanded ? this.options.lessLink : this.options.moreLink;
+      const toggleElement = buildToggle(toggleLink, element, this);
+
+      element.parentNode.insertBefore(toggleElement, (this.options.sourceOrder === 'before') ? element : element.nextSibling);
+
+      element.style.height = `${expanded ? element.readmore.expandedHeight : element.readmore.collapsedHeight}px`;
+
+      if (typeof this.options.blockProcessed === 'function') {
+        this.options.blockProcessed(element, true);
+      }
+
+      this.elements.push(element);
+    });
+  }
+
+  // Signature when called internally by the toggleLink click handler:
+  //   toggle(element, event)
+  //
+  // When called externally by an instance,
+  // e.g. readmoreDemo.toggle(document.querySelector('article:nth-of-type(1)')):
+  //   toggle(elementOrQuerySelector)
+  toggle(...args) {
+    let el = args[0];
+
+    const toggleElement = (element) => {
+      const trigger = document.querySelector(`[aria-controls="${element.id}"]`);
+      const expanded = element.getBoundingClientRect().height <= element.readmore.collapsedHeight;
+      const newHeight = expanded ? element.readmore.expandedHeight : element.readmore.collapsedHeight;
+
+      // Fire beforeToggle callback
+      // Since we determined the new "expanded" state above we're now out of sync
+      // with our true current state, so we need to flip the value of `expanded`
+      if (typeof this.options.beforeToggle === 'function') {
+        const shouldContinueToggle = this.options.beforeToggle(trigger, element, !expanded);
+
+        // if the beforeToggle callback returns false, stop toggling
+        if (shouldContinueToggle === false) {
+          return;
+        }
+      }
+
+      element.style.height = `${newHeight}px`;
+
+      const transitionendHandler = (transitionEvent) => {
+        // Fire afterToggle callback
+        if (typeof this.options.afterToggle === 'function') {
+          this.options.afterToggle(trigger, element, expanded);
+        }
+
+        transitionEvent.stopPropagation();
+
+        element.setAttribute('aria-expanded', expanded);
+        element.removeEventListener('transitionend', transitionendHandler, false);
+      };
+
+      element.addEventListener('transitionend', transitionendHandler, false);
+
+      if (this.options.speed < 1) {
+        transitionendHandler.call(this, { target: element });
+      }
+
+      const toggleLink = expanded ? this.options.lessLink : this.options.moreLink;
+
+      if (!toggleLink) {
+        trigger.remove();
+      } else if (trigger && trigger.parentNode) {
+        trigger.parentNode.replaceChild(buildToggle(toggleLink, element, this), trigger);
+      }
+    };
+
+    if (typeof el === 'string') {
+      el = document.querySelectorAll(el);
+    }
+
+    if (!el) {
+      throw new Error('Element MUST be either an HTML node or querySelector string');
+    }
+
+    const event = args[1];
+
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    if (typeof el === 'object' && !el.nodeName) { // element is likely a NodeList
+      forEach(el, toggleElement);
+    } else {
+      toggleElement(el);
+    }
+  }
+
+  destroy(selector) {
+    let elements;
+
+    if (!selector) {
+      elements = this.elements; // eslint-disable-line
+    } else if (typeof selector === 'string') {
+      elements = document.querySelectorAll(selector);
+    } else if (selector.nodeName) {
+      elements = [selector]; // emulate a NodeList by casting a single Node as an array
+    } else {
+      elements = selector;
+    }
+
+    forEach(elements, (element) => {
+      if (this.elements.indexOf(element) === -1) {
+        return;
+      }
+
+      this.elements = this.elements.filter((el) => el !== element);
+
+      if (this.instanceSelector) {
+        element.classList.remove(this.instanceSelector.substr(1));
+      }
+
+      delete element.readmore;
+
+      element.style.height = 'initial';
+      element.style.maxHeight = 'initial';
+
+      element.removeAttribute('data-readmore');
+      element.removeAttribute('aria-expanded');
+
+      const trigger = document.querySelector(`[aria-controls="${element.id}"]`);
+      if (trigger) {
+        trigger.remove();
+      }
+
+      if (element.id.indexOf('rmjs-') !== -1) {
+        element.removeAttribute('id');
+      }
+    });
+
+    delete this;
+  }
+}
+
+Readmore.VERSION = '3.0.0-beta-1';
+
+/* harmony default export */ __webpack_exports__["default"] = (Readmore);
+
+
+/***/ }),
+
 /***/ "./node_modules/regenerator-runtime/runtime.js":
 /*!*****************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime.js ***!
@@ -56477,6 +57045,545 @@ try {
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--8-2!./node_modules/sass-loader/dist/cjs.js??ref--8-3!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/src??ref--8-2!../../sass-loader/dist/cjs.js??ref--8-3!../../vue-loader/lib??vue-loader-options!./vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
 
 /***/ }),
 
@@ -67669,6 +68776,485 @@ VeeValidate$1.withValidation = withValidation;
 
 /***/ }),
 
+/***/ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue":
+/*!************************************************************************!*\
+  !*** ./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_hashtag_textarea_vue_vue_type_template_id_5587bf43___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vue-hashtag-textarea.vue?vue&type=template&id=5587bf43& */ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=template&id=5587bf43&");
+/* harmony import */ var _vue_hashtag_textarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vue-hashtag-textarea.vue?vue&type=script&lang=js& */ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _vue_hashtag_textarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _vue_hashtag_textarea_vue_vue_type_template_id_5587bf43___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _vue_hashtag_textarea_vue_vue_type_template_id_5587bf43___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************!*\
+  !*** ./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib??vue-loader-options!./vue-hashtag-textarea.vue?vue&type=script&lang=js& */ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss&":
+/*!**********************************************************************************************************!*\
+  !*** ./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss& ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_8_2_sass_loader_dist_cjs_js_ref_8_3_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../style-loader!../../css-loader!../../vue-loader/lib/loaders/stylePostLoader.js!../../postcss-loader/src??ref--8-2!../../sass-loader/dist/cjs.js??ref--8-3!../../vue-loader/lib??vue-loader-options!./vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/sass-loader/dist/cjs.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_8_2_sass_loader_dist_cjs_js_ref_8_3_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_8_2_sass_loader_dist_cjs_js_ref_8_3_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_8_2_sass_loader_dist_cjs_js_ref_8_3_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_8_2_sass_loader_dist_cjs_js_ref_8_3_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_style_loader_index_js_css_loader_index_js_vue_loader_lib_loaders_stylePostLoader_js_postcss_loader_src_index_js_ref_8_2_sass_loader_dist_cjs_js_ref_8_3_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=template&id=5587bf43&":
+/*!*******************************************************************************************************!*\
+  !*** ./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=template&id=5587bf43& ***!
+  \*******************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_template_id_5587bf43___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../vue-loader/lib??vue-loader-options!./vue-hashtag-textarea.vue?vue&type=template&id=5587bf43& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=template&id=5587bf43&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_template_id_5587bf43___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _vue_loader_lib_loaders_templateLoader_js_vue_loader_options_vue_loader_lib_index_js_vue_loader_options_vue_hashtag_textarea_vue_vue_type_template_id_5587bf43___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: 'VueHashtagTextarea',
+  props: {
+    option: {
+      type: Object
+    },
+  },
+  data() {
+    return {
+      hashtagList: [],
+      shouldShowPlaceholder: true,
+      defaultOption: {
+          defaultContent: '',
+          textColor: 'black',
+          font: '14px "HiraKakuProN-W4-AlphaNum"',
+          hashtagBackgroundColor: 'transparent',
+          hashtagColor: '#ff0000',
+          placeholder: 'Sentence for placeholder #place #holder',
+          isEditMode: true
+      },
+      focusedHashtagNode: {}
+    }
+  },
+  created() {    
+    // NOTE: Set default option if not existence in props
+    for(let key in this.defaultOption) {
+      const value = this.option[key]
+      if (value === undefined) {
+        this.option[key] = this.defaultOption[key]
+      }
+    }
+  },
+  mounted() {    
+    // NOTE: Create Observer. This is called when text content of the target is changed
+    const target = document.getElementById('input-true-text');
+    const observer = new MutationObserver(this.onObserveElement);    
+    const config = { 
+                    childList: true, 
+                    characterData: true,
+                    characterDataOldValue: true,
+                    subtree: true
+                  };
+    
+    observer.observe(target, config);
+
+    // NOTE: Display initial content if exist
+    target.innerText = this.option.defaultContent
+
+    const overlayElm = document.getElementById('input-overlay')
+    overlayElm.addEventListener("click", this.onSelectHashtag, false);
+  },
+  destroyed() {
+    const overlayElm = document.getElementById('input-overlay')
+    overlayElm.removeEventListener("click", this.onSelectHashtag, false);
+  },
+  computed: {
+    isSafariBrowser: function() {
+      let isSafariBrowser = false
+      const userAgent = window.navigator.userAgent.toLowerCase();
+      
+      if(userAgent.indexOf('safari') !== -1 &&
+        userAgent.indexOf('chrome') === -1 ) {
+        isSafariBrowser = true
+      }
+      
+      return isSafariBrowser;
+    },
+    trueTextStyle: function() {
+      let style = {}
+      style.font = this.option.font
+      style['z-index'] = this.option.isEditMode ?  2 : -2;
+      return style
+    },
+    overlayStyle: function() {
+      let style = {}
+      style.color = this.option.textColor
+      style.font = this.option.font
+
+      return style
+    },
+    hashtagStyle: function() {
+      let style = 'style="'
+      style += 'color:' + this.option.hashtagColor + ';'
+      style += 'background:' + this.option.hashtagBackgroundColor + ';'
+
+      if (!this.option.isEditMode) {
+        style += 'cursor: default;'
+      }
+      style += '"'
+
+      return style
+    },
+    regExp: function() {
+      return /\#(?!\,)[\S]+/g;
+      
+    }
+  },
+  methods: {
+    onObserveElement(mutations) {
+      mutations.forEach((mutation) => {
+        const type = mutation.type
+
+        switch(type) {
+          // NOTE: The textContent will be changed in the line, this type is called.
+          case 'characterData':
+            this.replaceContent()
+            break;
+
+          // NOTE: The line break will be occured, this type is called.
+          case 'childList':
+            this.replaceContent()
+            break;
+          
+          default:
+            break;        
+        }
+      })
+
+      // NOTE: Show / hide placeholder.
+      const target = document.getElementById('input-true-text');
+      this.shouldShowPlaceholder = target.innerHTML === '' || 
+                                    target.innerHTML === '<br>'      
+    },
+    replaceContent() {
+      const target = document.getElementById('input-true-text');
+
+      // NOTE: Need to convert html character with escapecharacter
+      const content = this.escapeHtml(target.innerText)
+      const contentHTML = target.textContent
+
+      // NOTE: Trim line break \n
+      const spaceExp = /^\n\n/gm
+      const content2 = content.replace(spaceExp, function(match) {
+        return '\n'
+      })
+
+      // NOTE: Create new text for hashtag highlight to insert element
+      //       If debugging on chrome, use content2 above, otherwise
+      //       line break point will be failed.
+      const srcContent = this.isSafariBrowser ? content : content2
+      const self = this
+      const replaceContent = srcContent.replace(this.regExp, function(match) {
+        const idStr = ' id=' + self.getUniqueStr()
+        const result = '<i ' + self.hashtagStyle + idStr + '>' + match + '</i>'
+        return result
+      })
+      
+      // NOTE: Apply content into overlay field.
+      const insertNode = document.getElementById('input-overlay')
+      insertNode.innerHTML = replaceContent
+
+      this.hashtagList = this.getHashtagList(content)      
+    },
+    escapeHtml(content) {
+      const escapeHashMap = {
+        "&": "&amp;",
+        "\"": "&quot;",
+        "<": "&lt;",
+        ">": "&gt;"
+      };
+      return content.replace(/[&"<>]/g, function(match) {
+        return escapeHashMap[match];
+      });
+    },    
+    getHashtagList(value) {
+      const result = value.match(this.regExp)
+      return result;
+    },
+    getHashtagNodeList() {
+      const target = document.getElementById('input-overlay')
+      const nodes = []      
+      const childNodes = target.childNodes
+      childNodes.forEach((child) => {
+        nodes.push(child)
+      })
+
+      return nodes
+    },
+    getDiffArrayWithIndex(newVal, oldVal) {
+      const result = {}
+      
+      for(let i = 0 ; i < newVal.length; i++){
+        if(oldVal.indexOf(newVal[i]) === -1 ){
+          result.diffValue = newVal[i]
+          result.index = i
+          break
+        }    
+      }
+
+      return result
+    },
+    onSelectHashtag(e) {
+      const target = e.target
+      const tagName = target.tagName
+      if (tagName === 'I') {
+        const content = target.textContent
+        this.$emit('onSelectHashtag', target)
+      }
+    },
+    replaceHashtagNodeContent(newValue) {
+      this.focusedHashtagNode.textContent = newValue
+      const trueTarget = document.getElementById('input-true-text');
+      const overlayTarget = document.getElementById('input-overlay');
+      trueTarget.innerText = overlayTarget.innerText
+    },
+    getUniqueStr(){
+      var strong = 1000;
+      return new Date().getTime().toString(16)  + Math.floor(strong*Math.random()).toString(16)
+    },
+    getHashtagTargetNode(index) {
+      const target = document.getElementById('input-overlay')
+      const nodes = target.childNodes
+      let count = 0
+      let hashtagTarget = {}
+
+      for (let i = 0; i < nodes.length; i++) {
+        const node = nodes[i]
+        if (node.tagName === 'I') {
+          if (index === count) {
+            hashtagTarget = node
+            break
+          }
+
+          count++
+        }
+      }
+      return hashtagTarget
+    }
+  },
+  watch: {
+    hashtagList: function(newVal, oldVal) {
+      const isEqualVal = JSON.stringify(newVal) === JSON.stringify(oldVal)
+
+      if (!isEqualVal) {
+        const hashtagData = {}
+        if (newVal === null) {
+          hashtagData.target = ''
+        } else if (oldVal === null) {
+          // NOTE: Set focused hashtag node
+          const hashtagTarget = this.getHashtagTargetNode(0) 
+          hashtagData.target = hashtagTarget.innerText
+          this.focusedHashtagNode = hashtagTarget
+        } else {          
+          if (newVal.length < oldVal.length) {
+            hashtagData.target = ''
+          } else {
+            // NOTE: Set focused hashtag node
+            const diff = this.getDiffArrayWithIndex(newVal, oldVal)
+            const index = diff.diffValue === undefined ? newVal.length - 1 : diff.index
+            const hashtagTarget = this.getHashtagTargetNode(index)
+            hashtagData.target = hashtagTarget.innerText
+            this.focusedHashtagNode = hashtagTarget
+          }
+        }
+        
+        hashtagData.hashtags = newVal
+        this.$emit('onChangeHashtag', hashtagData)
+      }    
+    }
+  }
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=template&id=5587bf43&":
+/*!*************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue-hashtag-textarea/src/vue-hashtag-textarea.vue?vue&type=template&id=5587bf43& ***!
+  \*************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "hashtag-textarea", attrs: { id: "input" } },
+    [
+      _c("div", {
+        staticClass: "hashtag-textarea__overlay",
+        style: _vm.overlayStyle,
+        attrs: { id: "input-overlay" }
+      }),
+      _vm._v(" "),
+      _c("div", {
+        staticClass: "hashtag-textarea__true-text",
+        style: _vm.trueTextStyle,
+        attrs: {
+          id: "input-true-text",
+          wrap: "soft",
+          contentEditable: "true",
+          spellcheck: "false"
+        }
+      }),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.shouldShowPlaceholder,
+              expression: "shouldShowPlaceholder"
+            }
+          ],
+          staticClass: "hashtag-textarea__placeholder"
+        },
+        [_vm._v("\n    " + _vm._s(_vm.option.placeholder) + "\n  ")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/Login.vue?vue&type=template&id=4221c3ad&":
 /*!*************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/Login.vue?vue&type=template&id=4221c3ad& ***!
@@ -69089,41 +70675,27 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "form-group post-form" }, [
-                _c("div", { staticClass: "bg-primary" }, [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.post.description,
-                        expression: "post.description"
-                      }
-                    ],
-                    staticClass: "form-control bg-primary",
-                    attrs: {
-                      rows: "5",
-                      placeholder: "Add Some value to the music industry..."
-                    },
-                    domProps: { value: _vm.post.description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.post, "description", $event.target.value)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _vm.imageData.length > 0
-                    ? _c("div", { staticClass: "image-preview" }, [
-                        _c("img", {
-                          staticClass: "preview",
-                          attrs: { src: _vm.imageData }
-                        })
-                      ])
-                    : _vm._e()
-                ]),
+                _c(
+                  "div",
+                  { staticClass: "bg-primary" },
+                  [
+                    _c("vue-hashtag-textarea", {
+                      staticClass: "form-control hastag",
+                      attrs: { option: _vm.option },
+                      on: { onChangeHashtag: _vm.onChangeHashtag }
+                    }),
+                    _vm._v(" "),
+                    _vm.imageData.length > 0
+                      ? _c("div", { staticClass: "image-preview" }, [
+                          _c("img", {
+                            staticClass: "preview",
+                            attrs: { src: _vm.imageData }
+                          })
+                        ])
+                      : _vm._e()
+                  ],
+                  1
+                ),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -70400,24 +71972,24 @@ var render = function() {
       "div",
       { staticClass: "post-body bg-primary" },
       [
-        _c("div", { staticClass: "text p-3" }, [
-          _vm._v("\n            " + _vm._s(_vm.post.description) + " "),
-          _c("span", { staticClass: "c-fifth" }, [_vm._v("#mixingengineer")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "c-fifth" }, [_vm._v("#m")]),
-          _vm._v("... See More..\n        ")
+        _c("div", { staticClass: "text p-3 item" }, [
+          _vm._v(
+            "\n            " + _vm._s(_vm.post.description) + " \n        "
+          )
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "d-flex flex-column mt-1 content img-fluid" },
-          [
-            _c("img", {
-              staticClass: "img-fluid cursor-point",
-              attrs: { src: "" + _vm.post.image, alt: "img-post" }
-            })
-          ]
-        ),
+        _vm.post.resource
+          ? _c(
+              "div",
+              { staticClass: "d-flex flex-column mt-1 content img-fluid" },
+              [
+                _c("img", {
+                  staticClass: "img-fluid cursor-point",
+                  attrs: { src: "" + _vm.post.resource, alt: "img-post" }
+                })
+              ]
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "div",
@@ -72039,7 +73611,7 @@ var render = function() {
           "a",
           {
             class: "text-white font-weight-bold pt-2 mr-3 active",
-            attrs: { href: _vm.user.username + "/Channel/Activity" }
+            attrs: { href: "/" + _vm.user.username + "/Channel/Activity" }
           },
           [_vm._v("Channel")]
         )
@@ -72050,7 +73622,7 @@ var render = function() {
           "a",
           {
             staticClass: "c-fourth font-weight-bold",
-            attrs: { href: _vm.user.username + "/Profile/Releases" }
+            attrs: { href: "/" + _vm.user.username + "/Profile/Releases" }
           },
           [_vm._v("Profile")]
         )
@@ -72316,7 +73888,7 @@ var render = function() {
           "a",
           {
             class: "text-white font-weight-bold pt-2 mr-3 active",
-            attrs: { href: _vm.user.username + "/Channel/Activity" }
+            attrs: { href: "/" + _vm.user.username + "/Channel/Activity" }
           },
           [_vm._v("Channel")]
         )
@@ -72327,7 +73899,7 @@ var render = function() {
           "a",
           {
             staticClass: "c-fourth font-weight-bold",
-            attrs: { href: _vm.user.username + "/Profile/Releases" }
+            attrs: { href: "/" + _vm.user.username + "/Profile/Releases" }
           },
           [_vm._v("Profile")]
         )
@@ -74731,6 +76303,7 @@ var render = function() {
       _c(
         "form",
         {
+          attrs: { enctype: "multipart/form-data" },
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -75309,7 +76882,7 @@ var render = function() {
                       "div",
                       {
                         staticClass:
-                          "card-body d-flex text-white bg-black align-items-center flex-wrap",
+                          "card-body d-flex text-white bg-black align-items-center flex-wrap ",
                         attrs: { id: "releases" }
                       },
                       _vm._l(_vm.releases_information, function(
@@ -90833,6 +92406,8 @@ __webpack_require__.r(__webpack_exports__);
  * building robust, powerful web applications using Vue and Laravel.
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+__webpack_require__(/*! readmore-js */ "./node_modules/readmore-js/dist/readmore.es6.js");
 
 
 

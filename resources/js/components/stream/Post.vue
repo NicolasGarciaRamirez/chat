@@ -49,11 +49,11 @@
             </div>
         </div>
         <div class="post-body bg-primary">
-            <div class="text p-3">
-                {{ post.description }} <span class="c-fifth">#mixingengineer</span> <span class="c-fifth">#m</span>... See More..
+            <div class="text p-3 item">
+                {{ post.description }} 
             </div>
-            <div class="d-flex flex-column mt-1 content img-fluid">
-                <img :src="`${post.image}`"  alt="img-post" class="img-fluid cursor-point">
+            <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
+                <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point">
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none d-md-none">
                  <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger mx-2  w-100" @click="showModalSupport">SUPPORT
@@ -102,6 +102,9 @@
         components:{
             Comments
         },
+        // mounted(){
+        //     this.seeMore()
+        // },
         methods:{
             showModalSupport(){
                 $('#modalSupport').modal('show')
@@ -115,6 +118,16 @@
             // showModalPost(){
             //     $('#ModalPost').modal('show')
             // }
+            // seeMore(){
+            //     var text =  $('.item')
+            //     new Readmore( text,{
+            //         speed: 75,
+            //         moreLink: '<a href="#" class="c-fifth">Read more</a>',
+            //         collapsedHeight: 1,
+            //         blockCSS: ''
+            //     })
+            // }
+            
         }
     }
 </script>

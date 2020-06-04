@@ -3,12 +3,17 @@
         <form @submit.prevent="save" enctype="multipart/form-data" v-if="auth.token">
             <div class="form-group post-form">
                 <div class="bg-primary">
-                    <textarea
+                    <!-- <textarea
                         class="form-control bg-primary"
                         rows="5"
                         placeholder="Add Some value to the music industry..."
                         v-model="post.description">
-                    </textarea>
+                    </textarea> -->
+                        <vue-hashtag-textarea 
+                            :option=option 
+                            v-on:onChangeHashtag="onChangeHashtag"
+                            class="form-control hastag"
+                        />
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData">
                     </div>
@@ -90,11 +95,18 @@
 <script>
     import Posts from "../stream/Posts";
     import Auth from "../../helpers/Auth"
+    import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
 
     export default {
         props:['posts'],
         data(){
             return {
+                option: {
+                    textColor: 'white',
+                    hashtagColor: '#ff0000',
+                    placeholder: 'Add Some value to the music industry...',
+                    font:'Encode Sans'
+                },
                 replace_caption: false,
                 allow_download: false,
                 auth : Auth.state,
@@ -103,7 +115,8 @@
                     replace_caption:"",
                     allow_download:"",
                     description:"",
-                    image: null,
+                    resource: null,
+                    resource_type: null,
                     genre:"",
                     category: "",
                 },
@@ -112,15 +125,20 @@
         },
         components:{
             Posts,
+            VueHashtagTextarea
         },
         mounted(){
             Auth.initialize()
             this.posts_send = this.posts
         },
         methods:{
-            previewImage(event) {
-                this.post.image = event.target.files[0]
+            onChangeHashtag(obj){
+                console.log(obj)
+            },
 
+            previewImage(event) { 
+                this.post.resource = event.target.files[0]
+                this.post.resource_type = 'image'
                 var input = event.target;
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -131,9 +149,12 @@
                 }
             },
             async save(){
+                this.post.description = $('.hastag').val()
                 var imagePost = new FormData();
-                imagePost.append('imagePost', this.post.image)
-                imagePost.append('imageName', this.post.image.name)
+                if (this.post.resource) {
+                    imagePost.append('imagePost', this.post.resource, this.post.resource)
+                    imagePost.append('imageType', this.post.resource_type)
+                } 
                 imagePost.append('postDescription', this.post.description)
                 imagePost.append('postGenre', this.post.genre)
                 imagePost.append('postCategory', this.post.category)

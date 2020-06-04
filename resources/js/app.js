@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('readmore-js');
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'

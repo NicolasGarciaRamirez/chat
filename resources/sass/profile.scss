@@ -245,6 +245,12 @@
                         cursor: pointer;
                     }
                 }
+                #releases{
+                    img{
+                        min-height: 164px;
+                        max-height: 164px;
+                    }
+                }
             }
         }
         .modal-select{

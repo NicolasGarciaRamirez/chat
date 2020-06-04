@@ -12,7 +12,7 @@ class UserPost extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'description', 'image', 'genre', 'category'
+        'user_id', 'description', 'resource','resource_type', 'genre', 'category'
     ];
 
     /**

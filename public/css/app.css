@@ -28243,6 +28243,15 @@ button:focus {
   cursor: pointer;
 }
 
+.profile .edit-profile .accordion .card #releases img,
+.profile .edit-channel .accordion .card #releases img,
+.profile .account-settings .accordion .card #releases img,
+.profile .post .accordion .card #releases img,
+.profile .comments .accordion .card #releases img {
+  min-height: 164px;
+  max-height: 164px;
+}
+
 .profile .edit-profile .modal-select .checkbox,
 .profile .edit-channel .modal-select .checkbox,
 .profile .account-settings .modal-select .checkbox,

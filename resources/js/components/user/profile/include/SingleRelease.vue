@@ -36,10 +36,6 @@
                 this.image = event.target.files[0]
                 this.release_update.image = URL.createObjectURL(this.image);
 
-                var image = new FormData()
-                append('image', this.image, this.image.name)
-
-                this.release.image = image
             },
             deleteRelease(index){
                 var self = this

@@ -1,6 +1,6 @@
 <template>
     <section class="container-fluid edit-profile">
-        <form @submit.prevent="save">
+        <form @submit.prevent="save" enctype="multipart/form-data">
             <div id="accordionProfile" class="accordion">
                 <div class="card">
                     <div class="card-header bg-black" id="headingOne">
@@ -143,7 +143,7 @@
                     </div>
                     <div id="collapseSix" class="collapse text-center bg-black" aria-labelledby="headingSix" data-parent="#accordionProfile">
                         <button type="button" class="bg-primary c-white rounded-pill" v-on:click="addRelease">Add Release</button>
-                        <div id="releases" class="card-body d-flex text-white bg-black align-items-center flex-wrap">
+                        <div id="releases" class="card-body d-flex text-white bg-black align-items-center flex-wrap ">
                             <single-release v-for="(release, index) in releases_information" :key="index" :release="release" :index="index" />
                         </div>
                     </div>
@@ -402,13 +402,19 @@ export default {
         },
         async save(){
             this.disable = true
+            // var data = new FormData()
+            // this.releases_information.map(val  =>{
+            //     let cont = 0
+            //     cont++
+            //     data.append('imageRelease'+cont, val.image)
+            // })
 
-            var data = {
+            var data_send =  {
                 profile_information: this.profile_information,
                 members_information: this.current_members.concat(this.past_members),
                 releases_information: this.releases_information
             }
-            await axios.post(this.url, data).then(res => {
+            await axios.post(this.url, data_send).then(res => {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
                     alert('the personal information has been updated')
