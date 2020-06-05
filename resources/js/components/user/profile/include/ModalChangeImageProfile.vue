@@ -26,7 +26,10 @@
                             </div>
                             <div class="text-right p-4">
                                 <button class="btn bg-primary text-white" data-dismis="modal">Cancel</button>
-                                <button class="btn bg-fifth text-white" >Save</button>
+                                <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
+                                <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -47,6 +50,7 @@ export default {
     },
     data(){
         return {
+            disable: true,
             imageData: this.user.avatar,
             avatar: '',
         }
@@ -81,12 +85,14 @@ export default {
             console.log(cropper)
         },
         save(){
+            this.disable = true
             var avatar = new FormData()
             avatar.append('avatar', this.avatar, this.avatar.name)
         
             axios.post(`/User/Edit/imageProfile/${this.user.username}`, avatar ).then(res => {
                 try {
                     if (res.data.updated){
+                        this.disable = false
                         Auth.remove()
                         Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar )
                         console.log(res)
@@ -98,7 +104,7 @@ export default {
                     console.log(error)
                 }
             }).catch(err =>{
-
+                this.disable = false
             })
         },
     }

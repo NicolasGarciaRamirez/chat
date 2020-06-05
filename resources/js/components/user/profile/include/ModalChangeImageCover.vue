@@ -15,8 +15,11 @@
                                 <img class="preview" :src="imageData">
                             </div>
                             <div class="text-right">
-                                <button class="btn bg-fifth mr-2 text-white" :disabled="imageData.length <= 0">save</button>
+                                <button class="btn bg-fifth mr-2 text-white" v-if="!disable" :disabled="imageData.length <= 0">save</button>
                                 <button class="btn bg-third text-white" data-dismiss="modal">cancel</button>
+                                  <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -31,6 +34,7 @@ export default {
     props:['user'],
     data(){
         return {
+            disable: false,
             imageData:'',
             cover: ''
         }
@@ -48,17 +52,19 @@ export default {
             }
         },
         save(){
+            this.disable = true
             var cover = new FormData()
             cover.append('cover', this.cover, this.cover.name)
         
             axios.post(`/User/Edit/imageCover/${this.user.username}`, cover ).then(res => {
                 if (res.data.updated){
+                    this.disable = false
                     window.location.reload()
                 }else{
                     alert('error')
                 }
             }).catch(err =>{
-
+                this.disable = false
             })
         }
     }

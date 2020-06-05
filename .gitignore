@@ -14,4 +14,4 @@ yarn-error.log
 .DS_Store
 .idea
 public/images/post/*
-# public/images/profile/*
+public/images/profile/*
