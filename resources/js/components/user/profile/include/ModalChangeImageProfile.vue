@@ -50,7 +50,7 @@ export default {
     },
     data(){
         return {
-            disable: true,
+            disable: false,
             imageData: this.user.avatar,
             avatar: '',
         }
