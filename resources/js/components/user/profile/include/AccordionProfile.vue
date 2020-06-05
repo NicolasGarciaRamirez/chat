@@ -36,8 +36,8 @@
                             <div class="row text-justify ">
                                 <div class="col text-center select">
                                     <select class="select-form" v-model="profile_information.title" required>
+                                        <option value="Select Title">Select Title</option>
                                         <optgroup  v-if="profile_information.profile_type == 'A Person or A Project'">
-                                            <option value="N/A">Select Title</option>
                                             <option value="Vlog Channel">Vlog Channel</option>
                                             <option value="Podcast">Podcast</option>
                                             <option value="Composer">Composer</option>
@@ -62,7 +62,6 @@
                                             <option value="A&R">A&R</option>
                                         </optgroup>
                                         <optgroup v-if="profile_information.profile_type == 'A Band'">
-                                            <option value="N/A">Select Title</option>
                                             <option value="Band">Band</option>
                                             <option value="Duet">Duet</option>
                                             <option value="Orchestra">Orchestra</option>
@@ -322,7 +321,7 @@ export default {
             imageData: '/images/profile/default.png',
             profile_information:{
                 profile_type: '',
-                title: '',
+                title: 'Select Title',
                 artistic_name: '',
                 about_you: '',
                 genres: [],

@@ -84,7 +84,7 @@
                     <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>
                     <div class="information"><img src="/images/icons/post-percentage-down-red.svg" alt=""><span class="c-fifth">100</span></div>
 
-                    <div class="information" @click="litlike('')">
+                    <div class="information" @click="litlike('like')" @change.prevent="colorFlame">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             viewBox="0 0 1038.6 974.4" style="enable-background:new 0 0 1038.6 974.4;" xml:space="preserve" width="25" height="25" class="lit">
                             <g :id="`Capa_2${post.id}`">
@@ -129,28 +129,39 @@
         },
         mounted(){
             Auth.initialize()
-            if (this.post.litlike.length > 0) {
-                this.post.litlike.map(val =>{
+            // if (this.post.litlike) {
+            //     if (this.post.litlike.length > 0) {
+            //         this.post.litlike.map(val =>{
 
-                    if (val.like == 1) {
-                        $(`#capa_2`+this.post.id+`,path.st2`).css(
-                            {fill: "#ff0000"}
-                        )
-                        console.log('like')
+            //             if (val.like == 1) {
+            //                 $(`#capa_2`+this.post.id+`,path.st2`).css(
+            //                     {fill: "#ff0000"}
+            //                 )
+            //                 console.log('like')
 
-                    }else{
-                        $(`#capa_2`+this.post.id+`,path.st2`).css(
-                            {fill: "#141414"}
-                        )
-                        console.log('unlike')
-                    }
-                    console.log(val)
-                })
-            }else{
+            //             }else{
+            //                 $(`#capa_2`+this.post.id+`,path.st2`).css(
+            //                     {fill: "#141414"}
+            //                 )
+            //                 console.log('unlike')
+            //             }
+            //             console.log(val)
+            //         })
+            //     }else{
+            //         $(`#capa_2`+this.post.id+`,path.st2`).css(
+            //             {fill: "#535353"}
+            //         )
+            //         console.log('unlike')
+            //     }
+            // }
+
+
+        },
+        computed:{
+            colorFlame: function colorFlame(){
                 $(`#capa_2`+this.post.id+`,path.st2`).css(
-                    {fill: "#141414"}
+                    {fill: "#ff0000"}
                 )
-                console.log('unlike')
             }
         },
         methods:{
@@ -167,23 +178,25 @@
             //     $('#ModalPost').modal('show')
             // }
             litlike(lit){
-                
-                if (lit === 'like') {
-                    this.lit.like = 1 
-                    this.lit.dislike = 0 
+                $(`#capa_2`+this.post.id+`,path.st2`).css(
+                    {fill: "#ff0000"}
+                )
+                // if (lit === 'like') {
+                //     this.lit.like = 1 
+                //     this.lit.dislike = 0 
                    
-                }
-                if (lit === 'dislike') {
-                    this.lit.dislike = 1 
-                    this.lit.like = 0
-                }
-                axios.post(`${Auth.state.username}/LitLike/Save`, this.lit).then(res =>{
-                    console.log(res)
-                    if (res.data.saved) {
-                    }
-                }).catch(err =>{
-                    console.log(err)
-                })
+                // }
+                // if (lit === 'dislike') {
+                //     this.lit.dislike = 1 
+                //     this.lit.like = 0
+                // }
+                // axios.post(`${Auth.state.username}/LitLike/Save`, this.lit).then(res =>{
+                //     console.log(res)
+                //     if (res.data.saved) {
+                //     }
+                // }).catch(err =>{
+                //     console.log(err)
+                // })
             }
             
         }

@@ -52,7 +52,7 @@ class UserSocialAuthController extends Controller
     {
         $providerUser = $provider->user();
         $providerName = class_basename($provider);
-        $cover = '/images/profile/default-cover.png';
+        $cover = '/images/profile/default-cover.svg';
         $avatar = $providerUser->avatar;
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {

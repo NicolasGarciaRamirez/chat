@@ -3,12 +3,14 @@
 namespace App\Models\User;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ReacterableContract
 {
-    use Notifiable;
+    use Notifiable, Reacterable;
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'username', 'password', 'token', 'subscription_type', 'email_verified_at', 'avatar', 'cover'
+        'email', 'username', 'password', 'token', 'subscription_type', 'email_verified_at', 'avatar', 'cover','love_reacter_id'
     ];
 
     /**

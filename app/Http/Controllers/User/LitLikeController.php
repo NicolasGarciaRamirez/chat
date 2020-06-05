@@ -21,29 +21,45 @@ class LitLikeController extends Controller
 
     public function save(Request $request)
     {
-        \DB::beginTransaction();
+        
+        
+        // \DB::beginTransaction();
 
-        try {
+        // try {
+            $post = \App\Models\User\UserPost::find($request->post_id)->first();
 
-            $like = new LitLike($request->all());
-            $like->user_id = $this->user->id;
-            $like->save();
+            $reacterFacade = $this->user->viaLoveReacter();
+            
+            $isReacted = $reacterFacade->hasReactedTo($post);
+            
+            if ($isReacted) {
+                $reacterFacade->unreactTo($post ,'Lit');
+                $reactions = $reacterFacade->getReactions();
+            }else{
+                $reacterFacade->reactTo($post ,'Lit');
+                $reactions = $reacterFacade->getReactions();
+            }
 
-            \DB::commit();
-            return response()->json([
-                'saved' => true,
-                'user' => $this->user,
-                'errors' => null
-            ]);
-        } catch (\Exception $e) {
-            \DB::rollBack();
-            return response()->json([
-                'saved' => false,
-                'user' => null,
-                'errors' => $e
-            ]);
+            return $reactions;
+        //     $like = new LitLike($request->all());
+        //     $like->user_id = $this->user->id;
+        //     $like->save();
 
-        }
+        //     \DB::commit();
+        //     return response()->json([
+        //         'saved' => true,
+        //         'user' => $this->user,
+        //         'errors' => null
+        //     ]);
+        // } catch (\Exception $e) {
+        //     \DB::rollBack();
+        //     return response()->json([
+        //         'saved' => false,
+        //         'user' => null,
+        //         'errors' => $e
+        //     ]);
+
+        // }
 
     }
 
