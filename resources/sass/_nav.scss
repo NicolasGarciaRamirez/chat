@@ -142,6 +142,7 @@
                 color: white;
                 border: 2px solid $fourth-color ;
                 height: calc(2.18em + 0.75rem + 2px) !important;
+                caret-color: $fifth-color;
                 &::placeholder{
                     color: $fourth-color;
                 }

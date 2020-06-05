@@ -84,6 +84,13 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\User\Comments', 'user_id');
     }
 
+      /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function litlike()
+    {
+        return $this->hasMany('\App\Models\User\LitLike', 'user_id');
+    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

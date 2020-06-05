@@ -168,6 +168,7 @@
         color: $fifth-color;
         border: 0;
         padding: 1rem;
+        caret-color: $fifth-color;
         &::placeholder{
             color: $fourth-color;
         }

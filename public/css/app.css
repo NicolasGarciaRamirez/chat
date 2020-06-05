@@ -27508,6 +27508,7 @@ button:focus {
   color: white;
   border: 2px solid #535353;
   height: calc(2.18em + 0.75rem + 2px) !important;
+  caret-color: #FF0000;
 }
 
 .main-header .header-form-search .form-group input.form-control::-webkit-input-placeholder {
@@ -27806,6 +27807,7 @@ button:focus {
   color: #FF0000;
   border: 0;
   padding: 1rem;
+  caret-color: #FF0000;
 }
 
 .register input.form-control::-webkit-input-placeholder, .register textarea.form-control::-webkit-input-placeholder {
@@ -28128,6 +28130,7 @@ button:focus {
   color: white;
   border: 0;
   margin-bottom: 0.5rem;
+  caret-color: #FF0000;
 }
 
 .profile .edit-profile input.form-control::-webkit-input-placeholder, .profile .edit-profile select.form-control::-webkit-input-placeholder, .profile .edit-profile textarea.form-control::-webkit-input-placeholder, .profile .edit-channel input.form-control::-webkit-input-placeholder, .profile .edit-channel select.form-control::-webkit-input-placeholder, .profile .edit-channel textarea.form-control::-webkit-input-placeholder, .profile .account-settings input.form-control::-webkit-input-placeholder, .profile .account-settings select.form-control::-webkit-input-placeholder, .profile .account-settings textarea.form-control::-webkit-input-placeholder, .profile .post input.form-control::-webkit-input-placeholder, .profile .post select.form-control::-webkit-input-placeholder, .profile .post textarea.form-control::-webkit-input-placeholder, .profile .comments input.form-control::-webkit-input-placeholder, .profile .comments select.form-control::-webkit-input-placeholder, .profile .comments textarea.form-control::-webkit-input-placeholder {
@@ -28377,6 +28380,7 @@ button:focus {
   color: white;
   border-color: #535353;
   border: 1px solid #535353;
+  caret-color: #FF0000;
 }
 
 .profile .edit-profile .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .account-settings .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .post .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .comments .form-search .form-group input.form-control::-webkit-input-placeholder {
@@ -28576,6 +28580,7 @@ button:focus {
   color: white;
   border: 0;
   margin-bottom: 0.5rem;
+  caret-color: #FF0000;
 }
 
 .help .c-body .container-form form input.form-control::-webkit-input-placeholder, .help .c-body .container-form form textarea.form-control::-webkit-input-placeholder {
@@ -28869,6 +28874,7 @@ button:focus {
 .posts .post .comments input.input-comment {
   border-radius: 30px !important;
   border: 1px solid #262626;
+  caret-color: #FF0000;
 }
 
 .posts .post .comments input.input-comment::-webkit-input-placeholder {
@@ -29147,6 +29153,7 @@ button:focus {
   color: white;
   border: 0;
   padding: 1rem;
+  caret-color: #FF0000;
 }
 
 .home .post-form input.form-control::-webkit-input-placeholder, .home .post-form textarea.form-control::-webkit-input-placeholder {

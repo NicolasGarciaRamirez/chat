@@ -11833,6 +11833,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['posts'],
+  components: {
+    Posts: _stream_Posts__WEBPACK_IMPORTED_MODULE_1__["default"],
+    VueHashtagTextarea: vue_hashtag_textarea_src_vue_hashtag_textarea__WEBPACK_IMPORTED_MODULE_3__["default"]
+  },
   data: function data() {
     return {
       option: {
@@ -11841,6 +11845,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         placeholder: 'Add Some value to the music industry...',
         font: 'Encode Sans'
       },
+      loading: false,
       replace_caption: false,
       allow_download: false,
       auth: _helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state,
@@ -11857,18 +11862,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       posts_send: []
     };
   },
-  components: {
-    Posts: _stream_Posts__WEBPACK_IMPORTED_MODULE_1__["default"],
-    VueHashtagTextarea: vue_hashtag_textarea_src_vue_hashtag_textarea__WEBPACK_IMPORTED_MODULE_3__["default"]
-  },
   mounted: function mounted() {
     _helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].initialize();
     this.posts_send = this.posts;
   },
   methods: {
-    onChangeHashtag: function onChangeHashtag(obj) {
-      console.log(obj);
-    },
     previewImage: function previewImage(event) {
       var _this = this;
 
@@ -11895,7 +11893,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.post.description = $('.hastag').val();
+                _this2.loading = true;
                 imagePost = new FormData();
 
                 if (_this2.post.resource) {
@@ -11909,6 +11907,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 8;
                 return axios.post("/".concat(_this2.auth.username, "/Post/Save"), imagePost).then(function (res) {
                   if (res.data.saved) {
+                    _this2.loading = false;
+
                     _this2.initializeVariables();
 
                     _this2.posts_send.unshift(res.data.post);
@@ -11917,10 +11917,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                       scrollTop: 0
                     }, 'fast');
                   } else {
+                    _this2.loading = false;
                     console.log(res);
                   }
                 })["catch"](function (err) {
                   console.log(err);
+                  _this2.loading = false;
                 });
 
               case 8:
@@ -12153,6 +12155,22 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _comments_Comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./comments/Comments */ "./resources/js/components/stream/comments/Comments.vue");
+/* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/Auth */ "./resources/js/helpers/Auth.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -12251,14 +12269,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post'],
   components: {
     Comments: _comments_Comments__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  // mounted(){
-  //     this.seeMore()
-  // },
+  data: function data() {
+    return {
+      lit: {
+        like: 0,
+        dislike: 0,
+        post_id: this.post.id
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].initialize();
+
+    if (this.post.litlike.length > 0) {
+      this.post.litlike.map(function (val) {
+        if (val.like == 1) {
+          $("#capa_2" + _this.post.id + ",path.st2").css({
+            fill: "#ff0000"
+          });
+          console.log('like');
+        } else {
+          $("#capa_2" + _this.post.id + ",path.st2").css({
+            fill: "#141414"
+          });
+          console.log('unlike');
+        }
+
+        console.log(val);
+      });
+    } else {
+      $("#capa_2" + this.post.id + ",path.st2").css({
+        fill: "#141414"
+      });
+      console.log('unlike');
+    }
+  },
   methods: {
     showModalSupport: function showModalSupport() {
       $('#modalSupport').modal('show');
@@ -12268,19 +12321,29 @@ __webpack_require__.r(__webpack_exports__);
     },
     showModalRegister: function showModalRegister() {
       $('#ModalRegister').modal('show');
-    } // showModalPost(){
+    },
+    // showModalPost(){
     //     $('#ModalPost').modal('show')
     // }
-    // seeMore(){
-    //     var text =  $('.item')
-    //     new Readmore( text,{
-    //         speed: 75,
-    //         moreLink: '<a href="#" class="c-fifth">Read more</a>',
-    //         collapsedHeight: 1,
-    //         blockCSS: ''
-    //     })
-    // }
+    litlike: function litlike(lit) {
+      if (lit === 'like') {
+        this.lit.like = 1;
+        this.lit.dislike = 0;
+      }
 
+      if (lit === 'dislike') {
+        this.lit.dislike = 1;
+        this.lit.like = 0;
+      }
+
+      axios.post("".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/LitLike/Save"), this.lit).then(function (res) {
+        console.log(res);
+
+        if (res.data.saved) {}
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -12359,11 +12422,10 @@ __webpack_require__.r(__webpack_exports__);
   props: ['post'],
   data: function data() {
     return {
-      comments: {
+      comment: {
         description: '',
         post_id: this.post.id
-      },
-      allComments: ''
+      }
     };
   },
   components: {
@@ -12374,14 +12436,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     save: function save() {
-      axios.post("/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].username, "/Comments/save"), this.comments).then(function (res) {
+      axios.post("/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/Comments/Save"), this.comment).then(function (res) {
         if (res.data.saved) {
           $('html, body').animate({
             scrollTop: 0
           }, 'fast');
         }
       })["catch"](function (err) {
-        window.location.replace('/login');
+        if (!_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.token) {
+          window.location.replace('/login');
+        }
       });
     }
   }
@@ -12398,6 +12462,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../helpers/Auth */ "./resources/js/helpers/Auth.js");
 //
 //
 //
@@ -12421,8 +12486,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['comment']
+  props: ['comment'],
+  data: function data() {
+    return {
+      form_reply: false,
+      reply: {
+        description: '',
+        user_id: this.comment.user.id,
+        post_id: this.comment.post_id,
+        comment_parent_id: this.comment.id
+      }
+    };
+  },
+  mounted: function mounted() {
+    _helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].initialize();
+  },
+  methods: {
+    save: function save() {
+      axios.post("/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/Comments/Save"), this.reply).then(function (res) {
+        if (res.data.saved) {
+          $('html, body, .comments').animate({
+            scrollTop: 0
+          }, 'fast');
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -14288,13 +14407,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this2.disable = true; // var data = new FormData()
-                // this.releases_information.map(val  =>{
-                //     let cont = 0
-                //     cont++
-                //     data.append('imageRelease'+cont, val.image)
-                // })
-
+                _this2.disable = true;
                 data_send = {
                   profile_information: _this2.profile_information,
                   members_information: _this2.current_members.concat(_this2.past_members),
@@ -14305,6 +14418,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   if (res.data.updated || res.data.saved) {
                     _this2.disable = false;
                     alert('the personal information has been updated');
+                  }
+
+                  if (res.data.saved) {
+                    _this2.url = "/".concat(_this2.user.username, "/Edit/Profile");
                   }
                 })["catch"](function (err) {
                   _this2.disable = false;
@@ -70675,27 +70792,42 @@ var render = function() {
             },
             [
               _c("div", { staticClass: "form-group post-form" }, [
-                _c(
-                  "div",
-                  { staticClass: "bg-primary" },
-                  [
-                    _c("vue-hashtag-textarea", {
-                      staticClass: "form-control hastag",
-                      attrs: { option: _vm.option },
-                      on: { onChangeHashtag: _vm.onChangeHashtag }
-                    }),
-                    _vm._v(" "),
-                    _vm.imageData.length > 0
-                      ? _c("div", { staticClass: "image-preview" }, [
-                          _c("img", {
-                            staticClass: "preview",
-                            attrs: { src: _vm.imageData }
-                          })
-                        ])
-                      : _vm._e()
-                  ],
-                  1
-                ),
+                _c("div", { staticClass: "bg-primary" }, [
+                  _c("textarea", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.post.description,
+                        expression: "post.description"
+                      }
+                    ],
+                    staticClass: "form-control bg-primary",
+                    attrs: {
+                      rows: "5",
+                      placeholder: "Add Some value to the music industry...",
+                      id: "textarea"
+                    },
+                    domProps: { value: _vm.post.description },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.post, "description", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.imageData.length > 0
+                    ? _c("div", { staticClass: "image-preview" }, [
+                        _c("img", {
+                          staticClass: "preview",
+                          attrs: { src: _vm.imageData }
+                        })
+                      ])
+                    : _vm._e()
+                ]),
                 _vm._v(" "),
                 _c(
                   "div",
@@ -70735,14 +70867,32 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn bg-fifth text-white rounded-pill",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Post")]
-                    )
+                    !_vm.loading
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn bg-fifth text-white rounded-pill",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Post")]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.loading
+                      ? _c(
+                          "button",
+                          {
+                            staticClass: "btn rounded-pill text-white bg-fifth",
+                            attrs: { disabled: "" }
+                          },
+                          [
+                            _c("span", {
+                              staticClass: "spinner-grow spinner-grow-sm",
+                              attrs: { role: "status", "aria-hidden": "true" }
+                            })
+                          ]
+                        )
+                      : _vm._e()
                   ]
                 ),
                 _vm._v(" "),
@@ -72098,13 +72248,45 @@ var render = function() {
               "div",
               {
                 staticClass: "information",
-                on: { click: _vm.showModalRegister }
+                on: {
+                  click: function($event) {
+                    return _vm.litlike("")
+                  }
+                }
               },
               [
-                _c("img", {
-                  attrs: { src: "/images/icons/post-flame.svg", alt: "" }
-                }),
-                _c("span", [_vm._v("100")])
+                _c(
+                  "svg",
+                  {
+                    staticClass: "lit",
+                    staticStyle: {
+                      "enable-background": "new 0 0 1038.6 974.4"
+                    },
+                    attrs: {
+                      version: "1.1",
+                      xmlns: "http://www.w3.org/2000/svg",
+                      "xmlns:xlink": "http://www.w3.org/1999/xlink",
+                      x: "0px",
+                      y: "0px",
+                      viewBox: "0 0 1038.6 974.4",
+                      "xml:space": "preserve",
+                      width: "25",
+                      height: "25"
+                    }
+                  },
+                  [
+                    _c("g", { attrs: { id: "Capa_2" + _vm.post.id } }, [
+                      _c("path", {
+                        staticClass: "st2",
+                        staticStyle: { fill: "#545454" },
+                        attrs: {
+                          d:
+                            "M519.5,956.6c-180.2,0-326.7-147.3-326.7-328.5c0-79,26.9-132.6,58.1-194.8c17.2-34.5,35.2-70.2,51.7-115.7\n                                l17.1-47.4c25.3,6.2,16.8,4.1,42.1,10.3l-6.6,50c-5.5,40.8,2,87.1,20.4,127c7.8,16.9,17.2,31.9,27.8,44.4\n                                c-3.7-66.3,3.1-130.2,20.2-190.6c18-63.3,46.8-121.8,85.7-173.6C557.7,73.2,613.4,31.1,639.1,27.6l73.2-9.9l-49.2,55\n                                c-22.4,24.9-34.6,57.1-34.6,90.7c0,64.8,39.7,110.9,85.8,164.2c29.5,34.2,63,72.9,88.2,120.4c29.5,55.1,43.7,114,43.7,180.1\n                                C846.2,809.3,699.6,956.6,519.5,956.6z M310,436.8c-3.6,7.3-7.1,14.2-10.5,21c-29.2,58.3-52.2,104.3-52.2,170.4\n                                c0,151.1,122.1,274,272.2,274c150.1,0,272.3-122.9,272.3-274c0-127.6-60.4-197.3-118.7-264.9c-51-59-99.2-114.6-99.2-199.8\n                                c0-6.8,0.4-13.6,1.1-20.2c-15.4,17.3-31.6,38.4-46.7,63.3c-43.1,70.2-89.2,188-64.7,350.6l7.1,47.6l-44.5-18.3\n                                c-40.8-16.8-76.4-54.5-100.1-106C319.6,466.3,314.1,451.7,310,436.8z"
+                        }
+                      })
+                    ])
+                  ]
+                )
               ]
             ),
             _vm._v(" "),
@@ -72325,7 +72507,43 @@ var render = function() {
           [_c("simple-comment", { attrs: { comment: comment } })],
           1
         )
-      })
+      }),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.save($event)
+            }
+          }
+        },
+        [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.comment.description,
+                expression: "comment.description"
+              }
+            ],
+            staticClass:
+              "input-comment form-control bg-second p-3 mt-3 text-white",
+            attrs: { type: "text", placeholder: "Interact with a comment" },
+            domProps: { value: _vm.comment.description },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.comment, "description", $event.target.value)
+              }
+            }
+          })
+        ]
+      )
     ],
     2
   )
@@ -72354,38 +72572,146 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "comment" }, [
     _c("div", { staticClass: "d-flex align-items-center p-2" }, [
-      _c("img", {
-        staticClass: "comment-user-image rounded-pill mr-2",
-        attrs: { src: "" + _vm.comment.user.avatar, alt: "img-user-comment" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "w-100" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "text-white d-flex align-items-center justify-content-between"
-          },
-          [
-            _c("div", [
-              _c("span", { staticClass: "font-weight-bold" }, [
-                _vm._v(_vm._s(_vm.comment.user.personal_information.full_name))
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "ml-2" }, [
-                _vm._v(_vm._s(_vm.comment.comment))
-              ])
-            ]),
-            _vm._v(" "),
+      !_vm.comment.comment_parent_id
+        ? _c("div", { staticClass: "d-flex align-items-center p-3" }, [
             _c("img", {
-              staticClass: "icon float-right",
-              attrs: { src: "/images/icons/post-flame.svg", alt: "flame-red" }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _vm._m(0)
-      ])
+              staticClass: "comment-user-image rounded-pill mr-2",
+              attrs: {
+                src: "" + _vm.comment.user.avatar,
+                alt: "img-user-comment"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "text-white d-flex align-items-center justify-content-between"
+                },
+                [
+                  _c("div", [
+                    _c("span", { staticClass: "font-weight-bold" }, [
+                      _vm._v(
+                        _vm._s(_vm.comment.user.personal_information.full_name)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "ml-2" }, [
+                      _vm._v(_vm._s(_vm.comment.description))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "icon float-right",
+                    attrs: {
+                      src: "/images/icons/post-flame.svg",
+                      alt: "flame-red"
+                    }
+                  })
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "comment-footer" }, [
+                _c("span", [_vm._v("4m")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mx-3" }, [_vm._v("1 Lit")]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        _vm.form_reply = true
+                      }
+                    }
+                  },
+                  [_vm._v("Reply")]
+                )
+              ])
+            ])
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "d-flex flex-row pl-5 pr-5" }, [
+      _vm.comment.comment_parent_id
+        ? _c("div", { staticClass: "d-flex align-items-center p-3" }, [
+            _c("img", {
+              staticClass: "comment-user-image rounded-pill mr-2",
+              attrs: {
+                src: "" + _vm.comment.user.avatar,
+                alt: "img-user-comment"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-100" }, [
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "text-white d-flex align-items-center justify-content-between"
+                },
+                [
+                  _c("div", [
+                    _c("span", { staticClass: "font-weight-bold" }, [
+                      _vm._v(
+                        _vm._s(_vm.comment.user.personal_information.full_name)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "ml-2" }, [
+                      _vm._v(_vm._s(_vm.comment.description))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0)
+                ]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.form_reply
+        ? _c(
+            "form",
+            {
+              staticClass: "w-100",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.save($event)
+                }
+              }
+            },
+            [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.reply.description,
+                    expression: "reply.description"
+                  }
+                ],
+                staticClass:
+                  "input-comment form-control bg-second p-3 mt-3 text-white",
+                attrs: { type: "text", placeholder: "Interact with a comment" },
+                domProps: { value: _vm.reply.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.reply, "description", $event.target.value)
+                  }
+                }
+              })
+            ]
+          )
+        : _vm._e()
     ])
   ])
 }
@@ -72394,12 +72720,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "text-right d-flex flex-row justify-content-end " },
+      [
+        _c("img", {
+          staticClass: "icon float-right",
+          attrs: { src: "/images/icons/post-flame.svg", alt: "flame-red" }
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "comment-footer" }, [
       _c("span", [_vm._v("4m")]),
       _vm._v(" "),
-      _c("span", { staticClass: "mx-3" }, [_vm._v("1 Lit")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Reply")])
+      _c("span", { staticClass: "mx-3" }, [_vm._v("1 Lit")])
     ])
   }
 ]

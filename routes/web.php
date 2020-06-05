@@ -81,11 +81,18 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 
     Route::group(['prefix' => 'Comments'], function () {
-        Route::name('comment.get')->get('/get/{userPost}', 'Comments\CommentsController@get');
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('comment.save')->post('/save', 'Comments\CommentsController@save');
-            Route::name('comment.update')->put('/update', 'Comments\CommentsController@update');
-            Route::name('comment.delete')->delete('/delete', 'Comments\CommentsController@delete');
+            Route::name('comment.save')->post('/Save', 'Comments\CommentsController@save');
+            Route::name('comment.update')->put('/Update', 'Comments\CommentsController@update');
+            Route::name('comment.delete')->delete('/Delete', 'Comments\CommentsController@delete');
+        });
+    });
+
+    Route::group(['prefix' => 'LitLike'], function () {
+        Route::group(['middleware' => ['auth']], function () {
+            Route::name('litlike.save')->post('/Save', 'User\LitLikeController@save');
+            Route::name('litlike.update')->post('/Update', 'User\LitLikeController@update');
+            Route::name('litlike.delete')->post('/Delete', 'User\LitLikeController@delete');
         });
     });
 });

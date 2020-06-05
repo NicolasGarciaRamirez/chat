@@ -150,6 +150,7 @@
             input.input-comment{
                 border-radius: 30px !important;
                 border: 1px solid $third-color;
+                caret-color: $fifth-color;
                 &::placeholder{
                     color: $fourth-color;
                 }

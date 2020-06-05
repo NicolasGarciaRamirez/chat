@@ -83,7 +83,22 @@
                 <div class="d-flex c-fourth my-3">
                     <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>
                     <div class="information"><img src="/images/icons/post-percentage-down-red.svg" alt=""><span class="c-fifth">100</span></div>
-                    <div class="information" @click="showModalRegister"><img src="/images/icons/post-flame.svg" alt=""><span>100</span></div>
+
+                    <div class="information" @click="litlike('')">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 1038.6 974.4" style="enable-background:new 0 0 1038.6 974.4;" xml:space="preserve" width="25" height="25" class="lit">
+                            <g :id="`Capa_2${post.id}`">
+                                <path class="st2" style="fill:#545454;" d="M519.5,956.6c-180.2,0-326.7-147.3-326.7-328.5c0-79,26.9-132.6,58.1-194.8c17.2-34.5,35.2-70.2,51.7-115.7
+                                    l17.1-47.4c25.3,6.2,16.8,4.1,42.1,10.3l-6.6,50c-5.5,40.8,2,87.1,20.4,127c7.8,16.9,17.2,31.9,27.8,44.4
+                                    c-3.7-66.3,3.1-130.2,20.2-190.6c18-63.3,46.8-121.8,85.7-173.6C557.7,73.2,613.4,31.1,639.1,27.6l73.2-9.9l-49.2,55
+                                    c-22.4,24.9-34.6,57.1-34.6,90.7c0,64.8,39.7,110.9,85.8,164.2c29.5,34.2,63,72.9,88.2,120.4c29.5,55.1,43.7,114,43.7,180.1
+                                    C846.2,809.3,699.6,956.6,519.5,956.6z M310,436.8c-3.6,7.3-7.1,14.2-10.5,21c-29.2,58.3-52.2,104.3-52.2,170.4
+                                    c0,151.1,122.1,274,272.2,274c150.1,0,272.3-122.9,272.3-274c0-127.6-60.4-197.3-118.7-264.9c-51-59-99.2-114.6-99.2-199.8
+                                    c0-6.8,0.4-13.6,1.1-20.2c-15.4,17.3-31.6,38.4-46.7,63.3c-43.1,70.2-89.2,188-64.7,350.6l7.1,47.6l-44.5-18.3
+                                    c-40.8-16.8-76.4-54.5-100.1-106C319.6,466.3,314.1,451.7,310,436.8z"/>
+                            </g>
+                        </svg>
+                    </div>
                     <div class="information"><img src="/images/icons/post-comment.svg" alt="">100</div>
                     <div class="information"><img src="/images/icons/post-up.svg" alt="">100</div>
                     <div class="information"><img src="/images/icons/post-down.svg" alt="">100</div>
@@ -97,14 +112,47 @@
 
 <script>
     import Comments from './comments/Comments'
+    import Auth from '../../helpers/Auth'
     export default {
         props:['post'],
         components:{
             Comments
         },
-        // mounted(){
-        //     this.seeMore()
-        // },
+        data(){
+            return {
+                lit:{
+                    like:0,
+                    dislike:0,
+                    post_id: this.post.id
+                }
+            }
+        },
+        mounted(){
+            Auth.initialize()
+            if (this.post.litlike.length > 0) {
+                this.post.litlike.map(val =>{
+
+                    if (val.like == 1) {
+                        $(`#capa_2`+this.post.id+`,path.st2`).css(
+                            {fill: "#ff0000"}
+                        )
+                        console.log('like')
+
+                    }else{
+                        $(`#capa_2`+this.post.id+`,path.st2`).css(
+                            {fill: "#141414"}
+                        )
+                        console.log('unlike')
+                    }
+                    console.log(val)
+                })
+            }else{
+                $(`#capa_2`+this.post.id+`,path.st2`).css(
+                    {fill: "#141414"}
+                )
+                console.log('unlike')
+            }
+        },
         methods:{
             showModalSupport(){
                 $('#modalSupport').modal('show')
@@ -118,15 +166,25 @@
             // showModalPost(){
             //     $('#ModalPost').modal('show')
             // }
-            // seeMore(){
-            //     var text =  $('.item')
-            //     new Readmore( text,{
-            //         speed: 75,
-            //         moreLink: '<a href="#" class="c-fifth">Read more</a>',
-            //         collapsedHeight: 1,
-            //         blockCSS: ''
-            //     })
-            // }
+            litlike(lit){
+                
+                if (lit === 'like') {
+                    this.lit.like = 1 
+                    this.lit.dislike = 0 
+                   
+                }
+                if (lit === 'dislike') {
+                    this.lit.dislike = 1 
+                    this.lit.like = 0
+                }
+                axios.post(`${Auth.state.username}/LitLike/Save`, this.lit).then(res =>{
+                    console.log(res)
+                    if (res.data.saved) {
+                    }
+                }).catch(err =>{
+                    console.log(err)
+                })
+            }
             
         }
     }

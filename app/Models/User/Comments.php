@@ -31,11 +31,16 @@ class Comments extends Model
      */
     public function post()
     {
-        return $this->belongsTo(\App\Models\User\UserPost::class);
+        return $this->belongsTo(App\Models\User\UserPost::class);
     }
 
     public function user()
     {
         return $this->belongsTo(\App\Models\User\User::class);
+    }
+
+    public function litlike()
+    {
+        return $this->hasMany(\App\Models\User\LitLike::class);
     }
 }

@@ -5,9 +5,9 @@
         <div v-for="(comment, index) in post.comments" :key="index" id="comments">
             <simple-comment :comment="comment" />
         </div>
-        <!-- <form @submit.prevent="save">
-            <input type="text" class="input-comment form-control bg-second p-3 mt-3 text-white" placeholder="Interact with a comment" v-model="comments.description">
-        </form> -->
+        <form @submit.prevent="save">
+            <input type="text" class="input-comment form-control bg-second p-3 mt-3 text-white" placeholder="Interact with a comment" v-model="comment.description">
+        </form>
     </section>
 </template>
 
@@ -18,11 +18,10 @@
         props:['post'],
         data(){
             return {
-                comments:{
+                comment:{
                     description: '',
                     post_id: this.post.id,
-                },
-                allComments:''
+                }
             }
         },
         components:{
@@ -33,12 +32,14 @@
         },
         methods:{
             save(){
-                axios.post(`/${Auth.username}/Comments/save`, this.comments).then(res => {
+                axios.post(`/${Auth.state.username}/Comments/Save`, this.comment).then(res => {
                     if (res.data.saved) {
                         $('html, body').animate({ scrollTop: 0 }, 'fast');
                     }
                 }).catch(err =>{
-                    window.location.replace('/login')
+                    if (!Auth.state.token) {
+                        window.location.replace('/login')
+                    }
                 })
             }
         }

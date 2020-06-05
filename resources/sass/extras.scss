@@ -51,6 +51,7 @@
                     color: white;
                     border: 0;
                     margin-bottom: 0.5rem;
+                    caret-color: $fifth-color;
                     &::placeholder{
                         color: $fourth-color;
                     }

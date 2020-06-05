@@ -3,17 +3,14 @@
         <form @submit.prevent="save" enctype="multipart/form-data" v-if="auth.token">
             <div class="form-group post-form">
                 <div class="bg-primary">
-                    <!-- <textarea
+                    <textarea
                         class="form-control bg-primary"
                         rows="5"
                         placeholder="Add Some value to the music industry..."
-                        v-model="post.description">
-                    </textarea> -->
-                        <vue-hashtag-textarea 
-                            :option=option 
-                            v-on:onChangeHashtag="onChangeHashtag"
-                            class="form-control hastag"
-                        />
+                        id="textarea"
+                        v-model="post.description"
+                        >
+                    </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData">
                     </div>
@@ -47,7 +44,10 @@
 
                         <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit">Post</button>
+                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading">Post</button>
+                    <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
+                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    </button>
                 </div>
                 <div class="config-post  bg-primary"  v-if="imageData.length > 0 ">
                     <div class="d-flex flex-column">
@@ -99,6 +99,10 @@
 
     export default {
         props:['posts'],
+        components:{
+            Posts,
+            VueHashtagTextarea
+        },
         data(){
             return {
                 option: {
@@ -107,6 +111,7 @@
                     placeholder: 'Add Some value to the music industry...',
                     font:'Encode Sans'
                 },
+                loading: false,
                 replace_caption: false,
                 allow_download: false,
                 auth : Auth.state,
@@ -123,19 +128,11 @@
                 posts_send: []
             }
         },
-        components:{
-            Posts,
-            VueHashtagTextarea
-        },
         mounted(){
             Auth.initialize()
             this.posts_send = this.posts
         },
         methods:{
-            onChangeHashtag(obj){
-                console.log(obj)
-            },
-
             previewImage(event) { 
                 this.post.resource = event.target.files[0]
                 this.post.resource_type = 'image'
@@ -149,7 +146,7 @@
                 }
             },
             async save(){
-                this.post.description = $('.hastag').val()
+                this.loading = true
                 var imagePost = new FormData();
                 if (this.post.resource) {
                     imagePost.append('imagePost', this.post.resource, this.post.resource)
@@ -161,15 +158,17 @@
 
                 await axios.post(`/${this.auth.username}/Post/Save`, imagePost).then(res =>{
                     if (res.data.saved) {
+                        this.loading = false
                         this.initializeVariables()
                         this.posts_send.unshift(res.data.post)
                         $('html, body').animate({ scrollTop: 0 }, 'fast');
                     }else{
-
+                        this.loading = false
                         console.log(res)
                     }
                 }).catch(err=>{
                     console.log(err)
+                    this.loading = false
                 })
             },
             initializeVariables(){

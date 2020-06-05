@@ -402,12 +402,6 @@ export default {
         },
         async save(){
             this.disable = true
-            // var data = new FormData()
-            // this.releases_information.map(val  =>{
-            //     let cont = 0
-            //     cont++
-            //     data.append('imageRelease'+cont, val.image)
-            // })
 
             var data_send =  {
                 profile_information: this.profile_information,
@@ -418,6 +412,9 @@ export default {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
                     alert('the personal information has been updated')
+                }
+                if (res.data.saved) {
+                    this.url =`/${this.user.username}/Edit/Profile`
                 }
             }).catch(err => {
                 this.disable = false

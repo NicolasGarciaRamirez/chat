@@ -43,4 +43,9 @@ class UserPost extends Model
     {
         return $this->hasMany('\App\Models\User\Comments', 'post_id');
     }
+
+    public function litlike()
+    {
+        return $this->hasMany('\App\Models\User\LitLike', 'post_id');
+    }
 }

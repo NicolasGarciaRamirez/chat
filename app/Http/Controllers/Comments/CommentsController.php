@@ -10,6 +10,16 @@ use App\Models\User\Comments;
 
 class CommentsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if (!$user = User::whereUsername($request->username)->first()) return abort(404);
+            $this->user = $user;
+            $this->user->load('personal_information', 'posts', 'profile_information.members', 'profile_information.releases');
+            return $next($request);
+        });
+    }
+
     public function get($username)
     {
         // $user = User::whereUsername($username)->first();
@@ -19,16 +29,13 @@ class CommentsController extends Controller
         // ]);
     }
 
-    public function save($username, Request $request)
+    public function save(Request $request)
     {
-
-        $user = User::whereUsername($username)->first();
-
-        $comment = new \App\Models\User\Comments();
-        $comment->comment = $request['description'];
+        $comment = new \App\Models\User\Comments($request->all());
+        $comment->description = $request['description'];
         $comment->post_id = $request['post_id'];
-        $comment->user_id = $user->id;
-        $user->comment()->save($comment);
+        $comment->user_id = $this->user->id;
+        $this->user->comment()->save($comment);
 
         return response()->json([
             'saved' => true,
