@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,7 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = \App\Models\User\UserPost::with('user.personal_information', 'comments.user.personal_information', 'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
+        $posts = Post::with('user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
         return view('home', compact('posts'));
     }
 

@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.2",
         "aws/aws-sdk-php": "^3.138",
-        "cybercog/laravel-love": "^8.4",
         "fideloper/proxy": "^4.0",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.0",

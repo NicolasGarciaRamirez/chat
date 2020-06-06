@@ -73,26 +73,26 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 
     Route::group(['prefix' => 'Post'], function () {
-        // Route::name('post.get')->get('/get', 'User\UserPostController@get');
+        // Route::name('post.get')->get('/get', 'User\PostController@get');
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('post.save')->post('/Save', 'User\UserPostController@save');
-            Route::name('post.update')->put('/update', 'User\UserPostController@update');
+            Route::name('post.store')->post('/store', 'Post\PostController@store');
+            Route::name('post.update')->put('/update', 'Post\PostController@update');
         });
     });
 
-    Route::group(['prefix' => 'Comments'], function () {
+    Route::group(['prefix' => 'Comment'], function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('comment.save')->post('/Save', 'Comments\CommentsController@save');
-            Route::name('comment.update')->put('/Update', 'Comments\CommentsController@update');
-            Route::name('comment.delete')->delete('/Delete', 'Comments\CommentsController@delete');
+            Route::name('comment.store')->post('/store/{model}/{model_id}', 'Comment\CommentController@store');
+            Route::name('comment.update')->put('/update', 'Comment\CommentController@update');
+            Route::name('comment.delete')->delete('/delete', 'Comment\CommentController@delete');
         });
     });
 
     Route::group(['prefix' => 'LitLike'], function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('litlike.save')->post('/Save', 'User\LitLikeController@save');
-            Route::name('litlike.update')->post('/Update', 'User\LitLikeController@update');
-            Route::name('litlike.delete')->post('/Delete', 'User\LitLikeController@delete');
+            Route::name('litlike.store')->post('/store', 'User\LitLikeController@store');
+            Route::name('litlike.update')->post('/update', 'User\LitLikeController@update');
+            Route::name('litlike.delete')->post('/delete', 'User\LitLikeController@delete');
         });
     });
 });

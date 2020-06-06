@@ -50,7 +50,7 @@
         </div>
         <div class="post-body bg-primary">
             <div class="text p-3 item">
-                {{ post.description }} 
+                {{ post.description }}
             </div>
             <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
                 <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point">
@@ -78,7 +78,7 @@
             <div class="mt-2 bg-primary post-footer p-3">
                 <div>
                     <span class="c-fourth">11k views</span>
-                    <span class="ml-1 c-fourth">10m ago</span>
+                    <span class="ml-1 c-fourth">{{ post.time_ago }}</span>
                 </div>
                 <div class="d-flex c-fourth my-3">
                     <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>
@@ -182,12 +182,12 @@
                     {fill: "#ff0000"}
                 )
                 // if (lit === 'like') {
-                //     this.lit.like = 1 
-                //     this.lit.dislike = 0 
-                   
+                //     this.lit.like = 1
+                //     this.lit.dislike = 0
+
                 // }
                 // if (lit === 'dislike') {
-                //     this.lit.dislike = 1 
+                //     this.lit.dislike = 1
                 //     this.lit.like = 0
                 // }
                 // axios.post(`${Auth.state.username}/LitLike/Save`, this.lit).then(res =>{
@@ -198,7 +198,7 @@
                 //     console.log(err)
                 // })
             }
-            
+
         }
     }
 </script>

@@ -3,14 +3,12 @@
 namespace App\Models\User;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
-use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable implements ReacterableContract
+class User extends Authenticatable
 {
-    use Notifiable, Reacterable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -75,7 +73,7 @@ class User extends Authenticatable implements ReacterableContract
      */
     public function posts()
     {
-        return $this->hasMany(\App\Models\User\UserPost::class);
+        return $this->hasMany(\App\Models\Post\Post::class);
     }
 
     /**
@@ -83,16 +81,9 @@ class User extends Authenticatable implements ReacterableContract
      */
     public function comment()
     {
-        return $this->hasMany('\App\Models\User\Comments', 'user_id');
+        return $this->hasMany(\App\Models\Comment\Comment::class);
     }
 
-      /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function litlike()
-    {
-        return $this->hasMany('\App\Models\User\LitLike', 'user_id');
-    }
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Post;
 
+use App\Models\Post\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
 use Intervention\Image\Facades\Image;
 
-class UserPostController extends Controller
+class PostController extends Controller
 {
-
     private $user;
 
     public function __construct()
@@ -34,11 +34,11 @@ class UserPostController extends Controller
     }
 
     /**
-     * @param User $user
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function save(Request $request)
+    public function store(Request $request) //cambiar a form request
     {
         \DB::beginTransaction();
 
@@ -52,19 +52,15 @@ class UserPostController extends Controller
                 $imagePost = null;
             }
 
-            $post = new \App\Models\User\UserPost();
-            $post->description = $request->postDescription;
-            $post->genre = $request->postGenre;
-            $post->category = $request->postCategory;
+            $post = new Post($request->all());
             $post->resource = $imagePost;
             $post->resource_type = $request->imageType;
-            $post->user_id = $this->user->id;
             $this->user->posts()->save($post);
 
             \DB::commit();
             return response()->json([
                 'saved' => true,
-                'post' => $post->load('user.personal_information'),
+                'post' => $post->load('user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information'),
                 'errors' => null
             ], 200);
         } catch (\Exception $e) {

@@ -20,7 +20,7 @@
         isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
         // dd($user);
     @endphp
-    <div id="app">
+    <div id="app" class="w-100">
         @include('template._nav' )
         <div class="c-wrapper">
             <div class="c-body">
@@ -35,5 +35,6 @@
     </div>
     @yield('js')
     <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ asset('/js/pace.min.js') }}" charset="utf-8"></script>
 </body>
 </html>

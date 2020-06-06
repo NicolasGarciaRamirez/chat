@@ -13,7 +13,7 @@ class CreateUserPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_posts', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('description')->nullable();
             $table->string('resource')->nullable();
@@ -35,6 +35,6 @@ class CreateUserPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_posts');
+        Schema::dropIfExists('posts');
     }
 }

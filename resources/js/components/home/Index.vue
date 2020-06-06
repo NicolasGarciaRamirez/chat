@@ -1,6 +1,6 @@
 <template>
     <section >
-        <form @submit.prevent="save" enctype="multipart/form-data" v-if="auth.token">
+        <form @submit.prevent="store" enctype="multipart/form-data" v-if="auth.token">
             <div class="form-group post-form">
                 <div class="bg-primary">
                     <textarea
@@ -133,7 +133,7 @@
             this.posts_send = this.posts
         },
         methods:{
-            previewImage(event) { 
+            previewImage(event) {
                 this.post.resource = event.target.files[0]
                 this.post.resource_type = 'image'
                 var input = event.target;
@@ -145,18 +145,18 @@
                     reader.readAsDataURL(input.files[0]);
                 }
             },
-            async save(){
+            async store(){
                 this.loading = true
                 var imagePost = new FormData();
                 if (this.post.resource) {
                     imagePost.append('imagePost', this.post.resource, this.post.resource)
                     imagePost.append('imageType', this.post.resource_type)
-                } 
-                imagePost.append('postDescription', this.post.description)
-                imagePost.append('postGenre', this.post.genre)
-                imagePost.append('postCategory', this.post.category)
+                }
+                imagePost.append('description', this.post.description)
+                imagePost.append('genre', this.post.genre)
+                imagePost.append('category', this.post.category)
 
-                await axios.post(`/${this.auth.username}/Post/Save`, imagePost).then(res =>{
+                await axios.post(`/${this.auth.username}/Post/store`, imagePost).then(res =>{
                     if (res.data.saved) {
                         this.loading = false
                         this.initializeVariables()
