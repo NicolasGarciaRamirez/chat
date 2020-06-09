@@ -5,6 +5,7 @@
         </div>
         <modal-support  />
         <modal-reward  />
+        <modal-login />
         <register />
     </section>
 </template>
@@ -15,6 +16,7 @@
     import ModalSupport from './ModalSupport'
     import ModalPost from './ModalPost'
     import Register from '../auth/Register'
+    import ModalLogin from '../auth/Login'
 
     export default {
         props:['posts'],
@@ -23,7 +25,8 @@
             ModalSupport,
             ModalReward,
             ModalPost,
-            Register
+            Register,
+            ModalLogin
         }
     }
 </script>

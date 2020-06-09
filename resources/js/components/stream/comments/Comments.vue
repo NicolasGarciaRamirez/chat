@@ -8,11 +8,13 @@
         <form @submit.prevent="save">
             <input type="text" class="input-comment form-control bg-second p-3 mt-3 text-white" placeholder="Interact with a comment" v-model="comment.body">
         </form>
+        <modal-login />
     </section>
 </template>
 
 <script>
     import SimpleComment from './SimpleComment'
+    import ModalLogin from '../../auth/Login'
     import Auth from '../../../helpers/Auth'
     export default {
         props:['post'],
@@ -26,22 +28,26 @@
         },
         components:{
             SimpleComment,
+            ModalLogin
         },
         mounted(){
             Auth.initialize()
         },
         methods:{
             save(){
-                axios.post(`/${Auth.state.username}/Comment/store/Post/${this.post.id}`, this.comment).then(res => {
-                    if (res.data.saved) {
-                        this.comment.body = ''
-                       this.post.comments.unshift(res.data.comment)
-                    }
-                }).catch(err =>{
-                    if (!Auth.state.token) {
-                        window.location.replace('/login')
-                    }
-                })
+                if (Auth.state.token) {
+                    axios.post(`/${Auth.state.username}/Comment/store/Post/${this.post.id}`, this.comment).then(res => {
+                        if (res.data.saved) {
+                            this.comment.body = ''
+                            this.post.comments.unshift(res.data.comment)
+                        }
+                    }).catch(err =>{
+                        
+                    })
+                }else{
+                    $('#ModalLogin').modal('show')
+
+                }
             }
         }
     }

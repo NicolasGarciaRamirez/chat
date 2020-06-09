@@ -90,7 +90,7 @@ Route::group(['prefix' => '/{username}'], function () {
 
     Route::group(['prefix' => 'LitLike'], function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('litlike.store')->post('/store', 'User\LitLikeController@store');
+            Route::name('litlike.store')->post('/store/{model}/{model_id}/{type}/{id_like?}', 'User\LitLikeController@store');
             Route::name('litlike.update')->post('/update', 'User\LitLikeController@update');
             Route::name('litlike.delete')->post('/delete', 'User\LitLikeController@delete');
         });

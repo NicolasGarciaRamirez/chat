@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use \App\Models\User\User;
 use \App\Http\Controllers\Controller;
+use App\Models\Comment\Comment;
+use App\Models\Post\Post;
 use App\Models\User\LitLike;
 
 class LitLikeController extends Controller
@@ -19,47 +21,42 @@ class LitLikeController extends Controller
         });
     }
 
-    public function save(Request $request)
-    {
-        
-        
-        // \DB::beginTransaction();
+    public function store(Request $request, $username, $model, $id_model, $type, $id_like = null)
+    {   
+        return $id_like;
+        \DB::beginTransaction();
 
-        // try {
-            $post = \App\Models\User\UserPost::find($request->post_id)->first();
-
-            $reacterFacade = $this->user->viaLoveReacter();
-            
-            $isReacted = $reacterFacade->hasReactedTo($post);
-            
-            if ($isReacted) {
-                $reacterFacade->unreactTo($post ,'Lit');
-                $reactions = $reacterFacade->getReactions();
-            }else{
-                $reacterFacade->reactTo($post ,'Lit');
-                $reactions = $reacterFacade->getReactions();
+        try {
+            if ($model == 'Post') {
+                $model = Post::find($id_model);
+            } elseif ($model == 'Comment') {
+                $model = Comment::find($id_model);
             }
 
-            return $reactions;
-        //     $like = new LitLike($request->all());
-        //     $like->user_id = $this->user->id;
-        //     $like->save();
-
-        //     \DB::commit();
-        //     return response()->json([
-        //         'saved' => true,
-        //         'user' => $this->user,
-        //         'errors' => null
-        //     ]);
-        // } catch (\Exception $e) {
-        //     \DB::rollBack();
-        //     return response()->json([
-        //         'saved' => false,
-        //         'user' => null,
-        //         'errors' => $e
-        //     ]);
-
-        // }
+            // return $type;
+            if ($request->like == 'like') {
+                $like = new LitLike($request->all());
+                $like->user()->associate($this->user);
+                $model->likes()->save($like);
+            } elseif ($request->like == 'unlike'){
+                $lit = LitLike::find($id_like);
+                $lit->delete();
+            }
+            
+            \DB::commit();
+            return response()->json([
+                'saved' => true,
+                'like' => $like,
+                'errors' => null
+            ]);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return response()->json([
+                'saved' => false,
+                'like' => $like,
+                'errors' => $e
+            ]);
+        }
 
     }
 

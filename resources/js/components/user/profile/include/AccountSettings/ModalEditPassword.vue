@@ -82,9 +82,9 @@ export default {
                     this.disable = false
                     alert('Chnge Password Succesfull')
                     $('#ModalEditPassword').modal('toggle')
-                    $('html, body').animate({ scrollTop: 0 }, 'fast');
                 }
             }).catch(err => {
+                this.disable = false
                 alert('Error')
                 console.log(err)
             })

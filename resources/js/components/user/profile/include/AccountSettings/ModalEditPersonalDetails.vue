@@ -49,7 +49,7 @@
                             </div>
                             <div style="border-top: 1px solid #262626"></div>
                             <div class="text-center my-3">
-                                <button class="bg-primary border-0 rounded-pill">Cancel</button>
+                                <button type="button" class="bg-primary border-0 rounded-pill" data-dissmis="modal">Cancel</button>
                                 <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Save</button>
                                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -91,10 +91,12 @@ export default {
             this.data.full_name = this.data.first_name+' '+this.data.last_name
             axios.post(`/User/Settings/Personal/Update/${this.user.username}`, this.data).then(res => {
                 if (res.data.updated) {
-                    $('html, body ').animate({ scrollTop: 0 }, 'fast');
+                    this.$parent.user.personal_information = this.data
+                    this.disable = false
                     alert('Has been information updated')
                 }
             }).catch(err =>{
+                this.disable = false
                 alert('Error')
                 console.log(err)
             })

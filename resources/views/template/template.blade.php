@@ -18,7 +18,6 @@
 <body class="c-app">
     @php
         isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
-        // dd($user);
     @endphp
     <div id="app" class="w-100">
         @include('template._nav' )

@@ -16,10 +16,10 @@
                             </div>
                             <div class="text-right">
                                 <button class="btn bg-fifth mr-2 text-white" v-if="!disable" :disabled="imageData.length <= 0">save</button>
-                                <button class="btn bg-third text-white" data-dismiss="modal">cancel</button>
-                                  <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                                <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                 </button>
+                                <button class="btn bg-third text-white" data-dismiss="modal">cancel</button>
                             </div>
                         </form>
                     </div>

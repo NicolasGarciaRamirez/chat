@@ -68,7 +68,7 @@ class AuthController extends Controller
 
             $user->personal_information()->save($personal_information);
 
-             if ($user->subscription_type == 'FREE') $user->notify(new NewUserFree($personal_information->full_name));
+            //  if ($user->subscription_type == 'FREE') $user->notify(new NewUserFree($personal_information->full_name));
 
             \DB::commit();
             Auth::login($user);

@@ -1,6 +1,6 @@
 <template>
     <section >
-        <form @submit.prevent="store" enctype="multipart/form-data" v-if="auth.token">
+        <form @submit.prevent="store" enctype="multipart/form-data">
             <div class="form-group post-form">
                 <div class="bg-primary">
                     <textarea
@@ -146,30 +146,34 @@
                 }
             },
             async store(){
-                this.loading = true
-                var imagePost = new FormData();
-                if (this.post.resource) {
-                    imagePost.append('imagePost', this.post.resource, this.post.resource)
-                    imagePost.append('imageType', this.post.resource_type)
-                }
-                imagePost.append('description', this.post.description)
-                imagePost.append('genre', this.post.genre)
-                imagePost.append('category', this.post.category)
-
-                await axios.post(`/${this.auth.username}/Post/store`, imagePost).then(res =>{
-                    if (res.data.saved) {
-                        this.loading = false
-                        this.initializeVariables()
-                        this.posts_send.unshift(res.data.post)
-                        $('html, body').animate({ scrollTop: 0 }, 'fast');
-                    }else{
-                        this.loading = false
-                        console.log(res)
+                if (this.auth.token) {
+                    this.loading = true
+                    var imagePost = new FormData();
+                    if (this.post.resource) {
+                        imagePost.append('imagePost', this.post.resource, this.post.resource)
+                        imagePost.append('imageType', this.post.resource_type)
                     }
-                }).catch(err=>{
-                    console.log(err)
-                    this.loading = false
-                })
+                    imagePost.append('description', this.post.description)
+                    imagePost.append('genre', this.post.genre)
+                    imagePost.append('category', this.post.category)
+    
+                    await axios.post(`/${this.auth.username}/Post/store`, imagePost).then(res =>{
+                        if (res.data.saved) {
+                            this.loading = false
+                            this.initializeVariables()
+                            this.posts_send.unshift(res.data.post)
+                            $('html, body').animate({ scrollTop: 0 }, 'fast');
+                        }else{
+                            this.loading = false
+                            console.log(res)
+                        }
+                    }).catch(err=>{
+                        console.log(err)
+                        this.loading = false
+                    })
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
             },
             initializeVariables(){
                 this.post = {

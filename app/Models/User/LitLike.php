@@ -3,16 +3,18 @@
 namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LitLike extends Model
 {
+    
     /**
      * Undocumented variable
      *
      * @var array
      */
     protected $fillable = [
-        'like','dislike','post_id', 'user_id'
+        'like'
     ];
 
     /**
@@ -21,7 +23,7 @@ class LitLike extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at'
+        'created_at', 'updated_at','deleted_at'
     ];
 
     /**
@@ -31,7 +33,7 @@ class LitLike extends Model
      */
     public function user()
     {
-        $this->belongsTo(\App\Models\User\User::class);
+        return $this->belongsTo(\App\Models\User\User::class);
     }
 
     /**
@@ -41,7 +43,7 @@ class LitLike extends Model
      */
     public function post()
     {
-        $this->belongsTo(\App\Models\User\User::class);
+        return $this->belongsTo(\App\Models\User\User::class);
     }
 
     /**
@@ -51,6 +53,16 @@ class LitLike extends Model
      */
     public function comments()
     {
-        $this->belongsTo(\App\Models\User\Comments::class);
+        return $this->belongsTo(\App\Models\Comment\Comments::class);
+    }
+
+    public function likeable()
+    {
+        return $this->morphTo();
+    }
+
+    public function likes()
+    {
+        return $this->morphMany('\App\Models\User\Litlike', 'likeable');
     }
 }

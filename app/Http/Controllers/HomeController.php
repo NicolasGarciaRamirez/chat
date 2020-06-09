@@ -12,7 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
+        $posts = Post::with('likes.user','user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user' ,'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
         return view('home', compact('posts'));
     }
 
