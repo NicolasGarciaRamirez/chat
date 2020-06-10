@@ -31,11 +31,17 @@
         },
         methods:{
             store(){
+                console.log('guarda')
+
                 axios.post(`/${Auth.state.username}/Comment/store/Comment/${this.comment.id}`, this.reply).then(res =>{
                     if (res.data.saved) {
                         this.reply.body = ''
                         this.comment.comments.unshift(res.data.comment)
+                        alert.open('asdd')
+                            console.log('aa')
                     }
+                    console.log('aa')
+
                 }).catch(err =>{
                     console.log(err)
                 })

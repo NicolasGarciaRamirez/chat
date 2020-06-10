@@ -13,7 +13,7 @@
             </div>
             <div class="comment-footer">
                 <span>{{ comment.time_ago }}</span>
-                <span class="mx-3">1 Lit</span>
+                <span class="mx-3">{{ comment.likes ? comment.likes.length : '0' }} lit</span>
                 <span @click="$parent.form_reply = true" class="cursor-pointer">Reply</span>
             </div>
         </div>
@@ -22,7 +22,6 @@
 
 <script>
 import Auth from '../../../helpers/Auth'
-import Like from '../../../helpers/likes'
     export default {
         props: ['comment'],
         data(){
@@ -30,7 +29,7 @@ import Like from '../../../helpers/likes'
                 lit:{
                     like: 'like'
                 },
-                url : `/${Auth.state.username}/LitLike/store/Comment/${this.comment.id}/like`
+                url : `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}`
             }
         },
         mounted(){
@@ -39,23 +38,24 @@ import Like from '../../../helpers/likes'
         },
         methods:{
             getLike() {
-                console.log(this.comment)
-                this.comment.likes.map(val => {
-                    if (Auth.state.username == val.user.username ) {
-                        $(`#lit`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" width="20">')
-                        this.url = `/${Auth.state.username}/LitLike/store/Comment/${this.comment.id}/unlike/${val.id}`
-                        this.lit.like = 'unlike'
-                    }
-                })
+                if (this.comment.likes) {
+                    this.comment.likes.map(val => {
+                        if (Auth.state.username == val.user.username ) {
+                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
+                            this.url = `/${Auth.state.username}/LitLike/unlike/${val.id}`
+                            this.lit.like = 'unlike'
+                        }
+                    })
+                }
             },
             colorFlame(type){
                 if (Auth.state.token) {     
                     if (type == 'like') {
-                        $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" width="20">')
+                        $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
                         this.store(type)
                     }
                     if(type == 'unlike'){
-                        $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" width="20">')
+                        $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="20">')
                         this.store(type)
                     }
                 }else{
@@ -64,17 +64,29 @@ import Like from '../../../helpers/likes'
 
             },
             store(type){
+                var id_like = ''
+                if (type == 'unlike') {
+                    this.comment.likes.map(value =>{
+                        if (Auth.state.uusername == value.user.username) {
+                            this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
+                            id_like = value.id
+                        }
+                    })
+                }else{
+                    this.url = `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}`
+                }
                 axios.post(this.url, this.lit).then(res =>{
                     if (res.data.saved) {
-                        if (type == 'like') {
-                            this.lit.like = 'unlike'
-                            this.comment.likes.unshift(res.data.like)
-                        }else{
-                            this.lit.like = 'like'
-                            var indice = this.comment.likes.indexOf(res.data.like)
-                            this.comment.likes.splice(indice, 1)
-                        }
+                        this.lit.like = 'unlike'
+                        this.comment.likes.unshift(res.data.like)
                     }
+                    if (res.data.unlike) {
+                        this.lit.like = 'like'
+                        var indice = this.comment.likes.indexOf(id_like)
+                        this.comment.likes.splice(indice, 1)
+                    }
+                        
+                    
                 }).catch(err =>{
                     console.log(err)
                 })

@@ -10,6 +10,8 @@ import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'
 
+import Toasted from 'vue-toasted';
+Vue.use(Toasted)
 
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);

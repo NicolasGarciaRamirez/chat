@@ -35,11 +35,18 @@
         },
         methods:{
             save(){
+                
                 if (Auth.state.token) {
                     axios.post(`/${Auth.state.username}/Comment/store/Post/${this.post.id}`, this.comment).then(res => {
                         if (res.data.saved) {
                             this.comment.body = ''
                             this.post.comments.unshift(res.data.comment)
+                            this.$toasted.show('The comment has been saved successfully!', {
+                                position: "bottom-right", 
+                                duration : 4000,
+                                className: "p-4 notification bg-primary",
+                                keepOnHover: true
+                            })
                         }
                     }).catch(err =>{
                         

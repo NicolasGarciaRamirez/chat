@@ -1,5 +1,5 @@
 <template>
-    <section class="post mt-3">
+    <section class="post mt-3" v-if="view_post">
         <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
                 <button class="bg-primary align-items-right border-white">FOLLOW
@@ -25,12 +25,12 @@
                 </button>
                 <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white dowpdown-menu-post p-2" aria-labelledby="dropdownMenuPost">
-                    <a href="#" class="dropdown-item">Go To User Profile</a>
+                    <a :href="`/${post.user.username}/Profile/WorkHistory`" class="dropdown-item">Go To User Profile</a>
                     <a href="#" class="dropdown-item">Message User</a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">Go To Post</a>
                     <a href="#" class="dropdown-item">Copy Link</a>
-                    <a href="#" class="dropdown-item">Hide Post</a>
+                    <a @click="view_post = false" class="dropdown-item">Hide Post</a>
                     <a href="#" class="dropdown-item">Report</a>
                     <a href="#" class="dropdown-item">Add To Playlist</a>
                 </div>
@@ -81,15 +81,16 @@
                     <span class="ml-1 c-fourth">{{ post.time_ago }}</span>
                 </div>
                 <div class="d-flex c-fourth my-3">
-                    <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>
-                    <div class="information"><img src="/images/icons/post-percentage-down-red.svg" alt=""><span class="c-fifth">100</span></div>
+                    <div :id="`voteUp`+this.post.id" class="information" @click="colorVote('vote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>0</span></div>
+                    <div :id="`voteDown`+this.post.id" class="information" @click="colorVote('vote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>0</span></div>
 
                     <div :id="`lit`+this.post.id" class="information" @click="colorFlame(lit.like)" >
-                        <img src="/images/icons/post-flame.svg" height="25"><span>{{ post.likes.length }}</span>
+                        <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                     </div>
                     <div class="information"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
                     <div class="information"><img src="/images/icons/post-up.svg" alt="">100</div>
-                    <div class="information"><img src="/images/icons/post-down.svg" alt="">100</div>
+
+                    <div class="information" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
                 </div>
             </div>
             <comments :post="post" />
@@ -109,11 +110,11 @@
         },
         data(){
             return {
+                view_post: true,
                 lit:{
                     like: 'like',
-
                 },
-                url : `/${Auth.state.username}/LitLike/store/Post/${this.post.id}/like`
+                url : `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
             }
         },
         mounted(){
@@ -121,30 +122,6 @@
             this.getLike()
         },
         methods:{
-            getLike() {
-                this.post.likes.map(val => {
-                    if (Auth.state.username == val.user.username ) {
-                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="25">')
-                        this.url = `/${Auth.state.username}/LitLike/store/Post/${this.post.id}/unlike/${val.id}`
-                        this.lit.like = 'unlike'
-                    }
-                })
-            },
-            colorFlame(type){
-                if (Auth.state.token) {     
-                    if (type == 'like') {
-                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="25">')
-                        this.store(type)
-                    }
-                    if(type == 'unlike'){
-                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="25">')
-                        this.store(type)
-                    }
-                }else{
-                    $('#ModalLogin').modal('show')
-                }
-
-            },
             showModalSupport(){
                 $('#modalSupport').modal('show')
             },
@@ -157,23 +134,82 @@
             // showModalPost(){
             //     $('#ModalPost').modal('show')
             // }
-            store(type){
+            getLike() {
+                if (this.post.likes) {
+                    this.post.likes.map(val => {
+                        if (Auth.state.username == val.user.username ) {
+                            $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
+                            this.url = `/${Auth.state.username}/LitLike/unlike/${val.id}`
+                            this.lit.like = 'unlike'
+                        }
+                    })
+                }
+            },
+            colorFlame(type){
+                if (Auth.state.token) {     
+                    if (type == 'like') {
+                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
+                        this.store(type)
+                    }
+                    if(type == 'unlike'){
+                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="22">')
+                        this.store(type)
+                    }
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
 
-                console.log(this.url)
-                // axios.post(this.url, this.lit).then(res =>{
-                //     if (res.data.saved) {
-                //         if (type == 'like') {
-                //             this.lit.like = 'unlike'
-                //             this.post.likes.unshift(res.data.like)
-                //         }else{
-                //             this.lit.like = 'like'
-                //             var indice = this.post.likes.indexOf(res.data.like)
-                //             this.post.likes.splice(indice, 1)
-                //         }
-                //     }
-                // }).catch(err =>{
-                //     console.log(err)
-                // })
+            },
+            colorVote(type){
+                if (Auth.state.token) {     
+                    if (type == 'vote_up') {
+                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
+                        $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
+                        
+                        // this.store(type)
+                    }
+                    if(type == 'vote_down'){
+                        $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
+                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+
+                        // this.store(type)
+                    }
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
+            },
+            store(type){
+                if (type == 'unlike') {
+                    if (this.post.likes) {
+                        this.post.likes.map(value => {
+                            if (Auth.state.username == value.user.username) {
+                                this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
+                            }
+                        })
+                    }
+                }else{
+                    this.url =  `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
+                }
+
+                if (type == 'vote_up') {
+                    this.url =  `/${Auth.state.username}/Votes/VoteUp/Post/${this.post.id}`
+                }else{
+                    this.url =  `/${Auth.state.username}/Votes/VoteDown/Post/${this.post.id}`
+                }
+                axios.post(this.url, this.lit).then(res =>{
+                    if (res.data.saved) {
+                        this.lit.like = 'unlike'
+                        this.post.likes.unshift(res.data.like)
+                    }
+                    if (res.data.unlike) {
+                        this.lit.like = 'like'
+                        var indice = this.post.likes.indexOf(res.data.like)
+                        this.post.likes.splice(indice, 1)
+                    }
+                    
+                }).catch(err =>{
+                    console.log(err)
+                })
             }
 
         }

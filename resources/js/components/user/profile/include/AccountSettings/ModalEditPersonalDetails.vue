@@ -93,7 +93,12 @@ export default {
                 if (res.data.updated) {
                     this.$parent.user.personal_information = this.data
                     this.disable = false
-                    alert('Has been information updated')
+                    this.$toasted.show('The profile information has been updated successfully!', {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
                 }
             }).catch(err =>{
                 this.disable = false

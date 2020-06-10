@@ -32,6 +32,7 @@
                         color: black;
                     }
                     &:active{
+                        border-color: $fifth-color !important;
                         background-color: $fifth-color !important;
                         color: white !important;
                     }

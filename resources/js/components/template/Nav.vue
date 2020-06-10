@@ -72,7 +72,6 @@
             <img src="/images/sharks-menu.svg" alt="">
         </li>
         <li class="c-sidebar-nav-item">
-            SoundStorming
             <span class="float-sm-right c-fifth dot">•</span>
         </li>
         <li class="c-sidebar-nav-item p-0">

@@ -21,9 +21,8 @@ class LitLikeController extends Controller
         });
     }
 
-    public function store(Request $request, $username, $model, $id_model, $type, $id_like = null)
+    public function like(Request $request, $username, $model, $id_model)
     {   
-        return $id_like;
         \DB::beginTransaction();
 
         try {
@@ -33,40 +32,39 @@ class LitLikeController extends Controller
                 $model = Comment::find($id_model);
             }
 
-            // return $type;
             if ($request->like == 'like') {
                 $like = new LitLike($request->all());
                 $like->user()->associate($this->user);
                 $model->likes()->save($like);
-            } elseif ($request->like == 'unlike'){
-                $lit = LitLike::find($id_like);
-                $lit->delete();
+            }else{
+                $like = null; 
             }
+        
             
             \DB::commit();
             return response()->json([
                 'saved' => true,
-                'like' => $like,
+                'like' => $like ,
                 'errors' => null
             ]);
         } catch (\Exception $e) {
             \DB::rollBack();
             return response()->json([
                 'saved' => false,
-                'like' => $like,
+                'like' => null,
                 'errors' => $e
             ]);
         }
 
     }
 
-    public function update(Request $request)
+    public function unlike($username ,LitLike $like)
     {
+        $like->delete();
 
-    }
-
-    public function delete(Request $request)
-    {
-
+        return response()->json([
+            'unlike' => true,
+            'errors' => null,
+        ]);
     }
 }

@@ -27696,6 +27696,12 @@ textarea {
   cursor: pointer;
 }
 
+.notification {
+  background: #141414;
+  border-left: 3px solid #FF0000;
+  box-shadow: 0px 7.5px 15px 5px rgba(0, 0, 0, 0.75);
+}
+
 .c-header .cil-hamburger-menu {
   color: #535353;
   font-size: 30px;
@@ -28494,9 +28500,19 @@ button:focus {
   min-height: 10rem;
 }
 
+.profile .img-container .img-portada img {
+  max-width: 1450px;
+  min-width: 1450px;
+}
+
 @media (min-width: 992px) {
   .profile .img-container .img-portada {
     max-height: 15rem;
+  }
+
+  .profile .img-container .img-portada img {
+    min-width: 1450px;
+    max-width: 1450px;
   }
 }
 
@@ -29282,6 +29298,7 @@ button:focus {
 }
 
 .posts .post .post-head .post-user-actions button:active {
+  border-color: #FF0000 !important;
   background-color: #FF0000 !important;
   color: white !important;
 }

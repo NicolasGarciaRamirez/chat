@@ -410,7 +410,12 @@ export default {
             await axios.post(this.url, data_send).then(res => {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
-                    alert('the personal information has been updated')
+                    this.$toasted.show('The profile information has been updated successfully!', {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
                 }
                 if (res.data.saved) {
                     this.url =`/${this.user.username}/Edit/Profile`

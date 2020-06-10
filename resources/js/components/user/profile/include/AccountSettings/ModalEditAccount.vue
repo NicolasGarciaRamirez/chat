@@ -86,7 +86,12 @@ export default {
             this.disable = true
             axios.post(`/User/Settings/Update/${this.user.username}`, this.user).then(res =>{
                 if (res.data.updated) {
-                    alert('Has been update Information')
+                    this.$toasted.show('The account information has been updated successfully!', {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
                     this.disable = false
                     window.location.reload()
                 }

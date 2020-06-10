@@ -80,7 +80,12 @@ export default {
             axios.post(`/User/Settings/Update/${this.user.username}`, this.user).then(res => {
                 if (res.data.updated) {
                     this.disable = false
-                    alert('Chnge Password Succesfull')
+                    this.$toasted.show('Chnge Password Succesfull', {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
                     $('#ModalEditPassword').modal('toggle')
                 }
             }).catch(err => {

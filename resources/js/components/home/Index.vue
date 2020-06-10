@@ -152,6 +152,9 @@
                     if (this.post.resource) {
                         imagePost.append('imagePost', this.post.resource, this.post.resource)
                         imagePost.append('imageType', this.post.resource_type)
+                        imagePost.append('allowDownload', this.post.allow_download)
+                        imagePost.append('replaceCaption', this.post.replace_caption)
+
                     }
                     imagePost.append('description', this.post.description)
                     imagePost.append('genre', this.post.genre)
@@ -163,6 +166,12 @@
                             this.initializeVariables()
                             this.posts_send.unshift(res.data.post)
                             $('html, body').animate({ scrollTop: 0 }, 'fast');
+                            this.$toasted.show('The publication has been successfully published!', {
+                                position: "bottom-right", 
+                                duration : 4000,
+                                className: "p-4 notification bg-primary",
+                                keepOnHover: true
+                            })
                         }else{
                             this.loading = false
                             console.log(res)
