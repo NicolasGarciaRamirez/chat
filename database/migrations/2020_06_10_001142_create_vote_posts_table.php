@@ -15,7 +15,12 @@ class CreateVotePostsTable extends Migration
     {
         Schema::create('vote_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('type_vote');
+            $table->unsignedBigInteger('posts_id');
+            $table->unsignedBigInteger('voteable_id');
+            $table->string('voteable_type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

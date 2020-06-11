@@ -66,4 +66,14 @@ class Post extends Model
     {
         return $this->morphMany('App\Models\User\LitLike', 'likeable');
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function votes()
+    {
+        return $this->morphMany('App\Models\Post\VotePosts', 'voteable');
+    }
 }

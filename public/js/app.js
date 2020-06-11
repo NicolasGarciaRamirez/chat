@@ -12115,15 +12115,24 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       view_post: true,
+      url: "",
       lit: {
         like: 'like'
       },
-      url: "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/LitLike/like/Post/").concat(this.post.id)
+      vote_type: '',
+      vote: {
+        type_vote: ''
+      },
+      votes: {
+        vote_up: [],
+        vote_down: []
+      }
     };
   },
   mounted: function mounted() {
     _helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].initialize();
     this.getLike();
+    this.getVote();
   },
   methods: {
     showModalSupport: function showModalSupport() {
@@ -12166,55 +12175,178 @@ __webpack_require__.r(__webpack_exports__);
         $('#ModalLogin').modal('show');
       }
     },
+    getVote: function getVote() {
+      var _this2 = this;
+
+      if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.token) {
+        if (this.post.votes) {
+          this.post.votes.map(function (vote) {
+            if (vote.type_vote == 'vote_up') {
+              _this2.votes.vote_up.push(vote);
+
+              $("#voteUp" + _this2.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">');
+              $("#voteDown" + _this2.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+              _this2.vote.type_vote = 'unvote_up';
+            } else if (vote.type_vote == 'vote_down') {
+              _this2.votes.vote_down.push(vote);
+
+              $("#voteDown" + _this2.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">');
+              $("#voteUp" + _this2.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+              _this2.vote.type_vote = 'unvote_down';
+            }
+          });
+        }
+      } else {
+        $('#ModalLogin').modal('show');
+      }
+    },
     colorVote: function colorVote(type) {
+      console.log(type);
+
       if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.token) {
         if (type == 'vote_up') {
           $("#voteUp" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">');
-          $("#voteDown" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">'); // this.store(type)
+          $("#voteDown" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+          this.vote.type_vote = 'vote_up';
+          this.store(type);
+        }
+
+        if (type == 'unvote_up') {
+          $("#voteUp" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+          $("#voteDown" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+          this.vote.type_vote = 'unvote_up';
+          this.store(type);
         }
 
         if (type == 'vote_down') {
           $("#voteDown" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">');
-          $("#voteUp" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">'); // this.store(type)
+          $("#voteUp" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+          this.vote.type_vote = 'vote_down';
+          this.store(type);
+        }
+
+        if (type == 'unvote_down') {
+          $("#voteDown" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+          $("#voteUp" + this.post.id + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+          this.vote.type_vote = 'unvote_down';
+          this.store(type);
         }
       } else {
         $('#ModalLogin').modal('show');
       }
     },
     store: function store(type) {
-      var _this2 = this;
+      var _this3 = this;
+
+      var request = '';
 
       if (type == 'unlike') {
+        request = this.lit;
+
         if (this.post.likes) {
           this.post.likes.map(function (value) {
             if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username == value.user.username) {
-              _this2.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/LitLike/unlike/").concat(value.id);
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/LitLike/unlike/").concat(value.id);
             }
           });
         }
-      } else {
+      }
+
+      if (type == 'like') {
+        request = this.lit;
         this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/LitLike/like/Post/").concat(this.post.id);
       }
 
       if (type == 'vote_up') {
-        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/Votes/VoteUp/Post/").concat(this.post.id);
-      } else {
-        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/Votes/VoteDown/Post/").concat(this.post.id);
+        request = this.vote;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/VotePost/VoteUp/").concat(this.post.id);
+
+        if (this.vote.vote_down) {
+          this.vote.vote_down.map(function (vote) {
+            console.log(vote);
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/VotePost/VoteUp/").concat(_this3.post.id, "/").concat(vote.id);
+          });
+        }
       }
 
-      axios.post(this.url, this.lit).then(function (res) {
-        if (res.data.saved) {
-          _this2.lit.like = 'unlike';
+      if (type == 'unvote_up') {
+        if (this.votes.vote_up) {
+          this.votes.vote_up.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/VotePost/UnVoteUp/").concat(vote.id);
+          });
+        }
+      }
 
-          _this2.post.likes.unshift(res.data.like);
+      if (type == 'vote_down') {
+        request = this.vote;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/VotePost/VoteDown/").concat(this.post.id);
+
+        if (this.votes.vote_down) {
+          this.votes.vote_down.map(function (vote) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username == vote.posts.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/VotePost/VoteDown/").concat(_this3.post.id, "/").concat(vote.id);
+            }
+          });
+        }
+      }
+
+      if (type == 'unvote_down') {
+        if (this.votes.vote_down) {
+          this.votes.vote_down.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_2__["default"].state.username, "/VotePost/UnVoteDown/").concat(vote.id);
+          });
+        }
+      }
+
+      axios.post(this.url, request).then(function (res) {
+        if (res.data.saved) {
+          _this3.lit.like = 'unlike';
+
+          _this3.post.likes.unshift(res.data.like);
         }
 
         if (res.data.unlike) {
-          _this2.lit.like = 'like';
+          _this3.lit.like = 'like';
 
-          var indice = _this2.post.likes.indexOf(res.data.like);
+          var indice = _this3.post.likes.indexOf(res.data.like);
 
-          _this2.post.likes.splice(indice, 1);
+          _this3.post.likes.splice(indice, 1);
+        }
+
+        if (res.data.voteUp) {
+          _this3.votes.vote_up.unshift(res.data.voteUp);
+
+          var _indice = _this3.post.votes.indexOf(res.data.voteUp);
+
+          _this3.votes.vote_down.splice(_indice, 1);
+
+          _this3.vote.type_vote = 'unvote_up';
+        }
+
+        if (res.data.unvoteUp) {
+          var _indice2 = _this3.post.votes.indexOf(res.data.unvoteUp);
+
+          _this3.votes.vote_up.splice(_indice2, 1);
+
+          _this3.vote.type_vote = 'unvote_up';
+        }
+
+        if (res.data.voteDown) {
+          _this3.votes.vote_down.unshift(res.data.voteDown);
+
+          var _indice3 = _this3.post.votes.indexOf(res.data.voteDown);
+
+          _this3.votes.vote_up.splice(_indice3, 1);
+
+          _this3.vote.type_vote = 'unvote_down';
+        }
+
+        if (res.data.unvoteDown) {
+          var _indice4 = _this3.post.votes.indexOf(res.data.unvoteDown);
+
+          _this3.votes.vote_down.splice(_indice4, 1);
+
+          _this3.vote.type_vote = 'unvote_up';
         }
       })["catch"](function (err) {
         console.log(err);
@@ -72254,7 +72386,13 @@ var render = function() {
                     attrs: { id: "voteUp" + this.post.id },
                     on: {
                       click: function($event) {
-                        return _vm.colorVote("vote_up")
+                        return _vm.colorVote(
+                          _vm.vote_type == "" ||
+                            _vm.vote_type == "vote_down" ||
+                            _vm.vote_type == "unvote_down"
+                            ? (_vm.vote_type = "vote_up")
+                            : (_vm.vote_type = "unvote_up")
+                        )
                       }
                     }
                   },
@@ -72265,7 +72403,7 @@ var render = function() {
                         alt: ""
                       }
                     }),
-                    _c("span", [_vm._v("0")])
+                    _c("span", [_vm._v(_vm._s(_vm.votes.vote_up.length))])
                   ]
                 ),
                 _vm._v(" "),
@@ -72276,7 +72414,13 @@ var render = function() {
                     attrs: { id: "voteDown" + this.post.id },
                     on: {
                       click: function($event) {
-                        return _vm.colorVote("vote_down")
+                        return _vm.colorVote(
+                          _vm.vote_type == "" ||
+                            _vm.vote_type == "vote_up" ||
+                            _vm.vote_type == "unvote_up"
+                            ? (_vm.vote_type = "vote_down")
+                            : (_vm.vote_type = "unvote_down")
+                        )
                       }
                     }
                   },
@@ -72287,7 +72431,7 @@ var render = function() {
                         alt: ""
                       }
                     }),
-                    _c("span", [_vm._v("0")])
+                    _c("span", [_vm._v(_vm._s(_vm.votes.vote_down.length))])
                   ]
                 ),
                 _vm._v(" "),

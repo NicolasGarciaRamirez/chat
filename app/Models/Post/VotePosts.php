@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models\Post;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class LitLike extends Model
+class VotePosts extends Model
 {
-    
+    use SoftDeletes;
     /**
      * Undocumented variable
      *
      * @var array
      */
     protected $fillable = [
-        'like'
+        'type_post'
     ];
 
     /**
@@ -41,27 +41,16 @@ class LitLike extends Model
      *
      * @return void
      */
-    public function post()
+    public function posts()
     {
-        return $this->belongsTo(\App\Models\User\User::class);
+        return $this->belongsTo(\App\Models\Post\Post::class);
     }
-
     /**
      * Undocumented function
      *
      * @return void
      */
-    public function comments()
-    {
-        return $this->belongsTo(\App\Models\Comment\Comments::class);
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function likeable()
+    public function voteable()
     {
         return $this->morphTo();
     }
@@ -71,8 +60,8 @@ class LitLike extends Model
      *
      * @return void
      */
-    public function likes()
+    public function votes()
     {
-        return $this->morphMany('\App\Models\User\Litlike', 'likeable');
+        return $this->morphMany('\App\Models\Post\VotePost', 'voteable');
     }
 }

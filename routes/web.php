@@ -94,6 +94,15 @@ Route::group(['prefix' => '/{username}'], function () {
             Route::name('litlike.unlike')->post('/unlike/{like}', 'User\LitLikeController@unlike');
         });
     });
+
+    Route::group(['prefix' => 'VotePost'], function () {
+        Route::group(['middleware' => ['auth']], function () {
+            Route::name('vote.store.up')->post('/VoteUp/{post}/{vote?}', 'Post\VotePostsController@voteUp');
+            Route::name('vote.unvote.up')->post('/UnVoteUp/{votePost}', 'Post\VotePostsController@unvoteUp');
+            Route::name('vote.store.down')->post('/VoteDown/{post}/{vote?}', 'Post\VotePostsController@voteDown');
+            Route::name('vote.unvote.down')->post('/UnVoteDown/{votePost}', 'Post\VotePostsController@unvoteDown');
+        });
+    });
 });
 
 
