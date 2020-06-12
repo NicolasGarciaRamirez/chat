@@ -43,14 +43,12 @@ class LitLikeController extends Controller
             
             \DB::commit();
             return response()->json([
-                'saved' => true,
-                'like' => $like ,
+                'like' => $like->load('user'),
                 'errors' => null
             ]);
         } catch (\Exception $e) {
             \DB::rollBack();
             return response()->json([
-                'saved' => false,
                 'like' => null,
                 'errors' => $e
             ]);
@@ -58,12 +56,12 @@ class LitLikeController extends Controller
 
     }
 
-    public function unlike($username ,LitLike $like)
+    public function unlike($username , LitLike $like)
     {
         $like->delete();
 
         return response()->json([
-            'unlike' => true,
+            'unlike' => $like->load('user'),
             'errors' => null,
         ]);
     }

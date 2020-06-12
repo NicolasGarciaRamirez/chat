@@ -12,7 +12,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'description', 'resource', 'resource_type', 'genre', 'category'
+        'user_id', 'replace_caption' , 'allow_download' , 'description', 'resource', 'resource_type', 'genre', 'category', 'token'
     ];
 
     /**

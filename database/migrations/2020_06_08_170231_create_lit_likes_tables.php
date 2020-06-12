@@ -20,6 +20,7 @@ class CreateLitLikesTables extends Migration
             $table->unsignedBigInteger('likeable_id');
             $table->string('likeable_type');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -5,7 +5,7 @@
  */
 
 require('./bootstrap');
-require('readmore-js');
+require('./../../node_modules/readmore-js');
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
 import Vue from 'vue'
@@ -25,6 +25,7 @@ import RegisterIndex from './components/auth/include/RegisterIndex'
 import ValidateLogin from "./components/auth/ValidateLogin";
 
 import Home from './components/home'
+import PostView from './components/stream/PostView'
 
 import ChannelActivity from './components/user/channel/ChannelActivity'
 import ChannelPlaylist from './components/user/channel/ChannelPlaylist'
@@ -53,6 +54,7 @@ new Vue({
         Register,
         RegisterIndex,
         Home,
+        PostView,
         ChannelActivity,
         ChannelPlaylist,
         ChannelEdit,

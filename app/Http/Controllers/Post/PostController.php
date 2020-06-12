@@ -26,11 +26,10 @@ class PostController extends Controller
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function get()
+    public function get($username, $token)
     {
-        return response()->json([
-            'user' => $this->user
-        ]);
+        $post = Post::with('votes.user', 'likes.user','user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user' ,'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
+        return view('post.view', compact('post'));
     }
 
     /**
@@ -44,17 +43,34 @@ class PostController extends Controller
 
         try {
             if ($request->imagePost != null) {
-                $request->validate([
-                    'imagePost' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
-                ]);
-                $imagePost = $this->setImage($request);
+                // $request->validate([
+                //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+                // ]);
+                if ($request->resource_type == 'image') {
+                    $imagePost = $this->setImage($request);
+                }
+                if ($request->resource_type == 'video') {
+                    $key = md5(\Auth::user()->id);
+                    $hash = \Str::random(10);
+                    $imagePost = "/images/post/videos/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp4";
+                    $request->imagePost->move(public_path("/images/post/videos/{$hash}/{$key}"), $imagePost);
+                }
+                if ($request->resource_type == 'audio') {
+                    $key = md5(\Auth::user()->id);
+                    $hash = \Str::random(10);
+                    $imagePost = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp3";
+                    $request->imagePost->move(public_path("/images/post/audio/{$hash}/{$key}"), $imagePost);
+                }
+
+
             }else{
                 $imagePost = null;
             }
 
             $post = new Post($request->all());
             $post->resource = $imagePost;
-            $post->resource_type = $request->imageType;
+            $post->resource_type = $request->resource_type;
+            $post->token = \Str::random(80);
             $this->user->posts()->save($post);
 
             \DB::commit();

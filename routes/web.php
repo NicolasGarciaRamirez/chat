@@ -73,7 +73,7 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 
     Route::group(['prefix' => 'Post'], function () {
-        // Route::name('post.get')->get('/get', 'User\PostController@get');
+        Route::name('post.get')->get('/get/{token}/', 'Post\PostController@get');
         Route::group(['middleware' => ['auth']], function () {
             Route::name('post.store')->post('/store', 'Post\PostController@store');
             Route::name('post.update')->put('/update', 'Post\PostController@update');
@@ -98,9 +98,9 @@ Route::group(['prefix' => '/{username}'], function () {
     Route::group(['prefix' => 'VotePost'], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::name('vote.store.up')->post('/VoteUp/{post}/{vote?}', 'Post\VotePostsController@voteUp');
-            Route::name('vote.unvote.up')->post('/UnVoteUp/{votePost}', 'Post\VotePostsController@unvoteUp');
+            Route::name('vote.unvote.up')->post('/UnVoteUp/{vote}', 'Post\VotePostsController@unvoteUp');
             Route::name('vote.store.down')->post('/VoteDown/{post}/{vote?}', 'Post\VotePostsController@voteDown');
-            Route::name('vote.unvote.down')->post('/UnVoteDown/{votePost}', 'Post\VotePostsController@unvoteDown');
+            Route::name('vote.unvote.down')->post('/UnVoteDown/{vote}', 'Post\VotePostsController@unvoteDown');
         });
     });
 });
@@ -110,4 +110,3 @@ Route::group(['prefix' => '/{username}'], function () {
 Route::get('/report', function(){
     return view('reports');
 });
-

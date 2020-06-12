@@ -7,13 +7,13 @@
                     <span ><a :href="`/${comment.user.username}/Profile/WorkHistory`" class="font-weight-bold no-underline text-white">{{ comment.user.personal_information.full_name }}</a></span>
                     <span class="ml-2">{{ comment.body }}</span>
                 </div>
-                <div :id="`litComment`+comment.id" @click="colorFlame(lit.like)">
+                <div :id="`litComment`+comment.id" @click="colorFlame(like_type)">
                     <img src="/images/icons/post-flame.svg" alt="flame-red" class=" float-right" height="20">
                 </div>
             </div>
             <div class="comment-footer">
                 <span>{{ comment.time_ago }}</span>
-                <span class="mx-3">{{ comment.likes ? comment.likes.length : '0' }} lit</span>
+                <span class="mx-3">{{ likes.length }} lit</span>
                 <span @click="$parent.form_reply = true" class="cursor-pointer">Reply</span>
             </div>
         </div>
@@ -26,10 +26,12 @@ import Auth from '../../../helpers/Auth'
         props: ['comment'],
         data(){
             return {
+                like_type:'like',
+                url : ``,
                 lit:{
                     like: 'like'
                 },
-                url : `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}`
+                likes:[]
             }
         },
         mounted(){
@@ -39,17 +41,21 @@ import Auth from '../../../helpers/Auth'
         methods:{
             getLike() {
                 if (this.comment.likes) {
-                    this.comment.likes.map(val => {
-                        if (Auth.state.username == val.user.username ) {
-                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
-                            this.url = `/${Auth.state.username}/LitLike/unlike/${val.id}`
-                            this.lit.like = 'unlike'
-                        }
-                    })
+                    if (this.comment.likes[0] != null) {
+                        this.comment.likes.map(like => {
+                            this.likes.push(like)
+                            if (Auth.state.username == like.user.username ) {
+                                $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
+                                this.url = `/${Auth.state.username}/LitLike/unlike/${like.id}`
+                                this.like_type = 'unlike'
+                                this.lit.like = 'unlike'
+                            }
+                        })
+                    }
                 }
             },
             colorFlame(type){
-                if (Auth.state.token) {     
+                if (Auth.state.token) {
                     if (type == 'like') {
                         $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
                         this.store(type)
@@ -64,29 +70,28 @@ import Auth from '../../../helpers/Auth'
 
             },
             store(type){
-                var id_like = ''
                 if (type == 'unlike') {
-                    this.comment.likes.map(value =>{
-                        if (Auth.state.uusername == value.user.username) {
-                            this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
-                            id_like = value.id
-                        }
-                    })
-                }else{
+                    if (this.likes[0] != null) {
+                        this.likes.map(value =>{
+                            if (Auth.state.username == value.user.username) {
+                                this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
+                            }
+                        })
+                    }
+                }
+                if(type == 'like'){
                     this.url = `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}`
                 }
                 axios.post(this.url, this.lit).then(res =>{
-                    if (res.data.saved) {
-                        this.lit.like = 'unlike'
-                        this.comment.likes.unshift(res.data.like)
+                    if (res.data.like) {
+                        this.likes.unshift(res.data.like)
+                        this.like_type = 'unlike'
                     }
                     if (res.data.unlike) {
-                        this.lit.like = 'like'
-                        var indice = this.comment.likes.indexOf(id_like)
-                        this.comment.likes.splice(indice, 1)
+                        var indice = this.likes.indexOf(res.data.unlike)
+                        this.likes.splice(indice, 1)
+                        this.like_type = 'like'
                     }
-                        
-                    
                 }).catch(err =>{
                     console.log(err)
                 })

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LitLike extends Model
 {
-    
+    use SoftDeletes;
     /**
      * Undocumented variable
      *

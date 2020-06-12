@@ -21,19 +21,19 @@
                             <label for="input-sound">
                                 <img  src="/images/icons/sound.svg" alt="">
                             </label>
-                            <input id="input-sound" name="sound" type="file" accept=".mp3">
+                            <input id="input-sound" name="sound" type="file" accept=".mp3"  @change="previewImage" @click="post.resource_type = 'audio'">
                         </div>
                         <div class="img-upload">
                             <label for="input-video">
                                 <img src="/images/icons/video-camera.svg" alt="">
                             </label>
-                            <input id="input-video" name="video" type="file" accept=".mp4">
+                            <input id="input-video" name="video" type="file" accept=".mp4" @change="previewImage" @click="post.resource_type = 'video'">
                         </div>
                         <div class="img-upload">
                             <label for="input-image">
                                 <img src="/images/icons/image.svg" alt=""   name="sound">
                             </label>
-                            <input id="input-image" name="img" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" />
+                            <input id="input-image" name="img" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" @click="post.resource_type = 'image'"/>
                         </div>
                         <div class="img-upload pr-2">
                             <label for="input-docs">
@@ -68,15 +68,16 @@
                     </div>
                     <div class="d-flex flex-row justify-content-start">
                         <div class="select">
-                            <select class="select-form m-2" v-model="post.genre" required>
+                            <select class="select-form m-2" v-model="post.genre" required style="max-width: 180px;">
                                 <option value="">Select Genre</option>
-                                <option value="Rock">Rock</option>
+                                <option v-for="(genre, index) in genres" :key="index" :value="genre.principal_genre">{{ genre.principal_genre }}</option>
+                           
                             </select>
                         </div>
                         <div class="select">
                             <select class="select-form m-2" v-model="post.category" required>
                                 <option value="">Select Category</option>
-                                <option value="Sax">sax</option>
+                                <option v-for="(category, index) in categories" :key="index" :value="category.principal_service">{{ category.principal_service }}</option>
                             </select>
                         </div>
                         <div class="select">
@@ -96,7 +97,8 @@
     import Posts from "../stream/Posts";
     import Auth from "../../helpers/Auth"
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
-
+    import Genres from '../../helpers/Genres'
+    import Services from '../../helpers/Services'
     export default {
         props:['posts'],
         components:{
@@ -121,11 +123,13 @@
                     allow_download:"",
                     description:"",
                     resource: null,
-                    resource_type: null,
+                    resource_type: 'image',
                     genre:"",
                     category: "",
                 },
-                posts_send: []
+                posts_send: [],
+                genres: Genres.getAllGenres(),
+                categories: Services.getAllServices()
             }
         },
         mounted(){
@@ -135,7 +139,6 @@
         methods:{
             previewImage(event) {
                 this.post.resource = event.target.files[0]
-                this.post.resource_type = 'image'
                 var input = event.target;
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -151,9 +154,10 @@
                     var imagePost = new FormData();
                     if (this.post.resource) {
                         imagePost.append('imagePost', this.post.resource, this.post.resource)
-                        imagePost.append('imageType', this.post.resource_type)
+                        imagePost.append('resource_type', this.post.resource_type)
                         imagePost.append('allowDownload', this.post.allow_download)
                         imagePost.append('replaceCaption', this.post.replace_caption)
+                        console.log(imagePost)
 
                     }
                     imagePost.append('description', this.post.description)
@@ -174,10 +178,8 @@
                             })
                         }else{
                             this.loading = false
-                            console.log(res)
                         }
                     }).catch(err=>{
-                        console.log(err)
                         this.loading = false
                     })
                 }else{

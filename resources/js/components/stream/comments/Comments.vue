@@ -17,13 +17,12 @@
     import ModalLogin from '../../auth/Login'
     import Auth from '../../../helpers/Auth'
     export default {
-        props:['post'],
+        props:['post', 'view_comment'],
         data(){
             return {
                 comment:{
                     body: '',
                 },
-                view_comment: false
             }
         },
         components:{

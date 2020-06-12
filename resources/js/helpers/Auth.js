@@ -13,6 +13,7 @@ export default{
         localStorage.setItem('token', token)
         localStorage.setItem('username', username)
         localStorage.setItem('avatar', avatar)
+        
         this.initialize()
     },
     remove(){
@@ -20,5 +21,8 @@ export default{
         localStorage.removeItem('username')
         localStorage.removeItem('avatar')
         this.initialize()
+    },
+    getExpire(){
+        
     }
 }

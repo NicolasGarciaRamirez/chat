@@ -34,16 +34,17 @@ class VotePostsController extends Controller
     public function voteUp(Request $request , $username, Post $post, VotePosts $vote = null)
     {
         if ($vote) {
-            $vote->update(['type_vote' => 'vote_down']);
+            $vote->type_vote = 'vote_up';
+            $vote->update();
         }elseif ($request->type_vote == 'vote_up'){
             $vote = new VotePosts($request->all());
             $vote->type_vote = $request->type_vote;
-            $vote->posts()->associate($this->user);
+            $vote->user()->associate($this->user);
             $post->votes()->save($vote);
         }
 
         return response()->json([
-            'voteUp' => $vote,
+            'voteUp' => $vote->load('user'),
             'errors' => null
         ]);
     }
@@ -72,19 +73,20 @@ class VotePostsController extends Controller
      * @param [type] $vote
      * @return void
      */
-    public function voteDown(Request $request, $username, Post $post, VotePosts $votePost = null)
+    public function voteDown(Request $request, $username, Post $post, VotePosts $vote = null)
     {
-        if ($votePost){
-            $votePost->update($request->all());
+        if ($vote){
+            $vote->type_vote = 'vote_down';
+            $vote->update();
         }else{
             $vote = new VotePosts($request->all());
             $vote->type_vote = $request->type_vote;
-            $vote->posts()->associate($this->user);
+            $vote->user()->associate($this->user);
             $post->votes()->save($vote);
         }
 
         return response()->json([
-            'voteDown' => $vote,
+            'voteDown' => $vote->load('user'),
             'errors' => null
         ]);
     }
