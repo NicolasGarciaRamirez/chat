@@ -12355,7 +12355,7 @@ __webpack_require__.r(__webpack_exports__);
     getStyleAudio: function getStyleAudio() {
       if (this.post.resource_type == 'audio') {
         var audio = wavesurfer_js__WEBPACK_IMPORTED_MODULE_3___default.a.create({
-          container: '#waveform',
+          container: "#waveform" + this.post.token,
           waveColor: 'gray',
           barHeight: 10,
           cursorColor: 'red',
@@ -73313,7 +73313,9 @@ var render = function() {
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.post.resource_type == "audio"
-                      ? _c("div", { attrs: { id: "waveform" } })
+                      ? _c("div", {
+                          attrs: { id: "waveform" + _vm.post.token }
+                        })
                       : _vm._e(),
                     _vm._v(" "),
                     _vm.post.resource_type == "audio"

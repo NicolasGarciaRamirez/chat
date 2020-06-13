@@ -55,7 +55,7 @@
             <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
                 <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
                 <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
-                <div id="waveform" v-if="post.resource_type == 'audio'"></div>
+                <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
                 <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
                     <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                     <div :id="`play`+post.token"  @click="playAudio(audio, isPlaying)" >
@@ -166,7 +166,7 @@
             getStyleAudio(){
                 if (this.post.resource_type == 'audio') {
                     var audio = WaveSurfer.create({
-                        container: '#waveform',
+                        container: `#waveform`+this.post.token,
                         waveColor: 'gray',
                         barHeight: 10,
                         cursorColor: 'red',
