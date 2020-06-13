@@ -22,7 +22,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, true)) {
             return response()->json([
                 'user' => Auth::user(),
                 'auth' => true
@@ -71,7 +71,7 @@ class AuthController extends Controller
             //  if ($user->subscription_type == 'FREE') $user->notify(new NewUserFree($personal_information->full_name));
 
             \DB::commit();
-            Auth::login($user);
+            Auth::login($user, true);
 
             return response()->json([
                 'saved' => true,
@@ -94,7 +94,11 @@ class AuthController extends Controller
      */
     public function sedEmailForgotPassword(Request $request)
     {
-        $user = User::with('personal_information')->whereEmail($request->email)->first();
+        if ($request->email) {
+            $user = User::with('personal_information')->whereEmail($request->email)->first();
+        }else if($request->artistic_name){
+            $user = User::with('personal_information', 'profile_information')->where('profile_information.artistic_name', $request->artistic_name)->first();
+        }
 
         if (!$user) {
             return response()->json([
@@ -102,9 +106,16 @@ class AuthController extends Controller
             ]);
         }
 
-        \Mail::to($request->email)->send(new \App\Mail\ForgotPassword($user, $user->personal_information->full_name));
+        \Mail::to($user->email)->send(new \App\Mail\ForgotPassword($user, $user->personal_information->full_name));
         return response()->json([
+            'send' => true,
             'message' => 'We send you an email to follow the instructions'
         ]);
+    }
+
+    public function passwordReset($token)
+    {
+        $user = User::whereToken($token)->first();
+        return view('user.auth.password_reset', compact('user'));
     }
 }

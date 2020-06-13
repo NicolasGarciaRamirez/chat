@@ -114,7 +114,7 @@ class UserSocialAuthController extends Controller
     {
         if (decrypt($hash) == $user) {
             $user = User::find($user);
-            auth()->login($user);
+            auth()->login($user, true);
             return view('user.auth.validate-login', compact('user'));
         }
 

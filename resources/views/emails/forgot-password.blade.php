@@ -271,7 +271,7 @@
                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0002;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;width:auto; width:auto;;border-top:1px solid #ff0002;border-right:1px solid #ff0002;border-bottom:1px solid #ff0002;border-left:1px solid #ff0002;padding-top:5px;padding-bottom:5px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
                                             <span
                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
-                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong>Set A New Password</strong></span></span>
+                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a href="/PasswordReset/{{ $user->token }}"></a> Set A New Password</strong></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>

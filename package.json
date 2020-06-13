@@ -34,6 +34,7 @@
         "readmore-js": "^2.2.1",
         "vee-validate": "^2.2.15",
         "vue-hashtag-textarea": "^0.3.7",
-        "vue-toasted": "^1.1.28"
+        "vue-toasted": "^1.1.28",
+        "wavesurfer.js": "^3.3.3"
     }
 }

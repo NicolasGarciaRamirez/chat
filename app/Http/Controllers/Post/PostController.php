@@ -44,7 +44,7 @@ class PostController extends Controller
         try {
             if ($request->imagePost != null) {
                 // $request->validate([
-                //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+                //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4,pdf,doc,docx,xls'
                 // ]);
                 if ($request->resource_type == 'image') {
                     $imagePost = $this->setImage($request);
@@ -61,7 +61,12 @@ class PostController extends Controller
                     $imagePost = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp3";
                     $request->imagePost->move(public_path("/images/post/audio/{$hash}/{$key}"), $imagePost);
                 }
-
+                if ($request->resource_type == 'docs') {
+                    $key = md5(\Auth::user()->id);
+                    $hash = \Str::random(10);
+                    $imagePost = "/images/post/docs/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}";
+                    $request->imagePost->move(public_path("/images/post/docs/{$hash}/{$key}"), $imagePost);
+                }
 
             }else{
                 $imagePost = null;

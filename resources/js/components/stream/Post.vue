@@ -49,13 +49,24 @@
             </div>
         </div>
         <div class="post-body bg-primary">
-            <div class="text p-3 item" id="description">
+            <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
                 {{ post.description }}
             </div>
             <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
                 <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
-                <video :src="`${post.resource}`" controls autoplay  v-if="post.resource_type == 'video'" />
-                <audio :src="`${post.resource}`" type=”audio/mp3″ controls autoplay v-if="post.resource_type == 'audio'" />
+                <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
+                <div id="waveform" v-if="post.resource_type == 'audio'"></div>
+                <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
+                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
+                    <div :id="`play`+post.token"  @click="playAudio(audio, isPlaying)" >
+                        <img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">
+                    </div>
+                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
+                </div>
+                <iframe :src="`${post.resource}`" frameborder="0" v-if="post.resource_type == 'docs'" style="min-height: 20rem; max-height: 20rem;"></iframe>
+                <a class="text-white" :href="`${post.resource}`" v-if="post.resource_type == 'docs'">
+                    <h2>{{ post.description }}</h2>
+                </a>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none d-md-none">
                  <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger mx-2  w-100" @click="showModalSupport">SUPPORT
@@ -104,6 +115,7 @@
     import Comments from './comments/Comments'
     import ModalLogin from '../auth/Login'
     import Auth from '../../helpers/Auth'
+    import WaveSurfer from 'wavesurfer.js';
 
     export default {
         props:['post', 'view_comment'],
@@ -113,6 +125,8 @@
         },
         data(){
             return {
+                audio: '',
+                isPlaying: true,
                 view_post: true,
                 url : ``,
                 lit:{
@@ -134,6 +148,7 @@
             this.getLike()
             this.getVote()
             this.readmore()
+            this.getStyleAudio()
         },
         methods:{
             showModalSupport(){
@@ -146,12 +161,44 @@
                 $('#ModalRegister').modal('show')
             },
             // showModalPost(){
-            //     $('#ModalPost').modal('show')
+                //     $('#ModalPost').modal('show')
             // }
+            getStyleAudio(){
+                if (this.post.resource_type == 'audio') {
+                    var audio = WaveSurfer.create({
+                        container: '#waveform',
+                        waveColor: 'gray',
+                        barHeight: 10,
+                        cursorColor: 'red',
+                        cursorWidth: 0,
+                        forceDecode: true,
+                        hideScrollbar: true,
+                        progressColor: 'red',
+                        responsive: true
+                    });
+                    audio.load(this.post.resource)
+                    audio.setHeight(200) 
+                    this.audio = audio
+                }
+            },
+            playAudio(audio){
+                if(!this.isPlaying){
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">`)
+                    this.isPlaying = true
+                }else{
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Pause-red.svg" alt="" class=" mx-3" height="33">`)
+                    this.isPlaying = false
+                }
+                audio.playPause()
+            },
+            backward(audio){
+                audio.skipBackward(10)
+            },
+            forward(audio){
+                audio.skipForward(10)
+            },
             readmore(){
                 $('#description').readmore({ speed: 75, lessLink: '<a href="#">Read More</a>' });
-                console.log($(this))
-                
             },
             copyLink(){
                 this.$toasted.show('The copy link been successfully!', {

@@ -15,17 +15,21 @@
         </div>
         <div class="container activities">
             <div class="row">
-                <div class="col-md-4 activity" v-for="(activity , index) in this.user.posts" :key="index">
-                    <img :src="`${activity.image}`" alt="activity" class="img-activity img-fluid">
-                    <h3 class="my-1">{{ activity.description }}</h3>
+                <div class="col-md-4 activity" v-for="(activity , index) in user.posts" :key="index">
+                    <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
+                    <video :src="`${activity.resource}`" controls  class="img-activity img-fluid" style="max-height: 10.8rem" v-if="activity.resource_type == 'video'" />
+                    <audio :src="`${activity.resource}`" type=”audio/mp3″ controls style="margin-top: 4rem; margin-bottom: 3.5rem;" v-if="activity.resource_type == 'audio'" />
+                    <iframe :src="`${activity.resource}`" frameborder="0" v-if="activity.resource_type == 'docs'"></iframe>
+                    <h3 class="m-1" v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video' || activity.resource_type == 'text'">{{ activity.description }}</h3>
+                    <h3 v-else><a :href="`${activity.resource}`" class="text-white">{{ activity.description }}</a></h3>
                     <div class="d-flex c-fourth my-3">
-                        <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>100</span></div>
-                        <div class="information"><img src="/images/icons/post-flame.svg" alt="">100</div>
-                        <div class="information"><img src="/images/icons/post-comment.svg" alt="">100</div>
+                        <div class="information"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ activity.likes ?  activity.likes.length : 0}}</span></div>
+                        <div class="information"><img src="/images/icons/post-flame.svg" alt="">{{ activity.votes ? activity.votes.length: 0 }}</div>
+                        <div class="information"><img src="/images/icons/post-comment.svg" alt="">{{ activity.comments ? activity.comments.length:0 }}</div>
                     </div>
                     <div class="d-flex justify-content-between c-fourth">
                         <p>11K Views </p>
-                        <p>3 hrs ago</p>
+                        <p>{{ activity.time_ago }}</p>
                     </div>
                 </div>
             </div>
@@ -36,25 +40,5 @@
 <script>
 export default {
     props:['user'],
-    data(){
-        return {
-            activity: true,
-            playlist: false
-        }
-    },
-
-    methods:{
-        show(){
-            if (this.activity && this.playlist == false) {
-                this.playlist = true
-                this.activity = false
-            }
-            else if (this.activity == false && this.playlist) {
-                this.activity = true
-                this.playlist = false
-            }
-
-        }
-    }
 }
 </script>

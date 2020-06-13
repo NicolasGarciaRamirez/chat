@@ -19,7 +19,7 @@ class CreateUserPostsTable extends Migration
             $table->string('allow_download')->nullable();
             $table->text('description')->nullable();
             $table->string('resource')->nullable();
-            $table->string('resource_type')->nullable();
+            $table->string('resource_type')->default('text');
             $table->string('genre')->nullable();
             $table->string('category')->nullable();
             $table->string('token')->nullable();

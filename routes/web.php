@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', function () {
-});
+Route::get('/test', 'Auth\AuthController@logout');
 
 Route::get('/prelaunch', function () {
     return view('prelaunch.welcome');
@@ -33,6 +32,7 @@ Route::get('/Register/{type?}', 'HomeController@register')->where([
 ]);;;
 Route::post('/Register', 'Auth\AuthController@register')->name('register');
 Route::post('/ForgotPassword', 'Auth\AuthController@sedEmailForgotPassword');
+Route::get('/PasswordReset/{token}', 'Auth\AuthController@passwordReset');
 
 Route::get('/Help', 'HomeController@help')->name('help');
 Route::get('/About', 'HomeController@about')->name('about');

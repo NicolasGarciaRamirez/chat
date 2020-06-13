@@ -11,8 +11,11 @@
                         v-model="post.description"
                         >
                     </textarea>
-                    <div class="image-preview" v-if="imageData.length > 0">
-                        <img class="preview" :src="imageData">
+                    <div class="image-preview" v-if="imageData.length > 0">            
+                        <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
+                        <video :src="`${imageData}`" controls  v-if="post.resource_type == 'video'" />
+                        <audio :src="`${imageData}`" type=”audio/mp3″ controls  v-if="post.resource_type == 'audio'" />
+                        <iframe :src="`${imageData}`" frameborder="0" v-if="post.resource_type == 'docs'"></iframe>
                     </div>
                 </div>
                 <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
@@ -39,7 +42,7 @@
                             <label for="input-docs">
                                 <img src="/images/icons/paperclip.svg"  style="transform: translateX(-6px);">
                             </label>
-                            <input id="input-docs" name="docs" type="file" accept=".pdf, .docx">
+                            <input id="input-docs" name="docs" type="file" accept=".pdf, .docx" @change="previewImage" @click="post.resource_type = 'docs'">
                         </div>
 
                         <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
@@ -123,7 +126,7 @@
                     allow_download:"",
                     description:"",
                     resource: null,
-                    resource_type: 'image',
+                    resource_type: 'text',
                     genre:"",
                     category: "",
                 },

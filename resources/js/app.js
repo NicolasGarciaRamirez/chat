@@ -8,7 +8,11 @@ require('./bootstrap');
 require('./../../node_modules/readmore-js');
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
+
 import Vue from 'vue'
+
+import VueCropper from 'cropperjs';
+Vue.component(VueCropper);
 
 import Toasted from 'vue-toasted';
 Vue.use(Toasted)
@@ -33,7 +37,7 @@ import ChannelEdit from './components/user/channel/ChannelEdit'
 
 import ProfileEdit from './components/user/profile/ProfileEdit'
 import AccountSettings from './components/user/profile/AccountSettings'
-
+import PasswordReset from './components/auth/include/PasswordReset'
 import HeadProfile from './components/user/profile/HeadProfile'
 
 import ProfileGenres from './components/user/profile/Genres'
@@ -67,6 +71,7 @@ new Vue({
         ProfileServices,
         ProfileWorkHistory,
         ModalContributorSignup,
-        ValidateLogin
+        ValidateLogin,
+        PasswordReset
     }
 });

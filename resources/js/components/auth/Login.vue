@@ -23,7 +23,7 @@
                         <input type="password" class="form-control" name="password" placeholder="Password" v-model="user.password" v-validate="'required'" required>
                         <div class="mt-2 p-2 d-flex justify-content-between">
                             <button type="submit" class="btn c-fifth p-0 login"><b>Login</b></button>
-                            <a href="#" class="forgot-password font-weight-bold">Forgot Password?</a>
+                            <a class="forgot-password font-weight-bold" @click="showModalForgotPassword">Forgot Password?</a>
                         </div>
                     </form>
                     <div><p class="text-center or">OR</p></div>
@@ -41,6 +41,7 @@
                 </div>
             </div>
             <modal-register />
+            <modal-forgot-password />
         </div>
     </div>
 </template>
@@ -49,6 +50,7 @@
     import ModalRegister from './Register'
     import { Validator } from 'vee-validate';
     import Auth from '../../helpers/Auth'
+    import ModalForgotPassword from './include/ForgotPassword'
 
     export default {
         props: ['is_login_view'],
@@ -62,7 +64,8 @@
             }
         },
         components:{
-            'modal-register' : ModalRegister
+            'modal-register' : ModalRegister,
+            ModalForgotPassword
         },
         mounted() {
             if (this.is_login_view) {
@@ -70,6 +73,10 @@
             }
         },
         methods:{
+            showModalForgotPassword(){
+                // $('#ModalLogin').addAttr('data-dismiss')
+                $('#ModalForgotPassword').modal('show')
+            },
             async login(){
                 await axios.post('/login', this.user).then(res =>{
                     if (res.data.auth) {
