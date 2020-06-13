@@ -41,7 +41,8 @@
             color: inherit !important;
             text-decoration: none !important;
         }
-        a{
+
+        a {
             text-decoration: none !important;
             color: white !important;
         }
@@ -172,7 +173,8 @@
                                             <tr style="line-height:0px">
                                                 <td style="padding-right: 0px;padding-left: 0px;" align="center">
                                         <![endif]--><img align="center" alt="Alternate text" border="0"
-                                                         class="center fixedwidth" src="{{ asset("images/emails/forgot-password/White_Logo_PNG.png") }}"
+                                                         class="center fixedwidth"
+                                                         src="{{ asset('images/emails/password-changed-successfully/White_Logo_PNG.png') }}"
                                                          style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 200px; display: block;"
                                                          title="Alternate text" width="200"/>
                                         <!--[if mso]></td></tr></table><![endif]-->
@@ -188,17 +190,11 @@
                 </div>
             </div>
             <div
-                style="background-image:url('{{ asset("images/emails/forgot-password/Untitled-2.png") }}');background-position:top left;background-repeat:no-repeat;background-color:#2e2e2e;">
+                style="background-image:url('{{ asset("images/emails/password-changed-successfully/Untitled-2.png") }}');background-position:top left;background-repeat:no-repeat;background-color:#2e2e2e;">
                 <div class="block-grid"
                      style="Margin: 0 auto; min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
                     <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-                        <!--[if (mso)|(IE)]>
-                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                               style="background-image:url('{{ asset("images/emails/forgot-password/Untitled-2.png") }}');background-position:top left;background-repeat:no-repeat;background-color:#2e2e2e;">
-                            <tr>
-                                <td align="center">
-                                    <table cellpadding="0" cellspacing="0" border="0" style="width:500px">
-                                        <tr class="layout-full-width" style="background-color:transparent"><![endif]-->
+                    <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-image:url('{{ asset("images/emails/password-changed-successfully/Untitled-2.png") }}');background-position:top left;background-repeat:no-repeat;background-color:#2e2e2e;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
                         <!--[if (mso)|(IE)]>
                         <td align="center" width="500"
                             style="background-color:transparent;width:500px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"
@@ -225,7 +221,7 @@
                                             style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
                                             <p style="font-size: 15px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 18px; margin: 0;">
                                                 <span
-                                                    style="color: #999999; font-size: 15px;">Hi <strong>{{ $full_name }}</strong>,</span>
+                                                    style="color: #999999; font-size: 15px;">Hi <strong>{{ $full_name  }}</strong>,</span>
                                             </p>
                                         </div>
                                     </div>
@@ -233,63 +229,21 @@
                                     <!--[if mso]>
                                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                         <tr>
-                                            <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; font-family: sans-serif">
+                                            <td style="padding-right: 10px; padding-left: 30px; padding-top: 10px; padding-bottom: 60px; font-family: sans-serif">
                                     <![endif]-->
                                     <div
-                                        style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:30px;">
+                                        style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:60px;padding-left:30px;">
                                         <div
                                             style="line-height: 1.2; font-family: 'Encode Sans', sans-serif; font-size: 12px; color: #555555; mso-line-height-alt: 14px;">
                                             <p style="font-size: 14px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
-                                                <span style="color: #999999;"><span style="font-size: 15px;">We <span
-                                                            style="color: #999999;"><span style="font-size: 15px;">received</span></span> your request to reset your password for your Noisesharks account: <span
-                                                            style="color: #ff0000;"><u>{{ $user->email }}</u><span
-                                                                style="color: #999999;">. </span></span></span></span>
+                                                <span style="color: #999999;"><span style="font-size: 15px;">Your password has been changed successfully. You can now use it to login from all of your devices.</span></span>
                                             </p>
                                             <p style="font-size: 14px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
                                                  </p>
                                             <p style="font-size: 14px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
                                                 <span style="color: #999999;"><span style="font-size: 15px;"><span
-                                                            style="color: #ff0000;"><span style="color: #999999;">Don't worry we will help you set up a new one!</span></span></span></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--[if mso]></td></tr></table><![endif]-->
-                                    <div align="center" class="button-container"
-                                         style="padding-top:30px;padding-right:10px;padding-bottom:30px;padding-left:10px;">
-                                        <!--[if mso]>
-                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                                               style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-                                            <tr>
-                                                <td style="padding-top: 30px; padding-right: 10px; padding-bottom: 30px; padding-left: 10px"
-                                                    align="center">
-                                                    <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
-                                                                 xmlns:w="urn:schemas-microsoft-com:office:word" href=""
-                                                                 style="height:31.5pt; width:170.25pt; v-text-anchor:middle;"
-                                                                 arcsize="72%" stroke="false" fillcolor="#ff0002">
-                                                        <w:anchorlock/>
-                                                        <v:textbox inset="0,0,0,0">
-                                                            <center
-                                                                style="color:#ffffff; font-family:sans-serif; font-size:16px">
-                                        <![endif]-->
-                                        <div
-                                            style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0002;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;width:auto; width:auto;;border-top:1px solid #ff0002;border-right:1px solid #ff0002;border-bottom:1px solid #ff0002;border-left:1px solid #ff0002;padding-top:5px;padding-bottom:5px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
-                                            <span
-                                                style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
-                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a href="{{ $verifyUrl }}">Set A New Password</a></strong></span></span>
-                                        </div>
-                                        <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
-                                    </div>
-                                    <!--[if mso]>
-                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                                        <tr>
-                                            <td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 55px; font-family: sans-serif">
-                                    <![endif]-->
-                                    <div
-                                        style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:55px;padding-left:10px;">
-                                        <div
-                                            style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
-                                            <p style="font-size: 14px; line-height: 1.2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
-                                                <span style="color: #999999;">If you didn't request a password change or haven't forgot your current one, just simply ignore this email.</span>
+                                                            style="font-size: 15px;">If you haven't changed your password please email us immediately on <span
+                                                                style="color: #ff0000;">support@noisesharks.com</span></span></span></span>
                                             </p>
                                         </div>
                                     </div>
@@ -305,13 +259,13 @@
                 </div>
             </div>
             <div
-                style="background-image:url('{{ asset("images/emails/forgot-password/14_X_26.png") }}');background-position:center top;background-repeat:no-repeat;background-color:transparent;">
+                style="background-image:url('{{ asset("images/emails/password-changed-successfully/14_X_26.png") }}');background-position:center top;background-repeat:no-repeat;background-color:transparent;">
                 <div class="block-grid"
                      style="Margin: 0 auto; min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
                     <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
                         <!--[if (mso)|(IE)]>
                         <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                               style="background-image:url('{{ asset("images/emails/forgot-password/14_X_26.png") }}');background-position:center top;background-repeat:no-repeat;background-color:transparent;">
+                               style="background-image:url('{{ asset("images/emails/password-changed-successfully/14_X_26.png") }}');background-position:center top;background-repeat:no-repeat;background-color:transparent;">
                             <tr>
                                 <td align="center">
                                     <table cellpadding="0" cellspacing="0" border="0" style="width:500px">
@@ -388,8 +342,8 @@
                                                     align="center">
                                                     <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
                                                                  xmlns:w="urn:schemas-microsoft-com:office:word" href=""
-                                                                 style="height:31.5pt; width:153.75pt; v-text-anchor:middle;"
-                                                                 arcsize="72%" stroke="false" fillcolor="#ff0000">
+                                                                 style="height:32.25pt; width:153.75pt; v-text-anchor:middle;"
+                                                                 arcsize="70%" stroke="false" fillcolor="#ff0000">
                                                         <w:anchorlock/>
                                                         <v:textbox inset="0,0,0,0">
                                                             <center
@@ -452,7 +406,7 @@
                                             <tr style="line-height:0px">
                                                 <td style="padding-right: 0px;padding-left: 0px;" align="center">
                                         <![endif]--><img align="center" alt="Alternate text" border="0"
-                                                         class="center fixedwidth" src="{{ asset("images/emails/forgot-password/Full_White_Logo_PNG.png") }}"
+                                                         class="center fixedwidth" src="{{ asset("images/emails/password-changed-successfully/Full_White_Logo_PNG.png") }}"
                                                          style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 100px; display: block;"
                                                          title="Alternate text" width="100"/>
                                         <div style="font-size:1px;line-height:10px"> </div>
@@ -477,7 +431,7 @@
                                                             valign="top"><a href="https://www.facebook.com/noisesharks/"
                                                                             target="_blank"><img alt="Facebook"
                                                                                                  height="32"
-                                                                                                 src="{{ asset("images/emails/forgot-password/facebook2x.png") }}"
+                                                                                                 src="{{ asset("images/emails/password-changed-successfully/facebook2x.png") }}"
                                                                                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                  title="Facebook"
                                                                                                  width="32"/></a></td>
@@ -485,7 +439,7 @@
                                                             valign="top"><a href="https://twitter.com/noisesharks"
                                                                             target="_blank"><img alt="Twitter"
                                                                                                  height="32"
-                                                                                                 src="{{ asset("images/emails/forgot-password/twitter2x.png") }}"
+                                                                                                 src="{{ asset("images/emails/password-changed-successfully/twitter2x.png") }}"
                                                                                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                  title="Twitter"
                                                                                                  width="32"/></a></td>
@@ -493,7 +447,7 @@
                                                             valign="top"><a
                                                                 href="https://www.instagram.com/noisesharks/"
                                                                 target="_blank"><img alt="Instagram" height="32"
-                                                                                     src="{{ asset("images/emails/forgot-password/instagram2x.png") }}"
+                                                                                     src="{{ asset("images/emails/password-changed-successfully/instagram2x.png") }}"
                                                                                      style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                      title="Instagram" width="32"/></a>
                                                         </td>
@@ -501,7 +455,7 @@
                                                             valign="top"><a
                                                                 href="https://www.youtube.com/channel/UC8HGo6puBDniCZmCr36rysw?view_as=subscriber"
                                                                 target="_blank"><img alt="YouTube" height="32"
-                                                                                     src="{{ asset("images/emails/forgot-password/youtube2x.png") }}"
+                                                                                     src="{{ asset("images/emails/password-changed-successfully/youtube2x.png") }}"
                                                                                      style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                      title="YouTube" width="32"/></a>
                                                         </td>
@@ -509,14 +463,14 @@
                                                             valign="top"><a href="https://soundcloud.com/user-582472142"
                                                                             target="_blank"><img alt="SoundCloud"
                                                                                                  height="32"
-                                                                                                 src="{{ asset("images/emails/forgot-password/soundcloud2x.png") }}"
+                                                                                                 src="{{ asset("images/emails/password-changed-successfully/soundcloud2x.png") }}"
                                                                                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                  title="SoundCloud"
                                                                                                  width="32"/></a></td>
                                                         <td style="word-break: break-word; vertical-align: top; padding-bottom: 5px; padding-right: 8px; padding-left: 8px;"
                                                             valign="top"><a href="" target="_blank"><img alt="Spotify"
                                                                                                          height="32"
-                                                                                                         src="{{ asset("images/emails/forgot-password/spotify2x.png") }}"
+                                                                                                         src="{{ asset("images/emails/password-changed-successfully/spotify2x.png") }}"
                                                                                                          style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                          title="Spotify"
                                                                                                          width="32"/></a>
@@ -525,7 +479,7 @@
                                                             valign="top"><a
                                                                 href="https://www.linkedin.com/company/11125649/"
                                                                 target="_blank"><img alt="LinkedIn" height="32"
-                                                                                     src="{{ asset("images/emails/forgot-password/linkedin2x.png") }}"
+                                                                                     src="{{ asset("images/emails/password-changed-successfully/linkedin2x.png") }}"
                                                                                      style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                      title="LinkedIn" width="32"/></a>
                                                         </td>
@@ -533,7 +487,7 @@
                                                             valign="top"><a href="https://www.noisesharks.com/"
                                                                             target="_blank"><img alt="Custom"
                                                                                                  height="32"
-                                                                                                 src="{{ asset("images/emails/forgot-password/White_Circle_App_PNG.png") }}"
+                                                                                                 src="{{ asset("images/emails/password-changed-successfully/White_Circle_App_PNG.png") }}"
                                                                                                  style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: none; display: block;"
                                                                                                  title="Noisesharks"
                                                                                                  width="32"/></a></td>

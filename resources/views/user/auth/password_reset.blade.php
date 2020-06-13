@@ -1,7 +1,7 @@
 @extends('template.template')
 
-@section('section')
+@section('content')
     <div class="container">
-        <password-reset :user={{ $user }} />
+        <password-reset :user="{{ $user }}" />
     </div>
 @endsection

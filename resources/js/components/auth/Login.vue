@@ -70,6 +70,9 @@
         mounted() {
             if (this.is_login_view) {
                 $('#ModalLogin').modal('show')
+                $("#ModalResetPassword").on("hidden.bs.modal", function () {
+                    window.location.href = '/';
+                });
             }
         },
         methods:{

@@ -33,8 +33,16 @@ class ForgotPassword extends Mailable
      */
     public function build()
     {
+        $verifyUrl = \URL::temporarySignedRoute(
+            'password.reset',
+            \Carbon\Carbon::now()->addMinutes(60),
+            [
+                'token' => $this->user->token,
+                'hash' => encrypt($this->user->id),
+            ]
+        );
         return $this->from('noreply@noisesharks.com')
             ->subject('Noisesharks - Forgot Password?')
-            ->view('emails.forgot-password', ['user' => $this->user, 'full_name' => $this->full_name]);
+            ->view('emails.forgot-password', ['user' => $this->user, 'full_name' => $this->full_name, 'verifyUrl' => $verifyUrl]);
     }
 }

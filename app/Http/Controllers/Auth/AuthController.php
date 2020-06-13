@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\loginUser;
 use App\Http\Requests\StoreUser;
 use App\Notifications\NewUserFree;
+use App\Notifications\PasswordChangedSuccessfully;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User\User;
@@ -68,7 +69,7 @@ class AuthController extends Controller
 
             $user->personal_information()->save($personal_information);
 
-            //  if ($user->subscription_type == 'FREE') $user->notify(new NewUserFree($personal_information->full_name));
+            if ($user->subscription_type == 'FREE') $user->notify(new NewUserFree($personal_information->full_name));
 
             \DB::commit();
             Auth::login($user, true);
@@ -96,13 +97,13 @@ class AuthController extends Controller
     {
         if ($request->email) {
             $user = User::with('personal_information')->whereEmail($request->email)->first();
-        }else if($request->artistic_name){
+        } else if ($request->artistic_name) {
             $user = User::with('personal_information', 'profile_information')->where('profile_information.artistic_name', $request->artistic_name)->first();
         }
 
         if (!$user) {
             return response()->json([
-                'message' => 'We send you an email to follow the instructions'
+                'message' => 'Email or Artist Name not found'
             ]);
         }
 
@@ -113,9 +114,36 @@ class AuthController extends Controller
         ]);
     }
 
-    public function passwordReset($token)
+    /**
+     * @param $token
+     * @param $hash
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function resetPasswordView($token, $hash)
     {
-        $user = User::whereToken($token)->first();
-        return view('user.auth.password_reset', compact('user'));
+        if ($user = User::whereToken($token)->first()) {
+            if (decrypt($hash) == $user->id) {
+                return view('user.auth.password_reset', compact('user'));
+            }
+            abort(404);
+        }
+        abort(404);
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resetPassword(Request $request)
+    {
+        $user = User::find($request->user['id']);
+        $user->password = $request->password;
+        $user->update();
+
+        $user->notify(new PasswordChangedSuccessfully($user->personal_information->full_name));
+
+        return response()->json([
+            'saved' => true
+        ]);
     }
 }

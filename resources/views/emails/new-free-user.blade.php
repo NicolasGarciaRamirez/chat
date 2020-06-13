@@ -61,8 +61,8 @@
             text-decoration: none !important;
         }
         a{
-            text-decoration: none;
-            color: white;
+            text-decoration: none !important;
+            color: white !important;
         }
     </style>
     <style id="media-query" type="text/css">

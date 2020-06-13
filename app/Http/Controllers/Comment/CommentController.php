@@ -45,7 +45,7 @@ class CommentController extends Controller
 
         return response()->json([
             'saved' => true,
-            'comment' => $comment->load('user.personal_information')
+            'comment' => $comment->load('user.personal_information', 'comments')
         ]);
     }
 }

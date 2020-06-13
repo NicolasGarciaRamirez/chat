@@ -29,7 +29,7 @@ import RegisterIndex from './components/auth/include/RegisterIndex'
 import ValidateLogin from "./components/auth/ValidateLogin";
 
 import Home from './components/home'
-import PostView from './components/stream/PostView'
+import Post from './components/stream/Post'
 
 import ChannelActivity from './components/user/channel/ChannelActivity'
 import ChannelPlaylist from './components/user/channel/ChannelPlaylist'
@@ -58,7 +58,7 @@ new Vue({
         Register,
         RegisterIndex,
         Home,
-        PostView,
+        Post,
         ChannelActivity,
         ChannelPlaylist,
         ChannelEdit,

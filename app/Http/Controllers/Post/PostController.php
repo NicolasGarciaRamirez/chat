@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function get($username, $token)
     {
-        $post = Post::with('votes.user', 'likes.user','user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user' ,'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
+        $post = Post::with('votes.user', 'likes.user', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
         return view('post.view', compact('post'));
     }
 
@@ -46,34 +46,31 @@ class PostController extends Controller
                 // $request->validate([
                 //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4,pdf,doc,docx,xls'
                 // ]);
+                $key = md5(\Auth::user()->id);
+                $hash = \Str::random(10);
+
                 if ($request->resource_type == 'image') {
-                    $imagePost = $this->setImage($request);
+                    $resource = $this->setImage($request);
                 }
                 if ($request->resource_type == 'video') {
-                    $key = md5(\Auth::user()->id);
-                    $hash = \Str::random(10);
-                    $imagePost = "/images/post/videos/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp4";
-                    $request->imagePost->move(public_path("/images/post/videos/{$hash}/{$key}"), $imagePost);
+                    $resource = "/images/post/videos/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp4"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
+                    $request->imagePost->move(public_path("/images/post/videos/{$hash}/{$key}"), $resource);
                 }
                 if ($request->resource_type == 'audio') {
-                    $key = md5(\Auth::user()->id);
-                    $hash = \Str::random(10);
-                    $imagePost = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp3";
-                    $request->imagePost->move(public_path("/images/post/audio/{$hash}/{$key}"), $imagePost);
+                    $resource = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp3"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
+                    $request->imagePost->move(public_path("/images/post/audio/{$hash}/{$key}"), $resource);
                 }
                 if ($request->resource_type == 'docs') {
-                    $key = md5(\Auth::user()->id);
-                    $hash = \Str::random(10);
-                    $imagePost = "/images/post/docs/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}";
-                    $request->imagePost->move(public_path("/images/post/docs/{$hash}/{$key}"), $imagePost);
+                    $resource = "/images/post/docs/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}";
+                    $request->imagePost->move(public_path("/images/post/docs/{$hash}/{$key}"), $resource);
                 }
 
-            }else{
-                $imagePost = null;
+            } else {
+                $resource = null;
             }
 
             $post = new Post($request->all());
-            $post->resource = $imagePost;
+            $post->resource = $resource;
             $post->resource_type = $request->resource_type;
             $post->token = \Str::random(80);
             $this->user->posts()->save($post);

@@ -94,16 +94,16 @@
                     <span class="ml-1 c-fourth">{{ post.time_ago }}</span>
                 </div>
                 <div class="d-flex c-fourth my-3">
-                    <div :id="`voteUp`+this.post.id" class="information" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
+                    <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
 
-                    <div :id="`voteDown`+this.post.id" class="information" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
-                    <div :id="`lit`+this.post.id" class="information" @click="colorFlame(lit.like)" >
+                    <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
+                    <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="colorFlame(lit.like)" >
                         <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                     </div>
-                    <div class="information"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
-                    <div class="information"><img src="/images/icons/post-up.svg" alt="">100</div>
+                    <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
+                    <div class="information cursor-pointer"><img src="/images/icons/post-up.svg" alt="">100</div>
 
-                    <div class="information" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
+                    <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
                 </div>
             </div>
             <comments :post="post" :view_comment="view_comment"/>
@@ -113,18 +113,17 @@
 
 <script>
     import Comments from './comments/Comments'
-    import ModalLogin from '../auth/Login'
     import Auth from '../../helpers/Auth'
     import WaveSurfer from 'wavesurfer.js';
 
     export default {
-        props:['post', 'view_comment'],
+        props:['post'],
         components:{
             Comments,
-            ModalLogin
         },
         data(){
             return {
+                view_comment: false,
                 audio: '',
                 isPlaying: true,
                 view_post: true,
@@ -177,7 +176,7 @@
                         responsive: true
                     });
                     audio.load(this.post.resource)
-                    audio.setHeight(200) 
+                    audio.setHeight(200)
                     this.audio = audio
                 }
             },
@@ -202,7 +201,7 @@
             },
             copyLink(){
                 this.$toasted.show('The copy link been successfully!', {
-                    position: "bottom-right", 
+                    position: "bottom-right",
                     duration : 4000,
                     className: "p-4 notification bg-primary",
                     keepOnHover: true
@@ -220,7 +219,7 @@
                 }
             },
             colorFlame(type){
-                if (Auth.state.token) {     
+                if (Auth.state.token) {
                     if (type == 'like') {
                         $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
                         this.store(type)
@@ -235,7 +234,7 @@
 
             },
             getVote(){
-                if (Auth.state.token) { 
+                if (Auth.state.token) {
                     if (this.post.votes) {
                         this.post.votes.map(vote => {
                             if (vote.type_vote == 'vote_up') {
@@ -244,7 +243,7 @@
                                 $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
                                 this.vote_type = 'unvote_up'
                                 this.vote.type_vote = 'unvote_up'
-                            } 
+                            }
                             if(vote.type_vote == 'vote_down'){
                                 this.votes.vote_down.push(vote)
                                 $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
@@ -255,11 +254,17 @@
                         })
                     }
                 }else{
-                    $('#ModalLogin').modal('show')
+                    if(this.post.votes){
+                        this.post.votes.map(vote => {
+                            if(vote.type === 'vote_up') this.votes.vote_up.push(vote)
+                            if(vote.type === 'vote_down') this.votes.vote_down.push(vote)
+                        })
+                    }
+                    //$('#ModalLogin').modal('show')
                 }
             },
             colorVote(type){
-                if (Auth.state.token) {     
+                if (Auth.state.token) {
                     if (type == 'vote_up') {
                         $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
                         $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
@@ -299,7 +304,7 @@
                             }
                         })
                     }
-                } 
+                }
                 if (type == 'like') {
                     request = this.lit
                     this.url =  `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
@@ -312,7 +317,7 @@
                             this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}/${vote.id}`
                         })
                     }
-                } 
+                }
                 if (type == 'unvote_up') {
                     if (this.votes.vote_up) {
                         this.votes.vote_up.map(vote => {

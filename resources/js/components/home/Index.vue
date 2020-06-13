@@ -11,7 +11,7 @@
                         v-model="post.description"
                         >
                     </textarea>
-                    <div class="image-preview" v-if="imageData.length > 0">            
+                    <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
                         <video :src="`${imageData}`" controls  v-if="post.resource_type == 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls  v-if="post.resource_type == 'audio'" />
@@ -47,7 +47,7 @@
 
                         <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading">Post</button>
+                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading" :disabled="post.description === '' && post.resource === ''">Post</button>
                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     </button>
@@ -74,7 +74,7 @@
                             <select class="select-form m-2" v-model="post.genre" required style="max-width: 180px;">
                                 <option value="">Select Genre</option>
                                 <option v-for="(genre, index) in genres" :key="index" :value="genre.principal_genre">{{ genre.principal_genre }}</option>
-                           
+
                             </select>
                         </div>
                         <div class="select">
@@ -124,12 +124,13 @@
                 post:{
                     replace_caption:"",
                     allow_download:"",
-                    description:"",
-                    resource: null,
+                    description: '',
+                    resource: '',
                     resource_type: 'text',
                     genre:"",
                     category: "",
                 },
+                disable_save_post: true,
                 posts_send: [],
                 genres: Genres.getAllGenres(),
                 categories: Services.getAllServices()
@@ -155,7 +156,7 @@
                 if (this.auth.token) {
                     this.loading = true
                     var imagePost = new FormData();
-                    if (this.post.resource) {
+                    if (this.post.resource != '') {
                         imagePost.append('imagePost', this.post.resource, this.post.resource)
                         imagePost.append('allowDownload', this.post.allow_download)
                         imagePost.append('replaceCaption', this.post.replace_caption)
@@ -164,7 +165,7 @@
                     imagePost.append('description', this.post.description)
                     imagePost.append('genre', this.post.genre)
                     imagePost.append('category', this.post.category)
-    
+
                     await axios.post(`/${this.auth.username}/Post/store`, imagePost).then(res =>{
                         if (res.data.saved) {
                             this.loading = false
@@ -172,7 +173,7 @@
                             this.posts_send.unshift(res.data.post)
                             $('html, body').animate({ scrollTop: 0 }, 'fast');
                             this.$toasted.show('The publication has been successfully published!', {
-                                position: "bottom-right", 
+                                position: "bottom-right",
                                 duration : 4000,
                                 className: "p-4 notification bg-primary",
                                 keepOnHover: true
