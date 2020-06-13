@@ -157,12 +157,10 @@
                     var imagePost = new FormData();
                     if (this.post.resource) {
                         imagePost.append('imagePost', this.post.resource, this.post.resource)
-                        imagePost.append('resource_type', this.post.resource_type)
                         imagePost.append('allowDownload', this.post.allow_download)
                         imagePost.append('replaceCaption', this.post.replace_caption)
-                        console.log(imagePost)
-
                     }
+                    imagePost.append('resource_type', this.post.resource_type)
                     imagePost.append('description', this.post.description)
                     imagePost.append('genre', this.post.genre)
                     imagePost.append('category', this.post.category)

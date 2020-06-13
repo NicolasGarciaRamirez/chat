@@ -244,7 +244,6 @@
                                 $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
                                 this.vote_type = 'unvote_up'
                                 this.vote.type_vote = 'unvote_up'
-
                             } 
                             if(vote.type_vote == 'vote_down'){
                                 this.votes.vote_down.push(vote)
@@ -305,7 +304,6 @@
                     request = this.lit
                     this.url =  `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
                 }
-
                 if (type == 'vote_up') {
                     request = this.vote
                     this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}`
@@ -332,7 +330,6 @@
                             }
                         })
                     }
-
                 }
                 if (type == 'unvote_down') {
                     if (this.votes.vote_down) {
@@ -341,7 +338,6 @@
                         })
                     }
                 }
-
                 axios.post(this.url, request).then(res =>{
                     if (res.data.like) {
                         this.lit.like = 'unlike'
@@ -374,7 +370,6 @@
                         this.votes.vote_down.splice(indice, 1)
                         this.vote.type_vote = 'vote_up'
                     }
-                    
                 }).catch(err =>{
                     console.log(err)
                 })

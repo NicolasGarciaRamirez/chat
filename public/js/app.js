@@ -11905,7 +11905,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 if (!_this2.auth.token) {
-                  _context.next = 11;
+                  _context.next = 12;
                   break;
                 }
 
@@ -11914,16 +11914,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 if (_this2.post.resource) {
                   imagePost.append('imagePost', _this2.post.resource, _this2.post.resource);
-                  imagePost.append('resource_type', _this2.post.resource_type);
                   imagePost.append('allowDownload', _this2.post.allow_download);
                   imagePost.append('replaceCaption', _this2.post.replace_caption);
-                  console.log(imagePost);
                 }
 
+                imagePost.append('resource_type', _this2.post.resource_type);
                 imagePost.append('description', _this2.post.description);
                 imagePost.append('genre', _this2.post.genre);
                 imagePost.append('category', _this2.post.category);
-                _context.next = 9;
+                _context.next = 10;
                 return axios.post("/".concat(_this2.auth.username, "/Post/store"), imagePost).then(function (res) {
                   if (res.data.saved) {
                     _this2.loading = false;
@@ -11949,14 +11948,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this2.loading = false;
                 });
 
-              case 9:
-                _context.next = 12;
+              case 10:
+                _context.next = 13;
                 break;
 
-              case 11:
+              case 12:
                 $('#ModalLogin').modal('show');
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
