@@ -94,17 +94,24 @@ Route::group(['prefix' => '/{username}'], function () {
 
     Route::group(['prefix' => 'LitLike'], function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('litlike.store.like')->post('/like/{model}/{model_id}', 'User\LitLikeController@like');
-            Route::name('litlike.unlike')->post('/unlike/{like}', 'User\LitLikeController@unlike');
+            Route::name('litlike.store.like')->post('/like/{model}/{model_id}', 'Reactions\LitLikeController@like');
+            Route::name('litlike.unlike')->post('/unlike/{like}', 'Reactions\LitLikeController@unlike');
         });
     });
 
     Route::group(['prefix' => 'VotePost'], function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('vote.store.up')->post('/VoteUp/{post}/{vote?}', 'Post\VotePostsController@voteUp');
-            Route::name('vote.unvote.up')->post('/UnVoteUp/{vote}', 'Post\VotePostsController@unvoteUp');
-            Route::name('vote.store.down')->post('/VoteDown/{post}/{vote?}', 'Post\VotePostsController@voteDown');
-            Route::name('vote.unvote.down')->post('/UnVoteDown/{vote}', 'Post\VotePostsController@unvoteDown');
+            Route::name('vote.store.up')->post('/VoteUp/{post}/{vote?}', 'Reactions\VotePostsController@voteUp');
+            Route::name('vote.unvote.up')->post('/UnVoteUp/{vote}', 'Reactions\VotePostsController@unvoteUp');
+            Route::name('vote.store.down')->post('/VoteDown/{post}/{vote?}', 'Reactions\VotePostsController@voteDown');
+            Route::name('vote.unvote.down')->post('/UnVoteDown/{vote}', 'Reactions\VotePostsController@unvoteDown');
+        });
+    });
+
+    Route::group(['prefix' => 'Follow'], function () {
+        Route::group(['middleware' => ['auth']], function () {
+            Route::name('follow.store')->post('/follow/{user}', 'Reactions\FollowersController@follow');
+            Route::name('unfollow.store')->post('/follow/{follow}', 'Reactions\FollowersController@unfollow');
         });
     });
 });

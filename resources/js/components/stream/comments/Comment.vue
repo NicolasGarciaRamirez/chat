@@ -6,6 +6,17 @@
                 <div>
                     <span ><a :href="`/${comment.user.username}/Profile/WorkHistory`" class="font-weight-bold no-underline text-white">{{ comment.user.personal_information.full_name }}</a></span>
                     <span class="ml-2">{{ comment.body }}</span>
+                    <i class="fas fa-ellipsis-h c-third fa-1x ml-1"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
+                        <div v-if="comment.user.username == auth.username">
+                            <a href="#" class="dropdown-item">Editar</a>
+                            <a href="#" class="dropdown-item">Eliminar</a>
+                        </div>
+                        <div v-else>
+                            <a href="#" class="dropdown-item">Report</a>
+                            <a href="#" class="dropdown-item">Hidden</a>
+                        </div>
+                    </div>
                 </div>
                 <div :id="`litComment`+comment.id" @click="colorFlame(like_type)">
                     <img src="/images/icons/post-flame.svg" alt="flame-red" class=" float-right" height="20">
@@ -31,7 +42,8 @@ import Auth from '../../../helpers/Auth'
                 lit:{
                     like: 'like'
                 },
-                likes:[]
+                likes:[],
+                auth: Auth.state
             }
         },
         mounted(){

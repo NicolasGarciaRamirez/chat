@@ -2,9 +2,11 @@
     <section class="post mt-3" v-if="view_post">
         <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
-                <button class="bg-primary align-items-right border-white">FOLLOW
-                    <img src="/images/icons/star.svg" class="c-fifth ml-2">
-                </button>
+                <div :id="`follow`+post.token" @click="colorFollow(follow_type)">
+                    <button type="button" class="bg-primary align-items-right border-white">FOLLOW
+                        <img src="/images/icons/star.svg" class="c-fifth ml-2 ">
+                    </button>
+                </div>
                 <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger d-sm-down-none " @click="showModalSupport">SUPPORT
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="23px" height="18px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
@@ -24,7 +26,7 @@
                     </svg>
                 </button>
                 <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                <div class="dropdown-menu bg-primary text-white dowpdown-menu-post p-2" aria-labelledby="dropdownMenuPost">
+                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
                     <a :href="`/${post.user.username}/Profile/WorkHistory`" class="dropdown-item">Go To User Profile</a>
                     <a href="#" class="dropdown-item">Message User</a>
                     <div class="dropdown-divider"></div>
@@ -32,15 +34,13 @@
                     <a href="#" class="dropdown-item link-post" :data-clipboard-text="`/${post.user.username}/Post/get/${post.token}`" @click="copyLink">Copy Link</a>
                     <a @click="view_post = false" class="dropdown-item">Hide Post</a>
                     <a href="#" class="dropdown-item">Report</a>
-                    <a href="#" class="dropdown-item">Add To Playlist</a>
+                    <a href="#" class="dropdown-item" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</a>
                 </div>
             </div>
             <div class="d-flex align-items-start">
                 <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-pill">
                 <div class="d-flex flex-column pl-md-3">
-
                     <a :href="`/${post.user.username}/Profile/WorkHistory`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" ></a>
-
                     <div class="d-flex align-items-center post-user-type mt-2">
                         <button class="btn bg-fifth text-white mr-2">{{ post.user.profile_information ? post.user.profile_information.title : 'N/A' }}</button>
                         <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
@@ -49,24 +49,45 @@
             </div>
         </div>
         <div class="post-body bg-primary">
-            <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
-                {{ post.description }}
-            </div>
-            <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
-                <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
-                <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
-                <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
-                <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
-                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
-                    <div :id="`play`+post.token"  @click="playAudio(audio, isPlaying)" >
-                        <img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">
-                    </div>
-                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
+            <div v-if="!post.replace_caption">
+                <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
+                    {{ post.description }}
                 </div>
-                <iframe :src="`${post.resource}`" frameborder="0" v-if="post.resource_type == 'docs'" style="min-height: 20rem; max-height: 20rem;"></iframe>
-                <a class="text-white" :href="`${post.resource}`" v-if="post.resource_type == 'docs'">
-                    <h2>{{ post.description }}</h2>
-                </a>
+                <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
+                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
+                    <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
+                    <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
+                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
+                        <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
+                        <div :id="`play`+post.token"  @click="playAudio(audio)" >
+                            <img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">
+                        </div>
+                        <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
+                    </div>
+                    <img src="/images/icons/word-document.svg"  v-if="post.resource_type == 'docs'" style="min-height: 20rem; max-height: 20rem;">
+                    <a class="text-white" :href="`${post.resource}`" v-if="post.resource_type == 'docs'">
+                        <h2>{{ post.description }}</h2>
+                    </a>
+                </div>
+            </div>
+            <div v-if="post.replace_caption">
+                <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
+                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
+                    <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
+                    <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
+                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
+                        <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
+                        <div :id="`play`+post.token"  @click="playAudio(audio)" @change.prevent="getAudio" >
+                            <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
+                        </div>
+                        <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+                    </div>
+                    <img src="/images/icons/word-document.svg" class="p-5" style="min-height: 20rem; max-height: 20rem;" v-if="post.resource_type == 'docs'">
+                    <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text' || post.resource_type == 'docs'">
+                        <h3 class="mb-3 font-weight-bold">{{ post.replace_caption }}</h3>
+                        {{ post.description }} 
+                    </div>
+                </div>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none d-md-none">
                  <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger mx-2  w-100" @click="showModalSupport">SUPPORT
@@ -95,14 +116,12 @@
                 </div>
                 <div class="d-flex c-fourth my-3">
                     <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
-
                     <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
                     <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="colorFlame(lit.like)" >
                         <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                     </div>
                     <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
                     <div class="information cursor-pointer"><img src="/images/icons/post-up.svg" alt="">100</div>
-
                     <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
                 </div>
             </div>
@@ -125,7 +144,6 @@
             return {
                 view_comment: false,
                 audio: '',
-                isPlaying: true,
                 view_post: true,
                 url : ``,
                 lit:{
@@ -139,6 +157,8 @@
                     vote_up:[],
                     vote_down:[]
                 },
+                follow_type: 'follow',
+                follow:'',
                 link: ''
             }
         },
@@ -148,6 +168,7 @@
             this.getVote()
             this.readmore()
             this.getStyleAudio()
+            this.getFollow()
         },
         methods:{
             showModalSupport(){
@@ -167,7 +188,7 @@
                     var audio = WaveSurfer.create({
                         container: `#waveform`+this.post.token,
                         waveColor: 'gray',
-                        barHeight: 10,
+                        barHeight: 1,
                         cursorColor: 'red',
                         cursorWidth: 0,
                         forceDecode: true,
@@ -181,12 +202,19 @@
                 }
             },
             playAudio(audio){
-                if(!this.isPlaying){
-                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">`)
-                    this.isPlaying = true
-                }else{
-                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Pause-red.svg" alt="" class=" mx-3" height="33">`)
-                    this.isPlaying = false
+                var duration = audio.getDuration()
+                var current_time = audio.getCurrentTime()
+                if (duration == current_time) {
+                    audio.stop()
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+                    return false;
+                }
+                if(audio.isPlaying()){
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+
+                }else if(!audio.isPlaying()){
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Pause-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+
                 }
                 audio.playPause()
             },
@@ -293,6 +321,34 @@
                     $('#ModalLogin').modal('show')
                 }
             },
+            getFollow(){
+                if (Auth.state.username){
+                    if (this.post.user.followers) {
+                        this.post.user.followers.map(follow =>{
+                            if (Auth.state.username == follow.user.username) {
+                                $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white active">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
+                                this.follow_type = 'unfollow'
+                            }
+                        })
+                    }
+                }
+            },
+            colorFollow(type){
+                console.log(type)
+                if (Auth.state.username) {
+                    if (type == 'follow') {
+                        $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white active">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
+                        console.log(type)
+                        this.store(type)
+                    }
+                    if(type == 'unfollow'){
+                        $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
+                        this.store(type)
+                    }
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
+            },
             store(type){
                 var request =''
                 if (type == 'unlike') {
@@ -343,10 +399,24 @@
                         })
                     }
                 }
+                if (type == 'follow') {
+                    request = this.follow
+                    this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
+                }
+                if (type == 'unfollow') {
+                    request = this.follow
+                    if (this.post.followers) {
+                        this.post.followers.map(follow =>{
+                            if (Auth.state.username == follow.user.username) {
+                                this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
+                            }
+                        })
+                    }
+                }
                 axios.post(this.url, request).then(res =>{
                     if (res.data.like) {
                         this.lit.like = 'unlike'
-                        this.post.likes.unshift(res.data.like)
+                        this.post.likes.push(res.data.like)
                     }
                     if (res.data.unlike) {
                         this.lit.like = 'like'
@@ -354,7 +424,7 @@
                         this.post.likes.splice(indice, 1)
                     }
                     if (res.data.voteUp) {
-                        this.votes.vote_up.unshift(res.data.voteUp)
+                        this.votes.vote_up.push(res.data.voteUp)
                         let indice = this.post.votes.indexOf(res.data.voteUp)
                         this.votes.vote_down.splice(indice, 1)
                         this.vote.type_vote = 'unvote_up'
@@ -365,7 +435,7 @@
                         this.vote.type_vote = 'vote_up'
                     }
                     if (res.data.voteDown) {
-                        this.votes.vote_down.unshift(res.data.voteDown)
+                        this.votes.vote_down.push(res.data.voteDown)
                         let indice = this.post.votes.indexOf(res.data.voteDown)
                         this.votes.vote_up.splice(indice, 1)
                         this.vote.type_vote = 'unvote_down'
@@ -374,6 +444,13 @@
                         let indice = this.post.votes.indexOf(res.data.unvoteDown)
                         this.votes.vote_down.splice(indice, 1)
                         this.vote.type_vote = 'vote_up'
+                    }
+                    if (res.data.follow) {
+                        this.post.followers.push(res.data.follow)
+                        this.follow_type = 'unfollow'
+                    }
+                    if (res.data.unfollow) {
+                        this.follow_type = 'follow'
                     }
                 }).catch(err =>{
                     console.log(err)

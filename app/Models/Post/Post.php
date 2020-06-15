@@ -76,4 +76,14 @@ class Post extends Model
     {
         return $this->morphMany('App\Models\Post\VotePosts', 'voteable');
     }
+
+     /**
+     * Undocumented function
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function followers()
+    {
+        return $this->morphMany('App\Models\Reactions\Followers', 'followable');
+    }
 }

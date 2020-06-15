@@ -173,3 +173,34 @@ textarea{
     -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
     box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
 }
+.dropdown-menu{
+    border: 0px;
+    -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    margin-right: 1.6rem;
+    margin-left: 0.8rem;
+    .dropdown-item{
+        padding: 0.28rem;
+        color: $fourth-color !important;
+        &:hover{
+            color: white !important;
+            background-color: $primary-color !important;
+        }
+        &:active{
+            color: white !important;
+            background-color: $primary-color !important;
+        }
+    }
+    .dropdown-divider{
+        border-top: 1px solid  $third-color;
+    }
+}
+
+.fa-ellipsis-h{
+    
+        &:hover{
+            color: white !important;
+        }
+    
+}

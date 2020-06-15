@@ -99,4 +99,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\User\UserSocialAuth::class);
     }
+
+    /**
+     * Undocumented function
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function followers()
+    {
+        return $this->morphMany('App\Models\Reactions\Followers', 'followable');
+    }
 }

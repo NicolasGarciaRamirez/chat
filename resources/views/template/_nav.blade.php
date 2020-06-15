@@ -7,5 +7,5 @@
             <img src="/images/logo-white.svg" width="118" height="56" alt="Logo">
         </a>
     </div>
-    <app-nav />
+    <app-nav :user="{{ $user ? $user : 'user' }}" />
 </div>

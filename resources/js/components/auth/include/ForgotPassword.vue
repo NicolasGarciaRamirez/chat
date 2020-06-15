@@ -28,10 +28,10 @@
                         </div>
                     </form>
                     <div v-else>
-                        We’ve sent a recovery email request to <span class="font-weight-bold">{{ email ? email : artistic_name }}</span>. <br>
-                        Please visit your email then click on the button/link provided to <br>
-                        procceed with your password reset request. <br><br>
-                        Didn’t recieve and email yet?<br>
+                        We’ve sent a recovery email request to <span class="font-weight-bold">{{ email ? email : artistic_name }}</span>. 
+                        Please visit your email then click on the button/link provided to <
+                        procceed with your password reset request. 
+                        Didn’t recieve and email yet?
                         Please check your <span class="font-weight-bold">Spam</span> folder, or click on the button below. 
                         <div class="text-center">
                             <button class="btn text-white bg-fifth text-center my-5 w-50 rounded-pill">Resend Request</button>

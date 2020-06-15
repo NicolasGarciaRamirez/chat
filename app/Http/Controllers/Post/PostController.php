@@ -53,15 +53,16 @@ class PostController extends Controller
                     $resource = $this->setImage($request);
                 }
                 if ($request->resource_type == 'video') {
-                    $resource = "/images/post/videos/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp4"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
+                    $resource = "/images/post/videos/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
                     $request->imagePost->move(public_path("/images/post/videos/{$hash}/{$key}"), $resource);
                 }
                 if ($request->resource_type == 'audio') {
-                    $resource = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}.mp3"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
+                    $resource = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
                     $request->imagePost->move(public_path("/images/post/audio/{$hash}/{$key}"), $resource);
                 }
                 if ($request->resource_type == 'docs') {
-                    $resource = "/images/post/docs/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}";
+
+                    $resource = "/images/post/docs/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}{$request->imagePost->getClientOriginalExtension()}";
                     $request->imagePost->move(public_path("/images/post/docs/{$hash}/{$key}"), $resource);
                 }
 
@@ -71,6 +72,12 @@ class PostController extends Controller
 
             $post = new Post($request->all());
             $post->resource = $resource;
+            if ($request->allowDownload){
+                $post->allow_download = $request->allowDownload;
+            }
+            if ($request->replaceCaption) {
+                $post->replace_caption = $request->replaceCaption;
+            }
             $post->resource_type = $request->resource_type;
             $post->token = \Str::random(80);
             $this->user->posts()->save($post);

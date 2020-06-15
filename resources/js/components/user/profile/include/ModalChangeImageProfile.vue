@@ -13,17 +13,10 @@
                     </div>
                     <div class="d-flex text-center">
                         <form @submit.prevent="save">
-                            <div >
-                                <label for="img">
-                                    <img :src="imageData" alt="img-profile" id="image-profile" width="800" height="300">
-                                </label>
+                            <div id="image">
+                                <img :src="imageData" alt="img-profile"  width="800" height="300">
                             </div>
-                            <input type="file" class="d-none" id="img" @change="previewImage">
-                            <div class="d-flex flex-row">
-                                <i class="fas fa-minus c-fourth"></i>
-                                <input type="range" class="bg-fourth mx-2" />
-                                <i class="fas fa-plus c-fourth"></i>
-                            </div>
+                            <input type="file" class="" id="img" @change="previewImage">
                             <div class="text-right p-4">
                                 <button class="btn bg-primary text-white" data-dismis="modal">Cancel</button>
                                 <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
@@ -55,6 +48,9 @@ export default {
             avatar: '',
         }
     },
+    mounted(){
+        // this.getImage()
+    },
     methods:{
         async previewImage(w){
             this.avatar = w.target.files[0]
@@ -65,23 +61,25 @@ export default {
                 reader.onload = (e) => {
                     this.imageData = e.target.result;
                 }
-                // await this.getImage(w)
                 reader.readAsDataURL(input.files[0]);
             }
+            await this.getImage(w)
             
         },
         async getImage(w){
             this.user.avatar = w.target.files[0]
-            var element = $('#image-profile')
-            console.log(element)
+            var element = $('#image img')
 
             const cropper = new Cropper(element[0],{
-                autoCrop:true,
-                ready() {
-                    this.cropper.crop()
-                },
+                aspectRatio : 5 / 9 ,
+                autoCrop: true,
+                // viewMode: 3,
+                // dragMode: 'crop',
+                // modal: true,
+                // center: true,
+                // highlight: true,
+                // background: true,
             })
-            
             console.log(cropper)
         },
         save(){

@@ -15,7 +15,7 @@
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
                         <video :src="`${imageData}`" controls  v-if="post.resource_type == 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls  v-if="post.resource_type == 'audio'" />
-                        <iframe :src="`${imageData}`" frameborder="0" v-if="post.resource_type == 'docs'"></iframe>
+                        <img src="/images/icons/excel-document.svg" height="300" width="400" class="p-5" v-if="post.resource_type == 'docs'">
                     </div>
                 </div>
                 <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
@@ -52,22 +52,19 @@
                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="config-post  bg-primary"  v-if="imageData.length > 0 ">
+                <div class="config-post  bg-primary"  v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
                     <div class="d-flex flex-column">
                         <div class="checkbox">
                             <input type="checkbox" name="" id="replace_caption" class="m-2" v-model="replace_caption">
                             <label for="replace_caption"><span>Replace Caption with Title & Discription (YouTube Style)</span></label>
                         </div>
                         <div class="checkbox">
-                            <input type="checkbox" name="" id="allow_download" class="m-2" v-model="allow_download">
+                            <input type="checkbox" name="" id="allow_download" class="m-2" v-model="post.allow_download">
                             <label for="allow_download"><span>Allow Download</span></label>
                         </div>
                     </div>
                     <div class="d-flex flex" v-if="replace_caption">
                         <input type="text" class="form-control m-2" v-model="post.replace_caption" placeholder="Add title..">
-                    </div>
-                    <div class="d-flex flex my-2" v-if="allow_download">
-                        <textarea type="text" class="form-control m-2" v-model="post.allow_download" placeholder="Add Description.."></textarea>
                     </div>
                     <div class="d-flex flex-row justify-content-start">
                         <div class="select">

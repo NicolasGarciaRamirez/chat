@@ -64,16 +64,19 @@
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>
-        <li class="c-sidebar-nav-title m-0 pb-0">
+        <li class="c-sidebar-nav-title m-0 pb-0" v-if="auth.username">
             Following
             <i class="fas fa-star float-sm-right"></i>
         </li>
-        <li class="c-sidebar-nav-title mt-0 pt-0">
+        <li class="c-sidebar-nav-title mt-0 pt-0" v-if="auth.username">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <li class="c-sidebar-nav-item">
-            <span class="float-sm-right c-fifth dot">•</span>
-        </li>
+        <div v-for="(follow, index) in user.followers" :key="index" v-if="auth.username">
+            <li class="c-sidebar-nav-item">
+                <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
+                <span class="float-sm-right c-fifth dot">•</span>
+            </li>
+        </div>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>
@@ -85,6 +88,7 @@
     import AppFooter from './footer'
     import Auth from '../../helpers/Auth'
     export default {
+        props:['user'],
         data(){
             return {
                 auth: Auth.state
@@ -95,6 +99,13 @@
         },
         mounted(){
             Auth.initialize()
+            if (!this.user) {
+                this.user = {
+                    followers:{
+                        user:{}
+                    }
+                }
+            }
         }
     }
 </script>

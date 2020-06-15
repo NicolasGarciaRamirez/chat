@@ -61,33 +61,9 @@
                         }
                     }
                 }
-                
-                .dowpdown-menu-post{
-                    border: 0px;
-                    -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
-                    -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
-                    box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
-                    margin-right: 1.6rem;
-                    margin-left: 0.8rem;
-                    .dropdown-item{
-                        padding: 0.28rem;
-                        color: $fourth-color !important;
-                        &:hover{
-                            color: white !important;
-                            background-color: $primary-color !important;
-                        }
-                        &:active{
-                            color: white !important;
-                            background-color: $primary-color !important;
-                        }
-                    }
-                    .dropdown-divider{
-                        border-top: 1px solid  $third-color;
-                    }
-                }
-            }
-            i{
-                &:hover{
+                button.active{
+                    border-color: $fifth-color !important;
+                    background-color: $fifth-color !important;
                     color: white !important;
                 }
             }
@@ -120,16 +96,6 @@
                 }
             }
         }
-        //.post-body{
-            // .content{
-            //     width: 100%;
-            //     max-height: 100%;
-            //     overflow: hidden;
-            //     img{
-            //         width: 100%;
-            //     }
-            // }
-        // }
         .post-footer{
             .information{
                 display: flex;
