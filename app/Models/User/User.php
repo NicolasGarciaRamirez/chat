@@ -109,4 +109,9 @@ class User extends Authenticatable
     {
         return $this->morphMany('App\Models\Reactions\Followers', 'followable');
     }
+
+    public function playlists()
+    {
+        return $this->hasMany(\App\Models\Channel\ChannelPlaylist::class);
+    }
 }

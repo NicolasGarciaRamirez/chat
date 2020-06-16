@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -77,13 +78,13 @@ class UserController extends Controller
 
         try {
             $request->validate([
-                'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
 
-            $avatar = '/images/profile' . '/' . \Str::random(150) .'.'.request()->avatar->getClientOriginalExtension();
-            request()->avatar->move(base_path('public/images/profile'), $avatar);
-
-            $this->user->avatar = $avatar;
+            // $avatar = '/images/profile' . '/' . \Str::random(150) .'.'.request()->image->getClientOriginalExtension();
+            // request()->image->move(base_path('public/images/profile'), $avatar);
+            $imageName = $this->setImageProfile($request);
+            $this->user->avatar = $imageName;
             $this->user->update();
             \DB::commit();
 
@@ -113,13 +114,11 @@ class UserController extends Controller
 
         try {
             $request->validate([
-                'cover' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
 
-            $cover = '/images/profile' . '/' . \Str::random(150) .'.'. request()->cover->getClientOriginalExtension();
-            request()->cover->move(base_path('public/images/profile'), $cover);
-
-            $this->user->cover = $cover;
+            $imageName = $this->setImage($request);
+            $this->user->cover = $imageName;
             $this->user->update();
 
             \DB::commit();
@@ -136,6 +135,49 @@ class UserController extends Controller
                 'errors' => null
             ], 422);
         }
+    }
+
+    public function setImage($request): string
+    {
+        $key = md5(\Auth::user()->id);
+        $hash = \Str::random(10);
+        $imageName = "/images/post/{$key}/{$hash}{$request->image->getClientOriginalName()}";
+        $request->image->move(public_path("/images/post/{$key}/"), $imageName);
+
+        $background = Image::canvas(1200, 400);
+        $background->fill('#141414');
+
+        $image = Image::make(public_path($imageName))->resize(1200, 400, function ($c) {
+            $c->aspectRatio();
+            $c->upsize();
+        });
+
+        $background->insert($image, 'center');
+        $background->save(public_path($imageName));
+
+        return $imageName;
+    }
+
+    public function setImageProfile($request): string
+    {
+        $key = md5(\Auth::user()->id);
+        $hash = \Str::random(10);
+        $imageName = "/images/post/{$key}/{$hash}{$request->image->getClientOriginalName()}";
+        $request->image->move(public_path("/images/post/{$key}/"), $imageName);
+
+        $background = Image::canvas(400, 400);
+        $background->circle(100,10,10);
+        $background->fill('#141414');
+
+        $image = Image::make(public_path($imageName))->resize(400,400, function ($c) {
+            $c->aspectRatio();
+            $c->upsize();
+        });
+
+        $background->insert($image, 'center');
+        $background->save(public_path($imageName));
+
+        return $imageName;
     }
 
     public function updateUser(Request $request)

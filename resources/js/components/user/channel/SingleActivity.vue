@@ -81,7 +81,7 @@ export default {
                     container: `#waveform`+this.activity.token,
                     waveColor: 'gray',
                     barHeight: 1,
-                    cursorColor: 'linear-gradient(90deg, rgba(255,0,0,0.7511379551820728) 0%, rgba(255,87,87,1) 48%, rgba(255,255,255,1) 100%);',
+                    cursorColor: 'red',
                     cursorWidth: 0,
                     forceDecode: true,
                     hideScrollbar: true,
@@ -130,7 +130,7 @@ export default {
             }
         },
         colorFlame(type){
-            if (Auth.state.username) {
+            if (Auth.state.token) {
                 if (type == 'like') {
                     $(`#lit`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
                     this.store(type)
@@ -144,23 +144,32 @@ export default {
             }
         },
         getVote(){
-            if (this.activity.votes) {
-                this.activity.votes.map(vote => {
-                    if (vote.type_vote == 'vote_up') {
-                        this.votes.vote_up.push(vote)
-                        $(`#voteUp`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
-                        $(`#voteDown`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
-                        this.vote_type = 'unvote_up'
-                        this.vote.type_vote = 'unvote_up'
-                    }
-                    if(vote.type_vote == 'vote_down'){
-                        this.votes.vote_down.push(vote)
-                        $(`#voteDown`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
-                        $(`#voteUp`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
-                        this.vote_type = 'unvote_down'
-                        this.vote.type_vote = 'unvote_down'
-                    }
-                })
+            if (Auth.state.token && Auth.state.token === this.$parent.user.token) {
+                if (this.activity.votes) {
+                    this.activity.votes.map(vote => {
+                        if (vote.type_vote == 'vote_up') {
+                            this.votes.vote_up.push(vote)
+                            $(`#voteUp`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
+                            $(`#voteDown`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
+                            this.vote_type = 'unvote_up'
+                            this.vote.type_vote = 'unvote_up'
+                        }
+                        if(vote.type_vote == 'vote_down'){
+                            this.votes.vote_down.push(vote)
+                            $(`#voteDown`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
+                            $(`#voteUp`+this.activity.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+                            this.vote_type = 'unvote_down'
+                            this.vote.type_vote = 'unvote_down'
+                        }
+                    })
+                }
+            }else{
+                if (this.activity.votes) {
+                    this.activity.votes.map(vote => {
+                        if(vote.type_vote === 'vote_up') {this.votes.vote_up.push(vote)}
+                        if(vote.type_vote === 'vote_down') {this.votes.vote_down.push(vote)}
+                    })
+                }
             }
         },
         colorVote(type){

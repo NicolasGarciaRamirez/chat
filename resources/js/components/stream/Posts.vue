@@ -6,6 +6,7 @@
         <modal-support  />
         <modal-reward  />
         <register />
+        <modal-playlist />
     </section>
 </template>
 
@@ -15,6 +16,7 @@
     import ModalSupport from './ModalSupport'
     import ModalPost from './ModalPost'
     import Register from '../auth/Register'
+    import ModalPlaylist from '../user/channel/includes/ModalNewPlaylist'
 
     export default {
         props:['posts'],
@@ -24,6 +26,7 @@
             ModalReward,
             ModalPost,
             Register,
+            ModalPlaylist
         },
         data(){
             return{

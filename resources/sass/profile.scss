@@ -106,8 +106,10 @@
         @include media-breakpoint-down(sm){
             margin-top: 2rem;
         }
-        a>img{
-            width: 15px;
+        a.active{
+            border-color: white !important;
+            background-color: white !important;
+            color: black !important;
         }
         .functions{
             a{
@@ -211,7 +213,7 @@
             }
         }
     }
-    .edit-profile, .edit-channel, .account-settings, .post, .comments{
+    .edit-profile, .edit-channel, .account-settings, .post, .comments , .modal-playlist{
         input.form-control, select.form-control, textarea.form-control{
             border-radius: 30px !important;
             background-color: $third-color !important;

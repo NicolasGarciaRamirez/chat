@@ -27,14 +27,21 @@
                 </button>
                 <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
-                    <a :href="`/${post.user.username}/Profile/WorkHistory`" class="dropdown-item">Go To User Profile</a>
-                    <a href="#" class="dropdown-item">Message User</a>
-                    <div class="dropdown-divider"></div>
-                    <a :href="`/${post.user.username}/Post/get/${post.token}`" class="dropdown-item">Go To Post</a>
-                    <a href="#" class="dropdown-item link-post" :data-clipboard-text="`/${post.user.username}/Post/get/${post.token}`" @click="copyLink">Copy Link</a>
-                    <a @click="view_post = false" class="dropdown-item">Hide Post</a>
-                    <a href="#" class="dropdown-item">Report</a>
-                    <a href="#" class="dropdown-item" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</a>
+                    <div v-if="!menuPlaylist">
+                        <a :href="`/${post.user.username}/Profile/WorkHistory`" class="dropdown-item">Go To User Profile</a>
+                        <!-- <a href="#" class="dropdown-item">Message User</a> -->
+                        <div class="dropdown-divider"></div>
+                        <a :href="`/${post.user.username}/Post/get/${post.token}`" class="dropdown-item">Go To Post</a>
+                        <a href="#" class="dropdown-item link-post" :data-clipboard-text="`/${post.user.username}/Post/get/${post.token}`" @click="copyLink">Copy Link</a>
+                        <a @click="view_post = false" class="dropdown-item">Hide Post</a>
+                        <a href="#" class="dropdown-item">Report</a>
+                        <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div>
+                    </div>
+                    <div v-if="menuPlaylist">
+                        <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
+                        <div class="dropdown-divider"></div>
+                        <a href="" class="dropdown-item">All Playlist</a>
+                    </div>
                 </div>
             </div>
             <div class="d-flex align-items-start">
@@ -139,9 +146,11 @@
         props:['post'],
         components:{
             Comments,
+    
         },
         data(){
             return {
+                menuPlaylist: false,
                 view_comment: false,
                 audio: '',
                 view_post: true,
@@ -180,6 +189,9 @@
             showModalRegister(){
                 $('#ModalRegister').modal('show')
             },
+            showModalNewPlaylist(){
+                $('#ModalPlaylist').modal('show')
+            },
             // showModalPost(){
                 //     $('#ModalPost').modal('show')
             // }
@@ -193,12 +205,15 @@
                         cursorWidth: 0,
                         forceDecode: true,
                         hideScrollbar: true,
-                        progressColor: 'red',
-                        responsive: true
+                        progressColor: 'rgb(255,0,0)',
+                        responsive: true,
+                        interact: true,
                     });
                     audio.load(this.post.resource)
                     audio.setHeight(200)
                     this.audio = audio
+
+                   
                 }
             },
             playAudio(audio){

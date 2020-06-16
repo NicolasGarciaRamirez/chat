@@ -111,7 +111,7 @@ Route::group(['prefix' => '/{username}'], function () {
     Route::group(['prefix' => 'Follow'], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::name('follow.store')->post('/follow/{user}', 'Reactions\FollowersController@follow');
-            Route::name('unfollow.store')->post('/follow/{follow}', 'Reactions\FollowersController@unfollow');
+            Route::name('unfollow.store')->post('/unfollow/{follow}', 'Reactions\FollowersController@unfollow');
         });
     });
 });

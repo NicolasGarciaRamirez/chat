@@ -27633,34 +27633,37 @@ readers do not read off random characters that represent icons */
   box-shadow: 0px 0px 25px -10px #262626;
 }
 
-.modal input {
+.modal input,
+.modal textarea {
   border-radius: 30px;
   background-color: #262626;
   color: white;
   border: 0;
 }
 
-.modal input::-webkit-input-placeholder {
+.modal input::-webkit-input-placeholder, .modal textarea::-webkit-input-placeholder {
   color: #535353;
 }
 
-.modal input::-moz-placeholder {
+.modal input::-moz-placeholder, .modal textarea::-moz-placeholder {
   color: #535353;
 }
 
-.modal input:-ms-input-placeholder {
+.modal input:-ms-input-placeholder, .modal textarea:-ms-input-placeholder {
   color: #535353;
 }
 
-.modal input::-ms-input-placeholder {
+.modal input::-ms-input-placeholder, .modal textarea::-ms-input-placeholder {
   color: #535353;
 }
 
-.modal input::placeholder {
+.modal input::placeholder,
+.modal textarea::placeholder {
   color: #535353;
 }
 
-.modal input:focus {
+.modal input:focus,
+.modal textarea:focus {
   background-color: #262626;
   color: white;
   border: 0;
@@ -28571,8 +28574,10 @@ button:focus {
   }
 }
 
-.profile .head-container a > img {
-  width: 15px;
+.profile .head-container a.active {
+  border-color: white !important;
+  background-color: white !important;
+  color: black !important;
 }
 
 .profile .head-container .functions a {
@@ -28697,7 +28702,10 @@ button:focus {
 .profile .post textarea.form-control,
 .profile .comments input.form-control,
 .profile .comments select.form-control,
-.profile .comments textarea.form-control {
+.profile .comments textarea.form-control,
+.profile .modal-playlist input.form-control,
+.profile .modal-playlist select.form-control,
+.profile .modal-playlist textarea.form-control {
   border-radius: 30px !important;
   background-color: #262626 !important;
   color: white;
@@ -28706,19 +28714,19 @@ button:focus {
   caret-color: #FF0000;
 }
 
-.profile .edit-profile input.form-control::-webkit-input-placeholder, .profile .edit-profile select.form-control::-webkit-input-placeholder, .profile .edit-profile textarea.form-control::-webkit-input-placeholder, .profile .edit-channel input.form-control::-webkit-input-placeholder, .profile .edit-channel select.form-control::-webkit-input-placeholder, .profile .edit-channel textarea.form-control::-webkit-input-placeholder, .profile .account-settings input.form-control::-webkit-input-placeholder, .profile .account-settings select.form-control::-webkit-input-placeholder, .profile .account-settings textarea.form-control::-webkit-input-placeholder, .profile .post input.form-control::-webkit-input-placeholder, .profile .post select.form-control::-webkit-input-placeholder, .profile .post textarea.form-control::-webkit-input-placeholder, .profile .comments input.form-control::-webkit-input-placeholder, .profile .comments select.form-control::-webkit-input-placeholder, .profile .comments textarea.form-control::-webkit-input-placeholder {
+.profile .edit-profile input.form-control::-webkit-input-placeholder, .profile .edit-profile select.form-control::-webkit-input-placeholder, .profile .edit-profile textarea.form-control::-webkit-input-placeholder, .profile .edit-channel input.form-control::-webkit-input-placeholder, .profile .edit-channel select.form-control::-webkit-input-placeholder, .profile .edit-channel textarea.form-control::-webkit-input-placeholder, .profile .account-settings input.form-control::-webkit-input-placeholder, .profile .account-settings select.form-control::-webkit-input-placeholder, .profile .account-settings textarea.form-control::-webkit-input-placeholder, .profile .post input.form-control::-webkit-input-placeholder, .profile .post select.form-control::-webkit-input-placeholder, .profile .post textarea.form-control::-webkit-input-placeholder, .profile .comments input.form-control::-webkit-input-placeholder, .profile .comments select.form-control::-webkit-input-placeholder, .profile .comments textarea.form-control::-webkit-input-placeholder, .profile .modal-playlist input.form-control::-webkit-input-placeholder, .profile .modal-playlist select.form-control::-webkit-input-placeholder, .profile .modal-playlist textarea.form-control::-webkit-input-placeholder {
   color: #535353;
 }
 
-.profile .edit-profile input.form-control::-moz-placeholder, .profile .edit-profile select.form-control::-moz-placeholder, .profile .edit-profile textarea.form-control::-moz-placeholder, .profile .edit-channel input.form-control::-moz-placeholder, .profile .edit-channel select.form-control::-moz-placeholder, .profile .edit-channel textarea.form-control::-moz-placeholder, .profile .account-settings input.form-control::-moz-placeholder, .profile .account-settings select.form-control::-moz-placeholder, .profile .account-settings textarea.form-control::-moz-placeholder, .profile .post input.form-control::-moz-placeholder, .profile .post select.form-control::-moz-placeholder, .profile .post textarea.form-control::-moz-placeholder, .profile .comments input.form-control::-moz-placeholder, .profile .comments select.form-control::-moz-placeholder, .profile .comments textarea.form-control::-moz-placeholder {
+.profile .edit-profile input.form-control::-moz-placeholder, .profile .edit-profile select.form-control::-moz-placeholder, .profile .edit-profile textarea.form-control::-moz-placeholder, .profile .edit-channel input.form-control::-moz-placeholder, .profile .edit-channel select.form-control::-moz-placeholder, .profile .edit-channel textarea.form-control::-moz-placeholder, .profile .account-settings input.form-control::-moz-placeholder, .profile .account-settings select.form-control::-moz-placeholder, .profile .account-settings textarea.form-control::-moz-placeholder, .profile .post input.form-control::-moz-placeholder, .profile .post select.form-control::-moz-placeholder, .profile .post textarea.form-control::-moz-placeholder, .profile .comments input.form-control::-moz-placeholder, .profile .comments select.form-control::-moz-placeholder, .profile .comments textarea.form-control::-moz-placeholder, .profile .modal-playlist input.form-control::-moz-placeholder, .profile .modal-playlist select.form-control::-moz-placeholder, .profile .modal-playlist textarea.form-control::-moz-placeholder {
   color: #535353;
 }
 
-.profile .edit-profile input.form-control:-ms-input-placeholder, .profile .edit-profile select.form-control:-ms-input-placeholder, .profile .edit-profile textarea.form-control:-ms-input-placeholder, .profile .edit-channel input.form-control:-ms-input-placeholder, .profile .edit-channel select.form-control:-ms-input-placeholder, .profile .edit-channel textarea.form-control:-ms-input-placeholder, .profile .account-settings input.form-control:-ms-input-placeholder, .profile .account-settings select.form-control:-ms-input-placeholder, .profile .account-settings textarea.form-control:-ms-input-placeholder, .profile .post input.form-control:-ms-input-placeholder, .profile .post select.form-control:-ms-input-placeholder, .profile .post textarea.form-control:-ms-input-placeholder, .profile .comments input.form-control:-ms-input-placeholder, .profile .comments select.form-control:-ms-input-placeholder, .profile .comments textarea.form-control:-ms-input-placeholder {
+.profile .edit-profile input.form-control:-ms-input-placeholder, .profile .edit-profile select.form-control:-ms-input-placeholder, .profile .edit-profile textarea.form-control:-ms-input-placeholder, .profile .edit-channel input.form-control:-ms-input-placeholder, .profile .edit-channel select.form-control:-ms-input-placeholder, .profile .edit-channel textarea.form-control:-ms-input-placeholder, .profile .account-settings input.form-control:-ms-input-placeholder, .profile .account-settings select.form-control:-ms-input-placeholder, .profile .account-settings textarea.form-control:-ms-input-placeholder, .profile .post input.form-control:-ms-input-placeholder, .profile .post select.form-control:-ms-input-placeholder, .profile .post textarea.form-control:-ms-input-placeholder, .profile .comments input.form-control:-ms-input-placeholder, .profile .comments select.form-control:-ms-input-placeholder, .profile .comments textarea.form-control:-ms-input-placeholder, .profile .modal-playlist input.form-control:-ms-input-placeholder, .profile .modal-playlist select.form-control:-ms-input-placeholder, .profile .modal-playlist textarea.form-control:-ms-input-placeholder {
   color: #535353;
 }
 
-.profile .edit-profile input.form-control::-ms-input-placeholder, .profile .edit-profile select.form-control::-ms-input-placeholder, .profile .edit-profile textarea.form-control::-ms-input-placeholder, .profile .edit-channel input.form-control::-ms-input-placeholder, .profile .edit-channel select.form-control::-ms-input-placeholder, .profile .edit-channel textarea.form-control::-ms-input-placeholder, .profile .account-settings input.form-control::-ms-input-placeholder, .profile .account-settings select.form-control::-ms-input-placeholder, .profile .account-settings textarea.form-control::-ms-input-placeholder, .profile .post input.form-control::-ms-input-placeholder, .profile .post select.form-control::-ms-input-placeholder, .profile .post textarea.form-control::-ms-input-placeholder, .profile .comments input.form-control::-ms-input-placeholder, .profile .comments select.form-control::-ms-input-placeholder, .profile .comments textarea.form-control::-ms-input-placeholder {
+.profile .edit-profile input.form-control::-ms-input-placeholder, .profile .edit-profile select.form-control::-ms-input-placeholder, .profile .edit-profile textarea.form-control::-ms-input-placeholder, .profile .edit-channel input.form-control::-ms-input-placeholder, .profile .edit-channel select.form-control::-ms-input-placeholder, .profile .edit-channel textarea.form-control::-ms-input-placeholder, .profile .account-settings input.form-control::-ms-input-placeholder, .profile .account-settings select.form-control::-ms-input-placeholder, .profile .account-settings textarea.form-control::-ms-input-placeholder, .profile .post input.form-control::-ms-input-placeholder, .profile .post select.form-control::-ms-input-placeholder, .profile .post textarea.form-control::-ms-input-placeholder, .profile .comments input.form-control::-ms-input-placeholder, .profile .comments select.form-control::-ms-input-placeholder, .profile .comments textarea.form-control::-ms-input-placeholder, .profile .modal-playlist input.form-control::-ms-input-placeholder, .profile .modal-playlist select.form-control::-ms-input-placeholder, .profile .modal-playlist textarea.form-control::-ms-input-placeholder {
   color: #535353;
 }
 
@@ -28736,7 +28744,10 @@ button:focus {
 .profile .post textarea.form-control::placeholder,
 .profile .comments input.form-control::placeholder,
 .profile .comments select.form-control::placeholder,
-.profile .comments textarea.form-control::placeholder {
+.profile .comments textarea.form-control::placeholder,
+.profile .modal-playlist input.form-control::placeholder,
+.profile .modal-playlist select.form-control::placeholder,
+.profile .modal-playlist textarea.form-control::placeholder {
   color: #535353;
 }
 
@@ -28754,7 +28765,10 @@ button:focus {
 .profile .post textarea.form-control:focus,
 .profile .comments input.form-control:focus,
 .profile .comments select.form-control:focus,
-.profile .comments textarea.form-control:focus {
+.profile .comments textarea.form-control:focus,
+.profile .modal-playlist input.form-control:focus,
+.profile .modal-playlist select.form-control:focus,
+.profile .modal-playlist textarea.form-control:focus {
   background-color: #262626;
   color: white;
   border: 0;
@@ -28764,7 +28778,8 @@ button:focus {
 .profile .edit-channel .accordion .card,
 .profile .account-settings .accordion .card,
 .profile .post .accordion .card,
-.profile .comments .accordion .card {
+.profile .comments .accordion .card,
+.profile .modal-playlist .accordion .card {
   border: 0;
   border-radius: 0;
   position: relative;
@@ -28774,7 +28789,8 @@ button:focus {
 .profile .edit-channel .accordion .card:after,
 .profile .account-settings .accordion .card:after,
 .profile .post .accordion .card:after,
-.profile .comments .accordion .card:after {
+.profile .comments .accordion .card:after,
+.profile .modal-playlist .accordion .card:after {
   content: "";
   height: 1px;
   position: absolute;
@@ -28787,7 +28803,8 @@ button:focus {
 .profile .edit-channel .accordion .card .card-header,
 .profile .account-settings .accordion .card .card-header,
 .profile .post .accordion .card .card-header,
-.profile .comments .accordion .card .card-header {
+.profile .comments .accordion .card .card-header,
+.profile .modal-playlist .accordion .card .card-header {
   padding-left: 0;
   border-radius: 0 !important;
   border: 0;
@@ -28797,7 +28814,8 @@ button:focus {
 .profile .edit-channel .accordion .card .card-header button.btn,
 .profile .account-settings .accordion .card .card-header button.btn,
 .profile .post .accordion .card .card-header button.btn,
-.profile .comments .accordion .card .card-header button.btn {
+.profile .comments .accordion .card .card-header button.btn,
+.profile .modal-playlist .accordion .card .card-header button.btn {
   padding-left: 0;
 }
 
@@ -28806,7 +28824,8 @@ button:focus {
   .profile .edit-channel .accordion .card .card-header button.btn,
   .profile .account-settings .accordion .card .card-header button.btn,
   .profile .post .accordion .card .card-header button.btn,
-  .profile .comments .accordion .card .card-header button.btn {
+  .profile .comments .accordion .card .card-header button.btn,
+  .profile .modal-playlist .accordion .card .card-header button.btn {
     font-size: 1.2rem;
   }
 }
@@ -28815,7 +28834,8 @@ button:focus {
 .profile .edit-channel .accordion .card .card-header i.fas,
 .profile .account-settings .accordion .card .card-header i.fas,
 .profile .post .accordion .card .card-header i.fas,
-.profile .comments .accordion .card .card-header i.fas {
+.profile .comments .accordion .card .card-header i.fas,
+.profile .modal-playlist .accordion .card .card-header i.fas {
   cursor: pointer;
 }
 
@@ -28823,7 +28843,8 @@ button:focus {
 .profile .edit-channel .accordion .card #releases img,
 .profile .account-settings .accordion .card #releases img,
 .profile .post .accordion .card #releases img,
-.profile .comments .accordion .card #releases img {
+.profile .comments .accordion .card #releases img,
+.profile .modal-playlist .accordion .card #releases img {
   min-height: 164px;
   max-height: 164px;
 }
@@ -28832,7 +28853,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox,
 .profile .account-settings .modal-select .checkbox,
 .profile .post .modal-select .checkbox,
-.profile .comments .modal-select .checkbox {
+.profile .comments .modal-select .checkbox,
+.profile .modal-playlist .modal-select .checkbox {
   position: relative;
   padding: 0 18px;
   display: flex;
@@ -28843,7 +28865,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox label,
 .profile .account-settings .modal-select .checkbox label,
 .profile .post .modal-select .checkbox label,
-.profile .comments .modal-select .checkbox label {
+.profile .comments .modal-select .checkbox label,
+.profile .modal-playlist .modal-select .checkbox label {
   min-height: 34px;
   margin-bottom: 0;
   font-weight: normal;
@@ -28853,7 +28876,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox label span,
 .profile .account-settings .modal-select .checkbox label span,
 .profile .post .modal-select .checkbox label span,
-.profile .comments .modal-select .checkbox label span {
+.profile .comments .modal-select .checkbox label span,
+.profile .modal-playlist .modal-select .checkbox label span {
   position: absolute;
   transform: translateX(30px);
 }
@@ -28862,7 +28886,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox label:before,
 .profile .account-settings .modal-select .checkbox label:before,
 .profile .post .modal-select .checkbox label:before,
-.profile .comments .modal-select .checkbox label:before {
+.profile .comments .modal-select .checkbox label:before,
+.profile .modal-playlist .modal-select .checkbox label:before {
   content: "";
   position: absolute;
   top: 0;
@@ -28878,7 +28903,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox label:after,
 .profile .account-settings .modal-select .checkbox label:after,
 .profile .post .modal-select .checkbox label:after,
-.profile .comments .modal-select .checkbox label:after {
+.profile .comments .modal-select .checkbox label:after,
+.profile .modal-playlist .modal-select .checkbox label:after {
   content: "";
   position: absolute;
   top: 0;
@@ -28893,7 +28919,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox input[type=checkbox],
 .profile .account-settings .modal-select .checkbox input[type=checkbox],
 .profile .post .modal-select .checkbox input[type=checkbox],
-.profile .comments .modal-select .checkbox input[type=checkbox] {
+.profile .comments .modal-select .checkbox input[type=checkbox],
+.profile .modal-playlist .modal-select .checkbox input[type=checkbox] {
   width: auto;
   opacity: 1e-8;
   position: absolute;
@@ -28904,7 +28931,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox input[type=checkbox]:checked ~ label:before,
 .profile .account-settings .modal-select .checkbox input[type=checkbox]:checked ~ label:before,
 .profile .post .modal-select .checkbox input[type=checkbox]:checked ~ label:before,
-.profile .comments .modal-select .checkbox input[type=checkbox]:checked ~ label:before {
+.profile .comments .modal-select .checkbox input[type=checkbox]:checked ~ label:before,
+.profile .modal-playlist .modal-select .checkbox input[type=checkbox]:checked ~ label:before {
   border: 2px solid white;
 }
 
@@ -28912,7 +28940,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox input[type=checkbox]:checked ~ label:after,
 .profile .account-settings .modal-select .checkbox input[type=checkbox]:checked ~ label:after,
 .profile .post .modal-select .checkbox input[type=checkbox]:checked ~ label:after,
-.profile .comments .modal-select .checkbox input[type=checkbox]:checked ~ label:after {
+.profile .comments .modal-select .checkbox input[type=checkbox]:checked ~ label:after,
+.profile .modal-playlist .modal-select .checkbox input[type=checkbox]:checked ~ label:after {
   transform: rotate(180deg) scale(1);
   background-color: #FF0000;
 }
@@ -28921,7 +28950,8 @@ button:focus {
 .profile .edit-channel .modal-select .checkbox input[type=checkbox]:focus + label::before,
 .profile .account-settings .modal-select .checkbox input[type=checkbox]:focus + label::before,
 .profile .post .modal-select .checkbox input[type=checkbox]:focus + label::before,
-.profile .comments .modal-select .checkbox input[type=checkbox]:focus + label::before {
+.profile .comments .modal-select .checkbox input[type=checkbox]:focus + label::before,
+.profile .modal-playlist .modal-select .checkbox input[type=checkbox]:focus + label::before {
   outline: 0;
 }
 
@@ -28929,7 +28959,8 @@ button:focus {
 .profile .edit-channel .modal-select .divider,
 .profile .account-settings .modal-select .divider,
 .profile .post .modal-select .divider,
-.profile .comments .modal-select .divider {
+.profile .comments .modal-select .divider,
+.profile .modal-playlist .modal-select .divider {
   border-top: 1px solid #262626;
 }
 
@@ -28938,7 +28969,8 @@ button:focus {
   .profile .edit-channel .form-search,
   .profile .account-settings .form-search,
   .profile .post .form-search,
-  .profile .comments .form-search {
+  .profile .comments .form-search,
+  .profile .modal-playlist .form-search {
     width: 280px;
   }
 }
@@ -28947,7 +28979,8 @@ button:focus {
 .profile .edit-channel .form-search .form-group input.form-control,
 .profile .account-settings .form-search .form-group input.form-control,
 .profile .post .form-search .form-group input.form-control,
-.profile .comments .form-search .form-group input.form-control {
+.profile .comments .form-search .form-group input.form-control,
+.profile .modal-playlist .form-search .form-group input.form-control {
   border-radius: 30px 0px 0px 30px;
   background-color: #141414;
   color: white;
@@ -28956,19 +28989,19 @@ button:focus {
   caret-color: #FF0000;
 }
 
-.profile .edit-profile .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .account-settings .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .post .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .comments .form-search .form-group input.form-control::-webkit-input-placeholder {
+.profile .edit-profile .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .account-settings .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .post .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .comments .form-search .form-group input.form-control::-webkit-input-placeholder, .profile .modal-playlist .form-search .form-group input.form-control::-webkit-input-placeholder {
   color: #535353;
 }
 
-.profile .edit-profile .form-search .form-group input.form-control::-moz-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-moz-placeholder, .profile .account-settings .form-search .form-group input.form-control::-moz-placeholder, .profile .post .form-search .form-group input.form-control::-moz-placeholder, .profile .comments .form-search .form-group input.form-control::-moz-placeholder {
+.profile .edit-profile .form-search .form-group input.form-control::-moz-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-moz-placeholder, .profile .account-settings .form-search .form-group input.form-control::-moz-placeholder, .profile .post .form-search .form-group input.form-control::-moz-placeholder, .profile .comments .form-search .form-group input.form-control::-moz-placeholder, .profile .modal-playlist .form-search .form-group input.form-control::-moz-placeholder {
   color: #535353;
 }
 
-.profile .edit-profile .form-search .form-group input.form-control:-ms-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control:-ms-input-placeholder, .profile .account-settings .form-search .form-group input.form-control:-ms-input-placeholder, .profile .post .form-search .form-group input.form-control:-ms-input-placeholder, .profile .comments .form-search .form-group input.form-control:-ms-input-placeholder {
+.profile .edit-profile .form-search .form-group input.form-control:-ms-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control:-ms-input-placeholder, .profile .account-settings .form-search .form-group input.form-control:-ms-input-placeholder, .profile .post .form-search .form-group input.form-control:-ms-input-placeholder, .profile .comments .form-search .form-group input.form-control:-ms-input-placeholder, .profile .modal-playlist .form-search .form-group input.form-control:-ms-input-placeholder {
   color: #535353;
 }
 
-.profile .edit-profile .form-search .form-group input.form-control::-ms-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-ms-input-placeholder, .profile .account-settings .form-search .form-group input.form-control::-ms-input-placeholder, .profile .post .form-search .form-group input.form-control::-ms-input-placeholder, .profile .comments .form-search .form-group input.form-control::-ms-input-placeholder {
+.profile .edit-profile .form-search .form-group input.form-control::-ms-input-placeholder, .profile .edit-channel .form-search .form-group input.form-control::-ms-input-placeholder, .profile .account-settings .form-search .form-group input.form-control::-ms-input-placeholder, .profile .post .form-search .form-group input.form-control::-ms-input-placeholder, .profile .comments .form-search .form-group input.form-control::-ms-input-placeholder, .profile .modal-playlist .form-search .form-group input.form-control::-ms-input-placeholder {
   color: #535353;
 }
 
@@ -28976,7 +29009,8 @@ button:focus {
 .profile .edit-channel .form-search .form-group input.form-control::placeholder,
 .profile .account-settings .form-search .form-group input.form-control::placeholder,
 .profile .post .form-search .form-group input.form-control::placeholder,
-.profile .comments .form-search .form-group input.form-control::placeholder {
+.profile .comments .form-search .form-group input.form-control::placeholder,
+.profile .modal-playlist .form-search .form-group input.form-control::placeholder {
   color: #535353;
 }
 
@@ -28984,7 +29018,8 @@ button:focus {
 .profile .edit-channel .form-search .input-group-append .input-group-text,
 .profile .account-settings .form-search .input-group-append .input-group-text,
 .profile .post .form-search .input-group-append .input-group-text,
-.profile .comments .form-search .input-group-append .input-group-text {
+.profile .comments .form-search .input-group-append .input-group-text,
+.profile .modal-playlist .form-search .input-group-append .input-group-text {
   border-radius: 0px 30px 30px 0px;
   background-color: #141414;
   border-color: #535353;
@@ -28995,7 +29030,8 @@ button:focus {
 .profile .edit-channel .form-search .input-group-append .input-group-text i,
 .profile .account-settings .form-search .input-group-append .input-group-text i,
 .profile .post .form-search .input-group-append .input-group-text i,
-.profile .comments .form-search .input-group-append .input-group-text i {
+.profile .comments .form-search .input-group-append .input-group-text i,
+.profile .modal-playlist .form-search .input-group-append .input-group-text i {
   color: #535353;
 }
 
@@ -29356,9 +29392,9 @@ button:focus {
 }
 
 .posts .post .post-head .post-user-actions button.active {
-  border-color: #FF0000 !important;
-  background-color: #FF0000 !important;
-  color: white !important;
+  border-color: white !important;
+  background-color: white !important;
+  color: black;
 }
 
 .posts .post .post-head .post-user-type {

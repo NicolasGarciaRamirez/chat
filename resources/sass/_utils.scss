@@ -122,7 +122,7 @@
     .modal-border-red{
         box-shadow: 0px 0px 25px -10px $third-color;
     }
-    input{
+    input, textarea{
         border-radius: 30px;
         background-color: $third-color;
         color: white;
@@ -198,9 +198,7 @@ textarea{
 }
 
 .fa-ellipsis-h{
-    
-        &:hover{
-            color: white !important;
-        }
-    
+    &:hover{
+        color: white !important;
+    }
 }
