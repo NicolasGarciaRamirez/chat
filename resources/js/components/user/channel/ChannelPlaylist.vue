@@ -10,33 +10,21 @@
             </p>
         </div>
         <div class="navigation-body">
-            <a :href="`/${user.username}/Channel/Activity`" class="c-fifth font-weight-bold mr-3">Activity</a>
-            <a :href="`/${user.username}/Channel/Playlist`" class="text-white font-weight-bold active">Playlist</a>
+            <a :href="`/${user.username}/Channel/Activity`" class="text-white font-weight-bold mr-3">Activity</a>
+            <a :href="`/${user.username}/Channel/Playlist`" class="c-fifth font-weight-bold active">Playlist</a>
         </div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-4 play">
-                    <img src="/images/activity.jpg" alt="play" class="img-fluid">
-                    <i class="fas fa-video  position-absolute"></i>
-                    <h3 class="my-1">This is the title of the video I created</h3>
-                </div>
-                <div class="col-md-4 play">
-                    <img src="/images/activity2.jpg" alt="play" class="img-fluid">
-                    <i class="fas fa-video  position-absolute"></i>
-                    <h3 class="my-1">This is the title of the video I created</h3>
-                </div>
-                <div class="col-md-4 play">
-                    <img src="/images/activity3.jpg" alt="play" class="img-fluid">
-                    <i class="fas fa-video  position-absolute"></i>
-                    <h3 class="my-1">This is the title of the video I created</h3>
-                </div>
-            </div>
+            <single-playlist class="row" v-for="(playlist ,index) in user.playlists" :key="index" :playlist="playlist" />
         </div>
     </section>
 </template>
 
 <script>
+import SinglePlaylist from './SinglePlaylist'
 export default {
-
+    props:['user'],
+    components:{
+        SinglePlaylist
+    }
 }
 </script>

@@ -14,10 +14,10 @@
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form @submit.prevent="save">
                             <label for="img" class="text-center">
-                                <!-- <img :src="imageData" alt="img-profile" id="img-profile" class="img-fluid cursor-pointer"> -->
-                                <canvas id="img-profile"></canvas>
+                                <img :src="imageData" alt="img-profile" id="img-profile" class="img-fluid cursor-pointer">
                             </label>
-                            <input type="file" class="d-none" id="img" @change="previewImage">
+
+                            <input type="file" class="" id="img" @change="previewImage">
                             <div class="text-right p-4">
                                 <button class="btn bg-primary text-white" data-dismiss="modal">Cancel</button>
                                 <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
@@ -35,21 +35,26 @@
 
 <script>
 import Auth from '../../../../helpers/Auth'
-import Cropper from 'cropperjs'
-import Crop from '../../../../crop.js'
+import { Jcrop } from 'vue-jcrop';
+
 export default {
     components:{
-
+        Jcrop
     },
     data(){
         return {
             disable: false,
-            imageData: this.$parent.type_change_image == 'Profile' || this.$parent.type_change_image == 'Cover' ? this.$parent.user.avatar : this.$parent.user.cover,
+            imageData: this.$parent.user.avatar,
             resource: '',
+            options:{
+                multi: true,
+                aspectRatio: 1
+            },
+            sel:{}
         }
     },
     mounted(){
-        this.cropperImage()
+       
     },
     methods:{
         async previewImage(w){
@@ -63,11 +68,6 @@ export default {
                 }
                 reader.readAsDataURL(input.files[0]);
             }
-            this.cropperImage()
-        },
-        cropperImage(){
-            var img = $('#img-profile')
-            var image = Crop.getImage(img[0],this.imageData)
         },
         save(){
             this.disable = true

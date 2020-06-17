@@ -45,7 +45,7 @@
             </div>
         </div>
     </div>
-    <modal-change-image :user="user" :type="type_change_image"/>
+    <modal-change-image />
     <modal-login />
 </section>
 </template>

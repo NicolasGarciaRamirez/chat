@@ -197,6 +197,9 @@
             // }
             getStyleAudio(){
                 if (this.post.resource_type == 'audio') {
+                    var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
+                    linGrad.addColorStop(0, '#ff0000'); 
+                    linGrad.addColorStop(1, 'white');
                     var audio = WaveSurfer.create({
                         container: `#waveform`+this.post.token,
                         waveColor: 'gray',
@@ -205,7 +208,7 @@
                         cursorWidth: 0,
                         forceDecode: true,
                         hideScrollbar: true,
-                        progressColor: 'rgb(255,0,0)',
+                        progressColor: linGrad,
                         responsive: true,
                         interact: true,
                     });

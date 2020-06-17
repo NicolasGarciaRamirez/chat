@@ -5,16 +5,17 @@ namespace App\Models\Channel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ChannelPlaylist extends Model
+class PostPlaylist extends Model
 {
     use SoftDeletes;
+
     /**
      * Undocumented variable
      *
      * @var array
      */
     protected $fillable = [
-        'title','about','about'
+        'playlist_id', 'post_id'
     ];
 
     /**
@@ -23,7 +24,7 @@ class ChannelPlaylist extends Model
      * @var array
      */
     protected $hidden = [
-        'updated_at', 'deleted_at', 'updated_at'
+        'created_at','updated_at','deleted_at'
     ];
 
     /**
@@ -31,9 +32,9 @@ class ChannelPlaylist extends Model
      *
      * @return void
      */
-    public function user()
+    public function playlist()
     {
-        return $this->belongsTo(\App\Models\User\User::class);
+        return $this->belongsTo(\App\Models\Channel\ChannelPlaylist::class);
     }
 
     /**
@@ -41,8 +42,8 @@ class ChannelPlaylist extends Model
      *
      * @return void
      */
-    public function postsPlaylist()
+    public function posts()
     {
-        return $this->hasMany(\App\Models\Channel\PostPlaylist::class);
+        return $this->hasMany(\App\Models\Post\Post::class);
     }
 }

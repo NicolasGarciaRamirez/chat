@@ -87,8 +87,23 @@ class Post extends Model
         return $this->morphMany('App\Models\Reactions\Followers', 'followable');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     public function playlist()
     {
         return $this->belongsTo(\App\Models\Channel\ChannelPlaylist::class);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
+    public function postPlaylist()
+    {
+        return $this->belongsTo(\App\Models\Channel\PostPlaylist::class);
     }
 }

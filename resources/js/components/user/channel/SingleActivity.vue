@@ -5,11 +5,31 @@
             <video :src="`${activity.resource}`" controls  width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'" />
             <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'"></div>
             <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type == 'audio'">
-                <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+activity.token" @click="backward(audio)" height="30" >
-                <div :id="`play`+activity.token"  @click="playAudio(audio, isPlaying)" @change.prevent="getAudio" >
+
+                <div :id="`backward`+activity.token" @click="backward(audio)">
+                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" height="30" >
+                    <!-- <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                        width="30" height="30" viewBox="418.5 0 1126 1080" enable-background="new 418.5 0 1126 1080" xml:space="preserve">
+                        <symbol id="_10_Sec_Back" viewBox="-14 -13.295 28 26.589">
+                            <text transform="matrix(1 0 0 1 -5 4.375)" font-family="'ArialMT'" font-size="12">10</text>
+                            <path d="M0.7-13.295c-4.766-0.021-9.165,2.555-11.48,6.72L-14-9.795v9.1h9.1l-3.92-3.92c2.613-5.214,8.958-7.322,14.172-4.709
+                                c3.537,1.773,5.786,5.374,5.828,9.329C11.148,5.815,6.413,10.499,0.603,10.467c-4.417-0.023-8.349-2.805-9.843-6.962h-2.94
+                                c1.958,7.097,9.298,11.264,16.395,9.306C9.979,11.221,13.98,5.985,14,0.005C13.957-7.322,8.027-13.251,0.7-13.295z"/>
+                        </symbol>
+                        <g id="Layer">
+                            <use xlink:href="#_10_Sec_Back"  width="28" height="26.589" x="-14" y="-13.295" transform="matrix(39.8872 0 0 40.4887 982 541.7461)" overflow="visible"/>
+                        </g>
+                    </svg> -->
+                </div>
+
+                <div :id="`play`+activity.token" @click="playAudio(audio)">
                     <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
                 </div>
-                <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+
+                <div :id="`forward`+activity.token" @click="forward(audio)">
+                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" height="30">
+                </div>
+
             </div>
             <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">{{ activity.description }}</div>
             <div>
@@ -77,6 +97,9 @@ export default {
     methods: {
         getStyleAudio(){
             if (this.activity.resource_type == 'audio') {
+                var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 250, 0);
+                linGrad.addColorStop(0, '#ff0000'); 
+                linGrad.addColorStop(1, 'white');
                 var audio = WaveSurfer.create({
                     container: `#waveform`+this.activity.token,
                     waveColor: 'gray',
@@ -85,7 +108,7 @@ export default {
                     cursorWidth: 0,
                     forceDecode: true,
                     hideScrollbar: true,
-                    progressColor: 'red',
+                    progressColor: linGrad,
                     responsive: true
                 });
                 audio.load(this.activity.resource)

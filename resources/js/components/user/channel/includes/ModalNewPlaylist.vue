@@ -12,11 +12,12 @@
                     <form @submit.prevent="save">
                         <div class="d-flex flex-column">
                             <div class="d-flex flex-row">
-                                <div>
-                                    <img src="/images/profile/default.svg" alt="" style="min-width: 200px; max-width: 200px">
-                                </div>
+                                <label for="input">
+                                    <img :src="imageData" alt="" style="min-width: 200px; max-width: 200px">
+                                </label>
+                                <input type="file" class="d-none" id="input" @change="previewImage">
                                 <div class="d-flex text-center align-items-center justify-content-center">
-                                    <button class="btn text-white border rounded-pill font-weight-bold ml-3" @click="showModalEditImage">Upload Playlist Image</button>
+                                    <button class="btn text-white border rounded-pill font-weight-bold ml-3" >Upload Playlist Image</button>
                                 </div>
                             </div>
                             <input type="text" placeholder="Playlist Name" class="form-control my-3" v-model="playlist.title">
@@ -34,19 +35,20 @@
                 </div>
             </div>
         </div>
-        <modal-change-image :user="user" type="Playlist" />
+        <!-- <modal-change-image :user="user" type="Playlist" /> -->
     </div>
 </template>
 
 <script>
 import Auth from '../../../../helpers/Auth'
-import ModalChangeImage from '../../profile/include/ModalChangeImage'
+// import ModalChangeImage from '../../profile/include/ModalChangeImage'
 export default {
     components:{
-        ModalChangeImage
+        // ModalChangeImage
     },
     data(){
         return {
+            imageData: '/images/profile/default.svg',
             user:{
                 avatar:''
             },
@@ -61,15 +63,41 @@ export default {
         Auth.initialize()
     },
     methods:{
+        async previewImage(w){
+            this.playlist.image = w.target.files[0]
+            var input = w.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imageData = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        },
         showModalEditImage(){
             $('#ModalChangeImage').modal('show')
         },
         save(){
-            // axios.post(`/${Auth.state.username}/Channel/Playlist/store`, playlist).then(res =>{
-            //     console.log(res)
-            // }).catch(err =>{
-            //     console.log(err)
-            // })
+
+            var playlist = new FormData()
+            playlist.append('image', this.playlist.image, this.playlist.image.name)
+            playlist.append('title', this.playlist.title)
+            playlist.append('about', this.playlist.about)
+
+            axios.post(`/${Auth.state.username}/Channel/Playlist/store`, playlist).then(res =>{
+                if (res.data.saved) {
+                    this.$toasted.show('The playlist has been create successfully!', {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
+                    console.log(res)
+                }
+                console.log(res)
+            }).catch(err =>{
+                console.log(err)
+            })
         }
     }
 }

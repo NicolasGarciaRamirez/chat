@@ -22,7 +22,7 @@ class UserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases');
+            $this->user->load('personal_information', 'playlists.postsPlaylist.posts','followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases');
             return $next($request);
         });
     }
@@ -81,8 +81,6 @@ class UserController extends Controller
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
             ]);
 
-            // $avatar = '/images/profile' . '/' . \Str::random(150) .'.'.request()->image->getClientOriginalExtension();
-            // request()->image->move(base_path('public/images/profile'), $avatar);
             $imageName = $this->setImageProfile($request);
             $this->user->avatar = $imageName;
             $this->user->update();
@@ -173,7 +171,6 @@ class UserController extends Controller
             $c->aspectRatio();
             $c->upsize();
         });
-
         $background->insert($image, 'center');
         $background->save(public_path($imageName));
 
