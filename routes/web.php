@@ -62,11 +62,13 @@ Route::group(['prefix' => '/{username}'], function () {
     Route::group(['prefix' => 'Channel'], function () {
         Route::name('profile.channel.activity')->get('/Activity', 'User\UserController@channelActivity');
         Route::name('profile.channel.playlist')->get('/Playlist', 'User\UserController@channelPlaylist');
+        Route::name('playlist.get')->get('/Playlist/get/{token}', 'Channel\ChannelPlaylistController@get');
+
         Route::group(['middleware' => ['auth']], function () {
             Route::name('profile.channel.edit')->get('/Edit', 'User\UserController@channelEdit');
             Route::group(['prefix' => 'Playlist'], function () {
                 Route::name('playlist.store')->post('/store', 'Channel\ChannelPlaylistController@store');
-                Route::name('playlist.add.playlist')->post('/add/playlist/{post}', 'Channel\ChannelPlaylistController@addPlaylistPost');
+                Route::name('playlist.add.playlist')->post('/add/playlist/{post}/{id_playlist}', 'Channel\ChannelPlaylistController@addPlaylistPost');
                 Route::name('playlist.update')->post('/update/{playlist}', 'Channel\ChannelPlaylistController@update');
                 Route::name('playlist.delete')->post('/delete/{playlist}', 'Channel\ChannelPlaylistController@delete');
             });

@@ -16,7 +16,7 @@ class CreatePostPlaylistTable extends Migration
         Schema::create('post_playlists', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('channel_playlist_id');
-            $table->integer('post_id');
+            $table->integer('playlist_post_id');
             $table->timestamps();
             $table->softDeletes();
         });

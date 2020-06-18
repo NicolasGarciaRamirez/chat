@@ -71,11 +71,13 @@
         <li class="c-sidebar-nav-title mt-0 pt-0" v-if="auth.username">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <div v-for="(follow, index) in user.followers" :key="index" v-if="auth.username">
-            <li class="c-sidebar-nav-item">
-                <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
-                <span class="float-sm-right c-fifth dot">•</span>
-            </li>
+        <div v-if="auth.username">
+            <div v-for="(follow, index) in user.followers" :key="index">
+                <li class="c-sidebar-nav-item">
+                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
+                    <span class="float-sm-right c-fifth dot">•</span>
+                </li>
+            </div>
         </div>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
@@ -99,10 +101,12 @@
         },
         mounted(){
             Auth.initialize()
-            if (!this.user) {
-                this.user = {
-                    followers:{
-                        user:{}
+            if (this.auth.username) {
+                if (!this.user) {
+                    this.user = {
+                        followers:{
+                            user:{}
+                        }
                     }
                 }
             }

@@ -53,17 +53,16 @@ class PostController extends Controller
                     $resource = $this->setImage($request);
                 }
                 if ($request->resource_type == 'video') {
-                    $resource = "/images/post/videos/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
-                    $request->imagePost->move(public_path("/images/post/videos/{$hash}/{$key}"), $resource);
+                    $resource = "/images/post/videos/{$hash}/{$key}{$request->imagePost->getClientOriginalName()}"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
+                    $request->imagePost->move(public_path("/images/post/videos/{$hash}/"), $resource);
                 }
                 if ($request->resource_type == 'audio') {
-                    $resource = "/images/post/audio/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
-                    $request->imagePost->move(public_path("/images/post/audio/{$hash}/{$key}"), $resource);
+                    $resource = "/images/post/audio/{$hash}/{$key}{$request->imagePost->getClientOriginalName()}"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
+                    $request->imagePost->move(public_path("/images/post/audio/{$hash}/"), $resource);
                 }
                 if ($request->resource_type == 'docs') {
-
-                    $resource = "/images/post/docs/{$hash}/{$key}/{$request->imagePost->getClientOriginalName()}{$request->imagePost->getClientOriginalExtension()}";
-                    $request->imagePost->move(public_path("/images/post/docs/{$hash}/{$key}"), $resource);
+                    $resource = "/images/docs/{$key}/{$hash}{$request->imagePost->getClientOriginalName()}";
+                    $request->imagePost->move(public_path("/images/playlist/{$key}/"), $resource);
                 }
 
             } else {

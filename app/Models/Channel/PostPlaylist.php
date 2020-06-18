@@ -15,7 +15,7 @@ class PostPlaylist extends Model
      * @var array
      */
     protected $fillable = [
-        'playlist_id', 'post_id'
+        'channel_playlist_id', 'post_playlist_id'
     ];
 
     /**
@@ -42,8 +42,8 @@ class PostPlaylist extends Model
      *
      * @return void
      */
-    public function posts()
+    public function post()
     {
-        return $this->hasMany(\App\Models\Post\Post::class);
+        return $this->hasOne('\App\Models\Post\Post', 'id');
     }
 }

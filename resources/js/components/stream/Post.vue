@@ -1,5 +1,5 @@
 <template>
-    <section class="post mt-3" v-if="view_post">
+    <section class="post mt-3" v-if="view_post" @scroll="view">
         <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
                 <div :id="`follow`+post.token" @click="colorFollow(follow_type)">
@@ -32,7 +32,7 @@
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" class="dropdown-item">Go To Post</a>
-                        <a href="#" class="dropdown-item link-post" :data-clipboard-text="`/${post.user.username}/Post/get/${post.token}`" @click="copyLink">Copy Link</a>
+                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
                         <a @click="view_post = false" class="dropdown-item">Hide Post</a>
                         <a href="#" class="dropdown-item">Report</a>
                         <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div>
@@ -40,7 +40,7 @@
                     <div v-if="menuPlaylist">
                         <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
                         <div class="dropdown-divider"></div>
-                        <a href="" class="dropdown-item">All Playlist</a>
+                        <a href="" class="dropdown-item" v-for="(playlist, index) in playlist" :key="index">{{ playlist.name }}</a>
                     </div>
                 </div>
             </div>
@@ -72,6 +72,7 @@
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
                     </div>
                     <img src="/images/icons/word-document.svg"  v-if="post.resource_type == 'docs'" style="min-height: 20rem; max-height: 20rem;">
+                    <!-- <document-preview :value="post.resource" :type="docType" v-if="post.resource_type == 'docs'" /> -->
                     <a class="text-white" :href="`${post.resource}`" v-if="post.resource_type == 'docs'">
                         <h2>{{ post.description }}</h2>
                     </a>
@@ -90,6 +91,7 @@
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
                     </div>
                     <img src="/images/icons/word-document.svg" class="p-5" style="min-height: 20rem; max-height: 20rem;" v-if="post.resource_type == 'docs'">
+                    <!-- <document-preview :url="post.resource" type="office" v-if="post.resource_type == 'docs'" /> -->
                     <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text' || post.resource_type == 'docs'">
                         <h3 class="mb-3 font-weight-bold">{{ post.replace_caption }}</h3>
                         {{ post.description }} 
@@ -128,12 +130,14 @@
                         <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                     </div>
                     <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
-                    <div class="information cursor-pointer"><img src="/images/icons/post-up.svg" alt="">100</div>
+                    <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">100</div>
                     <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
                 </div>
             </div>
             <comments :post="post" :view_comment="view_comment"/>
+            <textarea id="link" :value="link" class="d-none"></textarea>
         </div>
+        <modal-share-post :post="post" />
     </section>
 </template>
 
@@ -141,12 +145,15 @@
     import Comments from './comments/Comments'
     import Auth from '../../helpers/Auth'
     import WaveSurfer from 'wavesurfer.js';
+    import ModalSharePost from './ModalSharePost'
+    import DocumentPreview from 'vue-doc-preview'
 
     export default {
         props:['post'],
         components:{
             Comments,
-    
+            ModalSharePost,
+            DocumentPreview
         },
         data(){
             return {
@@ -169,6 +176,7 @@
                 follow_type: 'follow',
                 follow:'',
                 link: ''
+
             }
         },
         mounted(){
@@ -180,6 +188,9 @@
             this.getFollow()
         },
         methods:{
+            view(){
+                console.log(1+1)
+            },
             showModalSupport(){
                 $('#modalSupport').modal('show')
             },
@@ -191,6 +202,9 @@
             },
             showModalNewPlaylist(){
                 $('#ModalPlaylist').modal('show')
+            },
+            showModalSharePost(){
+                $('#ModalShare').modal('show')
             },
             // showModalPost(){
                 //     $('#ModalPost').modal('show')
@@ -214,9 +228,9 @@
                     });
                     audio.load(this.post.resource)
                     audio.setHeight(200)
+                    var duration = audio.getDuration()
                     this.audio = audio
-
-                   
+                    audio.skip(duration)
                 }
             },
             playAudio(audio){
@@ -246,6 +260,12 @@
                 $('#description').readmore({ speed: 75, lessLink: '<a href="#">Read More</a>' });
             },
             copyLink(){
+                this.link = `/${this.post.user.username}/Post/get/${this.post.token}`
+                var range = document.createRange();
+                range.selectNode(document.getElementById('link'));
+                window.getSelection().addRange(range);
+                document.execCommand("copy");
+                
                 this.$toasted.show('The copy link been successfully!', {
                     position: "bottom-right",
                     duration : 4000,

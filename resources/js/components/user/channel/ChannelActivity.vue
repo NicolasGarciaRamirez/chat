@@ -15,18 +15,24 @@
         </div>
         <div class="container activities">
             <div class="row">
-                <single-activity class="col-md-4 activity" v-for="(activity , index) in user.posts" :key="index" :activity="activity" />
+                <single-activity class="col-md-4 activity" v-for="(activity , index) in user.posts" :key="index" :activity="activity" :user="user" />
             </div>
         </div>
+        <modal-login />
+        <modal-new-playlist />
     </section>
 </template>
 
 <script>
 import SingleActivity from './SingleActivity'
+import ModalLogin from '../../auth/Login'
+import ModalNewPlaylist from './includes/ModalNewPlaylist'
 export default {
     props:['user'],
     components:{
-        SingleActivity
+        SingleActivity,
+        ModalLogin,
+        ModalNewPlaylist
     }
 }
 </script>

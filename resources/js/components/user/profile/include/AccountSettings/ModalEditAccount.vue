@@ -32,7 +32,7 @@
                                 </div>
                                 <div style="border-top: 1px solid #262626"></div>
                                 <div class="text-center my-3">
-                                    <button class="bg-primary border-0 rounded-pill" data-dissmis="modal">Cancel</button>
+                                    <button type="button" class="bg-primary border-0 rounded-pill" data-dismiss="modal">Cancel</button>
                                     <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit">{{ validate_password ? 'Update Email' : 'Check Password' }}</button>
                                 </div>
                             </div>

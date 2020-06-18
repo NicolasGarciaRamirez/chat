@@ -33,6 +33,7 @@ import Post from './components/stream/Post'
 
 import ChannelActivity from './components/user/channel/ChannelActivity'
 import ChannelPlaylist from './components/user/channel/ChannelPlaylist'
+import Playlist from './components/user/channel/Playlist'
 import ChannelEdit from './components/user/channel/ChannelEdit'
 
 import ProfileEdit from './components/user/profile/ProfileEdit'
@@ -72,6 +73,7 @@ new Vue({
         ProfileWorkHistory,
         ModalContributorSignup,
         ValidateLogin,
-        PasswordReset
+        PasswordReset,
+        Playlist
     }
 });

@@ -30094,6 +30094,13 @@ button:focus {
   margin-bottom: 1rem;
 }
 
+.view-profile .playlist .play img {
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 320px;
+  max-height: 320px;
+}
+
 .view-profile .playlist .play .fa-video {
   margin-top: 1em;
   transform: translateX(-1.9em);

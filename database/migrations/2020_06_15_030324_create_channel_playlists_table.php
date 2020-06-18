@@ -18,6 +18,7 @@ class CreateChannelPlaylistsTable extends Migration
             $table->string('title');
             $table->text('about');
             $table->string('image');
+            $table->string('token');
             $table->integer('user_id');
             $table->integer('playlist_post_id');
             $table->timestamps();

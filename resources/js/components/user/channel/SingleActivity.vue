@@ -3,6 +3,21 @@
         <div class="img-activity bg-primary">
             <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
             <video :src="`${activity.resource}`" controls  width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'" />
+            <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
+                <div v-if="!menuPlaylist">
+                    <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
+                    <a href="#" class="dropdown-item link-post" :data-clipboard-text="`/${user.username}/Post/get/${activity.token}`" >Copy Link</a>
+                    <a @click="view_post = false" class="dropdown-item">Hide Post</a>
+                    <!-- <a href="#" class="dropdown-item">Report</a> -->
+                    <div class="dropdown-item" @click="menuPlaylist = true" v-if="activity.resource_type == 'audio' || activity.resource_type == 'video'">Add To Playlist</div>
+                </div>
+                <div v-if="menuPlaylist">
+                    <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
+                </div>
+            </div>
             <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'"></div>
             <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type == 'audio'">
 
@@ -57,22 +72,19 @@
             <p>11K Views </p>
             <p>{{ activity.time_ago }}</p>
         </div>
-        <modal-login />
+   
     </section>
 </template>
 
 <script>
 import Auth from '../../../helpers/Auth'
-import ModalLogin from '../../auth/Login'
 import WaveSurfer from 'wavesurfer.js';
 
 export default {
-    props: ['activity'],
-    components:{
-        ModalLogin
-    },
+    props: ['activity','user'],
     data(){
         return {
+            menuPlaylist: false,
             audio: '',
             lit:{
                 like: 'like',
@@ -95,6 +107,9 @@ export default {
         this.getVote()
     },
     methods: {
+        showModalNewPlaylist(){
+            $('#ModalNewPlaylist').modal('show')
+        },
         getStyleAudio(){
             if (this.activity.resource_type == 'audio') {
                 var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 250, 0);
@@ -224,6 +239,18 @@ export default {
             }else{
                 $('#ModalLogin').modal('show')
             }
+        },
+        addPostPlaylist(playlist){
+            axios.post(`/${Auth.state.username}/Channel/Playlist/add/playlist/${this.activity.id}/${playlist.id}`).then(res =>{
+                if (res.data.saved) {
+                    this.$toasted.show(`the post has been successfully added to the playlist `+playlist.title, {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
+                }
+            })
         },
         store(type){
             var request =''

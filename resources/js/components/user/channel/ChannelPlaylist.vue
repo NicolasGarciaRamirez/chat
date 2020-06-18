@@ -14,8 +14,11 @@
             <a :href="`/${user.username}/Channel/Playlist`" class="c-fifth font-weight-bold active">Playlist</a>
         </div>
         <div class="container">
-            <single-playlist class="row" v-for="(playlist ,index) in user.playlists" :key="index" :playlist="playlist" />
+            <div class="d-flex flex-row">
+                <single-playlist v-for="(playlist ,index) in user.playlists" :key="index" :playlist="playlist" :user="user"/>
+            </div>
         </div>
+
     </section>
 </template>
 
