@@ -24,7 +24,7 @@ class ChannelPlaylistController extends Controller
     public function get($username, $token)
     {
         $playlist = ChannelPlaylist::where('token',$token)->first();
-        $playlist->load('postsPlaylist.post.comments.comments.likes.user','postsPlaylist.post.comments.likes.user','postsPlaylist.post.likes.user');
+        $playlist->load('postsPlaylist.post.user.personal_information','postsPlaylist.post.comments.comments.likes.user','postsPlaylist.post.comments.likes.user','postsPlaylist.post.likes.user','postsPlaylist.post.votes.user','postsPlaylist.post.comments.user.personal_information');
         return view('user.channel.playlist', ['playlist'=> $playlist, 'user'=>$this->user]);
     }
 

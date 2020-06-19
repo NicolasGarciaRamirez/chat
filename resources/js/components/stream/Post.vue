@@ -40,7 +40,7 @@
                     <div v-if="menuPlaylist">
                         <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
                         <div class="dropdown-divider"></div>
-                        <a href="" class="dropdown-item" v-for="(playlist, index) in playlist" :key="index">{{ playlist.name }}</a>
+                        <!-- <a href="" class="dropdown-item" v-for="(playlist, index) in playlist" :key="index">{{ playlist.name }}</a> -->
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
     import DocumentPreview from 'vue-doc-preview'
 
     export default {
-        props:['post'],
+        props:['post','user'],
         components:{
             Comments,
             ModalSharePost,

@@ -1,13 +1,12 @@
 <template>
     <section class="comments bg-primary p-3 c-fourth">
-        <p class="font-weight-bold cursor-pointer" v-if="post.comments.length > 0" @click="$parent.view_comment = !$parent.view_comment">View {{ post.comments.length }} comments</p>
-
-        <div v-for="(comment, index) in post.comments" :key="index" v-if="view_comment">
-            <simple-comment :comment="comment" />
-        </div>
         <form @submit.prevent="save">
             <input type="text" class="input-comment form-control bg-second p-3 mt-3 text-white" placeholder="Interact with a comment" v-model="comment.body">
         </form>
+        <p class="font-weight-bold cursor-pointer my-2" v-if="post.comments.length > 0" @click="$parent.view_comment = !$parent.view_comment">View {{ post.comments.length }} comments</p>
+        <div v-for="(comment, index) in post.comments" :key="index" v-if="view_comment">
+            <simple-comment :comment="comment" />
+        </div>
     </section>
 </template>
 

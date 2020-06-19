@@ -27735,6 +27735,73 @@ textarea {
   color: white !important;
 }
 
+.post-footer .information {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .post-footer .information:not(:first-child) {
+    margin-left: 20px;
+  }
+}
+
+.post-footer .information img {
+  width: 1.5rem;
+  margin-right: 5px;
+}
+
+.comments {
+  margin-top: 3px;
+}
+
+.comments input.input-comment {
+  border-radius: 30px !important;
+  border: 1px solid #262626;
+  caret-color: #FF0000;
+}
+
+.comments input.input-comment::-webkit-input-placeholder {
+  color: #535353;
+}
+
+.comments input.input-comment::-moz-placeholder {
+  color: #535353;
+}
+
+.comments input.input-comment:-ms-input-placeholder {
+  color: #535353;
+}
+
+.comments input.input-comment::-ms-input-placeholder {
+  color: #535353;
+}
+
+.comments input.input-comment::placeholder {
+  color: #535353;
+}
+
+.comments input.input-comment:hover {
+  border: 1px solid white;
+}
+
+.comments input.input-comment:focus {
+  border: 1px solid #262626;
+}
+
+.comments .comment .comment-user-image {
+  width: 2.64rem;
+  transform: translateY(-11px);
+  max-width: 2.64rem;
+  min-height: 2.64rem;
+  max-height: 2.64rem;
+}
+
+.comments .comment .icon {
+  width: 1rem;
+}
+
 .c-header .cil-hamburger-menu {
   color: #535353;
   font-size: 30px;
@@ -30125,6 +30192,13 @@ button:focus {
   .view-profile .releases .release img {
     width: auto;
   }
+}
+
+.channel-playlist .playing-post video,
+.channel-playlist .playing-post .audio {
+  padding: 1.5rem;
+  min-width: 800px;
+  max-width: 800px;
 }
 
 .pace {

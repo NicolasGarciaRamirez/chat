@@ -12423,7 +12423,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['post'],
+  props: ['post', 'user'],
   components: {
     Comments: _comments_Comments__WEBPACK_IMPORTED_MODULE_0__["default"],
     ModalSharePost: _ModalSharePost__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -13023,7 +13023,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SimpleComment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SimpleComment */ "./resources/js/components/stream/comments/SimpleComment.vue");
 /* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/Auth */ "./resources/js/helpers/Auth.js");
-//
 //
 //
 //
@@ -13676,6 +13675,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13697,6 +13699,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getStyleAudio();
+    this.getLike();
+    this.getVote();
   },
   methods: {
     getStyleAudio: function getStyleAudio() {
@@ -13842,6 +13846,149 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         $('#ModalLogin').modal('show');
       }
+    },
+    store: function store(type) {
+      var _this3 = this;
+
+      var request = '';
+
+      if (type == 'unlike') {
+        request = this.lit;
+
+        if (this.post.likes) {
+          this.post.likes.map(function (value) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username == value.user.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/LitLike/unlike/").concat(value.id);
+            }
+          });
+        }
+      }
+
+      if (type == 'like') {
+        request = this.lit;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/LitLike/like/Post/").concat(this.post.id);
+      }
+
+      if (type == 'vote_up') {
+        request = this.vote;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/VotePost/VoteUp/").concat(this.post.id);
+
+        if (this.votes.vote_down) {
+          this.votes.vote_down.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/VotePost/VoteUp/").concat(_this3.post.id, "/").concat(vote.id);
+          });
+        }
+      }
+
+      if (type == 'unvote_up') {
+        if (this.votes.vote_up) {
+          this.votes.vote_up.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/VotePost/UnVoteUp/").concat(vote.id);
+          });
+        }
+      }
+
+      if (type == 'vote_down') {
+        request = this.vote;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/VotePost/VoteDown/").concat(this.post.id);
+
+        if (this.votes.vote_up) {
+          this.votes.vote_up.map(function (vote) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username == vote.user.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/VotePost/VoteDown/").concat(_this3.post.id, "/").concat(vote.id);
+            }
+          });
+        }
+      }
+
+      if (type == 'unvote_down') {
+        if (this.votes.vote_down) {
+          this.votes.vote_down.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/VotePost/UnVoteDown/").concat(vote.id);
+          });
+        }
+      }
+
+      if (type == 'follow') {
+        request = this.follow;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/Follow/follow/").concat(this.post.user.id);
+      }
+
+      if (type == 'unfollow') {
+        request = this.follow;
+
+        if (this.post.followers) {
+          this.post.followers.map(function (follow) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username == follow.user.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].state.username, "/Follow/unfollow/").concat(follow.id);
+            }
+          });
+        }
+      }
+
+      axios.post(this.url, request).then(function (res) {
+        if (res.data.like) {
+          _this3.lit.like = 'unlike';
+
+          _this3.post.likes.push(res.data.like);
+        }
+
+        if (res.data.unlike) {
+          _this3.lit.like = 'like';
+
+          var indice = _this3.post.likes.indexOf(res.data.like);
+
+          _this3.post.likes.splice(indice, 1);
+        }
+
+        if (res.data.voteUp) {
+          _this3.votes.vote_up.push(res.data.voteUp);
+
+          var _indice = _this3.post.votes.indexOf(res.data.voteUp);
+
+          _this3.votes.vote_down.splice(_indice, 1);
+
+          _this3.vote.type_vote = 'unvote_up';
+        }
+
+        if (res.data.unvoteUp) {
+          var _indice2 = _this3.post.votes.indexOf(res.data.unvoteUp);
+
+          _this3.votes.vote_up.splice(_indice2, 1);
+
+          _this3.vote.type_vote = 'vote_up';
+        }
+
+        if (res.data.voteDown) {
+          _this3.votes.vote_down.push(res.data.voteDown);
+
+          var _indice3 = _this3.post.votes.indexOf(res.data.voteDown);
+
+          _this3.votes.vote_up.splice(_indice3, 1);
+
+          _this3.vote.type_vote = 'unvote_down';
+        }
+
+        if (res.data.unvoteDown) {
+          var _indice4 = _this3.post.votes.indexOf(res.data.unvoteDown);
+
+          _this3.votes.vote_down.splice(_indice4, 1);
+
+          _this3.vote.type_vote = 'vote_up';
+        }
+
+        if (res.data.follow) {
+          _this3.post.followers.push(res.data.follow);
+
+          _this3.follow_type = 'unfollow';
+        }
+
+        if (res.data.unfollow) {
+          _this3.follow_type = 'follow';
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -14033,18 +14180,51 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['playlist'],
-  data: function data() {
-    return {
-      length: ''
-    };
-  },
   components: {
     SinglePostPlaylist: _SinglePostPlaylist__WEBPACK_IMPORTED_MODULE_0__["default"],
     AllPostPlaylist: _AllPostPlaylist__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  data: function data() {
+    return {
+      length: '',
+      postPlaying: {}
+    };
+  },
+  mounted: function mounted() {
+    this.getPostPlaying();
+  },
+  methods: {
+    copyLink: function copyLink() {},
+    getPostPlaying: function getPostPlaying() {
+      var _this = this;
+
+      if (this.playlist.posts_playlist) {
+        var cont = 1;
+        this.playlist.posts_playlist.map(function (post) {
+          if (cont === _this.playlist.posts_playlist.length) {
+            _this.postPlaying = post;
+          }
+
+          cont++;
+        });
+      } else {
+        console.log('no');
+      }
+    }
   }
 });
 
@@ -14502,8 +14682,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stream_comments_Comments__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../stream/comments/Comments */ "./resources/js/components/stream/comments/Comments.vue");
-/* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! wavesurfer.js */ "./node_modules/wavesurfer.js/dist/wavesurfer.js");
-/* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(wavesurfer_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/Auth */ "./resources/js/helpers/Auth.js");
+/* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! wavesurfer.js */ "./node_modules/wavesurfer.js/dist/wavesurfer.js");
+/* harmony import */ var wavesurfer_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(wavesurfer_js__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -14524,20 +14705,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post'],
+  data: function data() {
+    return {
+      menuPlaylist: false,
+      view_comment: true,
+      audio: '',
+      view_post: true,
+      url: "",
+      lit: {
+        like: 'like'
+      },
+      vote_type: '',
+      vote: {
+        type_vote: ''
+      },
+      votes: {
+        vote_up: [],
+        vote_down: []
+      },
+      follow_type: 'follow',
+      follow: '',
+      link: ''
+    };
+  },
   components: {
     Comments: _stream_comments_Comments__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   mounted: function mounted() {
-    this.getStyleAudio();
-    this.getPlaylist();
+    this.getLike();
+    this.getVote(); // if (this.post.resource_type == 'audio') {
+    //     this.getStyleAudio()
+    // }
+    // this.getPlaylist()
   },
   methods: {
+    copyLink: function copyLink() {},
+    showModalSharePost: function showModalSharePost() {
+      $('#ModalShare').modal('show');
+    },
     getPlaylist: function getPlaylist() {
-      var playlist = wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default.a.playlist();
+      var playlist = wavesurfer_js__WEBPACK_IMPORTED_MODULE_2___default.a.playlist();
       playlist.load(this.post.resource);
       console.log(playlist);
     },
@@ -14546,7 +14782,7 @@ __webpack_require__.r(__webpack_exports__);
         var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 650, 0);
         linGrad.addColorStop(0, '#ff0000');
         linGrad.addColorStop(1, 'white');
-        var audio = wavesurfer_js__WEBPACK_IMPORTED_MODULE_1___default.a.create({
+        var audio = wavesurfer_js__WEBPACK_IMPORTED_MODULE_2___default.a.create({
           container: "#waveform" + this.post.token,
           waveColor: 'gray',
           barHeight: 1,
@@ -14562,7 +14798,7 @@ __webpack_require__.r(__webpack_exports__);
         audio.setHeight(500);
         var duration = audio.getDuration();
         this.audio = audio;
-        audio.skip(duration);
+        this.audio.skip(duration);
       }
     },
     playAudio: function playAudio(audio) {
@@ -14588,6 +14824,247 @@ __webpack_require__.r(__webpack_exports__);
     },
     forward: function forward(audio) {
       audio.skipForward(10);
+    },
+    getLike: function getLike() {
+      var _this = this;
+
+      if (this.post) {
+        console.log('si');
+        this.post.likes.map(function (like) {
+          if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username == like.user.username) {
+            $("#lit" + _this.post.token + " img").replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">');
+            _this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/LitLike/unlike/").concat(like.id);
+            _this.lit.like = 'unlike';
+          }
+        });
+      }
+    },
+    colorFlame: function colorFlame(type) {
+      if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.token) {
+        if (type == 'like') {
+          $("#lit" + this.post.token + " img").replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">');
+          this.store(type);
+        }
+
+        if (type == 'unlike') {
+          $("#lit" + this.post.token + " img").replaceWith('<img src="/images/icons/post-flame.svg" height="22">');
+          this.store(type);
+        }
+      } else {
+        $('#ModalLogin').modal('show');
+      }
+    },
+    getVote: function getVote() {
+      var _this2 = this;
+
+      if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.token) {
+        if (this.post) {
+          this.post.votes.map(function (vote) {
+            console.log(vote);
+
+            if (vote.type_vote == 'vote_up') {
+              _this2.votes.vote_up.push(vote);
+
+              $("#voteUp" + _this2.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">');
+              $("#voteDown" + _this2.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+              _this2.vote_type = 'unvote_up';
+              _this2.vote.type_vote = 'unvote_up';
+            }
+
+            if (vote.type_vote == 'vote_down') {
+              _this2.votes.vote_down.push(vote);
+
+              $("#voteDown" + _this2.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">');
+              $("#voteUp" + _this2.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+              _this2.vote_type = 'unvote_down';
+              _this2.vote.type_vote = 'unvote_down';
+            }
+          });
+        }
+      } else {
+        if (this.post.votes) {
+          this.post.votes.map(function (vote) {
+            if (vote.type === 'vote_up') _this2.votes.vote_up.push(vote);
+            if (vote.type === 'vote_down') _this2.votes.vote_down.push(vote);
+          });
+        }
+      }
+    },
+    colorVote: function colorVote(type) {
+      if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.token) {
+        if (type == 'vote_up') {
+          $("#voteUp" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">');
+          $("#voteDown" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+          this.vote.type_vote = 'vote_up';
+          this.store(type);
+        }
+
+        if (type == 'unvote_up') {
+          $("#voteUp" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+          $("#voteDown" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+          this.vote.type_vote = 'unvote_up';
+          this.store(type);
+        }
+
+        if (type == 'vote_down') {
+          $("#voteDown" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">');
+          $("#voteUp" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+          this.vote.type_vote = 'vote_down';
+          this.store(type);
+        }
+
+        if (type == 'unvote_down') {
+          $("#voteDown" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">');
+          $("#voteUp" + this.post.token + " img").replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">');
+          this.vote.type_vote = 'unvote_down';
+          this.store(type);
+        }
+      } else {
+        $('#ModalLogin').modal('show');
+      }
+    },
+    store: function store(type) {
+      var _this3 = this;
+
+      var request = '';
+
+      if (type == 'unlike') {
+        request = this.lit;
+
+        if (this.post.likes) {
+          this.post.likes.map(function (value) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username == value.user.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/LitLike/unlike/").concat(value.id);
+            }
+          });
+        }
+      }
+
+      if (type == 'like') {
+        request = this.lit;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/LitLike/like/Post/").concat(this.post.id);
+      }
+
+      if (type == 'vote_up') {
+        request = this.vote;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/VotePost/VoteUp/").concat(this.post.id);
+
+        if (this.votes.vote_down) {
+          this.votes.vote_down.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/VotePost/VoteUp/").concat(_this3.post.id, "/").concat(vote.id);
+          });
+        }
+      }
+
+      if (type == 'unvote_up') {
+        if (this.votes.vote_up) {
+          this.votes.vote_up.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/VotePost/UnVoteUp/").concat(vote.id);
+          });
+        }
+      }
+
+      if (type == 'vote_down') {
+        request = this.vote;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/VotePost/VoteDown/").concat(this.post.id);
+
+        if (this.votes.vote_up) {
+          this.votes.vote_up.map(function (vote) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username == vote.user.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/VotePost/VoteDown/").concat(_this3.post.id, "/").concat(vote.id);
+            }
+          });
+        }
+      }
+
+      if (type == 'unvote_down') {
+        if (this.votes.vote_down) {
+          this.votes.vote_down.map(function (vote) {
+            _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/VotePost/UnVoteDown/").concat(vote.id);
+          });
+        }
+      }
+
+      if (type == 'follow') {
+        request = this.follow;
+        this.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/Follow/follow/").concat(this.post.user.id);
+      }
+
+      if (type == 'unfollow') {
+        request = this.follow;
+
+        if (this.post.followers) {
+          this.post.followers.map(function (follow) {
+            if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username == follow.user.username) {
+              _this3.url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/Follow/unfollow/").concat(follow.id);
+            }
+          });
+        }
+      }
+
+      axios.post(this.url, request).then(function (res) {
+        if (res.data.like) {
+          _this3.lit.like = 'unlike';
+
+          _this3.post.likes.push(res.data.like);
+        }
+
+        if (res.data.unlike) {
+          _this3.lit.like = 'like';
+
+          var indice = _this3.post.likes.indexOf(res.data.like);
+
+          _this3.post.likes.splice(indice, 1);
+        }
+
+        if (res.data.voteUp) {
+          _this3.votes.vote_up.push(res.data.voteUp);
+
+          var _indice = _this3.post.votes.indexOf(res.data.voteUp);
+
+          _this3.votes.vote_down.splice(_indice, 1);
+
+          _this3.vote.type_vote = 'unvote_up';
+        }
+
+        if (res.data.unvoteUp) {
+          var _indice2 = _this3.post.votes.indexOf(res.data.unvoteUp);
+
+          _this3.votes.vote_up.splice(_indice2, 1);
+
+          _this3.vote.type_vote = 'vote_up';
+        }
+
+        if (res.data.voteDown) {
+          _this3.votes.vote_down.push(res.data.voteDown);
+
+          var _indice3 = _this3.post.votes.indexOf(res.data.voteDown);
+
+          _this3.votes.vote_up.splice(_indice3, 1);
+
+          _this3.vote.type_vote = 'unvote_down';
+        }
+
+        if (res.data.unvoteDown) {
+          var _indice4 = _this3.post.votes.indexOf(res.data.unvoteDown);
+
+          _this3.votes.vote_down.splice(_indice4, 1);
+
+          _this3.vote.type_vote = 'vote_up';
+        }
+
+        if (res.data.follow) {
+          _this3.post.followers.push(res.data.follow);
+
+          _this3.follow_type = 'unfollow';
+        }
+
+        if (res.data.unfollow) {
+          _this3.follow_type = 'follow';
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -16556,7 +17033,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../helpers/Auth */ "./resources/js/helpers/Auth.js");
-/* harmony import */ var vue_jcrop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-jcrop */ "./node_modules/vue-jcrop/index.js");
+/* harmony import */ var vue_jcrop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-jcrop */ "./node_modules/vue-jcrop/index.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -16602,7 +17079,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    Jcrop: vue_jcrop__WEBPACK_IMPORTED_MODULE_3__["Jcrop"]
+    Jcrop: vue_jcrop__WEBPACK_IMPORTED_MODULE_2__["Jcrop"]
   },
   data: function data() {
     return {
@@ -74236,39 +74713,23 @@ var render = function() {
                         : _vm._e(),
                       _vm._v(" "),
                       _vm.menuPlaylist
-                        ? _c(
-                            "div",
-                            [
-                              _c(
-                                "div",
-                                {
-                                  staticClass: "dropdown-item",
-                                  on: { click: _vm.showModalNewPlaylist }
-                                },
-                                [
-                                  _c("i", {
-                                    staticClass: "fas fa-plus-circle mr-2"
-                                  }),
-                                  _vm._v(" new playlist")
-                                ]
-                              ),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "dropdown-divider" }),
-                              _vm._v(" "),
-                              _vm._l(_vm.playlist, function(playlist, index) {
-                                return _c(
-                                  "a",
-                                  {
-                                    key: index,
-                                    staticClass: "dropdown-item",
-                                    attrs: { href: "" }
-                                  },
-                                  [_vm._v(_vm._s(playlist.name))]
-                                )
-                              })
-                            ],
-                            2
-                          )
+                        ? _c("div", [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "dropdown-item",
+                                on: { click: _vm.showModalNewPlaylist }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "fas fa-plus-circle mr-2"
+                                }),
+                                _vm._v(" new playlist")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "dropdown-divider" })
+                          ])
                         : _vm._e()
                     ]
                   )
@@ -75158,32 +75619,6 @@ var render = function() {
     "section",
     { staticClass: "comments bg-primary p-3 c-fourth" },
     [
-      _vm.post.comments.length > 0
-        ? _c(
-            "p",
-            {
-              staticClass: "font-weight-bold cursor-pointer",
-              on: {
-                click: function($event) {
-                  _vm.$parent.view_comment = !_vm.$parent.view_comment
-                }
-              }
-            },
-            [_vm._v("View " + _vm._s(_vm.post.comments.length) + " comments")]
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _vm._l(_vm.post.comments, function(comment, index) {
-        return _vm.view_comment
-          ? _c(
-              "div",
-              { key: index },
-              [_c("simple-comment", { attrs: { comment: comment } })],
-              1
-            )
-          : _vm._e()
-      }),
-      _vm._v(" "),
       _c(
         "form",
         {
@@ -75218,7 +75653,33 @@ var render = function() {
             }
           })
         ]
-      )
+      ),
+      _vm._v(" "),
+      _vm.post.comments.length > 0
+        ? _c(
+            "p",
+            {
+              staticClass: "font-weight-bold cursor-pointer my-2",
+              on: {
+                click: function($event) {
+                  _vm.$parent.view_comment = !_vm.$parent.view_comment
+                }
+              }
+            },
+            [_vm._v("View " + _vm._s(_vm.post.comments.length) + " comments")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm._l(_vm.post.comments, function(comment, index) {
+        return _vm.view_comment
+          ? _c(
+              "div",
+              { key: index },
+              [_c("simple-comment", { attrs: { comment: comment } })],
+              1
+            )
+          : _vm._e()
+      })
     ],
     2
   )
@@ -76587,7 +77048,8 @@ var render = function() {
                   height: "22"
                 }
               }),
-              _c("span", { staticClass: "c-fourth" }, [
+              _vm._v(" "),
+              _c("span", { staticClass: "c-fourth mx-1" }, [
                 _vm._v(_vm._s(_vm.votes.vote_up.length))
               ])
             ]
@@ -76608,8 +77070,8 @@ var render = function() {
               _c("img", {
                 attrs: { src: "/images/icons/post-flame.svg", height: "22" }
               }),
-              _c("span", { staticClass: "c-fourth" }, [
-                _vm._v(_vm._s(_vm.post.likes ? _vm.post.likes.length : 0))
+              _c("span", { staticClass: "c-fourth mx-1" }, [
+                _vm._v(_vm._s(_vm.post.likes.length))
               ])
             ]
           ),
@@ -76620,7 +77082,10 @@ var render = function() {
               alt: "",
               height: "22"
             }
-          })
+          }),
+          _c("span", { staticClass: "c-fourth mx-1" }, [
+            _vm._v(_vm._s(_vm.post.comments.length))
+          ])
         ])
       ])
     ])
@@ -76977,27 +77442,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "m-3" }, [
+  return _c("section", { staticClass: "m-3 channel-playlist" }, [
     _c("div", { staticClass: "d-flex flex-row" }, [
       _c("div", { staticClass: "d-flex flex-column" }, [
         _c("img", {
           staticClass: "img-fluid",
-          attrs: {
-            src: _vm.playlist.image,
-            alt: "",
-            width: "250",
-            height: "300"
-          }
+          staticStyle: {
+            "min-width": "250px",
+            "max-width": "250px",
+            "min-height": "200px",
+            "max-height": "200px"
+          },
+          attrs: { src: _vm.playlist.image, alt: "" }
         })
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "d-flex flex-column ml-3" }, [
         _c("div", { staticClass: "d-flex flex-row align-items-center" }, [
-          _c("i", { staticClass: "fas fa-video" }),
+          _c("img", {
+            attrs: {
+              src: "/images/icons/video-playlist.svg",
+              alt: "",
+              width: "25",
+              height: "25"
+            }
+          }),
           _vm._v(" "),
           _c("h4", { staticClass: "font-weight-bold mx-3" }, [
             _vm._v(_vm._s(_vm.playlist.title))
-          ])
+          ]),
+          _vm._v(" "),
+          _c("i", {
+            staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
+            attrs: {
+              id: "dropdownMenuPlaylist",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "false"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "dropdown-menu bg-primary text-white p-2",
+              attrs: { "aria-labelledby": "dropdownMenuPlaylist" }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-divider" }),
+              _vm._v(" "),
+              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+                _vm._v("Edit Playlist Details")
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "dropdown-item link-post",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Delete Playlist")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-divider" }),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-item" }, [_vm._v("Share")]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "dropdown-item", on: { click: _vm.copyLink } },
+                [_vm._v("Copy Link")]
+              )
+            ]
+          )
         ]),
         _vm._v(" "),
         _c("label", { staticClass: "c-fourth my-3" }, [
@@ -77012,7 +77531,7 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _vm._m(1)
       ])
     ]),
     _vm._v(" "),
@@ -77025,12 +77544,7 @@ var render = function() {
       _c(
         "div",
         { staticClass: "col col-sm-8" },
-        _vm._l(_vm.playlist.posts_playlist, function(post, index) {
-          return _c("single-post-playlist", {
-            key: index,
-            attrs: { post: post.post }
-          })
-        }),
+        [_c("single-post-playlist", { attrs: { post: _vm.postPlaying.post } })],
         1
       ),
       _vm._v(" "),
@@ -77050,6 +77564,15 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("a", { staticClass: "dropdown-item", attrs: { href: "" } }, [
+      _c("i", { staticClass: "fas fa-plus-circle mr-2" }),
+      _vm._v(" Add video(s)")
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -77537,100 +78060,271 @@ var render = function() {
   return _c(
     "section",
     [
-      _vm.post.resource
-        ? _c(
+      _c(
+        "div",
+        {
+          staticClass: "d-flex flex-column my-2 content img-fluid playing-post"
+        },
+        [
+          _c(
             "div",
-            { staticClass: "d-flex flex-column my-2 content img-fluid" },
+            { staticClass: "d-flex flex-row justify-content-between my-3 p-2" },
             [
-              _c("div", { staticClass: "my-3" }, [
-                _vm._v(
-                  "\n            " + _vm._s(_vm.post.description) + "\n        "
-                )
-              ]),
+              _c("div", [_vm._v(_vm._s(_vm.post.description))]),
               _vm._v(" "),
-              _vm.post.resource_type == "video"
-                ? _c("video", {
-                    staticStyle: { width: "900px" },
-                    attrs: { src: "" + _vm.post.resource, controls: "" }
-                  })
-                : _vm._e(),
+              _c("i", {
+                staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
+                attrs: {
+                  id: "dropdownPostPlaying",
+                  "data-toggle": "dropdown",
+                  "aria-haspopup": "true",
+                  "aria-expanded": "false"
+                }
+              }),
               _vm._v(" "),
-              _vm.post.resource_type == "audio"
-                ? _c("div", {
-                    staticStyle: { width: "900px" },
-                    attrs: { id: "waveform" + _vm.post.token }
-                  })
-                : _vm._e(),
-              _vm._v(" "),
-              _vm.post.resource_type == "audio"
-                ? _c(
+              _vm._m(0)
+            ]
+          ),
+          _vm._v(" "),
+          _vm.post.resource_type == "video"
+            ? _c("video", {
+                attrs: { src: "" + _vm.post.resource, controls: "" }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.post.resource_type == "audio"
+            ? _c("div", {
+                staticClass: "audio",
+                attrs: { id: "waveform" + _vm.post.token }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.post.resource_type == "audio"
+            ? _c(
+                "div",
+                {
+                  staticClass:
+                    "d-flex flex-row text-center justify-content-center"
+                },
+                [
+                  _c("img", {
+                    attrs: {
+                      src: "/images/iconsplayer/Backward10sec-grey.svg",
+                      alt: "",
+                      id: "backward" + _vm.post.token,
+                      height: "30"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.backward(_vm.audio)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
                     "div",
                     {
-                      staticClass:
-                        "d-flex flex-row text-center justify-content-center"
+                      attrs: { id: "play" + _vm.post.token },
+                      on: {
+                        click: function($event) {
+                          return _vm.playAudio(_vm.audio)
+                        }
+                      }
                     },
                     [
                       _c("img", {
+                        staticClass: " mx-3",
                         attrs: {
-                          src: "/images/iconsplayer/Backward10sec-grey.svg",
+                          src: "/images/iconsplayer/Play-white.svg",
                           alt: "",
-                          id: "backward" + _vm.post.token,
-                          height: "30"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.backward(_vm.audio)
-                          }
-                        }
-                      }),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          attrs: { id: "play" + _vm.post.token },
-                          on: {
-                            click: function($event) {
-                              return _vm.playAudio(_vm.audio)
-                            }
-                          }
-                        },
-                        [
-                          _c("img", {
-                            staticClass: " mx-3",
-                            attrs: {
-                              src: "/images/iconsplayer/Play-white.svg",
-                              alt: "",
-                              height: "33"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("img", {
-                        attrs: {
-                          src: "/images/iconsplayer/Forward10sec-grey.svg",
-                          alt: "",
-                          height: "30"
-                        },
-                        on: {
-                          click: function($event) {
-                            return _vm.forward(_vm.audio)
-                          }
+                          height: "33"
                         }
                       })
                     ]
-                  )
-                : _vm._e()
-            ]
-          )
-        : _vm._e(),
+                  ),
+                  _vm._v(" "),
+                  _c("img", {
+                    attrs: {
+                      src: "/images/iconsplayer/Forward10sec-grey.svg",
+                      alt: "",
+                      height: "30"
+                    },
+                    on: {
+                      click: function($event) {
+                        return _vm.forward(_vm.audio)
+                      }
+                    }
+                  })
+                ]
+              )
+            : _vm._e()
+        ]
+      ),
       _vm._v(" "),
-      _c("comments", { attrs: { post: _vm.post, view_comment: true } })
+      _c("div", { staticClass: "mt-2 bg-black post-footer p-3" }, [
+        _c("div", [
+          _c("span", { staticClass: "c-fourth" }, [_vm._v("11k views")]),
+          _vm._v(" "),
+          _c("span", { staticClass: "ml-1 c-fourth" }, [
+            _vm._v(_vm._s(_vm.post.time_ago))
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex c-fourth my-3" }, [
+          _c(
+            "div",
+            {
+              staticClass: "information cursor-pointer",
+              attrs: { id: "voteUp" + _vm.post.token },
+              on: {
+                click: function($event) {
+                  return _vm.colorVote(
+                    _vm.vote_type == "" ||
+                      _vm.vote_type == "vote_down" ||
+                      _vm.vote_type == "unvote_down"
+                      ? (_vm.vote_type = "vote_up")
+                      : (_vm.vote_type = "unvote_up")
+                  )
+                }
+              }
+            },
+            [
+              _c("img", {
+                attrs: { src: "/images/icons/post-percentage-up.svg", alt: "" }
+              }),
+              _c("span", [_vm._v(_vm._s(_vm.votes.vote_up.length))])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "information cursor-pointer",
+              attrs: { id: "voteDown" + _vm.post.token },
+              on: {
+                click: function($event) {
+                  return _vm.colorVote(
+                    _vm.vote_type == "" ||
+                      _vm.vote_type == "vote_up" ||
+                      _vm.vote_type == "unvote_up"
+                      ? (_vm.vote_type = "vote_down")
+                      : (_vm.vote_type = "unvote_down")
+                  )
+                }
+              }
+            },
+            [
+              _c("img", {
+                attrs: {
+                  src: "/images/icons/post-percentage-down-grey.svg",
+                  alt: ""
+                }
+              }),
+              _c("span", [_vm._v(_vm._s(_vm.votes.vote_down.length))])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "information cursor-pointer",
+              attrs: { id: "lit" + _vm.post.token },
+              on: {
+                click: function($event) {
+                  return _vm.colorFlame(_vm.lit.like)
+                }
+              }
+            },
+            [
+              _c("img", {
+                attrs: { src: "/images/icons/post-flame.svg", height: "22" }
+              }),
+              _c("span", [_vm._v(_vm._s(_vm.post.likes.length))])
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "information cursor-pointer",
+              on: {
+                click: function($event) {
+                  _vm.$parent.view_comment = !_vm.$parent.view_comment
+                }
+              }
+            },
+            [
+              _c("img", {
+                attrs: { src: "/images/icons/post-comment.svg", alt: "" }
+              }),
+              _vm._v(_vm._s(_vm.post.comments.length))
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "information cursor-pointer",
+              on: { click: _vm.showModalSharePost }
+            },
+            [
+              _c("img", {
+                attrs: { src: "/images/icons/post-up.svg", alt: "" }
+              }),
+              _vm._v("100")
+            ]
+          ),
+          _vm._v(" "),
+          _vm.post.allow_download
+            ? _c("div", { staticClass: "information cursor-pointer" }, [
+                _c("img", {
+                  attrs: { src: "/images/icons/post-down.svg", alt: "" }
+                }),
+                _vm._v("100")
+              ])
+            : _vm._e()
+        ])
+      ]),
+      _vm._v(" "),
+      _c("comments", {
+        staticClass: "bg-black",
+        attrs: { post: _vm.post, view_comment: _vm.view_comment }
+      })
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "dropdown-menu bg-primary text-white p-2",
+        attrs: { "aria-labelledby": "dropdownPostPlaying" }
+      },
+      [
+        _c("a", { staticClass: "dropdown-item", attrs: { href: "" } }, [
+          _vm._v("Delete From Playlist")
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "dropdown-divider" }),
+        _vm._v(" "),
+        _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
+          _vm._v("Share")
+        ]),
+        _vm._v(" "),
+        _c(
+          "a",
+          { staticClass: "dropdown-item link-post", attrs: { href: "#" } },
+          [_vm._v("Copy link")]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 

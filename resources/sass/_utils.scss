@@ -202,3 +202,49 @@ textarea{
         color: white !important;
     }
 }
+
+.post-footer{
+    .information{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include media-breakpoint-up(md){
+            &:not(:first-child){
+                margin-left: 20px;
+            }
+        }
+        img{
+            width: 1.5rem;
+            margin-right: 5px;
+        }
+    }
+}
+.comments{
+    margin-top: 3px;
+    input.input-comment{
+        border-radius: 30px !important;
+        border: 1px solid $third-color;
+        caret-color: $fifth-color;
+        &::placeholder{
+            color: $fourth-color;
+        }
+        &:hover{
+            border: 1px solid white;
+        }
+        &:focus{
+            border: 1px solid $third-color;
+        }
+    }
+    .comment{
+        .comment-user-image{
+            width: 2.64rem;
+            transform: translateY(-11px);
+            max-width: 2.64rem;
+            min-height: 2.64rem;
+            max-height: 2.64rem;
+        }
+        .icon{
+            width: 1rem;
+        }
+    }
+}
