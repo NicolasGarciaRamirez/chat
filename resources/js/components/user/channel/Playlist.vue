@@ -10,16 +10,16 @@
                     <h4 class="font-weight-bold mx-3">{{ playlist.title }}</h4>
                     <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPlaylist"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPlaylist">
-                        <a href="" class="dropdown-item"><i class="fas fa-plus-circle mr-2"></i> Add video(s)</a>
+                        <div class="dropdown-item" @click="showModalAddVideos"><i class="fas fa-plus-circle mr-2"></i> Add video(s)</div>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">Edit Playlist Details</a>
-                        <a href="#" class="dropdown-item link-post">Delete Playlist</a>
+                        <div class="dropdown-item" @click="showModalPlaylist">Edit Playlist Details</div>
+                        <div class="dropdown-item link-post" @click="deletePlaylist">Delete Playlist</div>
                         <div class="dropdown-divider"></div>
-                        <div class="dropdown-item">Share</div>
+                        <div class="dropdown-item" @click="showModalShare">Share</div>
                         <div class="dropdown-item" @click="copyLink">Copy Link</div>
                     </div>
                 </div>
-                <label class="c-fourth my-3">{{ playlist.posts_playlist.length }} videos</label>
+                <label class="c-fourth my-3">{{ playlist.playlist_post.length }} videos</label>
                 <div class="c-fourth d-flex justify-content-start">
                     {{ playlist.about }}
                 </div>
@@ -32,49 +32,79 @@
         <div class="my-3" style="border-top:1px solid gray"></div>
         <div  class="row row-sm">
             <div class="col col-sm-8">
-                <single-post-playlist :post="postPlaying.post" />
+                <single-post-playlist :post="post" />
             </div>
             <div class="col col-sm ml-3">
-                <all-post-playlist  v-for="(post, index) in playlist.posts_playlist" :key="index" :post="post.post" :class="index == 0 ? 'bg-primary' : ''"/>
+                <all-post-playlist  v-for="(post, index) in playlist.playlist_post" :key="index" :post="post.post" :class="index == 0 ? 'bg-primary' : ''"/>
             </div>
         </div>
+        <modal-playlist :playlis="playlist" />
+        <modal-share :post="post" />
     </section>
 </template>
 
 <script>
 import SinglePostPlaylist from './SinglePostPlaylist'
 import AllPostPlaylist from './AllPostPlaylist'
+import ModalPlaylist from './includes/ModalNewPlaylist'
+import ModalAddVideos from './includes/ModalAddVideos'
+import ModalShare from '../../stream/ModalSharePost'
+import Auth from '../../../helpers/Auth'
+
 export default {
     props:['playlist'],
     components:{
         SinglePostPlaylist,
-        AllPostPlaylist
+        AllPostPlaylist,
+        ModalAddVideos,
+        ModalPlaylist,
+        ModalShare
     },
     data(){
         return {
-            length: '',
-            postPlaying:{}
+            post: {}
         }
     },
     mounted(){
         this.getPostPlaying()
+        Auth.initialize()
     },
     methods:{
+        showModalShare(){
+            $('#ModalShare').modal('show')
+        },
+        showModalAddVideos(){
+            $('#ModalAddVideos').modal('show')
+        },
+        showModalPlaylist(){
+            $('#ModalPlaylist').modal('show')
+        },
         copyLink(){
 
         },
         getPostPlaying(){
-            if (this.playlist.posts_playlist) {
+            if (this.playlist.playlist_post) {
                 var cont = 1
-                this.playlist.posts_playlist.map(post => {
-                    if (cont === this.playlist.posts_playlist.length) {
-                        this.postPlaying = post 
+                this.playlist.playlist_post.map(post => {
+                    if (cont === this.playlist.playlist_post.length) {
+                        this.post = post.post
+                        cont=1  
                     }
                     cont++
                 })
             }else{
                 console.log('no')
             }
+        },
+        deletePlaylist(){
+            axios.post(`/${Auth.state.username}/Channel/Playlist/delete/${this.playlist.id}`).then(res =>{
+                if (res.data.deleted) {
+                    window.location.replace(`/${Auth.state.username}/Channel/Playlist`)
+                    console.log(res)
+                }
+            }).catch(err =>{
+                console.log(err)
+            })
         }
     }
 }

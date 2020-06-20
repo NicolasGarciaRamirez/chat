@@ -14147,6 +14147,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SinglePostPlaylist__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SinglePostPlaylist */ "./resources/js/components/user/channel/SinglePostPlaylist.vue");
 /* harmony import */ var _AllPostPlaylist__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AllPostPlaylist */ "./resources/js/components/user/channel/AllPostPlaylist.vue");
+/* harmony import */ var _includes_ModalNewPlaylist__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./includes/ModalNewPlaylist */ "./resources/js/components/user/channel/includes/ModalNewPlaylist.vue");
+/* harmony import */ var _includes_ModalAddVideos__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./includes/ModalAddVideos */ "./resources/js/components/user/channel/includes/ModalAddVideos.vue");
+/* harmony import */ var _stream_ModalSharePost__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../stream/ModalSharePost */ "./resources/js/components/stream/ModalSharePost.vue");
+/* harmony import */ var _helpers_Auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../helpers/Auth */ "./resources/js/helpers/Auth.js");
 //
 //
 //
@@ -14190,33 +14194,52 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['playlist'],
   components: {
     SinglePostPlaylist: _SinglePostPlaylist__WEBPACK_IMPORTED_MODULE_0__["default"],
-    AllPostPlaylist: _AllPostPlaylist__WEBPACK_IMPORTED_MODULE_1__["default"]
+    AllPostPlaylist: _AllPostPlaylist__WEBPACK_IMPORTED_MODULE_1__["default"],
+    ModalAddVideos: _includes_ModalAddVideos__WEBPACK_IMPORTED_MODULE_3__["default"],
+    ModalPlaylist: _includes_ModalNewPlaylist__WEBPACK_IMPORTED_MODULE_2__["default"],
+    ModalShare: _stream_ModalSharePost__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
     return {
-      length: '',
-      postPlaying: {}
+      post: {}
     };
   },
   mounted: function mounted() {
     this.getPostPlaying();
+    _helpers_Auth__WEBPACK_IMPORTED_MODULE_5__["default"].initialize();
   },
   methods: {
+    showModalShare: function showModalShare() {
+      $('#ModalShare').modal('show');
+    },
+    showModalAddVideos: function showModalAddVideos() {
+      $('#ModalAddVideos').modal('show');
+    },
+    showModalPlaylist: function showModalPlaylist() {
+      $('#ModalPlaylist').modal('show');
+    },
     copyLink: function copyLink() {},
     getPostPlaying: function getPostPlaying() {
       var _this = this;
 
-      if (this.playlist.posts_playlist) {
+      if (this.playlist.playlist_post) {
         var cont = 1;
-        this.playlist.posts_playlist.map(function (post) {
-          if (cont === _this.playlist.posts_playlist.length) {
-            _this.postPlaying = post;
+        this.playlist.playlist_post.map(function (post) {
+          if (cont === _this.playlist.playlist_post.length) {
+            _this.post = post.post;
+            cont = 1;
           }
 
           cont++;
@@ -14224,6 +14247,16 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         console.log('no');
       }
+    },
+    deletePlaylist: function deletePlaylist() {
+      axios.post("/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_5__["default"].state.username, "/Channel/Playlist/delete/").concat(this.playlist.id)).then(function (res) {
+        if (res.data.deleted) {
+          window.location.replace("/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_5__["default"].state.username, "/Channel/Playlist"));
+          console.log(res);
+        }
+      })["catch"](function (err) {
+        console.log(err);
+      });
     }
   }
 });
@@ -14302,31 +14335,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['activity', 'user'],
   data: function data() {
     return {
-      menuPlaylist: false,
+      dropdown: false,
+      showMenuPlaylist: false,
+      playlist: false,
       audio: '',
       lit: {
         like: 'like'
@@ -14343,14 +14360,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    _helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].initialize();
-    this.getStyleAudio();
-    this.getLike();
-    this.getVote();
+    _helpers_Auth__WEBPACK_IMPORTED_MODULE_0__["default"].initialize(); // this.getStyleAudio()
+    // this.getLike()
+    // this.getVote()
   },
   methods: {
     showModalNewPlaylist: function showModalNewPlaylist() {
-      $('#ModalNewPlaylist').modal('show');
+      $('#ModalPlaylist').modal('show');
     },
     getStyleAudio: function getStyleAudio() {
       if (this.activity.resource_type == 'audio') {
@@ -14728,12 +14744,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['post'],
+  components: {
+    Comments: _stream_comments_Comments__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       menuPlaylist: false,
@@ -14757,27 +14775,23 @@ __webpack_require__.r(__webpack_exports__);
       link: ''
     };
   },
-  components: {
-    Comments: _stream_comments_Comments__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
   mounted: function mounted() {
+    console.log(this.post.description);
     this.getLike();
-    this.getVote(); // if (this.post.resource_type == 'audio') {
-    //     this.getStyleAudio()
-    // }
-    // this.getPlaylist()
+    this.getVote();
+
+    if (this.post.resource_type == 'audio') {
+      this.getStyleAudio();
+    }
   },
   methods: {
     copyLink: function copyLink() {},
     showModalSharePost: function showModalSharePost() {
       $('#ModalShare').modal('show');
     },
-    getPlaylist: function getPlaylist() {
-      var playlist = wavesurfer_js__WEBPACK_IMPORTED_MODULE_2___default.a.playlist();
-      playlist.load(this.post.resource);
-      console.log(playlist);
-    },
     getStyleAudio: function getStyleAudio() {
+      console.log(this.post);
+
       if (this.post.resource_type == 'audio') {
         var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 650, 0);
         linGrad.addColorStop(0, '#ff0000');
@@ -14796,9 +14810,7 @@ __webpack_require__.r(__webpack_exports__);
         });
         audio.load(this.post.resource);
         audio.setHeight(500);
-        var duration = audio.getDuration();
         this.audio = audio;
-        this.audio.skip(duration);
       }
     },
     playAudio: function playAudio(audio) {
@@ -14829,7 +14841,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       if (this.post) {
-        console.log('si');
         this.post.likes.map(function (like) {
           if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username == like.user.username) {
             $("#lit" + _this.post.token + " img").replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">');
@@ -14860,8 +14871,6 @@ __webpack_require__.r(__webpack_exports__);
       if (_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.token) {
         if (this.post) {
           this.post.votes.map(function (vote) {
-            console.log(vote);
-
             if (vote.type_vote == 'vote_up') {
               _this2.votes.vote_up.push(vote);
 
@@ -15071,6 +15080,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/channel/includes/ModalNewPlaylist.vue?vue&type=script&lang=js&":
 /*!*************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/user/channel/includes/ModalNewPlaylist.vue?vue&type=script&lang=js& ***!
@@ -15130,13 +15158,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
  // import ModalChangeImage from '../../profile/include/ModalChangeImage'
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['playlis'],
   components: {// ModalChangeImage
   },
   data: function data() {
     return {
+      disable: '',
+      type_request: 'save',
       imageData: '/images/profile/default.svg',
       user: {
         avatar: ''
@@ -15149,7 +15181,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].initialize();
+    _helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].initialize(); // if (this.playlist == undefined) {
+    // }else{
+    //     this.playlist = this.playlis
+    //     this.imageData = this.playlis.image
+    //     this.type_request = 'update'
+    // }
   },
   methods: {
     previewImage: function previewImage(w) {
@@ -15188,23 +15225,48 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     save: function save() {
       var _this2 = this;
 
-      var playlist = new FormData();
-      playlist.append('image', this.playlist.image, this.playlist.image.name);
-      playlist.append('title', this.playlist.title);
-      playlist.append('about', this.playlist.about);
-      axios.post("/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/Channel/Playlist/store"), playlist).then(function (res) {
+      this.disable = true;
+      var request = '';
+      var url = '';
+
+      if (this.type_request == 'save') {
+        request = new FormData();
+        url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/Channel/Playlist/store");
+        request.append('image', this.playlist.image, this.playlist.image.name);
+        request.append('title', this.playlist.title);
+        request.append('about', this.playlist.about);
+      }
+
+      if (this.type_request == 'update') {
+        request = new FormData();
+        url = "/".concat(_helpers_Auth__WEBPACK_IMPORTED_MODULE_1__["default"].state.username, "/Channel/Playlist/update/").concat(this.playlis.id);
+        request.append('image', this.playlist.image, this.playlist.image.name);
+        request.append('title', this.playlist.title);
+        request.append('about', this.playlist.about);
+      }
+
+      axios.post(url, request).then(function (res) {
         if (res.data.saved) {
+          _this2.disable = false;
+
           _this2.$toasted.show('The playlist has been create successfully!', {
             position: "bottom-right",
             duration: 4000,
             className: "p-4 notification bg-primary",
             keepOnHover: true
           });
-
-          console.log(res);
         }
 
-        console.log(res);
+        if (res.data.updated) {
+          _this2.disable = false;
+
+          _this2.$toasted.show('The playlist has been updated!', {
+            position: "bottom-right",
+            duration: 4000,
+            className: "p-4 notification bg-primary",
+            keepOnHover: true
+          });
+        }
       })["catch"](function (err) {
         console.log(err);
       });
@@ -77442,137 +77504,159 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "m-3 channel-playlist" }, [
-    _c("div", { staticClass: "d-flex flex-row" }, [
-      _c("div", { staticClass: "d-flex flex-column" }, [
-        _c("img", {
-          staticClass: "img-fluid",
-          staticStyle: {
-            "min-width": "250px",
-            "max-width": "250px",
-            "min-height": "200px",
-            "max-height": "200px"
-          },
-          attrs: { src: _vm.playlist.image, alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "d-flex flex-column ml-3" }, [
-        _c("div", { staticClass: "d-flex flex-row align-items-center" }, [
+  return _c(
+    "section",
+    { staticClass: "m-3 channel-playlist" },
+    [
+      _c("div", { staticClass: "d-flex flex-row" }, [
+        _c("div", { staticClass: "d-flex flex-column" }, [
           _c("img", {
-            attrs: {
-              src: "/images/icons/video-playlist.svg",
-              alt: "",
-              width: "25",
-              height: "25"
-            }
-          }),
-          _vm._v(" "),
-          _c("h4", { staticClass: "font-weight-bold mx-3" }, [
-            _vm._v(_vm._s(_vm.playlist.title))
+            staticClass: "img-fluid",
+            staticStyle: {
+              "min-width": "250px",
+              "max-width": "250px",
+              "min-height": "200px",
+              "max-height": "200px"
+            },
+            attrs: { src: _vm.playlist.image, alt: "" }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex flex-column ml-3" }, [
+          _c("div", { staticClass: "d-flex flex-row align-items-center" }, [
+            _c("img", {
+              attrs: {
+                src: "/images/icons/video-playlist.svg",
+                alt: "",
+                width: "25",
+                height: "25"
+              }
+            }),
+            _vm._v(" "),
+            _c("h4", { staticClass: "font-weight-bold mx-3" }, [
+              _vm._v(_vm._s(_vm.playlist.title))
+            ]),
+            _vm._v(" "),
+            _c("i", {
+              staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
+              attrs: {
+                id: "dropdownMenuPlaylist",
+                "data-toggle": "dropdown",
+                "aria-haspopup": "true",
+                "aria-expanded": "false"
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "dropdown-menu bg-primary text-white p-2",
+                attrs: { "aria-labelledby": "dropdownMenuPlaylist" }
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-item",
+                    on: { click: _vm.showModalAddVideos }
+                  },
+                  [
+                    _c("i", { staticClass: "fas fa-plus-circle mr-2" }),
+                    _vm._v(" Add video(s)")
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-item",
+                    on: { click: _vm.showModalPlaylist }
+                  },
+                  [_vm._v("Edit Playlist Details")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-item link-post",
+                    on: { click: _vm.deletePlaylist }
+                  },
+                  [_vm._v("Delete Playlist")]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "dropdown-divider" }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "dropdown-item",
+                    on: { click: _vm.showModalShare }
+                  },
+                  [_vm._v("Share")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "dropdown-item", on: { click: _vm.copyLink } },
+                  [_vm._v("Copy Link")]
+                )
+              ]
+            )
           ]),
           _vm._v(" "),
-          _c("i", {
-            staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
-            attrs: {
-              id: "dropdownMenuPlaylist",
-              "data-toggle": "dropdown",
-              "aria-haspopup": "true",
-              "aria-expanded": "false"
-            }
-          }),
+          _c("label", { staticClass: "c-fourth my-3" }, [
+            _vm._v(_vm._s(_vm.playlist.playlist_post.length) + " videos")
+          ]),
           _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "dropdown-menu bg-primary text-white p-2",
-              attrs: { "aria-labelledby": "dropdownMenuPlaylist" }
-            },
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "dropdown-divider" }),
-              _vm._v(" "),
-              _c("a", { staticClass: "dropdown-item", attrs: { href: "#" } }, [
-                _vm._v("Edit Playlist Details")
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "dropdown-item link-post",
-                  attrs: { href: "#" }
-                },
-                [_vm._v("Delete Playlist")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "dropdown-divider" }),
-              _vm._v(" "),
-              _c("div", { staticClass: "dropdown-item" }, [_vm._v("Share")]),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "dropdown-item", on: { click: _vm.copyLink } },
-                [_vm._v("Copy Link")]
-              )
-            ]
-          )
-        ]),
-        _vm._v(" "),
-        _c("label", { staticClass: "c-fourth my-3" }, [
-          _vm._v(_vm._s(_vm.playlist.posts_playlist.length) + " videos")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "c-fourth d-flex justify-content-start" }, [
-          _vm._v(
-            "\n                  " +
-              _vm._s(_vm.playlist.about) +
-              "\n              "
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(1)
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", {
-      staticClass: "my-3",
-      staticStyle: { "border-top": "1px solid gray" }
-    }),
-    _vm._v(" "),
-    _c("div", { staticClass: "row row-sm" }, [
-      _c(
-        "div",
-        { staticClass: "col col-sm-8" },
-        [_c("single-post-playlist", { attrs: { post: _vm.postPlaying.post } })],
-        1
-      ),
+          _c("div", { staticClass: "c-fourth d-flex justify-content-start" }, [
+            _vm._v(
+              "\n                  " +
+                _vm._s(_vm.playlist.about) +
+                "\n              "
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
+        ])
+      ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "col col-sm ml-3" },
-        _vm._l(_vm.playlist.posts_playlist, function(post, index) {
-          return _c("all-post-playlist", {
-            key: index,
-            class: index == 0 ? "bg-primary" : "",
-            attrs: { post: post.post }
-          })
-        }),
-        1
-      )
-    ])
-  ])
+      _c("div", {
+        staticClass: "my-3",
+        staticStyle: { "border-top": "1px solid gray" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row row-sm" }, [
+        _c(
+          "div",
+          { staticClass: "col col-sm-8" },
+          [_c("single-post-playlist", { attrs: { post: _vm.post } })],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col col-sm ml-3" },
+          _vm._l(_vm.playlist.playlist_post, function(post, index) {
+            return _c("all-post-playlist", {
+              key: index,
+              class: index == 0 ? "bg-primary" : "",
+              attrs: { post: post.post }
+            })
+          }),
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("modal-playlist", { attrs: { playlis: _vm.playlist } }),
+      _vm._v(" "),
+      _c("modal-share", { attrs: { post: _vm.post } })
+    ],
+    1
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "dropdown-item", attrs: { href: "" } }, [
-      _c("i", { staticClass: "fas fa-plus-circle mr-2" }),
-      _vm._v(" Add video(s)")
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -77622,133 +77706,24 @@ var render = function() {
               controls: "",
               width: "350",
               height: "200"
+            },
+            on: {
+              mouseover: function($event) {
+                _vm.showMenuPlaylist = true
+              }
             }
           })
         : _vm._e(),
       _vm._v(" "),
-      _c("i", {
-        staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
-        attrs: {
-          id: "dropdownMenuPost",
-          "data-toggle": "dropdown",
-          "aria-haspopup": "true",
-          "aria-expanded": "false"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "dropdown-menu bg-primary text-white p-2",
-          attrs: { "aria-labelledby": "dropdownMenuPost" }
-        },
-        [
-          !_vm.menuPlaylist
-            ? _c("div", [
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    attrs: {
-                      href:
-                        "/" +
-                        _vm.user.username +
-                        "/Post/get/" +
-                        _vm.activity.token
-                    }
-                  },
-                  [_vm._v("Go To Post")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item link-post",
-                    attrs: {
-                      href: "#",
-                      "data-clipboard-text":
-                        "/" +
-                        _vm.user.username +
-                        "/Post/get/" +
-                        _vm.activity.token
-                    }
-                  },
-                  [_vm._v("Copy Link")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "dropdown-item",
-                    on: {
-                      click: function($event) {
-                        _vm.view_post = false
-                      }
-                    }
-                  },
-                  [_vm._v("Hide Post")]
-                ),
-                _vm._v(" "),
-                _vm.activity.resource_type == "audio" ||
-                _vm.activity.resource_type == "video"
-                  ? _c(
-                      "div",
-                      {
-                        staticClass: "dropdown-item",
-                        on: {
-                          click: function($event) {
-                            _vm.menuPlaylist = true
-                          }
-                        }
-                      },
-                      [_vm._v("Add To Playlist")]
-                    )
-                  : _vm._e()
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.menuPlaylist
-            ? _c(
-                "div",
-                [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "dropdown-item",
-                      on: { click: _vm.showModalNewPlaylist }
-                    },
-                    [
-                      _c("i", { staticClass: "fas fa-plus-circle mr-2" }),
-                      _vm._v(" new playlist")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "dropdown-divider" }),
-                  _vm._v(" "),
-                  _vm._l(_vm.user.playlists, function(playlist, index) {
-                    return _c(
-                      "div",
-                      {
-                        key: index,
-                        staticClass: "dropdown-item",
-                        on: {
-                          click: function($event) {
-                            return _vm.addPostPlaylist(playlist)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(playlist.title))]
-                    )
-                  })
-                ],
-                2
-              )
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
       _vm.activity.resource_type == "audio"
-        ? _c("div", { attrs: { id: "waveform" + _vm.activity.token } })
+        ? _c("div", {
+            attrs: { id: "waveform" + _vm.activity.token },
+            on: {
+              mouseover: function($event) {
+                _vm.showMenuPlaylist = true
+              }
+            }
+          })
         : _vm._e(),
       _vm._v(" "),
       _vm.activity.resource_type == "audio"
@@ -77827,6 +77802,123 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
+      _vm.showMenuPlaylist
+        ? _c("i", {
+            staticClass:
+              "fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity",
+            attrs: {
+              id: "dropdownMenuPost",
+              "data-toggle": "dropdown",
+              "aria-haspopup": "true",
+              "aria-expanded": "true"
+            }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      !_vm.playlist
+        ? _c(
+            "div",
+            {
+              staticClass:
+                "dropdown-menu bg-primary text-white p-2 menu-activity",
+              attrs: { "aria-labelledby": "dropdownMenuPost" }
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "dropdown-item",
+                  attrs: {
+                    href:
+                      "/" +
+                      _vm.user.username +
+                      "/Post/get/" +
+                      _vm.activity.token
+                  }
+                },
+                [_vm._v("Go To Post")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "dropdown-item link-post",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Copy Link")]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "dropdown-item",
+                  on: {
+                    click: function($event) {
+                      _vm.view_post = false
+                    }
+                  }
+                },
+                [_vm._v("Hide Post")]
+              ),
+              _vm._v(" "),
+              _vm.activity.resource_type == "audio" ||
+              _vm.activity.resource_type == "video"
+                ? _c(
+                    "div",
+                    {
+                      staticClass: "dropdown-item dropdown-submenu",
+                      on: {
+                        click: function($event) {
+                          _vm.playlist = true
+                        }
+                      }
+                    },
+                    [_vm._v("Add To Playlist")]
+                  )
+                : _vm._e()
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.playlist
+        ? _c(
+            "div",
+            { staticClass: "ml-5 dropdown-menu bg-primary text-white p-2" },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "dropdown-item",
+                  on: { click: _vm.showModalNewPlaylist }
+                },
+                [
+                  _c("i", { staticClass: "fas fa-plus-circle mr-2" }),
+                  _vm._v(" new playlist")
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "dropdown-divider" }),
+              _vm._v(" "),
+              _vm._l(_vm.user.playlists, function(playlist, index) {
+                return _c(
+                  "div",
+                  {
+                    key: index,
+                    staticClass: "dropdown-item",
+                    on: {
+                      click: function($event) {
+                        return _vm.addPostPlaylist(playlist)
+                      }
+                    }
+                  },
+                  [_vm._v(_vm._s(playlist.title))]
+                )
+              })
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
       _vm.activity.resource_type == "text"
         ? _c(
             "div",
@@ -77838,24 +77930,24 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c("div", [
-        _c(
-          "a",
-          {
-            staticClass: "no-underline",
-            attrs: { href: "" + _vm.activity.resource }
-          },
-          [
-            _vm.activity.resource_type == "docs"
-              ? _c("img", {
+      _vm.activity.resource_type == "docs"
+        ? _c("div", [
+            _c(
+              "a",
+              {
+                staticClass: "no-underline",
+                attrs: { href: "" + _vm.activity.resource }
+              },
+              [
+                _c("img", {
                   staticClass: "img-activity img-fluid p-3",
                   staticStyle: { width: "130px", "margin-left": "106px" },
                   attrs: { src: "/images/icons/word-document.svg" }
                 })
-              : _vm._e()
-          ]
-        )
-      ])
+              ]
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _vm.activity.resource_type == "image" ||
@@ -78057,242 +78149,121 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "section",
-    [
-      _c(
-        "div",
-        {
-          staticClass: "d-flex flex-column my-2 content img-fluid playing-post"
-        },
-        [
-          _c(
-            "div",
-            { staticClass: "d-flex flex-row justify-content-between my-3 p-2" },
-            [
-              _c("div", [_vm._v(_vm._s(_vm.post.description))]),
-              _vm._v(" "),
-              _c("i", {
-                staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
-                attrs: {
-                  id: "dropdownPostPlaying",
-                  "data-toggle": "dropdown",
-                  "aria-haspopup": "true",
-                  "aria-expanded": "false"
-                }
-              }),
-              _vm._v(" "),
-              _vm._m(0)
-            ]
-          ),
-          _vm._v(" "),
-          _vm.post.resource_type == "video"
-            ? _c("video", {
-                attrs: { src: "" + _vm.post.resource, controls: "" }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.post.resource_type == "audio"
-            ? _c("div", {
-                staticClass: "audio",
-                attrs: { id: "waveform" + _vm.post.token }
-              })
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.post.resource_type == "audio"
-            ? _c(
-                "div",
-                {
-                  staticClass:
-                    "d-flex flex-row text-center justify-content-center"
-                },
-                [
-                  _c("img", {
-                    attrs: {
-                      src: "/images/iconsplayer/Backward10sec-grey.svg",
-                      alt: "",
-                      id: "backward" + _vm.post.token,
-                      height: "30"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.backward(_vm.audio)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      attrs: { id: "play" + _vm.post.token },
+  return _c("section", [
+    _vm.post.resource
+      ? _c(
+          "div",
+          {
+            staticClass:
+              "d-flex flex-column my-2 content img-fluid playing-post"
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "d-flex flex-row justify-content-between my-3 p-2"
+              },
+              [
+                _c("div", [_vm._v(_vm._s(_vm.post.description))]),
+                _vm._v(" "),
+                _c("i", {
+                  staticClass: "fas fa-ellipsis-h c-third fa-2x mr-1",
+                  attrs: {
+                    id: "dropdownPostPlaying",
+                    "data-toggle": "dropdown",
+                    "aria-haspopup": "true",
+                    "aria-expanded": "false"
+                  }
+                }),
+                _vm._v(" "),
+                _vm._m(0)
+              ]
+            ),
+            _vm._v(" "),
+            _vm.post.resource_type == "video"
+              ? _c("video", {
+                  attrs: { src: "" + _vm.post.resource, controls: "" }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.post.resource_type == "audio"
+              ? _c("div", {
+                  staticClass: "audio",
+                  attrs: { id: "waveform" + _vm.post.token }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.post.resource_type == "audio"
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "d-flex flex-row text-center justify-content-center"
+                  },
+                  [
+                    _c("img", {
+                      attrs: {
+                        src: "/images/iconsplayer/Backward10sec-grey.svg",
+                        alt: "",
+                        id: "backward" + _vm.post.token,
+                        height: "30"
+                      },
                       on: {
                         click: function($event) {
-                          return _vm.playAudio(_vm.audio)
+                          return _vm.backward(_vm.audio)
                         }
                       }
-                    },
-                    [
-                      _c("img", {
-                        staticClass: " mx-3",
-                        attrs: {
-                          src: "/images/iconsplayer/Play-white.svg",
-                          alt: "",
-                          height: "33"
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        attrs: { id: "play" + _vm.post.token },
+                        on: {
+                          click: function($event) {
+                            return _vm.playAudio(_vm.audio)
+                          }
                         }
-                      })
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: {
-                      src: "/images/iconsplayer/Forward10sec-grey.svg",
-                      alt: "",
-                      height: "30"
-                    },
-                    on: {
-                      click: function($event) {
-                        return _vm.forward(_vm.audio)
+                      },
+                      [
+                        _c("img", {
+                          staticClass: " mx-3",
+                          attrs: {
+                            src: "/images/iconsplayer/Play-white.svg",
+                            alt: "",
+                            height: "33"
+                          }
+                        })
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("img", {
+                      attrs: {
+                        src: "/images/iconsplayer/Forward10sec-grey.svg",
+                        alt: "",
+                        height: "30"
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.forward(_vm.audio)
+                        }
                       }
-                    }
-                  })
-                ]
-              )
-            : _vm._e()
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "mt-2 bg-black post-footer p-3" }, [
-        _c("div", [
-          _c("span", { staticClass: "c-fourth" }, [_vm._v("11k views")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "ml-1 c-fourth" }, [
-            _vm._v(_vm._s(_vm.post.time_ago))
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "d-flex c-fourth my-3" }, [
-          _c(
-            "div",
-            {
-              staticClass: "information cursor-pointer",
-              attrs: { id: "voteUp" + _vm.post.token },
-              on: {
-                click: function($event) {
-                  return _vm.colorVote(
-                    _vm.vote_type == "" ||
-                      _vm.vote_type == "vote_down" ||
-                      _vm.vote_type == "unvote_down"
-                      ? (_vm.vote_type = "vote_up")
-                      : (_vm.vote_type = "unvote_up")
-                  )
-                }
-              }
-            },
-            [
-              _c("img", {
-                attrs: { src: "/images/icons/post-percentage-up.svg", alt: "" }
-              }),
-              _c("span", [_vm._v(_vm._s(_vm.votes.vote_up.length))])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "information cursor-pointer",
-              attrs: { id: "voteDown" + _vm.post.token },
-              on: {
-                click: function($event) {
-                  return _vm.colorVote(
-                    _vm.vote_type == "" ||
-                      _vm.vote_type == "vote_up" ||
-                      _vm.vote_type == "unvote_up"
-                      ? (_vm.vote_type = "vote_down")
-                      : (_vm.vote_type = "unvote_down")
-                  )
-                }
-              }
-            },
-            [
-              _c("img", {
-                attrs: {
-                  src: "/images/icons/post-percentage-down-grey.svg",
-                  alt: ""
-                }
-              }),
-              _c("span", [_vm._v(_vm._s(_vm.votes.vote_down.length))])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "information cursor-pointer",
-              attrs: { id: "lit" + _vm.post.token },
-              on: {
-                click: function($event) {
-                  return _vm.colorFlame(_vm.lit.like)
-                }
-              }
-            },
-            [
-              _c("img", {
-                attrs: { src: "/images/icons/post-flame.svg", height: "22" }
-              }),
-              _c("span", [_vm._v(_vm._s(_vm.post.likes.length))])
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "information cursor-pointer",
-              on: {
-                click: function($event) {
-                  _vm.$parent.view_comment = !_vm.$parent.view_comment
-                }
-              }
-            },
-            [
-              _c("img", {
-                attrs: { src: "/images/icons/post-comment.svg", alt: "" }
-              }),
-              _vm._v(_vm._s(_vm.post.comments.length))
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "div",
-            {
-              staticClass: "information cursor-pointer",
-              on: { click: _vm.showModalSharePost }
-            },
-            [
-              _c("img", {
-                attrs: { src: "/images/icons/post-up.svg", alt: "" }
-              }),
-              _vm._v("100")
-            ]
-          ),
-          _vm._v(" "),
-          _vm.post.allow_download
-            ? _c("div", { staticClass: "information cursor-pointer" }, [
-                _c("img", {
-                  attrs: { src: "/images/icons/post-down.svg", alt: "" }
-                }),
-                _vm._v("100")
-              ])
-            : _vm._e()
+                    })
+                  ]
+                )
+              : _vm._e()
+          ]
+        )
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "mt-2 bg-black post-footer p-3" }, [
+      _c("div", [
+        _c("span", { staticClass: "ml-1 c-fourth" }, [
+          _vm._v(_vm._s(_vm.post.time_ago))
         ])
-      ]),
-      _vm._v(" "),
-      _c("comments", {
-        staticClass: "bg-black",
-        attrs: { post: _vm.post, view_comment: _vm.view_comment }
-      })
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -78325,6 +78296,30 @@ var staticRenderFns = [
     )
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=template&id=6493f88b&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=template&id=6493f88b& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section")
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -78456,7 +78451,50 @@ var render = function() {
                       }
                     }),
                     _vm._v(" "),
-                    _vm._m(2)
+                    _c("div", { staticClass: "text-right my-3" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn rounded-pill text-white bg-primary font-weight-bold",
+                          attrs: { "data-dismiss": "modal" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                cancel    \n                            "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      !_vm.disable
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn rounded-pill text-white bg-fifth font-weight-bold",
+                              attrs: { type: "submit" }
+                            },
+                            [_vm._v("Save")]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.disable
+                        ? _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn rounded-pill text-white bg-fifth",
+                              attrs: { disabled: "" }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "spinner-grow spinner-grow-sm",
+                                attrs: { role: "status", "aria-hidden": "true" }
+                              })
+                            ]
+                          )
+                        : _vm._e()
+                    ])
                   ])
                 ]
               )
@@ -78508,37 +78546,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-right my-3" }, [
-      _c(
-        "button",
-        {
-          staticClass: "btn rounded-pill text-white bg-primary font-weight-bold"
-        },
-        [
-          _vm._v(
-            "\n                                cancel    \n                            "
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass:
-            "btn rounded-pill mx-2 text-white bg-fifth font-weight-bold"
-        },
-        [
-          _vm._v(
-            "\n                                save\n                            "
-          )
-        ]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -105358,6 +105365,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePostPlaylist_vue_vue_type_template_id_32867422___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_SinglePostPlaylist_vue_vue_type_template_id_32867422___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/user/channel/includes/ModalAddVideos.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/user/channel/includes/ModalAddVideos.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ModalAddVideos_vue_vue_type_template_id_6493f88b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalAddVideos.vue?vue&type=template&id=6493f88b& */ "./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=template&id=6493f88b&");
+/* harmony import */ var _ModalAddVideos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalAddVideos.vue?vue&type=script&lang=js& */ "./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ModalAddVideos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ModalAddVideos_vue_vue_type_template_id_6493f88b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ModalAddVideos_vue_vue_type_template_id_6493f88b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/user/channel/includes/ModalAddVideos.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAddVideos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ModalAddVideos.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAddVideos_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=template&id=6493f88b&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=template&id=6493f88b& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAddVideos_vue_vue_type_template_id_6493f88b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../../node_modules/vue-loader/lib??vue-loader-options!./ModalAddVideos.vue?vue&type=template&id=6493f88b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/user/channel/includes/ModalAddVideos.vue?vue&type=template&id=6493f88b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAddVideos_vue_vue_type_template_id_6493f88b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModalAddVideos_vue_vue_type_template_id_6493f88b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -92,8 +92,8 @@ class Post extends Model
      *
      * @return void
      */
-    public function postPlaylist()
+    public function playlist_post()
     {
-        return $this->belongsTo(\App\Models\Channel\PostPlaylist::class);
+        return $this->belongsTo(\App\Models\Channel\PlaylistPost::class);
     }
 }

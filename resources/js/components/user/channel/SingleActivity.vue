@@ -2,54 +2,36 @@
     <section>
         <div class="img-activity bg-primary">
             <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
-            <video :src="`${activity.resource}`" controls  width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'" />
-            <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-            <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
-                <div v-if="!menuPlaylist">
-                    <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
-                    <a href="#" class="dropdown-item link-post" :data-clipboard-text="`/${user.username}/Post/get/${activity.token}`" >Copy Link</a>
-                    <a @click="view_post = false" class="dropdown-item">Hide Post</a>
-                    <!-- <a href="#" class="dropdown-item">Report</a> -->
-                    <div class="dropdown-item" @click="menuPlaylist = true" v-if="activity.resource_type == 'audio' || activity.resource_type == 'video'">Add To Playlist</div>
-                </div>
-                <div v-if="menuPlaylist">
-                    <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
-                    <div class="dropdown-divider"></div>
-                    <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
-                </div>
-            </div>
-            <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'"></div>
+            <video :src="`${activity.resource}`" controls width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'" @mouseover="showMenuPlaylist = true"  />
+            <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'"  @mouseover="showMenuPlaylist = true" ></div>
             <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type == 'audio'">
-
                 <div :id="`backward`+activity.token" @click="backward(audio)">
                     <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" height="30" >
-                    <!-- <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                        width="30" height="30" viewBox="418.5 0 1126 1080" enable-background="new 418.5 0 1126 1080" xml:space="preserve">
-                        <symbol id="_10_Sec_Back" viewBox="-14 -13.295 28 26.589">
-                            <text transform="matrix(1 0 0 1 -5 4.375)" font-family="'ArialMT'" font-size="12">10</text>
-                            <path d="M0.7-13.295c-4.766-0.021-9.165,2.555-11.48,6.72L-14-9.795v9.1h9.1l-3.92-3.92c2.613-5.214,8.958-7.322,14.172-4.709
-                                c3.537,1.773,5.786,5.374,5.828,9.329C11.148,5.815,6.413,10.499,0.603,10.467c-4.417-0.023-8.349-2.805-9.843-6.962h-2.94
-                                c1.958,7.097,9.298,11.264,16.395,9.306C9.979,11.221,13.98,5.985,14,0.005C13.957-7.322,8.027-13.251,0.7-13.295z"/>
-                        </symbol>
-                        <g id="Layer">
-                            <use xlink:href="#_10_Sec_Back"  width="28" height="26.589" x="-14" y="-13.295" transform="matrix(39.8872 0 0 40.4887 982 541.7461)" overflow="visible"/>
-                        </g>
-                    </svg> -->
                 </div>
-
                 <div :id="`play`+activity.token" @click="playAudio(audio)">
                     <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
                 </div>
-
                 <div :id="`forward`+activity.token" @click="forward(audio)">
                     <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" height="30">
                 </div>
-
+            </div>
+            <i class="fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-if="showMenuPlaylist"></i>
+            <div class="dropdown-menu bg-primary text-white p-2 menu-activity" aria-labelledby="dropdownMenuPost" v-if="!playlist">
+                <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
+                <a href="#" class="dropdown-item link-post">Copy Link</a>
+                <a @click="view_post = false" class="dropdown-item">Hide Post</a>
+                <!-- <a href="#" class="dropdown-item">Report</a> -->
+                <div class="dropdown-item dropdown-submenu"  v-if="activity.resource_type == 'audio' || activity.resource_type == 'video'" @click="playlist = true">Add To Playlist</div>
+            </div>
+            <div class="ml-5 dropdown-menu bg-primary text-white p-2" v-if="playlist">
+                <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
             </div>
             <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">{{ activity.description }}</div>
-            <div>
+            <div v-if="activity.resource_type == 'docs'">
                 <a :href="`${activity.resource}`" class="no-underline">
-                    <img src="/images/icons/word-document.svg" class="img-activity img-fluid p-3" style="width: 130px; margin-left: 106px;" v-if="activity.resource_type == 'docs'" />
+                    <img src="/images/icons/word-document.svg" class="img-activity img-fluid p-3" style="width: 130px; margin-left: 106px;"  />
                 </a>
             </div>
         </div>
@@ -84,7 +66,9 @@ export default {
     props: ['activity','user'],
     data(){
         return {
-            menuPlaylist: false,
+            dropdown: false,
+            showMenuPlaylist: false,
+            playlist: false,
             audio: '',
             lit:{
                 like: 'like',
@@ -102,13 +86,13 @@ export default {
     },
     mounted(){
         Auth.initialize()
-        this.getStyleAudio()
-        this.getLike()
-        this.getVote()
+        // this.getStyleAudio()
+        // this.getLike()
+        // this.getVote()
     },
     methods: {
         showModalNewPlaylist(){
-            $('#ModalNewPlaylist').modal('show')
+            $('#ModalPlaylist').modal('show')
         },
         getStyleAudio(){
             if (this.activity.resource_type == 'audio') {

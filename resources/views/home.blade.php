@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container home">
-        <home :posts="{{ $posts }}" :user="{{ $user }}"/>
+        <home :posts="{{ $posts }}"/>
     </div>
 @endsection

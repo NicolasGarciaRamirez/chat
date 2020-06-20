@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostPlaylistTable extends Migration
+class CreatePlaylistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreatePostPlaylistTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_playlists', function (Blueprint $table) {
+        Schema::create('playlists', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('channel_playlist_id');
-            $table->integer('playlist_post_id');
+            $table->string('title');
+            $table->text('about');
+            $table->string('image');
+            $table->string('token');
+            $table->integer('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +32,6 @@ class CreatePostPlaylistTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_playlists');
+        Schema::dropIfExists('playlists');
     }
 }

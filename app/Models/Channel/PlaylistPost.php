@@ -5,7 +5,7 @@ namespace App\Models\Channel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PostPlaylist extends Model
+class PlaylistPost extends Model
 {
     use SoftDeletes;
 
@@ -15,7 +15,7 @@ class PostPlaylist extends Model
      * @var array
      */
     protected $fillable = [
-        'channel_playlist_id', 'post_playlist_id'
+        'playlist_id', 'playlist_post_id'
     ];
 
     /**
@@ -34,7 +34,7 @@ class PostPlaylist extends Model
      */
     public function playlist()
     {
-        return $this->belongsTo(\App\Models\Channel\ChannelPlaylist::class);
+        return $this->belongsTo(\App\Models\Channel\Playlist::class);
     }
 
     /**

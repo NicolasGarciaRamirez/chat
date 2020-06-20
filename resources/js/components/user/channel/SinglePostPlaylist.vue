@@ -1,7 +1,6 @@
 <template>
     <section>
-        <!-- {{ post }} -->
-        <div class="d-flex flex-column my-2 content img-fluid playing-post" >
+        <div class="d-flex flex-column my-2 content img-fluid playing-post" v-if="post.resource">
             <div class="d-flex flex-row justify-content-between my-3 p-2">
                 <div>{{ post.description }}</div>
                 <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownPostPlaying"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
@@ -24,21 +23,21 @@
         </div>
         <div class="mt-2 bg-black post-footer p-3">
             <div>
-                <span class="c-fourth">11k views</span>
+                <!-- <span class="c-fourth">11k views</span> -->
                 <span class="ml-1 c-fourth">{{ post.time_ago }}</span>
             </div>
-            <div class="d-flex c-fourth my-3">
+            <!-- <div class="d-flex c-fourth my-3">
                 <div :id="`voteUp`+post.token" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length }}</span></div>
                 <div :id="`voteDown`+post.token" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
                 <div :id="`lit`+post.token" class="information cursor-pointer" @click="colorFlame(lit.like)" >
                     <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes.length }}</span>
                 </div>
-                <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
+                <div class="information cursor-pointer" @click="view_comment = !view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
                 <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">100</div>
                 <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
-            </div>
+            </div> -->
         </div>
-        <comments class="bg-black" :post="post" :view_comment="view_comment" />
+        <!-- <comments class="bg-black" :post="post" :view_comment="view_comment" /> -->
     </section>
 </template>
 
@@ -46,9 +45,13 @@
 import Comments from '../../stream/comments/Comments'
 import Auth from '../../../helpers/Auth'
 import WaveSurfer from 'wavesurfer.js'
+
 export default {
-    props:['post'],
-     data(){
+    props: ['post'],
+    components:{
+        Comments
+    },
+    data(){
         return {
             menuPlaylist: false,
             view_comment: true,
@@ -71,16 +74,13 @@ export default {
             link: ''
         }
     },
-    components:{
-        Comments
-    },
     mounted(){
+        console.log(this.post.description)
         this.getLike()
         this.getVote()
-        // if (this.post.resource_type == 'audio') {
-        //     this.getStyleAudio()
-        // }
-        // this.getPlaylist()
+        if (this.post.resource_type == 'audio') {
+            this.getStyleAudio()
+        }
     },
     methods:{
         copyLink(){
@@ -88,13 +88,8 @@ export default {
         showModalSharePost(){
             $('#ModalShare').modal('show')
         },
-        getPlaylist(){
-            var playlist = WaveSurfer.playlist()
-            
-            playlist.load(this.post.resource)
-            console.log(playlist)
-        },
         getStyleAudio(){
+            console.log(this.post)
             if (this.post.resource_type == 'audio') {
                 var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 650, 0);
                 linGrad.addColorStop(0, '#ff0000'); 
@@ -113,9 +108,7 @@ export default {
                 });
                 audio.load(this.post.resource)
                 audio.setHeight(500)
-                var duration = audio.getDuration()
                 this.audio = audio
-                this.audio.skip(duration)
             }
         },
         playAudio(audio){
@@ -143,7 +136,6 @@ export default {
         },
         getLike(){
             if (this.post) {
-            console.log('si')
                 this.post.likes.map(like => {
                     if (Auth.state.username == like.user.username ) {
                         $(`#lit`+this.post.token+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
@@ -171,7 +163,6 @@ export default {
             if (Auth.state.token) {
                 if (this.post) {
                     this.post.votes.map(vote => {
-                    console.log(vote)
                         if (vote.type_vote == 'vote_up') {
                             this.votes.vote_up.push(vote)
                             $(`#voteUp`+this.post.token+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')

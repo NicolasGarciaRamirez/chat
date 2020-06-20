@@ -112,6 +112,6 @@ class User extends Authenticatable
 
     public function playlists()
     {
-        return $this->hasMany(\App\Models\Channel\ChannelPlaylist::class);
+        return $this->hasMany(\App\Models\Channel\Playlist::class);
     }
 }

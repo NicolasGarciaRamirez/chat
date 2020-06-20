@@ -15,3 +15,5 @@ yarn-error.log
 .idea
 public/images/post/*
 public/images/profile/*
+public/images/playlist/*
+

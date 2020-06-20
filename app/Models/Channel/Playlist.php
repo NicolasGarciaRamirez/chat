@@ -5,7 +5,7 @@ namespace App\Models\Channel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ChannelPlaylist extends Model
+class Playlist extends Model
 {
     use SoftDeletes;
     /**
@@ -41,8 +41,8 @@ class ChannelPlaylist extends Model
      *
      * @return void
      */
-    public function postsPlaylist()
+    public function playlist_post()
     {
-        return $this->hasMany(\App\Models\Channel\PostPlaylist::class);
+        return $this->hasMany(\App\Models\Channel\PlaylistPost::class);
     }
 }

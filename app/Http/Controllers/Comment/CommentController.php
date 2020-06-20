@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Comment;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Channel\Playlist;
 use App\Models\Comment\Comment;
 use App\Models\Post\Post;
 use App\Models\User\User;
@@ -46,6 +47,42 @@ class CommentController extends Controller
         return response()->json([
             'saved' => true,
             'comment' => $comment->load('user.personal_information', 'comments')
+        ]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param Request $request
+     * @param [type] $username
+     * @param Comment $comment
+     * @return void
+     */
+    public function update(Request $request, $username, Comment $comment)
+    {
+        $comment->update($request->all());
+        return response()->json([
+            'updated' => true,
+            'errors' => null,
+            'comment' => $comment
+        ]);
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param [type] $username
+     * @param Comment $comment
+     * @return void
+     */
+    public function delete($username, Comment $comment)
+    {
+        $comment->delete();
+        return response()->json([
+            'deleted' => true,
+            'errors' => null,
+            'comment' => $comment
+
         ]);
     }
 }

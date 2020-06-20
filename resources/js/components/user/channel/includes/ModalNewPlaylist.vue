@@ -23,11 +23,12 @@
                             <input type="text" placeholder="Playlist Name" class="form-control my-3" v-model="playlist.title">
                             <textarea  cols="30" rows="10" placeholder="About This Playlist" class="form-control bg-thrid border-0" v-model="playlist.about"></textarea>
                             <div class="text-right my-3">
-                                <button class="btn rounded-pill text-white bg-primary font-weight-bold">
+                                <button class="btn rounded-pill text-white bg-primary font-weight-bold" data-dismiss="modal">
                                     cancel    
                                 </button>
-                                <button class="btn rounded-pill mx-2 text-white bg-fifth font-weight-bold">
-                                    save
+                                <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Save</button>
+                                <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                 </button>
                             </div>
                         </div>
@@ -43,11 +44,14 @@
 import Auth from '../../../../helpers/Auth'
 // import ModalChangeImage from '../../profile/include/ModalChangeImage'
 export default {
+    props:['playlis'],
     components:{
         // ModalChangeImage
     },
     data(){
         return {
+            disable: '',
+            type_request: 'save',
             imageData: '/images/profile/default.svg',
             user:{
                 avatar:''
@@ -61,6 +65,13 @@ export default {
     },
     mounted(){
         Auth.initialize()
+        // if (this.playlist == undefined) {
+            
+        // }else{
+        //     this.playlist = this.playlis
+        //     this.imageData = this.playlis.image
+        //     this.type_request = 'update'
+        // }
     },
     methods:{
         async previewImage(w){
@@ -78,23 +89,43 @@ export default {
             $('#ModalChangeImage').modal('show')
         },
         save(){
+            this.disable = true
+            var request = ''
+            var url = ''
+            if (this.type_request == 'save') {
+                request = new FormData()
+                url = `/${Auth.state.username}/Channel/Playlist/store`
+                request.append('image', this.playlist.image, this.playlist.image.name)
+                request.append('title', this.playlist.title)
+                request.append('about', this.playlist.about)
+            }
+            if (this.type_request == 'update') {
+                request = new FormData()
+                url = `/${Auth.state.username}/Channel/Playlist/update/${this.playlis.id}`
+                request.append('image', this.playlist.image, this.playlist.image.name)
+                request.append('title', this.playlist.title)
+                request.append('about', this.playlist.about)
+            }
 
-            var playlist = new FormData()
-            playlist.append('image', this.playlist.image, this.playlist.image.name)
-            playlist.append('title', this.playlist.title)
-            playlist.append('about', this.playlist.about)
-
-            axios.post(`/${Auth.state.username}/Channel/Playlist/store`, playlist).then(res =>{
+            axios.post(url, request).then(res =>{
                 if (res.data.saved) {
+                    this.disable = false
                     this.$toasted.show('The playlist has been create successfully!', {
                         position: "bottom-right", 
                         duration : 4000,
                         className: "p-4 notification bg-primary",
                         keepOnHover: true
                     })
-                    console.log(res)
                 }
-                console.log(res)
+                if (res.data.updated) {
+                    this.disable = false
+                     this.$toasted.show('The playlist has been updated!', {
+                        position: "bottom-right", 
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
+                }
             }).catch(err =>{
                 console.log(err)
             })
