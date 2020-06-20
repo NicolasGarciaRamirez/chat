@@ -142,7 +142,7 @@
         @include media-breakpoint-up(md){
             width: 280px;
         }
-       
+
         .form-group{
             width: 19rem;
             transform: translateX(-22px);
@@ -176,10 +176,10 @@
                 color: $fourth-color;
                 &:hover{
                     color: white !important;
-                }  
+                }
             }
         }
-        
+
     }
 }
 

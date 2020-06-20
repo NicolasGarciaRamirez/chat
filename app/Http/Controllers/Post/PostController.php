@@ -29,7 +29,7 @@ class PostController extends Controller
     public function get($username, $token)
     {
         $post = Post::with('votes.user', 'likes.user', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
-        return view('post.view', compact('post'));
+        return view('post.view', ['post' => $post, 'user' => $this->user]);
     }
 
     /**

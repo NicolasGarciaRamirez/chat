@@ -54,7 +54,7 @@
             <p>11K Views </p>
             <p>{{ activity.time_ago }}</p>
         </div>
-   
+
     </section>
 </template>
 
@@ -86,9 +86,9 @@ export default {
     },
     mounted(){
         Auth.initialize()
-        // this.getStyleAudio()
-        // this.getLike()
-        // this.getVote()
+        this.getStyleAudio()
+        this.getLike()
+        this.getVote()
     },
     methods: {
         showModalNewPlaylist(){
@@ -97,7 +97,7 @@ export default {
         getStyleAudio(){
             if (this.activity.resource_type == 'audio') {
                 var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 250, 0);
-                linGrad.addColorStop(0, '#ff0000'); 
+                linGrad.addColorStop(0, '#ff0000');
                 linGrad.addColorStop(1, 'white');
                 var audio = WaveSurfer.create({
                     container: `#waveform`+this.activity.token,
@@ -228,7 +228,7 @@ export default {
             axios.post(`/${Auth.state.username}/Channel/Playlist/add/playlist/${this.activity.id}/${playlist.id}`).then(res =>{
                 if (res.data.saved) {
                     this.$toasted.show(`the post has been successfully added to the playlist `+playlist.title, {
-                        position: "bottom-right", 
+                        position: "bottom-right",
                         duration : 4000,
                         className: "p-4 notification bg-primary",
                         keepOnHover: true

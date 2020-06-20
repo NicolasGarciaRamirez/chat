@@ -85,7 +85,7 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 
     Route::group(['prefix' => 'Post'], function () {
-        Route::name('post.get')->get('/get/{token}/', 'Post\PostController@get');
+        Route::name('post.get')->get('/get/{token}/', 'Post\PostController@get');//aqui es show no get
         Route::group(['middleware' => ['auth']], function () {
             Route::name('post.store')->post('/store', 'Post\PostController@store');
             Route::name('post.update')->put('/update', 'Post\PostController@update');
