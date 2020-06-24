@@ -9,12 +9,13 @@
                         placeholder="Add Some value to the music industry..."
                         id="textarea"
                         v-model="post.description"
+                        v-if="!replace_caption"
                         >
                     </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
-                        <video :src="`${imageData}`" controls  v-if="post.resource_type == 'video'" />
-                        <audio :src="`${imageData}`" type=”audio/mp3″ controls  v-if="post.resource_type == 'audio'" />
+                        <video :src="`${imageData}`" controls class="img-fluid" v-if="post.resource_type == 'video'" />
+                        <audio :src="`${imageData}`" type=”audio/mp3″ controls class="img-fluid" v-if="post.resource_type == 'audio'" />
                         <img src="/images/icons/excel-document.svg" height="300" width="400" class="p-5" v-if="post.resource_type == 'docs'">
                     </div>
                 </div>
@@ -47,13 +48,15 @@
 
                         <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading" :disabled="post.description === '' && post.resource === ''">Post</button>
+
+                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading" :disabled="post.category === '' && post.genre === ''">Post</button>
                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     </button>
+
                 </div>
-                <div class="config-post  bg-primary"  v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
-                    <div class="d-flex flex-column">
+                <div class="config-post  bg-primary">
+                    <div class="d-flex flex-column"  v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
                         <div class="checkbox">
                             <input type="checkbox" name="" id="replace_caption" class="m-2" v-model="replace_caption">
                             <label for="replace_caption"><span>Replace Caption with Title & Discription (YouTube Style)</span></label>
@@ -63,21 +66,32 @@
                             <label for="allow_download"><span>Allow Download</span></label>
                         </div>
                     </div>
-                    <div class="d-flex flex" v-if="replace_caption">
-                        <input type="text" class="form-control m-2" v-model="post.replace_caption" placeholder="Add title..">
+                    <div class="d-flex flex-column" v-if="replace_caption">
+                        <input type="text" class="form-control m-3" v-model="post.replace_caption" placeholder="Add title..">
+                        <textarea class="form-control my-2 m-3" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
                     </div>
-                    <div class="d-flex flex-row justify-content-start">
+                    <div class="d-flex flex-row justify-content-start" v-if="post.description != '' || post.resource != ''">
                         <div class="select">
-                            <select class="select-form m-2" v-model="post.genre" required style="max-width: 180px;">
+                            <select class="select-form m-2" v-model="post.genre" required>
                                 <option value="">Select Genre</option>
-                                <option v-for="(genre, index) in genres" :key="index" :value="genre.principal_genre">{{ genre.principal_genre }}</option>
-
+                                <option value="Pop">Pop</option>
+                                <option value="Rap & Hip-Jop">Rap & Hip-Jop</option>
+                                <option value="EDM">EDM</option>
+                                <option value="Rock & Metal">Rock & Metal</option>
+                                <option value="Jazz & Blues">Jazz & Blues</option>
+                                <option value="Classical">Classical</option>
+                                <option value="Funk">Funk</option>
+                                <option value="World">World</option>
                             </select>
                         </div>
                         <div class="select">
                             <select class="select-form m-2" v-model="post.category" required>
                                 <option value="">Select Category</option>
-                                <option v-for="(category, index) in categories" :key="index" :value="category.principal_service">{{ category.principal_service }}</option>
+                                <option value="Production & Engineering">roduction & Engineering</option>
+                                <option value="Vlogs">logs</option>
+                                <option value="Instruments">nstruments</option>
+                                <option value="Podcasts">odcasts</option>
+                                <option value="Audio Clips">udio Clips</option>
                             </select>
                         </div>
                         <div class="select">
@@ -97,8 +111,6 @@
     import Posts from "../stream/Posts";
     import Auth from "../../helpers/Auth"
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
-    import Genres from '../../helpers/Genres'
-    import Services from '../../helpers/Services'
     export default {
         props:['posts'],
         components:{
@@ -129,8 +141,7 @@
                 },
                 disable_save_post: true,
                 posts_send: [],
-                genres: Genres.getAllGenres(),
-                categories: Services.getAllServices()
+
             }
         },
         mounted(){

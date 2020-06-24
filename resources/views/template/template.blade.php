@@ -18,7 +18,7 @@
 <body class="c-app">
     @php
         isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
-        isset($user) ? $user = $user : $user = [];
+        isset($user) ? : $user = [];
     @endphp
     <div id="app" class="w-100">
         @include('template._nav', $user )

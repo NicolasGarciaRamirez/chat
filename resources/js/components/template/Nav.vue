@@ -9,56 +9,56 @@
         </li>
         <li class="c-sidebar-nav-title">Genre</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="pop">
+            <input type="checkbox" id="pop" @click="getFilter('pop')">
             <label for="pop"><span>Pop</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rap_hip_jop">
-            <label for="rap_hip_jop"><span>Rap & Hip-Jop</span></label>
+            <input type="checkbox" id="rap_hip_jop" @click="getFilter('Rap & Hip-Hop')">
+            <label for="rap_hip_jop"><span>Rap & Hip-Hop</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="edm">
+            <input type="checkbox" id="edm" @click="getFilter('EDM')">
             <label for="edm"><span>EDM</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rock_metal">
+            <input type="checkbox" id="rock_metal" @click="getFilter('Rock & Metal')">
             <label for="rock_metal"><span>Rock & Metal</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="jazz_blues">
+            <input type="checkbox" id="jazz_blues" @click="getFilter('Jazz & Blues')">
             <label for="jazz_blues"><span>Jazz & Blues</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="classical">
+            <input type="checkbox" id="classical" @click="getFilter('Classical')">
             <label for="classical"><span>Classical</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="funk">
+            <input type="checkbox" id="funk" @click="getFilter('Funk')">
             <label for="funk"><span>Funk</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="world">
+            <input type="checkbox" id="world" @click="getFilter('World')">
             <label for="world"><span>World</span></label>
         </li>
         <li class="c-sidebar-nav-title">Category</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="production_engineering">
+            <input type="checkbox" id="production_engineering" @click="getFilter('Production & Engineering')">
             <label for="production_engineering"><span>Production & Engineering</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="vlogs">
+            <input type="checkbox" id="vlogs" @click="getFilter('Vlogs')">
             <label for="vlogs"><span>Vlogs</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="instruments">
+            <input type="checkbox" id="instruments" @click="getFilter('Instruments')">
             <label for="instruments"><span>Instruments</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="podcasts">
+            <input type="checkbox" id="podcasts" @click="getFilter('Podcasts')">
             <label for="podcasts"><span>Podcasts</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="audio_clips">
+            <input type="checkbox" id="audio_clips" @click="getFilter('Audio Clips')">
             <label for="audio_clips"><span>Audio Clips</span></label>
         </li>
         <li class="c-sidebar-nav-item p-0">
@@ -89,11 +89,14 @@
 <script>
     import AppFooter from './footer'
     import Auth from '../../helpers/Auth'
+    import Filter from '../../helpers/Filter'
+
     export default {
         props:['user'],
         data(){
             return {
-                auth: Auth.state
+                auth: Auth.state,
+                filter: []
             }
         },
         components: {
@@ -110,6 +113,18 @@
                     }
                 }
             }
+        },
+        methods:{
+            getFilter(filter){
+                this.filter.push(filter)
+                this.filtered()
+            },
+            filtered(){
+                // Filter.initialize(this.$parent)
+                // var fil = Filter.filter(this.filter)
+                console.log(this.$root)                
+            }
         }
+
     }
 </script>

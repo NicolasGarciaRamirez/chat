@@ -17,6 +17,7 @@
     import ModalPost from './ModalPost'
     import Register from '../auth/Register'
     import ModalPlaylist from '../user/channel/includes/ModalNewPlaylist'
+    import Filter from '../../helpers/Filter'
 
     export default {
         props:['posts'],
@@ -30,7 +31,7 @@
         },
         data(){
             return{
-                view_comment: false
+                view_comment: false,
             }
         }
     }

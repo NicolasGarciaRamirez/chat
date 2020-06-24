@@ -11,7 +11,7 @@
         </div>
         <div class="navigation-body">
             <a :href="`/${user.username}/Channel/Activity`" class="c-fifth font-weight-bold mr-3 active">Activity</a>
-            <a :href="`/${user.username}/Channel/Playlist`" class="text-white font-weight-bold">Playlist</a>
+            <!-- <a :href="`/${user.username}/Channel/Playlist`" class="text-white font-weight-bold">Playlist</a> -->
         </div>
         <div class="container activities">
             <div class="row">
