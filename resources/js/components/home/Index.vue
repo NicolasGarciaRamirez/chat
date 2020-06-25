@@ -13,9 +13,10 @@
                         >
                     </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
+                
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
                         <video :src="`${imageData}`" controls class="img-fluid" v-if="post.resource_type == 'video'" />
-                        <audio :src="`${imageData}`" type=”audio/mp3″ controls class="img-fluid" v-if="post.resource_type == 'audio'" />
+                        <audio :src="`${imageData}`" type=”audio/mp3″ controls v-if="post.resource_type == 'audio'" />
                         <img src="/images/icons/excel-document.svg" height="300" width="400" class="p-5" v-if="post.resource_type == 'docs'">
                     </div>
                 </div>
@@ -56,12 +57,12 @@
 
                 </div>
                 <div class="config-post  bg-primary">
-                    <div class="d-flex flex-column"  v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
-                        <div class="checkbox">
+                    <div class="d-flex flex-column"  >
+                        <div class="checkbox" v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
                             <input type="checkbox" name="" id="replace_caption" class="m-2" v-model="replace_caption">
                             <label for="replace_caption"><span>Replace Caption with Title & Discription (YouTube Style)</span></label>
                         </div>
-                        <div class="checkbox">
+                        <div class="checkbox" v-if="imageData.length > 0 && post.resource_type == 'image' || post.resource_type == 'docs'">
                             <input type="checkbox" name="" id="allow_download" class="m-2" v-model="post.allow_download">
                             <label for="allow_download"><span>Allow Download</span></label>
                         </div>
@@ -89,9 +90,9 @@
                                 <option value="">Select Category</option>
                                 <option value="Production & Engineering">roduction & Engineering</option>
                                 <option value="Vlogs">logs</option>
-                                <option value="Instruments">nstruments</option>
-                                <option value="Podcasts">odcasts</option>
-                                <option value="Audio Clips">udio Clips</option>
+                                <option value="Instruments">Instruments</option>
+                                <option value="Podcasts">Podcasts</option>
+                                <option value="Audio Clips">Audio Clips</option>
                             </select>
                         </div>
                         <div class="select">

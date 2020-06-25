@@ -2,8 +2,8 @@
     <section>
         <div class="img-activity bg-primary">
             <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
-            <video :src="`${activity.resource}`" controls width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'" @mouseover="showMenuPlaylist = true"  />
-            <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'"  @mouseover="showMenuPlaylist = true" ></div>
+            <video :src="`${activity.resource}`" controls width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'"  />
+            <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'" ></div>
             <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type == 'audio'">
                 <div :id="`backward`+activity.token" @click="backward(audio)">
                     <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" height="30" >
@@ -35,12 +35,21 @@
                 </a>
             </div>
         </div>
-        <div style="overflow: auto; max-height: 68px;" v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
-            <h5 class="m-1">{{ activity.description }}</h5>
+        <div v-if="!activity.replace_caption">
+            <div style="overflow: auto; max-height: 68px;" v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
+                <p class="m-1">{{ activity.description }}</p>
+            </div>
+            <p v-if="activity.resource_type == 'docs'">
+                <a :href="`${activity.resource}`" class="text-white">{{ activity.description }}</a>
+            </p>
         </div>
-        <h3 v-if="activity.resource_type == 'docs'">
-            <a :href="`${activity.resource}`" class="text-white">{{ activity.description }}</a>
-        </h3>
+        <div v-if="activity.replace_caption">
+            <h5 class="font-weight-bold my-2">{{ activity.replace_caption }}</h5>
+            <p>
+                <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type == 'docs'">{{ activity.description }}</a>
+                <div v-if="activity.resource_type != 'docs'">{{ activity.description }}</div>
+            </p>
+        </div>
         <div class="d-flex c-fourth my-3">
             <div :id="`voteUp`+activity.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
             <div :id="`voteDown`+activity.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>

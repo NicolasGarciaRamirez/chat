@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
 use Intervention\Image\Facades\Image;
+use App\Notifications\PasswordChangedSuccessfully;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'playlists.playlist_post.post.comments','followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases');
+            $this->user->load('personal_information', 'social_auth','playlists.playlist_post.post.comments','followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases');
             return $next($request);
         });
     }
@@ -184,6 +185,8 @@ class UserController extends Controller
         try {
             $this->user->update($request->all());
             \DB::commit();
+            $this->user->notify(new PasswordChangedSuccessfully($this->user->personal_information->full_name));
+
             return response()->json([
                 'updated' => true,
                 'user' => User::find($this->user->id),

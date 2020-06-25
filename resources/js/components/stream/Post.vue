@@ -31,11 +31,13 @@
                         <a :href="`/${post.user.username}/Profile/WorkHistory`" class="dropdown-item">Go To User Profile</a>
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
-                        <a :href="`/${post.user.username}/Post/get/${post.token}`" class="dropdown-item">Go To Post</a>
+                        <div class="dropdown-item" @click="editPost" v-if="auth.username == post.user.username">Edit description</div>
+                        <div class="dropdown-item" @click="deletePost" v-if="auth.username == post.user.username">Delete Post</div>
+                        <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
-                        <a @click="view_post = false" class="dropdown-item">Hide Post</a>
-                        <a href="#" class="dropdown-item">Report</a>
-                        <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div>
+                        <div class="dropdown-item" @click="view_post = false">Hide Post</div>
+                        <a href="#" class="dropdown-item" v-if="auth.username != post.user.username">Report</a>
+                        <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
                     </div>
                     <div v-if="menuPlaylist">
                         <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
@@ -157,8 +159,9 @@
         },
         data(){
             return {
+                auth: Auth.state,
                 menuPlaylist: false,
-                view_comment: false,
+                view_comment: this.post.comments.length > 2 ? false : true,
                 audio: '',
                 view_post: true,
                 url : ``,
@@ -493,8 +496,13 @@
                 }).catch(err =>{
                     console.log(err)
                 })
-            }
+            },
+            editPost(){
 
+            },
+            deletePost(){
+                
+            }
         }
     }
 </script>

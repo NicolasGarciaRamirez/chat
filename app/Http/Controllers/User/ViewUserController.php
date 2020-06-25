@@ -71,7 +71,7 @@ class ViewUserController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function services($user_name)
+    public function services()
     {
         return view('user.profile.services', ['user' => $this->user]);
     }
@@ -79,9 +79,9 @@ class ViewUserController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function rates()
+    public function socialMedia()
     {
-        return view('user.profile.rates', ['user' => $this->user]);
+        return view('user.profile.social_media', ['user' => $this->user]);
     }
 
 }

@@ -27,7 +27,7 @@ class Post extends Model
     /**
      * @var string[]
      */
-    protected $appends = ['time_ago'];
+    protected $appends = ['time_ago', 'score', 'vote_up_count', 'vote_down_count'];
 
     /**
      *
@@ -37,6 +37,21 @@ class Post extends Model
         return $this->created_at->diffForHumans();
     }
 
+    
+    public function getVoteUpCountAttribute()
+    {
+        return $this->votes()->where('type_vote', 'vote_up')->count();
+    }
+
+    public function getVoteDownCountAttribute()
+    {
+        return $this->votes()->where('type_vote', 'vote_down')->count();
+    }
+
+    public function getScoreAttribute()
+    {
+        return (( 10 + $this->vote_up_count ) / ( 10 + ( $this->vote_up_count + $this->vote_down_count ))) * (1 - (0.02 * $this->created_at->diffInHours(\Carbon\Carbon::now()))) * 100;
+    }
     /**
      * user relations
      *

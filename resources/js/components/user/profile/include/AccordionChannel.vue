@@ -13,7 +13,7 @@
                     </div>
                     <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
-                            <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
+                            <button type="button" class="btn bg-fifth text-white rounded-pill" @click="showModalContributor">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
-                            <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
+                            <button type="button" class="btn bg-fifth text-white rounded-pill" @click="showModalContributor">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div id="collapseThree" class="collapse " aria-labelledby="headingThree" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
-                            <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
+                            <button type="button" class="btn bg-fifth text-white rounded-pill" @click="showModalContributor">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div id="collapseFourth" class="collapse " aria-labelledby="headingFourth" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
-                            <button class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
+                            <button type="button" class="btn bg-fifth text-white rounded-pill" @click="showModalContributor">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div id="collapseFifth" class="collapse " aria-labelledby="headingFifth" data-parent="#accordionChannel">
                         <div class="card-body bg-black text-center">
-                            <button type="button" class="btn bg-fifth text-white rounded-pill">Become A Contributor </button>
+                            <button type="button" class="btn bg-fifth text-white rounded-pill" @click="showModalContributor">Become A Contributor </button>
                             <p class="text-white">It’s <b>FREE!!</b> you only start paying when you start earining money from supporters (You don’t pay unless you earn)</p>
                         </div>
                     </div>
@@ -148,11 +148,16 @@
                 </div>
             </form>
         </div>
+        <modal-contributor />
     </section>
 </template>
 
 <script>
+import ModalContributor from '../../../auth/include/ModalContributorSignup'
 export default {
+    components:{
+        ModalContributor
+    },
     data(){
         return {
             channel: {
@@ -165,6 +170,9 @@ export default {
         }
     },
     methods: {
+        showModalContributor(){
+            $('#ModalContributorSignup').modal('show')
+        },
         save(){
             axios.post(`/User/Free/profile/save/${this.user}` , this.channel).then(res => {
                 console.log(res)

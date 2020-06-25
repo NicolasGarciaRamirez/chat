@@ -183,15 +183,15 @@
                             <div class="d-flex flex-column text-center social-login">
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/facebook.svg" alt="" class="icon">
-                                    <a class="btn btn-social-media bg-facebook text-white rounded-pill font-weight-bold">link With facebook</a>
+                                    <a href="/auth/facebook" class="btn btn-social-media bg-facebook text-white rounded-pill font-weight-bold">{{ auth_facebook == 'FacebookProvider' ? 'Disconnect From Facebook'  : 'Link From Facebook' }}</a>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/twitter.svg" alt="" class="icon">
-                                    <a class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">Disconnect From Twitter</a>
+                                    <a href="/auth/twitter" class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">{{ auth_twitter  == 'TwitterProvider' ? 'Disconnect From Facebook'  : 'link From Twitter' }}</a>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/google.svg" alt="" class="icon">
-                                    <a class="btn btn-social-media c-fifth bg-white rounded-pill font-weight-bold">Link With Google</a>
+                                    <a href="/auth/google" class="btn btn-social-media c-fifth bg-white rounded-pill font-weight-bold">{{ auth_google == 'GoogleProvider' ? 'Disconnect From Facebook'  : 'Link With Google' }}</a>
                                 </div>
                             </div>
                         </div>
@@ -257,6 +257,28 @@ export default {
         ModalEditPassword,
         ModalEditPersonalDetails,
         ModalCancel
+    },
+    data(){
+        return {
+            auth_facebook : '',
+            auth_twitter : '',
+            auth_google : ''
+        }
+    },
+    mounted(){
+        if (this.user.social_auth) {
+            this.user.social_auth.map(auth =>{
+                if (auth.provider == 'FacebookProvider') {
+                    this.auth_facebook = auth.provider 
+                }
+                if (auth.provider == 'TwitterProvider') {
+                    this.auth_twitter = auth.provider
+                }
+                if (auth.provider == 'GoogleProvider') {
+                    this.auth_twitter = auth.provider
+                }
+            })
+        }
     },
     methods:{
         showModalEditAccount(){

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
 use App\Models\User\UserPersonalInformation;
+use App\Notifications\PersonalInformationUpdatedSuccessfully;
 
 class UserPersonalInformationController extends Controller
 {
@@ -52,6 +53,7 @@ class UserPersonalInformationController extends Controller
         try {
             $this->user->personal_information()->update($request->all());
             \DB::commit();
+            $this->user->notify(new PersonalInformationUpdatedSuccessfully($this->user->personal_information->full_name));
 
             return response()->json([
                 'updated' => true,

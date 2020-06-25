@@ -1,4 +1,4 @@
-<template>
+<template ref="posts">
     <section class="posts mb-4"  v-if="posts">
         <div v-for="(post, index) in posts" :key="index" >
             <post :post="post" />
@@ -32,6 +32,7 @@
         data(){
             return{
                 view_comment: false,
+                filter: [],
             }
         }
     }

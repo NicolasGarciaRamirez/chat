@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingOne">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            <button type="button" class="btn btn-link text-white">Profile Type</button>
+                            <button type="button" class="btn btn-link text-white">Profile Type <span class="c-fifth ml-3">*</span></button>
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingTwo">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <button type="button" class="btn btn-link collapsed text-white">Title</button>
+                            <button type="button" class="btn btn-link collapsed text-white">Title  <span class="c-fifth ml-3">*</span></button>
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
@@ -305,6 +305,8 @@ import ModalSelectGenres from './ModalSelectGenres'
 import ModalSelectServices from './ModalSelectServices'
 import SingleRelease from "./SingleRelease";
 import SingleMember from "./SingleMember";
+import Auth from  '../../../../helpers/Auth'
+
 export default {
     props:['user'],
     components:{
@@ -346,6 +348,7 @@ export default {
     },
     mounted(){
        this.initializeVariable()
+       Auth.initialize()
     },
     methods:{
         initializeVariable(){
@@ -416,13 +419,14 @@ export default {
                         className: "p-4 notification bg-primary",
                         keepOnHover: true
                     })
+                    window.location.replace(`/${Auth.state.username}/Profile/WorkHistory`)
                 }
                 if (res.data.saved) {
                     this.url =`/${this.user.username}/Edit/Profile`
                 }
             }).catch(err => {
                 this.disable = false
-                alert('there was an error trying to save the information')
+                alert('please complete the fields that are marked with the *')
                 console.log(err)
             })
         },

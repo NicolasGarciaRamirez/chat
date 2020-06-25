@@ -46,6 +46,8 @@ import ProfileMembers from './components/user/profile/Members'
 import ProfileReleases from './components/user/profile/Releases'
 import ProfileServices from './components/user/profile/Services'
 import ProfileWorkHistory from './components/user/profile/WorkHistory'
+import ProfileSocialMedia from './components/user/profile/SocialMedia'
+
 
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
 
@@ -71,6 +73,7 @@ new Vue({
         ProfileReleases,
         ProfileServices,
         ProfileWorkHistory,
+        ProfileSocialMedia,
         ModalContributorSignup,
         ValidateLogin,
         PasswordReset,

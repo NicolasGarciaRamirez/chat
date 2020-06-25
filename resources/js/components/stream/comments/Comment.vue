@@ -25,7 +25,7 @@
             <div class="comment-footer">
                 <span>{{ comment.time_ago }}</span>
                 <span class="mx-3">{{ likes.length }} lit</span>
-                <span @click="$parent.form_reply = true" class="cursor-pointer">Reply</span>
+                <span @click="$parent.form_reply = true" class="cursor-pointer"><span @click="$parent.reply.body = `@`+comment.user.personal_information.first_name+' '+comment.user.personal_information.last_name ">Reply</span></span>
             </div>
         </div>
     </div>

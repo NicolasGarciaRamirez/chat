@@ -4,7 +4,7 @@
             <label :for="`imgRelease${index}`">
                 <img class="img-fluid pr-3" :src="release_update.image"/>
             </label>
-            <input type="file" :id="`imgRelease${index}`" name="imageRelease" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="previewImage" />
+            <input type="file" :id="`imgRelease${index}`" name="imageRelease" accept=".jpg , .png , .jpge" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="previewImage" />
             <button type="button" class="btn text-white rounded-pill bg-fifth w-90" @click="deleteRelease(index)">
                 Delete Release
             </button>

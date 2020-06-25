@@ -30,7 +30,7 @@ Route::get('auth/{provider}/callback', 'Auth\UserSocialAuthController@handleProv
 Route::get('auth/{provider}/callback/error', 'Auth\UserSocialAuthController@error');
 Route::get('ValidateLogin/{id}/{hash}', 'Auth\UserSocialAuthController@validateLogin')->name('validate.login')->middleware('signed');
 
-Route::get('/Register/{type?}', 'HomeController@register')->where([
+Route::name('RegisterIndex')->get('/Register/{type?}', 'HomeController@register')->where([
     'type' => 'Free|Contributor'
 ]);;;
 Route::post('/Register', 'Auth\AuthController@register')->name('register');
@@ -81,7 +81,7 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::name('profile.work.history')->get('/WorkHistory', 'User\ViewUserController@workHistory');
         Route::name('profile.genres')->get('/Genres', 'User\ViewUserController@genres');
         Route::name('profile.services')->get('/Services', 'User\ViewUserController@services');
-        Route::name('profile.rates')->get('/Rates', 'User\ViewUserController@rates');
+        Route::name('profile.social_media')->get('/Social/Media', 'User\ViewUserController@socialMedia');
     });
 
     Route::group(['prefix' => 'Post'], function () {

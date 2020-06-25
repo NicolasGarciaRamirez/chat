@@ -8,7 +8,7 @@
         props:['user'],
         created() {
             Auth.set(this.user.token, this.user.username, this.user.avatar)
-            window.location.replace(`/${this.user.username}/Profile/Releases`)
+            window.location.replace(`/${this.user.username}/Edit`)
         }
     }
 </script>

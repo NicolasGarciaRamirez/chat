@@ -74,7 +74,7 @@
         <div v-if="auth.username">
             <div v-for="(follow, index) in user.followers" :key="index">
                 <li class="c-sidebar-nav-item">
-                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
+                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information.artistic_name ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
                     <span class="float-sm-right c-fifth dot">•</span>
                 </li>
             </div>
@@ -89,7 +89,6 @@
 <script>
     import AppFooter from './footer'
     import Auth from '../../helpers/Auth'
-    import Filter from '../../helpers/Filter'
 
     export default {
         props:['user'],
@@ -115,15 +114,6 @@
             }
         },
         methods:{
-            getFilter(filter){
-                this.filter.push(filter)
-                this.filtered()
-            },
-            filtered(){
-                // Filter.initialize(this.$parent)
-                // var fil = Filter.filter(this.filter)
-                console.log(this.$root)                
-            }
         }
 
     }
