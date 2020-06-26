@@ -68,8 +68,8 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column" v-if="replace_caption">
-                        <input type="text" class="form-control m-3" v-model="post.replace_caption" placeholder="Add title..">
-                        <textarea class="form-control my-2 m-3" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
+                        <input type="text" class="form-control m-3 w-auto" v-model="post.replace_caption" placeholder="Add title..">
+                        <textarea class="form-control my-2 m-3 w-auto" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
                     </div>
                     <div class="d-flex flex-row justify-content-start" v-if="post.description != '' || post.resource != ''">
                         <div class="select">
