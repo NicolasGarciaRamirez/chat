@@ -52,8 +52,8 @@ class UserPersonalInformationController extends Controller
 
         try {
             $this->user->personal_information()->update($request->all());
-            \DB::commit();
             $this->user->notify(new PersonalInformationUpdatedSuccessfully($this->user->personal_information->full_name));
+            \DB::commit();
 
             return response()->json([
                 'updated' => true,

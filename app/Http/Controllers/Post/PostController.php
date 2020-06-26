@@ -42,27 +42,28 @@ class PostController extends Controller
         \DB::beginTransaction();
 
         try {
-            if ($request->imagePost != null) {
+            if ($request->resource != null) {
                 // $request->validate([
                 //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4,pdf,doc,docx,xls'
                 // ]);
                 $key = md5(\Auth::user()->id);
                 $hash = \Str::random(10);
+               
 
                 if ($request->resource_type == 'image') {
                     $resource = $this->setImage($request);
                 }
                 if ($request->resource_type == 'video') {
-                    $resource = "/images/post/videos/{$hash}/{$key}{$request->imagePost->getClientOriginalName()}"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
-                    $request->imagePost->move(public_path("/images/post/videos/{$hash}/"), $resource);
+                    $resource = "/images/post/videos/{$hash}/{$key}{$request->resource->getClientOriginalName()}"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
+                    $request->resource->move(public_path("/images/post/videos/{$hash}/"), $resource);
                 }
                 if ($request->resource_type == 'audio') {
-                    $resource = "/images/post/audio/{$hash}/{$key}{$request->imagePost->getClientOriginalName()}"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
-                    $request->imagePost->move(public_path("/images/post/audio/{$hash}/"), $resource);
+                    $resource = "/images/post/audio/{$hash}/{$key}{$request->resource->getClientOriginalName()}"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
+                    $request->resource->move(public_path("/images/post/audio/{$hash}/"), $resource);
                 }
                 if ($request->resource_type == 'docs') {
-                    $resource = "/images/docs/{$key}/{$hash}{$request->imagePost->getClientOriginalName()}";
-                    $request->imagePost->move(public_path("/images/post/docs/{$key}/"), $resource);
+                    $resource = "/images/post/docs/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
+                    $request->resource->move(public_path("/images/post/docs/{$key}/"), $resource);
                 }
 
             } else {
@@ -133,8 +134,8 @@ class PostController extends Controller
     {
         $key = md5(\Auth::user()->id);
         $hash = \Str::random(10);
-        $imageName = "/images/post/{$key}/{$hash}{$request->imagePost->getClientOriginalName()}";
-        $request->imagePost->move(public_path("/images/post/{$key}/"), $imageName);
+        $imageName = "/images/post/images/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
+        $request->resource->move(public_path("/images/post/images/{$key}/"), $imageName);
 
         $background = Image::canvas(1200, 600);
         $background->fill('#141414');

@@ -1,6 +1,6 @@
 <template>
-    <section class="post mt-3" v-if="view_post" @scroll="view">
-        <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between">
+    <section class="post mt-3" v-if="view_post" v-on:click="onScroll">
+        <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between"  >
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
                 <div :id="`follow`+post.token" @click="colorFollow(follow_type)">
                     <button type="button" class="bg-primary align-items-right border-white">FOLLOW
@@ -192,7 +192,8 @@
                 },
                 follow_type: 'follow',
                 follow:'',
-                link: ''
+                link: '',
+                view: 0
 
             }
         },
@@ -205,8 +206,9 @@
             this.getFollow()
         },
         methods:{
-            view(){
-                console.log(1+1)
+            onScroll(){
+                this.view += 1
+                console.log(this.view)
             },
             showModalSupport(){
                 $('#modalSupport').modal('show')
@@ -512,7 +514,6 @@
                 })
             },
             update(){
-                console.log('asd')
                 axios.post(`/${Auth.state.username}/Post/update/${this.post.token}`, this.post).then(res =>{
                     if (res.data.updated) {
                         this.edit = false

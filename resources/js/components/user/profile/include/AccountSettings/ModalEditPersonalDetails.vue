@@ -49,7 +49,7 @@
                             </div>
                             <div style="border-top: 1px solid #262626"></div>
                             <div class="text-center my-3">
-                                <button type="button" class="bg-primary border-0 rounded-pill" data-dissmis="modal">Cancel</button>
+                                <button type="button" class="bg-primary border-0 rounded-pill" data-dismiss="modal">Cancel</button>
                                 <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Save</button>
                                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -93,6 +93,7 @@ export default {
                 if (res.data.updated) {
                     this.$parent.user.personal_information = this.data
                     this.disable = false
+                    $('#ModalEditPersonalDetails').modal('toggle')
                     this.$toasted.show('The profile information has been updated successfully!', {
                         position: "bottom-right", 
                         duration : 4000,

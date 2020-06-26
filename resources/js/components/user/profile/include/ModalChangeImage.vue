@@ -16,8 +16,7 @@
                             <label for="img" class="text-center">
                                 <img :src="imageData" alt="img-profile" id="img-profile" class="img-fluid cursor-pointer">
                             </label>
-
-                            <input type="file" class="" id="img" @change="previewImage">
+                            <input type="file" class="d-none" id="img" @change="previewImage">
                             <div class="text-right p-4">
                                 <button class="btn bg-primary text-white" data-dismiss="modal">Cancel</button>
                                 <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
@@ -90,9 +89,13 @@ export default {
                         this.disable = false
                         Auth.remove()
                         Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar )
-                        this.$parent.user.avatar = res.data.user.avatar
-                        console.log(res)
-                        // window.location.reload()
+                        $('#ModalChangeImage').modal('toggle')
+                        if (this.$parent.type_change_image == 'Profile') {
+                            this.$parent.user.avatar = res.data.user.avatar
+                        }
+                        if(this.$parent.type_change_image == 'Cover'){
+                            this.$parent.user.cover = res.data.user.cover
+                        }
                     }else{
                         alert('error')
                     }

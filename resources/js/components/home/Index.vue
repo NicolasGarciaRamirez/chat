@@ -1,5 +1,10 @@
 <template>
     <section >
+        <div class="progress-bar" v-if="loading">
+            <span class="bar">
+                <span class="progress"></span>
+            </span>
+        </div>
         <form @submit.prevent="store" enctype="multipart/form-data">
             <div class="form-group post-form">
                 <div class="bg-primary">
@@ -66,7 +71,7 @@
                             <input type="checkbox" name="" id="allow_download" class="m-2" v-model="post.allow_download">
                             <label for="allow_download"><span>Allow Download</span></label>
                         </div>
-                    </div>
+                    </div>  
                     <div class="d-flex flex-column" v-if="replace_caption">
                         <input type="text" class="form-control m-3 w-auto" v-model="post.replace_caption" placeholder="Add title..">
                         <textarea class="form-control my-2 m-3 w-auto" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
@@ -166,7 +171,7 @@
                     this.loading = true
                     var imagePost = new FormData();
                     if (this.post.resource != '') {
-                        imagePost.append('imagePost', this.post.resource, this.post.resource)
+                        imagePost.append('resource', this.post.resource, this.post.resource)
                         imagePost.append('allow_download', this.post.allow_download)
                         imagePost.append('replace_caption', this.post.replace_caption)
                     }
@@ -201,8 +206,9 @@
                 this.post = {
                     replace_caption:"",
                     allow_download:"",
-                    description:"",
-                    image: null,
+                    description:'',
+                    resource: '',
+                    resource_type : 'text',
                     genre:"",
                     category: "",
                 }

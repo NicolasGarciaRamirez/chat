@@ -1,0 +1,36 @@
+<template>
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalMerch" aria-hidden="true" id="ModalMerch">
+        <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+            <div class="modal-content modal-border-white">
+                <div class="modal-header border-0">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body d-flex flex-column text-center justify-content-center p-5">
+                    <h2 class="font-weight-bold text-white my-2">COMING VERY SOON!</h2>
+                    <img src="/images/commingsoon/merch.svg" alt="">
+                    <div class="d-flex flex-column justify-content-center my-2">
+                        <p>
+                            Very soon, you will be able to list your merch on your channel and allow
+                            users to view and purchase them from Noisesharks 
+                        </p><br>
+                        <p>
+                            Click below to get notified when we launch this feature.
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn rounded-pill text-white bg-fifth w-25">Notify Me</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</template>
+
+<script>
+export default {
+
+}
+</script>

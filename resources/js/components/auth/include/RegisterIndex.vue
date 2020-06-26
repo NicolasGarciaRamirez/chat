@@ -52,7 +52,7 @@
         </div>
 
         <div :class="[type === 'Contributor' ? 'w-50' : 'w-100', 'd-flex justify-content-center align-items-center auth-type for-music-company']">
-            <h6><a>FOR MUSIC COMPANIES ></a></h6>
+            <h6 @click="showModalForMusicCompany"><a>FOR MUSIC COMPANIES ></a></h6>
         </div>
     </section>
 </template>
@@ -60,12 +60,19 @@
 <script>
     import FormSignUp from './FormSignUp'
     import FormSignUpContributor from './FormSignUpContributor'
+    import ModalForMusicCompany from '../../ModalsCommingSoon/ModalForMusic'
 
     export default {
         props: ['type'],
         components: {
             FormSignUp,
-            FormSignUpContributor
+            FormSignUpContributor,
+            ModalForMusicCompany
+        },
+        methods:{
+            showModalForMusicCompany(){
+                $('#ModalForMusic').modal('show')
+            }
         }
     }
 </script>

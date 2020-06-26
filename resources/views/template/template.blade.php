@@ -30,7 +30,10 @@
                     @yield('content')
                     <login is_login_view="{{ $is_login_view }}" />
                 </main>
-                <modal-contributor-signup />
+                {{-- <div>
+                    <modal-contributor-signup />
+                </div> --}}
+                <modal-contributor />
             </div>
         </div>
     </div>

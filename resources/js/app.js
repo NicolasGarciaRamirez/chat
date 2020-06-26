@@ -50,7 +50,7 @@ import ProfileSocialMedia from './components/user/profile/SocialMedia'
 
 
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
-
+import ModalContributor from './components/ModalsCommingSoon/ModalContributor'
 
 new Vue({
     el: '#app',
@@ -75,6 +75,7 @@ new Vue({
         ProfileWorkHistory,
         ProfileSocialMedia,
         ModalContributorSignup,
+        ModalContributor,
         ValidateLogin,
         PasswordReset,
         Playlist

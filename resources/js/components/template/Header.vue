@@ -274,12 +274,17 @@
                 </div>
             </li>
         </div>
+        <modal-contributor />
     </ul>
 </template>
 
 <script>
 import Auth from '../../helpers/Auth'
+import ModalContributor from '../ModalsCommingSoon/ModalContributor'
     export default {
+        components:{
+            ModalContributor
+        },
         data(){
             return {
                 auth : Auth.state,
@@ -293,7 +298,8 @@ import Auth from '../../helpers/Auth'
                 $('#ModalLogin').modal('show')
             },
             showModalContributor(){
-                $('#ModalContributorSignup').modal('show')
+                // $('#ModalContributorSignup').modal('show')
+                $('#ModalContributor').modal('show')
             },
             async logout(){
                 await axios.get('/logout').then(res => {

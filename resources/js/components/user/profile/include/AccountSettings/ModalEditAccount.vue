@@ -83,6 +83,7 @@ export default {
                 if (res.data.updated) {
                     this.disable_email = true
                     this.current_password = ''
+                    $('#ModalEditAccount').modal('toggle')
                     this.$toasted.show('The account information has been updated successfully!', {
                         position: "bottom-right",
                         duration : 4000,

@@ -149,14 +149,17 @@
             </form>
         </div>
         <modal-contributor />
+        <modal-comming-contributor />
     </section>
 </template>
 
 <script>
 import ModalContributor from '../../../auth/include/ModalContributorSignup'
+import ModalCommingContributor from '../../../ModalsCommingSoon/ModalContributor'
 export default {
     components:{
-        ModalContributor
+        ModalContributor,
+        ModalCommingContributor
     },
     data(){
         return {
@@ -171,7 +174,8 @@ export default {
     },
     methods: {
         showModalContributor(){
-            $('#ModalContributorSignup').modal('show')
+            // $('#ModalContributorSignup').modal('show')
+            $('#ModalContributor').modal('show')
         },
         save(){
             axios.post(`/User/Free/profile/save/${this.user}` , this.channel).then(res => {
