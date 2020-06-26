@@ -3,17 +3,22 @@
         <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">
-                <div>
-                    <span ><a :href="`/${comment.user.username}/Profile/WorkHistory`" class="font-weight-bold no-underline text-white">{{ comment.user.personal_information.full_name }}</a></span>
-                    <span class="ml-2">{{ comment.body }}</span>
+                <div class="d-flex flex-row align-items-center">
+                    <span ><a :href="`/${comment.id}/Profile/WorkHistory`" class="font-weight-bold no-underline text-white">{{ comment.user.personal_information.full_name }}</a></span>
+                    <span class="ml-2" :id="`comment_body`+comment.id" >
+                        <form @submit.prevent="update" v-if="edit">
+                            <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
+                        </form>
+                        <span v-if="!edit">{{ comment.body }}</span>
+                    </span>
                     <i class="fas fa-ellipsis-h c-third fa-1x ml-1"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
                         <div v-if="comment.user.username == auth.username">
-                            <a href="#" class="dropdown-item">Editar</a>
-                            <a href="#" class="dropdown-item">Eliminar</a>
+                            <div class="dropdown-item" @click="edit = true">Edit</div>
+                            <div class="dropdown-item" @click="deleteComment">Delete</div>
                         </div>
                         <div v-else>
-                            <a href="#" class="dropdown-item">Report</a>
+                            <a href="mailto:support@noisesahrks.com" class="dropdown-item">Report</a>
                             <a href="#" class="dropdown-item">Hidden</a>
                         </div>
                     </div>
@@ -35,8 +40,12 @@
 import Auth from '../../../helpers/Auth'
     export default {
         props: ['comment'],
+        template:{
+            
+        },
         data(){
             return {
+                edit:false,
                 like_type:'like',
                 url : ``,
                 lit:{
@@ -106,6 +115,38 @@ import Auth from '../../../helpers/Auth'
                     }
                 }).catch(err =>{
                     console.log(err)
+                })
+            },
+            update(){
+                axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.$parent.comment).then(res =>{
+                    if (res.data.updated) {
+                        this.edit = false
+                        this.$toasted.show('The comment has been updated successfully!', {
+                            position: "bottom-right",
+                            duration : 4000,
+                            className: "p-4 notification bg-primary",
+                            keepOnHover: true
+                        })
+                    }
+                }).catch(err =>{
+                    alert('the comment cannot be empty')
+                })
+            },
+            deleteComment(){
+                axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res =>{
+                    console.log(res)
+                    if (res.data.deleted) {
+                        this.$toasted.show('The comment has been deleted successfully!', {
+                            position: "bottom-right",
+                            duration : 4000,
+                            className: "p-4 notification bg-primary",
+                            keepOnHover: true
+                        })
+                        var indice = this.$parent.$parent.post.comments.indexOf(res.data.comment)
+                        this.$parent.$parent.post.comments.splice(indice, 1)
+                    }
+                }).catch(err =>{
+                     
                 })
             }
         }

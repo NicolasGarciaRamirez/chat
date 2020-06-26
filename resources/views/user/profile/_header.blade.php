@@ -11,7 +11,7 @@
 </div>
 <div class="d-flex flex-row">
     <p class="text-white p-3">
-        {{ $user->profile_information->about_you }}
+        {{ $user->profile_information ?  $user->profile_information->about_you : ''}}
     </p>
 </div>
 <div class="navigation-body">

@@ -21,7 +21,7 @@ Route::get('/prelaunch', function () {
 Route::name('prelaunch')->post('/join', 'LandingController@store');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/login', 'HomeController@login');
+Route::get('/login', 'HomeController@login')->name('loginmodal');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
 
@@ -88,15 +88,16 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::name('post.get')->get('/get/{token}/', 'Post\PostController@get');//aqui es show no get
         Route::group(['middleware' => ['auth']], function () {
             Route::name('post.store')->post('/store', 'Post\PostController@store');
-            Route::name('post.update')->put('/update', 'Post\PostController@update');
+            Route::name('post.update')->post('/update/{token}', 'Post\PostController@update');
+            Route::name('post.delete')->delete('/delete/{token}', 'Post\PostController@delete');
         });
     });
 
     Route::group(['prefix' => 'Comment'], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::name('comment.store')->post('/store/{model}/{model_id}', 'Comment\CommentController@store');
-            Route::name('comment.update')->put('/update', 'Comment\CommentController@update');
-            Route::name('comment.delete')->delete('/delete', 'Comment\CommentController@delete');
+            Route::name('comment.update')->post('/update/{comment}', 'Comment\CommentController@update');
+            Route::name('comment.delete')->delete('/delete/{comment}', 'Comment\CommentController@delete');
         });
     });
 

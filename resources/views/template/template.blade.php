@@ -21,9 +21,8 @@
         isset($user) ? : $user = [];
     @endphp
     <div id="app" class="w-100">
-        @if (Route::currentRouteName() != 'RegisterIndex')
-            @include('template._nav', $user )
-        @endif
+            @include('template._nav' )
+        
         <div class="c-wrapper">
             <div class="c-body">
                 @include('template._header')

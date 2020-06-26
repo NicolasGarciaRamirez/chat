@@ -47,7 +47,7 @@
             <h5 class="font-weight-bold my-2">{{ activity.replace_caption }}</h5>
             <p>
                 <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type == 'docs'">{{ activity.description }}</a>
-                <div v-if="activity.resource_type != 'docs'">{{ activity.description }}</div>
+                <label v-if="activity.resource_type != 'docs'">{{ activity.description }}</label>
             </p>
         </div>
         <div class="d-flex c-fourth my-3">

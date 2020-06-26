@@ -28,15 +28,15 @@
                 <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
                     <div v-if="!menuPlaylist">
-                        <a :href="`/${post.user.username}/Profile/WorkHistory`" class="dropdown-item">Go To User Profile</a>
+                        <a :href="`/${post.user.username}/Profile/WorkHistory`" target="_blank" class="dropdown-item">Go To User Profile</a>
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
-                        <div class="dropdown-item" @click="editPost" v-if="auth.username == post.user.username">Edit description</div>
+                        <div class="dropdown-item" @click="edit = true" v-if="auth.username == post.user.username">Edit description</div>
                         <div class="dropdown-item" @click="deletePost" v-if="auth.username == post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
-                        <div class="dropdown-item" @click="view_post = false">Hide Post</div>
-                        <a href="#" class="dropdown-item" v-if="auth.username != post.user.username">Report</a>
+                        <div class="dropdown-item" >Hide Post</div>
+                        <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username != post.user.username">Report</a>
                         <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
                     </div>
                     <div v-if="menuPlaylist">
@@ -58,9 +58,22 @@
             </div>
         </div>
         <div class="post-body bg-primary">
-            <div v-if="!post.replace_caption">
-                <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
-                    {{ post.description }}
+            <div>
+                <div class="text p-3 item" id="description" v-if="!post.replace_caption && post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
+                    <span v-if="!edit && !post.replace_caption">{{ post.description }}</span>
+                    <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
+                        <!-- <input type="text" class="form-control input-comment my-2" v-model="post.replace_caption" v-if="post.replace_caption" /> -->
+                        <textarea
+                            class="form-control bg-primary"
+                            rows="5"
+                            placeholder="Add Some value to the music industry..."
+                            id="textarea"
+                            v-model="post.description"
+                            >
+                        </textarea>
+                        <div class="btn text-white bg-primary rounded-pill float-right mx-3" @click="edit = false">Cancel Edit</div>
+                        <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
+                    </form>
                 </div>
                 <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
@@ -75,28 +88,28 @@
                     </div>
                     <img src="/images/icons/word-document.svg"  v-if="post.resource_type == 'docs'" style="min-height: 20rem; max-height: 20rem;">
                     <!-- <document-preview :value="post.resource" :type="docType" v-if="post.resource_type == 'docs'" /> -->
-                    <a class="text-white" :href="`${post.resource}`" v-if="post.resource_type == 'docs'">
+                    <a :href="`${post.resource}`"  class="text-white p-3"  v-if="!post.replace_caption && post.resource_type == 'docs'">
                         <h2>{{ post.description }}</h2>
                     </a>
-                </div>
-            </div>
-            <div v-if="post.replace_caption">
-                <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
-                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
-                    <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
-                    <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
-                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
-                        <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
-                        <div :id="`play`+post.token"  @click="playAudio(audio)" @change.prevent="getAudio" >
-                            <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
-                        </div>
-                        <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
-                    </div>
-                    <img src="/images/icons/word-document.svg" class="p-5" style="min-height: 20rem; max-height: 20rem;" v-if="post.resource_type == 'docs'">
-                    <!-- <document-preview :url="post.resource" type="office" v-if="post.resource_type == 'docs'" /> -->
-                    <div class="text p-3 item" id="description" v-if="post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text' || post.resource_type == 'docs'">
-                        <h3 class="mb-3 font-weight-bold">{{ post.replace_caption }}</h3>
-                        {{ post.description }} 
+                    <div class="p-3" v-if="post.replace_caption">
+                        <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type == 'docs'">
+                            <h2>{{ post.description }}</h2>
+                        </a>
+                        <h3 class="mb-3 font-weight-bold" v-if="!edit && post.resource_type != 'docs'">{{ post.replace_caption }}</h3>
+                        <p v-if="!edit">{{ post.description }}</p>
+                        <form @submit.prevent="update"  v-if="edit && post.replace_caption ">
+                            <input type="text" class="form-control bg-primary rounded-pill my-2" v-model="post.replace_caption" />
+                            <textarea
+                                class="form-control bg-primary "
+                                rows="5"
+                                placeholder="Add Some value to the music industry..."
+                                id="textarea"
+                                v-model="post.description"
+                                >
+                            </textarea>
+                            <div class="btn text-white bg-primary rounded-pill float-right mx-3" @click="edit = false">Cancel Edit</div>
+                            <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -159,6 +172,7 @@
         },
         data(){
             return {
+                edit: false,
                 auth: Auth.state,
                 menuPlaylist: false,
                 view_comment: this.post.comments.length > 2 ? false : true,
@@ -375,7 +389,6 @@
                 }
             },
             colorFollow(type){
-                console.log(type)
                 if (Auth.state.username) {
                     if (type == 'follow') {
                         $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white active">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
@@ -384,6 +397,7 @@
                     }
                     if(type == 'unfollow'){
                         $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
+                        console.log(type)
                         this.store(type)
                     }
                 }else{
@@ -497,11 +511,31 @@
                     console.log(err)
                 })
             },
-            editPost(){
-
+            update(){
+                console.log('asd')
+                axios.post(`/${Auth.state.username}/Post/update/${this.post.token}`, this.post).then(res =>{
+                    if (res.data.updated) {
+                        this.edit = false
+                        this.$toasted.show('The post has been updated successfully!', {
+                            position: "bottom-right",
+                            duration : 4000,
+                            className: "p-4 notification bg-primary",
+                            keepOnHover: true
+                        })
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             },
             deletePost(){
-                
+                axios.delete(`/${Auth.state.username}/Post/delete/${this.post.token}`).then(res =>{
+                    if (res.data.deleted) {
+                        var indice = this.$parent.$parent.posts.indexOf(res.data.post)
+                        this.$parent.$parent.posts.splice(indice, 1)
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             }
         }
     }

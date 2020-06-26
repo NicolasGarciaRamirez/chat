@@ -62,7 +62,7 @@ class PostController extends Controller
                 }
                 if ($request->resource_type == 'docs') {
                     $resource = "/images/docs/{$key}/{$hash}{$request->imagePost->getClientOriginalName()}";
-                    $request->imagePost->move(public_path("/images/playlist/{$key}/"), $resource);
+                    $request->imagePost->move(public_path("/images/post/docs/{$key}/"), $resource);
                 }
 
             } else {
@@ -71,11 +71,11 @@ class PostController extends Controller
 
             $post = new Post($request->all());
             $post->resource = $resource;
-            if ($request->allowDownload){
-                $post->allow_download = $request->allowDownload;
+            if ($request->allow_download){
+                $post->allow_download = $request->allow_download;
             }
-            if ($request->replaceCaption) {
-                $post->replace_caption = $request->replaceCaption;
+            if ($request->replace_caption) {
+                $post->replace_caption = $request->replace_caption;
             }
             $post->resource_type = $request->resource_type;
             $post->token = \Str::random(80);
@@ -97,11 +97,34 @@ class PostController extends Controller
         }
     }
 
-    public function update()
+    public function update(Request $request , $token)
     {
-
+        \DB::beginTransaction();
+        try {
+            Post::whereToken($token)->update( $request->except(['comments','user','time_ago', 'score','vote_down_count','vote_up_count','votes','likes']));
+            \DB::commit();
+            return response()->json([
+                'updated' => true,
+                'errors' => null
+            ], 200);
+        } catch (\Exception $e) {
+            \DB::rollBack();
+            return response()->json([
+                'updated' => false,
+                'errors' => $e
+            ], 422);
+        }
     }
 
+    public function delete($username,$token)
+    {
+        $post = Post::whereToken($token)->delete();
+        return response()->json([
+            'deleted' => true,
+            'errors' => null,
+            'post' => $post
+        ]);
+    }
     /**
      * @param $request
      * @return string

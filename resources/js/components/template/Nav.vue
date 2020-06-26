@@ -64,7 +64,7 @@
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>
-        <li class="c-sidebar-nav-title m-0 pb-0" v-if="auth.username">
+        <!-- <li class="c-sidebar-nav-title m-0 pb-0" v-if="auth.username">
             Following
             <i class="fas fa-star float-sm-right"></i>
         </li>
@@ -81,7 +81,7 @@
         </div>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
-        </li>
+        </li> -->
         <app-footer />
     </ul>
 </template>
@@ -91,11 +91,11 @@
     import Auth from '../../helpers/Auth'
 
     export default {
-        props:['user'],
+        // props:['user'],
         data(){
             return {
                 auth: Auth.state,
-                filter: []
+                // filter: []
             }
         },
         components: {
@@ -103,15 +103,15 @@
         },
         mounted(){
             Auth.initialize()
-            if (this.auth.username) {
-                if (!this.user) {
-                    this.user = {
-                        followers:{
-                            user:{}
-                        }
-                    }
-                }
-            }
+            // if (this.auth.username) {
+            //     if (!this.user) {
+            //         this.user = {
+            //             followers:{
+            //                 user:{}
+            //             }
+            //         }
+            //     }
+            // }
         },
         methods:{
         }
