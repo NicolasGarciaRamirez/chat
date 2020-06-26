@@ -187,11 +187,11 @@
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/twitter.svg" alt="" class="icon">
-                                    <a href="/auth/twitter" class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">{{ auth_twitter  == 'TwitterProvider' ? 'Disconnect From Facebook'  : 'link From Twitter' }}</a>
+                                    <a href="/auth/twitter" class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">{{ auth_twitter  == 'TwitterProvider' ? 'Disconnect From twitter'  : 'link From Twitter' }}</a>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/google.svg" alt="" class="icon">
-                                    <a href="/auth/google" class="btn btn-social-media c-fifth bg-white rounded-pill font-weight-bold">{{ auth_google == 'GoogleProvider' ? 'Disconnect From Facebook'  : 'Link With Google' }}</a>
+                                    <a href="/auth/google" class="btn btn-social-media c-fifth bg-white rounded-pill font-weight-bold">{{ auth_google == 'GoogleProvider' ? 'Disconnect From Google'  : 'Link With Google' }}</a>
                                 </div>
                             </div>
                         </div>
@@ -275,7 +275,7 @@ export default {
                     this.auth_twitter = auth.provider
                 }
                 if (auth.provider == 'GoogleProvider') {
-                    this.auth_twitter = auth.provider
+                    this.auth_google = auth.provider
                 }
             })
         }
