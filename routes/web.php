@@ -11,8 +11,18 @@
 |
 */
 Route::get('/test', function(){
-    $user = \App\Models\User\User::find(1);
-    $user->notify(new \App\Notifications\PasswordChangedSuccessfully($user->personal_information->full_name));
+    // $a = 5;
+    // $b = 0;
+    // $h = 0;
+    // return  ((10 + $a) / (10 + $a + $b)) * (1 - (0.02 * $h)) * (1);
+
+    $post = \App\Models\Post\Post::find(5);
+
+    // print($post->vote_up_count);
+    // print($post->vote_down_count);
+    print(($post->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60));
+
+    // return doubleval((( 10 + $post->vote_up_count ) / ( 10 + $post->vote_up_count + $post->vote_down_count )) * (1 - (0.02 * $post->created_at->diffInHours(\Carbon\Carbon::now()))) * 1);
 });
 
 Route::get('/prelaunch', function () {

@@ -2,6 +2,6 @@
 
 @section('content')
     <div class="container home">
-        <home :posts="{{ $posts }}"/>
+        <home :posts="{{ $posts }}" ref="home"/>
     </div>
 @endsection

@@ -18,7 +18,7 @@
                         >
                     </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
-                
+
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
                         <video :src="`${imageData}`" controls class="img-fluid" v-if="post.resource_type == 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls v-if="post.resource_type == 'audio'" />
@@ -71,7 +71,7 @@
                             <input type="checkbox" name="" id="allow_download" class="m-2" v-model="post.allow_download">
                             <label for="allow_download"><span>Allow Download</span></label>
                         </div>
-                    </div>  
+                    </div>
                     <div class="d-flex flex-column" v-if="replace_caption">
                         <input type="text" class="form-control m-3 w-auto" v-model="post.replace_caption" placeholder="Add title..">
                         <textarea class="form-control my-2 m-3 w-auto" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
@@ -109,7 +109,7 @@
                 </div>
             </div>
         </form>
-        <posts :posts="posts_send" />
+        <posts :posts="order_post" ref="posts"/>
     </section>
 </template>
 
@@ -118,6 +118,7 @@
     import Auth from "../../helpers/Auth"
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
     export default {
+        name: "Index",
         props:['posts'],
         components:{
             Posts,
@@ -146,13 +147,15 @@
                     category: "",
                 },
                 disable_save_post: true,
-                posts_send: [],
+                order_post: [],
+                all_post: []
 
             }
         },
         mounted(){
             Auth.initialize()
-            this.posts_send = this.posts
+            this.all_post = this.posts
+            this.orderPost()
         },
         methods:{
             previewImage(event) {
@@ -184,7 +187,7 @@
                         if (res.data.saved) {
                             this.loading = false
                             this.initializeVariables()
-                            this.posts_send.unshift(res.data.post)
+                            this.order_post.unshift(res.data.post)
                             $('html, body').animate({ scrollTop: 0 }, 'fast');
                             this.$toasted.show('The publication has been successfully published!', {
                                 position: "bottom-right",
@@ -201,6 +204,22 @@
                 }else{
                     $('#ModalLogin').modal('show')
                 }
+            },
+            orderPost(){
+                this.order_post = _.orderBy(this.all_post, ['score'], ['desc'])
+            },
+            filterPost(genre, category){
+                this.all_post = this.posts
+
+                if(genre.length > 0){
+                    this.all_post = _.filter(this.all_post, (v) => _.indexOf(genre, v.genre) !== -1)
+                }
+
+                if(category.length > 0) {
+                    this.all_post = _.filter(this.all_post, (v) => _.indexOf(category, v.category) !== -1)
+                }
+
+                this.orderPost()
             },
             initializeVariables(){
                 this.post = {

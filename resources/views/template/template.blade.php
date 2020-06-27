@@ -22,7 +22,7 @@
     @endphp
     <div id="app" class="w-100">
             @include('template._nav' )
-        
+
         <div class="c-wrapper">
             <div class="c-body">
                 @include('template._header')
@@ -39,6 +39,12 @@
     </div>
     @yield('js')
     <script src="{{ mix('/js/app.js') }}"></script>
-    <script src="{{ asset('/js/pace.min.js') }}" charset="utf-8"></script>
-</body>
+    <script>
+        window.paceOptions = {
+            ajax: {
+                    trackMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']
+            }
+        }
+    </script>
+    <script src="{{ asset('/js/pace.min.js') }}" charset="utf-8"></script></body>
 </html>

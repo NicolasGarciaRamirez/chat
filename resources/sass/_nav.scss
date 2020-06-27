@@ -24,7 +24,7 @@
         .c-sidebar-nav-title{
             font-size: 1.1rem;
         }
-        .c-sidebar-nav-item, .checkbox{
+        .c-sidebar-nav-item{
             position: relative;
             padding: 0 18px;
             display: flex;
@@ -54,15 +54,12 @@
                 &:after {
                     content: "";
                     display: block;
-                    width: 7px;
-                    height: 4px;
-                    border-bottom: 2px solid white;
-                    color:white;
-                    transform: rotate(-45deg) scale(0);
-                    transition: transform ease 0.25s;
+                    width: 9px;
+                    height: 9px;
+                    color: white;
                     position: absolute;
-                    top: 16px;
-                    right: 10px;
+                    top: 14px;
+                    right: 7px;
                 }
             }
             input[type="checkbox"] {
@@ -76,7 +73,7 @@
                         border: 2px solid white;
                     }
                     &:after {
-                        transform: rotate(-45deg) scale(1);
+                        background-color: $fifth-color;
                     }
                 }
                 &:focus + label::before {

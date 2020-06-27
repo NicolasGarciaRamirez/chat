@@ -34,6 +34,7 @@
                 view_comment: false,
                 filter: [],
             }
-        }
+        },
+
     }
 </script>

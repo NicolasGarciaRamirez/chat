@@ -9,56 +9,56 @@
         </li>
         <li class="c-sidebar-nav-title">Genre</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="pop" @click="getFilter('pop')">
+            <input type="checkbox" id="pop" @click="updateFilterGender('Pop')">
             <label for="pop"><span>Pop</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rap_hip_jop" @click="getFilter('Rap & Hip-Hop')">
+            <input type="checkbox" id="rap_hip_jop" @click="updateFilterGender('Rap & Hip-Hop')">
             <label for="rap_hip_jop"><span>Rap & Hip-Hop</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="edm" @click="getFilter('EDM')">
+            <input type="checkbox" id="edm" @click="updateFilterGender('EDM')">
             <label for="edm"><span>EDM</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rock_metal" @click="getFilter('Rock & Metal')">
+            <input type="checkbox" id="rock_metal" @click="updateFilterGender('Rock & Metal')">
             <label for="rock_metal"><span>Rock & Metal</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="jazz_blues" @click="getFilter('Jazz & Blues')">
+            <input type="checkbox" id="jazz_blues" @click="updateFilterGender('Jazz & Blues')">
             <label for="jazz_blues"><span>Jazz & Blues</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="classical" @click="getFilter('Classical')">
+            <input type="checkbox" id="classical" @click="updateFilterGender('Classical')">
             <label for="classical"><span>Classical</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="funk" @click="getFilter('Funk')">
+            <input type="checkbox" id="funk" @click="updateFilterGender('Funk')">
             <label for="funk"><span>Funk</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="world" @click="getFilter('World')">
+            <input type="checkbox" id="world" @click="updateFilterGender('World')">
             <label for="world"><span>World</span></label>
         </li>
         <li class="c-sidebar-nav-title">Category</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="production_engineering" @click="getFilter('Production & Engineering')">
+            <input type="checkbox" id="production_engineering" @click="updateFilterCategory('Production & Engineering')">
             <label for="production_engineering"><span>Production & Engineering</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="vlogs" @click="getFilter('Vlogs')">
+            <input type="checkbox" id="vlogs" @click="updateFilterCategory('Vlogs')">
             <label for="vlogs"><span>Vlogs</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="instruments" @click="getFilter('Instruments')">
+            <input type="checkbox" id="instruments" @click="updateFilterCategory('Instruments')">
             <label for="instruments"><span>Instruments</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="podcasts" @click="getFilter('Podcasts')">
+            <input type="checkbox" id="podcasts" @click="updateFilterCategory('Podcasts')">
             <label for="podcasts"><span>Podcasts</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="audio_clips" @click="getFilter('Audio Clips')">
+            <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')">
             <label for="audio_clips"><span>Audio Clips</span></label>
         </li>
         <li class="c-sidebar-nav-item p-0">
@@ -95,7 +95,8 @@
         data(){
             return {
                 auth: Auth.state,
-                // filter: []
+                filter_gender: [],
+                filter_category: []
             }
         },
         components: {
@@ -114,7 +115,25 @@
             // }
         },
         methods:{
+            updateFilterGender(gender){
+                if(this.filter_gender.includes(gender)){
+                    _.remove(this.filter_gender, function(n) { return n == gender });
+                }else{
+                    this.filter_gender.push(gender)
+                }
+                this.filterPost(this.filter_gender, this.filter_category)
+            },
+            updateFilterCategory(category){
+                if(this.filter_category.includes(category)){
+                    _.remove(this.filter_category, function(n) { return n == category });
+                }else{
+                    this.filter_category.push(category)
+                }
+                this.filterPost(this.filter_gender, this.filter_category)
+            },
+            filterPost(gender, category){
+                this.$root.$refs.home.filterPost(gender, category)
+            }
         }
-
     }
 </script>

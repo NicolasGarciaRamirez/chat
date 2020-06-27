@@ -37,7 +37,7 @@ class Post extends Model
         return $this->created_at->diffForHumans();
     }
 
-    
+
     public function getVoteUpCountAttribute()
     {
         return $this->votes()->where('type_vote', 'vote_up')->count();
@@ -50,7 +50,7 @@ class Post extends Model
 
     public function getScoreAttribute()
     {
-        return (( 10 + $this->vote_up_count ) / ( 10 + ( $this->vote_up_count + $this->vote_down_count ))) * (1 - (0.02 * $this->created_at->diffInHours(\Carbon\Carbon::now()))) * 100;
+        return doubleval((( 10 + $this->vote_up_count ) / ( 10 + ( $this->vote_up_count + $this->vote_down_count ))) * (1 - (0.02 * ($this->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60))) * 1);
     }
     /**
      * user relations
