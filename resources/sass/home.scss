@@ -20,8 +20,11 @@
         }
         .image-preview{
             img.preview{
-                width: 20rem;
-                padding: 1rem;
+                width:500px;
+                height: 200px;
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+                padding-bottom: 1.5rem;
             }
         }
         .post-footer{
@@ -37,7 +40,8 @@
                 }
             }
             .img-upload{
-                width: 48px;
+                // width: 48px;
+                margin: 0.5rem;
                 input{
                     display: none;
                 }
@@ -107,24 +111,22 @@
                     &:before {
                         content: "";
                         position: absolute;
-                        top: 0;
+                        top: 2px;
                         margin: 4px;
-                        width: 20px;
-                        height: 20px;
+                        width: 15px;
+                        height: 15px;
                         transition: transform 0.28s ease;
-                        border-radius: 3px;
-                        border: 1px solid white;
+                        border: 2px solid white;
 
                     }
                     &:after {
                         content: "";
                         position: absolute;
-                        top: 0;
+                        top: 2px;
                         margin: 4px;
-                        width: 20px;
-                        height: 20px;  
-                        border-radius: 3px;
-                        border: 1px solid white;
+                        width: 15px;
+                        height: 15px;  
+                        border: 2px solid white;
                         color: $fifth-color;
                     }
                 }
@@ -150,6 +152,25 @@
                     font-size: 2em;
                 }
             }
+            button{
+                padding: .2rem;
+                font-weight: 700;
+                @include media-breakpoint-up(md){
+                    padding: 0 0.75rem;
+                }
+                &:hover{
+                    background-color: #FC4444 !important;
+                }
+                &:active{
+                    color: $fifth-color !important;
+                    background-color: white !important;
+                    font-weight: 100rem;
+                }
+            }
+            
         }
+    }
+    .active{
+        fill: white;
     }
 }

@@ -44,6 +44,10 @@
 .border-white{
     border: 2px solid #ffffff !important;
 }
+
+.svg-fourth{
+    fill: $fourth-color;
+}
 .social-login{
     a{
         font-weight: bold;
@@ -77,6 +81,7 @@
 }
 .select{
     select.select-form{
+        cursor: pointer;
         -webkit-appearance: none;
         -moz-appearance: none;
         -o-appearance: none;
@@ -84,8 +89,8 @@
         border-radius: 30px;
         background: black;
         color: white;
-        border-color: white;
-        padding: 0px 50px 0px 10px;
+        border: 0.10rem solid white;
+        padding:2px 10px 2px 10px;
         &:hover{
             background-color: $third-color;
             color: white;

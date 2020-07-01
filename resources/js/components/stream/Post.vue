@@ -62,7 +62,6 @@
                 <div class="text p-3 item" id="description" v-if="!post.replace_caption && post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
                     <span v-if="!edit && !post.replace_caption">{{ post.description }}</span>
                     <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
-                        <!-- <input type="text" class="form-control input-comment my-2" v-model="post.replace_caption" v-if="post.replace_caption" /> -->
                         <textarea
                             class="form-control bg-primary"
                             rows="5"
@@ -75,7 +74,7 @@
                         <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
                     </form>
                 </div>
-                <div class="d-flex flex-column mt-1 content img-fluid" v-if="post.resource">
+                <div class="d-flex flex-column mt-1 content img-fluid p-3" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
                     <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
                     <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
@@ -91,7 +90,7 @@
                     <a :href="`${post.resource}`"  class="text-white p-3"  v-if="!post.replace_caption && post.resource_type == 'docs'">
                         <h2>{{ post.description }}</h2>
                     </a>
-                    <div class="p-3" v-if="post.replace_caption">
+                    <div  v-if="post.replace_caption">
                         <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type == 'docs'">
                             <h2>{{ post.description }}</h2>
                         </a>
@@ -236,7 +235,7 @@
                     var audio = WaveSurfer.create({
                         container: `#waveform`+this.post.token,
                         waveColor: 'gray',
-                        barHeight: 1,
+                        barHeight: 0.8,
                         cursorColor: 'red',
                         cursorWidth: 0,
                         forceDecode: true,
@@ -531,8 +530,11 @@
             deletePost(){
                 axios.delete(`/${Auth.state.username}/Post/delete/${this.post.token}`).then(res =>{
                     if (res.data.deleted) {
-                        var indice = this.$parent.$parent.posts.indexOf(res.data.post)
+                        var indice = this.$parent.$parent.posts.indexOf(this.post)
                         this.$parent.$parent.posts.splice(indice, 1)
+                        window.location.reload()
+
+                        console.log(this.$parent.$parent.posts)
                     }
                 }).catch(err => {
                     console.log(err)

@@ -9,7 +9,7 @@
                         </button>
                     </div>
                     <div class="text-center">
-                        <h2 class="font-weight-bold p-4">Change Image {{ this.$parent.type_change_image }}</h2>
+                        <h2 class="font-weight-bold p-4">Set Image {{ this.$parent.type_change_image }}</h2>
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form @submit.prevent="save">
