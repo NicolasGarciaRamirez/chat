@@ -85,7 +85,7 @@ class PostController extends Controller
             \DB::commit();
             return response()->json([
                 'saved' => true,
-                'post' => $post->load('user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information'),
+                'post' => $post->load('user.personal_information', 'user.profile_information','comments.user.personal_information', 'comments.comments.user.personal_information'),
                 'errors' => null
             ], 200);
         } catch (\Exception $e) {

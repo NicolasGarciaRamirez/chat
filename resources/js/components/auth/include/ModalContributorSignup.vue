@@ -39,7 +39,7 @@
                                     a cut when you get supported or rewarded)
                                 </p>
                             </div>
-                            <button class="btn bg-fifth text-white my-3 font-weight-bold rounded-pill" @click="showModalForm">BECOME A CONTRIBUTOR</button>
+                            <button class="btn bg-fifth text-white my-3 font-weight-bold rounded-pill" @click="showModalForm">Become a Contributor</button>
                         </div>
                     </div>
                 </div>

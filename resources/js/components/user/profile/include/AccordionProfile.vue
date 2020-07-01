@@ -247,6 +247,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label class="col-sm-2">Twitter</label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Twitter">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-sm-2">TikTok</label>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.TikTok">
@@ -282,6 +288,7 @@
                                     <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Spotify">
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -333,6 +340,7 @@ export default {
                     Twitch: '',
                     Instagram: '',
                     Facebook: '',
+                    Twitter: '',
                     TikTok: '',
                     LinkedIn: '',
                     SnapChat: '',

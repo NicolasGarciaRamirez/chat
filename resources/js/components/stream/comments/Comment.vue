@@ -134,7 +134,6 @@ import Auth from '../../../helpers/Auth'
             },
             deleteComment(){
                 axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res =>{
-                    console.log(res)
                     if (res.data.deleted) {
                         this.$toasted.show('The comment has been deleted successfully!', {
                             position: "bottom-right",
@@ -142,7 +141,7 @@ import Auth from '../../../helpers/Auth'
                             className: "p-4 notification bg-primary",
                             keepOnHover: true
                         })
-                        var indice = this.$parent.$parent.post.comments.indexOf(res.data.comment)
+                        var indice = this.$parent.$parent.post.comments.findIndex(element => element.id == res.data.comment.id)
                         this.$parent.$parent.post.comments.splice(indice, 1)
                     }
                 }).catch(err =>{

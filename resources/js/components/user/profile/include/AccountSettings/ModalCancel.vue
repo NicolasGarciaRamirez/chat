@@ -19,7 +19,7 @@
                                 <div style="border-top: 1px solid #262626"></div>
                                 <div class="text-center my-3 d-flex flex-row">
                                     <button class="bg-primary border-0 rounded-pill">No Stay A Contributor</button>
-                                    <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Stop Beign A Contributor</button>
+                                    <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Stop Beign a Contributor</button>
                                     <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                     </button>

@@ -15,7 +15,7 @@
                 </div>
             </div>
         </form>
-        <li class="c-header-nav-item mr-2"><a class="c-header-nav-link other-link become-contributor d-md-down-none d-md-block" href="#" @click="showModalContributor">Become A Contributor </a></li>
+        <li class="c-header-nav-item mr-2"><a class="c-header-nav-link other-link become-contributor d-md-down-none d-md-block" href="#" @click="showModalContributor">Become a Contributor </a></li>
         <div v-if="!auth.token">
             <li class="c-header-nav-item mx-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
         </div>

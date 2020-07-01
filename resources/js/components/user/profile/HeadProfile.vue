@@ -8,7 +8,7 @@
             </button>
             <div  class="btn my-2"></div>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="dropdown-menu bg-primary text-white dowpdown-menu-profile" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
+            <div class="dropdown-menu bg-primary text-white" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
                 <a href="#" class="dropdown-item">View Image</a>
                 <a href="#" class="dropdown-item">Edit Crop</a>
                 <label class="dropdown-item" for="change-image">
@@ -20,28 +20,32 @@
         <div class="head-container align-items-center" style="transform: translateY(-2rem)">
 
             <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token == user.token">
-                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
-                <a href="#" class="btn bg-black rounded-pill text-white mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
-                <a :href="`/${ user.username}/Profile/WorkHistory`" class="btn bg-black rounded-pill text-white">Preview Profile</a>
+                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
+                <a href="#" class="btn bg-black rounded-pill text-white function mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
+                <a :href="`/${ user.username}/Profile/WorkHistory`" class="btn bg-black rounded-pill text-white function">Preview Profile</a>
             </div>
 
             <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
                 <img src="/images/chat.svg" alt="chat" class="icon mr-3">
                 <img src="/images/icons/post-up.svg" alt="post-up" class="icon mr-3">
                 <div :id="`follow`+user.token" @click="colorFollow(follow_type)">
-                    <a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0">
+                    <a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0 mx-3">
                         <div class="pt-0 pb-0 pl-1 pr-1">
                             <label class="m-1">FOLLOW</label>
                             <img src="/images/icons/star.svg" class="c-fifth ml-2 mb-1" width="15" height="18">
                         </div> 
                     </a>
                 </div>
-                <i class="fas fa-ellipsis-h c-third fa-2x"></i>
+                <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
+                    <div class="dropdown-item" >Copy Profile Link</div>
+                    <a href="mailto:support@noisesahrks.com" class="dropdown-item">Report</a>
+                </div>
             </div>
             <div>
                 <h2 class="font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
                 <div class="d-flex">
-                    <a href="#" class="btn bg-danger text-white mr-3 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'N/A' }}</a>
+                    <a href="#" class="btn bg-danger text-white mr-3 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
                     <a v-if="user.subscription_type  == 'CONTRIBUTOR'" href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
                 </div>
             </div>
@@ -83,7 +87,7 @@ export default {
             if(this.user.followers){
                 this.user.followers.map(follow =>{
                     if (follow.user.username == this.auth.username) {
-                        $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
+                        $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
                         this.follow_type = 'unfollow'
                     }
                 })
@@ -92,10 +96,10 @@ export default {
         colorFollow(type){
             if (Auth.state.token) {
                 if (type == 'follow') {
-                    $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
+                    $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
                     this.store(type)
                 } else if (type == 'unfollow') {
-                    $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
+                    $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
                     this.store(type)
                 }
             }else{

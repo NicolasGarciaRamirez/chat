@@ -5,7 +5,7 @@
                 <div class="bg-primary">
                     <textarea
                         class="form-control bg-primary"
-                        placeholder="Add Some value to the music industry..."
+                        placeholder="Add some value to the music industry..."
                         id="textarea"
                         v-model="post.description"
                         v-if="!replace_caption"
@@ -13,18 +13,20 @@
                     </textarea>
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
-                        <video :src="`${imageData}`" controls class="img-fluid" v-if="post.resource_type == 'video'" />
+                        <video :src="`${imageData}`" controls   class="preview" v-if="post.resource_type == 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls v-if="post.resource_type == 'audio'" />
-                        <img src="/images/icons/excel-document.svg" heigth="300" width="400" class="p-5" v-if="post.resource_type == 'docs'">
+                        <img src="/images/icons/excel-document.svg"  class="preview p-3" v-if="post.resource_type == 'docs'">
+                        <!-- <i class="fas fa-times" @click="deleteImage">
+                        </i> -->
                     </div>
                 </div>
                 <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
                     <div class="d-flex justify-content-center align-items-center">
                         <div class="img-upload">
                             <label for="input-sound" class="cursor-pointer">
-                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="2px" y="0px"
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 663 351" style="enable-background:new 0 0 663 351;" xml:space="preserve" width="40" heigth="auto">
-                                <path  :class="post.resource_type == 'audio' ? 'active' : 'svg-fourth'" d="M371.9,346.2c-6,0-11.4-3.1-13-7.6L286.9,151l-66.4,104c-2.2,3.4-6.5,5.7-11.4,5.9c-5.1,0.3-9.5-1.6-12.1-4.7
+                                    <path  :class="post.resource_type == 'audio' ? 'active' : 'svg-fourth'" d="M371.9,346.2c-6,0-11.4-3.1-13-7.6L286.9,151l-66.4,104c-2.2,3.4-6.5,5.7-11.4,5.9c-5.1,0.3-9.5-1.6-12.1-4.7
                                     l-50.5-59.3H17.7c-7.5,0-13.7-4.8-13.7-10.7s6.1-10.7,13.7-10.7H154c4.6,0,8.8,1.8,11.4,4.8l41.5,48.7l71.3-111.6
                                     c2.4-3.9,7.7-6.4,13.4-5.8c5.6,0.4,10.2,3.4,11.9,7.6l65.8,172.3l71-278.1c1.3-5.1,7.3-9,13.9-8.6c6.6,0.2,12.3,4.2,13,9.5l25,176.8
                                     l37-14.5c1.9-0.7,4-1.1,6.1-1.1h109c7.5,0,13.7,4.8,13.7,10.7s-6.1,10.7-13.7,10.7H538.6L487,217.1c-4,1.6-8.7,1.5-12.6-0.2
@@ -37,7 +39,7 @@
                             <label for="input-video" class="cursor-pointer">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 1430 1080" style="enable-background:new 0 0 1430 1080;" xml:space="preserve" width="30" heigth="auto">
-                                <path :class="post.resource_type == 'video' ? 'active': 'svg-fourth'" d="M1430,519.5l-340.77,135.01V472.52H975.54c69.65-49.52,113.69-121.97,113.69-202.51
+                                    <path :class="post.resource_type == 'video' ? 'active': 'svg-fourth'" d="M1430,519.5l-340.77,135.01V472.52H975.54c69.65-49.52,113.69-121.97,113.69-202.51
                                     C1089.23,121.1,938.93,0,754.11,0C600.88,0,471.46,83.18,431.56,196.53c-45.69-37.92-109.6-61.53-180.16-61.53
                                     C112.74,135.01,0,225.83,0,337.51c0,51.83,24.23,99.15,64.18,135.01H0V1080h1089.23V897.97L1430,1032.97V519.5z M754.11,67.5
                                     c138.61,0,251.29,90.82,251.29,202.51c0,111.69-112.69,202.51-251.29,202.51c-138.67,0-251.4-90.82-251.4-202.51
@@ -53,21 +55,21 @@
                             <label for="input-image" class="cursor-pointer">
                                 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                     viewBox="0 0 1430 1080" style="enable-background:new 0 0 1430 1080;" xml:space="preserve" width="25" heigth="auto">
-                                <g>
                                     <g>
                                         <g>
-                                            <path :class="post.resource_type == 'image' ? 'active': 'svg-fourth'" d="M0,0v1080h1430V0H0z M1330.23,987.43H99.77V867.78l282.67-262.33l266.02,246.83l399.09-370.24l282.67,262.28
-                                                V987.43z M1330.23,613.41l-282.67-262.28L648.47,721.38L382.44,474.55L99.77,736.82V92.57h1230.45V613.41z"/>
+                                            <g>
+                                                <path :class="post.resource_type == 'image' ? 'active': 'svg-fourth'" d="M0,0v1080h1430V0H0z M1330.23,987.43H99.77V867.78l282.67-262.33l266.02,246.83l399.09-370.24l282.67,262.28
+                                                    V987.43z M1330.23,613.41l-282.67-262.28L648.47,721.38L382.44,474.55L99.77,736.82V92.57h1230.45V613.41z"/>
+                                            </g>
                                         </g>
-                                    </g>
-                                    <g>
                                         <g>
-                                            <path :class="post.resource_type == 'image' ? 'active': 'svg-fourth'" d="M648.47,185.15c-82.51,0-149.66,62.3-149.66,138.86c0,76.56,67.15,138.86,149.66,138.86
-                                                c82.51,0,149.66-62.31,149.66-138.86C798.12,247.45,730.98,185.15,648.47,185.15z M648.47,370.3c-27.5,0-49.89-20.77-49.89-46.29
-                                                c0-25.52,22.38-46.29,49.89-46.29s49.89,20.76,49.89,46.29C698.35,349.53,675.97,370.3,648.47,370.3z"/>
+                                            <g>
+                                                <path :class="post.resource_type == 'image' ? 'active': 'svg-fourth'" d="M648.47,185.15c-82.51,0-149.66,62.3-149.66,138.86c0,76.56,67.15,138.86,149.66,138.86
+                                                    c82.51,0,149.66-62.31,149.66-138.86C798.12,247.45,730.98,185.15,648.47,185.15z M648.47,370.3c-27.5,0-49.89-20.77-49.89-46.29
+                                                    c0-25.52,22.38-46.29,49.89-46.29s49.89,20.76,49.89,46.29C698.35,349.53,675.97,370.3,648.47,370.3z"/>
+                                            </g>
                                         </g>
                                     </g>
-                                </g>
                                 </svg>
                             </label>
                             <input id="input-image" name="img" type="file" accept=".jpg, .png, .jpeg" @change="previewImage" @click="post.resource_type = 'image'"/>
@@ -110,7 +112,21 @@
                     </div>
                     <div class="d-flex flex-row justify-content-between" v-if="post.description != '' || post.resource != ''">
                         <div class="d-flex flex-row">
-                            <div class="select">
+                            <div>
+                                <div class="btn bg-primary text-white ml-1 rounded-pill border-white mx-2" style="width:200px;"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
+                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
+                                    <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
+                                    <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
+                                </div>
+                            </div>
+                             <div>
+                                <div class="btn bg-primary text-white ml-1 rounded-pill border-white" style="width:200px;"  id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
+                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownCategory">
+                                    <div class="dropdown-item" @click="post.category = 'Pop'">Pop</div>
+                                    <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
+                                </div>
+                            </div>
+                            <!-- <div class="select">
                                 <select class="select-form m-2 font-weight-bold" v-model="post.genre" required>
                                     <option value="">Select Genre</option>
                                     <option value="Pop">Pop</option>
@@ -122,17 +138,18 @@
                                     <option value="Funk">Funk</option>
                                     <option value="World">World</option>
                                 </select>
-                            </div>
-                            <div class="select">
+                            </div> -->
+                            <!-- <div class="select">
                                 <select class="select-form m-2 font-weight-bold" v-model="post.category" required>
                                     <option value="">Select Category</option>
-                                    <option value="Production & Engineering">roduction & Engineering</option>
-                                    <option value="Vlogs">logs</option>
+                                    <option value="Production & Engineering">Production & Engineering</option>
+                                    <option value="Vlogs">Vlogs</option>
                                     <option value="Instruments">Instruments</option>
                                     <option value="Podcasts">Podcasts</option>
                                     <option value="Audio Clips">Audio Clips</option>
+                                    <option value="Performances and Jams">Performances and Jams</option>
                                 </select>
-                            </div>
+                            </div> -->
                         </div>
                         <div  class="d-flex flex-row">
                             <div class="d-flex flex-row float-right justify-content-between align-items-center">
@@ -202,6 +219,9 @@
             this.orderPost()
         },
         methods:{
+            deleteImage(){
+                this.initializeVariables()
+            },
             addClassActive(){
                 $('svg path').addClass('active')
             },
@@ -236,7 +256,7 @@
                             this.initializeVariables()
                             this.order_post.unshift(res.data.post)
                             $('html, body').animate({ scrollTop: 0 }, 'fast');
-                            this.$toasted.show('The publication has been successfully published!', {
+                            this.$toasted.show('Post Published Successfully!', {
                                 position: "bottom-right",
                                 duration : 4000,
                                 className: "p-4 notification bg-primary",

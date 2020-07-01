@@ -28,7 +28,10 @@
         @if ($user->profile_information->services)
             <a href="/{{ $user->username }}/Profile/Services" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.services' ? 'active' : '' }}">Services</a>
         @endif
-        @if ($user->profile_information->social_media)
+        @php
+            $json_social_media = json_decode($user->profile_information->social_media);
+        @endphp
+        @if ($json_social_media->Youtube != null || $json_social_media->Twitch != null || $json_social_media->Instagram != null || $json_social_media->Facebook != null || $json_social_media->Twitter != null || $json_social_media->TikTok != null || $json_social_media->LinkedIn != null || $json_social_media->SnapChat != null || $json_social_media->SoundCloud != null || $json_social_media->Bandcamp != null || $json_social_media->Spotify != null)
             <a href="/{{ $user->username }}/Profile/Social/Media" class="font-weight-bold text-white mr-3 {{ Route::currentRouteName() == 'profile.social_media' ? 'active' : '' }}">Social Media</a>
         @endif
     @endif

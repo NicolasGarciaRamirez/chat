@@ -10,7 +10,7 @@
                 <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger d-sm-down-none " @click="showModalSupport">SUPPORT
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="23px" height="18px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
-                    <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
+                        <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
                         C140.316,0.807,5.113,143.518,5.113,319.004c0,137.825,77.957,297.373,231.784,474.343
                         c118.566,136.343,247.543,241.941,284.236,271.054l19.945,15.792l19.889-15.792c36.693-29.112,165.67-134.653,284.237-271.054
                         c153.823-176.912,231.84-336.519,231.84-474.343C1077.045,143.518,941.842,0.807,775.617,0.807"/>
@@ -19,7 +19,7 @@
                 <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger d-sm-down-none " @click="showModalReward">REWARD
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="15px" height="18px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
-                    <path fill="#141414" stroke="red" stroke-width="60" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z
+                        <path fill="#141414" stroke="red" stroke-width="60" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z
                         M569.919,454.482c-0.171-0.055-0.256-0.055-0.344-0.055c-0.171,0-0.256-0.055-0.427-0.055c1.544-1.828,3.175-3.627,4.55-5.564
                         C572.497,450.745,571.209,452.544,569.919,454.482 M725.56,192.275c-6.612,0.167-12.882-0.442-18.895-1.855
                         C712.678,191.25,719.032,191.833,725.56,192.275"/>
@@ -32,7 +32,7 @@
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item" @click="edit = true" v-if="auth.username == post.user.username">Edit description</div>
-                        <div class="dropdown-item" @click="deletePost" v-if="auth.username == post.user.username">Delete Post</div>
+                        <div class="dropdown-item" @click="showModalSure" v-if="auth.username == post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
                         <div class="dropdown-item" >Hide Post</div>
@@ -51,7 +51,7 @@
                 <div class="d-flex flex-column pl-md-3">
                     <a :href="`/${post.user.username}/Profile/WorkHistory`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" ></a>
                     <div class="d-flex align-items-center post-user-type mt-2">
-                        <button class="btn bg-fifth text-white mr-2">{{ post.user.profile_information ? post.user.profile_information.title : 'N/A' }}</button>
+                        <button class="btn bg-fifth text-white mr-2">{{ post.user.profile_information ? post.user.profile_information.title : 'Profile Title Not Chosen' }}</button>
                         <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
                     </div>
                 </div>
@@ -152,6 +152,7 @@
             <textarea id="link" :value="link" class="d-none"></textarea>
         </div>
         <modal-share-post :post="post" />
+        <modal-sure-delete />
     </section>
 </template>
 
@@ -160,6 +161,7 @@
     import Auth from '../../helpers/Auth'
     import WaveSurfer from 'wavesurfer.js';
     import ModalSharePost from './ModalSharePost'
+    import ModalSureDelete from './includes/ModalSureDeleted'
     import DocumentPreview from 'vue-doc-preview'
 
     export default {
@@ -167,7 +169,8 @@
         components:{
             Comments,
             ModalSharePost,
-            DocumentPreview
+            DocumentPreview,
+            ModalSureDelete
         },
         data(){
             return {
@@ -208,6 +211,9 @@
             onScroll(){
                 this.view += 1
                 console.log(this.view)
+            },
+            showModalSure(){
+                $('#ModalSureDelete').modal('show')
             },
             showModalSupport(){
                 $('#modalSupport').modal('show')
@@ -532,13 +538,13 @@
                     if (res.data.deleted) {
                         var indice = this.$parent.$parent.posts.indexOf(this.post)
                         this.$parent.$parent.posts.splice(indice, 1)
-                        window.location.reload()
-
+                        // window.location.reload()
                         console.log(this.$parent.$parent.posts)
                     }
                 }).catch(err => {
                     console.log(err)
                 })
+               
             }
         }
     }

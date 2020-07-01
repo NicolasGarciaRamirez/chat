@@ -14,7 +14,7 @@
                             <div class="d-flex flex-column px-4">
                                 <label class="c-fourth text-center">Account Type : <b class="c-fifth">{{ user.subscription_type }}</b></label>
                                 <div class="d-flex-flex-column text-center my-4">
-                                    <button class="bg-fifth text-white font-weight-bold border-0 rounded-pill mb-4">Become A Contributor</button>
+                                    <button class="bg-fifth text-white font-weight-bold border-0 rounded-pill mb-4">Become a Contributor</button>
                                     <p class="text-white justify-content-center">
                                         It’s <b>FREE</b>!!
                                         you only start paying when you start
