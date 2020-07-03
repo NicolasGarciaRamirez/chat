@@ -15,7 +15,7 @@
                                 You are about to delete this post, would like to proceed?
                             </p>
                             <div class="d-flex flex-row justify-content-end mb-2">
-                                <button class="btn rounded-pill font-weight-bold text-white bg-primary mx-2" data-dismis="modal">Cancel</button>
+                                <button class="btn rounded-pill font-weight-bold text-white bg-primary mx-2" data-dismiss="modal">Cancel</button>
                                 <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="$parent.deletePost">Accept</button>
                             </div>
                         </div>

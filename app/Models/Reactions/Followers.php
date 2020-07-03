@@ -14,7 +14,7 @@ class Followers extends Model
      *
      * @var array
      */
-    protected $fillable =['user_id'];
+    protected $fillable =['user_id','type'];
 
     /**
      * Undocumented variable
@@ -35,23 +35,5 @@ class Followers extends Model
         return $this->belongsTo(\App\Models\User\User::class);
     }
 
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function followable()
-    {
-        return $this->morphTo();
-    }
-
-    /**
-     * Undocumented function
-     *
-     * @return void
-     */
-    public function followers()
-    {
-        return $this->morphMany('\App\Models\Reactions\Followers', 'followable');
-    }
+   
 }

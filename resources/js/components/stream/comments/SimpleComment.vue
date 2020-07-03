@@ -1,6 +1,6 @@
 <template>
     <div class="comment">
-        <div class="d-flex p-2 flex-column">
+        <div class="d-flex flex-column">
             <text-comment :comment="comment"/>
             <text-comment v-for="(reply, index) in comment.comments" :comment="reply" :key="index" class="pl-5"/>
             <form @submit.prevent="store()" v-if="form_reply" class="ml-5 w-50">

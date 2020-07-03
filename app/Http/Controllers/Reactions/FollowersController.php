@@ -25,7 +25,7 @@ class FollowersController extends Controller
         \DB::beginTransaction();
         try {
             $follow = new Followers($request->all());
-            $follow->user()->associate($this->user);
+            
             $user->followers()->save($follow);
             \DB::commit();
 

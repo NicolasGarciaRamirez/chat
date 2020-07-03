@@ -36,6 +36,7 @@
         }
         .post-footer{
             margin-top: 2px;
+            height: 40px;
             img{
                 width: 1.8rem;
                 cursor: pointer;
@@ -69,7 +70,8 @@
                     content: "";
                     position: absolute;
                     width: 2px;
-                    top: -3px;
+                    height: 40px;
+                    top: 1px;
                     bottom: -3px;
                     right: -8px;
                     background-color: black;
@@ -78,7 +80,8 @@
                     content: "";
                     position: absolute;
                     width: 2px;
-                    top: -3px;
+                    height: 40px;
+                    top: 1px;
                     bottom: -3px;
                     left: -8px;
                     background-color: black;
@@ -175,6 +178,9 @@
                     background-color: white !important;
                     font-weight: 100rem;
                 }
+            }
+            .button-select{
+                border: 0.10rem solid white;
             }
             
         }

@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex align-items-center p-3 w-100">
+    <div class="d-flex align-items-center py-3 w-100">
         <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">

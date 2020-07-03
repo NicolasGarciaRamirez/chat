@@ -66,7 +66,9 @@ export default {
             type_change_image: 'Profile',
             auth: Auth.state,
             follow_type: 'follow',
-            follow:'',
+            follow:{
+                type: ''
+            },
             route_name: window.location.pathname
         }
     },
@@ -86,7 +88,7 @@ export default {
         getFollow(){
             if(this.user.followers){
                 this.user.followers.map(follow =>{
-                    if (follow.user.username == this.auth.username) {
+                    if (follow.user.username == Auth.state.username) {
                         $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
                         this.follow_type = 'unfollow'
                     }
@@ -109,8 +111,13 @@ export default {
         store(type){
             var request = ''
             if (type == 'follow') {
+                if (Auth.state.username) {
+                    this.follow.type = 'Followed'
+                }else{
+                    this.follow.type = 'Follower'
+                }
                 request = this.follow
-                this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
+                this.url = `/${Auth.state.username}/Follow/follow/${this.user.id}`
             }
             if (type == 'unfollow') {
                 request = this.follow

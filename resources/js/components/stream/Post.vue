@@ -1,6 +1,6 @@
 <template>
     <section class="post mt-3" v-if="view_post" v-on:click="onScroll">
-        <div class="post-head bg-primary p-3 d-md-flex align-items-start justify-content-between"  >
+        <div class="post-head bg-primary d-md-flex align-items-start justify-content-between p-3"  >
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
                 <div :id="`follow`+post.token" @click="colorFollow(follow_type)">
                     <button type="button" class="bg-primary align-items-right border-white">FOLLOW
@@ -77,7 +77,7 @@
                 <div class="d-flex flex-column mt-1 content img-fluid p-3" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
                     <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
-                    <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'"></div>
+                    <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'" @change="current_time == duration ? playAudio(audio) : ''"></div>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio(audio)" >
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-row justify-content-between align-items-center pt-2 post-user-actions d-block d-xl-none d-md-none">
+            <div class="d-flex flex-row justify-content-between align-items-center post-user-actions d-block d-xl-none d-md-none pt-2">
                  <button v-if="post.user.subscription_type == 'CONTRIBUTOR'" class="bg-primary border-danger mx-2  w-100" @click="showModalSupport">SUPPORT
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="18px" height="18px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
@@ -132,25 +132,25 @@
                     </svg>
                 </button>
             </div>
-            <div class="mt-2 bg-primary post-footer p-3">
-                <div>
-                    <span class="c-fourth">11k views</span>
-                    <span class="ml-1 c-fourth">{{ post.time_ago }}</span>
-                </div>
-                <div class="d-flex c-fourth my-3">
-                    <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
-                    <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
-                    <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="colorFlame(lit.like)" >
-                        <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
-                    </div>
-                    <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
-                    <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">100</div>
-                    <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
-                </div>
+            <div class="p-3 ">
+                <span class="c-fourth">0 {{ post.resource_type == 'audio' || post.resource_type == 'video' ? 'Plays' : 'Views' }}</span>
+                <span class="c-fourth mx-3">{{ post.time_ago }}</span>
             </div>
-            <comments :post="post" :view_comment="view_comment"/>
-            <textarea id="link" :value="link" class="d-none"></textarea>
         </div>
+        <div class="post-footer bg-primary px-3 py-2">
+            <div class="d-flex c-fourth ">
+                <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
+                <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
+                <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="colorFlame(lit.like)" >
+                    <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
+                </div>
+                <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
+                <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">100</div>
+                <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
+            </div>
+        </div>
+        <comments :post="post" :view_comment="view_comment"/>
+        <textarea id="link" :value="link" class="d-none"></textarea>
         <modal-share-post :post="post" />
         <modal-sure-delete />
     </section>
@@ -193,9 +193,13 @@
                     vote_down:[]
                 },
                 follow_type: 'follow',
-                follow:'',
+                follow:{
+                    type: ''
+                },
                 link: '',
-                view: 0
+                view: 0,
+                duration: '',
+                current_time: ''
 
             }
         },
@@ -210,7 +214,7 @@
         methods:{
             onScroll(){
                 this.view += 1
-                console.log(this.view)
+                // console.log(this.view)
             },
             showModalSure(){
                 $('#ModalSureDelete').modal('show')
@@ -254,13 +258,18 @@
                     audio.setHeight(200)
                     var duration = audio.getDuration()
                     this.audio = audio
-                    audio.skip(duration)
+                    this.playAudio(this.audio)
                 }
             },
             playAudio(audio){
-                var duration = audio.getDuration()
-                var current_time = audio.getCurrentTime()
-                if (duration == current_time) {
+                this.duration = audio.getDuration()
+                this.current_time = audio.getCurrentTime()
+                while (this.duration == this.current_time) {
+                    audio.play()
+                    return
+                }
+
+                if (this.duration == this.current_time) {
                     audio.stop()
                     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
                     return false;
@@ -462,13 +471,18 @@
                     }
                 }
                 if (type == 'follow') {
+                    if (Auth.state.username) {
+                        this.follow.type = 'Followed'
+                    }else{
+                        this.follow.type = 'Follower'
+                    }
                     request = this.follow
                     this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
                 }
                 if (type == 'unfollow') {
                     request = this.follow
-                    if (this.post.followers) {
-                        this.post.followers.map(follow =>{
+                    if (this.post.user.followers) {
+                        this.post.user.followers.map(follow =>{
                             if (Auth.state.username == follow.user.username) {
                                 this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
                             }

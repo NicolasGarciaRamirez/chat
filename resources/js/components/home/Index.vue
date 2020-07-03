@@ -90,7 +90,7 @@
                             <input id="input-docs" name="docs" type="file" accept=".pdf, .docx" @change="previewImage" @click="post.resource_type = 'docs'">
                         </div>
 
-                        <a href="#">GO LIVE <span class="c-fifth ml-1">•</span></a>
+                        <a href="#" class="font-weight-bold c-fourth">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
                   
                     <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.category === '' && post.genre === ''">Post</button>
@@ -110,56 +110,42 @@
                         <input type="text" class="form-control m-3 w-auto" v-model="post.replace_caption" placeholder="Add title..">
                         <textarea class="form-control my-2 m-3 w-auto" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
                     </div>
-                    <div class="d-flex flex-row justify-content-between" v-if="post.description != '' || post.resource != ''">
+                    <div class="d-flex flex-row justify-content-between py-3" v-if="post.description != '' || post.resource != ''">
                         <div class="d-flex flex-row">
                             <div>
-                                <div class="btn bg-primary text-white ml-1 rounded-pill border-white mx-2" style="width:200px;"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1" style="width:200px;"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
                                     <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
                                     <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
+                                    <div class="dropdown-item" @click="post.genre = 'EDM'">EDM</div>
+                                    <div class="dropdown-item" @click="post.genre = 'Rock & Metal'">Rock & Metal</div>
+                                    <div class="dropdown-item" @click="post.genre = 'Jazz & Blues'">Jazz & Blues</div>
+                                    <div class="dropdown-item" @click="post.genre = 'Classical'">Classical</div>
+                                    <div class="dropdown-item" @click="post.genre = 'Funk'">Funk</div>
+                                    <div class="dropdown-item" @click="post.genre = 'World'">World</div>
                                 </div>
                             </div>
                              <div>
-                                <div class="btn bg-primary text-white ml-1 rounded-pill border-white" style="width:200px;"  id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1" style="width:200px;"  id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownCategory">
-                                    <div class="dropdown-item" @click="post.category = 'Pop'">Pop</div>
                                     <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
+                                    <div class="dropdown-item" @click="post.category = 'Vlogs'">Vlogs</div>
+                                    <div class="dropdown-item" @click="post.category = 'Instruments'">Instruments</div>
+                                    <div class="dropdown-item" @click="post.category = 'Podcasts'">Podcasts</div>
+                                    <div class="dropdown-item" @click="post.category = 'Audio Clips'">Audio Clips</div>
+                                    <div class="dropdown-item" @click="post.category = 'Performances and Jams'">Performances and Jams</div>
                                 </div>
                             </div>
-                            <!-- <div class="select">
-                                <select class="select-form m-2 font-weight-bold" v-model="post.genre" required>
-                                    <option value="">Select Genre</option>
-                                    <option value="Pop">Pop</option>
-                                    <option value="Rap & Hip-Hop">Rap & Hip-Hop</option>
-                                    <option value="EDM">EDM</option>
-                                    <option value="Rock & Metal">Rock & Metal</option>
-                                    <option value="Jazz & Blues">Jazz & Blues</option>
-                                    <option value="Classical">Classical</option>
-                                    <option value="Funk">Funk</option>
-                                    <option value="World">World</option>
-                                </select>
-                            </div> -->
-                            <!-- <div class="select">
-                                <select class="select-form m-2 font-weight-bold" v-model="post.category" required>
-                                    <option value="">Select Category</option>
-                                    <option value="Production & Engineering">Production & Engineering</option>
-                                    <option value="Vlogs">Vlogs</option>
-                                    <option value="Instruments">Instruments</option>
-                                    <option value="Podcasts">Podcasts</option>
-                                    <option value="Audio Clips">Audio Clips</option>
-                                    <option value="Performances and Jams">Performances and Jams</option>
-                                </select>
-                            </div> -->
                         </div>
                         <div  class="d-flex flex-row">
                             <div class="d-flex flex-row float-right justify-content-between align-items-center">
-                                <div class="select">
-                                    <select class="select-form m-2 font-weight-bold">
-                                        <option value="">Everyone</option>
-                                    </select>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1" style="width:200px;"  id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
+                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownEveryone">
+                                    <div class="dropdown-item" @click="post.privacy = 'Everyone'">Everyone</div>
+                                    <div class="dropdown-item" @click="post.privacy = 'Followers'">Followers</div>
                                 </div>
                                 <div class="mx-2">
-                                    <button class="btn bg-fifth text-white rounded-pill mr-2" type="submit" v-if="!loading" :disabled="post.category === '' && post.genre === ''">Post</button>
+                                    <button class="btn bg-fifth text-white rounded-pill mr-2" type="submit" v-if="!loading" :disabled="!post.category && !post.genre">Post</button>
                                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                     </button>
@@ -206,6 +192,7 @@
                     resource_type: 'text',
                     genre:"",
                     category: "",
+                    privacy: 'Everyone'
                 },
                 disable_save_post: true,
                 order_post: [],

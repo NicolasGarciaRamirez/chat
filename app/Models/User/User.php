@@ -101,15 +101,16 @@ class User extends Authenticatable
     }
 
     /**
-     * Undocumented function
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function followers()
     {
-        return $this->morphMany('App\Models\Reactions\Followers', 'followable');
+        return $this->hasMany(\App\Models\Reactions\Followers::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function playlists()
     {
         return $this->hasMany(\App\Models\Channel\Playlist::class);

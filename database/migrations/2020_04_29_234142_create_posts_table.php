@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPostsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,6 +22,7 @@ class CreateUserPostsTable extends Migration
             $table->string('resource_type')->default('text');
             $table->string('genre')->nullable();
             $table->string('category')->nullable();
+            $table->string('privacy')->default('Everyone');
             $table->string('token')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
