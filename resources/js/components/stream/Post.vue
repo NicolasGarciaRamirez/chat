@@ -85,12 +85,12 @@
                         </div>
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
                     </div>
-                    <img src="/images/icons/word-document.svg"  v-if="post.resource_type == 'docs'" style="min-height: 20rem; max-height: 20rem;">
+                    <img src="/images/icons/word-document.svg"  v-if="post.resource_type == 'docs'" style="min-height: 13rem; max-height: 13rem;">
                     <!-- <document-preview :value="post.resource" :type="docType" v-if="post.resource_type == 'docs'" /> -->
                     <a :href="`${post.resource}`"  class="text-white p-3"  v-if="!post.replace_caption && post.resource_type == 'docs'">
                         <h2>{{ post.description }}</h2>
                     </a>
-                    <div  v-if="post.replace_caption">
+                    <div v-if="post.replace_caption">
                         <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type == 'docs'">
                             <h2>{{ post.description }}</h2>
                         </a>

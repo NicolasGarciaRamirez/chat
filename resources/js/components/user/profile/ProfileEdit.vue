@@ -2,23 +2,23 @@
     <section>
         <div class="container-fluid justify-content-between d-md-flex bg-black my-5 content-personal-details">
             <div class="mb-3">
-                <h2 class="c-white">Personal Details <div class="fa-pencil"></div></h2>
-                <label>Name: {{ user.personal_information.full_name  }}</label><br>
-                <label>Gender: {{ user.personal_information.gender }}</label><br>
-                <label>Location: {{ user.personal_information.location }}</label><br>
-                <label>Email: {{ user.email }}</label>
+                <h3 class="c-white font-weight-bold">Personal Details <div class="fas fa-pencil-alt"></div></h3>
+                <label class="c-fourth">Name: <span class="text-white">{{ user.personal_information.full_name  }}</span></label><br>
+                <label class="c-fourth">Gender: <span class="text-white"> {{ user.personal_information.gender }}</span></label><br>
+                <label class="c-fourth">Location: <span class="text-white">{{ user.personal_information.location }}</span> </label><br>
+                <label class="c-fourth">Email: <span class="text-white">{{ user.email }}</span></label>
             </div>
             <div>
-                <h2 class="c-white">Subscription</h2>
-                <label>Acount Type: <span class="c-fifth">{{ user.subscription_type }}</span></label><br>
-                <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white border rounded-pill settings">
+                <h3 class="c-white font-weight-bold">Subscription</h3>
+                <label class="c-fourth">Acount Type: <span class="c-fifth font-weight-bold">{{ user.subscription_type }}</span></label><br>
+                <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white border rounded-pill settings font-weight-bold">
                     Account Setings <i class="fas fa-cog ml-2"></i>
                 </a>
             </div>
         </div>
         <div class="navigation-body">
-            <a :href="`/${user.username}/Edit/`" class="c-fifth font-weight-bold mr-3 active">Profile</a>
             <a :href="`/${user.username}/Channel/Edit`" class="text-white font-weight-bold">Channel</a>
+            <a :href="`/${user.username}/Edit/`" class="c-fifth font-weight-bold mx-3 active">About</a>
         </div>
         <accordion-profile :user="user" />
     </section>

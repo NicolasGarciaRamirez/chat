@@ -64,14 +64,14 @@
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>
-        <!-- <li class="c-sidebar-nav-title m-0 pb-0" v-if="auth.username">
+        <li class="c-sidebar-nav-title m-0 pb-0">
             Following
             <i class="fas fa-star float-sm-right"></i>
         </li>
-        <li class="c-sidebar-nav-title mt-0 pt-0" v-if="auth.username">
+        <li class="c-sidebar-nav-title mt-0 pt-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <div v-if="auth.username">
+        <!-- <div v-if="auth.username">
             <div v-for="(follow, index) in user.followers" :key="index">
                 <li class="c-sidebar-nav-item">
                     <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information.artistic_name ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>

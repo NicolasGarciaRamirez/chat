@@ -14,7 +14,7 @@
                     <div class="image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData" v-if="post.resource_type == 'image'">
                         <video :src="`${imageData}`" controls   class="preview" v-if="post.resource_type == 'video'" />
-                        <audio :src="`${imageData}`" type=”audio/mp3″ controls v-if="post.resource_type == 'audio'" />
+                        <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3" v-if="post.resource_type == 'audio'" />
                         <img src="/images/icons/excel-document.svg"  class="preview p-3" v-if="post.resource_type == 'docs'">
                         <!-- <i class="fas fa-times" @click="deleteImage">
                         </i> -->
@@ -98,12 +98,12 @@
                 <div class="config-post  bg-primary ">
                     <div class="d-flex flex-column"  >
                         <div class="checkbox" v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
-                            <input type="checkbox" name="" id="replace_caption" class="m-2" v-model="replace_caption">
-                            <label for="replace_caption"><span class="c-fourth font-weight-bold">Replace Caption with Title & Discription (YouTube Style)</span></label>
+                            <input type="checkbox" name="" id="replace_caption" class="m-2" v-model="replace_caption" >
+                            <label for="replace_caption" @click="addClassWhite('ReplaceCaption' )"><span id="ReplaceCaption" class="c-fourth font-weight-bold">Replace Caption with Title & Discription (YouTube Style)</span></label>
                         </div>
                         <div class="checkbox" v-if="imageData.length > 0 && post.resource_type == 'image' || post.resource_type == 'docs'">
                             <input type="checkbox" name="" id="allow_download" class="m-2" v-model="post.allow_download">
-                            <label for="allow_download"><span class="c-fourth font-weight-bold">Allow Download</span></label>
+                            <label for="allow_download" @click="addClassWhite('AllowDownload')"><span id="AllowDownload" class="c-fourth font-weight-bold">Allow Download</span></label>
                         </div>
                     </div>
                     <div class="d-flex flex-column" v-if="replace_caption">
@@ -206,6 +206,25 @@
             this.orderPost()
         },
         methods:{
+            addClassWhite(type, check){
+                console.log('si')
+                if (type == 'ReplaceCaption') {
+                           
+                        console.log('istrue')
+                        $('#ReplaceCaption').removeClass('c-fourth')
+                        $('#ReplaceCaption').addClass('text-white')
+                }
+                if (type == 'AllowDownload') {
+                    if (this.allow_download) {
+                        $('#AllowDownload').removeClass('c-fourth')
+                        $('#AllowDownload').addClass('text-white')
+                    }else if (!this.allow_download){
+                        $('#AllowDownload').removeClass('text-white')
+                        $('#AllowDownload').addClass('c-fourth')
+                    }
+                    
+                }
+            },
             deleteImage(){
                 this.initializeVariables()
             },

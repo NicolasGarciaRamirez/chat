@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingOne">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            <button type="button" class="btn btn-link text-white">Profile Type <span class="c-fifth ml-3">*</span></button>
+                            <button type="button" class="btn btn-link no-underline text-white">Profile Type <span class="c-fifth ml-3">*</span></button>
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingTwo">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <button type="button" class="btn btn-link collapsed text-white">Title  <span class="c-fifth ml-3">*</span></button>
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">Title  <span class="c-fifth ml-3">*</span></button>
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
@@ -75,7 +75,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingThree">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <button class="btn btn-link collapsed text-white" type="button">
+                            <button class="btn btn-link collapsed text-white no-underline" type="button">
                                 Artistic Name <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -91,7 +91,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingFourth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
-                            <button type="button" class="btn btn-link collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">
                                 About You
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -106,7 +106,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingFifth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-                            <button type="button"  class="btn btn-link collapsed text-white">
+                            <button type="button"  class="btn btn-link no-underline collapsed text-white">
                                 Members <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -134,7 +134,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingSix">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <button type="button" class="btn btn-link collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">
                                 Releases <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -150,7 +150,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingSeven">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                            <button type="button" class="btn btn-link collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">
                                 Worked With <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -169,7 +169,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingEight">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                            <button type="button" class="btn btn-link collapsed text-white" >
+                            <button type="button" class="btn btn-link no-underline collapsed text-white" >
                                 Genre <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -192,7 +192,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingNine">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                            <button type="button" class="btn btn-link collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">
                                 Services <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -214,7 +214,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingTen">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                            <button type="button" class="btn btn-link collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">
                                 Social Media  <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>

@@ -273,40 +273,41 @@
                     logout</a>
                 </div>
             </li>
-        </div>
         <modal-contributor />
+        </div>
     </ul>
 </template>
 
 <script>
 import Auth from '../../helpers/Auth'
-import ModalContributor from '../ModalsCommingSoon/ModalContributor'
-    export default {
-        components:{
-            ModalContributor
+import ModalContributor from '../ModalsCommingSoon/ModalForMusic'
+// import ModalContributor from '../auth/include/ModalContributorSignup'
+export default {
+    components:{
+        ModalContributor
+    },
+    data(){
+        return {
+            auth : Auth.state,
+        }
+    },
+    mounted(){
+        Auth.initialize()
+    },
+    methods:{
+        showModalLogin(){
+            $('#ModalLogin').modal('show')
         },
-        data(){
-            return {
-                auth : Auth.state,
-            }
+        showModalContributor(){
+            // $('#ModalContributorSignup').modal('show')
+            $('#ModalContributor').modal('show')
         },
-        mounted(){
-            Auth.initialize()
-        },
-        methods:{
-            showModalLogin(){
-                $('#ModalLogin').modal('show')
-            },
-            showModalContributor(){
-                // $('#ModalContributorSignup').modal('show')
-                $('#ModalContributor').modal('show')
-            },
-            async logout(){
-                await axios.get('/logout').then(res => {
-                    Auth.remove()
-                    window.location.replace('/')
-                })
-            }
+        async logout(){
+            await axios.get('/logout').then(res => {
+                Auth.remove()
+                window.location.replace('/')
+            })
         }
     }
+}
 </script>

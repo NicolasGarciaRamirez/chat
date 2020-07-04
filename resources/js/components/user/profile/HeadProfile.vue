@@ -2,8 +2,8 @@
     <section class="profile">
         <div class="img-container wrap">
             <img :src="`${user.cover}`" alt="ImagePortada" class="img-portada">
-            <button class="edit-cover-photo btn text-white rounded-pill mr-5 pt-0 pb-0 pl-3 pr-3" @click="showChangeImage" v-if="auth.token && auth.token == user.token">
-                <label class="mb-0" @click="type_change_image = 'Cover'">Edit Cover Photo </label>
+            <button class="edit-cover-photo btn text-white rounded-pill mr-5 pt-0 pb-0 pl-3 pr-3" @click="showChangeImage" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
+                <label class="mb-0 font-weight-bol" @click="type_change_image = 'Cover'">Edit Cover Photo </label>
                 <i class="cil-pencil ml-2"></i>
             </button>
             <div  class="btn my-2"></div>
@@ -20,9 +20,9 @@
         <div class="head-container align-items-center" style="transform: translateY(-2rem)">
 
             <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token == user.token">
-                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
-                <a href="#" class="btn bg-black rounded-pill text-white function mx-3">Share Profile <i class="cil-share  ml-2"></i></a>
-                <a :href="`/${ user.username}/Profile/WorkHistory`" class="btn bg-black rounded-pill text-white function">Preview Profile</a>
+                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
+                <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white">Share Profile <i class="cil-share  ml-2"></i></a>
+                <a :href="`/${ user.username}/Profile/WorkHistory`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
             </div>
 
             <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
@@ -31,7 +31,7 @@
                 <div :id="`follow`+user.token" @click="colorFollow(follow_type)">
                     <a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0 mx-3">
                         <div class="pt-0 pb-0 pl-1 pr-1">
-                            <label class="m-1">FOLLOW</label>
+                            <label class="m-1 font-weight-bold">FOLLOW</label>
                             <img src="/images/icons/star.svg" class="c-fifth ml-2 mb-1" width="15" height="18">
                         </div> 
                     </a>

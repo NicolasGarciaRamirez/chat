@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalContributor" :data-backdrop="'none'" aria-hidden="true" id="ModalContributor">
+    <div class="modal fade modal-contributor" z-index="-1000" role="dialog" aria-labelledby="ModalContributor" aria-hidden="true" id="ModalContributor">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content modal-border-white">
                 <div class="modal-header border-0">
@@ -27,6 +27,7 @@
             </div>
         </div>
     </div>
+
 </template>
 
 <script>

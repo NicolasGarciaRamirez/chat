@@ -4,17 +4,6 @@
             <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
             <video :src="`${activity.resource}`" controls width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'"  />
             <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'" ></div>
-            <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type == 'audio'">
-                <div :id="`backward`+activity.token" @click="backward(audio)">
-                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" height="30" >
-                </div>
-                <div :id="`play`+activity.token" @click="playAudio(audio)">
-                    <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
-                </div>
-                <div :id="`forward`+activity.token" @click="forward(audio)">
-                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" height="30">
-                </div>
-            </div>
             <i class="fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-if="showMenuPlaylist"></i>
             <div class="dropdown-menu bg-primary text-white p-2 menu-activity" aria-labelledby="dropdownMenuPost" v-if="!playlist">
                 <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
@@ -111,7 +100,7 @@ export default {
                 var audio = WaveSurfer.create({
                     container: `#waveform`+this.activity.token,
                     waveColor: 'gray',
-                    barHeight: 1,
+                    barHeight: 0.6,
                     cursorColor: 'red',
                     cursorWidth: 0,
                     forceDecode: true,
