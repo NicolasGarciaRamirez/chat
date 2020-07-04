@@ -240,7 +240,7 @@
             getStyleAudio(){
                 if (this.post.resource_type == 'audio') {
                     var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
-                    linGrad.addColorStop(0, '#ff0000'); 
+                    linGrad.addColorStop(0, '#ff0000');
                     linGrad.addColorStop(1, 'white');
                     var audio = WaveSurfer.create({
                         container: `#waveform`+this.post.token,
@@ -298,7 +298,7 @@
                 range.selectNode(document.getElementById('link'));
                 window.getSelection().addRange(range);
                 document.execCommand("copy");
-                
+
                 this.$toasted.show('The copy link been successfully!', {
                     position: "bottom-right",
                     duration : 4000,
@@ -558,7 +558,7 @@
                 }).catch(err => {
                     console.log(err)
                 })
-               
+
             }
         }
     }

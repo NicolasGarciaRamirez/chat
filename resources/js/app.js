@@ -8,7 +8,6 @@ require('./bootstrap');
 require('./../../node_modules/readmore-js');
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
 
-
 import Vue from 'vue'
 
 import VueCropper from 'cropperjs';
@@ -48,7 +47,6 @@ import ProfileServices from './components/user/profile/Services'
 import ProfileWorkHistory from './components/user/profile/WorkHistory'
 import ProfileSocialMedia from './components/user/profile/SocialMedia'
 
-
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
 import ModalContributor from './components/ModalsCommingSoon/ModalContributor'
 
@@ -78,6 +76,6 @@ new Vue({
         ModalContributor,
         ValidateLogin,
         PasswordReset,
-        Playlist
+        Playlist,
     }
 });

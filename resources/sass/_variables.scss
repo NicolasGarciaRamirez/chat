@@ -21,3 +21,14 @@ $theme-colors: (
 
 $coreui-icons-font-path: "../../fonts";
 $fa-font-path: "../webfonts";
+
+@mixin icons-style($color){
+    .icon-post-color{
+        fill: $fourth-color;
+    }
+    &:hover{
+        .icon-post-color{
+            fill: $color;
+        }
+    }
+}

@@ -30,7 +30,7 @@
             <div class="comment-footer">
                 <span>{{ comment.time_ago }}</span>
                 <span class="mx-3">{{ likes.length }} lit</span>
-                <span @click="$parent.form_reply = true" class="cursor-pointer"><span @click="$parent.reply.body = `@`+comment.user.personal_information.first_name+' '+comment.user.personal_information.last_name ">Reply</span></span>
+                <span @click="$parent.form_reply = true" class="cursor-pointer"><span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span></span>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@ import Auth from '../../../helpers/Auth'
     export default {
         props: ['comment'],
         template:{
-            
+
         },
         data(){
             return {
@@ -145,7 +145,7 @@ import Auth from '../../../helpers/Auth'
                         this.$parent.$parent.post.comments.splice(indice, 1)
                     }
                 }).catch(err =>{
-                     
+
                 })
             }
         }
