@@ -80,10 +80,11 @@
                 <div class="d-flex flex-column mt-1 content img-fluid p-3" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
                     <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
-                    <div :id="'waveform'+post.token" v-if="post.resource_type == 'audio'" @change="current_time == duration ? playAudio(audio) : ''"></div>
+                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type == 'audio'" ref="surf"></vue-wave-surfer>
+<!--                    <div :id="'waveform'+post.token"  @change="current_time == duration ? playAudio(audio) : ''"></div>-->
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
-                        <div :id="`play`+post.token"  @click="playAudio(audio)" >
+                        <div :id="`play`+post.token"  @click="playAudio()" >
                             <img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">
                         </div>
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
@@ -160,7 +161,6 @@
 <script>
     import Comments from './comments/Comments'
     import Auth from '../../helpers/Auth'
-    import WaveSurfer from 'wavesurfer.js';
     import ModalSharePost from './ModalSharePost'
     import ModalSureDelete from './includes/ModalSureDeleted'
     import DocumentPreview from 'vue-doc-preview'
@@ -171,7 +171,7 @@
             Comments,
             ModalSharePost,
             DocumentPreview,
-            ModalSureDelete
+            ModalSureDelete,
         },
         data(){
             return {
@@ -199,6 +199,19 @@
                 },
                 link: '',
                 view: 0,
+                duration: '',
+                current_time: '',
+                options_audio:{
+                    waveColor: 'gray',
+                    barHeight: 0.8,
+                    cursorColor: 'red',
+                    cursorWidth: 0,
+                    forceDecode: true,
+                    hideScrollbar: true,
+                    responsive: true,
+                    interact: true,
+                    progressColor: this.getGrad(),
+                }
 
             }
         },
@@ -206,9 +219,18 @@
             Auth.initialize()
             this.getLike()
             this.getVote()
-            this.readmore()
-            this.getStyleAudio()
             this.getFollow()
+            if(this.post.resource_type == 'audio'){
+                this.player.on('finish', () => {
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+                    this.$refs.surf.waveSurfer.stop()
+                })
+            }
+        },
+        computed: {
+            player() {
+                return this.$refs.surf.waveSurfer
+            }
         },
         methods:{
             onScroll(){
@@ -236,59 +258,36 @@
             // showModalPost(){
                 //     $('#ModalPost').modal('show')
             // }
-            getStyleAudio(){
-                if (this.post.resource_type == 'audio') {
-                    var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
-                    linGrad.addColorStop(0, '#ff0000');
-                    linGrad.addColorStop(1, 'white');
-                    var audio = WaveSurfer.create({
-                        container: `#waveform`+this.post.token,
-                        waveColor: 'gray',
-                        barHeight: 0.8,
-                        cursorColor: 'red',
-                        cursorWidth: 0,
-                        forceDecode: true,
-                        hideScrollbar: true,
-                        progressColor: linGrad,
-                        responsive: true,
-                    });
-                    audio.load(this.post.resource)
-                    audio.setHeight(200)
-                    var duration = audio.getDuration()
-                    this.audio = audio
-                    this.audio.skip(duration)
-                }
+            getGrad(){
+                var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
+                linGrad.addColorStop(0, '#ff0000');
+                linGrad.addColorStop(1, 'white');
+                return linGrad
             },
-            playAudio(audio){
-                this.duration = audio.getDuration()
-                this.current_time = audio.getCurrentTime()
+            playAudio(){
+                this.audio = this.$refs.surf.waveSurfer
+                this.duration = this.audio.getDuration()
+                this.current_time = this.audio.getCurrentTime()
+
                 while (this.duration == this.current_time) {
-                    audio.play()
+                    this.audio.play()
                     return
                 }
 
-                if (this.duration == this.current_time) {
-                    audio.stop()
-                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
-                    return false;
-                }
-                if(audio.isPlaying()){
+                if(this.audio.isPlaying()){
                     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
 
-                }else if(!audio.isPlaying()){
+                }else if(!this.audio.isPlaying()){
                     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Pause-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
 
                 }
-                audio.playPause()
+                this.audio.playPause()
             },
-            backward(audio){
-                audio.skipBackward(10)
+            backward(){
+                this.audio.skipBackward(10)
             },
-            forward(audio){
-                audio.skipForward(10)
-            },
-            readmore(){
-                $('#description').readmore({ speed: 75, lessLink: '<a href="#">Read More</a>' });
+            forward(){
+                this.audio.skipForward(10)
             },
             copyLink(){
                 this.link = `/${this.post.user.username}/Post/get/${this.post.token}`

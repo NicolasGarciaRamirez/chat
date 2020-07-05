@@ -11,18 +11,7 @@
 |
 */
 Route::get('/test', function(){
-    // $a = 5;
-    // $b = 0;
-    // $h = 0;
-    // return  ((10 + $a) / (10 + $a + $b)) * (1 - (0.02 * $h)) * (1);
-
-    $post = \App\Models\Post\Post::find(5);
-
-    // print($post->vote_up_count);
-    // print($post->vote_down_count);
-    print(($post->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60));
-
-    // return doubleval((( 10 + $post->vote_up_count ) / ( 10 + $post->vote_up_count + $post->vote_down_count )) * (1 - (0.02 * $post->created_at->diffInHours(\Carbon\Carbon::now()))) * 1);
+    return view('test');
 });
 
 Route::get('/prelaunch', function () {
@@ -52,6 +41,7 @@ Route::get('/Help', 'HomeController@help')->name('help');
 Route::get('/About', 'HomeController@about')->name('about');
 Route::get('/Carrers', 'HomeController@carrers')->name('carrers');
 Route::get('/Terms', 'HomeController@terms')->name('terms');
+Route::get('/Suggestions', 'HomeController@suggestions')->name('suggestions');
 
 Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/imageProfile/{username}', 'User\UserController@updateImage');

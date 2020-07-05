@@ -14,10 +14,10 @@ class HomeController extends Controller
     public function index()
     {
         $user = collect();
-        $posts = Post::with('votes.user', 'likes.user','user.followers.user.profile_information','user.followers.user.personal_information','user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user' ,'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
+        $posts = Post::with('votes.user', 'likes.user', 'user.followers.user.profile_information', 'user.followers.user.personal_information', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
         if (\Auth::check()) {
             $user = \Auth::user();
-            $user->load('personal_information','profile_information','playlists.playlist_post.post.comments');
+            $user->load('personal_information', 'profile_information', 'playlists.playlist_post.post.comments');
         }
 
         return view('home', compact('posts', 'user'));
@@ -70,5 +70,13 @@ class HomeController extends Controller
     public function terms()
     {
         return view('extras.terms');
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function suggestions()
+    {
+        return view('extras.suggestions');
     }
 }

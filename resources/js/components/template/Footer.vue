@@ -5,7 +5,7 @@
                 <a href="/Terms">Terms</a>
                 <a href="#">Privacy</a>
                 <a href="/Help">Help</a>
-                <a href="#">Suggestions</a>
+                <a href="/Suggestions">Suggestions</a>
             </div>
             <div class="d-flex justify-content-between my-2">
                 <a href="#">Contact</a>

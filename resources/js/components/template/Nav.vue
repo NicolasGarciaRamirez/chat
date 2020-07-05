@@ -9,56 +9,56 @@
         </li>
         <li class="c-sidebar-nav-title">Genre</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="pop" @click="updateFilterGender('Pop')">
+            <input type="checkbox" id="pop" @click="updateFilterGender('Pop')" data-genre="Pop">
             <label for="pop"><span>Pop</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rap_hip_jop" @click="updateFilterGender('Rap & Hip-Hop')">
+            <input type="checkbox" id="rap_hip_jop" @click="updateFilterGender('Rap & Hip-Hop')" data-genre="Rap & Hip-Hop">
             <label for="rap_hip_jop"><span>Rap & Hip-Hop</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="edm" @click="updateFilterGender('EDM')">
+            <input type="checkbox" id="edm" @click="updateFilterGender('EDM')" data-genre="EDM">
             <label for="edm"><span>EDM</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rock_metal" @click="updateFilterGender('Rock & Metal')">
+            <input type="checkbox" id="rock_metal" @click="updateFilterGender('Rock & Metal')" data-genre="Rock & Metal">
             <label for="rock_metal"><span>Rock & Metal</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="jazz_blues" @click="updateFilterGender('Jazz & Blues')">
+            <input type="checkbox" id="jazz_blues" @click="updateFilterGender('Jazz & Blues')" data-genre="Jazz & Blues">
             <label for="jazz_blues"><span>Jazz & Blues</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="classical" @click="updateFilterGender('Classical')">
+            <input type="checkbox" id="classical" @click="updateFilterGender('Classical')" data-genre="Classical">
             <label for="classical"><span>Classical</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="funk" @click="updateFilterGender('Funk')">
+            <input type="checkbox" id="funk" @click="updateFilterGender('Funk')" data-genre="Funk">
             <label for="funk"><span>Funk</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="world" @click="updateFilterGender('World')">
+            <input type="checkbox" id="world" @click="updateFilterGender('World')" data-genre="World">
             <label for="world"><span>World</span></label>
         </li>
         <li class="c-sidebar-nav-title">Category</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="production_engineering" @click="updateFilterCategory('Production & Engineering')">
+            <input type="checkbox" id="production_engineering" @click="updateFilterCategory('Production & Engineering')" data-category="Production & Engineering">
             <label for="production_engineering"><span>Production & Engineering</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="vlogs" @click="updateFilterCategory('Vlogs')">
+            <input type="checkbox" id="vlogs" @click="updateFilterCategory('Vlogs')" data-category="Vlogs">
             <label for="vlogs"><span>Vlogs</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="instruments" @click="updateFilterCategory('Instruments')">
+            <input type="checkbox" id="instruments" @click="updateFilterCategory('Instruments')" data-category="Instruments">
             <label for="instruments"><span>Instruments</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="podcasts" @click="updateFilterCategory('Podcasts')">
+            <input type="checkbox" id="podcasts" @click="updateFilterCategory('Podcasts')" data-category="Podcasts">
             <label for="podcasts"><span>Podcasts</span></label>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')">
+            <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')" data-category="Audio Clips">
             <label for="audio_clips"><span>Audio Clips</span></label>
         </li>
          <li class="c-sidebar-nav-item">
@@ -93,14 +93,14 @@
 <script>
     import AppFooter from './footer'
     import Auth from '../../helpers/Auth'
+    import FilterPost from '../../helpers/FilterPost'
 
     export default {
         // props:['user'],
         data(){
             return {
                 auth: Auth.state,
-                filter_gender: [],
-                filter_category: []
+                filters: FilterPost.state
             }
         },
         components: {
@@ -108,6 +108,8 @@
         },
         mounted(){
             Auth.initialize()
+            FilterPost.initialize()
+            this.setFilters()
             // if (this.auth.username) {
             //     if (!this.user) {
             //         this.user = {
@@ -119,24 +121,31 @@
             // }
         },
         methods:{
-            updateFilterGender(gender){
-                if(this.filter_gender.includes(gender)){
-                    _.remove(this.filter_gender, function(n) { return n == gender });
-                }else{
-                    this.filter_gender.push(gender)
-                }
-                this.filterPost(this.filter_gender, this.filter_category)
+            updateFilterGender(genre){
+                FilterPost.removeOrAddGenres(genre)
+                this.filterPost()
             },
             updateFilterCategory(category){
-                if(this.filter_category.includes(category)){
-                    _.remove(this.filter_category, function(n) { return n == category });
-                }else{
-                    this.filter_category.push(category)
-                }
-                this.filterPost(this.filter_gender, this.filter_category)
+                FilterPost.removeOrAddCategories(category)
+                this.filterPost()
             },
-            filterPost(gender, category){
-                this.$root.$refs.home.filterPost(gender, category)
+            filterPost(){
+                this.$root.$refs.home.filterPost()
+            },
+            setFilters(){
+                var genres = JSON.parse(FilterPost.state.genres)
+                var categories = JSON.parse(FilterPost.state.categories)
+                if(genres !== null){
+                    genres.map(function(o){
+                        $('*[data-genre="'+o+'"]').prop('checked', true)
+                    })
+                }
+                if(categories !== null){
+                    categories.map(function(o){
+                        $('*[data-category="'+o+'"]').prop('checked', true)
+                    })
+                }
+                this.filterPost()
             }
         }
     }

@@ -26,6 +26,7 @@ class CreateUserTable extends Migration
             $table->boolean('enable')->default(true);
             $table->boolean('validated')->default(false);
             $table->boolean('banned')->default(false);
+            $table->timestamp('verification_date')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
