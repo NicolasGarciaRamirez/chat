@@ -14,7 +14,7 @@ class Followers extends Model
      *
      * @var array
      */
-    protected $fillable =['user_id','type'];
+    protected $fillable =['user_id','type','following_user'];
 
     /**
      * Undocumented variable
@@ -32,7 +32,7 @@ class Followers extends Model
      */
     public function user()
     {
-        return $this->belongsTo(\App\Models\User\User::class);
+        return $this->belongsTo('\App\Models\User\User', 'following_user');
     }
 
    

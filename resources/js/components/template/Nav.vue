@@ -61,6 +61,10 @@
             <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')">
             <label for="audio_clips"><span>Audio Clips</span></label>
         </li>
+         <li class="c-sidebar-nav-item">
+            <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Performances and Jams')">
+            <label for="audio_clips"><span>Performances and Jams</span></label>
+        </li>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>

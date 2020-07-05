@@ -35,7 +35,7 @@
                         <div class="dropdown-item" @click="showModalSure" v-if="auth.username == post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
-                        <div class="dropdown-item" >Hide Post</div>
+                        <div class="dropdown-item cursor-pointer" >Hide Post</div>
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username != post.user.username">Report</a>
                         <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
                     </div>
@@ -57,23 +57,26 @@
                 </div>
             </div>
         </div>
+         <div class="text p-3 item bg-primary" id="description" v-if="!post.replace_caption">
+            <span v-if="!edit && !post.replace_caption && post.resource_type != 'docs'">{{ post.description }}</span>
+            <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type == 'docs'">
+                <h2>{{ post.description }}</h2>
+            </a>
+            <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
+                <textarea
+                    class="form-control bg-primary"
+                    rows="5"
+                    placeholder="Add Some value to the music industry..."
+                    id="textarea"
+                    v-model="post.description"
+                    >
+                </textarea>
+                <div class="btn text-white bg-primary rounded-pill float-right mx-3" @click="edit = false">Cancel Edit</div>
+                <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
+            </form>
+        </div>
         <div class="post-body bg-primary">
             <div>
-                <div class="text p-3 item" id="description" v-if="!post.replace_caption && post.resource_type == 'image' || post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'text'">
-                    <span v-if="!edit && !post.replace_caption">{{ post.description }}</span>
-                    <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
-                        <textarea
-                            class="form-control bg-primary"
-                            rows="5"
-                            placeholder="Add Some value to the music industry..."
-                            id="textarea"
-                            v-model="post.description"
-                            >
-                        </textarea>
-                        <div class="btn text-white bg-primary rounded-pill float-right mx-3" @click="edit = false">Cancel Edit</div>
-                        <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
-                    </form>
-                </div>
                 <div class="d-flex flex-column mt-1 content img-fluid p-3" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
                     <video :src="`${post.resource}`" controls  v-if="post.resource_type == 'video'" />
@@ -87,9 +90,7 @@
                     </div>
                     <img src="/images/icons/word-document.svg"  v-if="post.resource_type == 'docs'" style="min-height: 13rem; max-height: 13rem;">
                     <!-- <document-preview :value="post.resource" :type="docType" v-if="post.resource_type == 'docs'" /> -->
-                    <a :href="`${post.resource}`"  class="text-white p-3"  v-if="!post.replace_caption && post.resource_type == 'docs'">
-                        <h2>{{ post.description }}</h2>
-                    </a>
+                  
                     <div v-if="post.replace_caption">
                         <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type == 'docs'">
                             <h2>{{ post.description }}</h2>
@@ -198,8 +199,6 @@
                 },
                 link: '',
                 view: 0,
-                duration: '',
-                current_time: ''
 
             }
         },
@@ -252,13 +251,12 @@
                         hideScrollbar: true,
                         progressColor: linGrad,
                         responsive: true,
-                        interact: true,
                     });
                     audio.load(this.post.resource)
                     audio.setHeight(200)
                     var duration = audio.getDuration()
                     this.audio = audio
-                    this.playAudio(this.audio)
+                    this.audio.skip(duration)
                 }
             },
             playAudio(audio){
@@ -558,7 +556,6 @@
                 }).catch(err => {
                     console.log(err)
                 })
-
             }
         }
     }

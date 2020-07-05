@@ -5,7 +5,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingOne">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            <button type="button" class="btn btn-link no-underline text-white">Profile Type <span class="c-fifth ml-3">*</span></button>
+                            <button type="button" class="btn btn-link no-underline text-white">Profile Type <span class="c-fifth">*</span></button>
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingTwo">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">Title  <span class="c-fifth ml-3">*</span></button>
+                            <button type="button" class="btn btn-link no-underline collapsed text-white">Title<span class="c-fifth">*</span></button>
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>

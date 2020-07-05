@@ -2,7 +2,7 @@
     <section>
         <div class="img-activity bg-primary">
             <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
-            <video :src="`${activity.resource}`" controls width="350" height="200" style="max-height: 200px" v-if="activity.resource_type == 'video'"  />
+            <video :src="`${activity.resource}`" controls class="img-activity"  v-if="activity.resource_type == 'video'"  />
             <div :id="'waveform'+activity.token" v-if="activity.resource_type == 'audio'" ></div>
             <i class="fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-if="showMenuPlaylist"></i>
             <div class="dropdown-menu bg-primary text-white p-2 menu-activity" aria-labelledby="dropdownMenuPost" v-if="!playlist">
@@ -18,14 +18,14 @@
                 <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
             </div>
             <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">{{ activity.description }}</div>
-            <div v-if="activity.resource_type == 'docs'">
+            <div class="img-activity" v-if="activity.resource_type == 'docs'">
                 <a :href="`${activity.resource}`" class="no-underline">
-                    <img src="/images/icons/word-document.svg" class="img-activity img-fluid p-3" style="width: 130px; margin-left: 106px;"  />
+                    <img src="/images/icons/word-document.svg" class="img-activity img-fluid p-3" style="width: 130px;"  />
                 </a>
             </div>
         </div>
         <div v-if="!activity.replace_caption">
-            <div style="overflow: auto; max-height: 68px;" v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
+            <div v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
                 <p class="m-1">{{ activity.description }}</p>
             </div>
             <p v-if="activity.resource_type == 'docs'">

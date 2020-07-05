@@ -16,8 +16,7 @@
                         <video :src="`${imageData}`" controls   class="preview" v-if="post.resource_type == 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3" v-if="post.resource_type == 'audio'" />
                         <img src="/images/icons/excel-document.svg"  class="preview p-3" v-if="post.resource_type == 'docs'">
-                        <!-- <i class="fas fa-times" @click="deleteImage">
-                        </i> -->
+                        <i class="fas fa-times" @click="deleteImage"></i>
                     </div>
                 </div>
                 <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
@@ -95,15 +94,15 @@
                   
                     <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.category === '' && post.genre === ''">Post</button>
                 </div>
-                <div class="config-post  bg-primary ">
-                    <div class="d-flex flex-column"  >
+                <div class="config-post  bg-primary">
+                    <div class="d-flex flex-column py-2" v-if="imageData.length > 0" >
                         <div class="checkbox" v-if="imageData.length > 0 && post.resource_type == 'audio' || post.resource_type == 'video' || post.resource_type == 'docs'">
-                            <input type="checkbox" name="" id="replace_caption" class="m-2" v-model="replace_caption" >
-                            <label for="replace_caption" @click="addClassWhite('ReplaceCaption' )"><span id="ReplaceCaption" class="c-fourth font-weight-bold">Replace Caption with Title & Discription (YouTube Style)</span></label>
+                            <input type="checkbox" name="" id="replace_caption" class="m-2" @click="addClassWhite('ReplaceCaption', !replace_caption ? true :false )" v-model="replace_caption" >
+                            <label for="replace_caption" ><span id="ReplaceCaption" class="c-fourth font-weight-bold">Replace Caption with Title & Discription (YouTube Style)</span></label>
                         </div>
                         <div class="checkbox" v-if="imageData.length > 0 && post.resource_type == 'image' || post.resource_type == 'docs'">
-                            <input type="checkbox" name="" id="allow_download" class="m-2" v-model="post.allow_download">
-                            <label for="allow_download" @click="addClassWhite('AllowDownload')"><span id="AllowDownload" class="c-fourth font-weight-bold">Allow Download</span></label>
+                            <input type="checkbox" name="" id="allow_download" class="m-2" @click="addClassWhite('AllowDownload', !allow_download ? true : false )" v-model="allow_download">
+                            <label for="allow_download" ><span id="AllowDownload" class="c-fourth font-weight-bold">Allow Download</span></label>
                         </div>
                     </div>
                     <div class="d-flex flex-column" v-if="replace_caption">
@@ -113,7 +112,7 @@
                     <div class="d-flex flex-row justify-content-between py-3" v-if="post.description != '' || post.resource != ''">
                         <div class="d-flex flex-row">
                             <div>
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1" style="width:200px;"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1 font-weight-bold" style="width:200px;"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
                                     <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
                                     <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
@@ -126,7 +125,7 @@
                                 </div>
                             </div>
                              <div>
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1" style="width:200px;"  id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" style="width:200px;"  id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownCategory">
                                     <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
                                     <div class="dropdown-item" @click="post.category = 'Vlogs'">Vlogs</div>
@@ -139,13 +138,13 @@
                         </div>
                         <div  class="d-flex flex-row">
                             <div class="d-flex flex-row float-right justify-content-between align-items-center">
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1" style="width:200px;"  id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" style="width:200px;"  id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownEveryone">
                                     <div class="dropdown-item" @click="post.privacy = 'Everyone'">Everyone</div>
                                     <div class="dropdown-item" @click="post.privacy = 'Followers'">Followers</div>
                                 </div>
                                 <div class="mx-2">
-                                    <button class="btn bg-fifth text-white rounded-pill mr-2" type="submit" v-if="!loading" :disabled="!post.category && !post.genre">Post</button>
+                                    <button class="btn bg-fifth text-white rounded-pill mr-2 font-weight-bold" type="submit" v-if="!loading" :disabled="!post.category && !post.genre">Post</button>
                                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                     </button>
@@ -197,7 +196,6 @@
                 disable_save_post: true,
                 order_post: [],
                 all_post: []
-
             }
         },
         mounted(){
@@ -206,19 +204,21 @@
             this.orderPost()
         },
         methods:{
-            addClassWhite(type, check){
-                console.log('si')
+            async addClassWhite(type, check){
                 if (type == 'ReplaceCaption') {
-                           
-                        console.log('istrue')
+                    if (check) {
                         $('#ReplaceCaption').removeClass('c-fourth')
                         $('#ReplaceCaption').addClass('text-white')
+                    }else{
+                        $('#ReplaceCaption').removeClass('text-white')
+                        $('#ReplaceCaption').addClass('c-fourth')
+                    }
                 }
                 if (type == 'AllowDownload') {
-                    if (this.allow_download) {
+                    if (check) {
                         $('#AllowDownload').removeClass('c-fourth')
                         $('#AllowDownload').addClass('text-white')
-                    }else if (!this.allow_download){
+                    }else{
                         $('#AllowDownload').removeClass('text-white')
                         $('#AllowDownload').addClass('c-fourth')
                     }
@@ -296,13 +296,14 @@
             },
             initializeVariables(){
                 this.post = {
-                    replace_caption:"",
+                     replace_caption:"",
                     allow_download:"",
-                    description:'',
+                    description: '',
                     resource: '',
-                    resource_type : 'text',
+                    resource_type: 'text',
                     genre:"",
                     category: "",
+                    privacy: 'Everyone'
                 }
                 this.replace_caption= false
                 this.allow_download= false
