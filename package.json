@@ -11,32 +11,32 @@
     },
     "devDependencies": {
         "axios": "^0.19.2",
-        "bootstrap": "^4.4.1",
+        "bootstrap": "^4.5.0",
         "cross-env": "^7.0.2",
         "jquery": "^3.5.1",
         "laravel-mix": "^5.0.4",
         "lodash": "^4.17.15",
         "resolve-url-loader": "3.1.1",
-        "sass": "^1.26.5",
-        "sass-loader": "8.0.2",
+        "sass": "^1.26.9",
+        "sass-loader": "9.0.1",
         "vue": "^2.6.11",
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "@coreui/coreui": "^3.0.0",
+        "@coreui/coreui": "^3.2.2",
         "@coreui/icons": "^1.0.1",
-        "@fortawesome/fontawesome-free": "^5.13.0",
-        "@kevinfaguiar/vue-twemoji-picker": "^5.6.5",
-        "@popperjs/core": "^2.4.0",
+        "@fortawesome/fontawesome-free": "^5.13.1",
+        "@kevinfaguiar/vue-twemoji-picker": "^5.7.4",
+        "@popperjs/core": "^2.4.4",
         "cropperjs": "^1.5.7",
         "perfect-scrollbar": "^1.5.0",
         "popper.js": "^1.16.1",
         "readmore-js": "^2.2.1",
-        "vee-validate": "^2.2.15",
+        "vee-validate": "2.2.15",
         "vue-doc-preview": "^0.3.2",
         "vue-hashtag-textarea": "^0.3.7",
         "vue-jcrop": "^1.0.3",
         "vue-toasted": "^1.1.28",
-        "wavesurfer.js": "^3.3.3"
+        "vue-wave-surfer": "^1.0.1"
     }
 }

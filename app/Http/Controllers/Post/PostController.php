@@ -48,17 +48,16 @@ class PostController extends Controller
                 // ]);
                 $key = md5(\Auth::user()->id);
                 $hash = \Str::random(10);
-               
 
                 if ($request->resource_type == 'image') {
                     $resource = $this->setImage($request);
                 }
                 if ($request->resource_type == 'video') {
-                    $resource = "/images/post/videos/{$hash}/{$key}{$request->resource->getClientOriginalName()}"; //el video no solo puede ser mp4, puede ser avi, MKV, flv, etc
+                    $resource = "/images/post/videos/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
                     $request->resource->move(public_path("/images/post/videos/{$hash}/"), $resource);
                 }
                 if ($request->resource_type == 'audio') {
-                    $resource = "/images/post/audio/{$hash}/{$key}{$request->resource->getClientOriginalName()}"; //aqui hay que ver xq tambien hay varios formatos de audio m4a, wav, etc
+                    $resource = "/images/post/audio/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
                     $request->resource->move(public_path("/images/post/audio/{$hash}/"), $resource);
                 }
                 if ($request->resource_type == 'docs') {
@@ -72,7 +71,7 @@ class PostController extends Controller
 
             $post = new Post($request->all());
             $post->resource = $resource;
-            if ($request->allow_download){
+            if ($request->allow_download) {
                 $post->allow_download = $request->allow_download;
             }
             if ($request->replace_caption) {
@@ -85,7 +84,7 @@ class PostController extends Controller
             \DB::commit();
             return response()->json([
                 'saved' => true,
-                'post' => $post->load('user.personal_information', 'user.profile_information','comments.user.personal_information', 'comments.comments.user.personal_information'),
+                'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information'),
                 'errors' => null
             ], 200);
         } catch (\Exception $e) {
@@ -98,11 +97,17 @@ class PostController extends Controller
         }
     }
 
-    public function update(Request $request , $token)
+    /**
+     * @param Request $request
+     * @param $token
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function update(Request $request, $token)
     {
         \DB::beginTransaction();
         try {
-            Post::whereToken($token)->update( $request->except(['comments','user','time_ago', 'score','vote_down_count','vote_up_count','votes','likes']));
+            Post::whereToken($token)->update($request->except(['comments', 'user', 'time_ago', 'score', 'vote_down_count', 'vote_up_count', 'votes', 'likes']));
             \DB::commit();
             return response()->json([
                 'updated' => true,
@@ -117,7 +122,12 @@ class PostController extends Controller
         }
     }
 
-    public function delete($username,$token)
+    /**
+     * @param $username
+     * @param $token
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete($username, $token)
     {
         $post = Post::whereToken($token)->delete();
         return response()->json([
@@ -126,6 +136,7 @@ class PostController extends Controller
             'post' => $post
         ]);
     }
+
     /**
      * @param $request
      * @return string

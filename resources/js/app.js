@@ -19,6 +19,9 @@ Vue.use(Toasted)
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 
+import VueWaveSurfer from 'vue-wave-surfer'
+Vue.use(VueWaveSurfer)
+
 import AppHeader from './components/template/Header'
 import AppNav from './components/template/Nav'
 
@@ -50,6 +53,8 @@ import ProfileSocialMedia from './components/user/profile/SocialMedia'
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
 import ModalContributor from './components/ModalsCommingSoon/ModalContributor'
 
+import Test from './components/Test'
+
 new Vue({
     el: '#app',
     components:{
@@ -77,5 +82,6 @@ new Vue({
         ValidateLogin,
         PasswordReset,
         Playlist,
+        Test
     }
 });

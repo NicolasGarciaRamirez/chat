@@ -92,7 +92,7 @@
 
                         <a href="#" class="font-weight-bold c-fourth">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-                  
+
                     <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.category === '' && post.genre === ''">Post</button>
                 </div>
                 <div class="config-post  bg-primary ">
@@ -161,8 +161,9 @@
 </template>
 
 <script>
-    import Posts from "../stream/Posts";
     import Auth from "../../helpers/Auth"
+    import FilterPost from "../../helpers/FilterPost"
+    import Posts from "../stream/Posts";
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
     export default {
         name: "Index",
@@ -203,13 +204,15 @@
         mounted(){
             Auth.initialize()
             this.all_post = this.posts
-            this.orderPost()
+            if(FilterPost.state.genres == null && FilterPost.state.categories == null){
+                this.orderPost()
+            }
         },
         methods:{
             addClassWhite(type, check){
                 console.log('si')
                 if (type == 'ReplaceCaption') {
-                           
+
                         console.log('istrue')
                         $('#ReplaceCaption').removeClass('c-fourth')
                         $('#ReplaceCaption').addClass('text-white')
@@ -222,7 +225,7 @@
                         $('#AllowDownload').removeClass('text-white')
                         $('#AllowDownload').addClass('c-fourth')
                     }
-                    
+
                 }
             },
             deleteImage(){
@@ -244,10 +247,11 @@
             },
             async store(){
                 if (this.auth.token) {
+                    // this.user.profile_information.title != null redirect to edit profile // no esta terninbado
                     this.loading = true
                     var imagePost = new FormData();
                     if (this.post.resource != '') {
-                        imagePost.append('resource', this.post.resource, this.post.resource)
+                        imagePost.append('resource', this.post.resource, this.post.resource.name)
                         imagePost.append('allow_download', this.post.allow_download)
                         imagePost.append('replace_caption', this.post.replace_caption)
                     }
@@ -260,7 +264,8 @@
                         if (res.data.saved) {
                             this.loading = false
                             this.initializeVariables()
-                            this.order_post.unshift(res.data.post)
+                            this.all_post.unshift(res.data.post)
+                            this.filterPost()
                             $('html, body').animate({ scrollTop: 0 }, 'fast');
                             this.$toasted.show('Post Published Successfully!', {
                                 position: "bottom-right",
@@ -281,17 +286,18 @@
             orderPost(){
                 this.order_post = _.orderBy(this.all_post, ['score'], ['desc'])
             },
-            filterPost(genre, category){
+            filterPost(){
                 this.all_post = this.posts
+                let filters = {}
 
-                if(genre.length > 0){
-                    this.all_post = _.filter(this.all_post, (v) => _.indexOf(genre, v.genre) !== -1)
+                if(JSON.parse(FilterPost.state.genres) !== null &&  JSON.parse(FilterPost.state.genres).length != 0){
+                    filters['genre'] = JSON.parse(FilterPost.state.genres)
                 }
-
-                if(category.length > 0) {
-                    this.all_post = _.filter(this.all_post, (v) => _.indexOf(category, v.category) !== -1)
+                if(JSON.parse(FilterPost.state.categories) !== null && JSON.parse(FilterPost.state.categories).length != 0){
+                    filters['category'] = JSON.parse(FilterPost.state.categories)
                 }
-
+                let filterKeys = Object.keys(filters);
+                this.all_post = this.all_post.filter((item) => filterKeys.every((key) => (filters[key].indexOf(item[key]) !== -1)))
                 this.orderPost()
             },
             initializeVariables(){

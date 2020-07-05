@@ -5,3 +5,9 @@
         <home :posts="{{ $posts }}" ref="home"/>
     </div>
 @endsection
+
+@section('js')
+    <script>
+        // $('modal').show();
+    </script>
+@endsection
