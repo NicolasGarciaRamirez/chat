@@ -201,7 +201,7 @@
                     <div class="card-header bg-black" id="headingSix">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             <img class="icon" src="/images/icons/linked-other-profile.svg" />
-                            <button type="button" class="btn btn-link text-white">Linked Other Noisesharks Profiles</button>
+                            <button type="button" class="btn btn-link text-white" @click="showModalLinked">Linked Other Noisesharks Profiles</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
@@ -269,7 +269,7 @@ export default {
         if (this.user.social_auth) {
             this.user.social_auth.map(auth =>{
                 if (auth.provider == 'FacebookProvider') {
-                    this.auth_facebook = auth.provider 
+                    this.auth_facebook = auth.provider
                 }
                 if (auth.provider == 'TwitterProvider') {
                     this.auth_twitter = auth.provider

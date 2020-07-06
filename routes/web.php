@@ -89,7 +89,7 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::name('post.store')->post('/store', 'Post\PostController@store');
             Route::name('post.update')->post('/update/{token}', 'Post\PostController@update');
-            Route::name('post.delete')->delete('/delete/{token}', 'Post\PostController@delete');
+            Route::name('post.delete')->delete('/delete/{post}', 'Post\PostController@delete');
         });
     });
 

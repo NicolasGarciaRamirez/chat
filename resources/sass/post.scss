@@ -326,13 +326,23 @@
     .comment{
         .comment-user-image{
             width: 2.64rem;
-            transform: translateY(-11px);
+            transform: translateY(-0.7rem);
             max-width: 2.64rem;
             min-height: 2.64rem;
             max-height: 2.64rem;
         }
         .icon{
             width: 1rem;
+        }
+        .comment-footer{
+            transform: translateY(0.6rem);
+            margin-bottom: 0.3rem;
+        }
+        .line{
+            :before{
+                content: '';
+                border-top: 2px solid $fourth-color !important;
+            }
         }
     }
 }

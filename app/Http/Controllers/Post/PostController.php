@@ -127,9 +127,9 @@ class PostController extends Controller
      * @param $token
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($username, $token)
+    public function delete($username, Post $post)
     {
-        $post = Post::whereToken($token)->delete();
+        $post->delete();
         return response()->json([
             'deleted' => true,
             'errors' => null,

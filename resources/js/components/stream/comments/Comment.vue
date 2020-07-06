@@ -1,10 +1,10 @@
 <template>
-    <div class="d-flex align-items-center py-3 w-100">
-        <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-pill mr-2">
+    <div class="d-flex align-items-center pt-2 w-100" v-if="view_reply">
+        <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-circle mr-2">
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                    <span ><a :href="`/${comment.id}/Profile/WorkHistory`" class="font-weight-bold no-underline text-white">{{ comment.user.personal_information.full_name }}</a></span>
+                    <span ><a :href="`/${auth.username}/Profile/WorkHistory`" class="font-weight-bold no-underline text-white pb-3">{{ comment.user.personal_information.full_name }}</a></span>
                     <span class="ml-2" :id="`comment_body`+comment.id" >
                         <form @submit.prevent="update" v-if="edit">
                             <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
@@ -30,7 +30,7 @@
             <div class="comment-footer">
                 <span>{{ comment.time_ago }}</span>
                 <span class="mx-3">{{ likes.length }} lit</span>
-                <span @click="$parent.form_reply = true" class="cursor-pointer"><span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span></span>
+                <span class="cursor-pointer" @click="$parent.form_reply = true"><span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span></span>
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
 <script>
 import Auth from '../../../helpers/Auth'
     export default {
-        props: ['comment'],
+        props: ['comment','view_reply'],
         template:{
 
         },
@@ -132,19 +132,30 @@ import Auth from '../../../helpers/Auth'
                     alert('the comment cannot be empty')
                 })
             },
-            deleteComment(){
-                axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res =>{
+            deleteComment: function () {
+                axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
                     if (res.data.deleted) {
                         this.$toasted.show('The comment has been deleted successfully!', {
                             position: "bottom-right",
-                            duration : 4000,
+                            duration: 4000,
                             className: "p-4 notification bg-primary",
                             keepOnHover: true
                         })
-                        var indice = this.$parent.$parent.post.comments.findIndex(element => element.id == res.data.comment.id)
-                        this.$parent.$parent.post.comments.splice(indice, 1)
+                        if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
+                            let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
+                                return comment.id === res.data.comment.id
+                            })
+                            this.$parent.$parent.post.comments.splice(index, 1)
+                        } else {
+                            if (res.data.comment.commentable_id === this.$parent.comment.id) {
+                                let index = _.findIndex(this.$parent.comment.comments, function (comment) {
+                                    return comment.id === res.data.comment.id;
+                                })
+                                this.$parent.comment.comments.splice(index, 1)
+                            }
+                        }
                     }
-                }).catch(err =>{
+                }).catch(err => {
 
                 })
             }

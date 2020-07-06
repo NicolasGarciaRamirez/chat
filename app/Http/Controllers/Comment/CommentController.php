@@ -56,7 +56,7 @@ class CommentController extends Controller
      * @param Request $request
      * @param [type] $username
      * @param Comment $comment
-     * @return void
+     * @return \Illuminate\Http\JsonResponse|void
      */
     public function update(Request $request, $username, Comment $comment)
     {
@@ -73,7 +73,7 @@ class CommentController extends Controller
      *
      * @param [type] $username
      * @param Comment $comment
-     * @return void
+     * @return \Illuminate\Http\JsonResponse|void
      */
     public function delete($username, Comment $comment)
     {
