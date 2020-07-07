@@ -25,7 +25,7 @@
                 <div class="dropdown-menu bg-primary text-white dropdown-menu-right p-3" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" :href="`/${auth.username}/Profile/WorkHistory`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 939.162 1079.12" enable-background="new 0 0 939.162 1079.12"
+                            width="20px" viewBox="0 0 939.162 1079.12" enable-background="new 0 0 939.162 1079.12"
                             xml:space="preserve" class="mr-3 svg-icon">
                             <path fill="#545454" d="M469.607,0c143.015,0,259.101,112.041,259.101,250.259c0,138.215-116.086,250.256-259.101,250.256
                                 c-143.068,0-259.038-112.041-259.038-250.256C210.569,112.041,326.54,0,469.607,0"/>
@@ -41,7 +41,7 @@
                     </a>
                     <a class="dropdown-item" :href="`/${auth.username}/Channel/Activity`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="20px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                             <path fill="#545454" d="M580.365,361.065L753.976,1.598h-70.156L541.8,295.646L394.814,1.598h-70.658l179.681,359.468H0V1080
                                 h1078.387V361.065H580.365z M728.001,941.69H126.372V499.402h601.629V941.69z M952.012,941.891H791.138v-63.188h160.874V941.891z
                                 M952.012,815.414H791.138v-63.137h160.874V815.414z M952.012,688.988H791.138v-63.137h160.874V688.988z M952.012,562.563H791.138
@@ -57,7 +57,7 @@
                     </a>
                     <a class="dropdown-item" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="15px" viewBox="0 0 1264.782 1080" enable-background="new 0 0 1264.782 1080" xml:space="preserve" class="mr-3 svg-star">
+                            width="20px" viewBox="0 0 1264.782 1080" enable-background="new 0 0 1264.782 1080" xml:space="preserve" class="mr-3 svg-star">
                         <polygon stroke="white" stroke-width="80" stroke-miterlimit="10" points="1264.782,410.982 829.748,353.176
                             630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "/>
                         </svg>
@@ -66,7 +66,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="20px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M669.827,795.706c-4.932,2.938-10.063,5.764-15.544,8.425c-42.799,21.062-98.949,32.59-158.142,32.59
                             c-15.594,0-30.938-0.831-46.035-2.438c-0.251,30.04-4.783,59.027-12.854,86.241c18.881,2.938,38.711,4.545,58.889,4.545
                             c49.825,0,98.105-9.645,132.482-26.493c28.349-13.856,41.203-29.874,41.203-38.964V795.706z"/>
@@ -168,7 +168,7 @@
                     </a>
                     <a class="dropdown-item" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="20px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
                             C140.316,0.807,5.113,143.518,5.113,319.004c0,137.825,77.957,297.373,231.784,474.343
                             c118.566,136.343,247.543,241.941,284.236,271.054l19.945,15.792l19.889-15.792c36.693-29.112,165.67-134.653,284.237-271.054
@@ -177,7 +177,7 @@
                     Supporters <small class="ml-1">(contributor only)</small></a>
                     <a class="dropdown-item" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="20px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z
                             M569.919,454.482c-0.171-0.055-0.256-0.055-0.344-0.055c-0.171,0-0.256-0.055-0.427-0.055c1.544-1.828,3.175-3.627,4.55-5.564
                             C572.497,450.745,571.209,452.544,569.919,454.482 M725.56,192.275c-6.612,0.167-12.882-0.442-18.895-1.855
@@ -187,7 +187,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="18px" height="23px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="18px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M856.362,110.157c0-23.235,28.358-42.046,63.201-42.046V5.07H350.814
                             c-87.154,0-158.092,47.135-158.092,105.087v277.472h663.64V110.157z"/>
                         <path fill="none" stroke="#545454" stroke-width="0.25" stroke-miterlimit="10" d="M856.362,110.157
@@ -214,7 +214,7 @@
                     Payments</a>
                     <a class="dropdown-item" :href="`/User/Settings/${auth.username}`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="20px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                         <path fill="#545454" d="M935.22,408.356l-5.16-1.821l-20.028-48.652l2.108-4.917c60.862-140.053,56.59-144.25,46.549-154.301
                             l-81.06-80.438c-3.271-3.285-9.097-5.661-14.146-5.661c-4.552,0-18.31,0-138.04,55.005l-4.771,2.209l-49.489-20.102l-1.941-5.024
                             C612.927,3.024,607.268,3.024,593.23,3.024H478.773c-14.037,0-20.308,0-72.572,141.906l-1.886,5.188l-49.156,20.269l-4.715-1.934
@@ -246,7 +246,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout" @click="logout()">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" height="20px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
+                            width="20px"  viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon mr-3">
                             <path fill="#545454" d="M917.973,160.942c-210.085-211.265-551.77-211.265-761.743-0.056
                                 c-210.025,211.265-210.025,554.968,0,766.289c209.974,211.21,551.658,211.21,761.743-0.055
                                 C1127.943,715.854,1127.943,372.151,917.973,160.942 M859.198,868.055c-177.595,178.643-466.597,178.643-644.192,0

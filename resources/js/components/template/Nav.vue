@@ -61,8 +61,8 @@
             <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')" data-category="Audio Clips">
             <label for="audio_clips"><span>Audio Clips</span></label>
         </li>
-         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Performances and Jams')">
+        <li class="c-sidebar-nav-item">
+            <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
             <label for="audio_clips"><span>Performances and Jams</span></label>
         </li>
         <li class="c-sidebar-nav-item p-0">
@@ -75,17 +75,17 @@
         <li class="c-sidebar-nav-title mt-0 pt-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <!-- <div v-if="auth.username">
+        <div v-if="auth.username">
             <div v-for="(follow, index) in user.followers" :key="index">
-                <li class="c-sidebar-nav-item">
-                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information.artistic_name ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
+                <li class="c-sidebar-nav-item" v-if="follow.user.username">
+                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
                     <span class="float-sm-right c-fifth dot">•</span>
                 </li>
             </div>
         </div>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
-        </li> -->
+        </li>
         <app-footer />
     </ul>
 </template>
@@ -96,11 +96,11 @@
     import FilterPost from '../../helpers/FilterPost'
 
     export default {
-        // props:['user'],
+        props:['user'],
         data(){
             return {
                 auth: Auth.state,
-                filters: FilterPost.state
+                filters: FilterPost.state,
             }
         },
         components: {
@@ -110,15 +110,7 @@
             Auth.initialize()
             FilterPost.initialize()
             this.setFilters()
-            // if (this.auth.username) {
-            //     if (!this.user) {
-            //         this.user = {
-            //             followers:{
-            //                 user:{}
-            //             }
-            //         }
-            //     }
-            // }
+
         },
         methods:{
             updateFilterGender(genre){
@@ -146,7 +138,10 @@
                     })
                 }
                 this.filterPost()
-            }
+            },
+            // getUser(){
+            //     axios.post
+            // }
         }
     }
 </script>

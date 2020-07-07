@@ -14,17 +14,17 @@
                     <i class="fas fa-ellipsis-h c-third fa-1x ml-1"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
                         <div v-if="comment.user.username == auth.username">
-                            <div class="dropdown-item" @click="edit = true">Edit</div>
-                            <div class="dropdown-item" @click="deleteComment">Delete</div>
+                            <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
+                            <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
                         </div>
                         <div v-else>
-                            <a href="mailto:support@noisesahrks.com" class="dropdown-item">Report</a>
-                            <a href="#" class="dropdown-item">Hidden</a>
+                            <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
+                            <a href="#" class="dropdown-item cursor-pointer">Hidden</a>
                         </div>
                     </div>
                 </div>
                 <div :id="`litComment`+comment.id" @click="colorFlame(like_type)">
-                    <img src="/images/icons/post-flame.svg" alt="flame-red" class=" float-right" height="20">
+                    <img src="/images/icons/post-flame.svg" alt="flame-red" class="cursor-pointer float-right" height="20">
                 </div>
             </div>
             <div class="comment-footer">

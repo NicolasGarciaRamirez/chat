@@ -34,7 +34,7 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Exception
      */
     public function store(Request $request) //cambiar a form request
@@ -42,51 +42,58 @@ class PostController extends Controller
         \DB::beginTransaction();
 
         try {
-            if ($request->resource != null) {
-                // $request->validate([
-                //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4,pdf,doc,docx,xls'
-                // ]);
-                $key = md5(\Auth::user()->id);
-                $hash = \Str::random(10);
+            if ($this->user->profile_information){
 
-                if ($request->resource_type == 'image') {
-                    $resource = $this->setImage($request);
-                }
-                if ($request->resource_type == 'video') {
-                    $resource = "/images/post/videos/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
-                    $request->resource->move(public_path("/images/post/videos/{$hash}/"), $resource);
-                }
-                if ($request->resource_type == 'audio') {
-                    $resource = "/images/post/audio/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
-                    $request->resource->move(public_path("/images/post/audio/{$hash}/"), $resource);
-                }
-                if ($request->resource_type == 'docs') {
-                    $resource = "/images/post/docs/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
-                    $request->resource->move(public_path("/images/post/docs/{$key}/"), $resource);
+                if ($request->resource != null) {
+                    // $request->validate([
+                    //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4,pdf,doc,docx,xls'
+                    // ]);
+                    $key = md5(\Auth::user()->id);
+                    $hash = \Str::random(10);
+
+                    if ($request->resource_type == 'image') {
+                        $resource = $this->setImage($request);
+                    }
+                    if ($request->resource_type == 'video') {
+                        $resource = "/images/post/videos/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
+                        $request->resource->move(public_path("/images/post/videos/{$hash}/"), $resource);
+                    }
+                    if ($request->resource_type == 'audio') {
+                        $resource = "/images/post/audio/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
+                        $request->resource->move(public_path("/images/post/audio/{$hash}/"), $resource);
+                    }
+                    if ($request->resource_type == 'docs') {
+                        $resource = "/images/post/docs/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
+                        $request->resource->move(public_path("/images/post/docs/{$key}/"), $resource);
+                    }
+
+                } else {
+                    $resource = null;
                 }
 
-            } else {
-                $resource = null;
+                $post = new Post($request->all());
+                $post->resource = $resource;
+                if ($request->allow_download) {
+                    $post->allow_download = $request->allow_download;
+                }
+                if ($request->replace_caption) {
+                    $post->replace_caption = $request->replace_caption;
+                }
+                $post->resource_type = $request->resource_type;
+                $post->token = \Str::random(80);
+                if ($this->user->profile_information){
+                    $this->user->posts()->save($post);
+                    \DB::commit();
+                }
+
+                return response()->json([
+                    'saved' => true,
+                    'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information'),
+                    'valid' => $this->user->profile_information ? true : false,
+                    'errors' => null
+                ], 200);
             }
 
-            $post = new Post($request->all());
-            $post->resource = $resource;
-            if ($request->allow_download) {
-                $post->allow_download = $request->allow_download;
-            }
-            if ($request->replace_caption) {
-                $post->replace_caption = $request->replace_caption;
-            }
-            $post->resource_type = $request->resource_type;
-            $post->token = \Str::random(80);
-            $this->user->posts()->save($post);
-
-            \DB::commit();
-            return response()->json([
-                'saved' => true,
-                'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information'),
-                'errors' => null
-            ], 200);
         } catch (\Exception $e) {
             \DB::rollBack();
             return response()->json([

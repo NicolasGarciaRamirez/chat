@@ -33,6 +33,7 @@
         "popper.js": "^1.16.1",
         "readmore-js": "^2.2.1",
         "vee-validate": "2.2.15",
+        "vue-advanced-cropper": "^0.16.7",
         "vue-doc-preview": "^0.3.2",
         "vue-hashtag-textarea": "^0.3.7",
         "vue-jcrop": "^1.0.3",

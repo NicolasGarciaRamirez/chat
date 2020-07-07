@@ -13,10 +13,11 @@
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form @submit.prevent="save">
-                            <label for="img" class="text-center">
-                                <img :src="imageData" alt="img-profile" id="img-profile" class="img-fluid cursor-pointer">
-                            </label>
-                            <input type="file" class="d-none" id="img" @change="previewImage">
+<!--                            <label for="img" class="text-center">-->
+<!--                                <img :src="imageData" alt="img-profile" id="img-profile" class="img-fluid cursor-pointer">-->
+
+<!--                            </label>-->
+<!--                            <input  type="file" class="d-none" id="img" @change="previewImage">-->
                             <div class="text-right p-4">
                                 <button class="btn bg-primary text-white" data-dismiss="modal">Cancel</button>
                                 <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
@@ -34,16 +35,14 @@
 
 <script>
 import Auth from '../../../../helpers/Auth'
-import { Jcrop } from 'vue-jcrop';
 
 export default {
     components:{
-        Jcrop
     },
     data(){
         return {
             disable: false,
-            imageData: this.$parent.user.avatar,
+            imageData: this.$parent.img,
             resource: '',
             options:{
                 multi: true,
@@ -53,12 +52,12 @@ export default {
         }
     },
     mounted(){
-       
+
     },
     methods:{
         async previewImage(w){
             this.resource = w.target.files[0]
-            
+
             var input = w.target;
             if (input.files && input.files[0]) {
                 var reader = new FileReader();

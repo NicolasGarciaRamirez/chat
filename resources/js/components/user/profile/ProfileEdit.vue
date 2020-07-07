@@ -2,7 +2,7 @@
     <section>
         <div class="container-fluid justify-content-between d-md-flex bg-black my-5 content-personal-details">
             <div class="mb-3">
-                <h3 class="c-white font-weight-bold">Personal Details <div class="fas fa-pencil-alt"></div></h3>
+                <h3 class="c-white font-weight-bold">Personal Details <i class="fas fa-pencil-alt"></i></h3>
                 <label class="c-fourth">Name: <span class="text-white">{{ user.personal_information.full_name  }}</span></label><br>
                 <label class="c-fourth">Gender: <span class="text-white"> {{ user.personal_information.gender }}</span></label><br>
                 <label class="c-fourth">Location: <span class="text-white">{{ user.personal_information.location }}</span> </label><br>

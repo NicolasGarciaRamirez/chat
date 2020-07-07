@@ -1,8 +1,8 @@
 <template>
-    <div class="d-flex flex-row mb-5" style="flex-grow: 4">
+    <div class="d-flex flex-row text-center justify-content-center mb-5" style="flex-grow: 1">
         <div style="width: 180px">
             <label :for="`imgRelease${index}`">
-                <img class="img-fluid pr-3" :src="release_update.image"/>
+                <img class="img-fluid pr-3" :src="release_update.image" style="width: 17rem"/>
             </label>
             <input type="file" :id="`imgRelease${index}`" name="imageRelease" accept=".jpg , .png , .jpge" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="previewImage" />
             <button type="button" class="btn text-white rounded-pill bg-fifth w-90" @click="deleteRelease(index)">
@@ -38,7 +38,7 @@
 
             },
             deleteRelease(index){
-                var self = this
+                let self = this
                 self.$parent.releases_information.splice(index, 1)
             }
         }

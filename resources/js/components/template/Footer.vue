@@ -1,5 +1,9 @@
 <template>
     <section>
+        <div>
+            <modal-for-music />
+            <modal-merch />
+        </div>
         <footer class="footer c-secundary">
             <div class="d-flex justify-content-between">
                 <a href="/Terms">Terms</a>
@@ -18,8 +22,6 @@
             </div>
             <p class="text-center mt-4">© 2019 Noisesharks ® Registered in England and Wales No. 10670071</p>
         </footer>
-        <modal-for-music />
-        <modal-merch />
     </section>
 </template>
 
@@ -28,8 +30,8 @@ import ModalMerch from '../ModalsCommingSoon/ModalMerch'
 import ModalForMusic from '../ModalsCommingSoon/ModalForMusic'
     export default {
         components:{
-            ModalForMusic,
-            ModalMerch
+            ModalMerch,
+            ModalForMusic
         },
         methods:{
             showModalMerch(){

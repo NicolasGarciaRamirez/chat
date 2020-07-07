@@ -142,7 +142,7 @@
                     </div>
                     <div id="collapseSix" class="collapse text-center bg-black" aria-labelledby="headingSix" data-parent="#accordionProfile">
                         <button type="button" class="bg-primary c-white rounded-pill" v-on:click="addRelease">Add Release</button>
-                        <div id="releases" class="card-body d-flex text-white bg-black align-items-center flex-wrap ">
+                        <div id="releases" class="card-body d-flex text-white bg-black align-items-center flex-wrap">
                             <single-release v-for="(release, index) in releases_information" :key="index" :release="release" :index="index" />
                         </div>
                     </div>
@@ -288,7 +288,7 @@
                                     <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Spotify">
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -385,7 +385,7 @@ export default {
                 album_name:'',
                 artistic_name:'',
                 genre:'',
-                image:'/images/default.png',
+                image:'/images/profile/default-releases.svg',
                 label:'',
                 release_date:''
             })
@@ -422,7 +422,7 @@ export default {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
                     this.$toasted.show('The profile information has been updated successfully!', {
-                        position: "bottom-right", 
+                        position: "bottom-right",
                         duration : 4000,
                         className: "p-4 notification bg-primary",
                         keepOnHover: true

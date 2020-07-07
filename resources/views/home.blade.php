@@ -7,7 +7,12 @@
 @endsection
 
 @section('js')
-    <script>
-        // $('modal').show();
-    </script>
+{{--    <script type="text/javascript">--}}
+{{--        $(document).ready(function(){--}}
+{{--            console.log(window.screen.width)--}}
+{{--            if (window.screen.width <= 360){--}}
+{{--                $('#ModalMobile').modal('show');--}}
+{{--            }--}}
+{{--        })--}}
+{{--    </script>--}}
 @endsection

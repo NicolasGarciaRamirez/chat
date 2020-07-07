@@ -26,19 +26,24 @@
             </div>
 
             <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
-                <img src="/images/chat.svg" alt="chat" class="icon mr-3">
-                <img src="/images/icons/post-up.svg" alt="post-up" class="icon mr-3">
-                <div :id="`follow`+user.token" @click="colorFollow(follow_type)">
-                    <a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0 mx-3">
-                        <div class="pt-0 pb-0 pl-1 pr-1">
-                            <label class="m-1 font-weight-bold">FOLLOW</label>
-                            <img src="/images/icons/star.svg" class="c-fifth ml-2 mb-1" width="15" height="18">
-                        </div> 
-                    </a>
+                <img src="/images/chat.svg" alt="chat" class="icon cursor-pointer">
+                <img src="/images/icons/post-up.svg" alt="post-up" class="icon cursor-pointer mx-3">
+                <div :id="`follow`+user.token" class="mx-3" @click="colorFollow(follow_type)" >
+                    <button type="button" class="bg-primary align-items-right border-white function">
+                        <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
+                            <g id="Layer_2">
+                                <g id="Layer_2-2">
+                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
+                                        l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </button>
                 </div>
-                <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <i class="fas fa-ellipsis-h c-third fa-2x mr-1 cursor-pointer"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
-                    <div class="dropdown-item" >Copy Profile Link</div>
+                    <div class="dropdown-item cursor-pointer" >Copy Profile Link</div>
                     <a href="mailto:support@noisesahrks.com" class="dropdown-item">Report</a>
                 </div>
             </div>
@@ -63,6 +68,7 @@ export default {
     props:['user'],
     data(){
         return {
+            img:'',
             type_change_image: 'Profile',
             auth: Auth.state,
             follow_type: 'follow',
@@ -82,14 +88,22 @@ export default {
         ModalLogin
     },
     methods: {
-        showChangeImage(){
+        showChangeImage(w){
+            var input = w.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = (e) => {
+                    this.imageData = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
             $('#ModalChangeImage').modal('show')
         },
         getFollow(){
             if(this.user.followers){
                 this.user.followers.map(follow =>{
                     if (follow.user.username == Auth.state.username) {
-                        $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
+                        $(`#follow`+this.user.token+` button`).addClass('function-active').removeClass('function')
                         this.follow_type = 'unfollow'
                     }
                 })
@@ -98,10 +112,10 @@ export default {
         colorFollow(type){
             if (Auth.state.token) {
                 if (type == 'follow') {
-                    $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white active pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
+                    $(`#follow`+this.user.token+` button`).addClass('function-active').removeClass('function')
                     this.store(type)
                 } else if (type == 'unfollow') {
-                    $(`#follow`+this.user.token+` a`).replaceWith('<a class="btn rounded-pill bg-primary align-items-center justify-content-center font-weight-bold border-white pt-0 pb-0 mx-2"><div class="pt-0 pb-0 pl-1 pr-1"><label class="m-1">FOLLOW</label><img src="/images/icons/star.svg" class="c-fifth mb-1 ml-1" width="17" height="18"></div></a>')
+                    $(`#follow`+this.user.token+` button`).addClass('function').removeClass('function-active')
                     this.store(type)
                 }
             }else{

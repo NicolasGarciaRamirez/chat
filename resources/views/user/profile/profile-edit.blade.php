@@ -5,6 +5,6 @@
         <div>
             @include("user._header-profile", $user)
         </div>
-        <profile-edit :user="{{ $user }}"/>
+        <profile-edit :user="{{ $user }}" />
     </div>
 @endsection

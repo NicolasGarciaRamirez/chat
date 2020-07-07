@@ -10,12 +10,12 @@
                         v-if="!replace_caption"
                         >
                     </textarea>
-                    <div class="image-preview" v-if="imageData.length > 0">
+                    <div class="d-flex justify-content-start image-preview" v-if="imageData.length > 0">
                         <img class="preview" :src="imageData" v-if="post.resource_type === 'image'">
                         <video :src="`${imageData}`" controls   class="preview" v-if="post.resource_type === 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3" v-if="post.resource_type === 'audio'" />
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : ''}`"  class="preview p-3" v-if="post.resource_type === 'docs'">
-                        <i class="fas fa-times" @click="deleteImage"></i>
+                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="preview p-3" v-if="post.resource_type === 'docs'">
+                        <i class="fas fa-times cursor-pointer" @click="deleteImage"></i>
                     </div>
                 </div>
                 <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
@@ -88,9 +88,8 @@
                             <input id="input-docs" name="docs" type="file" accept=".pdf, .docx, .xlsx, .pptx" @change="previewImage" @click="post.resource_type = 'docs'">
                         </div>
 
-                        <a href="#" class="font-weight-bold c-fourth">GO LIVE <span class="c-fifth ml-1">•</span></a>
+                        <a class="font-weight-bold c-fourth cursor-pointer" @click="showModalLive">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-
                     <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.category === '' && post.genre === ''">Post</button>
                 </div>
                 <div class="config-post  bg-primary">
@@ -111,7 +110,7 @@
                     <div class="d-flex flex-row justify-content-between py-3" v-if="post.description != '' || post.resource != ''">
                         <div class="d-flex flex-row">
                             <div>
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1 font-weight-bold" style="width:200px;"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1 font-weight-bold" id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
                                     <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
                                     <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
@@ -124,7 +123,7 @@
                                 </div>
                             </div>
                              <div>
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" style="width:200px;"  id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownCategory">
                                     <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
                                     <div class="dropdown-item" @click="post.category = 'Vlogs'">Vlogs</div>
@@ -137,7 +136,7 @@
                         </div>
                         <div  class="d-flex flex-row">
                             <div class="d-flex flex-row float-right justify-content-between align-items-center">
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" style="width:200px;"  id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownEveryone">
                                     <div class="dropdown-item" @click="post.privacy = 'Everyone'">Everyone</div>
                                     <div class="dropdown-item" @click="post.privacy = 'Followers'">Followers</div>
@@ -155,6 +154,7 @@
             </div>
         </form>
         <posts :posts="order_post" ref="posts"/>
+        <modal-live-stream></modal-live-stream>
     </section>
 </template>
 
@@ -162,13 +162,16 @@
     import Auth from "../../helpers/Auth"
     import FilterPost from "../../helpers/FilterPost"
     import Posts from "../stream/Posts";
+    import ModalLiveStream from "../ModalsCommingSoon/ModalLiveStream";
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
+
     export default {
         name: "Index",
         props:['posts'],
         components:{
             Posts,
-            VueHashtagTextarea
+            VueHashtagTextarea,
+            ModalLiveStream
         },
         data(){
             return {
@@ -208,10 +211,13 @@
         computed:{
             resource_extension(){
                 let extension = this.post.resource.name.split('.')
-                return extension[1]
+                return _.last(extension)
             }
         },
         methods:{
+            showModalLive(){
+                $('#ModalLiveStream').modal('show')
+            },
             async addClassWhite(type, check){
                 if (type === 'ReplaceCaption') {
                     $('#ReplaceCaption').removeClass('c-fourth').addClass('text-white')
@@ -234,7 +240,6 @@
             },
             previewImage(event) {
                 this.post.resource = event.target.files[0]
-                console.log(this.post.resource)
                 var input = event.target;
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -246,9 +251,11 @@
             },
             async store(){
                 if (this.auth.token) {
-                    // this.user.profile_information.title != null redirect to edit profile // no esta terninbado
                     this.loading = true
-                    var imagePost = new FormData();
+                    if (this.allow_download){
+                        this.post.allow_download = true
+                    }
+                    let imagePost = new FormData();
                     if (this.post.resource != '') {
                         imagePost.append('resource', this.post.resource, this.post.resource.name)
                         imagePost.append('allow_download', this.post.allow_download)
@@ -260,20 +267,26 @@
                     imagePost.append('category', this.post.category)
 
                     await axios.post(`/${this.auth.username}/Post/store`, imagePost).then(res =>{
-                        if (res.data.saved) {
-                            this.loading = false
-                            this.initializeVariables()
-                            this.all_post.unshift(res.data.post)
-                            this.filterPost()
-                            $('html, body').animate({ scrollTop: 0 }, 'fast');
-                            this.$toasted.show('Post Published Successfully!', {
-                                position: "bottom-right",
-                                duration : 4000,
-                                className: "p-4 notification bg-primary",
-                                keepOnHover: true
-                            })
+                        if (res.data.valid){
+                            console.log('valid')
+                            if (res.data.saved) {
+                                this.loading = false
+                                this.initializeVariables()
+                                this.all_post.unshift(res.data.post)
+                                this.filterPost()
+                                $('html, body').animate({ scrollTop: 0 }, 'fast');
+                                this.$toasted.show('Post Published Successfully!', {
+                                    position: "bottom-right",
+                                    duration : 4000,
+                                    className: "p-4 notification bg-primary",
+                                    keepOnHover: true
+                                })
+                            }else{
+                                this.loading = false
+                            }
                         }else{
-                            this.loading = false
+                            window.location.replace(`/${this.auth.username}/Edit`)
+                            console.log('novalid')
                         }
                     }).catch(err=>{
                         this.loading = false
@@ -301,7 +314,7 @@
             },
             initializeVariables(){
                 this.post = {
-                     replace_caption:"",
+                    replace_caption:"",
                     allow_download:"",
                     description: '',
                     resource: '',

@@ -17,8 +17,8 @@
             </div>
         </div>
         <div class="navigation-body">
-            <a :href="`/${user.username}/Edit`" class="text-white font-weight-bold mr-3">Profile</a>
             <a :href="`/${user.username}/Channel/Edit`" class="c-fifth font-weight-bold active">Channel</a>
+            <a :href="`/${user.username}/Edit`" class="text-white font-weight-bold mx-3">About</a>
         </div>
         <accordion-channel :user="user" />
     </section>

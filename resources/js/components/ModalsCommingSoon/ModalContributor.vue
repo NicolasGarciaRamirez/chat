@@ -21,7 +21,7 @@
                         </p>
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn rounded-pill text-white bg-fifth my-2">Notify Me</button>
+                        <button type="button" class="btn rounded-pill font-weight-bold text-white bg-fifth my-2" data-dismiss="modal">Notify Me</button>
                     </div>
                 </div>
             </div>

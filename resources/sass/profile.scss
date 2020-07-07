@@ -51,7 +51,7 @@
                 min-width: 5.6rem;
             }
         }
-       
+
         .img-portada{
             width: 100%;
             min-height: 10rem;
@@ -90,20 +90,106 @@
         }
         .functions{
             a.function{
+                background: $primary-color !important;
+                border: 2px solid white !important;
                 @include media-breakpoint-down(sm){
                     padding: 0px 6px 0px 6px !important;
                     font-size: 0.77rem !important;
                     margin-top: 2rem;
                 }
-                border: 2px solid white;
-                color: #FFFFFF;
+            }
+            button.function{
+                background: $primary-color !important;
+                border: 2px solid white !important;
+                svg{
+                    width: 1rem !important;
+                    margin-left: 0.3rem !important;
+                    path{
+                        fill: $primary-color !important;
+                    }
+                }
+                &:before{
+                    content: 'FOLLOW';
+                }
+                @include media-breakpoint-down(sm){
+                    padding: 0px 6px 0px 6px !important;
+                    font-size: 0.77rem !important;
+                    margin-top: 2rem;
+                }
                 &:hover{
-                    background-color: #FFFFFF !important;
-                    color: black !important;
+                    &:before{
+                        content: 'FOLLOW';
+                    }
+                    border-color: white !important;
+                    background-color: white !important;
+                    color: black;
+                    svg{
+                        width: 1rem !important;
+                        margin-left: 0.3rem !important;
+                        path{
+                            fill: black !important;
+                        }
+                    }
                 }
                 &:active{
-                    background-color: #FFFFFF !important;
-                    color: black !important;
+                    &:before{
+                        content: 'FOLLOWING';
+                    }
+                    border-color: $fifth-color !important;
+                    background-color: $fifth-color !important;
+                    color: white !important;
+
+                    svg{
+                        width: 1rem !important;
+                        margin-left: 0.3rem !important;
+                        path{
+                            fill: white !important;
+                        }
+                    }
+                }
+            }
+            .function-active{
+                svg{
+                    width: 1rem !important;
+                    margin-left: 0.3rem !important;
+                    path{
+                        fill: white !important;
+                    }
+                }
+                background: $fifth-color !important;
+                border: 2px solid $fifth-color !important;
+                &:before{
+                    content: 'FOLLOWING';
+                }
+                &:hover{
+                    &:before{
+                        content: 'FOLLOW';
+                    }
+                    border-color: white !important;
+                    background-color: white !important;
+                    color: black;
+                    svg{
+                        width: 1rem !important;
+                        margin-left: 0.3rem !important;
+                        path{
+                            fill: black !important;
+                        }
+                    }
+                }
+                &:active{
+                    &:before{
+                        content: 'FOLLOWING';
+                    }
+                    border-color: $fifth-color !important;
+                    background-color: $fifth-color !important;
+                    color: white !important;
+                    svg{
+                        width: 1rem !important;
+                        margin-left: 0.3rem !important;
+                        path{
+                            fill: white !important;
+                        }
+                    }
                 }
             }
         }

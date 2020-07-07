@@ -1,14 +1,37 @@
 <template>
-    <vue-wave-surfer :src="file" :options="options"></vue-wave-surfer>
+    <cropper
+        classname="cropper"
+        :src="img"
+        :stencil-props="{
+		aspectRatio: 10/12
+	}"
+        @change="change"
+    ></cropper>
 </template>
 <script>
+    import { Cropper } from 'vue-advanced-cropper'
     export default {
         data() {
             return {
                 options: {
                 },
-                file: 'http://localhost:8000/images/post/audio/ikZw4jotJ9/c4ca4238a0b923820dcc509a6f75849b.mp3'
+                img: 'https://images.pexels.com/photos/226746/pexels-photo-226746.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260'
             }
+        },
+        methods: {
+            change({coordinates, canvas}) {
+                console.log(coordinates, canvas)
+            }
+        },
+        components: {
+            Cropper
         }
     }
 </script>
+
+<style type="text/css">
+    .cropper {
+        height: 600px;
+        background: #DDD;
+    }
+</style>

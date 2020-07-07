@@ -28121,6 +28121,11 @@ textarea {
   color: white !important;
 }
 
+.table-menu td {
+  cursor: pointer;
+  vertical-align: middle;
+}
+
 .c-header .cil-hamburger-menu {
   color: #535353;
   font-size: 30px;
@@ -28932,8 +28937,8 @@ button:focus {
 }
 
 .profile .head-container .functions a.function {
-  border: 2px solid white;
-  color: #FFFFFF;
+  background: #141414 !important;
+  border: 2px solid white !important;
 }
 
 @media (max-width: 767.98px) {
@@ -28944,14 +28949,124 @@ button:focus {
   }
 }
 
-.profile .head-container .functions a.function:hover {
-  background-color: #FFFFFF !important;
-  color: black !important;
+.profile .head-container .functions button.function {
+  background: #141414 !important;
+  border: 2px solid white !important;
 }
 
-.profile .head-container .functions a.function:active {
-  background-color: #FFFFFF !important;
-  color: black !important;
+.profile .head-container .functions button.function svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.profile .head-container .functions button.function svg path {
+  fill: #141414 !important;
+}
+
+.profile .head-container .functions button.function:before {
+  content: "FOLLOW";
+}
+
+@media (max-width: 767.98px) {
+  .profile .head-container .functions button.function {
+    padding: 0px 6px 0px 6px !important;
+    font-size: 0.77rem !important;
+    margin-top: 2rem;
+  }
+}
+
+.profile .head-container .functions button.function:hover {
+  border-color: white !important;
+  background-color: white !important;
+  color: black;
+}
+
+.profile .head-container .functions button.function:hover:before {
+  content: "FOLLOW";
+}
+
+.profile .head-container .functions button.function:hover svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.profile .head-container .functions button.function:hover svg path {
+  fill: black !important;
+}
+
+.profile .head-container .functions button.function:active {
+  border-color: #FF0000 !important;
+  background-color: #FF0000 !important;
+  color: white !important;
+}
+
+.profile .head-container .functions button.function:active:before {
+  content: "FOLLOWING";
+}
+
+.profile .head-container .functions button.function:active svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.profile .head-container .functions button.function:active svg path {
+  fill: white !important;
+}
+
+.profile .head-container .functions .function-active {
+  background: #FF0000 !important;
+  border: 2px solid #FF0000 !important;
+}
+
+.profile .head-container .functions .function-active svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.profile .head-container .functions .function-active svg path {
+  fill: white !important;
+}
+
+.profile .head-container .functions .function-active:before {
+  content: "FOLLOWING";
+}
+
+.profile .head-container .functions .function-active:hover {
+  border-color: white !important;
+  background-color: white !important;
+  color: black;
+}
+
+.profile .head-container .functions .function-active:hover:before {
+  content: "FOLLOW";
+}
+
+.profile .head-container .functions .function-active:hover svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.profile .head-container .functions .function-active:hover svg path {
+  fill: black !important;
+}
+
+.profile .head-container .functions .function-active:active {
+  border-color: #FF0000 !important;
+  background-color: #FF0000 !important;
+  color: white !important;
+}
+
+.profile .head-container .functions .function-active:active:before {
+  content: "FOLLOWING";
+}
+
+.profile .head-container .functions .function-active:active svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.profile .head-container .functions .function-active:active svg path {
+  fill: white !important;
 }
 
 .profile .head-container .check-icon {
@@ -29719,18 +29834,6 @@ button:focus {
   width: 1rem;
 }
 
-.posts .post .post-head .post-user-actions button:hover {
-  border-color: white !important;
-  background-color: white !important;
-  color: black;
-}
-
-.posts .post .post-head .post-user-actions button:active {
-  border-color: #FF0000 !important;
-  background-color: #FF0000 !important;
-  color: white !important;
-}
-
 .posts .post .post-head .post-user-actions button.border-danger:hover {
   border: 2px solid white;
   background: white !important;
@@ -29753,10 +29856,113 @@ button:focus {
   fill: white !important;
 }
 
-.posts .post .post-head .post-user-actions button.active {
+.posts .post .post-head .post-user-actions .follow-active {
+  background: #FF0000 !important;
+  border: 2px solid #FF0000 !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:before {
+  content: "FOLLOWING";
+}
+
+.posts .post .post-head .post-user-actions .follow-active svg {
+  width: 1rem;
+  margin-left: 0.3rem;
+}
+
+.posts .post .post-head .post-user-actions .follow-active svg path {
+  fill: white;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:hover {
   border-color: white !important;
   background-color: white !important;
   color: black;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:hover:before {
+  content: "FOLLOW";
+}
+
+.posts .post .post-head .post-user-actions .follow-active:hover svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:hover svg path {
+  fill: black !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:active {
+  border-color: #FF0000 !important;
+  background-color: #FF0000 !important;
+  color: white !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:active:before {
+  content: "FOLLOWING";
+}
+
+.posts .post .post-head .post-user-actions .follow-active:active svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-active:active svg path {
+  fill: white !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle {
+  background: #141414 !important;
+  border: 2px solid white !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:before {
+  content: "FOLLOW";
+}
+
+.posts .post .post-head .post-user-actions .follow-idle svg {
+  width: 1rem;
+  margin-left: 0.3rem;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle svg path {
+  stroke: white;
+  fill: #141414;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:hover {
+  border-color: white !important;
+  background-color: white !important;
+  color: black;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:hover svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:hover svg path {
+  fill: black !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:active {
+  border-color: #FF0000 !important;
+  background-color: #FF0000 !important;
+  color: white !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:active:before {
+  content: "FOLLOWING";
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:active svg {
+  width: 1rem !important;
+  margin-left: 0.3rem !important;
+}
+
+.posts .post .post-head .post-user-actions .follow-idle:active svg path {
+  fill: white !important;
 }
 
 .posts .post .post-head .post-user-type {

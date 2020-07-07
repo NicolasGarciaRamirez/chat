@@ -26,16 +26,16 @@
                     img{
                         width: 1rem;
                     }
-                    &:hover{
-                        border-color: white !important;
-                        background-color: white !important;
-                        color: black;
-                    }
-                    &:active{
-                        border-color: $fifth-color !important;
-                        background-color: $fifth-color !important;
-                        color: white !important;
-                    }
+                    //&:hover{
+                    //    border-color: white !important;
+                    //    background-color: white !important;
+                    //    color: black;
+                    //}
+                    //&:active{
+                    //    border-color: $fifth-color !important;
+                    //    background-color: $fifth-color !important;
+                    //    color: white !important;
+                    //}
                 }
                 button.border-danger{
                     &:hover{
@@ -61,10 +61,98 @@
                         }
                     }
                 }
-                button.active{
-                    border-color: white !important;
-                    background-color: white !important;
-                    color: black;
+                //button.active{
+                //    border-color: $fifth-color !important;
+                //    background-color: $fifth-color !important;
+                //    color: white;
+                //}
+                .follow-active{
+                    &:before{
+                        content: 'FOLLOWING';
+                    }
+                    background: $fifth-color !important;
+                    border: 2px solid $fifth-color !important;
+                    svg{
+                        width: 1rem;
+                        margin-left: 0.3rem;
+                        path{
+                            fill: white;
+                        }
+                    }
+                    &:hover{
+                        &:before{
+                            content: 'FOLLOW';
+                        }
+                        border-color: white !important;
+                        background-color: white !important;
+                        color: black;
+                        svg{
+                            width: 1rem !important;
+                            margin-left: 0.3rem !important;
+                            path{
+                                fill: black !important;
+                            }
+                        }
+                    }
+                    &:active{
+                        &:before{
+                            content: 'FOLLOWING';
+                        }
+                        border-color: $fifth-color !important;
+                        background-color: $fifth-color !important;
+                        color: white !important;
+
+                        svg{
+                            width: 1rem !important;
+                            margin-left: 0.3rem !important;
+                            path{
+                                fill: white !important;
+                            }
+                        }
+                    }
+                }
+                .follow-idle{
+                    &:before{
+                        content: 'FOLLOW';
+                    }
+                    background: $primary-color !important;
+                    border: 2px solid white !important;
+                    svg{
+                        width: 1rem;
+                        margin-left: 0.3rem;
+                        path{
+                            stroke: white;
+                            fill: $primary-color;
+                        }
+                    }
+                    &:hover{
+                        border-color: white !important;
+                        background-color: white !important;
+                        color: black;
+                        svg{
+                            width: 1rem !important;
+                            margin-left: 0.3rem !important;
+                            path{
+                                fill: black !important;
+                            }
+                        }
+                    }
+                    &:active{
+                        &:before{
+                            content: 'FOLLOWING';
+                        }
+                        border-color: $fifth-color !important;
+                        background-color: $fifth-color !important;
+                        color: white !important;
+
+                        svg{
+                            width: 1rem !important;
+                            margin-left: 0.3rem !important;
+                            path{
+                                fill: white !important;
+                            }
+                        }
+                    }
                 }
             }
             .post-user-type{

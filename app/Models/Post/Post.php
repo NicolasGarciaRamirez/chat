@@ -40,16 +40,25 @@ class Post extends Model
     }
 
 
+    /**
+     * @return int
+     */
     public function getVoteUpCountAttribute()
     {
         return $this->votes()->where('type_vote', 'vote_up')->count();
     }
 
+    /**
+     * @return int
+     */
     public function getVoteDownCountAttribute()
     {
         return $this->votes()->where('type_vote', 'vote_down')->count();
     }
 
+    /**
+     * @return float
+     */
     public function getScoreAttribute()
     {
         return doubleval((( 10 + $this->vote_up_count ) / ( 10 + ( $this->vote_up_count + $this->vote_down_count ))) * (1 - (0.02 * ($this->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60))) * 1);
@@ -107,7 +116,7 @@ class Post extends Model
     /**
      * Undocumented function
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function playlist_post()
     {

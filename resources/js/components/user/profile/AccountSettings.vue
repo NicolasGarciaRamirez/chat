@@ -201,37 +201,37 @@
                     <div class="card-header bg-black" id="headingSix">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             <img class="icon" src="/images/icons/linked-other-profile.svg" />
-                            <button type="button" class="btn btn-link text-white" @click="showModalLinked">Linked Other Noisesharks Profiles</button>
+                            <button type="button" class="btn btn-link text-white" @click="showModalGeneralCommingSoon">Linked Other Noisesharks Profiles</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
                     <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionAccountSettings">
-                        <div class="card-body bg-black">
-                            <div class="flex-column">
-                                <h3>Linked Other Noisesharks Proﬁles</h3>
-                                <p>
-                                    Link your personal proﬁle with the proﬁle of your band, vlog, podcast, or any other Noisesharks proﬁle
-                                    that you are a part of.
-                                </p>
-                                <div class="d-flex justify-content-center main-header bg-black">
-                                   <form action="/" class="header-form-search d-none d-md-block">
-                                        <div class="form-group m-0">
-                                            <div class="input-group">
-                                                <input class="form-control pl-4" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none">
-                                                <div class="divider-vertical"></div>
-                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                                    width="17px" height="17px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve">
-                                                <path fill="#545454" d="M798.209,701.259c53.341-73.104,85.239-162.767,85.239-260.073c0-243.442-197.52-441.594-440.232-441.594
-                                                    C200.428-0.408,2.912,197.743,2.912,441.186c0,243.584,197.516,441.594,440.304,441.594c96.966,0,186.461-31.987,259.221-85.488
-                                                    l288.434,289.301l95.771-96.104L798.209,701.259z M443.216,746.904c-168.083,0-304.792-137.148-304.792-305.719
-                                                    s136.709-305.719,304.792-305.719c168.009,0,304.792,137.148,304.792,305.719S611.226,746.904,443.216,746.904"/>
-                                                </svg>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+<!--                        <div class="card-body bg-black">-->
+<!--                            <div class="flex-column">-->
+<!--                                <h3>Linked Other Noisesharks Proﬁles</h3>-->
+<!--                                <p>-->
+<!--                                    Link your personal proﬁle with the proﬁle of your band, vlog, podcast, or any other Noisesharks proﬁle-->
+<!--                                    that you are a part of.-->
+<!--                                </p>-->
+<!--                                <div class="d-flex justify-content-center main-header bg-black">-->
+<!--                                   <form action="/" class="header-form-search d-none d-md-block">-->
+<!--                                        <div class="form-group m-0">-->
+<!--                                            <div class="input-group">-->
+<!--                                                <input class="form-control pl-4" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none">-->
+<!--                                                <div class="divider-vertical"></div>-->
+<!--                                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"-->
+<!--                                                    width="17px" height="17px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve">-->
+<!--                                                <path fill="#545454" d="M798.209,701.259c53.341-73.104,85.239-162.767,85.239-260.073c0-243.442-197.52-441.594-440.232-441.594-->
+<!--                                                    C200.428-0.408,2.912,197.743,2.912,441.186c0,243.584,197.516,441.594,440.304,441.594c96.966,0,186.461-31.987,259.221-85.488-->
+<!--                                                    l288.434,289.301l95.771-96.104L798.209,701.259z M443.216,746.904c-168.083,0-304.792-137.148-304.792-305.719-->
+<!--                                                    s136.709-305.719,304.792-305.719c168.009,0,304.792,137.148,304.792,305.719S611.226,746.904,443.216,746.904"/>-->
+<!--                                                </svg>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </form>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>
@@ -240,7 +240,7 @@
         <modal-edit-password :user="user" />
         <modal-edit-personal-details :user="user" />
         <modal-cancel :user="user" />
-
+        <modal-general-soon></modal-general-soon>
     </section>
 </template>
 
@@ -249,6 +249,7 @@ import ModalEditAccount from './include/AccountSettings/ModalEditAccount'
 import ModalEditPassword from './include/AccountSettings/ModalEditPassword'
 import ModalEditPersonalDetails from './include/AccountSettings/ModalEditPersonalDetails'
 import ModalCancel from './include/AccountSettings/ModalCancel'
+import ModalGeneralSoon from '../../ModalsCommingSoon/GeneralCommingSoon'
 
 export default {
     props:['user'],
@@ -256,7 +257,8 @@ export default {
         ModalEditAccount,
         ModalEditPassword,
         ModalEditPersonalDetails,
-        ModalCancel
+        ModalCancel,
+        ModalGeneralSoon
     },
     data(){
         return {
@@ -292,6 +294,9 @@ export default {
         },
         showModalCancel(){
             $('#ModalCancel').modal('show')
+        },
+        showModalGeneralCommingSoon(){
+            $('#ModalGeneralCommingSoon').modal('show')
         }
     }
 

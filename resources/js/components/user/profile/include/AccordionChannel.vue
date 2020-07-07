@@ -85,16 +85,11 @@
                 <div class="card">
                     <div class="card-header bg-black" id="headingSix">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <button type="button" class="btn btn-link text-white">
+                            <button type="button" class="btn btn-link text-white" @click="showModal('followers')">
                                 View Followers
                             </button>
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
-                    </div>
-                    <div id="collapseSix" class="collapse " aria-labelledby="headingSix" data-parent="#accordionChannel">
-                        <div class="card-body bg-black">
-
-                        </div>
                     </div>
                 </div>
                 <div class="card">
@@ -150,29 +145,39 @@
         </div>
         <modal-contributor />
         <modal-comming-contributor />
+        <modal-follow :user="user"></modal-follow>
     </section>
 </template>
 
 <script>
 import ModalContributor from '../../../auth/include/ModalContributorSignup'
 import ModalCommingContributor from '../../../ModalsCommingSoon/ModalContributor'
+import ModalFollow from "./AccountSettings/ModalFollow";
+
 export default {
-    components:{
+    props:['user'],
+    components: {
         ModalContributor,
-        ModalCommingContributor
+        ModalCommingContributor,
+        ModalFollow
     },
     data(){
         return {
+            type_table:'followers',
             channel: {
                 support: '',
                 monthly_goal: '',
                 tier_name: '',
                 tier_amount: '',
-                teir_description: ''
+                tier_description: ''
             }
         }
     },
     methods: {
+        showModal(type){
+            this.type_table = type
+            $('#ModalFollow').modal('show')
+        },
         showModalContributor(){
             // $('#ModalContributorSignup').modal('show')
             $('#ModalContributor').modal('show')

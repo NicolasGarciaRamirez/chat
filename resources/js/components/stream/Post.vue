@@ -1,10 +1,18 @@
 <template>
-    <section class="post mt-3" v-if="view_post" v-on:click="onScroll">
+    <section class="post mt-3" v-if="view_post" >
         <div class="post-head bg-primary d-md-flex align-items-start justify-content-between p-3"  >
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
                 <div :id="`follow`+post.token" @click="colorFollow(follow_type)">
-                    <button type="button" class="bg-primary align-items-right border-white">FOLLOW
-                        <img src="/images/icons/star.svg" class="c-fifth ml-2 ">
+                    <button type="button" class="bg-primary align-items-right border-white follow-idle">
+                        <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2">
+                            <g id="Layer_2">
+                                <g id="Layer_2-2">
+                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
+                                        l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
+                                </g>
+                            </g>
+                        </svg>
                     </button>
                 </div>
                 <button v-if="post.user.subscription_type === 'CONTRIBUTOR'" class="bg-primary border-danger d-sm-down-none " @click="showModalSupport">SUPPORT
@@ -59,9 +67,10 @@
         </div>
          <div class="text p-3 item bg-primary" id="description" v-if="!post.replace_caption">
             <span v-if="!edit && !post.replace_caption && post.resource_type !== 'docs'">{{ post.description }}</span>
-            <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type === 'docs'">
-                <h2>{{ post.description }}</h2>
+            <a :href="`${post.resource}`"  class="text-white no-underline p-3"  v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
+                <h4>{{ post.description }}</h4>
             </a>
+            <h4 v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">{{post.description}}</h4>
             <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
                 <textarea
                     class="form-control bg-primary"
@@ -77,23 +86,20 @@
         <div class="post-body bg-primary">
             <div>
                 <div class="d-flex flex-column mt-1 content img-fluid p-3" v-if="post.resource">
-                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type == 'image'" />
+                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type === 'image'" />
                     <video :src="`${post.resource}`" controls  v-if="post.resource_type === 'video'" />
-                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type == 'audio'" ref="surf"></vue-wave-surfer>
-<!--                    <div :id="'waveform'+post.token"  @change="current_time == duration ? playAudio(audio) : ''"></div>-->
-                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type == 'audio'">
+                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf"></vue-wave-surfer>
+                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'">
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio()" >
                             <img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">
                         </div>
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
                     </div>
-                    <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : ''}`"  v-if="post.resource_type === 'docs'" style="min-height: 13rem; max-height: 13rem;">
-                    <!-- <document-preview :value="post.resource" :type="docType" v-if="post.resource_type == 'docs'" /> -->
-
+                    <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  v-if="post.resource_type === 'docs'" style="min-height: 13rem; max-height: 13rem;">
                     <div v-if="post.replace_caption">
-                        <a :href="`${post.resource}`"  class="text-white p-3"  v-if="post.resource_type == 'docs'">
-                            <h2>{{ post.description }}</h2>
+                        <a :href="`${post.resource}`"  class="text-white no-underline p-3"  v-if="post.resource_type === 'docs'">
+                            <h5>{{ post.description }}</h5>
                         </a>
                         <h3 class="mb-3 font-weight-bold" v-if="!edit && post.resource_type != 'docs'">{{ post.replace_caption }}</h3>
                         <p v-if="!edit">{{ post.description }}</p>
@@ -147,11 +153,11 @@
                 </div>
                 <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
                 <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">100</div>
-                <div class="information cursor-pointer" v-if="post.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
+                <div class="information cursor-pointer" v-if="post.allow_download"><a :href="`${post.resource}`"><img src="/images/icons/post-down.svg" alt=""></a></div>
             </div>
         </div>
         <comments :post="post" :view_comment="view_comment"/>
-        <textarea id="link" :value="link" class="d-none"></textarea>
+        <input type="text" :value="`localhost:8000/${post.user.username}/Post/get/${post.token}`" :id="'myInput'+`${post.token}`" class="text-black-50 bg-black border-0" >
         <modal-share-post :post="post" />
         <modal-sure-delete />
     </section>
@@ -231,15 +237,15 @@
                 return this.$refs.surf.waveSurfer
             },
             resource_extension() {
-                let extension = this.post.resource.split(".")
-                return extension[1]
-            }
+                if (this.post.resource_type === 'docs'){
+                    let extension = this.post.resource.split(".")
+                    return _.last(extension)
+                }else{
+                    return 'not-document'
+                }
+            },
         },
         methods:{
-            onScroll(){
-                this.view += 1
-                // console.log(this.view)
-            },
             showModalSure(){
                 $('#ModalSureDelete').modal('show')
             },
@@ -293,10 +299,9 @@
                 this.audio.skipForward(10)
             },
             copyLink(){
-                this.link = `/${this.post.user.username}/Post/get/${this.post.token}`
-                var range = document.createRange();
-                range.selectNode(document.getElementById('link'));
-                window.getSelection().addRange(range);
+                var copyText = document.getElementById("myInput"+this.post.token);
+                copyText.select();
+                copyText.setSelectionRange(0, 99999)
                 document.execCommand("copy");
 
                 this.$toasted.show('The copy link been successfully!', {
@@ -396,8 +401,8 @@
                 if (Auth.state.username){
                     if (this.post.user.followers) {
                         this.post.user.followers.map(follow =>{
-                            if (Auth.state.username == follow.user.username) {
-                                $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white active">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
+                            if (Auth.state.username === follow.user.username) {
+                                $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
                                 this.follow_type = 'unfollow'
                             }
                         })
@@ -406,14 +411,13 @@
             },
             colorFollow(type){
                 if (Auth.state.username) {
-                    if (type == 'follow') {
-                        $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white active">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
+                    if (type === 'follow') {
+                        $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
                         console.log(type)
                         this.store(type)
                     }
-                    if(type == 'unfollow'){
-                        $(`#follow`+this.post.token+' button').replaceWith('<button type="button" class="bg-primary align-items-right border-white">FOLLOW<img src="/images/icons/star.svg" class="c-fifth ml-2 "></button>')
-                        console.log(type)
+                    if(type === 'unfollow'){
+                        $(`#follow`+this.post.token+' button').addClass('follow-idle').removeClass('follow-active')
                         this.store(type)
                     }
                 }else{
@@ -426,7 +430,7 @@
                     request = this.lit
                     if (this.post.likes) {
                         this.post.likes.map(value => {
-                            if (Auth.state.username == value.user.username) {
+                            if (Auth.state.username === value.user.username) {
                                 this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
                             }
                         })
@@ -480,6 +484,8 @@
                     this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
                 }
                 if (type == 'unfollow') {
+                    console.log('si')
+
                     request = this.follow
                     if (this.post.user.followers) {
                         this.post.user.followers.map(follow =>{
@@ -522,7 +528,8 @@
                         this.vote.type_vote = 'vote_up'
                     }
                     if (res.data.follow) {
-                        this.post.followers.push(res.data.follow)
+                        console.log('si')
+                        this.post.user.followers.push(res.data.follow)
                         this.follow_type = 'unfollow'
                     }
                     if (res.data.unfollow) {

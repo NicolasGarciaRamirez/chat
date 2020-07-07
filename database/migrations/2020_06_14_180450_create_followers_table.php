@@ -17,6 +17,7 @@ class CreateFollowersTable extends Migration
             $table->bigIncrements('id');
             $table->string('type');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('following_user');
             $table->timestamps();
             $table->softDeletes();
         });
