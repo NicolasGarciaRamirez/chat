@@ -46,6 +46,6 @@
         }
     </script>
     <script src="{{ asset('/js/pace.min.js') }}" charset="utf-8"></script>
-    @push('script')
+    @stack('scripts')
 </body>
 </html>

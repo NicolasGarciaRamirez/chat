@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Reactions;
 
+use App\Mail\StartedFollowYou;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
@@ -20,27 +21,29 @@ class FollowersController extends Controller
         });
     }
 
-    public function follow(Request $request, $username ,User $user)
+    public function follow(Request $request, $username, User $user)
     {
         \DB::beginTransaction();
         try {
             $follow = new Followers($request->all());
             $follow->following_user = $this->user->id;
             $user->followers()->save($follow);
+
+            \Mail::to($user->email)->send(new StartedFollowYou($this->user, $this->user->personal_information->full_name, $user->personal_information->full_name));
+
             \DB::commit();
 
             return response()->json([
                 'follow' => $follow->load('user.personal_information'),
                 'errors' => null
             ]);
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             \DB::rollback();
             return response()->json([
                 'follow' => null,
                 'errors' => $e
             ]);
         }
-
     }
 
     public function unfollow($username, Followers $follow)

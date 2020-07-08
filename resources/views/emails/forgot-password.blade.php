@@ -401,7 +401,8 @@
                                                 style="padding-left:20px;padding-right:20px;font-size:18px;display:inline-block;"><span
                                                     style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><span
                                                         data-mce-style="font-size: 18px; line-height: 36px;"
-                                                        style="font-size: 18px; line-height: 36px;"><strong><sup>Request A Feature!</sup></strong></span></span></span>
+                                                        style="font-size: 18px; line-height: 36px;"><strong><a
+                                                                href="{{ route('suggestions') }}">Request A Feature</a></strong></span></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>

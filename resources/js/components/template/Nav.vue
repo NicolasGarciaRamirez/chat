@@ -122,7 +122,9 @@
                 this.filterPost()
             },
             filterPost(){
-                this.$root.$refs.home.filterPost()
+                if(location.href == 'http://localhost:8000/' || location.href == 'https://www.noisesharks.com/'){
+                    this.$root.$refs.home.filterPost()
+                }
             },
             setFilters(){
                 var genres = JSON.parse(FilterPost.state.genres)
