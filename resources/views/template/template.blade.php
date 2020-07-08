@@ -45,5 +45,7 @@
             }
         }
     </script>
-    <script src="{{ asset('/js/pace.min.js') }}" charset="utf-8"></script></body>
+    <script src="{{ asset('/js/pace.min.js') }}" charset="utf-8"></script>
+    @push('script')
+</body>
 </html>
