@@ -13,15 +13,15 @@
                         <div class="d-flex flex-column c-fourth text-center justify-content-center my-2 ">
                             <p>
                                 We are still working on the apparence <br>
-                                of our mobile version.
-                            </p><br>
-                            <p class="font-weight-bold">
-                                You can procced but please expect <br>
-                                many appearance issues
+                                of our mobile version.<br>
+                                <span class="font-weight-bold">
+                                    You can procced but please expect <br>
+                                    many appearance issues
+                                </span>
                             </p>
                         </div>
                         <div class="text-center">
-                            <button type="button" class="btn rounded-pill font-weight-bold text-white bg-fifth my-2" data-dismiss="modal">Procced, But Expect Issues</button>
+                            <button type="button" class="btn rounded-pill font-weight-bold text-white bg-fifth mb-4" data-dismiss="modal">Procced, But Expect Issues</button>
                         </div>
                     </div>
                 </div>

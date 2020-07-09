@@ -68,7 +68,7 @@ export default {
     props:['user'],
     data(){
         return {
-            img:'',
+            img:null,
             type_change_image: 'Profile',
             auth: Auth.state,
             follow_type: 'follow',
@@ -81,7 +81,6 @@ export default {
     mounted(){
         Auth.initialize()
         this.getFollow()
-
     },
     components:{
         ModalChangeImage,
@@ -93,11 +92,13 @@ export default {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = (e) => {
-                    this.imageData = e.target.result;
+                    this.img = e.target.result;
+                    console.log(this.img)
                 }
                 reader.readAsDataURL(input.files[0]);
             }
             $('#ModalChangeImage').modal('show')
+            // this.img = w.target.files[0]
         },
         getFollow(){
             if(this.user.followers){

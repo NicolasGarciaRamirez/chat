@@ -155,6 +155,7 @@
         </form>
         <posts :posts="order_post" ref="posts"/>
         <modal-live-stream></modal-live-stream>
+        <modal-mobile />
     </section>
 </template>
 
@@ -164,6 +165,7 @@
     import Posts from "../stream/Posts";
     import ModalLiveStream from "../ModalsCommingSoon/ModalLiveStream";
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
+    import ModalMobile from "../ModalsCommingSoon/ModalMobile";
 
     export default {
         name: "Index",
@@ -171,7 +173,8 @@
         components:{
             Posts,
             VueHashtagTextarea,
-            ModalLiveStream
+            ModalLiveStream,
+            ModalMobile,
         },
         data(){
             return {
@@ -206,6 +209,9 @@
             this.all_post = this.posts
             if(FilterPost.state.genres == null && FilterPost.state.categories == null){
                 this.orderPost()
+            }
+            if (window.screen.width <= 768){
+                $('#ModalMobile').modal('show');
             }
         },
         computed:{

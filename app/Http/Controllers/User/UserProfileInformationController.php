@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
-use App\Models\User\{UserProfileInformation, Members, Releases};
+use App\Models\User\{UserProfileInformation, Members, Releases, WorkedWith};
 
 class UserProfileInformationController extends Controller
 {
@@ -35,7 +35,7 @@ class UserProfileInformationController extends Controller
             $profile_information = new UserProfileInformation($request->profile_information);
             $profile_information->social_media = json_encode($request->profile_information['social_media']);
             $profile_information->user_id = $this->user->id;
-            // return $profile_information;
+
             $this->user->profile_information()->save($profile_information);
 
             collect($request->members_information)->each(function ($value) use($profile_information){
@@ -50,8 +50,14 @@ class UserProfileInformationController extends Controller
                 $release->save();
             });
 
+            collect($request->worked_with_information)->each(function ($query) use($profile_information){
+                $work_with = new WorkedWith($query);
+                $work_with->profile_information_id = $profile_information->id;
+                $work_with->save();
+            });
+
             \DB::commit();
-            
+
             return response()->json([
                 'saved' => true,
                 'user' => User::find($this->user->id)->load('profile_information'),
@@ -76,7 +82,7 @@ class UserProfileInformationController extends Controller
     public function update(Request $request)
     {
         \DB::beginTransaction();
-        
+
         try {
             $profile_information = new UserProfileInformation($request->profile_information);
             $profile_information->social_media = json_encode($request->profile_information['social_media']);
@@ -95,13 +101,13 @@ class UserProfileInformationController extends Controller
                         'profile_information_id'=> $this->user->profile_information->id
                     ]
                 );
-                
+
             });
 
             Releases::whereProfileInformationId( $this->user->profile_information->id)->delete();
-            
+
             collect($request->releases_information)->each(function ($query){
-                
+
                 Releases::updateOrCreate(
                     ['id' => $query['id']],
                     [
@@ -112,6 +118,16 @@ class UserProfileInformationController extends Controller
                         'label'                 => $query['label'],
                         'release_date'          => $query['release_date'],
                         'profile_information_id'=> $this->user->profile_information->id
+                    ]
+                );
+            });
+
+            collect($request->worked_with_information)->each(function ($query){
+                WorkedWith::updateOrCreate(
+                    ['id' => $query['id']],
+                    [
+                        'name' => $query['name'],
+                        'profile_information_id' => $this->user->profile_information->id,
                     ]
                 );
             });

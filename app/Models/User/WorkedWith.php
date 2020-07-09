@@ -12,7 +12,7 @@ class WorkedWith extends Model
      * @var array
      */
     protected $fillable = [
-        'name'
+        'name','profile_information_id'
     ];
 
     /**

@@ -51,6 +51,7 @@
     import { Validator } from 'vee-validate';
     import Auth from '../../helpers/Auth'
     import ModalForgotPassword from './include/ForgotPassword'
+    import Followers from "../../helpers/Followers";
 
     export default {
         props: ['is_login_view'],
@@ -84,6 +85,7 @@
                 await axios.post('/login', this.user).then(res =>{
                     if (res.data.auth) {
                         Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
+                        Followers.set(res.data.user.followers)
                         // window.location.replace(`/`)
                         $('#ModalLogin').modal('toggle')
                     }else{

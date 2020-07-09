@@ -115,4 +115,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Channel\Playlist::class);
     }
+
+    public function suggestions()
+    {
+        return $this->hasMany(\App\Models\Extras\Suggestions::class);
+    }
 }

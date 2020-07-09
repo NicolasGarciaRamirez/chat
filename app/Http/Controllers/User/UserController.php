@@ -23,7 +23,7 @@ class UserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'social_auth','playlists.playlist_post.post.comments','followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases');
+            $this->user->load('personal_information', 'social_auth','playlists.playlist_post.post.comments','followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases', 'profile_information.worked_with');
             return $next($request);
         });
     }

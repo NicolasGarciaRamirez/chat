@@ -158,9 +158,13 @@
                     </div>
                     <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
-                            <div class="row">
-                                <div class="col text-center">
-                                    <button class="bg-primary text-white rounded-pill">Add Worked With</button>
+                            <div class="d-flex flex-column">
+                                <div class="d-flex flex-column justify-content-center align-items-center text-center">
+                                    <button type="button" class="bg-primary text-white rounded-pill" @click="addedWork">Add Worked With</button>
+                                    <input class="form-control my-2 w-25" v-model="addWork" v-if="addWork">
+                                </div>
+                                <div class="d-flex flex-row">
+                                    <span class="bg-third text-white text-center mx-2 p-2" v-for="(work , index) in worked_with" :key="index">{{work.name}}<i class="fas fa-times cursor-pointer mx-2 py-1"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -181,7 +185,6 @@
                                 <button type="button" class="text-white font-weight-bold" @click="showModalSelectGenres">Select Genre(s)</button>
                             </div>
                             <div class="text-left">
-
                                 <ul v-for="(item , index) in profile_information.genres" :key="index" >
                                     <li>{{ item }}</li>
                                 </ul>
@@ -351,7 +354,9 @@ export default {
             },
             current_members:[],
             past_members:[],
-            releases_information: []
+            releases_information: [],
+            addWork:false,
+            worked_with:[]
         }
     },
     mounted(){
@@ -376,8 +381,18 @@ export default {
                     }
                 })
                 this.releases_information = this.user.profile_information.releases
+                this.worked_with = this.user.profile_information.worked_with
             }
-
+        },
+        addedWork(){
+          if (typeof this.addWork !== 'boolean'){
+              this.worked_with.push({
+                  id: null,
+                  name: this.addWork
+              })
+          }else{
+              this.addWork = true
+          }
         },
         addRelease(){
             this.releases_information.push({
@@ -416,7 +431,8 @@ export default {
             var data_send =  {
                 profile_information: this.profile_information,
                 members_information: this.current_members.concat(this.past_members),
-                releases_information: this.releases_information
+                releases_information: this.releases_information,
+                worked_with_information: this.worked_with
             }
             await axios.post(this.url, data_send).then(res => {
                 if (res.data.updated || res.data.saved) {
@@ -427,7 +443,7 @@ export default {
                         className: "p-4 notification bg-primary",
                         keepOnHover: true
                     })
-                    window.location.replace(`/${Auth.state.username}/Profile/WorkHistory`)
+                    window.location.replace(`/${Auth.state.username}/Profile`)
                 }
                 if (res.data.saved) {
                     this.url =`/${this.user.username}/Edit/Profile`

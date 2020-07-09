@@ -42,6 +42,7 @@ Route::get('/About', 'HomeController@about')->name('about');
 Route::get('/Carrers', 'HomeController@carrers')->name('carrers');
 Route::get('/Terms', 'HomeController@terms')->name('terms');
 Route::get('/Suggestions', 'HomeController@suggestions')->name('suggestions');
+Route::post('/Suggestions/Save', 'Extras\SuggestionsController@save')->name('suggestion_save');
 
 Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/imageProfile/{username}', 'User\UserController@updateImage');
@@ -76,12 +77,12 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 
     Route::group(['prefix' => 'Profile'], function () {
-        Route::name('profile.releases')->get('/Releases', 'User\ViewUserController@releases');
-        Route::name('profile.members')->get('/Members', 'User\ViewUserController@members');
-        Route::name('profile.work.history')->get('/WorkHistory', 'User\ViewUserController@workHistory');
-        Route::name('profile.genres')->get('/Genres', 'User\ViewUserController@genres');
-        Route::name('profile.services')->get('/Services', 'User\ViewUserController@services');
-        Route::name('profile.social_media')->get('/Social/Media', 'User\ViewUserController@socialMedia');
+        Route::name('profile.index')->get('/', 'User\ViewUserController@index');
+//        Route::name('profile.releases')->get('/Releases', 'User\ViewUserController@releases');
+//        Route::name('profile.members')->get('/Members', 'User\ViewUserController@members');
+//        Route::name('profile.genres')->get('/Genres', 'User\ViewUserController@genres');
+//        Route::name('profile.services')->get('/Services', 'User\ViewUserController@services');
+//        Route::name('profile.social_media')->get('/Social/Media', 'User\ViewUserController@socialMedia');
     });
 
     Route::group(['prefix' => 'Post'], function () {

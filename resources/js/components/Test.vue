@@ -1,6 +1,7 @@
 <template>
     <cropper
         classname="cropper"
+        stencil-component="circle-stencil"
         :src="img"
         :stencil-props="{
 		aspectRatio: 10/12

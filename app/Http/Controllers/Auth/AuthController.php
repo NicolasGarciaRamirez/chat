@@ -25,7 +25,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials, true)) {
             return response()->json([
-                'user' => Auth::user(),
+                'user' => Auth::user()->load('followers.user.profile_information', 'followers.user.personal_information'),
                 'auth' => true
             ], 200);
         } else {
@@ -108,7 +108,7 @@ class AuthController extends Controller
         }
 
         \Mail::to($user->email)->send(new \App\Mail\ForgotPassword($user, $user->personal_information->full_name));
-        
+
         return response()->json([
             'send' => true,
             'message' => 'We send you an email to follow the instructions'

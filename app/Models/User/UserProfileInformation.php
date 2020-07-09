@@ -36,7 +36,7 @@ class UserProfileInformation extends Model
     /**
      * Undocumented function
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function members()
     {
@@ -46,20 +46,20 @@ class UserProfileInformation extends Model
     /**
      * Undocumented function
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function worked_with()
     {
-        return $this->hasMany(\App\Models\User\WorkedWith::class);
+        return $this->hasMany('\App\Models\User\WorkedWith', 'profile_information_id', 'id');
     }
 
     /**
      * Undocumented function
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function releases()
     {
-        return $this->hasMany('\App\Models\User\Releases', 'profile_information_id');
+        return $this->hasMany('\App\Models\User\Releases', 'profile_information_id','id');
     }
 }

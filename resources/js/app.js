@@ -47,7 +47,7 @@ import ProfileGenres from './components/user/profile/Genres'
 import ProfileMembers from './components/user/profile/Members'
 import ProfileReleases from './components/user/profile/Releases'
 import ProfileServices from './components/user/profile/Services'
-import ProfileWorkHistory from './components/user/profile/WorkHistory'
+import ProfileIndex from './components/user/profile/index'
 import ProfileSocialMedia from './components/user/profile/SocialMedia'
 
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
@@ -75,13 +75,13 @@ new Vue({
         ProfileMembers,
         ProfileReleases,
         ProfileServices,
-        ProfileWorkHistory,
+        ProfileIndex,
         ProfileSocialMedia,
         ModalContributorSignup,
         ModalContributor,
         ValidateLogin,
         PasswordReset,
         Playlist,
-        Test
+        Test,
     }
 });

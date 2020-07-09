@@ -13,11 +13,13 @@
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form @submit.prevent="save">
-<!--                            <label for="img" class="text-center">-->
-<!--                                <img :src="imageData" alt="img-profile" id="img-profile" class="img-fluid cursor-pointer">-->
-
-<!--                            </label>-->
-<!--                            <input  type="file" class="d-none" id="img" @change="previewImage">-->
+                            <cropper
+                                classname="cropper"
+                                stencil-component="circle-stencil"
+                                :src="img"
+                                @change="change"
+                            ></cropper>
+<!--                            <img :src="image" width="200px" />-->
                             <div class="text-right p-4">
                                 <button class="btn bg-primary text-white" data-dismiss="modal">Cancel</button>
                                 <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
@@ -35,42 +37,48 @@
 
 <script>
 import Auth from '../../../../helpers/Auth'
+import {Cropper} from "vue-advanced-cropper";
 
 export default {
     components:{
+        Cropper
     },
     data(){
         return {
             disable: false,
-            imageData: this.$parent.img,
             resource: '',
-            options:{
-                multi: true,
-                aspectRatio: 1
+            options: {
             },
-            sel:{}
+            image:''
         }
     },
     mounted(){
 
     },
+    computed:{
+        img(){
+            return this.$parent.img
+        }
+    },
     methods:{
-        async previewImage(w){
-            this.resource = w.target.files[0]
-
-            var input = w.target;
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = (e) => {
-                    this.imageData = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+        change({coordinates, canvas}) {
+            this.coordinates = coordinates;
+            this.image = canvas.toDataURL();
         },
         save(){
             this.disable = true
             var request = ''
             var url = ''
+
+            console.log(this)
+                // const form = new FormData();
+                // this.image.toBlob(blob => {
+                //     form.append('file', blob);
+                // }, 'image/jpeg');
+                // console.log(canvas)
+
+    return
+
             if (this.$parent.type_change_image == 'Profile') {
                 request = new FormData()
                 request.append('image', this.resource, this.resource.name)
@@ -81,7 +89,6 @@ export default {
                 request.append('image', this.resource, this.resource.name)
                 url = `/User/Edit/imageCover/${this.$parent.user.username}`
             }
-            console.log(url)
             axios.post( url, request ).then(res => {
                 try {
                     if (res.data.updated){

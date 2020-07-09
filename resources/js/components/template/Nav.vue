@@ -1,7 +1,7 @@
 <template>
     <ul class="c-sidebar-nav ps ps--active-y px-3">
         <li class="c-sidebar-nav-title p-0 m-0 d-md-none text-center">
-            <a :href="`/${auth.username}/Profile/WorkHistory`" class="text-white">Profile</a>
+            <a :href="`/${auth.username}/Profile`" class="text-white">Profile</a>
         </li>
         <li class="c-sidebar-nav-title pb-0">Filter Stream</li>
         <li class="c-sidebar-nav-title p-0 m-0">
@@ -63,7 +63,7 @@
         </li>
         <li class="c-sidebar-nav-item">
             <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
-            <label for="audio_clips"><span>Performances and Jams</span></label>
+            <label for="performance_and_jams"><span>Performances and Jams</span></label>
         </li>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
@@ -75,10 +75,10 @@
         <li class="c-sidebar-nav-title mt-0 pt-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <div v-if="auth.username">
-            <div v-for="(follow, index) in user.followers" :key="index">
+        <div v-if="auth.username && location">
+            <div v-for="(follow, index) in followers" :key="index">
                 <li class="c-sidebar-nav-item" v-if="follow.user.username">
-                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
+                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information && follow.user.profile_information.artistic_name ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
                     <span class="float-sm-right c-fifth dot">•</span>
                 </li>
             </div>
@@ -94,13 +94,15 @@
     import AppFooter from './footer'
     import Auth from '../../helpers/Auth'
     import FilterPost from '../../helpers/FilterPost'
+    import Followers from "../../helpers/Followers";
 
     export default {
-        props:['user'],
         data(){
             return {
                 auth: Auth.state,
                 filters: FilterPost.state,
+                location: false,
+                followers:[]
             }
         },
         components: {
@@ -110,7 +112,11 @@
             Auth.initialize()
             FilterPost.initialize()
             this.setFilters()
-
+            if (window.location.href !== 'http://localhost:8000/Register'){
+                Followers.initialize()
+                this.followers = JSON.parse(Followers.data.followers)
+                this.location = true
+            }
         },
         methods:{
             updateFilterGender(genre){

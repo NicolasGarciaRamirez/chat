@@ -23,7 +23,7 @@
             <li class="c-header-nav-item mx-2 top-menu">
                 <img :src="`${auth.avatar}`" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="dropdown-menu bg-primary text-white dropdown-menu-right p-3" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" :href="`/${auth.username}/Profile/WorkHistory`">
+                    <a class="dropdown-item" :href="`/${auth.username}/Profile`">
                         <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="20px" viewBox="0 0 939.162 1079.12" enable-background="new 0 0 939.162 1079.12"
                             xml:space="preserve" class="mr-3 svg-icon">
@@ -281,6 +281,7 @@
 <script>
 import Auth from '../../helpers/Auth'
 import ModalContributor from '../ModalsCommingSoon/ModalForMusic'
+import Followers from "../../helpers/Followers";
 // import ModalContributor from '../auth/include/ModalContributorSignup'
 export default {
     components:{
@@ -305,6 +306,7 @@ export default {
         async logout(){
             await axios.get('/logout').then(res => {
                 Auth.remove()
+                Followers.remove()
                 window.location.replace('/')
             })
         }

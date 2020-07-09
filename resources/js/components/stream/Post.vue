@@ -33,10 +33,10 @@
                         C712.678,191.25,719.032,191.833,725.56,192.275"/>
                     </svg>
                 </button>
-                <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <i class="fas fa-ellipsis-h c-third fa-2x"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
                     <div v-if="!menuPlaylist">
-                        <a :href="`/${post.user.username}/Profile/WorkHistory`" target="_blank" class="dropdown-item">Go To User Profile</a>
+                        <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item">Go To User Profile</a>
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
@@ -57,7 +57,7 @@
             <div class="d-flex align-items-start">
                 <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-circle">
                 <div class="d-flex flex-column pl-md-3">
-                    <a :href="`/${post.user.username}/Profile/WorkHistory`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" v-if="post.user.verification_date"></a>
+                    <a :href="`/${post.user.username}/Profile   `" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" v-if="post.user.verification_date"></a>
                     <div class="d-flex align-items-center post-user-type mt-2">
                         <button class="btn bg-fifth text-white mr-2">{{ post.user.profile_information ? post.user.profile_information.title : 'Profile Title Not Chosen' }}</button>
                         <button v-if="post.user.subscription_type === 'CONTRIBUTOR'" class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
@@ -528,7 +528,6 @@
                         this.vote.type_vote = 'vote_up'
                     }
                     if (res.data.follow) {
-                        console.log('si')
                         this.post.user.followers.push(res.data.follow)
                         this.follow_type = 'unfollow'
                     }
@@ -557,6 +556,12 @@
             deletePost(){
                 axios.delete(`/${Auth.state.username}/Post/delete/${this.post.id}`).then(res =>{
                     if (res.data.deleted) {
+                        this.$toasted.show('post deleted successfully!', {
+                            position: "bottom-right",
+                            duration : 4000,
+                            className: "p-4 notification bg-primary",
+                            keepOnHover: true
+                        })
                         let index = _.findKey(this.$parent.posts, function(post){return post.id === res.data.post.id})
                         console.log(index)
                         this.$parent.posts.splice(index, 1)

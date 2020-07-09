@@ -18,10 +18,9 @@
 <body class="c-app">
     @php
         isset($is_login_view) ? $is_login_view = true : $is_login_view = false;
-        isset($user) ? $user : $user = [];
     @endphp
     <div id="app" class="w-100">
-        @include('template._nav', $user)
+        @include('template._nav')
         <div class="c-wrapper">
             <div class="c-body">
                 @include('template._header')

@@ -55,9 +55,9 @@ class ViewUserController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function workHistory()
+    public function index()
     {
-        return view('user.profile.work-history', ['user' => $this->user]);
+        return view('user.profile.index', ['user' => $this->user]);
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkedWithsTable extends Migration
+class CreateSuggestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateWorkedWithsTable extends Migration
      */
     public function up()
     {
-        Schema::create('worked_withs', function (Blueprint $table) {
+        Schema::create('suggestions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->bigInteger('profile_information_id');
+            $table->string('subject');
+            $table->string('message');
+            $table->string('file');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +31,6 @@ class CreateWorkedWithsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worked_withs');
+        Schema::dropIfExists('suggestions');
     }
 }

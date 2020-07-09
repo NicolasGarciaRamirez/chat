@@ -1,9 +1,6 @@
 <template>
     <section>
-        <div>
-            <modal-for-music />
-            <modal-merch />
-        </div>
+        <modal-for-music />
         <footer class="footer c-secundary">
             <div class="d-flex justify-content-between">
                 <a href="/Terms">Terms</a>
@@ -26,8 +23,8 @@
 </template>
 
 <script>
-import ModalMerch from '../ModalsCommingSoon/ModalMerch'
-import ModalForMusic from '../ModalsCommingSoon/ModalForMusic'
+    import ModalMerch from '../ModalsCommingSoon/ModalMerch'
+    import ModalForMusic from '../ModalsCommingSoon/ModalForMusic'
     export default {
         components:{
             ModalMerch,

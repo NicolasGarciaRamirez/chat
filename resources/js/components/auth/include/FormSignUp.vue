@@ -48,6 +48,8 @@
 <script>
     import { Validator } from 'vee-validate'
     import Auth from '../../../helpers/Auth'
+    import Followers from "../../../helpers/Followers";
+
     Validator.extend('verify_password', {
         validate: value => {
             var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])");
@@ -96,7 +98,8 @@
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
                             Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
-                            window.location.replace(`/${res.data.user.username}/Edit`)
+                            Followers.set(res.data.user.followers)
+                            window.location.replace(`/`)
                         }
                     }).catch(err => {
                         this.disable = false
