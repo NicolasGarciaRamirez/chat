@@ -77,11 +77,11 @@ Route::group(['prefix' => '/{username}'], function () {
 
     Route::group(['prefix' => 'Profile'], function () {
         Route::name('profile.index')->get('/', 'User\ViewUserController@index');
-//        Route::name('profile.releases')->get('/Releases', 'User\ViewUserController@releases');
-//        Route::name('profile.members')->get('/Members', 'User\ViewUserController@members');
-//        Route::name('profile.genres')->get('/Genres', 'User\ViewUserController@genres');
-//        Route::name('profile.services')->get('/Services', 'User\ViewUserController@services');
-//        Route::name('profile.social_media')->get('/Social/Media', 'User\ViewUserController@socialMedia');
+        Route::name('profile.releases')->get('/Releases', 'User\ViewUserController@releases');
+        Route::name('profile.members')->get('/Members', 'User\ViewUserController@members');
+        Route::name('profile.genres')->get('/Genres', 'User\ViewUserController@genres');
+        Route::name('profile.services')->get('/Services', 'User\ViewUserController@services');
+        Route::name('profile.social_media')->get('/Social/Media', 'User\ViewUserController@socialMedia');
     });
 
     Route::group(['prefix' => 'Post'], function () {
