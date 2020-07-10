@@ -3,9 +3,9 @@
         <form @submit.prevent="save" enctype="multipart/form-data">
             <div id="accordionProfile" class="accordion">
                 <div class="card">
-                    <div class="card-header bg-black" id="headingOne">
+                    <div class="card-header bg-black" font-weight-bold id="headingOne">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            <button type="button" class="btn btn-link no-underline text-white">Profile Type <span class="c-fifth">*</span></button>
+                            <button type="button" class="btn btn-link no-underline text-white font-weight-bold">Profile Type <span class="c-fifth">*</span></button>
                             <i class="fas fa-angle-down text-white"></i>
                         </h2>
                     </div>
@@ -25,9 +25,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingTwo">
+                    <div class="card-header bg-black font-weight-bold" id="headingTwo">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">Title<span class="c-fifth">*</span></button>
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">Title<span class="c-fifth">*</span></button>
                             <i class="fas fa-angle-down text-white float-right"></i>
                         </h2>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="card-body text-white bg-black">
                             <div class="row text-justify ">
                                 <div class="col text-center select">
-                                    <select class="select-form" v-model="profile_information.title" required>
+                                    <select class="select-form font-weight-bold" v-model="profile_information.title" required>
                                         <option value="Select Title">Select Title</option>
                                         <optgroup  v-if="profile_information.profile_type == 'A Person or A Project'">
                                             <option value="Vlog Channel">Vlog Channel</option>
@@ -73,9 +73,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingThree">
+                    <div class="card-header bg-black font-weight-bold" id="headingThree">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <button class="btn btn-link collapsed text-white no-underline" type="button">
+                            <button class="btn btn-link collapsed text-white no-underline font-weight-bold" type="button">
                                 Artistic Name <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -89,9 +89,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingFourth">
+                    <div class="card-header bg-black font-weight-bold" id="headingFourth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 About You
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -104,9 +104,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingFifth">
+                    <div class="card-header bg-black font-weight-bold" id="headingFifth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
-                            <button type="button"  class="btn btn-link no-underline collapsed text-white">
+                            <button type="button"  class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Members <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -132,9 +132,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingSix">
+                    <div class="card-header bg-black font-weight-bold" id="headingSix">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Releases <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -148,9 +148,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingSeven">
+                    <div class="card-header bg-black font-weight-bold" id="headingSeven">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Worked With <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -160,7 +160,7 @@
                         <div class="card-body text-white bg-black">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                                    <button type="button" class="bg-primary text-white rounded-pill" @click="addedWork">Add Worked With</button>
+                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold" @click="addedWork">Add Worked With</button>
                                     <input class="form-control my-2 w-25" v-model="addWork" v-if="addWork">
                                 </div>
                                 <div class="d-flex flex-row">
@@ -171,9 +171,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingEight">
+                    <div class="card-header bg-black font-weight-bold" id="headingEight">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white" >
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold" >
                                 Genre <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -193,9 +193,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingNine">
+                    <div class="card-header bg-black font-weight-bold" id="headingNine">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Services <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -215,9 +215,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingTen">
+                    <div class="card-header bg-black font-weight-bold" id="headingTen">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                            <button type="button" class="btn btn-link no-underline collapsed text-white">
+                            <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Social Media  <small>(If Applicable)</small>
                             </button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -297,8 +297,8 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center text-center m-5">
-                <button class="btn rounded-pill bg-black text-white">Cancel</button>
-                <button class="btn rounded-pill text-white bg-fifth" type="submit" v-if="!disable">Save</button>
+                <button class="btn rounded-pill bg-black text-white font-weight-bold">Cancel</button>
+                <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Save</button>
                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 </button>
@@ -428,7 +428,7 @@ export default {
         async save(){
             this.disable = true
 
-            var data_send =  {
+            let data_send =  {
                 profile_information: this.profile_information,
                 members_information: this.current_members.concat(this.past_members),
                 releases_information: this.releases_information,

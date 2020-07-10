@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
+use Intervention\Image\Facades\Image;
 use App\Models\User\{UserProfileInformation, Members, Releases, WorkedWith};
 
 class UserProfileInformationController extends Controller
@@ -29,6 +30,7 @@ class UserProfileInformationController extends Controller
 
     public function save(Request $request)
     {
+//        return $request;
         \DB::beginTransaction();
 
         try {
@@ -81,6 +83,7 @@ class UserProfileInformationController extends Controller
      */
     public function update(Request $request)
     {
+//        return $request;
         \DB::beginTransaction();
 
         try {
@@ -108,6 +111,8 @@ class UserProfileInformationController extends Controller
 
             collect($request->releases_information)->each(function ($query){
 
+//                $imageName = $this->setImage($query);
+
                 Releases::updateOrCreate(
                     ['id' => $query['id']],
                     [
@@ -120,6 +125,7 @@ class UserProfileInformationController extends Controller
                         'profile_information_id'=> $this->user->profile_information->id
                     ]
                 );
+
             });
 
             collect($request->worked_with_information)->each(function ($query){
@@ -147,5 +153,19 @@ class UserProfileInformationController extends Controller
                 'errros' => $e
             ], 422);
         }
+    }
+
+    public function setImage($query): string
+    {
+        dd($query);
+        $key = md5(\Auth::user()->id);
+        $hash = \Str::random(10);
+        $imageName = "/images/post/profile/{$key}/{$hash}{$image->getClientOriginalName()}";
+        $image->move(public_path("/images/post/profile/{$key}/"), $imageName);
+
+//        $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
+//        $img->save(public_path($imageName));
+
+        return $imageName;
     }
 }

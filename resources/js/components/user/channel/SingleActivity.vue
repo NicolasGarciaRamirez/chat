@@ -19,9 +19,11 @@
             </div>
             <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">{{ activity.description }}</div>
             <div class="img-activity" v-if="activity.resource_type == 'docs'">
-                <a :href="`${activity.resource}`" class="no-underline">
-                    <img src="/images/icons/word-document.svg" class="img-activity img-fluid p-3" style="width: 130px;"  />
+                <a :href="`${activity.resource}`" class="no-underline" v-if="resource_extension == 'pdf'">
+                    <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  />
                 </a>
+                <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  v-else/>
+
             </div>
         </div>
         <div v-if="!activity.replace_caption">
@@ -29,14 +31,15 @@
                 <p class="m-1">{{ activity.description }}</p>
             </div>
             <p v-if="activity.resource_type == 'docs'">
-                <a :href="`${activity.resource}`" class="text-white">{{ activity.description }}</a>
+                <a :href="`${activity.resource}`" class="text-white" v-if="resource_extension == 'pdf'">{{ activity.description }}</a>
+                <label v-if="activity.resource_type != 'docs' && resource_extension != 'pdf'">{{activity.description}}</label>
             </p>
         </div>
         <div v-if="activity.replace_caption">
             <h5 class="font-weight-bold my-2">{{ activity.replace_caption }}</h5>
             <p>
-                <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type == 'docs'">{{ activity.description }}</a>
-                <label v-if="activity.resource_type != 'docs'">{{ activity.description }}</label>
+                <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type == 'docs' && resource_extension == 'pdf'">{{ activity.description }}</a>
+                <label v-if="activity.resource_type != 'docs' && resource_extension != 'pdf'">{{ activity.description }}</label>
             </p>
         </div>
         <div class="d-flex c-fourth my-3">
@@ -46,7 +49,11 @@
                 <img src="/images/icons/post-flame.svg" height="22"><span>{{ activity.likes.length }}</span>
             </div>
             <div class="information cursor-pointer"><img src="/images/icons/post-up.svg" alt="">100</div>
-            <div class="information cursor-pointer" v-if="activity.allow_download"><img src="/images/icons/post-down.svg" alt="">100</div>
+            <div class="information cursor-pointer" v-if="activity.allow_download">
+                <a :href="`${activity.resource}`">
+                    <img src="/images/icons/post-down.svg" alt="">100
+                </a>
+            </div>
         </div>
         <div class="d-flex justify-content-between c-fourth">
             <p>11K Views </p>
@@ -87,6 +94,16 @@ export default {
         this.getStyleAudio()
         this.getLike()
         this.getVote()
+    },
+    computed:{
+        resource_extension() {
+            if (this.activity.resource_type === 'docs'){
+                let extension = this.activity.resource.split(".")
+                return _.last(extension)
+            }else{
+                return 'not-document'
+            }
+        },
     },
     methods: {
         showModalNewPlaylist(){

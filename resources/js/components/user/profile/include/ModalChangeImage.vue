@@ -9,20 +9,36 @@
                         </button>
                     </div>
                     <div class="text-center">
-                        <h2 class="font-weight-bold p-4">Set Image {{ this.$parent.type_change_image }}</h2>
+                        <h2 class="font-weight-bold p-4">Set {{ $parent.type_change_image }} Image</h2>
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
-                        <form @submit.prevent="save">
+                        <form enctype="multipart/form-data" @submit.prevent="save">
                             <cropper
                                 classname="cropper"
-                                stencil-component="circle-stencil"
+                                :stencil-component="stencil"
                                 :src="img"
                                 @change="change"
+                                :stencil-props="{
+                                    handlers: {},
+                                    scalable: false,
+                                }"
+                                :restrictions="pixelsRestriction"
+                                v-if="$parent.type_change_image == 'Cover'"
                             ></cropper>
-<!--                            <img :src="image" width="200px" />-->
+                            <cropper
+                                classname="cropper"
+                                :stencil-component="stencil"
+                                :src="img"
+                                @change="change"
+                                :stencil-props="{
+                                    handlers: {},
+                                    scalable: false,
+                                }"
+                                v-if="$parent.type_change_image == 'Profile'"
+                            ></cropper>
                             <div class="text-right p-4">
-                                <button class="btn bg-primary text-white" data-dismiss="modal">Cancel</button>
-                                <button class="btn bg-fifth text-white" v-if="!disable">Save</button>
+                                <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal">Cancel</button>
+                                <button class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable">Save</button>
                                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                 </button>
@@ -46,10 +62,11 @@ export default {
     data(){
         return {
             disable: false,
-            resource: '',
             options: {
+
             },
-            image:''
+            image:'',
+            coordinates: ''
         }
     },
     mounted(){
@@ -58,36 +75,43 @@ export default {
     computed:{
         img(){
             return this.$parent.img
-        }
+        },
+        stencil(){
+            return this.$parent.type_change_image === 'Profile' ? 'circle-stencil' : 'rectangle-stencil'
+        },
     },
     methods:{
         change({coordinates, canvas}) {
             this.coordinates = coordinates;
-            this.image = canvas.toDataURL();
+            this.resource = canvas.toDataURL()
+        },
+        pixelsRestriction() {
+            return {
+                minWidth: 1080,
+                minHeight: 250,
+                maxWidth: 1080,
+                maxHeight: 250,
+            }
         },
         save(){
             this.disable = true
-            var request = ''
-            var url = ''
+            let url = ''
 
-            console.log(this)
-                // const form = new FormData();
-                // this.image.toBlob(blob => {
-                //     form.append('file', blob);
-                // }, 'image/jpeg');
-                // console.log(canvas)
+            let request = new FormData()
+            request.append('image', this.$parent.resource, this.$parent.resource.name)
+            request.append('width', this.coordinates.width)
+            request.append('height', this.coordinates.height)
+            request.append('left', this.coordinates.left)
+            request.append('top', this.coordinates.top)
 
-    return
-
-            if (this.$parent.type_change_image == 'Profile') {
-                request = new FormData()
-                request.append('image', this.resource, this.resource.name)
-                url = `/User/Edit/imageProfile/${this.$parent.user.username}`
+            if (this.$parent.type_change_image === 'Profile') {
+                url = `/User/Edit/Image/${this.$parent.user.username}/profile`
             }
-            if (this.$parent.type_change_image == 'Cover') {
-                request = new FormData()
-                request.append('image', this.resource, this.resource.name)
-                url = `/User/Edit/imageCover/${this.$parent.user.username}`
+            if (this.$parent.type_change_image === 'Cover') {
+                url = `/User/Edit/Image/${this.$parent.user.username}/cover`
+            }
+            if (this.$parent.type_change_image === 'Release') {
+                url = `/User/Edit/Image/${this.$parent.user.username}/releases`
             }
             axios.post( url, request ).then(res => {
                 try {
@@ -95,13 +119,13 @@ export default {
                         this.disable = false
                         Auth.remove()
                         Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar )
-                        $('#ModalChangeImage').modal('toggle')
-                        if (this.$parent.type_change_image == 'Profile') {
+                        if (this.$parent.type_change_image === 'Profile') {
                             this.$parent.user.avatar = res.data.user.avatar
                         }
-                        if(this.$parent.type_change_image == 'Cover'){
+                        if(this.$parent.type_change_image === 'Cover'){
                             this.$parent.user.cover = res.data.user.cover
                         }
+                        $('#ModalChangeImage').modal('toggle')
                     }else{
                         alert('error')
                     }
@@ -115,3 +139,13 @@ export default {
     }
 }
 </script>
+
+<style type="text/css">
+    .cropper{
+        max-width: 50rem !important;
+        min-width: 50rem !important;
+        max-height: 25rem !important;
+        min-height: 25rem !important;
+        background: #141414 !important;
+    }
+</style>

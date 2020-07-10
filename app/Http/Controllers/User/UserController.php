@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Requests\ImageRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
@@ -69,21 +70,23 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param ImageRequest $request
+     * @param $username
+     * @param $type
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function updateImage(Request $request) //hacer form request para validar
+    public function updateImage(ImageRequest $request, $username, $type)
     {
         \DB::beginTransaction();
 
         try {
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
-            ]);
-
-            $imageName = $this->setImageProfile($request);
-            $this->user->avatar = $imageName;
+            $imageName = $this->setImage($request, $type);
+            if ($type == 'profile'){
+                $this->user->avatar = $imageName;
+            }else if ($type == 'cover'){
+                $this->user->cover = $imageName;
+            }
             $this->user->update();
             \DB::commit();
 
@@ -103,78 +106,28 @@ class UserController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     * @throws \Exception
+     * @param $request
+     * @param $width
+     * @param $heigth
+     * @param $left
+     * @param $top
+     * @return string
      */
-    public function updateCover(Request $request) //hacer form request para validar
+    public function setImage($request, $type): string
     {
-        \DB::beginTransaction();
+        $key = md5(\Auth::user()->id);
+        $hash = \Str::random(10);
+        $imageName = "/images/post/profile/{$key}/{$hash}{$request->image->getClientOriginalName()}";
+        $request->image->move(public_path("/images/post/profile/{$key}/"), $imageName);
 
-        try {
-            $request->validate([
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,mp3,mp4'
-            ]);
+        if ($type == 'cover'){
 
-            $imageName = $this->setImage($request);
-            $this->user->cover = $imageName;
-            $this->user->update();
-
-            \DB::commit();
-            return response()->json([
-                'updated' => true,
-                'user' => $this->user,
-                'errors' => null
-            ]);
-        } catch (\Exception $e) {
-            \DB::rollBack();
-            return response()->json([
-                'updated' => true,
-                'user' => $this->user,
-                'errors' => null
-            ], 422);
+            $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
+            $img->save(public_path($imageName));
+        }else if($type == 'profile'){
+            $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
+            $img->save(public_path($imageName));
         }
-    }
-
-    public function setImage($request): string
-    {
-        $key = md5(\Auth::user()->id);
-        $hash = \Str::random(10);
-        $imageName = "/images/post/{$key}/{$hash}{$request->image->getClientOriginalName()}";
-        $request->image->move(public_path("/images/post/{$key}/"), $imageName);
-
-        $background = Image::canvas(1200, 400);
-        $background->fill('#141414');
-
-        $image = Image::make(public_path($imageName))->resize(1200, 400, function ($c) {
-            $c->aspectRatio();
-            $c->upsize();
-        });
-
-        $background->insert($image, 'center');
-        $background->save(public_path($imageName));
-
-        return $imageName;
-    }
-
-    public function setImageProfile($request): string
-    {
-        $key = md5(\Auth::user()->id);
-        $hash = \Str::random(10);
-        $imageName = "/images/post/{$key}/{$hash}{$request->image->getClientOriginalName()}";
-        $request->image->move(public_path("/images/post/{$key}/"), $imageName);
-
-        $background = Image::canvas(400, 400);
-        $background->circle(100,10,10);
-        $background->fill('#141414');
-
-        $image = Image::make(public_path($imageName))->resize(400,400, function ($c) {
-            $c->aspectRatio();
-            $c->upsize();
-        });
-        $background->insert($image, 'center');
-        $background->save(public_path($imageName));
-
         return $imageName;
     }
 

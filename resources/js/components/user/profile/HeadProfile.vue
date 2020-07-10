@@ -2,29 +2,28 @@
     <section class="profile">
         <div class="img-container wrap">
             <img :src="`${user.cover}`" alt="ImagePortada" class="img-portada">
-            <button class="edit-cover-photo btn text-white rounded-pill mr-5 pt-0 pb-0 pl-3 pr-3" @click="showChangeImage" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
-                <label class="mb-0 font-weight-bol" @click="type_change_image = 'Cover'">Edit Cover Photo </label>
-                <i class="cil-pencil ml-2"></i>
+            <button type="button" class="edit-cover-photo btn text-white rounded-pill mr-5 pt-0 pb-0 pl-3 pr-3" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
+                <label class="mb-0 font-weight-bold" for="change-image" @click="type_change_image = 'Cover'">Edit Cover Photo
+                    <i class="cil-pencil ml-2"></i>
+                </label>
             </button>
             <div  class="btn my-2"></div>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="dropdown-menu bg-primary text-white" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
                 <a href="#" class="dropdown-item">View Image</a>
                 <a href="#" class="dropdown-item">Edit Crop</a>
-                <label class="dropdown-item" for="change-image">
+                <label class="dropdown-item" for="change-image" @click="type_change_image = 'Profile'">
                     Change Image
                 </label>
-                <input type="file" class="d-none" accept=".jpge,.jpg,.png" id="change-image"  @change="showChangeImage">
             </div>
+            <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
         <div class="head-container align-items-center" style="transform: translateY(-2rem)">
-
             <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token == user.token">
                 <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
                 <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white">Share Profile <i class="cil-share  ml-2"></i></a>
-                <a :href="`/${ user.username}/Profile/WorkHistory`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
+                <a :href="`/${ user.username}/Profile`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
             </div>
-
             <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
                 <img src="/images/chat.svg" alt="chat" class="icon cursor-pointer">
                 <img src="/images/icons/post-up.svg" alt="post-up" class="icon cursor-pointer mx-3">
@@ -69,7 +68,8 @@ export default {
     data(){
         return {
             img:null,
-            type_change_image: 'Profile',
+            resource:'',
+            type_change_image: '',
             auth: Auth.state,
             follow_type: 'follow',
             follow:{
@@ -88,12 +88,12 @@ export default {
     },
     methods: {
         showChangeImage(w){
-            var input = w.target;
+            let input = w.target;
+            this.resource = w.target.files[0]
             if (input.files && input.files[0]) {
-                var reader = new FileReader();
+                let reader = new FileReader();
                 reader.onload = (e) => {
                     this.img = e.target.result;
-                    console.log(this.img)
                 }
                 reader.readAsDataURL(input.files[0]);
             }

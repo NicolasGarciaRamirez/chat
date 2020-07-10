@@ -3,14 +3,14 @@ export default{
         followers: null,
     },
     initialize(){
-        this.data.followers = sessionStorage.getItem('followers')
+        this.data.followers = localStorage.getItem('followers')
     },
     set(followers){
-        sessionStorage.setItem('followers', JSON.stringify(followers))
+        localStorage.setItem('followers', JSON.stringify(followers))
         this.initialize()
     },
     remove(){
-        sessionStorage.removeItem('followers')
+        localStorage.removeItem('followers')
         this.initialize()
     }
 }

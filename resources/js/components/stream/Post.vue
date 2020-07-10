@@ -57,7 +57,7 @@
             <div class="d-flex align-items-start">
                 <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-circle">
                 <div class="d-flex flex-column pl-md-3">
-                    <a :href="`/${post.user.username}/Profile   `" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" v-if="post.user.verification_date"></a>
+                    <a :href="`/${post.user.username}/Profile`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" v-if="post.user.verification_date"></a>
                     <div class="d-flex align-items-center post-user-type mt-2">
                         <button class="btn bg-fifth text-white mr-2">{{ post.user.profile_information ? post.user.profile_information.title : 'Profile Title Not Chosen' }}</button>
                         <button v-if="post.user.subscription_type === 'CONTRIBUTOR'" class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
