@@ -24,7 +24,7 @@ class UserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'social_auth','playlists.playlist_post.post.comments','followers.user.profile_information','followers.user.personal_information', 'posts.comments.comments.likes.user','posts.likes.user','posts.votes.user', 'profile_information.members', 'profile_information.releases', 'profile_information.worked_with');
+            $this->user->load('personal_information', 'social_auth', 'playlists.playlist_post.post.comments', 'followers.user.profile_information', 'followers.user.personal_information', 'posts.comments.comments.likes.user', 'posts.likes.user', 'posts.votes.user', 'profile_information.members', 'profile_information.releases', 'profile_information.worked_with');
             return $next($request);
         });
     }
@@ -82,9 +82,9 @@ class UserController extends Controller
 
         try {
             $imageName = $this->setImage($request, $type);
-            if ($type == 'profile'){
+            if ($type == 'profile') {
                 $this->user->avatar = $imageName;
-            }else if ($type == 'cover'){
+            } else if ($type == 'cover') {
                 $this->user->cover = $imageName;
             }
             $this->user->update();
@@ -120,11 +120,11 @@ class UserController extends Controller
         $imageName = "/images/post/profile/{$key}/{$hash}{$request->image->getClientOriginalName()}";
         $request->image->move(public_path("/images/post/profile/{$key}/"), $imageName);
 
-        if ($type == 'cover'){
+        if ($type == 'cover') {
 
             $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
             $img->save(public_path($imageName));
-        }else if($type == 'profile'){
+        } else if ($type == 'profile') {
             $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
             $img->save(public_path($imageName));
         }

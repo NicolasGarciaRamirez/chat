@@ -400,7 +400,7 @@ export default {
                 album_name:'',
                 artistic_name:'',
                 genre:'',
-                image:'/images/profile/default-releases.svg',
+                image:'/images/default-releases.png',
                 label:'',
                 release_date:''
             })

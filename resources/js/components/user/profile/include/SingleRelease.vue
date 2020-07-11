@@ -2,7 +2,7 @@
     <div class="d-flex flex-row text-center justify-content-center mb-5" style="flex-grow: 1">
         <div style="width: 13rem">
             <label :for="`imgRelease${index}`" @click="type_change_image = 'Releases'">
-                <img class="img-fluid" :src="release_update.image" style="width: 17rem"/>
+                <img class="img-fluid" :src="release_update.image"/>
             </label>
             <input type="file" :id="`imgRelease${index}`" name="imageRelease" accept=".jpg , .png , .jpge, .svg" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="showChangeImage" />
             <button type="button" class="btn text-white rounded-pill bg-fifth font-weight-bold" @click="deleteRelease(index)">

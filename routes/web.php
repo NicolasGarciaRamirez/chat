@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', function(){
+Route::get('/test', function () {
     return view('test');
 });
 
@@ -125,15 +125,14 @@ Route::group(['prefix' => '/{username}'], function () {
         });
     });
 
-    Route::group(['prefix' => 'View'], function() {
-        Route::group(['middleware' => ['auth']], function(){
+    Route::group(['prefix' => 'View'], function () {
+        Route::group(['middleware' => ['auth']], function () {
             Route::name('view.store')->post('/store/{post}', 'Post\PostViewsController@save');
         });
     });
 });
 
 
-
-Route::get('/report', function(){
+Route::get('/report', function () {
     return view('reports');
 });
