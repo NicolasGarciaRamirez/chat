@@ -83,7 +83,6 @@ class UserProfileInformationController extends Controller
      */
     public function update(Request $request)
     {
-        return $request;
         \DB::beginTransaction();
 
         try {
@@ -91,7 +90,7 @@ class UserProfileInformationController extends Controller
             $profile_information->social_media = json_encode($request->profile_information['social_media']);
             $this->user->profile_information()->update($profile_information->toArray());
 
-            Members::whereProfileInformationId( $this->user->profile_information->id)->delete();
+            Members::whereProfileInformationId($this->user->profile_information->id)->delete();
 
             collect($request->members_information)->each(function ($value ){
                 Members::updateOrCreate(
@@ -107,12 +106,9 @@ class UserProfileInformationController extends Controller
 
             });
 
-            Releases::whereProfileInformationId( $this->user->profile_information->id)->delete();
+            Releases::whereProfileInformationId($this->user->profile_information->id)->delete();
 
             collect($request->releases_information)->each(function ($query){
-
-//                $imageName = $this->setImage($query);
-
                 Releases::updateOrCreate(
                     ['id' => $query['id']],
                     [
@@ -142,7 +138,7 @@ class UserProfileInformationController extends Controller
             return response()->json([
                 'updated' => true,
                 'user' => User::find($this->user->id)->load('profile_information'),
-                'errros' => null
+                'errors' => null
             ], 200);
 
         } catch (\Exception $e) {
@@ -150,23 +146,25 @@ class UserProfileInformationController extends Controller
             return response()->json([
                 'updated' => false,
                 'user' => null,
-                'errros' => $e
+                'errors' => $e
             ], 422);
         }
     }
 
     public function saveImage(Request $request)
     {
-        foreach($request as $image){
+        $images_names = [];
+        foreach($request->image as $image){
             $key = md5(\Auth::user()->id);
             $hash = \Str::random(10);
             $imageName = "/images/profile/releases/{$key}/{$hash}{$image->getClientOriginalName()}";
             $image->move(public_path("/images/profile/releases/{$key}/"), $imageName);
+            array_push($this->images_names, $imageName);
         };
 
-//        $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
-//        $img->save(public_path($imageName));
-
-//        return $imageName;
+        return response()->json([
+            'saved_image' => true,
+            'image_name' => $images_names
+        ]);
     }
 }

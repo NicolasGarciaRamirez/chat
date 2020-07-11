@@ -429,42 +429,49 @@ export default {
             this.disable = true
             let formData = new FormData()
 
-            $.each(this.releases_information, function(key, image){
-                formData.append(`image[${key}]`, image.image)
-            })
-            // if (formData.length > 0){
-                await axios.post(`/${Auth.state.username}/image/save`, formData).then(res =>{
-                    console.log(res)
-                }).catch(err => {
-                    console.log(err)
-                })
+            // if (this.releases_information.length > 0){
+            //     $.each(this.releases_information, function(key, release){
+            //         formData.append(`image[${key}]`, release.image, release.image.name)
+            //     })
+            //     await axios.post(`/${Auth.state.username}/image/save`, formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res =>{
+            //         if (res.data.saved_image){
+            //             let count = 0
+            //             this.releases_information.map(release => {
+            //                 release.image = res.data.image_name.map(name =>{
+            //                     return name
+            //                 })
+            //             })
+            //         }
+            //     }).catch(err => {
+            //         console.log(err)
+            //     })
             // }
 
-            // let data_send =  {
-            //     profile_information: this.profile_information,
-            //     members_information: this.current_members.concat(this.past_members),
-            //     releases_information: this.releases_information,
-            //     worked_with_information: this.worked_with
-            // }
-            // await axios.post(this.url, data_send).then(res => {
-            //     if (res.data.updated || res.data.saved) {
-            //         this.disable = false
-            //         this.$toasted.show('The profile information has been updated successfully!', {
-            //             position: "bottom-right",
-            //             duration : 4000,
-            //             className: "p-4 notification bg-primary",
-            //             keepOnHover: true
-            //         })
-            //         window.location.replace(`/${Auth.state.username}/Profile`)
-            //     }
-            //     if (res.data.saved) {
-            //         this.url =`/${this.user.username}/Edit/Profile`
-            //     }
-            // }).catch(err => {
-            //     this.disable = false
-            //     alert('please complete the fields that are marked with the *')
-            //     console.log(err)
-            // })
+            let data_send =  {
+                profile_information: this.profile_information,
+                members_information: this.current_members.concat(this.past_members),
+                releases_information: this.releases_information,
+                worked_with_information: this.worked_with
+            }
+            await axios.post(this.url, data_send).then(res => {
+                if (res.data.updated || res.data.saved) {
+                    this.disable = false
+                    this.$toasted.show('The profile information has been updated successfully!', {
+                        position: "bottom-right",
+                        duration : 4000,
+                        className: "p-4 notification bg-primary",
+                        keepOnHover: true
+                    })
+                    // window.location.replace(`/${Auth.state.username}/Profile`)
+                }
+                if (res.data.saved) {
+                    this.url =`/${this.user.username}/Edit/Profile`
+                }
+            }).catch(err => {
+                this.disable = false
+                alert('please complete the fields that are marked with the *')
+                console.log(err)
+            })
         },
         showModalSelectGenres(){
             $('#ModalSelectGenres').modal('show')
