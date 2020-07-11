@@ -125,19 +125,6 @@
                             }
                         }
                     }
-                    &:active{
-                        border-color: $fifth-color !important;
-                        background-color: $fifth-color !important;
-                        color: white !important;
-
-                        svg{
-                            width: 1rem !important;
-                            margin-left: 0.3rem !important;
-                            path{
-                                fill: white !important;
-                            }
-                        }
-                    }
                 }
             }
             .post-user-type{
