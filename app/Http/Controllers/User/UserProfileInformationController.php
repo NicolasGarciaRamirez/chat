@@ -83,7 +83,7 @@ class UserProfileInformationController extends Controller
      */
     public function update(Request $request)
     {
-//        return $request;
+        return $request;
         \DB::beginTransaction();
 
         try {
@@ -155,17 +155,18 @@ class UserProfileInformationController extends Controller
         }
     }
 
-    public function setImage($query): string
+    public function saveImage(Request $request)
     {
-        dd($query);
-        $key = md5(\Auth::user()->id);
-        $hash = \Str::random(10);
-        $imageName = "/images/post/profile/{$key}/{$hash}{$image->getClientOriginalName()}";
-        $image->move(public_path("/images/post/profile/{$key}/"), $imageName);
+        foreach($request as $image){
+            $key = md5(\Auth::user()->id);
+            $hash = \Str::random(10);
+            $imageName = "/images/profile/releases/{$key}/{$hash}{$image->getClientOriginalName()}";
+            $image->move(public_path("/images/profile/releases/{$key}/"), $imageName);
+        };
 
 //        $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
 //        $img->save(public_path($imageName));
 
-        return $imageName;
+//        return $imageName;
     }
 }

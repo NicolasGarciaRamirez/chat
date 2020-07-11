@@ -53,10 +53,11 @@ Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
 
 Route::group(['prefix' => '/{username}'], function () {
     Route::group(['middleware' => ['auth']], function () {
-        Route::name('profile.edit')->get('/Edit', 'User\UserController@profileEdit');//todos el mismo name???
+        Route::name('profile.edit')->get('/Edit', 'User\UserController@profileEdit');
         Route::name('profile.get')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
         Route::name('profile.update')->post('/Edit/Profile', 'User\UserProfileInformationController@update');
         Route::name('profile.save')->post('/Save/Profile', 'User\UserProfileInformationController@save');
+        Route::name('image.save')->post('/image/save', 'User\UserProfileInformationController@saveImage');
     });
 
     Route::group(['prefix' => 'Channel'], function () {

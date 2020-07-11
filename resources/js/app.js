@@ -12,6 +12,7 @@ import Vue from 'vue'
 
 import VueCropper from 'cropperjs';
 Vue.component(VueCropper);
+import {Cropper} from "vue-advanced-cropper";
 
 import Toasted from 'vue-toasted';
 Vue.use(Toasted)

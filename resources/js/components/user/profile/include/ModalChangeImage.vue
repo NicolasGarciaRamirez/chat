@@ -9,7 +9,7 @@
                         </button>
                     </div>
                     <div class="text-center">
-                        <h2 class="font-weight-bold p-4">Set {{ $parent.type_change_image }} Image</h2>
+                        <h2 class="font-weight-bold p-4">Set {{this.$parent.type_change_image}} Image</h2>
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form enctype="multipart/form-data" @submit.prevent="save">
@@ -53,11 +53,11 @@
 
 <script>
 import Auth from '../../../../helpers/Auth'
-import {Cropper} from "vue-advanced-cropper";
+// import {Cropper} from "vue-advanced-cropper";
 
 export default {
     components:{
-        Cropper
+        // Cropper
     },
     data(){
         return {
@@ -70,7 +70,9 @@ export default {
         }
     },
     mounted(){
-
+        console.log(
+            this.$parent.type_change_image
+        )
     },
     computed:{
         img(){

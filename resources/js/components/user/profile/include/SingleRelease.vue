@@ -2,7 +2,7 @@
     <div class="d-flex flex-row text-center justify-content-center mb-5" style="flex-grow: 1">
         <div style="width: 13rem">
             <label :for="`imgRelease${index}`" @click="type_change_image = 'Releases'">
-                <img class="img-fluid" src="/images/profile/default-releases.svg" style="width: 17rem"/>
+                <img class="img-fluid" :src="img" style="width: 17rem"/>
             </label>
             <input type="file" :id="`imgRelease${index}`" name="imageRelease" accept=".jpg , .png , .jpge, .svg" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="showChangeImage" />
             <button type="button" class="btn text-white rounded-pill bg-fifth font-weight-bold" @click="deleteRelease(index)">
@@ -16,16 +16,16 @@
             <input type="text" class="form-control" placeholder="Genre" v-model="release_update.genre" />
             <input type="text" class="form-control" placeholder="Label name" v-model="release_update.label" />
         </div>
-        <modal-change-image></modal-change-image>
+        <modal-change-image-releases></modal-change-image-releases>
     </div>
 </template>
 
 <script>
-    import ModalChangeImage from "./ModalChangeImage";
+    import ModalChangeImageReleases from "../ModalChangeImageReleases";
     export default {
         props: ['release', 'index'],
         components:{
-            ModalChangeImage
+            ModalChangeImageReleases
         },
         data(){
             return{
@@ -41,7 +41,7 @@
         methods:{
             showChangeImage(w){
                 let input = w.target;
-                this.resource = w.target.files[0]
+                this.release_update.image = w.target.files[0]
                 if (input.files && input.files[0]) {
                     let reader = new FileReader();
                     reader.onload = (e) => {
@@ -49,7 +49,7 @@
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
-                $('#ModalChangeImage').modal('show')
+                $('#ModalChangeImageReleases').modal('show')
                 // this.img = w.target.files[0]
             },
             deleteRelease(index){
