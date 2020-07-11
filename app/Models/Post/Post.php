@@ -55,7 +55,6 @@ class Post extends Model
     {
         return $this->votes()->where('type_vote', 'vote_down')->count();
     }
-
     /**
      * @return float
      */
@@ -121,5 +120,11 @@ class Post extends Model
     public function playlist_post()
     {
         return $this->belongsTo(\App\Models\Channel\PlaylistPost::class);
+    }
+
+
+    public function views()
+    {
+        return $this->hasMany(\App\Models\Post\PostViews::class);
     }
 }

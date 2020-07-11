@@ -152,8 +152,7 @@ textarea{
 }
 
 .icon{
-    height: 20px !important;
-    width: 25px !important;
+    width: 2rem !important;
 }
 
 .no-underline{
@@ -212,5 +211,10 @@ textarea{
     td{
         cursor: pointer;
         vertical-align: middle;
+    }
+}
+.share-circle{
+    &:hover{
+        background: $fourth-color !important;
     }
 }

@@ -123,6 +123,12 @@ Route::group(['prefix' => '/{username}'], function () {
             Route::name('unfollow.store')->post('/unfollow/{follow}', 'Reactions\FollowersController@unfollow');
         });
     });
+
+    Route::group(['prefix' => 'View'], function() {
+        Route::group(['middleware' => ['auth']], function(){
+            Route::name('view.store')->post('/store/{post}', 'Post\PostViewsController@save');
+        });
+    });
 });
 
 

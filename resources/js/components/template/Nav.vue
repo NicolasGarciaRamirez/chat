@@ -112,10 +112,12 @@
             Auth.initialize()
             FilterPost.initialize()
             this.setFilters()
+            Followers.initialize()
             if (window.location.href !== 'http://localhost:8000/Register'){
-                Followers.initialize()
-                this.followers = JSON.parse(Followers.data.followers)
-                this.location = true
+                if (Followers.data.followers != 'undefined'){
+                    this.followers = JSON.parse(Followers.data.followers)
+                    this.location = true
+                }
             }
         },
         methods:{

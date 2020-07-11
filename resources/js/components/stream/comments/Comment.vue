@@ -15,7 +15,7 @@
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
                         <div v-if="comment.user.username == auth.username">
                             <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
-                            <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
+                            <div class="dropdown-item cursor-pointer" @click="showModalSureDelete">Delete</div>
                         </div>
                         <div v-else>
                             <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
@@ -33,16 +33,16 @@
                 <span class="cursor-pointer" @click="$parent.form_reply = true"><span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span></span>
             </div>
         </div>
+        <modal-sure-deleted :options="options_sure_delete"></modal-sure-deleted>
     </div>
 </template>
 
 <script>
 import Auth from '../../../helpers/Auth'
+import ModalSureDeleted from "../includes/ModalSureDeleted";
     export default {
         props: ['comment','view_reply'],
-        template:{
-
-        },
+        components: {ModalSureDeleted},
         data(){
             return {
                 edit:false,
@@ -52,7 +52,17 @@ import Auth from '../../../helpers/Auth'
                     like: 'like'
                 },
                 likes:[],
-                auth: Auth.state
+                auth: Auth.state,
+                options_sure_delete:{
+                    type: 'Comment',
+                    title: 'Delete Comment',
+                    text: 'You are about to delete this comment. Would you like to proceed?',
+                    buttons:{
+                        cancel: true,
+                        accept: true,
+                        thank_you: false
+                    }
+                }
             }
         },
         mounted(){
@@ -60,6 +70,10 @@ import Auth from '../../../helpers/Auth'
             this.getLike()
         },
         methods:{
+            showModalSureDelete(){
+                $('#ModalSureDelete').modal('show')
+                // this.deleteComment()
+            },
             getLike() {
                 if (this.comment.likes) {
                     if (this.comment.likes[0] != null) {

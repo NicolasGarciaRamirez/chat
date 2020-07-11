@@ -17,7 +17,9 @@
                 <div class="dropdown-divider"></div>
                 <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
             </div>
-            <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">{{ activity.description }}</div>
+            <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">
+                <span>{{descriptionLess}}</span>
+            </div>
             <div class="img-activity" v-if="activity.resource_type == 'docs'">
                 <a :href="`${activity.resource}`" class="no-underline" v-if="resource_extension == 'pdf'">
                     <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  />
@@ -28,18 +30,38 @@
         </div>
         <div v-if="!activity.replace_caption">
             <div v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
-                <p class="m-1">{{ activity.description }}</p>
+                <p class="m-1">
+                    <span v-if="showMore">{{description}}</span>
+                    <span v-if="!showMore">{{descriptionLess}}</span>
+                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                </p>
             </div>
-            <p v-if="activity.resource_type == 'docs'">
-                <a :href="`${activity.resource}`" class="text-white" v-if="resource_extension == 'pdf'">{{ activity.description }}</a>
-                <label v-if="activity.resource_type != 'docs' && resource_extension != 'pdf'">{{activity.description}}</label>
+            <p v-if="activity.resource_type === 'docs'">
+                <a :href="`${activity.resource}`" class="text-white" v-if="resource_extension === 'pdf'">
+                    <span v-if="showMore">{{description}}</span>
+                    <span v-if="!showMore">{{descriptionLess}}</span>
+                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                </a>
+                <label v-if="resource_extension !== 'pdf'">
+                    <span v-if="showMore">{{description}}</span>
+                    <span v-if="!showMore">{{descriptionLess}}</span>
+                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                </label>
             </p>
         </div>
         <div v-if="activity.replace_caption">
             <h5 class="font-weight-bold my-2">{{ activity.replace_caption }}</h5>
             <p>
-                <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type == 'docs' && resource_extension == 'pdf'">{{ activity.description }}</a>
-                <label v-if="activity.resource_type != 'docs' && resource_extension != 'pdf'">{{ activity.description }}</label>
+                <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type === 'docs' && resource_extension === 'pdf'">
+                    <span v-if="showMore">{{description}}</span>
+                    <span v-if="!showMore">{{descriptionLess}}</span>
+                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                </a>
+                <label >
+                    <span v-if="showMore">{{description}}</span>
+                    <span v-if="!showMore">{{descriptionLess}}</span>
+                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                </label>
             </p>
         </div>
         <div class="d-flex c-fourth my-3">
@@ -71,6 +93,7 @@ export default {
     props: ['activity','user'],
     data(){
         return {
+            showMore:false,
             dropdown: false,
             showMenuPlaylist: false,
             playlist: false,
@@ -104,6 +127,14 @@ export default {
                 return 'not-document'
             }
         },
+        descriptionLess(){
+            let text = this.activity.description
+            let a = text.substr(0,50)
+            return a
+        },
+        description(){
+            return this.activity.description
+        }
     },
     methods: {
         showModalNewPlaylist(){

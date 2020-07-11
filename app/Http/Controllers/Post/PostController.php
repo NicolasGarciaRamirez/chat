@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function show($username, $token)
     {
-        $post = Post::with('votes.user', 'likes.user', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
+        $post = Post::with('views','votes.user', 'likes.user', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
         return view('post.view', ['post' => $post, 'user' => $this->user]);
     }
 
@@ -80,7 +80,7 @@ class PostController extends Controller
                     $post->replace_caption = $request->replace_caption;
                 }
                 $post->resource_type = $request->resource_type;
-                $post->token = \Str::random(80);
+                $post->token = \Str::random(15);
                 if ($this->user->profile_information){
                     $this->user->posts()->save($post);
                     \DB::commit();

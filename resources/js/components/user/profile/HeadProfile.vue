@@ -2,12 +2,11 @@
     <section class="profile">
         <div class="img-container wrap">
             <img :src="`${user.cover}`" alt="ImagePortada" class="img-portada">
-            <button type="button" class="edit-cover-photo btn text-white rounded-pill mr-5 pt-0 pb-0 pl-3 pr-3" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
-                <label class="mb-0 font-weight-bold" for="change-image" @click="type_change_image = 'Cover'">Edit Cover Photo
+            <button type="button" class="edit-cover-photo btn text-white rounded-pill mx-2 w-10" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
+                <label class="m-0 font-weight-bold" for="change-image" @click="type_change_image = 'Cover'">Edit Cover Photo
                     <i class="cil-pencil ml-2"></i>
                 </label>
             </button>
-            <div  class="btn my-2"></div>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="dropdown-menu bg-primary text-white" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
                 <a href="#" class="dropdown-item">View Image</a>
@@ -18,17 +17,18 @@
             </div>
             <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
-        <div class="head-container align-items-center" style="transform: translateY(-2rem)">
+        <div class="head-container align-items-center">
             <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token == user.token">
                 <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
-                <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white">Share Profile <i class="cil-share  ml-2"></i></a>
+                <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">Share Profile <i class="cil-share  ml-2"></i></a>
                 <a :href="`/${ user.username}/Profile`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
             </div>
             <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
                 <img src="/images/chat.svg" alt="chat" class="icon cursor-pointer">
                 <img src="/images/icons/post-up.svg" alt="post-up" class="icon cursor-pointer mx-3">
                 <div :id="`follow`+user.token" class="mx-3" @click="colorFollow(follow_type)" >
-                    <button type="button" class="bg-primary align-items-right border-white function">
+                    <button type="button" class="bg-primary align-items-right border-white function ">
+                        {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                         <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                              x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
                             <g id="Layer_2">
@@ -47,15 +47,16 @@
                 </div>
             </div>
             <div>
-                <h2 class="font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon"></h2>
+                <h2 class="font-weight-bold mb-3">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h2>
                 <div class="d-flex">
-                    <a href="#" class="btn bg-danger text-white mr-3 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
-                    <a v-if="user.subscription_type  == 'CONTRIBUTOR'" href="#" class="btn bg-white c-fifth">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
+                    <a href="#" class="btn bg-danger rounded-pill text-white mr-3 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
+                    <a href="#" class="btn bg-white rounded-pill c-fifth" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
                 </div>
             </div>
         </div>
         <modal-change-image />
         <modal-login />
+        <modal-share-profile :user="user"></modal-share-profile>
     </section>
 </template>
 
@@ -63,6 +64,8 @@
 import ModalChangeImage from './include/ModalChangeImage'
 import ModalLogin from '../../auth/Login'
 import Auth from '../../../helpers/Auth'
+import ModalShareProfile from "./include/ModalShareProfile";
+import ModalSharePost from "../../stream/ModalSharePost";
 export default {
     props:['user'],
     data(){
@@ -83,10 +86,15 @@ export default {
         this.getFollow()
     },
     components:{
+        ModalSharePost,
         ModalChangeImage,
-        ModalLogin
+        ModalLogin,
+        ModalShareProfile
     },
     methods: {
+        showModalShare(){
+            $('#ModalShareProfile').modal('show')
+        },
         showChangeImage(w){
             let input = w.target;
             this.resource = w.target.files[0]

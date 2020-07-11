@@ -9,14 +9,15 @@
                         </button>
                     </div>
                     <div class="modal-body text-center justify-content-center p-2">
-                        <div class="d-flex flex-column">
-                            <h5 class="font-weight-bold">Delete Post</h5>
+                        <div class="d-flex flex-column text-white">
+                            <h5 class="font-weight-bold">{{optionsAll.title}}</h5>
                             <p class="my-3">
-                                You are about to delete this post. Would you like to proceed?
+                                {{optionsAll.text}}
                             </p>
                             <div class="d-flex flex-row justify-content-end mb-2">
                                 <button class="btn rounded-pill font-weight-bold text-white bg-primary mx-2" data-dismiss="modal">Cancel</button>
-                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="$parent.deletePost">Accept</button>
+                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="optionsAll.type == 'Post' ? $parent.deletePost() : $parent.deleteComment()">Accept</button>
+                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" v-if="optionsAll.buttons.thank_you">Thank You</button>
                             </div>
                         </div>
                     </div>
@@ -28,7 +29,26 @@
 
 <script>
 export default {
+    props:['options'],
+    data(){
+        return {
 
+        }
+    },
+    computed:{
+        optionsAll(){
+            return {
+                type: this.options.type,
+                title: this.options.title,
+                text: this.options.text,
+                buttons:{
+                    cancel: this.options.buttons.cancel,
+                    accept: this.options.buttons.accept,
+                    thank_you: this.options.buttons.thank_you
+                }
+            }
+        }
+    }
 }
 </script>
 

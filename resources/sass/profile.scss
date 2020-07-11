@@ -5,13 +5,14 @@
     }
     .img-container{
         position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         .edit-cover-photo{
-            transform: translate(72rem, -150px);
-            @include media-breakpoint-down(sm){
-                transform: translate(13rem, -140px);
-                padding: 0px 6px 0px 6px;
-            }
+            z-index: 1000;
             border: 2px solid white;
+            position: absolute;
+            width: 11rem;
             &:hover{
                 background: white;
                 color: black !important;
@@ -20,16 +21,17 @@
                 }
             }
             &:active{
-                background: white;
-                color: black !important;
+                border: $fifth-color !important;
+                background: $fifth-color !important;
+                color: white !important;
                 i{
-                    color: black;
+                    color: white;
                 }
             }
         }
         .img-profile{
             position: absolute;
-            bottom: -3rem;
+            bottom: -6rem;
             left: 1rem;
             width: 30%;
             max-width: 10rem;
@@ -37,7 +39,7 @@
             max-height: 10rem;
             @include media-breakpoint-up(md){
                 width: 10rem;
-                bottom: -4rem;
+                bottom: -6rem;
                 max-width: 10rem;
                 min-height: 10rem;
                 max-height: 10rem;
@@ -97,6 +99,16 @@
                     font-size: 0.77rem !important;
                     margin-top: 2rem;
                 }
+                &:hover{
+                    border: 2px solid white !important;
+                    background: white !important;
+                    color: black !important;
+                }
+                &:active{
+                    border: 2px solid $fifth-color !important;
+                    background: $fifth-color !important;
+                    color: white !important;
+                }
             }
             button.function{
                 background: $primary-color !important;
@@ -108,18 +120,12 @@
                         fill: $primary-color !important;
                     }
                 }
-                &:before{
-                    content: 'FOLLOW';
-                }
                 @include media-breakpoint-down(sm){
                     padding: 0px 6px 0px 6px !important;
                     font-size: 0.77rem !important;
                     margin-top: 2rem;
                 }
                 &:hover{
-                    &:before{
-                        content: 'FOLLOW';
-                    }
                     border-color: white !important;
                     background-color: white !important;
                     color: black;
@@ -132,13 +138,9 @@
                     }
                 }
                 &:active{
-                    &:before{
-                        content: 'FOLLOWING';
-                    }
                     border-color: $fifth-color !important;
                     background-color: $fifth-color !important;
                     color: white !important;
-
                     svg{
                         width: 1rem !important;
                         margin-left: 0.3rem !important;
@@ -158,13 +160,8 @@
                 }
                 background: $fifth-color !important;
                 border: 2px solid $fifth-color !important;
-                &:before{
-                    content: 'FOLLOWING';
-                }
+
                 &:hover{
-                    &:before{
-                        content: 'FOLLOW';
-                    }
                     border-color: white !important;
                     background-color: white !important;
                     color: black;
@@ -177,9 +174,6 @@
                     }
                 }
                 &:active{
-                    &:before{
-                        content: 'FOLLOWING';
-                    }
                     border-color: $fifth-color !important;
                     background-color: $fifth-color !important;
                     color: white !important;
@@ -199,12 +193,24 @@
     }
     .content-personal-details{
         .settings{
+            border: 2px solid white !important;
+            padding: 0px 10px 0px 10px;
             &:hover{
+                border: 2px solid white !important;
                 background-color: #ffffff !important;
                 color: black !important;
                 .fas.fa-cog{
                     color: black;
                 }
+            }
+            &:active{
+                border: 2px solid $fifth-color !important;
+                background: $fifth-color !important;
+                color: white !important;
+                .fas.fa-cog{
+                    color: white;
+                }
+
             }
         }
     }

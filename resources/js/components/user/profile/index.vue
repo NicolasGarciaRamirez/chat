@@ -1,11 +1,11 @@
 <template>
     <section class="index">
         <div class="navigation-body">
-            <a href="#Releases" class="font-weight-bold cursor-pointer text-white mr-3" id="Releases" @click="addClass('releases')" v-if="user.profile_information.releases.length > 0">Releases</a>
-            <a href="#Members" class="font-weight-bold cursor-pointer text-white mr-3" id="Members" @click="addClass('members')" v-if="user.profile_information.members.length > 0">Members</a>
-            <a href="#Genres" class="font-weight-bold cursor-pointer text-white mr-3" id="Genres" @click="addClass('genres')" v-if="user.profile_information.genres !== ''">Genres</a>
-            <a href="#Services" class="font-weight-bold cursor-pointer text-white mr-3" id="Services" @click="addClass('services')" v-if="user.profile_information.services !== ''">Services</a>
-            <a href="#Social_media" class="font-weight-bold cursor-pointer text-white mr-3" id="Social_media" @click="addClass('social_media')" v-if="social_media !== null">Social Media</a>
+            <a href="#Releases" class="font-weight-bold cursor-pointer text-white mr-3" id="Releases" @click="addClass('releases')" v-if="this.user.profile_information.releases.length > 0">Releases</a>
+            <a href="#Members" class="font-weight-bold cursor-pointer text-white mr-3" id="Members" @click="addClass('members')" v-if="this.user.profile_information.members.length > 0">Members</a>
+            <a href="#Genres" class="font-weight-bold cursor-pointer text-white mr-3" id="Genres" @click="addClass('genres')" v-if="this.user.profile_information.genres">Genres</a>
+            <a href="#Services" class="font-weight-bold cursor-pointer text-white mr-3" id="Services" @click="addClass('services')" v-if="this.user.profile_information.services">Services</a>
+            <a href="#Social_media" class="font-weight-bold cursor-pointer text-white mr-3" id="Social_media" @click="addClass('social_media')" v-if="social_media">Social Media</a>
         </div>
         <releases :user="user" v-if="type === 'releases'"></releases>
         <members :user="user" v-if="type === 'members'"></members>
@@ -26,8 +26,7 @@ export default {
     props:['user'],
     data(){
         return {
-            social_media: JSON.parse(this.user.profile_information.social_media),
-            type: this.user.profile_information.releases.length > 0 ? 'releases' : '' ||  this.user.profile_information.members.length > 0 ? 'members' : '' || this.user.profile_information.genres !== '' ? 'genres' : '' || this.user.profile_information.services !== '' ? 'services' : '' || this.social_media !== null ? 'social_media' : ''
+            type: this.user.profile_information && this.user.profile_information.releases.length > 0 ? 'releases' : 'index' || this.user.profile_information && this.user.profile_information.members ? 'members' : '' || this.user.profile_information && this.user.profile_information.genres ? 'genres' : '' || this.user.profile_information && this.user.profile_information.services ? 'services': '' || this.social_media ? 'social_media' : ''
         }
     },
     components:{
@@ -36,6 +35,32 @@ export default {
         Genres,
         Services,
         SocialMedia
+    },
+    computed:{
+        social_media(){
+            if(this.user.profile_information){
+                let social_media = JSON.parse(this.user.profile_information.social_media)
+                if (
+                    social_media.LinkedIn !== null &&
+                    social_media.Twitch !== null &&
+                    social_media.Youtube !== null &&
+                    social_media.Bandcamp !== null &&
+                    social_media.Instagram !== null &&
+                    social_media.Twitter !== null &&
+                    social_media.TikTok !== null &&
+                    social_media.SoundCloud !== null &&
+                    social_media.Spotify !== null &&
+                    social_media.Facebook !== null &&
+                    social_media.SnapChat !== null
+                ){
+                    return true
+                }else{
+                    return false
+                }
+            }else{
+                return false
+            }
+        },
     },
     mounted(){
         this.addClass(this.type)

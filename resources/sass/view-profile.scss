@@ -12,7 +12,7 @@
             max-height: 10rem;
             @include media-breakpoint-up(md){
                 width: 10rem;
-                bottom: -4rem;
+                bottom: -6rem;
                 max-width: 10rem;
                 min-height: 10rem;
                 max-height: 10rem;
@@ -48,7 +48,17 @@
         }
         .functions{
             a.function{
-                border: 1px solid white;
+                border: 2px solid white;
+                &:hover{
+                    border: 2px solid white !important;
+                    background: white !important;
+                    color: black !important;
+                }
+                &:active{
+                    border: 2px solid $fifth-color !important;
+                    background: $fifth-color !important;
+                    color: white !important;
+                }
             }
         }
         .check-icon{

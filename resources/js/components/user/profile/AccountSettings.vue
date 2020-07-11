@@ -1,14 +1,14 @@
 <template>
     <section>
         <div class="container-fluid account-settings">
-            <h2 class="text-center my-5">Account Settings</h2>
+            <h2 class="text-center my-5 font-weight-bold">Account Settings</h2>
 
             <div id="accordionAccountSettings" class="accordion">
                 <div class="card">
                     <div class="card-header bg-black" id="headingOne">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             <img class="icon" src="/images/icons/house.svg" />
-                            <button type="button" class="btn btn-link text-white">Account Overview</button>
+                            <button type="button" class="btn btn-link text-white font-weight-bold">Account Overview</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
@@ -16,12 +16,12 @@
                     aria-labelledby="headingOne" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="c-fourth flex-column mx-5">
-                                <div><label>Accont Type :</label><b class="c-fifth">{{user.subscription_type}}</b></div>
+                                <div><label>Accont Type :</label><b class="c-fifth font-weight-bold">{{user.subscription_type}}</b></div>
                                 <div><label>Joined :</label><b class="text-white">{{ user.created_at }}</b></div>
                                 <div><label>Email :</label><b class="text-white">{{ user.email }}</b></div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditAccount">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditAccount" class="border-white font-weight-bold">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
@@ -30,12 +30,11 @@
                     <div class="card-header bg-black" id="headingTwo">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <img class="icon" src="/images/icons/user-pencil.svg" />
-                            <button type="button" class="btn btn-link text-white">Personal Details</button>
+                            <button type="button" class="btn btn-link text-white font-weight-bold">Personal Details</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseTwo" class="collapse"
-                    aria-labelledby="headingTwo" data-parent="#accordionAccountSettings">
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="c-fourth flex-column mx-5">
                                 <div><label>Name :</label><label class="text-white">{{ user.personal_information.full_name }}</label></div>
@@ -44,17 +43,17 @@
                                 <div><label>Location :</label><label class="text-white">{{ user.personal_information.location }}</label></div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditPersonalDetails">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditPersonalDetails" class="border-white font-weight-bold">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div v-if="user.subscription_type == 'CONTRIBUTOR'">
                     <div class="card">
-                        <div class="card-header bg-black" id="headingSubscriptionSettings">
+                        <div class="card-header bg-black" id="headingSubscriptionSettings" @click="showModalGeneralCommingSoon">
                             <h2 class="mb-0" data-toggle="collapse" data-target="#collapseSubscriptionSettings" aria-expanded="false" aria-controls="collapseSubscriptionSettings">
                                 <img class="icon" src="/images/icons/user-pencil.svg" />
-                                <button type="button" class="btn btn-link text-white">Subscription Settings</button>
+                                <button type="button" class="btn btn-link text-white font-weight-bold">Subscription Settings</button>
                                 <i class="fas fa-angle-up float-right"></i>
                             </h2>
                         </div>
@@ -76,11 +75,11 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" v>
                     <div class="card-header bg-black" id="headingThree">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <img class="icon" src="/images/icons/payment.svg" />
-                            <button type="button" class="btn btn-link text-white">Your Payments</button>
+                            <button type="button" class="btn btn-link text-white font-weight-bold">Your Payments</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
@@ -120,7 +119,7 @@
                         <div class="card-header bg-black" id="headingEarnings">
                             <h2 class="mb-0" data-toggle="collapse" data-target="#collapseEarnings" aria-expanded="false" aria-controls="collapseEarnings">
                                 <img class="icon" src="/images/icons/change-password.svg" />
-                                <button type="button" class="btn btn-link text-white">Support Earnings</button>
+                                <button type="button" class="btn btn-link text-white font-weight-bold">Support Earnings</button>
                                 <i class="fas fa-angle-up float-right"></i>
                             </h2>
                         </div>
@@ -138,7 +137,7 @@
                         <div class="card-header bg-black" id="headingFourth">
                             <h2 class="mb-0" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
                                 <img class="icon" src="/images/icons/change-password.svg" />
-                                <button type="button" class="btn btn-link text-white">Reward Earnings</button>
+                                <button type="button" class="btn btn-link text-white font-weight-bold">Reward Earnings</button>
                                 <i class="fas fa-angle-up float-right"></i>
                             </h2>
                         </div>
@@ -154,18 +153,18 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-header bg-black" id="headingFourth">
-                        <h2 class="mb-0" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
+                    <div class="card-header bg-black" id="headingSeven">
+                        <h2 class="mb-0" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                             <img class="icon" src="/images/icons/change-password.svg" />
-                            <button type="button" class="btn btn-link text-white">Change Password</button>
+                            <button type="button" class="btn btn-link text-white font-weight-bold">Change Password</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseFourth" class="collapse"
-                    aria-labelledby="headingFourth" data-parent="#accordionAccountSettings">
+                    <div id="collapseSeven" class="collapse"
+                    aria-labelledby="headingSeven" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditPassword">Change Password <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditPassword" class="border-white font-weight-bold">Change Password <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
@@ -174,7 +173,7 @@
                     <div class="card-header bg-black" id="headingFifth">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
                             <img class="icon" src="/images/icons/linked-social-media.svg" />
-                            <button type="button" class="btn btn-link text-white">Linked Social Media</button>
+                            <button type="button" class="btn btn-link text-white font-weight-bold">Linked Social Media</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
@@ -201,7 +200,7 @@
                     <div class="card-header bg-black" id="headingSix">
                         <h2 class="mb-0" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             <img class="icon" src="/images/icons/linked-other-profile.svg" />
-                            <button type="button" class="btn btn-link text-white" @click="showModalGeneralCommingSoon">Linked Other Noisesharks Profiles</button>
+                            <button type="button" class="btn btn-link text-white font-weight-bold" @click="showModalGeneralCommingSoon">Linked Other Noisesharks Profiles</button>
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>

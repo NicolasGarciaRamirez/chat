@@ -156,6 +156,7 @@
         <posts :posts="order_post" ref="posts"/>
         <modal-live-stream></modal-live-stream>
         <modal-mobile />
+        <modal-sure-deleted :options="options_sure_delete"></modal-sure-deleted>
     </section>
 </template>
 
@@ -166,11 +167,13 @@
     import ModalLiveStream from "../ModalsCommingSoon/ModalLiveStream";
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
     import ModalMobile from "../ModalsCommingSoon/ModalMobile";
+    import ModalSureDeleted from "../stream/includes/ModalSureDeleted";
 
     export default {
         name: "Index",
         props:['posts'],
         components:{
+            ModalSureDeleted,
             Posts,
             VueHashtagTextarea,
             ModalLiveStream,
@@ -183,6 +186,16 @@
                     hashtagColor: '#ff0000',
                     placeholder: 'Add Some value to the music industry...',
                     font:'Encode Sans'
+                },
+                options_sure_delete:{
+                    type: 'Index',
+                    title: 'Warning',
+                    text: 'You need to choose a Profile Title and Type if you would like to post your content! You have been redirected to your profile page so you can do so.',
+                    buttons:{
+                        cancel: true,
+                        accept: false,
+                        thank_you: true
+                    }
                 },
                 loading: false,
                 replace_caption: false,
@@ -291,6 +304,7 @@
                                 this.loading = false
                             }
                         }else{
+                            $('#ModalSureDelete').modal('show')
                             window.location.replace(`/${this.auth.username}/Edit`)
                             console.log('novalid')
                         }

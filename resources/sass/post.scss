@@ -67,9 +67,6 @@
                 //    color: white;
                 //}
                 .follow-active{
-                    &:before{
-                        content: 'FOLLOWING';
-                    }
                     background: $fifth-color !important;
                     border: 2px solid $fifth-color !important;
                     svg{
@@ -80,9 +77,6 @@
                         }
                     }
                     &:hover{
-                        &:before{
-                            content: 'FOLLOW';
-                        }
                         border-color: white !important;
                         background-color: white !important;
                         color: black;
@@ -95,9 +89,6 @@
                         }
                     }
                     &:active{
-                        &:before{
-                            content: 'FOLLOWING';
-                        }
                         border-color: $fifth-color !important;
                         background-color: $fifth-color !important;
                         color: white !important;
@@ -112,9 +103,6 @@
                     }
                 }
                 .follow-idle{
-                    &:before{
-                        content: 'FOLLOW';
-                    }
                     background: $primary-color !important;
                     border: 2px solid white !important;
                     svg{
@@ -138,9 +126,6 @@
                         }
                     }
                     &:active{
-                        &:before{
-                            content: 'FOLLOWING';
-                        }
                         border-color: $fifth-color !important;
                         background-color: $fifth-color !important;
                         color: white !important;

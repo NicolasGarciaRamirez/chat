@@ -465,7 +465,7 @@
                                             <span
                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
                                                     style="font-size: 16px; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a
-                                                            href="{{ route('profile.releases', $user->username) }}">Take Me To My Profile</a></strong></span></span>
+                                                            href="{{ route('profile.index', $user->username) }}">Take Me To My Profile</a></strong></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>
