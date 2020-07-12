@@ -70,7 +70,7 @@
             <span v-if="!edit && !post.replace_caption && post.resource_type !== 'docs'">
                 <span v-if="showMore">{{description}}</span>
                 <span v-if="!showMore">{{descriptionLess}}</span>
-                <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
             </span>
             <span v-if="post.resource_type === 'docs'">
                 <span v-if="showMore">{{description}}</span>
@@ -274,9 +274,12 @@
                 }
             },
             descriptionLess(){
-                let text = this.post.description
-                let a = text.substr(0,500)
-                return a
+                if(this.post.description != null){
+                    let text = this.post.description
+                    let a = text.substr(0,500)
+                    return a
+                }
+                return null
             },
             description(){
                 return this.post.description
