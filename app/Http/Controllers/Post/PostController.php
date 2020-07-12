@@ -117,11 +117,11 @@ class PostController extends Controller
      * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
-    public function update(Request $request, $token)
+    public function update(Request $request, $username, $token)
     {
         \DB::beginTransaction();
         try {
-            Post::whereToken($token)->update($request->except(['comments', 'user', 'time_ago', 'score', 'vote_down_count', 'vote_up_count', 'votes', 'likes']));
+            Post::whereToken($token)->update($request->only(['description']));
             \DB::commit();
             return response()->json([
                 'updated' => true,
