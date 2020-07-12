@@ -3,9 +3,12 @@
 namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserSocialAuth extends Model
 {
+    use SoftDeletes;
+    
     /**
      * @var string[]
      */

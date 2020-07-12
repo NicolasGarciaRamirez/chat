@@ -20,6 +20,8 @@ class CreateFollowersTable extends Migration
             $table->unsignedBigInteger('following_user');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

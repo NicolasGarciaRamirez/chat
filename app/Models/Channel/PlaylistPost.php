@@ -15,7 +15,7 @@ class PlaylistPost extends Model
      * @var array
      */
     protected $fillable = [
-        'playlist_id', 'playlist_post_id'
+        'playlist_id', 'post_id'
     ];
 
     /**
@@ -24,7 +24,7 @@ class PlaylistPost extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at','updated_at','deleted_at'
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**

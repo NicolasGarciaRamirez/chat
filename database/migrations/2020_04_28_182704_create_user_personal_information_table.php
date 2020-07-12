@@ -23,6 +23,7 @@ class CreateUserPersonalInformationTable extends Migration
             $table->string('location')->default('N/A');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

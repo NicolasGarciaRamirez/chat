@@ -9,7 +9,7 @@ class Suggestions extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'subject',  'message', 'file'];
+    protected $fillable = ['name', 'subject', 'message', 'file'];
 
     protected $hidden = ['updated_at', 'deleted_at', 'created_at'];
 

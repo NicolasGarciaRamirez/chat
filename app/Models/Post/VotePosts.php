@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class VotePosts extends Model
 {
     use SoftDeletes;
+
     /**
      * Undocumented variable
      *
@@ -23,7 +24,7 @@ class VotePosts extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at','deleted_at'
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**
@@ -45,6 +46,7 @@ class VotePosts extends Model
     {
         return $this->belongsTo(\App\Models\Post\Post::class);
     }
+
     /**
      * Undocumented function
      *

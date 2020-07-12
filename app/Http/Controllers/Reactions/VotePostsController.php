@@ -11,8 +11,15 @@ use App\Models\Post\VotePosts;
 
 class VotePostsController extends Controller
 {
+
+    /**
+     * @var
+     */
     private $user;
 
+    /**
+     * VotePostsController constructor.
+     */
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -31,12 +38,12 @@ class VotePostsController extends Controller
      * @param Post $post
      * @return void
      */
-    public function voteUp(Request $request , $username, Post $post, VotePosts $vote = null)
+    public function voteUp(Request $request, $username, Post $post, VotePosts $vote = null)
     {
         if ($vote) {
             $vote->type_vote = 'vote_up';
             $vote->update();
-        }elseif ($request->type_vote == 'vote_up'){
+        } elseif ($request->type_vote == 'vote_up') {
             $vote = new VotePosts($request->all());
             $vote->type_vote = $request->type_vote;
             $vote->user()->associate($this->user);
@@ -55,7 +62,7 @@ class VotePostsController extends Controller
      * @param VotePosts $vote
      * @return void
      */
-    public function unvoteUp($username ,VotePosts $vote)
+    public function unvoteUp($username, VotePosts $vote)
     {
         $vote->delete();
 
@@ -64,6 +71,7 @@ class VotePostsController extends Controller
             'errors' => null
         ]);
     }
+
     /**
      * Undocumented function
      *
@@ -75,10 +83,10 @@ class VotePostsController extends Controller
      */
     public function voteDown(Request $request, $username, Post $post, VotePosts $vote = null)
     {
-        if ($vote){
+        if ($vote) {
             $vote->type_vote = 'vote_down';
             $vote->update();
-        }else{
+        } else {
             $vote = new VotePosts($request->all());
             $vote->type_vote = $request->type_vote;
             $vote->user()->associate($this->user);

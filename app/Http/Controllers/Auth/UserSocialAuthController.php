@@ -21,7 +21,7 @@ class UserSocialAuthController extends Controller
     {
         $user = $this->createOrGetUser(Socialite::driver($provider));
 
-        if(!$user){
+        if (!$user) {
             session()->flash('message_danger', "You cannot log in with Twitter, please try with your email and password");
             return redirect()->route('RegisterIndex', ['type' => 'Free']);
         }
@@ -61,25 +61,25 @@ class UserSocialAuthController extends Controller
         $cover = '/images/profile/default-cover.svg';
         $avatar = $providerUser->avatar;
 
-        if($providerUser->email == '') return false;
+        if ($providerUser->email == '') return false;
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
             $last_name = ' ';
             if ($providerName == 'GoogleProvider') {
-               $first_name = $providerUser->user['given_name'];
-               $last_name = $providerUser->user['family_name'];
+                $first_name = $providerUser->user['given_name'];
+                $last_name = $providerUser->user['family_name'];
             }
             if ($providerName == 'FacebookProvider') {
                 $full_name = explode(" ", $providerUser->name);
                 $first_name = $full_name[0];
-                if(isset($full_name[1])){
+                if (isset($full_name[1])) {
                     $last_name = $full_name[1];
                 }
             }
             if ($providerName == 'TwitterProvider') {
                 $full_name = explode(" ", $providerUser->name);
                 $first_name = $full_name[0];
-                if(isset($full_name[1])){
+                if (isset($full_name[1])) {
                     $last_name = $full_name[1];
                 }
                 $avatar = $providerUser->user['profile_image_url_https'];

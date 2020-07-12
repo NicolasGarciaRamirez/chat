@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Post extends Model
 {
     use SoftDeletes;
+
     /**
      * fillable variable
      *
      * @var array
      */
     protected $fillable = [
-        'user_id', 'replace_caption' , 'allow_download' , 'description', 'resource', 'resource_type', 'genre', 'category','privacy', 'token'
+        'user_id', 'replace_caption', 'allow_download', 'description', 'resource', 'resource_type', 'genre', 'category', 'privacy', 'token'
     ];
 
     /**
@@ -55,13 +56,15 @@ class Post extends Model
     {
         return $this->votes()->where('type_vote', 'vote_down')->count();
     }
+
     /**
      * @return float
      */
     public function getScoreAttribute()
     {
-        return doubleval((( 10 + $this->vote_up_count ) / ( 10 + ( $this->vote_up_count + $this->vote_down_count ))) * (1 - (0.02 * ($this->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60))) * 1);
+        return doubleval(((10 + $this->vote_up_count) / (10 + ($this->vote_up_count + $this->vote_down_count))) * (1 - (0.02 * ($this->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60))) * 1);
     }
+
     /**
      * user relations
      *
@@ -82,7 +85,7 @@ class Post extends Model
         return $this->morphMany('App\Models\Comment\Comment', 'commentable');
     }
 
-     /**
+    /**
      * comments relations
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
@@ -102,7 +105,7 @@ class Post extends Model
         return $this->morphMany('App\Models\Post\VotePosts', 'voteable');
     }
 
-     /**
+    /**
      * Undocumented function
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany

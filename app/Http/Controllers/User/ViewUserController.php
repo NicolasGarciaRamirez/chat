@@ -8,8 +8,15 @@ use App\Models\User\User;
 
 class ViewUserController extends Controller
 {
+
+    /**
+     * @var
+     */
     private $user;
 
+    /**
+     * ViewUserController constructor.
+     */
     public function __construct()
     {
         $this->middleware(function ($request, $next) {

@@ -22,8 +22,11 @@ class CreateUserProfileInformationTable extends Migration
             $table->text('genres')->nullable();
             $table->text('services')->nullable();
             $table->json('social_media')->nullable();
-            $table->string('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

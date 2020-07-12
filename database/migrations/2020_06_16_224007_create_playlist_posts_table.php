@@ -15,10 +15,13 @@ class CreatePlaylistPostsTable extends Migration
     {
         Schema::create('playlist_posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('playlist_id');
-            $table->integer('playlist_post_id');
+            $table->unsignedBigInteger('playlist_id');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('playlist_id')->references('id')->on('playlists')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

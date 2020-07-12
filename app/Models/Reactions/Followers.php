@@ -14,7 +14,7 @@ class Followers extends Model
      *
      * @var array
      */
-    protected $fillable =['user_id','type','following_user'];
+    protected $fillable = ['user_id', 'type', 'following_user'];
 
     /**
      * Undocumented variable
@@ -24,7 +24,7 @@ class Followers extends Model
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
-    
+
     /**
      * Undocumented function
      *
@@ -35,5 +35,5 @@ class Followers extends Model
         return $this->belongsTo('\App\Models\User\User', 'following_user');
     }
 
-   
+
 }

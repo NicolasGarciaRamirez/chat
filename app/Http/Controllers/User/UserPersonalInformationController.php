@@ -10,7 +10,6 @@ use App\Notifications\PersonalInformationUpdatedSuccessfully;
 
 class UserPersonalInformationController extends Controller
 {
-
     /**
      * @var
      */

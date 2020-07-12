@@ -11,6 +11,10 @@ use App\Models\User\LitLike;
 
 class LitLikeController extends Controller
 {
+
+    /**
+     * LitLikeController constructor.
+     */
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -21,8 +25,15 @@ class LitLikeController extends Controller
         });
     }
 
+    /**
+     * @param Request $request
+     * @param $username
+     * @param $model
+     * @param $id_model
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function like(Request $request, $username, $model, $id_model)
-    {   
+    {
         \DB::beginTransaction();
 
         try {
@@ -36,11 +47,11 @@ class LitLikeController extends Controller
                 $like = new LitLike($request->all());
                 $like->user()->associate($this->user);
                 $model->likes()->save($like);
-            }else{
-                $like = null; 
+            } else {
+                $like = null;
             }
-        
-            
+
+
             \DB::commit();
             return response()->json([
                 'like' => $like->load('user'),
@@ -56,7 +67,13 @@ class LitLikeController extends Controller
 
     }
 
-    public function unlike($username , LitLike $like)
+    /**
+     * @param $username
+     * @param LitLike $like
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function unlike($username, LitLike $like)
     {
         $like->delete();
 

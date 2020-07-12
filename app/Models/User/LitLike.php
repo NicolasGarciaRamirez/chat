@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class LitLike extends Model
 {
     use SoftDeletes;
+
     /**
      * Undocumented variable
      *
@@ -23,7 +24,7 @@ class LitLike extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at','deleted_at'
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     /**

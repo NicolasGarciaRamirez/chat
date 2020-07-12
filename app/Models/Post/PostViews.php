@@ -10,12 +10,13 @@ class PostViews extends Model
 
     protected $hidden = ['created_at', 'updated_at'];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(\App\Models\User\User::class);
     }
 
     public function post()
     {
-        return $this->belongsTo('\App\Models\Post\PostViews','post_id');
+        return $this->belongsTo('\App\Models\Post\PostViews', 'post_id');
     }
 }

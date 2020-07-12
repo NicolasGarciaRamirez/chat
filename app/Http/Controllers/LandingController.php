@@ -16,7 +16,7 @@ class LandingController extends Controller
         $request->validate([
             'email' => 'unique:landings'
         ]);
-        
+
         Landing::create($request->all());
 
         session()->flash('message', "Email has been registered!");

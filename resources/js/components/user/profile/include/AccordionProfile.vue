@@ -1,6 +1,6 @@
 <template>
     <section class="container-fluid edit-profile">
-        <form @submit.prevent="save" enctype="multipart/form-data">
+        <form @submit.prevent="save" enctype="multipart/form-data" ref="form_profile_update_information">
             <div id="accordionProfile" class="accordion">
                 <div class="card">
                     <div class="card-header bg-black" font-weight-bold id="headingOne">
@@ -161,7 +161,7 @@
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column justify-content-center align-items-center text-center">
                                     <button type="button" class="bg-primary text-white rounded-pill font-weight-bold" @click="addWork = true" v-if="!addWork">Add Worked With</button>
-                                    <input class="form-control my-2 w-25" v-model="addWorkName" @keyup.enter.prevent="addedWork()" v-else autofocus>
+                                    <input class="form-control my-2 w-25" v-model="addWorkName" @keypress.enter.prevent="addedWork($event)" v-else autofocus>
                                 </div>
                                 <div class="d-flex flex-row">
                                     <span class="bg-third text-white text-center mx-2 p-2" v-for="(work , index) in worked_with" :key="index">{{work.name}}<i class="fas fa-times cursor-pointer mx-2 py-1" @click="deleteWorkWith(work)"></i></span>
@@ -298,7 +298,7 @@
             </div>
             <div class="d-flex justify-content-center text-center m-5">
                 <button class="btn rounded-pill bg-black text-white font-weight-bold">Cancel</button>
-                <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit" v-if="!disable">Save</button>
+                <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="button" v-if="!disable" @click="save()">Save</button>
                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                 </button>
@@ -394,12 +394,14 @@ export default {
                 this.worked_with = this.user.profile_information.worked_with
             }
         },
-        async addedWork(){
+        async addedWork(event){
+            event.preventDefault()
             if(this.addWorkName == '') return false
             this.worked_with.push({
                 name: this.addWorkName,
                 id: null
             })
+            this.save()
         },
         addRelease(){
             this.releases_information.push({
@@ -441,7 +443,7 @@ export default {
                 return false
             }
 
-            let formData = new FormData()
+            //let formData = new FormData()
 
             // if (this.releases_information.length > 0){
             //     $.each(this.releases_information, function(key, release){

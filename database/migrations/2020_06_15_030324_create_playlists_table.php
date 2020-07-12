@@ -19,9 +19,11 @@ class CreatePlaylistsTable extends Migration
             $table->text('about');
             $table->string('image');
             $table->string('token');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

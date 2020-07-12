@@ -21,8 +21,11 @@ class CreateReleasesTable extends Migration
             $table->string('image');
             $table->string('label');
             $table->string('release_date');
-            $table->integer('profile_information_id');
+            $table->unsignedBigInteger('profile_information_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('profile_information_id')->references('id')->on('user_profile_information')->onDelete('cascade');
         });
     }
 

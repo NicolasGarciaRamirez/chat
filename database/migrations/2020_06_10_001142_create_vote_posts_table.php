@@ -21,6 +21,8 @@ class CreateVotePostsTable extends Migration
             $table->string('voteable_type');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

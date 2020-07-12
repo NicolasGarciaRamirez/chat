@@ -8,13 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Playlist extends Model
 {
     use SoftDeletes;
+
     /**
      * Undocumented variable
      *
      * @var array
      */
     protected $fillable = [
-        'title','about','about'
+        'title', 'about', 'about'
     ];
 
     /**

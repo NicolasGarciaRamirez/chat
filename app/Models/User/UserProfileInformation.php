@@ -3,15 +3,18 @@
 namespace App\Models\User;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserProfileInformation extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'profile_type', 'title', 'artistic_name', 'about_you', 'genres', 'services', 'social_media', 'user_id'
     ];
 
     protected $hidden = [
-        'created_at', 'updated_at','deleted_at'
+        'created_at', 'updated_at', 'deleted_at'
     ];
 
     public function setGenresAttribute($value)
@@ -23,6 +26,7 @@ class UserProfileInformation extends Model
     {
         $this->attributes['services'] = implode(",", $value);
     }
+
     /**
      * Undocumented function
      *
@@ -60,6 +64,6 @@ class UserProfileInformation extends Model
      */
     public function releases()
     {
-        return $this->hasMany('\App\Models\User\Releases', 'profile_information_id','id');
+        return $this->hasMany('\App\Models\User\Releases', 'profile_information_id', 'id');
     }
 }

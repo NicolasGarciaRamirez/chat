@@ -130,7 +130,7 @@ class UserProfileInformationController extends Controller
 
             });
 
-            collect($request->worked_with_information)->each(function ($query) {
+            collect($request->profile_information['worked_with'])->each(function ($query) {
                 WorkedWith::updateOrCreate(
                     ['id' => $query['id']],
                     [

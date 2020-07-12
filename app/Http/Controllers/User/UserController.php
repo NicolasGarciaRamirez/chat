@@ -131,6 +131,10 @@ class UserController extends Controller
         return $imageName;
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateUser(Request $request)
     {
         \DB::beginTransaction();

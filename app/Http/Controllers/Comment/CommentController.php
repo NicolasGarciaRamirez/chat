@@ -34,9 +34,9 @@ class CommentController extends Controller
      */
     public function store(Request $request, $username, $model, $id_model)
     {
-        if($model == 'Post'){
+        if ($model == 'Post') {
             $model = Post::find($id_model);
-        }elseif ($model == 'Comment'){
+        } elseif ($model == 'Comment') {
             $model = Comment::find($id_model);
         }
 

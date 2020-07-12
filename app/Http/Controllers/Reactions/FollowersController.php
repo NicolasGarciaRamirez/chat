@@ -11,6 +11,9 @@ use App\Models\Reactions\Followers;
 
 class FollowersController extends Controller
 {
+    /**
+     * FollowersController constructor.
+     */
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -21,6 +24,12 @@ class FollowersController extends Controller
         });
     }
 
+    /**
+     * @param Request $request
+     * @param $username
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function follow(Request $request, $username, User $user)
     {
         \DB::beginTransaction();
@@ -46,6 +55,12 @@ class FollowersController extends Controller
         }
     }
 
+    /**
+     * @param $username
+     * @param Followers $follow
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
     public function unfollow($username, Followers $follow)
     {
         $follow->delete();

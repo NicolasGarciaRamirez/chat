@@ -19,8 +19,11 @@ class CreateMembersTable extends Migration
             $table->string('member_type');
             $table->string('link_profile')->nullable();
             $table->string('role_instrument');
-            $table->string('profile_information_id');
+            $table->unsignedBigInteger('profile_information_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('profile_information_id')->references('id')->on('user_profile_information')->onDelete('cascade');
         });
     }
 

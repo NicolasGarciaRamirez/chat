@@ -16,8 +16,11 @@ class CreateWorkedWithsTable extends Migration
         Schema::create('worked_withs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->bigInteger('profile_information_id');
+            $table->unsignedBigInteger('profile_information_id');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('profile_information_id')->references('id')->on('user_profile_information')->onDelete('cascade');
         });
     }
 

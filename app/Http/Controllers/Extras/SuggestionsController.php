@@ -8,6 +8,10 @@ use App\Http\Controllers\Controller;
 
 class SuggestionsController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function save(Request $request)
     {
         $suggestion = new Suggestions($request->all());
