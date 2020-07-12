@@ -289,8 +289,9 @@
                             if (res.data.saved) {
                                 this.loading = false
                                 this.initializeVariables()
-                                this.all_post.unshift(res.data.post)
-                                this.filterPost()
+                                this.order_post.unshift(res.data.post)
+                                // this.all_post.push(res.data.post)
+                                // this.filterPost()
                                 $('html, body').animate({ scrollTop: 0 }, 'fast');
                                 this.$toasted.show('Post Published Successfully!', {
                                     position: "bottom-right",
