@@ -496,10 +496,8 @@ export default {
         validateData(){
             let validate = true
 
-            this.user.profile_information.profile_type
-
-            if(this.user.profile_information.profile_type == "") validate = false;
-            if(this.user.profile_information.title == "Select Title") validate = false;
+            if(this.profile_information.profile_type == "") validate = false;
+            if(this.profile_information.title == "Select Title") validate = false;
 
             return validate
         },
