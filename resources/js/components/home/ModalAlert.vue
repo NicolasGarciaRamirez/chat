@@ -16,7 +16,7 @@
                             </p>
                             <div class="d-flex flex-row justify-content-end mb-2">
                                 <button class="btn rounded-pill font-weight-bold text-white bg-primary mx-2" data-dismiss="modal">Cancel</button>
-                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="$parent.accept_redirect">Ok</button>
+                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="goToPerfil()">Ok</button>
                             </div>
                         </div>
                     </div>
@@ -27,11 +27,12 @@
 </template>
 
 <script>
-export default {
-    props:['options'],
-}
+    export default {
+        props:['user'],
+        methods:{
+            goToPerfil(){
+                window.location.replace(`/${this.user.username}/Edit`)
+            }
+        }
+    }
 </script>
-
-<style>
-
-</style>

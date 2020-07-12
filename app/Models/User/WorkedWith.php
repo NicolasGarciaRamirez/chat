@@ -12,7 +12,7 @@ class WorkedWith extends Model
      * @var array
      */
     protected $fillable = [
-        'name','profile_information_id'
+        'name', 'profile_information_id'
     ];
 
     /**
@@ -21,7 +21,7 @@ class WorkedWith extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at','updated_at'
+        'created_at', 'updated_at'
     ];
 
     /**

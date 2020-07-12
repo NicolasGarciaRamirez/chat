@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade" tabindex="-1000" role="dialog" aria-labelledby="ModalMerch" aria-hidden="true" id="ModalMerch">
+    <div class="modal fade" id="ModalMerch">
         <div class="modal-dialog modal-dialog-centered modal-md" role="document">
             <div class="modal-content modal-border-white">
                 <div class="modal-header border-0">

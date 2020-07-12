@@ -90,7 +90,7 @@
 
                         <a class="font-weight-bold c-fourth cursor-pointer" @click="showModalLive">GO LIVE <span class="c-fifth ml-1">•</span></a>
                     </div>
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.category === '' && post.genre === ''">Post</button>
+                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.description === '' || post.resource === ''">Post</button>
                 </div>
                 <div class="config-post  bg-primary">
                     <div class="d-flex flex-column py-2" v-if="imageData.length > 0" >
@@ -110,8 +110,8 @@
                     <div class="d-flex flex-row justify-content-between py-3" v-if="post.description != '' || post.resource != ''">
                         <div class="d-flex flex-row">
                             <div>
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1 font-weight-bold" id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div>
-                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1 font-weight-bold cursor-pointer" id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div> <!-- por que lo hiciste asi y no como select? -->
+                                <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdown">
                                     <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
                                     <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
                                     <div class="dropdown-item" @click="post.genre = 'EDM'">EDM</div>
@@ -123,8 +123,8 @@
                                 </div>
                             </div>
                              <div>
-                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
-                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownCategory">
+                                <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold cursor-pointer" id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
+                                <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdownCategory">
                                     <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
                                     <div class="dropdown-item" @click="post.category = 'Vlogs'">Vlogs</div>
                                     <div class="dropdown-item" @click="post.category = 'Instruments'">Instruments</div>
@@ -142,7 +142,7 @@
                                     <div class="dropdown-item" @click="post.privacy = 'Followers'">Followers</div>
                                 </div>
                                 <div class="mx-2">
-                                    <button class="btn bg-fifth text-white rounded-pill mr-2 font-weight-bold" type="submit" v-if="!loading" :disabled="!post.category && !post.genre">Post</button>
+                                    <button class="btn bg-fifth text-white rounded-pill mr-2 font-weight-bold" type="submit" v-if="!loading">Post</button>
                                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                     </button>
@@ -155,8 +155,8 @@
         </form>
         <posts :posts="order_post" ref="posts"/>
         <modal-live-stream></modal-live-stream>
-        <modal-mobile />
-        <modal-alert></modal-alert>
+        <modal-mobile/>
+        <modal-alert :user="auth"></modal-alert>
     </section>
 </template>
 
@@ -194,13 +194,13 @@
                 auth : Auth.state,
                 imageData: "",
                 post:{
-                    replace_caption:"",
-                    allow_download:"",
+                    replace_caption: '',
+                    allow_download: '',
                     description: '',
                     resource: '',
                     resource_type: 'text',
-                    genre:"",
-                    category: "",
+                    genre: '',
+                    category: '',
                     privacy: 'Everyone'
                 },
                 disable_save_post: true,
@@ -262,6 +262,13 @@
             async store(){
                 if (this.auth.token) {
                     this.loading = true
+
+                    if(!this.validateData()){
+                        alert('Please select a genre and category')
+                        this.loading = false
+                        return false
+                    }
+
                     if (this.allow_download){
                         this.post.allow_download = true
                     }
@@ -298,9 +305,8 @@
                             this.loading = false
                             $('#ModalAlert').modal('show')
                             if (this.accept_redirect){
-                                window.location.replace(`/${this.auth.username}/Edit`)
+
                             }
-                            console.log('novalid')
                         }
                     }).catch(err=>{
                         this.loading = false
@@ -340,6 +346,15 @@
                 this.replace_caption= false
                 this.allow_download= false
                 this.imageData= ""
+            },
+            validateData(){
+                let validate = true
+
+                if(this.post.genre === '' || this.post.category === '') {
+                    validate = false
+                }
+
+                return validate
             }
         }
     }

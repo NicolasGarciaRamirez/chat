@@ -70,9 +70,7 @@ export default {
         }
     },
     mounted(){
-        console.log(
-            this.$parent.type_change_image
-        )
+        // console.log(this.$parent.type_change_image)
     },
     computed:{
         img(){

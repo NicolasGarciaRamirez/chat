@@ -88,7 +88,7 @@ class PostController extends Controller
 
                 return response()->json([
                     'saved' => true,
-                    'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information'),
+                    'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'views'),
                     'valid' => $this->user->profile_information ? true : false,
                     'errors' => null
                 ], 200);
@@ -131,16 +131,15 @@ class PostController extends Controller
 
     /**
      * @param $username
-     * @param $token
+     * @param Post $post
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function delete($username, Post $post)
     {
         $post->delete();
         return response()->json([
             'deleted' => true,
-            'errors' => null,
-            'post' => $post
         ]);
     }
 

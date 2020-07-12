@@ -58,6 +58,7 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::name('profile.update')->post('/Edit/Profile', 'User\UserProfileInformationController@update');
         Route::name('profile.save')->post('/Save/Profile', 'User\UserProfileInformationController@save');
         Route::name('image.save')->post('/image/save', 'User\UserProfileInformationController@saveImage');
+        Route::name('profile.work.with.delete')->post('/WorkWith/delete/{WorkedWith}', 'User\UserProfileInformationController@deleteWorkedWith');
     });
 
     Route::group(['prefix' => 'Channel'], function () {

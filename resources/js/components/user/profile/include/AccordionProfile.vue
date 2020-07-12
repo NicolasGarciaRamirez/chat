@@ -35,7 +35,7 @@
                         <div class="card-body text-white bg-black">
                             <div class="row text-justify ">
                                 <div class="col text-center select">
-                                    <select class="select-form font-weight-bold" v-model="profile_information.title" required>
+                                    <select class="select-form font-weight-bold" v-model="profile_information.title">
                                         <option value="Select Title">Select Title</option>
                                         <optgroup  v-if="profile_information.profile_type == 'A Person or A Project'">
                                             <option value="Vlog Channel">Vlog Channel</option>
@@ -99,7 +99,7 @@
                     </div>
                     <div id="collapseFourth" class="collapse" aria-labelledby="headingFourth" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
-                            <textarea class="form-control" cols="180" rows="10" placeholder="Write About You..." v-model="profile_information.about_you"></textarea>
+                            <textarea class="form-control p-3" cols="180" rows="10" placeholder="Write About You..." v-model="profile_information.about_you"></textarea>
                         </div>
                     </div>
                 </div>
@@ -160,11 +160,11 @@
                         <div class="card-body text-white bg-black">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold" @click="addedWork">Add Worked With</button>
-                                    <input class="form-control my-2 w-25" v-model="addWork" v-if="addWork">
+                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold" @click="addWork = true" v-if="!addWork">Add Worked With</button>
+                                    <input class="form-control my-2 w-25" v-model="addWorkName" @keyup.enter.prevent="addedWork()" v-else autofocus>
                                 </div>
                                 <div class="d-flex flex-row">
-                                    <span class="bg-third text-white text-center mx-2 p-2" v-for="(work , index) in worked_with" :key="index">{{work.name}}<i class="fas fa-times cursor-pointer mx-2 py-1"></i></span>
+                                    <span class="bg-third text-white text-center mx-2 p-2" v-for="(work , index) in worked_with" :key="index">{{work.name}}<i class="fas fa-times cursor-pointer mx-2 py-1" @click="deleteWorkWith(work)"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -355,13 +355,23 @@ export default {
             current_members:[],
             past_members:[],
             releases_information: [],
-            addWork:false,
+            addWork: false,
+            addWorkName: '',
             worked_with:[]
         }
     },
     mounted(){
        this.initializeVariable()
        Auth.initialize()
+
+        if(this.profile_information.profile_type == ''){
+            this.$toasted.show('Please add Profile Title and Type if you would like to post your content!', {
+                position: "bottom-right",
+                duration : 4000,
+                className: "p-4 notification bg-primary",
+                keepOnHover: true
+            })
+        }
     },
     methods:{
         initializeVariable(){
@@ -384,15 +394,12 @@ export default {
                 this.worked_with = this.user.profile_information.worked_with
             }
         },
-        addedWork(){
-          if (typeof this.addWork !== 'boolean'){
-              this.worked_with.push({
-                  id: null,
-                  name: this.addWork
-              })
-          }else{
-              this.addWork = true
-          }
+        async addedWork(){
+            if(this.addWorkName == '') return false
+            this.worked_with.push({
+                name: this.addWorkName,
+                id: null
+            })
         },
         addRelease(){
             this.releases_information.push({
@@ -427,6 +434,13 @@ export default {
         },
         async save(){
             this.disable = true
+
+            if(!this.validateData()){
+                this.disable = false
+                alert('please complete the fields that are marked with the *')
+                return false
+            }
+
             let formData = new FormData()
 
             // if (this.releases_information.length > 0){
@@ -478,7 +492,30 @@ export default {
         },
         showModalSelectServices(){
             $('#ModalSelectServices').modal('show')
+        },
+        validateData(){
+            let validate = true
+
+            this.user.profile_information.profile_type
+
+            if(this.user.profile_information.profile_type == "") validate = false;
+            if(this.user.profile_information.title == "Select Title") validate = false;
+
+            return validate
+        },
+        async deleteWorkWith(work){
+            await axios.post(`/${this.user.username}/WorkWith/delete/${work.id}`, this.user).then(res => {
+                let index = _.findIndex(this.worked_with, function(o) { return o.id == work.id; });
+                this.worked_with.splice(index, 1)
+                this.$toasted.show('The profile information has been updated successfully!', {
+                    position: "bottom-right",
+                    duration : 4000,
+                    className: "p-4 notification bg-primary",
+                    keepOnHover: true
+                })
+            })
         }
+
     }
 }
 </script>

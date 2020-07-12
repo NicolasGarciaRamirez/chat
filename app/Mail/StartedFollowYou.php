@@ -35,7 +35,7 @@ class StartedFollowYou extends Mailable
     public function build()
     {
         return $this->from('noreply@noisesharks.com')
-            ->subject("Noisesharks - {$this->follow_full_name} started following you!")
+            ->subject("Noisesharks - {$this->user_full_name} started following you!")
             ->view('emails.started-follow-you', ['user' => $this->user, 'user_full_name' => $this->user_full_name, 'follow_full_name' => $this->follow_full_name]);
     }
 }

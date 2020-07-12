@@ -16,7 +16,7 @@ class CreateUserPersonalInformationTable extends Migration
         Schema::create('user_personal_information', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('first_name');
-            $table->string('last_name');
+            $table->string('last_name')->nullable();
             $table->string('full_name');
             $table->date('date_of_birth')->nullable();
             $table->string('gender')->default('N/A');

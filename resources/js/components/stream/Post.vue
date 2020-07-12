@@ -451,7 +451,6 @@
                 if (Auth.state.username) {
                     if (type === 'follow') {
                         $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
-                        console.log(type)
                         this.store(type)
                     }
                     if(type === 'unfollow'){
@@ -464,7 +463,7 @@
             },
             storeView(){
                 axios.post(`/${this.auth.username}/View/store/${this.post.id}`).then(res=>{
-                    console.log(res)
+                    // console.log(res)
                 }).catch(err =>{
                     console.log(err)
                 })
@@ -597,7 +596,8 @@
                 })
             },
             deletePost(){
-                axios.delete(`/${Auth.state.username}/Post/delete/${this.post.id}`).then(res =>{
+                const self = this
+                axios.delete(`/${Auth.state.username}/Post/delete/${self.post.id}`).then(res =>{
                     if (res.data.deleted) {
                         this.$toasted.show('post deleted successfully!', {
                             position: "bottom-right",
@@ -605,8 +605,8 @@
                             className: "p-4 notification bg-primary",
                             keepOnHover: true
                         })
-                        let index = _.findKey(this.$parent.posts, function(post){return post.id === res.data.post.id})
-                        console.log(index)
+
+                        let index = _.findIndex(this.$parent.posts, function(o) { return o.id === self.post.id; });
                         this.$parent.posts.splice(index, 1)
                     }
                 }).catch(err => {

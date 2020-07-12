@@ -177,4 +177,17 @@ class UserProfileInformationController extends Controller
             'image_name' => $images_names
         ]);
     }
+
+    /**
+     * @param WorkedWith $WorkedWith
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function deleteWorkedWith($username, WorkedWith $WorkedWith)
+    {
+        $WorkedWith->delete();
+        return response()->json([
+            'deleted' => true
+        ]);
+    }
 }
