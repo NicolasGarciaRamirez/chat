@@ -61,7 +61,7 @@ class UserSocialAuthController extends Controller
         $cover = '/images/profile/default-cover.svg';
         $avatar = $providerUser->avatar;
 
-        if($providerUser->email) return false;
+        if($providerUser->email == '') return false;
 
         if (!$user = User::whereEmail($providerUser->email)->first()) {
             $last_name = ' ';
