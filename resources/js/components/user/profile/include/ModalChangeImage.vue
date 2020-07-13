@@ -37,7 +37,7 @@
                                 v-if="$parent.type_change_image == 'Profile'"
                             ></cropper>
                             <div class="text-right p-4">
-                                <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal">Cancel</button>
+                                <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal" @click="windowReload">Cancel</button>
                                 <button class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable">Save</button>
                                 <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                     <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -81,6 +81,9 @@ export default {
         },
     },
     methods:{
+        windowReload(){
+            window.location.reload()
+        },
         change({coordinates, canvas}) {
             this.coordinates = coordinates;
             this.resource = canvas.toDataURL()
@@ -126,6 +129,7 @@ export default {
                             this.$parent.user.cover = res.data.user.cover
                         }
                         $('#ModalChangeImage').modal('toggle')
+                        window.location.reload()
                     }else{
                         alert('error')
                     }

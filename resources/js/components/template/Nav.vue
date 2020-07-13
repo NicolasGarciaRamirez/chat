@@ -75,10 +75,10 @@
         <li class="c-sidebar-nav-title mt-0 pt-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
-        <div v-if="auth.username && location">
-            <div v-for="(follow, index) in followers" :key="index">
-                <li class="c-sidebar-nav-item" v-if="follow.user.username">
-                    <a :href="`/${follow.user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.user.profile_information && follow.user.profile_information.artistic_name ? follow.user.profile_information.artistic_name : follow.user.personal_information.full_name }}</a>
+        <div v-if="auth.username || location">
+            <div v-for="(user, index) in followers" :key="index">
+                <li class="c-sidebar-nav-item" v-if="user.username">
+                    <a :href="`/${user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }}</a>
                     <span class="float-sm-right c-fifth dot">•</span>
                 </li>
             </div>
@@ -102,7 +102,6 @@
                 auth: Auth.state,
                 filters: FilterPost.state,
                 location: false,
-                followers:[]
             }
         },
         components: {
@@ -112,11 +111,16 @@
             Auth.initialize()
             FilterPost.initialize()
             this.setFilters()
-            Followers.initialize()
-            if (window.location.href !== 'http://localhost:8000/Register'){
-                if (Followers.data.followers != 'undefined'){
-                    this.followers = JSON.parse(Followers.data.followers)
-                    this.location = true
+        },
+        computed:{
+            followers(){
+                Followers.initialize()
+                console.log(Followers)
+                if (window.location.href !== 'http://localhost:8000/Register'){
+                    if (Followers.data.followers !== 'undefined'){
+                        this.location = true
+                        return JSON.parse(Followers.data.followers)
+                    }
                 }
             }
         },

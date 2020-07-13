@@ -33,16 +33,14 @@
                 <span class="cursor-pointer" @click="$parent.form_reply = true"><span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span></span>
             </div>
         </div>
-        <modal-sure-deleted :options="options_sure_delete"></modal-sure-deleted>
     </div>
 </template>
 
 <script>
 import Auth from '../../../helpers/Auth'
-import ModalSureDeleted from "../includes/ModalSureDeleted";
     export default {
+        name:'Comment-text',
         props: ['comment','view_reply'],
-        components: {ModalSureDeleted},
         data(){
             return {
                 edit:false,
@@ -52,17 +50,7 @@ import ModalSureDeleted from "../includes/ModalSureDeleted";
                     like: 'like'
                 },
                 likes:[],
-                auth: Auth.state,
-                options_sure_delete:{
-                    type: 'Comment',
-                    title: 'Delete Comment',
-                    text: 'You are about to delete this comment. Would you like to proceed?',
-                    buttons:{
-                        cancel: true,
-                        accept: true,
-                        thank_you: false
-                    }
-                }
+                auth: Auth.state
             }
         },
         mounted(){
@@ -71,8 +59,7 @@ import ModalSureDeleted from "../includes/ModalSureDeleted";
         },
         methods:{
             showModalSureDelete(){
-                $('#ModalSureDelete').modal('show')
-                // this.deleteComment()
+                $('#ModalSureDeleteComment').modal('show')
             },
             getLike() {
                 if (this.comment.likes) {
@@ -146,7 +133,8 @@ import ModalSureDeleted from "../includes/ModalSureDeleted";
                     alert('the comment cannot be empty')
                 })
             },
-            deleteComment: function () {
+            deleteComment() {
+                console.log(this.comment.id)
                 axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
                     if (res.data.deleted) {
                         this.$toasted.show('The comment has been deleted successfully!', {
@@ -155,8 +143,10 @@ import ModalSureDeleted from "../includes/ModalSureDeleted";
                             className: "p-4 notification bg-primary",
                             keepOnHover: true
                         })
+                        console.log(res.data.comment)
                         if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
                             let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
+                                console.log(comment)
                                 return comment.id === res.data.comment.id
                             })
                             this.$parent.$parent.post.comments.splice(index, 1)

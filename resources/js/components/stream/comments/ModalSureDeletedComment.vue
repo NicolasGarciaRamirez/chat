@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalSureDelete" aria-hidden="true" id="ModalSureDelete">
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalSureDeleteComment" aria-hidden="true" id="ModalSureDeleteComment">
             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content modal-border-white">
                     <div class="modal-header border-0">
@@ -16,7 +16,7 @@
                             </p>
                             <div class="d-flex flex-row justify-content-end mb-2">
                                 <button class="btn rounded-pill font-weight-bold text-white bg-primary mx-2" data-dismiss="modal">Cancel</button>
-                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="optionsAll.type == 'Post' ? $parent.deletePost() : $parent.deleteComment()">Delete</button>
+                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="$parent.$refs.Comment.deleteComment()">Delete</button>
                                 <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" v-if="optionsAll.buttons.thank_you">Thank You</button>
                             </div>
                         </div>

@@ -85,9 +85,9 @@
                 await axios.post('/login', this.user).then(res =>{
                     if (res.data.auth) {
                         Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
-                        Followers.set(res.data.user.followers)
-                        // window.location.replace(`/`)
+                        Followers.set(res.data.following)
                         $('#ModalLogin').modal('toggle')
+                        window.location.replace(`/`)
                     }else{
                         return
                     }

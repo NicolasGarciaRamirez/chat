@@ -478,7 +478,7 @@ export default {
                         className: "p-4 notification bg-primary",
                         keepOnHover: true
                     })
-                    // window.location.replace(`/${Auth.state.username}/Profile`)
+                    window.location.replace(`/${Auth.state.username}/Profile`)
                 }
                 if (res.data.saved) {
                     this.url =`/${this.user.username}/Edit/Profile`

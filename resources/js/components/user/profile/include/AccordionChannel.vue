@@ -83,9 +83,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingSix">
+                    <div class="card-header bg-black cursor-pointer" id="headingSix" @click="showModal('followers')">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <button type="button" class="btn btn-link text-white  font-weight-bold" @click="showModal('followers')">
+                            <button type="button" class="btn btn-link text-white  font-weight-bold" >
                                 View Followers
                             </button>
                             <i class="fas fa-angle-down text-white float-right"></i>
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingNine">
+                    <div class="card-header bg-black cursor-pointer" id="headingNine" @click="showModal('following')">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 View Following
@@ -163,8 +163,8 @@ export default {
     },
     data(){
         return {
-            type_table:'followers',
             channel: {
+                type_table: 'Followers',
                 support: '',
                 monthly_goal: '',
                 tier_name: '',

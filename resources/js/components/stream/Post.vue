@@ -1,3 +1,4 @@
+<script src="../../helpers/Followers.js"></script>
 <template>
     <section class="post mt-3" v-if="view_post" @click="storeView">
         <div class="post-head bg-primary d-md-flex align-items-start justify-content-between p-3">
@@ -188,7 +189,6 @@
     import DocumentPreview from 'vue-doc-preview'
     import Followers from "../../helpers/Followers";
 
-
     export default {
         props:['post','user'],
         components:{
@@ -274,7 +274,7 @@
                 }
             },
             descriptionLess(){
-                if(this.post.description != null){
+                if(this.post.description !== null && this.post.description !== ''){
                     let text = this.post.description
                     let a = text.substr(0,500)
                     return a
@@ -575,9 +575,13 @@
                     if (res.data.follow) {
                         this.post.user.followers.push(res.data.follow)
                         this.follow_type = 'unfollow'
+                        Followers.set(res.data.following)
+                        window.location.reload()
                     }
                     if (res.data.unfollow) {
                         this.follow_type = 'follow'
+                        Followers.set(res.data.following)
+                        window.location.reload()
                     }
                 }).catch(err =>{
                     console.log(err)

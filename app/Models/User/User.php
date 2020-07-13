@@ -2,6 +2,7 @@
 
 namespace App\Models\User;
 
+use App\Models\Reactions\Followers;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'email', 'username', 'password', 'token', 'subscription_type', 'email_verified_at', 'avatar', 'cover'
+        'id','email', 'username', 'password', 'token', 'subscription_type', 'email_verified_at', 'avatar', 'cover'
     ];
 
     /**
@@ -36,6 +37,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $appends = [
+        'following' => ''
     ];
 
     /**

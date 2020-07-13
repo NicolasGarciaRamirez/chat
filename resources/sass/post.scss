@@ -77,14 +77,14 @@
                         }
                     }
                     &:hover{
-                        border-color: white !important;
-                        background-color: white !important;
-                        color: black;
+                        border-color: $six-color !important;
+                        background-color: $six-color !important;
+                        color: white;
                         svg{
                             width: 1rem !important;
                             margin-left: 0.3rem !important;
                             path{
-                                fill: black !important;
+                                fill: white !important;
                             }
                         }
                     }

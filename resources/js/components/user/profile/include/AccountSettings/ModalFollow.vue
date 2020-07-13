@@ -5,11 +5,11 @@
                 <div class="modal-content modal-border-white p-3">
                     <div class="justify-content-center">
                         <div class="cursor-pointer">
-                            <a class="text-white font-weight-bold" id="Followers-menu" @click="$parent.type_table = 'followers'" >Followers</a>
-                            <a class="text-white font-weight-bold mx-4" id="Following-menu"  @click="$parent.type_table = 'following'">Following</a>
+                            <a class="text-white font-weight-bold" id="Followers-menu" @click="$parent.type_table = 'followers', getClassActive()" >Followers</a>
+                            <a class="text-white font-weight-bold mx-4" id="Following-menu"  @click="$parent.type_table = 'following', getClassActive()">Following</a>
                         </div>
                         <div class="d-flex align-items-center my-2">
-                            <span>{{user.followers.length}} {{$parent.type_table === 'followers' ? 'Followers' : '' || $parent.type_table === 'Following' ? 'Following' : ''}}</span>
+                            <span>{{user.followers.length}} {{$parent.type_table === 'followers' ? 'Followers' : '' || $parent.type_table === 'following' ? 'Following' : ''}}</span>
                         </div>
                         <table class="table table-responsive-sm table-striped text-white bg-primary table-menu table-borderless">
                             <tbody >
@@ -31,7 +31,7 @@
                                         </button>
                                     </td>
                                     <td>
-                                        <label class=""><a :href="`/${follow.user.username}/Profile/WorkHistory`" class="no-underline font-weight-bold text-white" >View Profile</a></label>
+                                        <label class=""><a :href="`/${follow.user.username}/Profile`" class="no-underline font-weight-bold text-white" >View Profile</a></label>
                                     </td>
                                 </tr>
                             </tbody>
@@ -47,12 +47,25 @@
     export default {
         props:['user'],
         mounted() {
-            if (this.$parent.type_table === 'followers'){
-                $('#Followers-menu').addClass('active c-fifth').removeClass('text-white')
-            }
-            if (this.$parent.type_table === 'following'){
-                $('#Following-menu').addClass('active c-fifth').removeClass('test-white')
+            this.getClassActive()
+        },
+        computed:{
+
+        },
+        methods:{
+            getClassActive(){
+                if (this.$parent.type_table === 'followers'){
+                    $('#Followers-menu').addClass('active c-fifth').removeClass('text-white')
+                    $('#Following-menu').removeClass('active c-fifth').addClass('text-white')
+
+                }
+                if (this.$parent.type_table === 'following'){
+                    $('#Following-menu').addClass('active c-fifth').removeClass('text-white')
+                    $('#Followers-menu').removeClass('active c-fifth').addClass('text-white')
+                }
             }
         }
+
+
     }
 </script>

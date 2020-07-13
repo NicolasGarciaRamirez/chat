@@ -25,18 +25,17 @@
                     <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  />
                 </a>
                 <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  v-else/>
-
             </div>
         </div>
         <div v-if="!activity.replace_caption">
             <div v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
-                <p class="m-1">
+                <p class="m-1" v-if="activity.description">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
                     <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </p>
             </div>
-            <p v-if="activity.resource_type === 'docs'">
+            <p v-if="activity.resource_type === 'docs' && activity.description">
                 <a :href="`${activity.resource}`" class="text-white" v-if="resource_extension === 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
@@ -51,7 +50,7 @@
         </div>
         <div v-if="activity.replace_caption">
             <h5 class="font-weight-bold my-2">{{ activity.replace_caption }}</h5>
-            <p>
+            <p v-if="activity.description">
                 <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type === 'docs' && resource_extension === 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
@@ -128,9 +127,13 @@ export default {
             }
         },
         descriptionLess(){
-            let text = this.activity.description
-            let a = text.substr(0,50)
-            return a
+            if (this.activity.description){
+                let text = this.activity.description
+                let a = text.substr(0,50)
+                return a
+            }else{
+                return ""
+            }
         },
         description(){
             return this.activity.description
