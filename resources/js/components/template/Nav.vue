@@ -115,7 +115,6 @@
         computed:{
             followers(){
                 Followers.initialize()
-                console.log(Followers)
                 if (window.location.href !== 'http://localhost:8000/Register'){
                     if (Followers.data.followers !== 'undefined'){
                         this.location = true

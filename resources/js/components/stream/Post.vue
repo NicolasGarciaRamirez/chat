@@ -119,7 +119,7 @@
                         <span class="mb-3" v-if="!edit">
                             <span v-if="showMore">{{description}}</span>
                             <span v-if="!showMore">{{descriptionLess}}</span>
-                            <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                            <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description != '' && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
                         </span>
                         <form @submit.prevent="update"  v-if="edit && post.replace_caption ">
                             <input type="text" class="form-control bg-primary rounded-pill my-2" v-model="post.replace_caption" />

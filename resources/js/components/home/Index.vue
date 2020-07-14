@@ -285,7 +285,6 @@
 
                     await axios.post(`/${this.auth.username}/Post/store`, imagePost).then(res =>{
                         if (res.data.valid){
-                            console.log('valid')
                             if (res.data.saved) {
                                 this.loading = false
                                 this.initializeVariables()
