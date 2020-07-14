@@ -42,9 +42,9 @@
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
-                        <div class="dropdown-item cursor-pointer" @click="showModalSure" v-if="auth.username === post.user.username">Delete Post</div>
+<!--                        <div class="dropdown-item cursor-pointer" @click="showModalSure" v-if="auth.username === post.user.username">Delete Post</div>-->
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
-                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
+<!--                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>-->
                         <div class="dropdown-item cursor-pointer" >Hide Post</div>
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>
                         <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
