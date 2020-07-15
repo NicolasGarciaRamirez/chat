@@ -1,1 +1,1 @@
-<head-profile :user="{{ $user }}">
+<head-profile :user="{{ $user }}" ref="Profile"/>

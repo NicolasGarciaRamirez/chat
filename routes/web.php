@@ -49,6 +49,7 @@ Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.user.settings')->get('/Settings/{username}', 'User\UserController@accountSettings');
     Route::name('profile.update.user')->post('/Settings/Update/{username}', 'User\UserController@updateUser');
     Route::name('profile.update.user.personal')->post('/Settings/Personal/Update/{username}', 'User\UserPersonalInformationController@update');
+    Route::name('get.user')->post('/get/{username}', 'User\UserController@getUser');
 });
 
 Route::group(['prefix' => '/{username}'], function () {

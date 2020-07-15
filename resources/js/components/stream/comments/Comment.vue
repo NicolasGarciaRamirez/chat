@@ -134,34 +134,42 @@ import Auth from '../../../helpers/Auth'
                 })
             },
             deleteComment() {
-                console.log(this.comment.id)
-                axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
-                    if (res.data.deleted) {
-                        this.$toasted.show('The comment has been deleted successfully!', {
-                            position: "bottom-right",
-                            duration: 4000,
-                            className: "p-4 notification bg-primary",
-                            keepOnHover: true
-                        })
-                        console.log(res.data.comment)
-                        if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
-                            let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
-                                console.log(comment)
-                                return comment.id === res.data.comment.id
-                            })
-                            this.$parent.$parent.post.comments.splice(index, 1)
-                        } else {
-                            if (res.data.comment.commentable_id === this.$parent.comment.id) {
-                                let index = _.findIndex(this.$parent.comment.comments, function (comment) {
-                                    return comment.id === res.data.comment.id;
+                // swal({
+                //     title: 'Delete Post',
+                //     text: 'You are about to delete this post. Would you like to proceed?',
+                //     className: 'alert',
+                //     buttons: ['Cancel','Delete'],
+                //     dangerMode: true,
+                // }).then((willDelete) => {
+                //     if(willDelete){
+                        axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
+                            if (res.data.deleted) {
+                                this.$toasted.show('The comment has been deleted successfully!', {
+                                    position: "bottom-right",
+                                    duration: 4000,
+                                    className: "p-4 notification bg-primary",
+                                    keepOnHover: true
                                 })
-                                this.$parent.comment.comments.splice(index, 1)
+                                if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
+                                    let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
+                                        console.log(comment)
+                                        return comment.id === res.data.comment.id
+                                    })
+                                    this.$parent.$parent.post.comments.splice(index, 1)
+                                } else {
+                                    if (res.data.comment.commentable_id === this.$parent.comment.id) {
+                                        let index = _.findIndex(this.$parent.comment.comments, function (comment) {
+                                            return comment.id === res.data.comment.id;
+                                        })
+                                        this.$parent.comment.comments.splice(index, 1)
+                                    }
+                                }
                             }
-                        }
-                    }
-                }).catch(err => {
+                        }).catch(err => {
 
-                })
+                        })
+                    // }
+                // })
             }
         }
     }

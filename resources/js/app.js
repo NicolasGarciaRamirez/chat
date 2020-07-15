@@ -7,6 +7,7 @@
 require('./bootstrap');
 require('./../../node_modules/readmore-js');
 import { Sidebar, Alert, Popover } from '@coreui/coreui';
+import swal from 'sweetalert'
 
 import Vue from 'vue'
 
@@ -53,7 +54,6 @@ import ProfileSocialMedia from './components/user/profile/SocialMedia'
 
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
 import ModalContributor from './components/ModalsCommingSoon/ModalContributor'
-
 import Test from './components/Test'
 
 new Vue({

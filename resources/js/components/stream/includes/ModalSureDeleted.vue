@@ -16,7 +16,7 @@
                             </p>
                             <div class="d-flex flex-row justify-content-end mb-2">
                                 <button class="btn rounded-pill font-weight-bold text-white bg-primary mx-2" data-dismiss="modal">Cancel</button>
-                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="optionsAll.type == 'Post' ? $parent.deletePost() : $parent.deleteComment()">Delete</button>
+                                <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" @click="$parent.deletePost()">Delete</button>
                                 <button class="btn rounded-pill font-weight-bold text-white bg-fifth" data-dismiss="modal" v-if="optionsAll.buttons.thank_you">Thank You</button>
                             </div>
                         </div>
@@ -32,7 +32,6 @@ export default {
     props:['options'],
     data(){
         return {
-
         }
     },
     computed:{
@@ -48,6 +47,8 @@ export default {
                 }
             }
         }
+    },
+    mounted(){
     }
 }
 </script>

@@ -306,7 +306,6 @@
         </form>
         <modal-select-genres />
         <modal-select-services />
-
     </section>
 </template>
 

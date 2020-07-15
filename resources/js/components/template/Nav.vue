@@ -152,9 +152,6 @@
                 }
                 this.filterPost()
             },
-            // getUser(){
-            //     axios.post
-            // }
         }
     }
 </script>

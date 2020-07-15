@@ -55,11 +55,15 @@
                         </svg>
                     Channel
                     </a>
-                    <a class="dropdown-item" href="#">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                            width="20px" viewBox="0 0 1264.782 1080" enable-background="new 0 0 1264.782 1080" xml:space="preserve" class="mr-3 svg-star">
-                        <polygon stroke="white" stroke-width="80" stroke-miterlimit="10" points="1264.782,410.982 829.748,353.176
-                            630.12,1.665 434.404,354.899 0,416.483 314.007,692.654 245.122,1082.382 635.032,899.681 1026.864,1078.868 953.769,689.87 "/>
+                    <a class="dropdown-item" @click="showModalRelathions">
+                        <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="20px" class="svg-icon mr-3">
+                            <g id="Layer_2">
+                                <g id="Layer_2-2">
+                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
+                                        l365.48,179.1L886.9,687.89L1179,407.04z" stroke-width="2rem" stroke="white"/>
+                                </g>
+                            </g>
                         </svg>
                     Relationships
                     </a>
@@ -273,7 +277,8 @@
                     logout</a>
                 </div>
             </li>
-        <modal-contributor />
+            <modal-contributor />
+            <modal-relathions></modal-relathions>
         </div>
     </ul>
 </template>
@@ -281,21 +286,34 @@
 <script>
 import Auth from '../../helpers/Auth'
 import ModalContributor from '../ModalsCommingSoon/ModalForMusic'
+import ModalRelathions from "../user/profile/include/ModalRelathions";
 import Followers from "../../helpers/Followers";
 // import ModalContributor from '../auth/include/ModalContributorSignup'
 export default {
     components:{
-        ModalContributor
+        ModalContributor,
+        ModalRelathions
     },
     data(){
         return {
             auth : Auth.state,
+            type_table: 'followers',
+            location: false,
         }
     },
     mounted(){
+        if (window.location.href !==  '/' && window.location.href !== '/Register'){
+            this.location = true
+        }
         Auth.initialize()
     },
     methods:{
+        showModalRelathions(){
+            $('#ModalRelathions').modal({
+                // backdrop: false,
+                keyboard: true
+            })
+        },
         showModalLogin(){
             $('#ModalLogin').modal('show')
         },

@@ -26,7 +26,7 @@ export default {
     props:['user'],
     data(){
         return {
-            type: this.setType(),
+            type:''
         }
     },
     components:{
@@ -35,6 +35,9 @@ export default {
         Genres,
         Services,
         SocialMedia
+    },
+    mounted() {
+        this.setType()
     },
     computed:{
         social_media: function () {
@@ -53,38 +56,41 @@ export default {
                     social_media.Facebook !== null ||
                     social_media.SnapChat !== null
                 ) {
-                    return true
+                   return true
                 } else {
-                    return false
+                   return false
                 }
             } else {
                 return false
             }
         },
     },
-    mounted(){
-        this.addClass(this.type)
-    },
     methods:{
         setType(){
             if(this.user.profile_information) {
-                console.log('si')
+                // console.log('si')
                 if(this.user.profile_information.releases.length > 0 ){
-                    return 'releases'
+                    this.addClass('releases')
+                    this.type = 'releases'
                 }else if(this.user.profile_information.members.length > 0){
-                    return 'members'
+                    this.addClass('members')
+                    this.type = 'members'
                 }else if(this.user.profile_information.genres){
-                    return 'genres'
+                    this.addClass('genres')
+                    this.type = 'genres'
                 }else if(this.user.profile_information.services){
-                    return 'services'
+                    this.addClass('services')
+                    this.type = 'services'
                 }else if(this.social_media){
-                    return 'social_media'
+                    this.addClass('social_media')
+                    this.type = 'social_media'
                 }
             }else{
-                return 'index'
+                this.type = 'index'
             }
         },
         addClass(type){
+            console.log(type)
             if (type === 'releases'){
                 this.type = type
                 $('#Releases').addClass('active c-fifth')
@@ -117,7 +123,7 @@ export default {
                 $('#Genres').removeClass('active c-fifth')
                 $('#Social_media').removeClass('active c-fifth')
             }
-            else if (type === 'social_media'){
+            if (type === 'social_media'){
                 this.type = type
                 $('#Social_media').addClass('active c-fifth')
                 $('#Releases').removeClass('active c-fifth')

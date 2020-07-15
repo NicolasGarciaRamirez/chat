@@ -1,5 +1,5 @@
 <template>
-    <section class="container-fluid edit-channel">
+    <section class="container-fluid edit-channel" ref="AccordionChannel">
         <div id="accordionChannel" class="accordion">
             <form>
                 <div class="card">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black cursor-pointer" id="headingSix" @click="showModal('followers')">
+                    <div class="card-header bg-black cursor-pointer" id="headingSix" @click="showModalRelathions('followers')">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             <button type="button" class="btn btn-link text-white  font-weight-bold" >
                                 View Followers
@@ -123,7 +123,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black cursor-pointer" id="headingNine" @click="showModal('following')">
+                    <div class="card-header bg-black cursor-pointer" id="headingNine" @click="showModalRelathions('following')">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 View Following
@@ -145,26 +145,26 @@
         </div>
         <modal-contributor />
         <modal-comming-contributor />
-        <modal-follow :user="user"></modal-follow>
+        <modal-relathions></modal-relathions>
     </section>
 </template>
 
 <script>
 import ModalContributor from '../../../auth/include/ModalContributorSignup'
 import ModalCommingContributor from '../../../ModalsCommingSoon/ModalContributor'
-import ModalFollow from "./AccountSettings/ModalFollow";
+import ModalRelathions from "./ModalRelathions";
 
 export default {
     props:['user'],
     components: {
         ModalContributor,
         ModalCommingContributor,
-        ModalFollow
+        ModalRelathions
     },
     data(){
         return {
+            type_table: '',
             channel: {
-                type_table: 'Followers',
                 support: '',
                 monthly_goal: '',
                 tier_name: '',
@@ -174,9 +174,13 @@ export default {
         }
     },
     methods: {
-        showModal(type){
+        showModalRelathions(type){
+            console.log(type)
             this.type_table = type
-            $('#ModalFollow').modal('show')
+            $('#ModalRelathions').modal({
+                backdrop: false,
+                keyboard: true
+            })
         },
         showModalContributor(){
             // $('#ModalContributorSignup').modal('show')

@@ -1,5 +1,4 @@
-<script src="../../helpers/Followers.js"></script>
-<template>
+<template >
     <section class="post mt-3" v-if="view_post" @click="storeView">
         <div class="post-head bg-primary d-md-flex align-items-start justify-content-between p-3">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
@@ -42,7 +41,7 @@
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
-<!--                        <div class="dropdown-item cursor-pointer" @click="showModalSure" v-if="auth.username === post.user.username">Delete Post</div>-->
+                        <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
 <!--                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>-->
                         <div class="dropdown-item cursor-pointer" >Hide Post</div>
@@ -176,26 +175,22 @@
         </div>
         <comments :post="post" :view_comment="view_comment"/>
         <input type="text" :value="`https://www.noisesharks.com/${post.user.username}/Post/get/${post.token}`" :id="'myInput'+`${post.token}`" class="text-black-50 bg-black border-0" >
-        <modal-share-post :post="post" />
-        <modal-sure-delete :options="options_sure_delete" />
+<!--        <modal-sure-deleted :options="options_sure_delete"></modal-sure-deleted>-->
     </section>
 </template>
 
 <script>
     import Comments from './comments/Comments'
     import Auth from '../../helpers/Auth'
-    import ModalSharePost from './ModalSharePost'
-    import ModalSureDelete from './includes/ModalSureDeleted'
     import DocumentPreview from 'vue-doc-preview'
-    import Followers from "../../helpers/Followers";
-
+    import Followers from "../../helpers/Followers"
+    // import ModalSureDeleted from "./includes/ModalSureDeleted";
     export default {
         props:['post','user'],
         components:{
             Comments,
-            ModalSharePost,
             DocumentPreview,
-            ModalSureDelete,
+            // ModalSureDeleted
         },
         data(){
             return {
@@ -237,16 +232,6 @@
                     interact: true,
                     progressColor: this.getGrad(),
                 },
-                options_sure_delete:{
-                    type: 'Post',
-                    title: 'Delete Post',
-                    text: 'You are about to delete this post. Would you like to proceed?',
-                    buttons:{
-                        cancel: true,
-                        accept: true,
-                        thank_you: false
-                    }
-                }
             }
         },
         mounted(){
@@ -603,21 +588,30 @@
                 })
             },
             deletePost(){
-                const self = this
-                axios.delete(`/${Auth.state.username}/Post/delete/${self.post.id}`).then(res =>{
-                    if (res.data.deleted) {
-                        this.$toasted.show('post deleted successfully!', {
-                            position: "bottom-right",
-                            duration : 4000,
-                            className: "p-4 notification bg-primary",
-                            keepOnHover: true
+                swal({
+                    title: 'Delete Post',
+                    text: 'You are about to delete this post. Would you like to proceed?',
+                    className: 'alert',
+                    buttons: ['Cancel','Delete'],
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete){
+                        const self = this
+                        axios.delete(`/${Auth.state.username}/Post/delete/${self.post.id}`).then(res =>{
+                            if (res.data.deleted) {
+                                this.$toasted.show('post deleted successfully!', {
+                                    position: "bottom-right",
+                                    duration : 4000,
+                                    className: "p-4 notification bg-primary",
+                                    keepOnHover: true
+                                })
+                                let index = _.findIndex(this.$parent.posts, function(o) { return o.id === self.post.id; });
+                                this.$parent.posts.splice(index, 1)
+                            }
+                        }).catch(err => {
+                            console.log(err)
                         })
-
-                        let index = _.findIndex(this.$parent.posts, function(o) { return o.id === self.post.id; });
-                        this.$parent.posts.splice(index, 1)
                     }
-                }).catch(err => {
-                    console.log(err)
                 })
             }
         }

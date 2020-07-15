@@ -461,3 +461,93 @@
         }
     }
 }
+.relathions-ship{
+    .active{
+        color: $fifth-color !important;
+        border-bottom: 2px solid $fifth-color !important;
+    }
+    .form-search{
+        .input-group{
+            input{
+                min-width: 30rem !important;
+                @include media-breakpoint-down(md){
+                    min-width: 12rem !important;
+                }
+            }
+            .form-control{
+                background-color: black !important;
+                color: white !important;
+                caret-color: $fifth-color !important;
+                border-radius: 30px !important;
+                border: 1px solid $fourth-color !important;
+            }
+            .icons-search{
+                transform: translateX(-3rem);
+                @include media-breakpoint-down(md){
+                    transform: translate(10rem, -2.4rem);
+                }
+            }
+        }
+        .divider-vertical{
+            border-left: 2px solid $fourth-color !important;
+            height: 1.5rem !important;
+        }
+    }
+    .nav{
+        border-bottom: 0.1rem solid $third-color !important;
+    }
+    .follow-active{
+        background: white !important;
+        border: 2px solid white !important;
+        color: black !important;
+        svg{
+            //width: 1rem;
+            //margin-left: 0.3rem;
+            path{
+                fill: white !important;
+            }
+        }
+        &:hover{
+            border-color: antiquewhite !important;
+            background-color: antiquewhite !important;
+            color: black;
+            svg{
+                //width: 1rem !important;
+                //margin-left: 0.3rem !important;
+                path{
+                    fill: white !important;
+                }
+            }
+        }
+
+    }
+    .follow-idle{
+        background: $primary-color !important;
+        border: 2px solid white !important;
+        color: white !important;
+        svg{
+            width: 1rem !important;
+            margin-left: 0.3rem !important;
+            path{
+                stroke: white !important;
+                fill: $primary-color !important;
+            }
+        }
+        &:hover{
+            border-color: white !important;
+            background-color: white !important;
+            color: black !important;
+            svg{
+                width: 1rem !important;
+                margin-left: 0.3rem !important;
+                path{
+                    fill: black !important;
+                }
+            }
+        }
+    }
+}
+.modal-backdrop{
+    z-index: 1010 !important;
+}
+

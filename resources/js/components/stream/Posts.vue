@@ -1,12 +1,14 @@
 <template ref="posts">
     <section class="posts mb-4"  v-if="posts">
-        <div v-for="(post, index) in posts" :key="index" >
+        <div v-for="(post, index) in posts" :key="index">
             <post :post="post" />
         </div>
         <modal-support  />
         <modal-reward  />
         <register />
         <modal-playlist />
+        <modal-share-post  />
+<!--        <modal-sure-delete :options="options_sure_delete" />-->
     </section>
 </template>
 
@@ -17,6 +19,8 @@
     import ModalPost from './ModalPost'
     import Register from '../auth/Register'
     import ModalPlaylist from '../user/channel/includes/ModalNewPlaylist'
+    import ModalSharePost from "./ModalSharePost";
+    import ModalSureDelete from "./includes/ModalSureDeleted";
 
     export default {
         props:['posts'],
@@ -26,11 +30,23 @@
             ModalReward,
             ModalPost,
             Register,
-            ModalPlaylist
+            ModalPlaylist,
+            ModalSharePost,
+            ModalSureDelete,
         },
         data(){
             return{
                 view_comment: false,
+                options_sure_delete:{
+                    type: 'Post',
+                    title: 'Delete Post',
+                    text: 'You are about to delete this post. Would you like to proceed?',
+                    buttons:{
+                        cancel: true,
+                        accept: true,
+                        thank_you: false
+                    }
+                }
             }
         },
 
