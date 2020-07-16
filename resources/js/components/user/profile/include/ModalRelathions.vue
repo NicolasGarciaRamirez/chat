@@ -9,7 +9,7 @@
                             <a :class="type_table === 'following' ? 'text-white font-weight-bold cursor-pointer mx-4 active' : 'text-white font-weight-bold cursor-pointer mx-4'" id="Following-menu"  @click="type_table = 'following', getClassActive()">Following</a>
                         </div>
                         <div class="d-flex flex-row my-4">
-                            <label class="m-2">{{array.length}} {{type_table === 'followers' ? 'Followers' : 'Following'}}</label>
+                            <label class="m-2">{{ array ? array.length : '0'}} {{type_table === 'followers' ? 'Followers' : 'Following'}}</label>
                             <form action="/" class="form-search ml-1">
                                 <div class="form-group m-0">
                                     <div class="input-group">
