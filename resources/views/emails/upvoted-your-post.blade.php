@@ -226,7 +226,7 @@
                                             style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
                                             <p style="font-size: 15px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 18px; margin: 0;">
                                                 <span
-                                                    style="color: #999999; font-size: 15px;">Hi <strong>{{ $follow_full_name }}</strong>,</span>
+                                                    style="color: #999999; font-size: 15px;">Hi <strong>{{ $user_post }}</strong>,</span>
                                             </p>
                                         </div>
                                     </div>
@@ -241,8 +241,7 @@
                                         <div
                                             style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
                                             <p style="font-size: 15px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 18px; margin: 0;">
-                                                <span
-                                                    style="color: #999999; font-size: 15px;"><strong>{{ $user_full_name }}</strong> Started following you!</span>
+                                                <span style="color: #999999; font-size: 15px;"><strong>{{ $user_login }}</strong> upvoted your post!</span>
                                             </p>
                                         </div>
                                     </div>
@@ -257,7 +256,7 @@
                                                     align="center">
                                                     <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
                                                                  xmlns:w="urn:schemas-microsoft-com:office:word" href=""
-                                                                 style="height:31.5pt; width:150pt; v-text-anchor:middle;"
+                                                                 style="height:31.5pt; width:117pt; v-text-anchor:middle;"
                                                                  arcsize="72%" stroke="false" fillcolor="#ff0002">
                                                         <w:anchorlock/>
                                                         <v:textbox inset="0,0,0,0">
@@ -268,7 +267,8 @@
                                             style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0002;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;width:auto; width:auto;;border-top:1px solid #ff0002;border-right:1px solid #ff0002;border-bottom:1px solid #ff0002;border-left:1px solid #ff0002;padding-top:5px;padding-bottom:5px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
                                             <span
                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
-                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a href="{{ route('profile.index', $user->username)  }}">Visit Their Profile</a>  </strong></span></span>
+                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a
+                                                            href="{{ route('post.get', [$username, $post->token])  }}">Go To Post</a></strong></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>
@@ -287,7 +287,7 @@
                 <div class="block-grid"
                      style="Margin: 0 auto; min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
                     <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-                        <!--[if (mso)|(IE)]>
+                    <!--[if (mso)|(IE)]>
                         <table width="100%" cellpadding="0" cellspacing="0" border="0"
                                style="background-image:url('{{ asset("images/emails/started-following-you/14_X_26.png") }}');background-position:center top;background-repeat:no-repeat;background-color:transparent;">
                             <tr>
@@ -342,54 +342,44 @@
                                         style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:1.2;padding-top:60px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
                                         <div
                                             style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
-                                            <p style="font-size: 20px; line-height: 1.2; text-align: center; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 24px; margin: 0;">
-                                                <span style="font-size: 20px; color: #999999;"><strong>While You're Here!</strong></span>
+                                            <p style="font-size: 20px; line-height: 1.2; word-break: break-word; text-align: center; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 24px; margin: 0;">
+                                                <span style="color: #999999; font-size: 20px;"><strong>While You're Here!</strong></span>
                                             </p>
-                                        </div>
-                                    </div>
-                                    <!--[if mso]></td></tr></table><![endif]-->
-                                    <!--[if mso]>
-                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                                        <tr>
-                                            <td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: sans-serif">
-                                    <![endif]-->
-                                    <div
-                                        style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-                                        <div
-                                            style="line-height: 1.2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 14px;">
-                                            <p style="line-height: 1.2; word-break: break-word; font-family: 'Encode Sans', sans-serif; font-size: 15px; mso-line-height-alt: 18px; margin: 0;">
-                                                <span style="font-size: 15px; color: #999999;">Is there any feature that you would like Noisesharks to have?</span>
+                                            <p style="font-size: 14px; line-height: 1.2; word-break: break-word; text-align: center; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
+                                                 </p>
+                                            <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: left; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 18px; margin: 0;">
+                                                <span style="color: #999999; font-size: 15px;">Is there any feature that you would like Noisesharks to have?</span>
                                             </p>
-                                            <p style="line-height: 1.2; word-break: break-word; font-family: 'Encode Sans', sans-serif; font-size: 15px; mso-line-height-alt: 18px; margin: 0;">
-                                                <span style="font-size: 15px; color: #999999;">Share your ideas! we take these seriously!</span>
+                                            <p style="font-size: 15px; line-height: 1.2; word-break: break-word; text-align: left; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 18px; margin: 0;">
+                                                <span style="color: #999999; font-size: 15px;">Share your ideas! we take these seriously!</span>
                                             </p>
                                         </div>
                                     </div>
                                     <!--[if mso]></td></tr></table><![endif]-->
                                     <div align="center" class="button-container"
-                                         style="padding-top:30px;padding-right:10px;padding-bottom:60px;padding-left:10px;">
+                                         style="padding-top:35px;padding-right:35px;padding-bottom:60px;padding-left:35px;">
                                         <!--[if mso]>
                                         <table width="100%" cellpadding="0" cellspacing="0" border="0"
                                                style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
                                             <tr>
-                                                <td style="padding-top: 30px; padding-right: 10px; padding-bottom: 60px; padding-left: 10px"
+                                                <td style="padding-top: 35px; padding-right: 35px; padding-bottom: 60px; padding-left: 35px"
                                                     align="center">
                                                     <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
                                                                  xmlns:w="urn:schemas-microsoft-com:office:word" href=""
-                                                                 style="height:33pt; width:158.25pt; v-text-anchor:middle;"
-                                                                 arcsize="69%" strokeweight="0.75pt"
-                                                                 strokecolor="#ff0000" fillcolor="#ff0000">
+                                                                 style="height:31.5pt; width:153.75pt; v-text-anchor:middle;"
+                                                                 arcsize="72%" stroke="false" fillcolor="#ff0000">
                                                         <w:anchorlock/>
                                                         <v:textbox inset="0,0,0,0">
                                                             <center
-                                                                style="color:#ffffff; font-family:sans-serif; font-size:16px">
+                                                                style="color:#ffffff; font-family:sans-serif; font-size:18px">
                                         <![endif]-->
                                         <div
-                                            style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0000;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;width:auto; width:auto;;border-top:1px solid #ff0000;border-right:1px solid #ff0000;border-bottom:1px solid #ff0000;border-left:1px solid #ff0000;padding-top:5px;padding-bottom:5px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
+                                            style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#ff0000;border-radius:30px;-webkit-border-radius:30px;-moz-border-radius:30px;width:auto; width:auto;;border-top:1px solid #ff0000;border-right:1px solid #ff0000;border-bottom:1px solid #ff0000;border-left:1px solid #ff0000;padding-top:5px;padding-bottom:0px;font-family:'Encode Sans', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;">
                                             <span
-                                                style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
-                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong>
-                                                        <a href="{{ route('suggestions') }}">Request A Feature</a></strong></span></span>
+                                                style="padding-left:20px;padding-right:20px;font-size:18px;display:inline-block;"><span
+                                                    style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><span
+                                                        data-mce-style="font-size: 18px; line-height: 36px;"
+                                                        style="font-size: 18px; line-height: 36px;"><strong><a href="{{ route('suggestions') }}">Request A Feature</a></strong></span></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>
@@ -440,7 +430,8 @@
                                             <tr style="line-height:0px">
                                                 <td style="padding-right: 0px;padding-left: 0px;" align="center">
                                         <![endif]--><img align="center" alt="Alternate text" border="0"
-                                                         class="center fixedwidth" src="{{ asset("images/emails/started-following-you/Full_White_Logo_PNG.png") }}"
+                                                         class="center fixedwidth"
+                                                         src="{{ asset("images/emails/started-following-you/Full_White_Logo_PNG.png") }}"
                                                          style="text-decoration: none; -ms-interpolation-mode: bicubic; border: 0; height: auto; width: 100%; max-width: 100px; display: block;"
                                                          title="Alternate text" width="100"/>
                                         <div style="font-size:1px;line-height:10px"> </div>
@@ -451,7 +442,7 @@
                                            valign="top" width="100%">
                                         <tbody>
                                         <tr style="vertical-align: top;" valign="top">
-                                            <td style="word-break: break-word; vertical-align: top; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px;"
+                                            <td style="word-break: break-word; vertical-align: top; padding-top: 10px; padding-right: 0px; padding-bottom: 10px; padding-left: 0px;"
                                                 valign="top">
                                                 <table align="center" cellpadding="0" cellspacing="0"
                                                        class="social_table" role="presentation"
@@ -559,14 +550,14 @@
                                     <!--[if mso]>
                                     <table width="100%" cellpadding="0" cellspacing="0" border="0">
                                         <tr>
-                                            <td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: sans-serif">
+                                            <td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 20px; font-family: sans-serif">
                                     <![endif]-->
                                     <div
-                                        style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
+                                        style="color:#555555;font-family:'Encode Sans', sans-serif;line-height:2;padding-top:10px;padding-right:10px;padding-bottom:20px;padding-left:10px;">
                                         <div
                                             style="line-height: 2; font-size: 12px; font-family: 'Encode Sans', sans-serif; color: #555555; mso-line-height-alt: 24px;">
-                                            <p style="font-size: 12px; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 24px; margin: 0;">
-                                                <span style="color: #999999; font-size: 12px;">Terms   |   Privacy   |   Help   |   Suggestions   |   Contact   |   About   |   Careers   |   March   |   For Music Companies</span>
+                                            <p style="text-align: left; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: NaNpx; margin: 0;">
+                                                <span style="color: #999999;">Terms   |   Privacy   |   Help   |   Suggestions   |   Contact   |   About   |   Careers   |   March   |   For Music Companies</span>
                                             </p>
                                         </div>
                                     </div>

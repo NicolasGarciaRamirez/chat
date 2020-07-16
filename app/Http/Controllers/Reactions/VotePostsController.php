@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Reactions;
 
+use App\Mail\UpvotedYourPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
@@ -11,7 +12,6 @@ use App\Models\Post\VotePosts;
 
 class VotePostsController extends Controller
 {
-
     /**
      * @var
      */
@@ -36,7 +36,7 @@ class VotePostsController extends Controller
      * @param Request $request
      * @param [type] $username
      * @param Post $post
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function voteUp(Request $request, $username, Post $post, VotePosts $vote = null)
     {
@@ -48,6 +48,8 @@ class VotePostsController extends Controller
             $vote->type_vote = $request->type_vote;
             $vote->user()->associate($this->user);
             $post->votes()->save($vote);
+
+            \Mail::to($post->user->email)->send(new UpvotedYourPost($post, $this->user->personal_information->full_name, $post->user->personal_information->full_name, $post->user->username));
         }
 
         return response()->json([
@@ -60,7 +62,7 @@ class VotePostsController extends Controller
      * Undocumented function
      *
      * @param VotePosts $vote
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function unvoteUp($username, VotePosts $vote)
     {
@@ -79,7 +81,7 @@ class VotePostsController extends Controller
      * @param [type] $username
      * @param Post $post
      * @param [type] $vote
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function voteDown(Request $request, $username, Post $post, VotePosts $vote = null)
     {
@@ -103,7 +105,7 @@ class VotePostsController extends Controller
      * Undocumented function
      *
      * @param [type] $vote
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
     public function unvoteDown($usernamme, VotePosts $vote)
     {

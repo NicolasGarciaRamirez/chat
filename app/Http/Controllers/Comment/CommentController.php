@@ -44,6 +44,9 @@ class CommentController extends Controller
         $comment->user()->associate($this->user);
         $model->comments()->save($comment);
 
+        if ($model->getTable() == 'posts') \Mail::to($model->user->email)->send(new \App\Mail\CommentedOnYourPost($model, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username, $comment->body));
+        if ($model->getTable() == 'comments') \Mail::to($model->user->email)->send(new \App\Mail\RrepliedToYourComment($model->commentable, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username, $comment->body));
+
         return response()->json([
             'saved' => true,
             'comment' => $comment->load('user.personal_information', 'comments')
@@ -58,7 +61,8 @@ class CommentController extends Controller
      * @param Comment $comment
      * @return \Illuminate\Http\JsonResponse|void
      */
-    public function update(Request $request, $username, Comment $comment)
+    public
+    function update(Request $request, $username, Comment $comment)
     {
         $comment->update($request->all());
         return response()->json([
@@ -75,7 +79,8 @@ class CommentController extends Controller
      * @param Comment $comment
      * @return \Illuminate\Http\JsonResponse|void
      */
-    public function delete($username, Comment $comment)
+    public
+    function delete($username, Comment $comment)
     {
         $comment->delete();
         return response()->json([

@@ -51,6 +51,8 @@ class LitLikeController extends Controller
                 $like = null;
             }
 
+            if ($model->getTable() == 'posts') \Mail::to($model->user->email)->send(new \App\Mail\ThoughtYourPostIsLit($model, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username));
+            if ($model->getTable() == 'comments') \Mail::to($model->user->email)->send(new \App\Mail\ThoughtYourCommentIsLit($model->commentable, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username));
 
             \DB::commit();
             return response()->json([

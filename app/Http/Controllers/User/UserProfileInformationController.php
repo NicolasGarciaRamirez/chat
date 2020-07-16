@@ -186,6 +186,7 @@ class UserProfileInformationController extends Controller
             'updated' => true
         ]);
     }
+
     /**
      * @param WorkedWith $WorkedWith
      * @return \Illuminate\Http\JsonResponse

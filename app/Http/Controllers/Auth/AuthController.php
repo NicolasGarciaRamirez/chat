@@ -27,8 +27,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, true)) {
             $users_following = Followers::where('following_user', \Auth::user()->id)->get();
             $followings = [];
-            foreach($users_following as $follow) {
-                $user = User::with('profile_information','personal_information','followers.user')->where('id', $follow->user_id)->first();
+            foreach ($users_following as $follow) {
+                $user = User::with('profile_information', 'personal_information', 'followers.user')->where('id', $follow->user_id)->first();
                 array_push($followings, $user);
             };
             return response()->json([
