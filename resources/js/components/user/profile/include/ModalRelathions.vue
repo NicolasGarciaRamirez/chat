@@ -1,5 +1,5 @@
 <template>
-    <section class="relathions-ship">
+    <section class="relathions-ship" ref="ModalRelathions">
         <div class="modal fade" z-index="1050" role="dialog" aria-labelledby="ModalRelathions" aria-hidden="true" id="ModalRelathions">
             <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                 <div class="modal-content modal-border-white bg-black p-3">
@@ -29,7 +29,8 @@
                             </form>
                         </div>
                         <div class="d-flex flex-column">
-                            <single-relathion :class="index % 2 === 0 ? 'd-flex flex-row align-items-center bg-primary justify-content-between p-2':'d-flex flex-row align-items-center justify-content-between p-2'" v-for="(user ,index) in array" :key="index" :user="user" v-if="array.length > 0" />
+                            <single-relathion-followers :class="index % 2 === 0 ? 'd-flex flex-row align-items-center bg-primary justify-content-between p-2':'d-flex flex-row align-items-center justify-content-between p-2'" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'followers'" v-if="array.length > 0 && type_table === 'followers'" />
+                            <single-relathion-following :class="index % 2 === 0 ? 'd-flex flex-row align-items-center bg-primary justify-content-between p-2':'d-flex flex-row align-items-center justify-content-between p-2'" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'following'" v-if="array.length > 0 && type_table === 'following'" />
                         </div>
                     </div>
                 </div>
@@ -41,13 +42,14 @@
 <script>
     import Followers from "../../../../helpers/Followers";
     import Auth from "../../../../helpers/Auth";
-    import SingleRelathion from "./SingleRelathion";
+    import SingleRelathionFollowers from "./SingleRelathionFollowers";
+    import SingleRelathionFollowing from "./SingleRelathionFollowing";
 
     export default {
-        components: {SingleRelathion},
+        components: {SingleRelathionFollowing, SingleRelathionFollowers},
         data(){
             return {
-                type_table:'following',
+                type_table: window.location.href === `/${Auth.state.username}/Channel/Edit` ? this.$parent.type_table : 'followers',
                 follow_type: 'follow',
                 follow:{
                     type: ''

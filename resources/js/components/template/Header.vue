@@ -297,7 +297,6 @@ export default {
     data(){
         return {
             auth : Auth.state,
-            type_table: 'followers',
             location: false,
         }
     },

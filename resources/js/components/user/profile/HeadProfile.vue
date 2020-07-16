@@ -19,7 +19,7 @@
         </div>
         <div class="head-container align-items-center">
             <div class="text-right d-flex justify-content-between align-items-center order-lg-2 functions pb-2" v-if="auth.token == user.token">
-                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white" v-if="route_name != `/${auth.username}/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
+                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
                 <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">Share Profile <i class="cil-share  ml-2"></i></a>
                 <a :href="`/${ user.username}/Profile`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
             </div>
@@ -66,6 +66,7 @@ import ModalLogin from '../../auth/Login'
 import Auth from '../../../helpers/Auth'
 import ModalShareProfile from "./include/ModalShareProfile";
 import ModalSharePost from "../../stream/ModalSharePost";
+import Followers from "../../../helpers/Followers";
 export default {
     props:['user'],
     data(){
@@ -122,16 +123,16 @@ export default {
             if (Auth.state.token) {
                 if (type == 'follow') {
                     $(`#follow`+this.user.token+` button`).addClass('function-active').removeClass('function')
-                    this.store(type)
+                    this.storeFollow(type)
                 } else if (type == 'unfollow') {
                     $(`#follow`+this.user.token+` button`).addClass('function').removeClass('function-active')
-                    this.store(type)
+                    this.storeFollow(type)
                 }
             }else{
                 $('#ModalLogin').modal('show')
             }
         },
-        store(type){
+        storeFollow(type){
             var request = ''
             if (type == 'follow') {
                 if (Auth.state.username) {
@@ -156,9 +157,13 @@ export default {
                 if (res.data.follow) {
                     this.user.followers.push(res.data.follow)
                     this.follow_type = 'unfollow'
+                    Followers.set(res.data.following)
+                    window.location.reload()
                 }
                 if (res.data.unfollow) {
                     this.follow_type = 'follow'
+                    Followers.set(res.data.following)
+                    window.location.reload()
                 }
             }).catch(err =>{
                 console.log(err)

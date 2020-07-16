@@ -145,7 +145,6 @@
         </div>
         <modal-contributor />
         <modal-comming-contributor />
-        <modal-relathions></modal-relathions>
     </section>
 </template>
 
@@ -159,7 +158,6 @@ export default {
     components: {
         ModalContributor,
         ModalCommingContributor,
-        ModalRelathions
     },
     data(){
         return {
@@ -175,7 +173,6 @@ export default {
     },
     methods: {
         showModalRelathions(type){
-            console.log(type)
             this.type_table = type
             $('#ModalRelathions').modal('show')
         },

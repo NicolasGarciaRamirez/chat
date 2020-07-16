@@ -1,5 +1,5 @@
 <template>
-    <div class="modal fade modal-reward" tabindex="-1" role="dialog" aria-labelledby="ModalShare" aria-hidden="true" id="ModalShare" ref="ModalShare">
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="ModalShare" aria-hidden="true" id="ModalShare" ref="ModalShare">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content modal-border-white">
                 <div class="modal-header border-0 p-0">

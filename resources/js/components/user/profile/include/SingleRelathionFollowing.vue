@@ -9,9 +9,8 @@
             {{user.personal_information.full_name}}
         </label>
         <label class="mx-3" :id="`btnFollow`+user.id">
-            <button type="button"  class="align-items-right follow-idle" @click="addClassFollow">
-<!--                {{follow_type === 'unFollow' ? 'Following' : 'Follow Back'}}-->
-                {{$parent.type_table === 'following' ? 'Following' : 'Follow Back'}}
+            <button type="button"  class="align-items-right follow-following-active" @click="storeUnFollow" :disable="disable">
+
                 <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem">
                     <g id="Layer_2">
@@ -33,33 +32,41 @@
     import Followers from "../../../../helpers/Followers";
 
     export default {
-        name: "SingleRelathion",
-        props:['user'],
+        name: "SingleRelathionFollowing",
+        props:['user','type_table'],
         data(){
             return {
-                follow_type:''
+                disable:false,
+                follow_type:'unFollow',
+                follow:{
+                    type:''
+                },
+                url: ''
             }
         },
         mounted() {
             Followers.initialize()
             Auth.initialize()
-            this.getFollowers()
         },
         methods:{
             addClassFollow(){
-                $('#btnFollow'+this.user.token+' button').addClass('follow-active').removeClass('follow-idle')
+                $('#btnFollow'+this.user.id+' button').addClass('follow-active').removeClass('follow-idle')
             },
-            getFollowers(){
-                if (this.user.followers){
-                    _.each(this.user.followers, follow =>{
-
+            storeUnFollow(){
+                this.disable = true
+                if (this.user.followers) {
+                    this.user.followers.map(follow =>{
+                        if (Auth.state.username === follow.user.username) {
+                            this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
+                        }
                     })
-
                 }
-            },
-            storeFollow(){
-                axios.post(`/${Auth.state.username}/Follow/follow/store/${this.user.id}`).then(res =>{
-
+                axios.post(this.url , this.follow).then(res =>{
+                    this.disable = false
+                    if (res.data.unfollow){
+                        Followers.set(res.data.following)
+                        window.location.reload()
+                    }
                 }).catch(err =>{
 
                 })

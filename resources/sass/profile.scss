@@ -500,6 +500,9 @@
         background: white !important;
         border: 2px solid white !important;
         color: black !important;
+        &:before{
+            content: 'Following';
+        }
         svg{
             //width: 1rem;
             //margin-left: 0.3rem;
@@ -508,9 +511,12 @@
             }
         }
         &:hover{
-            border-color: antiquewhite !important;
-            background-color: antiquewhite !important;
+            border-color: floralwhite !important;
+            background-color: floralwhite !important;
             color: black;
+            &:before{
+                content: 'unfollow';
+            }
             svg{
                 //width: 1rem !important;
                 //margin-left: 0.3rem !important;
@@ -525,6 +531,9 @@
         background: $primary-color !important;
         border: 2px solid white !important;
         color: white !important;
+        &:before{
+            content: 'Follow Back';
+        }
         svg{
             width: 1rem !important;
             margin-left: 0.3rem !important;
@@ -533,13 +542,43 @@
                 fill: $primary-color !important;
             }
         }
+        //&:hover{
+        //    border-color: white !important;
+        //    background-color: white !important;
+        //    color: black !important;
+        //    svg{
+        //        width: 1rem !important;
+        //        margin-left: 0.3rem !important;
+        //        path{
+        //            fill: black !important;
+        //        }
+        //    }
+        //}
+    }
+    .follow-following-active{
+        background: white !important;
+        border: 2px solid white !important;
+        color: black !important;
+        &:before{
+            content: 'Following';
+        }
+        svg{
+            //width: 1rem;
+            //margin-left: 0.3rem;
+            path{
+                fill: black !important;
+            }
+        }
         &:hover{
-            border-color: white !important;
-            background-color: white !important;
-            color: black !important;
+            border-color: floralwhite !important;
+            background-color: floralwhite !important;
+            color: black;
+            &:before{
+                content: 'unfollow';
+            }
             svg{
-                width: 1rem !important;
-                margin-left: 0.3rem !important;
+                //width: 1rem !important;
+                //margin-left: 0.3rem !important;
                 path{
                     fill: black !important;
                 }
