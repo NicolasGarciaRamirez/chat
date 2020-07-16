@@ -310,7 +310,6 @@ export default {
     methods:{
         showModalRelathions(){
             $('#ModalRelathions').modal({
-                // backdrop: false,
                 keyboard: true
             })
         },

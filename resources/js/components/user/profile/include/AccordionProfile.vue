@@ -377,9 +377,10 @@ export default {
             if (this.user.profile_information) {
                 this.url = `/${this.user.username}/Edit/Profile`
                 this.profile_information = this.user.profile_information
-                this.profile_information.genres = this.user.profile_information.genres.split(",")
-                this.profile_information.services = this.user.profile_information.services.split(",")
-                this.profile_information.social_media = JSON.parse(this.user.profile_information.social_media)
+
+                this.profile_information.genres = this.user.profile_information.genres ? this.user.profile_information.genres.split(",") : []
+                this.profile_information.services = this.user.profile_information.services ? this.user.profile_information.services.split(",") : []
+                this.profile_information.social_media = this.user.profile_information.social_media != null ? JSON.parse(this.user.profile_information.social_media) : {}
 
         	    this.profile_information.members.map(val =>{
                     if (val.member_type === 'current') {
@@ -484,7 +485,8 @@ export default {
                 }
             }).catch(err => {
                 this.disable = false
-                alert('please complete the fields that are marked with the *')
+
+                alert(`please complete the that are marked with the *`)
                 console.log(err)
             })
         },
@@ -499,6 +501,7 @@ export default {
 
             if(this.profile_information.profile_type == "") validate = false;
             if(this.profile_information.title == "Select Title") validate = false;
+
 
             return validate
         },

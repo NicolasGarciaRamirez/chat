@@ -57,6 +57,7 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::name('profile.edit')->get('/Edit', 'User\UserController@profileEdit');
         Route::name('profile.get')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
         Route::name('profile.update')->post('/Edit/Profile', 'User\UserProfileInformationController@update');
+        Route::name('update.profile.information')->post('/Update', 'User\UserProfileInformationController@profileInformationUpdate');
         Route::name('profile.save')->post('/Save/Profile', 'User\UserProfileInformationController@save');
         Route::name('image.save')->post('/image/save', 'User\UserProfileInformationController@saveImage');
         Route::name('profile.work.with.delete')->post('/WorkWith/delete/{WorkedWith}', 'User\UserProfileInformationController@deleteWorkedWith');

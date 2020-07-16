@@ -8,18 +8,15 @@
                 <input type="text" class="input-comment form-control bg-second p-3 text-white" placeholder="Interact with a comment" autofocus v-model="reply.body">
             </form>
         </div>
-        <modal-sure-deleted-comment :options="options_sure_delete"></modal-sure-deleted-comment>
     </div>
 </template>
 
 <script>
     import Auth from '../../../helpers/Auth'
     import TextComment from './Comment'
-    import ModalSureDeletedComment from "./ModalSureDeletedComment";
     export default {
         props:['comment'],
         components:{
-            ModalSureDeletedComment,
             TextComment
         },
         data(){

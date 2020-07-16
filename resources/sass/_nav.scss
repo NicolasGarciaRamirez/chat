@@ -217,3 +217,6 @@
 .c-header .c-header-nav .c-header-nav-link:not(.other-link):focus, .c-header .c-header-nav .c-header-nav-btn:not(.other-link):focus{
     color: white;
 }
+.c-sidebar-fixed{
+    z-index: 1020 !important;
+}

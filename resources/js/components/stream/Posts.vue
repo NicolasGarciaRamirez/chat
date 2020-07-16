@@ -8,7 +8,6 @@
         <register />
         <modal-playlist />
         <modal-share-post  />
-<!--        <modal-sure-delete :options="options_sure_delete" />-->
     </section>
 </template>
 
@@ -20,7 +19,6 @@
     import Register from '../auth/Register'
     import ModalPlaylist from '../user/channel/includes/ModalNewPlaylist'
     import ModalSharePost from "./ModalSharePost";
-    import ModalSureDelete from "./includes/ModalSureDeleted";
 
     export default {
         props:['posts'],
@@ -32,21 +30,10 @@
             Register,
             ModalPlaylist,
             ModalSharePost,
-            ModalSureDelete,
         },
         data(){
             return{
                 view_comment: false,
-                options_sure_delete:{
-                    type: 'Post',
-                    title: 'Delete Post',
-                    text: 'You are about to delete this post. Would you like to proceed?',
-                    buttons:{
-                        cancel: true,
-                        accept: true,
-                        thank_you: false
-                    }
-                }
             }
         },
 

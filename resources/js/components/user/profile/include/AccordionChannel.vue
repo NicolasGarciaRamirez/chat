@@ -177,10 +177,7 @@ export default {
         showModalRelathions(type){
             console.log(type)
             this.type_table = type
-            $('#ModalRelathions').modal({
-                backdrop: false,
-                keyboard: true
-            })
+            $('#ModalRelathions').modal('show')
         },
         showModalContributor(){
             // $('#ModalContributorSignup').modal('show')

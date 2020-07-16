@@ -45,7 +45,7 @@ class FollowersController extends Controller
             $users_following = Followers::where('following_user', $this->user->id)->get();
             $followings = [];
             foreach($users_following as $follow) {
-                $user = User::with('profile_information','personal_information')->where('id', $follow->user_id)->first();
+                $user = User::with('profile_information','personal_information','followers.user')->where('id', $follow->user_id)->first();
                 array_push($followings, $user);
             };
             return response()->json([

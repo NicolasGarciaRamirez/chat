@@ -31,17 +31,31 @@
                                 :src="img"
                                 @change="change"
                                 :stencil-props="{
-                                    handlers: {},
-                                    scalable: false,
+                                    handlers: {
+                                        eastNorth: true,
+                                        north: false,
+                                        westNorth: true,
+                                        west: false,
+                                        westSouth: true,
+                                        south: false,
+                                        eastSouth: true,
+                                        east: false,
+                                    },
                                 }"
                                 v-if="$parent.type_change_image == 'Profile'"
                             ></cropper>
-                            <div class="text-right p-4">
-                                <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal" @click="windowReload">Cancel</button>
-                                <button class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable">Save</button>
-                                <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
-                                    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                </button>
+
+                            <div class="row p-4">
+                                <div class="col col-sm text-left">
+                                    <label class="font-weight-bold" >Use scroll or pinch to zoom</label>
+                                </div>
+                                <div class="col col-sm text-right">
+                                    <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal" @click="windowReload">Cancel</button>
+                                    <button class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable">Save</button>
+                                    <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
+                                        <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -90,8 +104,6 @@ export default {
         },
         pixelsRestriction() {
             return {
-                minWidth: 1080,
-                minHeight: 250,
                 maxWidth: 1080,
                 maxHeight: 250,
             }

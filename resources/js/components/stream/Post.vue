@@ -175,7 +175,6 @@
         </div>
         <comments :post="post" :view_comment="view_comment"/>
         <input type="text" :value="`https://www.noisesharks.com/${post.user.username}/Post/get/${post.token}`" :id="'myInput'+`${post.token}`" class="text-black-50 bg-black border-0" >
-<!--        <modal-sure-deleted :options="options_sure_delete"></modal-sure-deleted>-->
     </section>
 </template>
 
@@ -184,13 +183,11 @@
     import Auth from '../../helpers/Auth'
     import DocumentPreview from 'vue-doc-preview'
     import Followers from "../../helpers/Followers"
-    // import ModalSureDeleted from "./includes/ModalSureDeleted";
     export default {
         props:['post','user'],
         components:{
             Comments,
             DocumentPreview,
-            // ModalSureDeleted
         },
         data(){
             return {
@@ -271,9 +268,6 @@
             }
         },
         methods:{
-            showModalSure(){
-                $('#ModalSureDelete').modal('show')
-            },
             showModalSupport(){
                 $('#modalSupport').modal('show')
             },

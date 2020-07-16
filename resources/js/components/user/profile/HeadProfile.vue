@@ -9,8 +9,8 @@
             </button>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="dropdown-menu bg-primary text-white" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
-                <a href="#" class="dropdown-item">View Image</a>
-                <a href="#" class="dropdown-item">Edit Crop</a>
+<!--                <a href="#" class="dropdown-item">View Image</a>-->
+<!--                <a href="#" class="dropdown-item">Edit Crop</a>-->
                 <label class="dropdown-item" for="change-image" @click="type_change_image = 'Profile'">
                     Change Image
                 </label>

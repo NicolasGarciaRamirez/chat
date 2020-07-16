@@ -167,7 +167,7 @@
     import ModalLiveStream from "../ModalsCommingSoon/ModalLiveStream";
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
     import ModalMobile from "../ModalsCommingSoon/ModalMobile";
-    import ModalAlert from "./ModalAlert"
+    import ModalAlert from "./include/ModalAlert"
 
     export default {
         name: "Index",
@@ -304,9 +304,6 @@
                         }else{
                             this.loading = false
                             $('#ModalAlert').modal('show')
-                            if (this.accept_redirect){
-
-                            }
                         }
                     }).catch(err=>{
                         this.loading = false

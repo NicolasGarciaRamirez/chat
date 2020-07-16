@@ -15,7 +15,7 @@
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
                         <div v-if="comment.user.username == auth.username">
                             <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
-                            <div class="dropdown-item cursor-pointer" @click="showModalSureDelete">Delete</div>
+                            <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
                         </div>
                         <div v-else>
                             <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
@@ -58,9 +58,6 @@ import Auth from '../../../helpers/Auth'
             this.getLike()
         },
         methods:{
-            showModalSureDelete(){
-                $('#ModalSureDeleteComment').modal('show')
-            },
             getLike() {
                 if (this.comment.likes) {
                     if (this.comment.likes[0] != null) {
@@ -134,14 +131,14 @@ import Auth from '../../../helpers/Auth'
                 })
             },
             deleteComment() {
-                // swal({
-                //     title: 'Delete Post',
-                //     text: 'You are about to delete this post. Would you like to proceed?',
-                //     className: 'alert',
-                //     buttons: ['Cancel','Delete'],
-                //     dangerMode: true,
-                // }).then((willDelete) => {
-                //     if(willDelete){
+                swal({
+                    title: 'Delete Comment',
+                    text: 'You are about to delete this comment. Would you like to proceed?',
+                    className: 'alert',
+                    buttons: ['Cancel','Delete'],
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if(willDelete){
                         axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
                             if (res.data.deleted) {
                                 this.$toasted.show('The comment has been deleted successfully!', {
@@ -156,7 +153,7 @@ import Auth from '../../../helpers/Auth'
                                         return comment.id === res.data.comment.id
                                     })
                                     this.$parent.$parent.post.comments.splice(index, 1)
-                                } else {
+                                } else if (res.data.comment.commentable_type === "App\\Models\\Comment\\Comment"){
                                     if (res.data.comment.commentable_id === this.$parent.comment.id) {
                                         let index = _.findIndex(this.$parent.comment.comments, function (comment) {
                                             return comment.id === res.data.comment.id;
@@ -168,8 +165,8 @@ import Auth from '../../../helpers/Auth'
                         }).catch(err => {
 
                         })
-                    // }
-                // })
+                    }
+                })
             }
         }
     }

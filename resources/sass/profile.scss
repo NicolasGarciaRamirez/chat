@@ -72,7 +72,7 @@
         }
     }
     .head-container{
-        padding: 0 10px;
+        padding: 0em 0em 0em 1em;
         @include media-breakpoint-up(md){
             margin-top: 2rem;
         }
@@ -504,7 +504,7 @@
             //width: 1rem;
             //margin-left: 0.3rem;
             path{
-                fill: white !important;
+                fill: black !important;
             }
         }
         &:hover{
@@ -515,7 +515,7 @@
                 //width: 1rem !important;
                 //margin-left: 0.3rem !important;
                 path{
-                    fill: white !important;
+                    fill: black !important;
                 }
             }
         }
@@ -549,5 +549,72 @@
 }
 .modal-backdrop{
     z-index: 1010 !important;
+    opacity: 8%;
+}
+.modal-personal{
+    .checkbox{
+        label {
+            min-height: 34px;
+            margin-bottom: 0;
+            font-weight: normal;
+            span {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            &:hover{
+                &:after {
+                    content: "";
+                    background-color: $fifth-color;
+                }
+            }
+            &:before {
+                content: "";
+                position: absolute;
+                right: 9rem;
+                top: 0.55rem;
+                margin: 4px;
+                width: 15px;
+                height: 15px;
+                transition: transform 0.28s ease;
+                border-radius: 0px;
+                border: 1px solid white;
+            }
+            &:after {
+                content: "";
+                display: block;
+                width: 9px;
+                height: 9px;
+                color: white;
+                position: absolute;
+                right: 9.45rem;
+                top: 0.94rem;
+            }
+        }
+        input[type="radio"] {
+            width: auto;
+            opacity: 0.00000001;
+            position: absolute;
+            left: 0;
+            margin-left: -20px;
+            &:checked ~ label{
+                &:before {
+                    border: 2px solid white;
+                }
+                &:after {
+                    background-color: $fifth-color;
+                }
+            }
+            &:focus + label::before {
+                outline: 0;
+            }
+        }
+        .dot{
+            font-size: 2em;
+        }
+    }
+    .divider{
+        border-top: 1px solid $third-color;
+    }
 }
 
