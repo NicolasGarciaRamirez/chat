@@ -42,23 +42,27 @@ export default {
     computed:{
         social_media: function () {
             if (this.user.profile_information) {
-                let social_media = JSON.parse(this.user.profile_information.social_media)
-                if (
-                    social_media.LinkedIn !== null ||
-                    social_media.Twitch !== null ||
-                    social_media.Youtube !== null ||
-                    social_media.Bandcamp !== null ||
-                    social_media.Instagram !== null ||
-                    social_media.Twitter !== null ||
-                    social_media.TikTok !== null ||
-                    social_media.SoundCloud !== null ||
-                    social_media.Spotify !== null ||
-                    social_media.Facebook !== null ||
-                    social_media.SnapChat !== null
-                ) {
-                   return true
-                } else {
-                   return false
+                if(this.user.profile_information.social_media){
+                    let social_media = JSON.parse(this.user.profile_information.social_media)
+                    if (
+                        social_media.LinkedIn !== null ||
+                        social_media.Twitch !== null ||
+                        social_media.Youtube !== null ||
+                        social_media.Bandcamp !== null ||
+                        social_media.Instagram !== null ||
+                        social_media.Twitter !== null ||
+                        social_media.TikTok !== null ||
+                        social_media.SoundCloud !== null ||
+                        social_media.Spotify !== null ||
+                        social_media.Facebook !== null ||
+                        social_media.SnapChat !== null
+                    ) {
+                        return true
+                    } else {
+                        return false
+                    }
+                }else{
+                    return false
                 }
             } else {
                 return false

@@ -55,7 +55,7 @@
                         </svg>
                     Channel
                     </a>
-                    <a class="dropdown-item" @click="showModalRelathions">
+                    <a class="dropdown-item  cursor-pointer" @click="showModalRelathions">
                         <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                              x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="20px" class="svg-icon mr-3">
                             <g id="Layer_2">
