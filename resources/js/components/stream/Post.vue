@@ -43,7 +43,7 @@
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
                         <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
-<!--                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>-->
+                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
                         <div class="dropdown-item cursor-pointer" >Hide Post</div>
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>
                         <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
@@ -101,11 +101,11 @@
                     <video :src="`${post.resource}`" controls  v-if="post.resource_type === 'video'" />
                     <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf"></vue-wave-surfer>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'">
-                        <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" :id="`backward`+post.token" @click="backward(audio)" height="30" >
+                        <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio()" >
-                            <img src="/images/iconsplayer/Play-white.svg" alt="" class=" mx-3" height="33">
+                            <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
                         </div>
-                        <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" @click="forward(audio)" height="30">
+                        <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
                     </div>
                     <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs'">
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
@@ -242,6 +242,7 @@
                     this.$refs.surf.waveSurfer.stop()
                 })
             }
+            console.log(this.$parent.post)
         },
         computed: {
             player() {
@@ -281,6 +282,8 @@
                 $('#ModalPlaylist').modal('show')
             },
             showModalSharePost(){
+
+                this.$parent.post = this.post
                 $('#ModalShare').modal('show')
             },
             // showModalPost(){

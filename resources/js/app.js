@@ -54,6 +54,7 @@ import ProfileSocialMedia from './components/user/profile/SocialMedia'
 
 import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
 import ModalContributor from './components/ModalsCommingSoon/ModalContributor'
+import ModalSharePost from "./components/stream/ModalSharePost";
 import Test from './components/Test'
 
 new Vue({
@@ -80,6 +81,7 @@ new Vue({
         ProfileSocialMedia,
         ModalContributorSignup,
         ModalContributor,
+        ModalSharePost,
         ValidateLogin,
         PasswordReset,
         Playlist,
