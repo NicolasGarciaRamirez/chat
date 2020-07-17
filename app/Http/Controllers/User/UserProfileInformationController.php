@@ -187,6 +187,16 @@ class UserProfileInformationController extends Controller
         ]);
     }
 
+    public function saveWorkedWith($username, Request $request)
+    {
+        $work_with = new WorkedWith($request->all());
+        $this->user->profile_information->worked_with()->save($work_with);
+
+        return response()->json([
+            'save' =>  true,
+            'workWith' => $work_with
+        ]);
+    }
     /**
      * @param WorkedWith $WorkedWith
      * @return \Illuminate\Http\JsonResponse

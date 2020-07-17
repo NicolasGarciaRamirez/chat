@@ -75,13 +75,13 @@
             <span v-if="post.resource_type === 'docs'">
                 <span v-if="showMore">{{description}}</span>
                 <span v-if="!showMore">{{descriptionLess}}</span>
-                <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
             </span>
-<!--            <span v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">-->
-<!--                <span v-if="showMore">{{description}}</span>-->
-<!--                <span v-if="!showMore">{{descriptionLess}}</span>-->
-<!--                <span class="c-fourt1 cursor-pointer mx-4" @click="!showMore ? showMore = true : showMore = false">{{!showMore ? 'See More' :... 'See Less'}}</span>-->
-<!--            </span>-->
+<!--                        <span v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">-->
+<!--                            <span v-if="showMore">{{description}}</span>-->
+<!--                            <span v-if="!showMore">{{descriptionLess}}</span>-->
+<!--                            <span class="c-fourt1 cursor-pointer mx-4" @click="!showMore ? showMore = true : showMore = false">{{!showMore ? 'See More' : 'See Less'}}</span>-->
+<!--                        </span>-->
             <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
                 <textarea
                     class="form-control bg-primary"
@@ -242,7 +242,6 @@
                     this.$refs.surf.waveSurfer.stop()
                 })
             }
-            console.log(this.$parent.post)
         },
         computed: {
             player() {

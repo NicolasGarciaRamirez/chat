@@ -12,12 +12,28 @@
         <div class="c-body text-center">
             <div class="img-bg-container"></div>
             <div class="container-form">
-                <form method="POST" action="/Suggestions/Save" >
+                @if(Session::get('error') !== null)
+                    <div class="alert bg-fifth">
+                        {{Session::get('error')}}
+                    </div>
+                @endif
+                @if(Session::get('success') !== null)
+                    <div class="alert bg-gradient-success">
+                        {{Session::get('success')}}
+                    </div>
+                @endif
+                <form method="POST" action="/Suggestions/Save" accept-charset="UTF-8" enctype="multipart/form-data" >
                     @csrf
-                    <div class="form-input-group d-flex flex-column justify-content-start">
-                        <input type="text" class="form-control my-4 p-3" name="name" placeholder="Name or User Name">
-                        <input type="text" class="form-control p-3" name="subject" placeholder="Give this feature a name!">
-                        <textarea cols="198" rows="30" name="message" class="form-control my-4 p-3" placeholder="What’s the feature that would like Noisesharks to have? Go wild!!"></textarea>
+                    <div class="form-input-group d-flex flex-column justify-content-start c-fifth">
+                        <div class="d-flex flex-row align-items-center">
+                            <input type="text" class="form-control my-4 p-3" name="name" placeholder="Name or User Name" /> <span class="ml-1">*</span>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                            <input type="text" class="form-control p-3" name="subject" placeholder="Give this feature a name!" /> <span class="ml-1">*</span>
+                        </div>
+                        <div class="d-flex flex-row align-items-center">
+                            <textarea cols="198" rows="30" name="message" class="form-control my-4 p-3" placeholder="What’s the feature that would like Noisesharks to have? Go wild!!"></textarea> <span class="ml-1">*</span>
+                        </div>
                         <label for="file" class="cursor-pointer">
                             <div class="text-left pl-2 bg-third my-4 p-2 rounded-pill c-fourth w-50" value="Add attachments (e.g. screenshots, or pdfs)" disabled>Add attachments (e.g. screenshots, or pdfs)</div>
                         </label>

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Extras;
 
-use App\Models\Extras\Suggestions;
+use App\Models\Extras\help;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SuggestionsController extends Controller
+class HelpController extends Controller
 {
     /**
      * @param Request $request
@@ -23,21 +23,21 @@ class SuggestionsController extends Controller
                 'message' => 'required',
             ]);
 
-            $suggestion = new Suggestions($request->all());
+            $help = new Help($request->all());
             if ($request->hasFile('file')){
                 $hash = \Str::random(20);
-                $name =  "/images/suggestions/{$hash}{$request->file('file')->getClientOriginalName()}";
-                $request->file('file')->move(public_path("/images/suggestions/"), $name);
-                $suggestion->file = $name;
+                $name =  "/images/help/{$hash}{$request->file('file')->getClientOriginalName()}";
+                $request->file('file')->move(public_path("/images/help/"), $name);
+                $help->file = $name;
             }
-            $suggestion->save();
+            $help->save();
             \DB::commit();
             $request->session()->flash('success', 'this information has been saved successfully');
-            return redirect('/Suggestions');
+            return redirect('/Help');
         } catch (\Exception $e){
             \DB::rollBack();
             $request->session()->flash('error', 'Please fill out the fields marked with (*)');
-            return view('extras.suggestions');
+            return view('extras.help');
         }
     }
 }

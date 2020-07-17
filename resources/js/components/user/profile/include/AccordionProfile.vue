@@ -160,11 +160,16 @@
                         <div class="card-body text-white bg-black">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold" @click="addWork = true" v-if="!addWork">Add Worked With</button>
-                                    <input class="form-control my-2 w-25" v-model="addWorkName" @keypress.enter.prevent="addedWork($event)" v-else autofocus>
+                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold my-3" @click="addWork = true" v-if="!addWork">Add Worked With</button>
+
+                                    <input class="form-control bg-black my-2 work-with" v-model="addWorkName" @keypress.enter.prevent="addedWork($event)" v-else autofocus>
+                                    <div class="d-flex flex-row icon-work-with cursor-pointer" v-if="addWork" @click.prevent="addedWork($event)">
+                                        <span class="border-left">&nbsp;</span>
+                                        <img src="/images/icons/work-with.svg" width="19rem"/>
+                                    </div>
                                 </div>
-                                <div class="d-flex flex-row">
-                                    <span class="bg-third text-white text-center mx-2 p-2" v-for="(work , index) in worked_with" :key="index">{{work.name}}<i class="fas fa-times cursor-pointer mx-2 py-1" @click="deleteWorkWith(work)"></i></span>
+                                <div class="d-flex flex-row flex-wrap ">
+                                    <span class="text-white text-center text-work m-2 p-2" v-for="(work , index) in worked_with" :key="index">{{work.name}}<i class="fas fa-times cursor-pointer mx-2 py-1" @click="deleteWorkWith(work)"></i></span>
                                 </div>
                             </div>
                         </div>
@@ -397,11 +402,11 @@ export default {
         async addedWork(event){
             event.preventDefault()
             if(this.addWorkName == '') return false
-            this.worked_with.push({
+            let work = {
                 name: this.addWorkName,
                 id: null
-            })
-            this.save()
+            }
+            await this.saveWorkedWith(work)
         },
         addRelease(){
             this.releases_information.push({
@@ -484,9 +489,6 @@ export default {
                 }
             }).catch(err => {
                 this.disable = false
-
-                // alert(`please complete the that are marked with the *`)
-                console.log(err)
             })
         },
         showModalSelectGenres(){
@@ -547,6 +549,21 @@ export default {
             }
 
             return validate
+        },
+
+        async saveWorkedWith(work, index){
+            await axios.post(`/${this.user.username}/WorkWith/save`, work).then(res =>{
+                if(res.data.save){
+                    this.worked_with.push({
+                        name: res.data.workWith.name,
+                        id: res.data.workWith.id
+                    })
+                    this.addWorkName = ''
+                }
+            }).catch(err =>{
+                console.log(err)
+            })
+
         },
         async deleteWorkWith(work){
             await axios.post(`/${this.user.username}/WorkWith/delete/${work.id}`, this.user).then(res => {

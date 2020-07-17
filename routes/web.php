@@ -38,6 +38,7 @@ Route::get('/ResetPassword/{token}/{hash}', 'Auth\AuthController@resetPasswordVi
 Route::post('/ResetPassword', 'Auth\AuthController@resetPassword');
 
 Route::get('/Help', 'HomeController@help')->name('help');
+Route::post('/Help/Save', 'Extras\HelpController@save')->name('help.save');
 Route::get('/About', 'HomeController@about')->name('about');
 Route::get('/Carrers', 'HomeController@carrers')->name('carrers');
 Route::get('/Terms', 'HomeController@terms')->name('terms');
@@ -61,6 +62,8 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::name('profile.save')->post('/Save/Profile', 'User\UserProfileInformationController@save');
         Route::name('image.save')->post('/image/save', 'User\UserProfileInformationController@saveImage');
         Route::name('profile.work.with.delete')->post('/WorkWith/delete/{WorkedWith}', 'User\UserProfileInformationController@deleteWorkedWith');
+        Route::name('profile.work.with.save')->post('/WorkWith/save', 'User\UserProfileInformationController@saveWorkedWith');
+
     });
 
     Route::group(['prefix' => 'Channel'], function () {

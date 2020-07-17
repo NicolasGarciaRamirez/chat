@@ -342,6 +342,23 @@
                     }
                 }
             }
+            .icon-work-with{
+                img, span{
+                    transform: translate(4.5rem, -2.4rem);
+                }
+            }
+            .work-with{
+                max-width: 12rem !important ;
+                background: black !important;
+                border-radius: 30px !important;
+                border: 2px solid white !important;
+            }
+            .text-work{
+                background: $primary-color;
+                &:hover{
+                    background: $third-color;
+                }
+            }
         }
         .modal-select{
             .checkbox{
