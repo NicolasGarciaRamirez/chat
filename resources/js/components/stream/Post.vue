@@ -37,9 +37,9 @@
                 <i class="fas fa-ellipsis-h c-third fa-2x"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
                     <div v-if="!menuPlaylist">
-                        <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item">Go To User Profile</a>
+                        <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item" v-if="post.user.username !== auth.username">Go To User Profile</a>
                         <!-- <a href="#" class="dropdown-item">Message User</a> -->
-                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-divider" v-if="post.user.username !== auth.username"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
                         <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
@@ -169,7 +169,7 @@
                     <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                 </div>
                 <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
-                <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">100</div>
+                <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-up.svg" alt="">0</div>
                 <div class="information cursor-pointer" v-if="post.allow_download"><a :href="`${post.resource}`"><img src="/images/icons/post-down.svg" alt=""></a></div>
             </div>
         </div>
@@ -434,11 +434,9 @@
             colorFollow(type){
                 if (Auth.state.username) {
                     if (type === 'follow') {
-                        $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
                         this.store(type)
                     }
                     if(type === 'unfollow'){
-                        $(`#follow`+this.post.token+' button').addClass('follow-idle').removeClass('follow-active')
                         this.store(type)
                     }
                 }else{
@@ -452,7 +450,7 @@
                     console.log(err)
                 })
             },
-            store(type){
+            async store(type){
                 var request =''
                 if (type == 'unlike') {
                     request = this.lit
@@ -557,11 +555,13 @@
                         this.post.user.followers.push(res.data.follow)
                         this.follow_type = 'unfollow'
                         Followers.set(res.data.following)
+                        $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
                         window.location.reload()
                     }
                     if (res.data.unfollow) {
                         this.follow_type = 'follow'
                         Followers.set(res.data.following)
+                        $(`#follow`+this.post.token+' button').addClass('follow-idle').removeClass('follow-active')
                         window.location.reload()
                     }
                 }).catch(err =>{

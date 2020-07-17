@@ -32,7 +32,7 @@
                         <a href="/auth/twitter" class="btn bg-twitter text-white my-3">Twitter Quick Login</a>
                         <a href="/auth/google" class="btn bg-white c-fifth">Google Quick Login</a>
                     </div>
-                    <p class="c-fourth text-center mt-3 mb-5">By logging in up you are agreeing to Noisesharks’ <a href="/terms" class="c-fourth"><b>Terms of Use</b></a>, <a href="#" class="c-fourth"><b>Privacy Policy</b></a> , & <a href="#" class="c-fourth"><b>Copyright Policy</b></a></p>
+                    <p class="c-fourth text-center mt-3 mb-5">By logging in you are agreeing to Noisesharks’ <a href="/terms" class="c-fourth"><b>Terms of Use</b></a>, <a href="#" class="c-fourth"><b>Privacy Policy</b></a> , & <a href="#" class="c-fourth"><b>Copyright Policy</b></a></p>
                     <div class="divider"></div>
                     <p class="text-center text-white mt-4">Don’t have an account yet?!</p>
                     <div class="text-center mb-3">
