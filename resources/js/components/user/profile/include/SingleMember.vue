@@ -1,12 +1,14 @@
 <template>
     <section>
-        <div class="form-group row">
+        <div class="form-group row c-fifth">
             <div class="col-md">
                 <input type="text" class="form-control mb-2" placeholder="Member Name" v-model="member_update.member_name">
             </div>
+            *
             <div class="col-md">
                 <input type="text" class="form-control" placeholder="Role/Instrument" v-model="member_update.role_instrument">
             </div>
+            *
             <div class="col-md">
                 <input type="text" class="form-control" placeholder="Link to noisesharks profile" v-model="member_update.link_profile">
             </div>

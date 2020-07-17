@@ -134,7 +134,7 @@ import Auth from '../../../helpers/Auth'
                 swal({
                     title: 'Delete Comment',
                     text: 'You are about to delete this comment. Would you like to proceed?',
-                    className: 'alert',
+                    className: 'swal-alert',
                     buttons: ['Cancel','Delete'],
                     dangerMode: true,
                 }).then((willDelete) => {

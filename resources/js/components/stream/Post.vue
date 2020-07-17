@@ -44,7 +44,7 @@
                         <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
                         <a :href="`/${post.user.username}/Post/get/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
-                        <div class="dropdown-item cursor-pointer" >Hide Post</div>
+                        <!--<div class="dropdown-item cursor-pointer" >Hide Post</div>-->
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>
                         <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
                     </div>
@@ -588,7 +588,7 @@
                 swal({
                     title: 'Delete Post',
                     text: 'You are about to delete this post. Would you like to proceed?',
-                    className: 'alert',
+                    className: 'swal-alert',
                     buttons: ['Cancel','Delete'],
                     dangerMode: true,
                 }).then((willDelete) => {

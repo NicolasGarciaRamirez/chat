@@ -9,12 +9,22 @@
                 Delete Release
             </button>
         </div>
-        <div class="d-flex flex-column">
-            <input type="text" class="form-control" placeholder="Artist Name" v-model='release_update.artistic_name' />
-            <input type="text" class="form-control" placeholder="Album Name" v-model="release_update.album_name" />
-            <input type="text" class="form-control" placeholder="Release Date" v-model="release_update.release_date"  />
-            <input type="text" class="form-control" placeholder="Genre" v-model="release_update.genre" />
-            <input type="text" class="form-control" placeholder="Label name" v-model="release_update.label" />
+        <div class="d-flex flex-column c-fifth">
+            <div class="d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Artist Name" v-model='release_update.artistic_name' /> <span class="mx-3">&nbsp</span>
+            </div>
+            <div class="d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Album Name" v-model="release_update.album_name" /> <span class="mx-3">*</span>
+            </div>
+            <div class="d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Release Date" v-model="release_update.release_date"  /> <span class="mx-3">&nbsp</span>
+            </div>
+            <div class="d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Genre" v-model="release_update.genre" /> <span class="mx-3">*</span>
+            </div>
+            <div class="d-flex flex-row">
+                <input type="text" class="form-control" placeholder="Label name" v-model="release_update.label" /> <span class="mx-3">&nbsp</span>
+            </div>
         </div>
         <modal-change-image-releases></modal-change-image-releases>
     </div>

@@ -12,7 +12,7 @@
                         <div class="d-flex flex-column text-white">
                             <h5 class="font-weight-bold text-center">Choose A Title</h5>
                             <p class="text-center c-fourth my-3 ">
-                                You must choose a Profile Type and Title in order for you to post to post your content!
+                                You must choose a Profile Type and Title in order for you to post your content!
                             </p>
                             <div class="divider c-fourth my-3"></div>
                             <h5 class="font-weight-bold text-left my-3">Please Choose Profile Type</h5>

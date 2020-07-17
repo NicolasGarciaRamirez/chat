@@ -43,4 +43,11 @@ class StoreUser extends FormRequest
             'confirmation_password' => 'password'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'email.unique' => 'This email address has already been taken'
+        ];
+    }
 }

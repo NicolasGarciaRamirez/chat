@@ -18,9 +18,9 @@ class CreateReleasesTable extends Migration
             $table->string('album_name');
             $table->string('artistic_name')->nullable();
             $table->string('genre');
-            $table->string('image');
-            $table->string('label');
-            $table->string('release_date');
+            $table->string('image')->nullable();
+            $table->string('label')->nullable();
+            $table->string('release_date')->nullable();
             $table->unsignedBigInteger('profile_information_id');
             $table->timestamps();
             $table->softDeletes();

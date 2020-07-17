@@ -53,6 +53,24 @@
     import ModalForgotPassword from './include/ForgotPassword'
     import Followers from "../../helpers/Followers";
 
+    Validator.extend('email', {
+        validate: value => {
+            var strongRegex = new RegExp("^[^@]+@[^@]+\\.[a-zA-Z]{2,}$");
+            return strongRegex.test(value);
+        },
+        getMessage: 'Please enter a valid email'
+    })
+
+    const dictionary = {
+        en: {
+            attributes: {
+                email: 'email',
+                password: 'password'
+            }
+        }
+    };
+    Validator.localize(dictionary);
+
     export default {
         props: ['is_login_view'],
         data(){

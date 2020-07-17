@@ -182,11 +182,11 @@
                             <div class="d-flex flex-column text-center social-login">
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/facebook.svg" alt="" class="icon">
-                                    <a href="/auth/facebook" class="btn btn-social-media bg-facebook text-white rounded-pill font-weight-bold">{{ auth_facebook == 'FacebookProvider' ? 'Disconnect From Facebook'  : 'Link From Facebook' }}</a>
+                                    <a href="/auth/facebook" class="btn btn-social-media bg-facebook text-white rounded-pill font-weight-bold">{{ auth_facebook == 'FacebookProvider' ? 'Disconnect From Facebook'  : 'Link With Facebook' }}</a>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/twitter.svg" alt="" class="icon">
-                                    <a href="/auth/twitter" class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">{{ auth_twitter  == 'TwitterProvider' ? 'Disconnect From twitter'  : 'link From Twitter' }}</a>
+                                    <a href="/auth/twitter" class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">{{ auth_twitter  == 'TwitterProvider' ? 'Disconnect From Twitter'  : 'Link With Twitter' }}</a>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center mb-2">
                                     <img src="/images/icons/google.svg" alt="" class="icon">

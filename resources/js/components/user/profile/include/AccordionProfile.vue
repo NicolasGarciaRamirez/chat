@@ -3,7 +3,7 @@
         <form @submit.prevent="save" enctype="multipart/form-data" ref="form_profile_update_information">
             <div id="accordionProfile" class="accordion">
                 <div class="card">
-                    <div class="card-header bg-black" font-weight-bold id="headingOne">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingOne">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             <button type="button" class="btn btn-link no-underline text-white font-weight-bold">Profile Type <span class="c-fifth">*</span></button>
                             <i class="fas fa-angle-down text-white"></i>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingTwo">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingTwo">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">Title<span class="c-fifth">*</span></button>
                             <i class="fas fa-angle-down text-white float-right"></i>
@@ -73,7 +73,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingThree">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingThree">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <button class="btn btn-link collapsed text-white no-underline font-weight-bold" type="button">
                                 Artistic Name <small>(If Applicable)</small>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingFourth">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingFourth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 About You
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingFifth">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingFifth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
                             <button type="button"  class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Members <small>(If Applicable)</small>
@@ -132,7 +132,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingSix">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingSix">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Releases <small>(If Applicable)</small>
@@ -148,7 +148,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingSeven">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingSeven">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Worked With <small>(If Applicable)</small>
@@ -171,7 +171,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingEight">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingEight">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold" >
                                 Genre <small>(If Applicable)</small>
@@ -193,7 +193,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingNine">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingNine">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Services <small>(If Applicable)</small>
@@ -215,7 +215,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black font-weight-bold" id="headingTen">
+                    <div class="card-header bg-black font-weight-bold cursor-pointer" id="headingTen">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                             <button type="button" class="btn btn-link no-underline collapsed text-white font-weight-bold">
                                 Social Media  <small>(If Applicable)</small>
@@ -439,7 +439,6 @@ export default {
 
             if(!this.validateData()){
                 this.disable = false
-                alert('please complete the fields that are marked with the *')
                 return false
             }
 
@@ -486,7 +485,7 @@ export default {
             }).catch(err => {
                 this.disable = false
 
-                alert(`please complete the that are marked with the *`)
+                // alert(`please complete the that are marked with the *`)
                 console.log(err)
             })
         },
@@ -501,7 +500,51 @@ export default {
 
             if(this.profile_information.profile_type == "") validate = false;
             if(this.profile_information.title == "Select Title") validate = false;
+            if(this.current_members.length > 0){
+                this.current_members.map(member =>{
+                    if(member.member_name == '' || member.role_instrument == '') {
+                        swal({
+                            text: 'Please fill out the fields marked with (*) to add the current members',
+                            className: 'swal-alert',
+                            buttons: [false,'Ok'],
+                            dangerMode: true,
+                        })
+                        validate = false
+                    }
+                })
+            }
+            if (this.past_members.length > 0){
+                this.past_members.map(past =>{
+                    if (past.member_name == '' || past.role_instrument == '') {
+                        swal({
+                            text: 'Please fill out the fields marked with (*) to add the past members',
+                            className: 'swal-alert',
+                            buttons: [false, 'Ok'],
+                            dangerMode: true,
+                        })
+                        validate = false
+                    }
 
+                })
+            }
+            if(this.releases_information.length > 0){
+                this.releases_information.map(release =>{
+                    if(release.genre == '' || release.album_name == '') {
+                        // let index =_.findIndex(this.releases_information , function(o){return o.id == release.id} )
+                        // this.releases_information.splice(index,1)
+                        swal({
+                            text: 'Please fill out the fields marked with (*) to add the release',
+                            className: 'swal-alert',
+                            buttons: {
+                                cancel: false,
+                                confirm: 'Ok'
+                            },
+                            dangerMode: true,
+                        })
+                        validate = false
+                    }
+                })
+            }
 
             return validate
         },

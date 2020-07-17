@@ -3,7 +3,7 @@
         <div id="accordionChannel" class="accordion">
             <form>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingOne">
+                    <div class="card-header bg-black cursor-pointer" id="headingOne">
                         <h2 class="mb-0 d-flex justify-content-between" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 Why Support Channel? (Contributors Only)
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingTwo">
+                    <div class="card-header bg-black cursor-pointer" id="headingTwo">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 Edit Monthly Goal (Contributors Only)
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingThree">
+                    <div class="card-header bg-black cursor-pointer" id="headingThree">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 Edit Tiers (Contributors Only)
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingFourth">
+                    <div class="card-header bg-black cursor-pointer" id="headingFourth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFourth" aria-expanded="false" aria-controls="collapseFourth">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 View Supporters (Contributors Only)
@@ -67,7 +67,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingFifth">
+                    <div class="card-header bg-black cursor-pointer" id="headingFifth">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseFifth" aria-expanded="false" aria-controls="collapseFifth">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 View Rewards (Contributors Only)
@@ -85,7 +85,7 @@
                 <div class="card">
                     <div class="card-header bg-black cursor-pointer" id="headingSix" @click="showModalRelathions('followers')">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                            <button type="button" class="btn btn-link text-white  font-weight-bold" >
+                            <button type="button" class="btn btn-link text-white font-weight-bold" >
                                 View Followers
                             </button>
                             <i class="fas fa-angle-down text-white float-right"></i>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingSeven">
+                    <div class="card-header bg-black cursor-pointer" id="headingSeven">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 View Supporting
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header bg-black" id="headingEight">
+                    <div class="card-header bg-black cursor-pointer" id="headingEight">
                         <h2 class="mb-0 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                             <button type="button" class="btn btn-link text-white font-weight-bold">
                                 View Rewarded
