@@ -72,7 +72,6 @@ export default {
     methods:{
         setType(){
             if(this.user.profile_information) {
-                // console.log('si')
                 if(this.user.profile_information.releases.length > 0 ){
                     this.addClass('releases')
                     this.type = 'releases'
@@ -94,7 +93,6 @@ export default {
             }
         },
         addClass(type){
-            console.log(type)
             if (type === 'releases'){
                 this.type = type
                 $('#Releases').addClass('active c-fifth')
@@ -135,14 +133,14 @@ export default {
                 $('#Genres').removeClass('active c-fifth')
                 $('#Services').removeClass('active c-fifth')
             }
-            else{
-                this.type = ''
-                $('#Releases').removeClass('active c-fifth')
-                $('#Members').removeClass('active c-fifth')
-                $('#Genres').removeClass('active c-fifth')
-                $('#Services').removeClass('active c-fifth')
-                $('#Social_media').removeClass('active c-fifth')
-            }
+            // else{
+            //     this.type = ''
+            //     $('#Releases').removeClass('active c-fifth')
+            //     $('#Members').removeClass('active c-fifth')
+            //     $('#Genres').removeClass('active c-fifth')
+            //     $('#Services').removeClass('active c-fifth')
+            //     $('#Social_media').removeClass('active c-fifth')
+            // }
         }
     }
 

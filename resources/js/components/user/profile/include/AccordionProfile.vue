@@ -385,7 +385,7 @@ export default {
 
                 this.profile_information.genres = this.user.profile_information.genres ? this.user.profile_information.genres.split(",") : []
                 this.profile_information.services = this.user.profile_information.services ? this.user.profile_information.services.split(",") : []
-                this.profile_information.social_media = this.user.profile_information.social_media != null ? JSON.parse(this.user.profile_information.social_media) : {}
+                this.profile_information.social_media = this.user.profile_information.social_media != null ? JSON.parse(this.user.profile_information.social_media) : {Youtube: '', Twitch: '', Instagram: '', Facebook: '', Twitter: '', TikTok: '', LinkedIn: '', SnapChat: '', SoundCloud: '', Bandcamp: '', Spotify: '',}
 
         	    this.profile_information.members.map(val =>{
                     if (val.member_type === 'current') {
