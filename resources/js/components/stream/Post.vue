@@ -469,14 +469,14 @@
                 if (type == 'vote_up') {
                     request = this.vote
                     this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}`
-                    if (this.votes.vote_down) {
+                    if (this.votes.vote_down.length > 0) {
                         this.votes.vote_down.map(vote => {
                             this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}/${vote.id}`
                         })
                     }
                 }
                 if (type == 'unvote_up') {
-                    if (this.votes.vote_up) {
+                    if (this.votes.vote_up.length > 0) {
                         this.votes.vote_up.map(vote => {
                             this.url =  `/${Auth.state.username}/VotePost/UnVoteUp/${vote.id}`
                         })
@@ -534,22 +534,26 @@
                         let indice = this.post.votes.indexOf(res.data.voteUp)
                         this.votes.vote_down.splice(indice, 1)
                         this.vote.type_vote = 'unvote_up'
+                        this.vote_type = 'unvote_up'
                     }
                     if (res.data.unvoteUp) {
                         let indice = this.post.votes.indexOf(res.data.unvoteUp)
                         this.votes.vote_up.splice(indice, 1)
                         this.vote.type_vote = 'vote_up'
+                        this.vote_type = 'vote_up'
                     }
                     if (res.data.voteDown) {
                         this.votes.vote_down.push(res.data.voteDown)
                         let indice = this.post.votes.indexOf(res.data.voteDown)
                         this.votes.vote_up.splice(indice, 1)
                         this.vote.type_vote = 'unvote_down'
+                        // this.vote_type = 'unvote_down'
                     }
                     if (res.data.unvoteDown) {
                         let indice = this.post.votes.indexOf(res.data.unvoteDown)
                         this.votes.vote_down.splice(indice, 1)
                         this.vote.type_vote = 'vote_up'
+                        // this.vote_type = 'vote_up'
                     }
                     if (res.data.follow) {
                         this.post.user.followers.push(res.data.follow)

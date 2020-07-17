@@ -104,11 +104,11 @@
                     background: white !important;
                     color: black !important;
                 }
-                &:active{
-                    border: 2px solid $fifth-color !important;
-                    background: $fifth-color !important;
-                    color: white !important;
-                }
+                //&:active{
+                //    border: 2px solid $fifth-color !important;
+                //    background: $fifth-color !important;
+                //    color: white !important;
+                //}
             }
             button.function{
                 background: $primary-color !important;
@@ -128,7 +128,7 @@
                 &:hover{
                     border-color: white !important;
                     background-color: white !important;
-                    color: black;
+                    color: black !important;
                     svg{
                         width: 1rem !important;
                         margin-left: 0.3rem !important;
@@ -137,18 +137,18 @@
                         }
                     }
                 }
-                &:active{
-                    border-color: $fifth-color !important;
-                    background-color: $fifth-color !important;
-                    color: white !important;
-                    svg{
-                        width: 1rem !important;
-                        margin-left: 0.3rem !important;
-                        path{
-                            fill: white !important;
-                        }
-                    }
-                }
+                //&:active{
+                //    border-color: $fifth-color !important;
+                //    background-color: $fifth-color !important;
+                //    color: white !important;
+                //    svg{
+                //        width: 1rem !important;
+                //        margin-left: 0.3rem !important;
+                //        path{
+                //            fill: white !important;
+                //        }
+                //    }
+                //}
             }
             .function-active{
                 svg{
@@ -162,20 +162,8 @@
                 border: 2px solid $fifth-color !important;
 
                 &:hover{
-                    border-color: white !important;
-                    background-color: white !important;
-                    color: black;
-                    svg{
-                        width: 1rem !important;
-                        margin-left: 0.3rem !important;
-                        path{
-                            fill: black !important;
-                        }
-                    }
-                }
-                &:active{
-                    border-color: $fifth-color !important;
-                    background-color: $fifth-color !important;
+                    border-color: $six-color !important;
+                    background-color: $six-color !important;
                     color: white !important;
                     svg{
                         width: 1rem !important;
@@ -185,6 +173,18 @@
                         }
                     }
                 }
+                //&:active{
+                //    border-color: $fifth-color !important;
+                //    background-color: $fifth-color !important;
+                //    color: white !important;
+                //    svg{
+                //        width: 1rem !important;
+                //        margin-left: 0.3rem !important;
+                //        path{
+                //            fill: white !important;
+                //        }
+                //    }
+                //}
             }
         }
         .check-icon{

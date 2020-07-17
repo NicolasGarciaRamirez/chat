@@ -122,10 +122,8 @@ export default {
         colorFollow(type){
             if (Auth.state.token) {
                 if (type == 'follow') {
-                    $(`#follow`+this.user.token+` button`).addClass('function-active').removeClass('function')
                     this.storeFollow(type)
                 } else if (type == 'unfollow') {
-                    $(`#follow`+this.user.token+` button`).addClass('function').removeClass('function-active')
                     this.storeFollow(type)
                 }
             }else{
@@ -158,11 +156,13 @@ export default {
                     this.user.followers.push(res.data.follow)
                     this.follow_type = 'unfollow'
                     Followers.set(res.data.following)
+                    $(`#follow`+this.user.token+` button`).addClass('function-active').removeClass('function')
                     window.location.reload()
                 }
                 if (res.data.unfollow) {
                     this.follow_type = 'follow'
                     Followers.set(res.data.following)
+                    $(`#follow`+this.user.token+` button`).addClass('function').removeClass('function-active')
                     window.location.reload()
                 }
             }).catch(err =>{
