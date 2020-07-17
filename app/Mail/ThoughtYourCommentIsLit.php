@@ -37,7 +37,7 @@ class ThoughtYourCommentIsLit extends Mailable
     public function build()
     {
         return $this->from('noreply@noisesharks.com')
-            ->subject("Noisesharks - {$this->user_post} thought your comment is lit")
+            ->subject("Noisesharks - {$this->user_login} thought your comment is lit")
             ->view('emails.thought-your-comment-is-lit', ['post' => $this->post, 'user_login' => $this->user_login, 'user_post' => $this->user_post, 'username' => $this->username]);
     }
 }

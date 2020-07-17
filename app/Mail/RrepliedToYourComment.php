@@ -39,7 +39,7 @@ class RrepliedToYourComment extends Mailable
     public function build()
     {
         return $this->from('noreply@noisesharks.com')
-            ->subject("Noisesharks - {$this->user_post} replied to your comment!")
+            ->subject("Noisesharks - {$this->user_login} replied to your comment!")
             ->view('emails. replied-to-your-comment',
                 ['post' => $this->post, 'user_login' => $this->user_login, 'user_post' => $this->user_post, 'username' => $this->username, 'comment' => $this->comment]);
     }

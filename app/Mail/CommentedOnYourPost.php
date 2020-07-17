@@ -39,7 +39,7 @@ class CommentedOnYourPost extends Mailable
     public function build()
     {
         return $this->from('noreply@noisesharks.com')
-            ->subject("Noisesharks - {$this->user_post} commented on your post!")
+            ->subject("Noisesharks - {$this->user_login} commented on your post!")
             ->view('emails.commented-on-your-post', ['post' => $this->post, 'user_login' => $this->user_login, 'user_post' => $this->user_post, 'username' => $this->username, 'comment' => $this->comment]);
     }
 }

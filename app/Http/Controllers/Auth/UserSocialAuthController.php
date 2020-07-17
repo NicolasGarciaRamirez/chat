@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\FacebookIsNowLinked;
+use App\Notifications\GoogleIsNowLinked;
 use App\Notifications\NewUserFree;
+use App\Notifications\TwitterIsNowLinked;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\URL;
@@ -113,6 +116,10 @@ class UserSocialAuthController extends Controller
                 'provider' => $providerName,
                 'provider_id' => $providerUser->id
             ]);
+
+            if($providerName == 'FacebookProvider') $user->notify(new FacebookIsNowLinked($user->personal_information->full_name));
+            if($providerName == 'GoogleProvider') $user->notify(new GoogleIsNowLinked($user->personal_information->full_name));
+            if($providerName == 'TwitterProvider') $user->notify(new TwitterIsNowLinked($user->personal_information->full_name));
         }
 
         return $user;

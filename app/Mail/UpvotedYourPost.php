@@ -37,7 +37,7 @@ class UpvotedYourPost extends Mailable
     public function build()
     {
         return $this->from('noreply@noisesharks.com')
-            ->subject("Noisesharks - {$this->user_post} Upvoted your post!")
+            ->subject("Noisesharks - {$this->user_login} Upvoted your post!")
             ->view('emails.upvoted-your-post', ['post' => $this->post, 'user_login' => $this->user_login, 'user_post' => $this->user_post, 'username' => $this->username]);
     }
 }
