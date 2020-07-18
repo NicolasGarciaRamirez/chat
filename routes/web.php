@@ -37,6 +37,10 @@ Route::post('/ForgotPassword', 'Auth\AuthController@sedEmailForgotPassword');
 Route::get('/ResetPassword/{token}/{hash}', 'Auth\AuthController@resetPasswordView')->name('password.reset')->middleware('signed');
 Route::post('/ResetPassword', 'Auth\AuthController@resetPassword');
 
+Route::get('email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+Route::post('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
 Route::get('/Help', 'HomeController@help')->name('help');
 Route::post('/Help/Save', 'Extras\HelpController@save')->name('help.save');
 Route::get('/About', 'HomeController@about')->name('about');
@@ -54,7 +58,7 @@ Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
 });
 
 Route::group(['prefix' => '/{username}'], function () {
-    Route::group(['middleware' => ['auth']], function () {
+    Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::name('profile.edit')->get('/Edit', 'User\UserController@profileEdit');
         Route::name('profile.get')->get('/Edit/get/', 'User\UserPersonalInformationController@get');
         Route::name('profile.update')->post('/Edit/Profile', 'User\UserProfileInformationController@update');

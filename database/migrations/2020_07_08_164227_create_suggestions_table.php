@@ -18,7 +18,7 @@ class CreateSuggestionsTable extends Migration
             $table->string('name');
             $table->string('subject');
             $table->string('message');
-            $table->string('file')->nullable();
+            $table->string('file');
             $table->timestamps();
             $table->softDeletes();
         });
