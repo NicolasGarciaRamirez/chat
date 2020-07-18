@@ -25,16 +25,6 @@
                 form_reply: false,
                 reply: {
                     body: '',
-                },
-                options_sure_delete:{
-                    type: 'Comment',
-                    title: 'Delete Comment',
-                    text: 'You are about to delete this comment. Would you like to proceed?',
-                    buttons:{
-                        cancel: true,
-                        accept: true,
-                        thank_you: false
-                    }
                 }
             }
         },

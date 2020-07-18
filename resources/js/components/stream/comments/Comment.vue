@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-                <div :id="`litComment`+comment.id" @click="colorFlame(like_type)">
+                <div :id="`litComment`+comment.id" class="cursor-pointer" @click="disable_like ? '' : storeLike(like_type)">
                     <img src="/images/icons/post-flame.svg" alt="flame-red" class="cursor-pointer float-right" height="20">
                 </div>
             </div>
@@ -44,12 +44,13 @@ import Auth from '../../../helpers/Auth'
         data(){
             return {
                 edit:false,
+                disable_like: false,
                 like_type:'like',
-                url : ``,
                 lit:{
                     like: 'like'
                 },
                 likes:[],
+                url : ``,
                 auth: Auth.state
             }
         },
@@ -67,53 +68,50 @@ import Auth from '../../../helpers/Auth'
                                 $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
                                 this.url = `/${Auth.state.username}/LitLike/unlike/${like.id}`
                                 this.like_type = 'unlike'
-                                this.lit.like = 'unlike'
                             }
                         })
                     }
                 }
             },
-            colorFlame(type){
+            storeLike(type){
                 if (Auth.state.token) {
-                    if (type == 'like') {
-                        $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
-                        this.store(type)
+                    this.disable_like = true
+                    console.log(type)
+
+                    if (type === 'unlike') {
+                        if (this.likes.length > 0) {
+                            this.likes.map(value =>{
+                                if (Auth.state.username == value.user.username) {
+                                    this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
+                                }
+                            })
+                        }
                     }
-                    if(type == 'unlike'){
-                        $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="20">')
-                        this.store(type)
+                    if(type === 'like'){
+                        this.url = `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}/${this.$parent.$parent.post.id}`
                     }
+                    axios.post(this.url, this.lit).then(res =>{
+                        console.log(res)
+                        if (res.data.like) {
+                            this.disable_like = false
+                            this.likes.unshift(res.data.like)
+                            this.like_type = 'unlike'
+                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
+
+                        }
+                        if (res.data.unlike) {
+                            this.disable_like = false
+                            let indice = this.likes.indexOf(res.data.unlike)
+                            this.likes.splice(indice, 1)
+                            this.like_type = 'like'
+                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="20">')
+                        }
+                    }).catch(err =>{
+                        console.log(err)
+                    })
                 }else{
                     $('#ModalLogin').modal('show')
                 }
-
-            },
-            store(type){
-                if (type == 'unlike') {
-                    if (this.likes[0] != null) {
-                        this.likes.map(value =>{
-                            if (Auth.state.username == value.user.username) {
-                                this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
-                            }
-                        })
-                    }
-                }
-                if(type == 'like'){
-                    this.url = `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}`
-                }
-                axios.post(this.url, this.lit).then(res =>{
-                    if (res.data.like) {
-                        this.likes.unshift(res.data.like)
-                        this.like_type = 'unlike'
-                    }
-                    if (res.data.unlike) {
-                        var indice = this.likes.indexOf(res.data.unlike)
-                        this.likes.splice(indice, 1)
-                        this.like_type = 'like'
-                    }
-                }).catch(err =>{
-                    console.log(err)
-                })
             },
             update(){
                 axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.$parent.comment).then(res =>{

@@ -30,29 +30,30 @@ class LitLikeController extends Controller
      * @param $username
      * @param $model
      * @param $id_model
+     * @param Post $post
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
-    public function like(Request $request, $username, $model, $id_model)
+    public function like(Request $request, $username, $model, $id_model,Post $post)
     {
         \DB::beginTransaction();
-
         try {
             if ($model == 'Post') {
                 $model = Post::find($id_model);
-            } elseif ($model == 'Comment') {
+            } else if ($model == 'Comment') {
                 $model = Comment::find($id_model);
             }
 
-            if ($request->like == 'like') {
+            if ($request->like === 'like') {
                 $like = new LitLike($request->all());
                 $like->user()->associate($this->user);
                 $model->likes()->save($like);
-            } else {
+            }else{
                 $like = null;
             }
 
             if ($model->getTable() == 'posts') \Mail::to($model->user->email)->send(new \App\Mail\ThoughtYourPostIsLit($model, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username));
-            if ($model->getTable() == 'comments') \Mail::to($model->user->email)->send(new \App\Mail\ThoughtYourCommentIsLit($model->commentable, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username));
+            if ($model->getTable() == 'comments') \Mail::to($model->user->email)->send(new \App\Mail\ThoughtYourCommentIsLit($post, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username));
 
             \DB::commit();
             return response()->json([
@@ -66,7 +67,6 @@ class LitLikeController extends Controller
                 'errors' => $e
             ]);
         }
-
     }
 
     /**

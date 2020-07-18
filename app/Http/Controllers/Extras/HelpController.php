@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Extras;
 
-use App\Models\Extras\help;
+use App\Models\Extras\Help;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

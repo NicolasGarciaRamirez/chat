@@ -365,8 +365,8 @@ export default {
         }
     },
     mounted(){
-       this.initializeVariable()
-       Auth.initialize()
+        this.initializeVariable()
+        Auth.initialize()
 
         if(this.profile_information.profile_type == ''){
             this.$toasted.show('Please add Profile Title and Type if you would like to post your content!', {

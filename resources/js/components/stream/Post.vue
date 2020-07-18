@@ -2,7 +2,7 @@
     <section class="post mt-3" v-if="view_post" @click="storeView">
         <div class="post-head bg-primary d-md-flex align-items-start justify-content-between p-3">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-md-2">
-                <div :id="`follow`+post.token" @click="colorFollow(follow_type)" v-if="post.user.username !== auth.username">
+                <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
                     <button type="button" class="bg-primary align-items-right border-white follow-idle">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}
                         <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -163,9 +163,11 @@
         </div>
         <div class="post-footer bg-primary px-3 py-2">
             <div class="d-flex c-fourth ">
-                <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_down' || vote_type == 'unvote_down' ? vote_type = 'vote_up' : vote_type = 'unvote_up')"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
-                <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="colorVote(vote_type == '' || vote_type == 'vote_up' || vote_type == 'unvote_up' ? vote_type = 'vote_down' : vote_type = 'unvote_down')"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
-                <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="colorFlame(lit.like)" >
+                <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="disable_vote_up ? '' : storeVoteUp(vote_type_up)"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
+
+                <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="disable_vote_down ? '' : storeVoteDown(vote_type_down)"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
+
+                <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="disable_like ? '': storeLike(lit.like)">
                     <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                 </div>
                 <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
@@ -191,6 +193,10 @@
         },
         data(){
             return {
+                disable_like: false,
+                disable_vote_up: false,
+                disable_vote_down: false,
+                disable_follow: false,
                 showMore:false,
                 edit: false,
                 auth: Auth.state,
@@ -202,7 +208,8 @@
                 lit:{
                     like: 'like',
                 },
-                vote_type: '',
+                vote_type_up: 'vote_up',
+                vote_type_down: 'vote_down',
                 vote:{
                     type_vote : ''
                 },
@@ -268,6 +275,7 @@
             }
         },
         methods:{
+            // methods show
             showModalSupport(){
                 $('#modalSupport').modal('show')
             },
@@ -288,6 +296,8 @@
             // showModalPost(){
                 //     $('#ModalPost').modal('show')
             // }
+            // end methods show
+            //methods player
             getGrad(){
                 var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
                 linGrad.addColorStop(0, '#ff0000');
@@ -320,6 +330,7 @@
             forward(){
                 this.audio.skipForward(10)
             },
+            //methods player
             copyLink(){
                 var copyText = document.getElementById("myInput"+this.post.token);
                 copyText.select();
@@ -333,7 +344,16 @@
                     keepOnHover: true
                 })
             },
-            getLike() {
+            // methods reactions
+            storeView(){
+                axios.post(`/${this.auth.username}/View/store/${this.post.id}`).then(res=>{
+                    // console.log(res)
+                }).catch(err =>{
+                    console.log(err)
+                })
+            },
+
+            getLike(){
                 if (this.post.likes) {
                     this.post.likes.map(val => {
                         if (Auth.state.username == val.user.username ) {
@@ -344,38 +364,63 @@
                     })
                 }
             },
-            colorFlame(type){
+            storeLike(type){
                 if (Auth.state.token) {
+                    let request =''
+                    this.disable_like = true
+                    this.disable_vote_down = true
+                    this.disable_vote_up = true
+                    if (type == 'unlike') {
+                        request = this.lit
+                        if (this.post.likes) {
+                            this.post.likes.map(value => {
+                                if (Auth.state.username === value.user.username) {
+                                    this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
+                                }
+                            })
+                        }
+                    }
                     if (type == 'like') {
-                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
-                        this.store(type)
+                        request = this.lit
+                        this.url =  `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
                     }
-                    if(type == 'unlike'){
-                        $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="22">')
-                        this.store(type)
-                    }
+                    axios.post(this.url, request).then(res =>{
+                        if (res.data.like) {
+                            this.disable_like = false
+                            this.disable_vote_down = false
+                            this.disable_vote_up = false
+                            this.lit.like = 'unlike'
+                            this.post.likes.push(res.data.like)
+                            $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="22">')
+                        }
+                        if (res.data.unlike) {
+                            this.disable_like = false
+                            this.disable_vote_down = false
+                            this.disable_vote_up = false
+                            this.lit.like = 'like'
+                            let indice = this.post.likes.indexOf(res.data.like)
+                            this.post.likes.splice(indice, 1)
+                            $(`#lit`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="22">')
+                        }
+                    })
                 }else{
                     $('#ModalLogin').modal('show')
                 }
-
             },
+
             getVote(){
                 if (Auth.state.token) {
                     if (this.post.votes) {
                         this.post.votes.map(vote => {
-                            if (vote.type_vote == 'vote_up') {
+                            if (vote.type_vote === 'vote_up') {
                                 this.votes.vote_up.push(vote)
                                 $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
                                 $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
-                                this.vote_type = 'unvote_up'
-                                this.vote.type_vote = 'unvote_up'
                             }
-                            if(vote.type_vote == 'vote_down'){
+                            if(vote.type_vote === 'vote_down'){
                                 this.votes.vote_down.push(vote)
                                 $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
                                 $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
-                                this.vote_type = 'unvote_down'
-                                this.vote.type_vote = 'unvote_down'
                             }
                         })
                     }
@@ -386,39 +431,137 @@
                             if(vote.type === 'vote_down') this.votes.vote_down.push(vote)
                         })
                     }
-                    //$('#ModalLogin').modal('show')
                 }
             },
-            colorVote(type){
+            storeVoteUp(type){
                 if (Auth.state.token) {
+                    let request = ''
+                    this.disable_vote_up = true
+                    this.disable_vote_down = true
+                    this.disable_like = true
                     if (type == 'vote_up') {
-                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
-                        $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
                         this.vote.type_vote = 'vote_up'
-                        this.store(type)
+                        request = this.vote
+                        this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}`
+                        if (this.votes.vote_down.length > 0) {
+                            this.votes.vote_down.map(vote => {
+                                axios.post(`/${Auth.state.username}/VotePost/UnVoteDown/${vote.id}`).then(res =>{
+                                    if(res.data.unvoteDown){
+                                        this.vote_type_down = 'vote_down'
+                                    }
+                                })
+                            })
+                        }
                     }
                     if (type == 'unvote_up') {
-                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
-                        $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
                         this.vote.type_vote = 'unvote_up'
-                        this.store(type)
+                        if (this.votes.vote_up.length > 0) {
+                            this.votes.vote_up.map(vote => {
+                                this.url =  `/${Auth.state.username}/VotePost/UnVoteUp/${vote.id}`
+                            })
+                        }
                     }
-                    if(type == 'vote_down'){
-                        $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
-                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
-                        this.vote.type_vote = 'vote_down'
-                        this.store(type)
-                    }
-                    if (type == 'unvote_down') {
+
+                    axios.post(this.url, request).then(res => {
+                    if (res.data.voteUp) {
+                        this.disable_vote_up = false
+                        this.disable_vote_down = false
+                        this.disable_like = false
+                        this.votes.vote_up.push(res.data.voteUp)
+                        let indice = this.post.votes.indexOf(res.data.voteUp)
+                        this.votes.vote_down.splice(indice, 1)
+                        this.vote.type_vote = 'unvote_up'
+                        this.vote_type_up = 'unvote_up'
+
+                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
                         $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
-                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
-                        this.vote.type_vote = 'unvote_down'
-                        this.store(type)
                     }
+                    if (res.data.unvoteUp) {
+                        this.disable_vote_up = false
+                        this.disable_vote_down = false
+                        this.disable_like = false
+                        let indice = this.post.votes.indexOf(res.data.unvoteUp)
+                        this.votes.vote_up.splice(indice, 1)
+                        this.vote.type_vote = 'vote_up'
+                        this.vote_type_up = 'vote_up'
+
+                        $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+                        $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
+                    }
+
+                })
                 }else{
                     $('#ModalLogin').modal('show')
                 }
             },
+            storeVoteDown(type){
+                if (Auth.state.token) {
+
+                    let request = ''
+                    this.disable_vote_down = true
+                    this.disable_vote_up = true
+                    this.disable_like = true
+                    if (type === 'vote_down'){
+                        this.vote.type_vote = 'vote_down'
+                        request = this.vote
+                        this.url =  `/${Auth.state.username}/VotePost/VoteDown/${this.post.id}`
+                        if (this.votes.vote_up.length > 0){
+                            this.votes.vote_up.map(vote =>{
+                                if (Auth.state.username === vote.user.username) {
+                                    axios.post(`/${Auth.state.username}/VotePost/UnVoteUp/${vote.id}`).then(res =>{
+                                        console.log(res)
+                                        if(res.data.unvoteUp){
+                                            this.vote_type_up = 'vote_up'
+                                        }
+                                    }).catch(err =>{
+                                        console.log(err)
+                                    })
+                                }
+                            })
+                        }
+                    }
+                    if (type === 'unvote_down') {
+                        this.vote.type_vote = 'unvote_down'
+                        request = this.vote
+                        if(this.votes.vote_down.length > 0){
+                            this.votes.vote_down.map(vote =>{
+                                if(Auth.state.username === vote.user.username){
+                                    this.url = `/${Auth.state.username}/VotePost/UnVoteDown/${vote.id}`
+                                }
+                            })
+                        }
+
+                    }
+                    axios.post(this.url, request).then(res => {
+                        if (res.data.voteDown) {
+                            this.disable_vote_down = false
+                            this.disable_vote_up = false
+                            this.disable_like = false
+                            this.votes.vote_down.push(res.data.voteDown)
+                            let indice = this.post.votes.indexOf(res.data.voteDown)
+                            this.votes.vote_up.splice(indice, 1)
+                            this.vote.type_vote = 'unvote_down'
+                            this.vote_type_down = 'unvote_down'
+                            $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
+                            $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+                        }
+                        if (res.data.unvoteDown) {
+                            this.disable_vote_down = false
+                            this.disable_vote_up = false
+                            this.disable_like = false
+                            let indice = this.post.votes.indexOf(res.data.unvoteDown)
+                            this.votes.vote_down.splice(indice, 1)
+                            this.vote.type_vote = 'vote_up'
+                            this.vote_type_down = 'vote_down'
+                            $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
+                            $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+                        }
+                    })
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
+            },
+
             getFollow(){
                 if (Auth.state.username){
                     if (this.post.user.followers) {
@@ -431,147 +574,54 @@
                     }
                 }
             },
-            colorFollow(type){
+            storeFollow(type){
                 if (Auth.state.username) {
-                    if (type === 'follow') {
-                        this.store(type)
+                    this.disable_follow = true
+                    let request =''
+                    if (type == 'follow') {
+                        if (Auth.state.username) {
+                            this.follow.type = 'Followed'
+                        }else{
+                            this.follow.type = 'Follower'
+                        }
+                        request = this.follow
+                        this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
                     }
-                    if(type === 'unfollow'){
-                        this.store(type)
+                    if (type == 'unfollow') {
+                        request = this.follow
+                        if (this.post.user.followers) {
+                            this.post.user.followers.map(follow =>{
+                                if (Auth.state.username == follow.user.username) {
+                                    this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
+                                }
+                            })
+                        }
                     }
+                    axios.post(this.url, request).then(res =>{
+                        if (res.data.follow) {
+                            this.disable_follow = false
+                            this.post.user.followers.push(res.data.follow)
+                            this.follow_type = 'unfollow'
+                            Followers.set(res.data.following)
+                            $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
+                            window.location.reload()
+                        }
+                        if (res.data.unfollow) {
+                            this.disable_follow = false
+                            this.follow_type = 'follow'
+                            Followers.set(res.data.following)
+                            $(`#follow`+this.post.token+' button').addClass('follow-idle').removeClass('follow-active')
+                            window.location.reload()
+                        }
+                    }).catch(err =>{
+                        console.log(err)
+                    })
                 }else{
                     $('#ModalLogin').modal('show')
                 }
             },
-            storeView(){
-                axios.post(`/${this.auth.username}/View/store/${this.post.id}`).then(res=>{
-                    // console.log(res)
-                }).catch(err =>{
-                    console.log(err)
-                })
-            },
-            async store(type){
-                var request =''
-                if (type == 'unlike') {
-                    request = this.lit
-                    if (this.post.likes) {
-                        this.post.likes.map(value => {
-                            if (Auth.state.username === value.user.username) {
-                                this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
-                            }
-                        })
-                    }
-                }
-                if (type == 'like') {
-                    request = this.lit
-                    this.url =  `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
-                }
-                if (type == 'vote_up') {
-                    request = this.vote
-                    this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}`
-                    if (this.votes.vote_down.length > 0) {
-                        this.votes.vote_down.map(vote => {
-                            this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}/${vote.id}`
-                        })
-                    }
-                }
-                if (type == 'unvote_up') {
-                    if (this.votes.vote_up.length > 0) {
-                        this.votes.vote_up.map(vote => {
-                            this.url =  `/${Auth.state.username}/VotePost/UnVoteUp/${vote.id}`
-                        })
-                    }
-                }
-                if (type == 'vote_down'){
-                    request = this.vote
-                    this.url =  `/${Auth.state.username}/VotePost/VoteDown/${this.post.id}`
-                    if (this.votes.vote_up){
-                        this.votes.vote_up.map(vote =>{
-                            if (Auth.state.username == vote.user.username) {
-                                this.url = `/${Auth.state.username}/VotePost/VoteDown/${this.post.id}/${vote.id}`
-                            }
-                        })
-                    }
-                }
-                if (type == 'unvote_down') {
-                    if (this.votes.vote_down) {
-                        this.votes.vote_down.map(vote =>{
-                            this.url = `/${Auth.state.username}/VotePost/UnVoteDown/${vote.id}`
-                        })
-                    }
-                }
-                if (type == 'follow') {
-                    if (Auth.state.username) {
-                        this.follow.type = 'Followed'
-                    }else{
-                        this.follow.type = 'Follower'
-                    }
-                    request = this.follow
-                    this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
-                }
-                if (type == 'unfollow') {
-                    request = this.follow
-                    if (this.post.user.followers) {
-                        this.post.user.followers.map(follow =>{
-                            if (Auth.state.username == follow.user.username) {
-                                this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
-                            }
-                        })
-                    }
-                }
-                axios.post(this.url, request).then(res =>{
-                    if (res.data.like) {
-                        this.lit.like = 'unlike'
-                        this.post.likes.push(res.data.like)
-                    }
-                    if (res.data.unlike) {
-                        this.lit.like = 'like'
-                        let indice = this.post.likes.indexOf(res.data.like)
-                        this.post.likes.splice(indice, 1)
-                    }
-                    if (res.data.voteUp) {
-                        this.votes.vote_up.push(res.data.voteUp)
-                        let indice = this.post.votes.indexOf(res.data.voteUp)
-                        this.votes.vote_down.splice(indice, 1)
-                        this.vote.type_vote = 'unvote_up'
-                        this.vote_type = 'unvote_up'
-                    }
-                    if (res.data.unvoteUp) {
-                        let indice = this.post.votes.indexOf(res.data.unvoteUp)
-                        this.votes.vote_up.splice(indice, 1)
-                        this.vote.type_vote = 'vote_up'
-                        this.vote_type = 'vote_up'
-                    }
-                    if (res.data.voteDown) {
-                        this.votes.vote_down.push(res.data.voteDown)
-                        let indice = this.post.votes.indexOf(res.data.voteDown)
-                        this.votes.vote_up.splice(indice, 1)
-                        this.vote.type_vote = 'unvote_down'
-                        // this.vote_type = 'unvote_down'
-                    }
-                    if (res.data.unvoteDown) {
-                        let indice = this.post.votes.indexOf(res.data.unvoteDown)
-                        this.votes.vote_down.splice(indice, 1)
-                        this.vote.type_vote = 'vote_up'
-                        // this.vote_type = 'vote_up'
-                    }
-                    if (res.data.follow) {
-                        this.post.user.followers.push(res.data.follow)
-                        this.follow_type = 'unfollow'
-                        Followers.set(res.data.following)
-                        $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
-                        window.location.reload()
-                    }
-                    if (res.data.unfollow) {
-                        this.follow_type = 'follow'
-                        Followers.set(res.data.following)
-                        $(`#follow`+this.post.token+' button').addClass('follow-idle').removeClass('follow-active')
-                        window.location.reload()
-                    }
-                }).catch(err =>{
-                    console.log(err)
-                })
-            },
+
+            // end methods reactions
             update(){
                 axios.post(`/${Auth.state.username}/Post/update/${this.post.token}`, this.post).then(res =>{
                     if (res.data.updated) {

@@ -114,7 +114,7 @@ Route::group(['prefix' => '/{username}'], function () {
 
     Route::group(['prefix' => 'LitLike'], function () {
         Route::group(['middleware' => ['auth']], function () {
-            Route::name('litlike.store.like')->post('/like/{model}/{model_id}', 'Reactions\LitLikeController@like');
+            Route::name('litlike.store.like')->post('/like/{model}/{model_id}/{post?}', 'Reactions\LitLikeController@like');
             Route::name('litlike.unlike')->post('/unlike/{like}', 'Reactions\LitLikeController@unlike');
         });
     });
