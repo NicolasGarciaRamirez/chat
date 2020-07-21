@@ -24,38 +24,38 @@ Vue.use(VeeValidate);
 import VueWaveSurfer from 'vue-wave-surfer'
 Vue.use(VueWaveSurfer)
 
-import AppHeader from './components/template/Header'
-import AppNav from './components/template/Nav'
+import AppHeader from './Views/Templates/Components/Header'
+import AppNav from  './Views/Templates/Components/Nav'
 
-import Login from './components/auth/Login'
-import Register from './components/auth/Register'
-import RegisterIndex from './components/auth/include/RegisterIndex'
-import ValidateLogin from "./components/auth/ValidateLogin";
+import Login from "./Views/Auth/Components/Login";
+import Register from "./Views/Auth/Views/Register";
+import RegisterIndex from "./Views/Auth/Views/RegisterIndex";
+import ValidateLogin from "./Views/Auth/Components/ValidateLogin";
 
-import Home from './components/home'
-import Post from './components/stream/Post'
+import Home from './Views/Home/Components'
+import Post from './Views/Posts/Components/Post'
 
-import ChannelActivity from './components/user/channel/ChannelActivity'
-import ChannelPlaylist from './components/user/channel/ChannelPlaylist'
-import Playlist from './components/user/channel/Playlist'
-import ChannelEdit from './components/user/channel/ChannelEdit'
+import ChannelEdit from "./Views/User/Channel/Views/ChannelEdit";
+import ChannelActivity from "./Views/User/Channel/Components/Activities/ChannelActivity";
+import ChannelPlaylist from "./Views/User/Channel/Components/Playlist/ChannelPlaylist";
+import Playlist from "./Views/User/Channel/Components/Playlist/Playlist";
 
-import ProfileEdit from './components/user/profile/ProfileEdit'
-import AccountSettings from './components/user/profile/AccountSettings'
-import PasswordReset from './components/auth/include/PasswordReset'
-import HeadProfile from './components/user/profile/HeadProfile'
+import ProfileEdit from "./Views/User/Profile/Views/ProfileEdit";
+import AccountSettings from "./Views/User/AccountSettings/Views/AccountSettings";
+import PasswordReset from "./Views/Auth/Components/PasswordReset";
+import HeadProfile from "./Views/User/Profile/Views/HeadProfile";
 
-import ProfileGenres from './components/user/profile/Genres'
-import ProfileMembers from './components/user/profile/Members'
-import ProfileReleases from './components/user/profile/Releases'
-import ProfileServices from './components/user/profile/Services'
-import ProfileIndex from './components/user/profile/index'
-import ProfileSocialMedia from './components/user/profile/SocialMedia'
+import ProfileGenres from "./Views/User/Profile/Views/Genres";
+import ProfileMembers from "./Views/User/Profile/Views/Members";
+import ProfileReleases from "./Views/User/Profile/Views/Releases";
+import ProfileServices from "./Views/User/Profile/Views/Services";
+import ProfileIndex from "./Views/User/Profile/Views/Index";
+import ProfileSocialMedia from "./Views/User/Profile/Views/SocialMedia";
 
-import ModalContributorSignup from './components/auth/include/ModalContributorSignup'
-import ModalContributor from './components/ModalsCommingSoon/ModalContributor'
-import ModalSharePost from "./components/stream/ModalSharePost";
-import Test from './components/Test'
+import ModalContributorSignup from "./Views/Auth/Views/ModalContributorSignup";
+import ModalContributor from "./Views/CommingSoon/Views/ModalContributor";
+import ModalSharePost from "./Views/Posts/Views/ModalSharePost";
+import Test from "./Views/User/Test";
 
 new Vue({
     el: '#app',
