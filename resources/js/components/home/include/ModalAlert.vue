@@ -97,7 +97,7 @@
                 axios.post(`/${Auth.state.username}/Update`, this.profile_information).then(res =>{
                     console.log(res)
                     if(res.data.updated){
-                        this.$toasted.show('The profile information has been updated successfully!', {
+                        this.$toasted.show('Your profile information has been updated successfully!', {
                             position: "bottom-right",
                             duration : 4000,
                             className: "p-4 notification bg-primary",

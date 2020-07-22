@@ -39,9 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $appends = [
-        'following' => '' // y esto?
-    ];
+    /**
+     *
+     */
+    public function getArtisticNameAttribute()
+    {
+        return ($this->profile_information && $this->profile_information->artistic_name != null) ? $this->profile_information->artistic_name : $this->personal_information->full_name;
+    }
 
     /**
      *

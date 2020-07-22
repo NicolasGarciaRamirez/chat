@@ -476,7 +476,7 @@ export default {
             await axios.post(this.url, data_send).then(res => {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
-                    this.$toasted.show('The profile information has been updated successfully!', {
+                    this.$toasted.show('Your profile information has been updated successfully!', {
                         position: "bottom-right",
                         duration : 4000,
                         className: "p-4 notification bg-primary",
@@ -569,7 +569,7 @@ export default {
             await axios.post(`/${this.user.username}/WorkWith/delete/${work.id}`, this.user).then(res => {
                 let index = _.findIndex(this.worked_with, function(o) { return o.id == work.id; });
                 this.worked_with.splice(index, 1)
-                this.$toasted.show('The profile information has been updated successfully!', {
+                this.$toasted.show('Your profile information has been updated successfully!', {
                     position: "bottom-right",
                     duration : 4000,
                     className: "p-4 notification bg-primary",
