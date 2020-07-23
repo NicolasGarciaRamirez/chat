@@ -25,7 +25,7 @@ class CommentedOnYourPost extends Mailable
     public function __construct($post, $user_login, $user_post, $username, $comment)
     {
         $this->post = $post;
-        $this->user_login = $user_login;
+        $this->user_login = \auth()->user()->artistic_name;
         $this->user_post = $user_post;
         $this->username = $username;
         $this->comment = $comment;

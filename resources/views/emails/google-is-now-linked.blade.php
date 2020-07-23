@@ -254,7 +254,7 @@
                                         <div
                                             style="line-height: 1.2; font-family: 'Encode Sans', sans-serif; font-size: 12px; color: #555555; mso-line-height-alt: 14px;">
                                             <p style="font-size: 14px; line-height: 1.2; text-align: left; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 17px; margin: 0;">
-                                                <span style="color: #999999;"><span style="font-size: 15px;">Your Noisesharks account is now linked with your Google account. You can now login to Noisesharks using Facebook.</span></span>
+                                                <span style="color: #999999;"><span style="font-size: 15px;">Your Noisesharks account is now linked with your Google account. You can now login to Noisesharks using Google.</span></span>
                                             </p>
                                         </div>
                                     </div>

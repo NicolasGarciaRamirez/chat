@@ -94,8 +94,8 @@ export default {
                     this.$parent.user.personal_information = this.data
                     this.disable = false
                     $('#ModalEditPersonalDetails').modal('toggle')
-                    this.$toasted.show('The profile information has been updated successfully!', {
-                        position: "bottom-right", 
+                    this.$toasted.show('Your profile information has been updated successfully!', {
+                        position: "bottom-right",
                         duration : 4000,
                         className: "p-4 notification bg-primary",
                         keepOnHover: true

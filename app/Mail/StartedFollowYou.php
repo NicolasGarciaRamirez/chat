@@ -23,7 +23,7 @@ class StartedFollowYou extends Mailable
     public function __construct($user, $user_full_name, $follow_full_name)
     {
         $this->user = $user;
-        $this->user_full_name = $user_full_name;
+        $this->user_full_name = \auth()->user()->artistic_name;
         $this->follow_full_name = $follow_full_name;
     }
 
