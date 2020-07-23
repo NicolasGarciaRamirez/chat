@@ -110,7 +110,7 @@
                     <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
                     </a>
-                    <div v-else>
+                    <div v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
                     </div>
                     <div class="my-3" v-if="post.replace_caption">
