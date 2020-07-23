@@ -58,7 +58,7 @@
                     <span v-if="!showMore">{{descriptionLess}}</span>
                     <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </a>
-                <label >
+                <label v-if="activity.resource_type === 'docs' && resource_extension !== 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
                     <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>

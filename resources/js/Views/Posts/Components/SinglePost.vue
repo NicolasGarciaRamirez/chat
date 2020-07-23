@@ -77,11 +77,11 @@
                 <span v-if="!showMore">{{descriptionLess}}</span>
                 <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
             </span>
-<!--                        <span v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">-->
-<!--                            <span v-if="showMore">{{description}}</span>-->
-<!--                            <span v-if="!showMore">{{descriptionLess}}</span>-->
-<!--                            <span class="c-fourt1 cursor-pointer mx-4" @click="!showMore ? showMore = true : showMore = false">{{!showMore ? 'See More' : 'See Less'}}</span>-->
-<!--                        </span>-->
+            <span v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">
+                <span v-if="showMore">{{description}}</span>
+                <span v-if="!showMore">{{descriptionLess}}</span>
+                <span class="c-fourth cursor-pointer mx-4" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
+            </span>
             <form @submit.prevent="update"  v-if="edit && !post.replace_caption ">
                 <textarea
                     class="form-control bg-primary"
@@ -107,9 +107,12 @@
                         </div>
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
                     </div>
-                    <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs'">
+                    <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
                     </a>
+                    <div v-else>
+                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
+                    </div>
                     <div class="my-3" v-if="post.replace_caption">
                         <a :href="`${post.resource}`" class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
                             <h3>{{ post.replace_caption }}</h3>

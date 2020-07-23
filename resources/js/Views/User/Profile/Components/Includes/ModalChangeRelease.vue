@@ -98,6 +98,7 @@
                     console.log(res)
                     if (res.data.saved_image){
                         this.$parent.releases_information[this.id_release].image = res.data.image_name
+                        $('#ModalChangeRelease').modal('toggle')
                     }
                 }).catch(err => {
                     console.log(err)

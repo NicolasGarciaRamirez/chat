@@ -263,7 +263,12 @@
                     this.loading = true
 
                     if(!this.validateData()){
-                        alert('Please select a genre and category')
+                        swal({
+                            text: 'Please select a genre and category',
+                            className: 'swal-alert',
+                            buttons: [false, 'Ok'],
+                            dangerMode: true,
+                        })
                         this.loading = false
                         return false
                     }
