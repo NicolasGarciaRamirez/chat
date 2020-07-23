@@ -162,11 +162,13 @@ class UserProfileInformationController extends Controller
      */
     public function saveImageRelease(Request $request)
     {
-
         $key = md5(\Auth::user()->id);
         $hash = \Str::random(10);
         $imageName = "/images/profile/releases/{$key}/{$hash}{$request->image->getClientOriginalName()}";
         $request->image->move(public_path("/images/profile/releases/{$key}/"), $imageName);
+
+        $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
+        $img->save(public_path($imageName));
 
         return response()->json([
             'saved_image' => true,

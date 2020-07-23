@@ -449,29 +449,6 @@ export default {
                 return false
             }
 
-            let formData = new FormData()
-
-            if (this.releases_information.length > 0){
-                $.each(this.releases_information, function(key, release){
-                    formData.append(`image[${key}]`, release.image, release.image.name)
-                })
-                await axios.post(`/${Auth.state.username}/image/save`, formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res =>{
-                    if (res.data.saved_image){
-                        // let count = 0
-                        // this.releases_information.map(release => {
-                        //     release.image = res.data.image_name.map(name =>{
-                        //         console.log(name)
-                        //         return name
-                        //     })
-                        // })
-                    }
-                }).catch(err => {
-                    console.log(err)
-                })
-            }
-            this.disabled = false
-            return false
-
             let data_send =  {
                 profile_information: this.profile_information,
                 members_information: this.current_members.concat(this.past_members),

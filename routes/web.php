@@ -67,7 +67,7 @@ Route::group(['prefix' => '/{username}'], function () {
         Route::name('profile.update')->post('/Edit/Profile', 'User\UserProfileInformationController@update');
         Route::name('update.profile.information')->post('/Update', 'User\UserProfileInformationController@profileInformationUpdate');
         Route::name('profile.save')->post('/Save/Profile', 'User\UserProfileInformationController@save');
-        Route::name('image.save')->post('/image/save', 'User\UserProfileInformationController@saveImage');
+        Route::name('image.release.save')->post('/imageRelease/save', 'User\UserProfileInformationController@saveImageRelease');
         Route::name('profile.work.with.delete')->post('/WorkWith/delete/{WorkedWith}', 'User\UserProfileInformationController@deleteWorkedWith');
         Route::name('profile.work.with.save')->post('/WorkWith/save', 'User\UserProfileInformationController@saveWorkedWith');
 

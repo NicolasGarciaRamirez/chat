@@ -26,17 +26,12 @@
                 <input type="text" class="form-control" placeholder="Label name" v-model="release_update.label" /> <span class="mx-3">&nbsp</span>
             </div>
         </div>
-<!--        <test></test>-->
     </div>
 </template>
 
 <script>
-    import Test from '../../../Test'
     export default {
         props: ['release', 'index'],
-        components:{
-            // Test
-        },
         data(){
             return{
                 release_update: {},
@@ -50,7 +45,7 @@
         methods:{
             showChangeImage(w){
                 let input = w.target;
-                this.release_update.image = w.target.files[0]
+                this.$parent.$children[2].image = w.target.files[0]
                 if (input.files && input.files[0]) {
                     let reader = new FileReader();
                     reader.onload = (e) => {
@@ -60,6 +55,7 @@
                     reader.readAsDataURL(input.files[0]);
                 }
                 this.$parent.$children[2].type_change_image = 'Releases'
+                this.$parent.$children[2].id_release = this.index
                 $('#ModalChangeRelease').modal('show')
             },
             deleteRelease(index){

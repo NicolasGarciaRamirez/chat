@@ -30,7 +30,9 @@
                                         eastSouth: true,
                                         east: false,
                                     },
+                                    resize: false
                                 }"
+                                ref="cropper"
                             ></cropper>
                             <div class="row p-4">
                                 <div class="col col-sm text-left">
@@ -38,7 +40,7 @@
                                 </div>
                                 <div class="col col-sm text-right">
                                     <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal" >Cancel</button>
-                                    <button class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable">Save</button>
+                                    <button type="button" class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable" @click="saveCrop">Save Crop</button>
                                     <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                                     </button>
@@ -53,6 +55,8 @@
 </template>
 
 <script>
+    import Auth from "../../../../../helpers/Auth";
+
     export default {
         name: "ModalChangeRelease",
         data(){
@@ -60,7 +64,8 @@
                 disable: false,
                 image:'',
                 coordinates: '',
-                img:''
+                img:'',
+                id_release:''
             }
         },
         computed:{
@@ -72,18 +77,34 @@
         methods:{
             change({coordinates, canvas}) {
                 this.coordinates = coordinates;
-                this.resource = canvas.toDataURL()
             },
             pixelsRestriction() {
                 return {
-                    minWidth: 250,
-                    minHeight: 250,
-                    maxWidth: 1080,
-                    maxHeight: 1080,
+                    minWidth: 350,
+                    minHeight: 350,
+                    maxWidth: 350,
+                    maxHeight: 350,
                 }
             },
-        }
+            async saveCrop(){
+                let formData = new FormData()
+                formData.append('image', this.image, this.image.name)
+                formData.append('width', this.coordinates.width)
+                formData.append('height', this.coordinates.height)
+                formData.append('left', this.coordinates.left)
+                formData.append('top', this.coordinates.top)
 
+                await axios.post(`/${Auth.state.username}/imageRelease/save`, formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res =>{
+                    console.log(res)
+                    if (res.data.saved_image){
+                        this.$parent.releases_information[this.id_release].image = res.data.image_name
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+
+            }
+        }
     }
 </script>
 
