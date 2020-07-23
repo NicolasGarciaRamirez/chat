@@ -296,10 +296,10 @@
             // showModalPost(){
                 //     $('#ModalPost').modal('show')
             // }
-            // end methods show
+            //send methods show
             //methods player
             getGrad(){
-                var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
+                let linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
                 linGrad.addColorStop(0, '#ff0000');
                 linGrad.addColorStop(1, 'white');
                 return linGrad
@@ -496,7 +496,6 @@
             },
             storeVoteDown(type){
                 if (Auth.state.token) {
-
                     let request = ''
                     this.disable_vote_down = true
                     this.disable_vote_up = true

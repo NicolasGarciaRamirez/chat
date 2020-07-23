@@ -1,5 +1,8 @@
 <template>
     <section class="channel">
+        <modal-login />
+        <modal-new-playlist />
+        <modal-share-post></modal-share-post>
         <div class="d-flex my-5 mx-3 navigation-header">
             <h3><a :href="`/${user.username}/Channel/Activity`" :class="'text-white font-weight-bold pt-2 mr-3 active'">Channel</a></h3>
             <h3><a :href="`/${user.username}/Profile/Releases`" class="c-fourth font-weight-bold">About</a></h3>
@@ -18,8 +21,6 @@
                 <single-activity class="col-md-4 activity" v-for="(activity , index) in user.posts" :key="index" :activity="activity" :user="user" />
             </div>
         </div>
-        <modal-login />
-        <modal-new-playlist />
     </section>
 </template>
 
@@ -27,13 +28,15 @@
 import SingleActivity from './SingleActivity'
 import ModalLogin from "../../../../Auth/Components/Login";
 import ModalNewPlaylist from "../Playlist/include/ModalNewPlaylist";
+import ModalSharePost from "../../../../Posts/Components/ModalSharePost";
 
 export default {
     props:['user'],
     components:{
         SingleActivity,
         ModalLogin,
-        ModalNewPlaylist
+        ModalNewPlaylist,
+        ModalSharePost
     }
 }
 </script>
