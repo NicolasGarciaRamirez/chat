@@ -24,6 +24,9 @@ Vue.use(VeeValidate);
 import VueWaveSurfer from 'vue-wave-surfer'
 Vue.use(VueWaveSurfer)
 
+// import VueSocialSharing from 'vue-social-sharing'
+// Vue.use(VueSocialSharing);
+
 import AppHeader from './Views/Templates/Views/Header'
 import AppNav from './Views/Templates/Views/Nav'
 
