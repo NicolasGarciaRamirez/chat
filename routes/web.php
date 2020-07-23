@@ -11,7 +11,7 @@
 |
 */
 Route::get('/test', function () {
-//    return view('test');
+    return view('test');
 });
 
 Route::get('/prelaunch', function () {
@@ -49,6 +49,9 @@ Route::get('/Terms', 'HomeController@terms')->name('terms');
 Route::get('/Suggestions', 'HomeController@suggestions')->name('suggestions');
 Route::post('/Suggestions/Save', 'Extras\SuggestionsController@save')->name('suggestion_save');
 
+Route::group(['prefix' => '/Watch'], function () {
+    Route::name('post.get')->get('/Post/{token}', 'HomeController@showPost');
+});
 Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/Image/{username}/{type}', 'User\UserController@updateImage');
     Route::name('profile.edit.user.settings')->get('/Settings/{username}', 'User\UserController@accountSettings');
@@ -96,7 +99,6 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 
     Route::group(['prefix' => 'Post'], function () {
-        Route::name('post.get')->get('/get/{token}/', 'Post\PostController@show');//aqui es show no get
         Route::group(['middleware' => ['auth']], function () {
             Route::name('post.store')->post('/store', 'Post\PostController@store');
             Route::name('post.update')->post('/update/{token}', 'Post\PostController@update');
@@ -141,7 +143,6 @@ Route::group(['prefix' => '/{username}'], function () {
         });
     });
 });
-
 
 Route::get('/report', function () {
     return view('reports');

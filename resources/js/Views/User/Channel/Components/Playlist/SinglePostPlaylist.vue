@@ -43,7 +43,7 @@
 
 <script>
 import Auth from "../../../../../helpers/Auth";
-import Comments from "../../../../Comments/Components/Comments";
+import Comments from "../../../../Comments/Views/Comments";
 
 export default {
     props: ['post'],

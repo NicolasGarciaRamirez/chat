@@ -149,8 +149,8 @@
 </template>
 
 <script>
-import ModalContributor from "../../../CommingSoon/Views/ModalContributor";
-import ModalCommingContributor from '../../../CommingSoon/Views/ModalContributor'
+import ModalContributor from "../../../CommingSoon/Components/ModalContributor";
+import ModalCommingContributor from '../../../CommingSoon/Components/ModalContributor'
 export default {
     props:['user'],
     components: {

@@ -248,7 +248,7 @@ import ModalEditAccount from "../Components/ModalEditAccount";
 import ModalEditPassword from "../Components/ModalEditPassword";
 import ModalEditPersonalDetails from "../Components/ModalEditPersonalDetails";
 import ModalCancel from "../Components/ModalCancel";
-import ModalGeneralSoon from "../../../CommingSoon/Views/GeneralCommingSoon";
+import ModalGeneralSoon from "../../../CommingSoon/Components/GeneralCommingSoon";
 
 export default {
     props:['user'],

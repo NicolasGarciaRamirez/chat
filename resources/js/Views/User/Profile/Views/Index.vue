@@ -6,12 +6,14 @@
             <a href="#Genres" class="font-weight-bold cursor-pointer text-white mr-3" id="Genres" @click="addClass('genres')" v-if="user.profile_information.genres">Genres</a>
             <a href="#Services" class="font-weight-bold cursor-pointer text-white mr-3" id="Services" @click="addClass('services')" v-if="user.profile_information.services">Services</a>
             <a href="#Social_media" class="font-weight-bold cursor-pointer text-white mr-3" id="Social_media" @click="addClass('social_media')" v-if="social_media">Social Media</a>
+            <a href="#Work_with" class="font-weight-bold cursor-pointer text-white mr-3" id="Work_with" @click="addClass('work_with')" v-if="user.profile_information.worked_with.length > 0">Worked With</a>
         </div>
         <releases :user="user" v-if="type === 'releases'"></releases>
         <members :user="user" v-if="type === 'members'"></members>
         <genres :user="user" v-if="type === 'genres'"></genres>
         <services :user="user" v-if="type === 'services'"></services>
         <social-media :user="user" v-if="type === 'social_media'"></social-media>
+        <work-with :user="user" v-if="type === 'work_with'"></work-with>
     </section>
 </template>
 
@@ -21,6 +23,7 @@ import Members from "./Members";
 import Genres from "./Genres";
 import Services from "./Services";
 import SocialMedia from "./SocialMedia";
+import WorkWith from "./WorkWith";
 
 export default {
     props:['user'],
@@ -34,7 +37,8 @@ export default {
         Members,
         Genres,
         Services,
-        SocialMedia
+        SocialMedia,
+        WorkWith
     },
     mounted() {
         this.setType()
@@ -87,6 +91,9 @@ export default {
                 }else if(this.social_media){
                     this.addClass('social_media')
                     this.type = 'social_media'
+                }else if(this.user.profile_information.worked_with.length > 0){
+                    this.addClass('work_with')
+                    this.type = 'work_with'
                 }
             }else{
                 this.type = 'index'
@@ -100,6 +107,7 @@ export default {
                 $('#Genres').removeClass('active c-fifth')
                 $('#Services').removeClass('active c-fifth')
                 $('#Social_media').removeClass('active c-fifth')
+                $('#Work_with').removeClass('active c-fifth')
             }
             else if (type === 'members'){
                 this.type = type
@@ -108,6 +116,7 @@ export default {
                 $('#Genres').removeClass('active c-fifth')
                 $('#Services').removeClass('active c-fifth')
                 $('#Social_media').removeClass('active c-fifth')
+                $('#Work_with').removeClass('active c-fifth')
             }
             else if (type === 'genres'){
                 this.type = type
@@ -116,6 +125,7 @@ export default {
                 $('#Members').removeClass('active c-fifth')
                 $('#Services').removeClass('active c-fifth')
                 $('#Social_media').removeClass('active c-fifth')
+                $('#Work_with').removeClass('active c-fifth')
             }
             else if (type === 'services'){
                 this.type = type
@@ -124,10 +134,21 @@ export default {
                 $('#Members').removeClass('active c-fifth')
                 $('#Genres').removeClass('active c-fifth')
                 $('#Social_media').removeClass('active c-fifth')
+                $('#Work_with').removeClass('active c-fifth')
             }
-            if (type === 'social_media'){
+            else if (type === 'social_media'){
                 this.type = type
                 $('#Social_media').addClass('active c-fifth')
+                $('#Releases').removeClass('active c-fifth')
+                $('#Members').removeClass('active c-fifth')
+                $('#Genres').removeClass('active c-fifth')
+                $('#Services').removeClass('active c-fifth')
+                $('#Work_with').removeClass('active c-fifth')
+            }
+            else if (type === 'work_with'){
+                this.type = type
+                $('#Work_with').addClass('active c-fifth')
+                $('#Social_media').removeClass('active c-fifth')
                 $('#Releases').removeClass('active c-fifth')
                 $('#Members').removeClass('active c-fifth')
                 $('#Genres').removeClass('active c-fifth')

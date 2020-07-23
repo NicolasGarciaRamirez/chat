@@ -1,7 +1,7 @@
 <template ref="posts">
     <section class="posts mb-4"  v-if="posts">
         <div v-for="(post, index) in posts" :key="index">
-            <post :post="post" />
+            <single-post :post="post" />
         </div>
         <modal-share-post :post="post" />
         <modal-support  />
@@ -12,18 +12,19 @@
 </template>
 
 <script>
-    import Post from './Post'
-    import ModalReward from "../Views/ModalReward";
-    import ModalSupport from "../Views/ModalSupport";
-    import ModalPost from "../Views/ModalPost";
-    import Register from "../../Auth/Views/Register";
+    import SinglePost from '../Components/SinglePost'
+    import ModalReward from "../Components/ModalReward";
+    import ModalSupport from "../Components/ModalSupport";
+    import ModalPost from "../Components/ModalPost";
+    import ModalSharePost from "../Components/ModalSharePost";
     import ModalPlaylist from "../../User/Channel/Components/Playlist/include/ModalNewPlaylist";
-    import ModalSharePost from "../Views/ModalSharePost";
-    
+    import Register from "../../Auth/Views/Register";
+
+
     export default {
         props:['posts'],
         components:{
-            Post,
+            SinglePost,
             ModalSupport,
             ModalReward,
             ModalPost,

@@ -286,9 +286,9 @@
 <script>
 import Auth from "../../../helpers/Auth";
 import Followers from "../../../helpers/Followers";
-import ModalContributor from "../../CommingSoon/Views/ModalContributor";
+import ModalContributor from "../../CommingSoon/Components/ModalContributor";
 import ModalRelathions from "../../User/Profile/Components/Includes/ModalRelathions";
-import ModalContributorSignup from "../../Auth/Views/ModalContributorSignup";
+import ModalContributorSignup from "../../Auth/Components/ModalContributorSignup";
 
 export default {
     components:{

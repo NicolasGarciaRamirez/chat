@@ -1,10 +1,10 @@
 <template>
     <div class="d-flex flex-row text-center justify-content-center mb-5" style="flex-grow: 1">
         <div style="width: 13rem">
-            <label :for="`imgRelease${index}`" @click="type_change_image = 'Releases'">
+            <label :for="`imgRelease${index}`">
                 <img class="img-fluid" :src="release_update.image"/>
             </label>
-            <input type="file" :id="`imgRelease${index}`" name="imageRelease" accept=".jpg , .png , .jpge, .svg" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="showChangeImage" />
+            <input type="file" :id="`imgRelease${index}`" name="imageRelease" accept=".jpg , .png , .jpeg, .svg" class="form-control d-none" :ref="`imageRelease${index}`" v-on:change="showChangeImage" />
             <button type="button" class="btn text-white rounded-pill bg-fifth font-weight-bold" @click="deleteRelease(index)">
                 Delete Release
             </button>
@@ -26,21 +26,22 @@
                 <input type="text" class="form-control" placeholder="Label name" v-model="release_update.label" /> <span class="mx-3">&nbsp</span>
             </div>
         </div>
-<!--        <modal-change-image-releases></modal-change-image-releases>-->
+<!--        <test></test>-->
     </div>
 </template>
 
 <script>
+    import Test from '../../../Test'
     export default {
         props: ['release', 'index'],
         components:{
+            // Test
         },
         data(){
             return{
                 release_update: {},
                 img:null,
                 resource:'',
-                type_change_image: 'Releases'
             }
         },
         mounted() {
@@ -54,11 +55,12 @@
                     let reader = new FileReader();
                     reader.onload = (e) => {
                         this.img = e.target.result;
+                        this.$parent.$children[2].img = e.target.result
                     }
                     reader.readAsDataURL(input.files[0]);
                 }
-                $('#ModalChangeImageReleases').modal('show')
-                // this.img = w.target.files[0]
+                this.$parent.$children[2].type_change_image = 'Releases'
+                $('#ModalChangeRelease').modal('show')
             },
             deleteRelease(index){
                 let self = this

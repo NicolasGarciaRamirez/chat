@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import TextComment from '../Views/Comment'
+    import TextComment from './Comment'
     import Auth from "../../../helpers/Auth";
     export default {
         props:['comment'],

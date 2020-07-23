@@ -48,7 +48,7 @@ import SinglePostPlaylist from './SinglePostPlaylist'
 import AllPostPlaylist from './AllPostPlaylist'
 import ModalPlaylist from "./include/ModalNewPlaylist";
 import ModalAddVideos from "./include/ModalAddVideos";
-import ModalShare from "../../../../Posts/Views/ModalSharePost";
+import ModalShare from "../../../../Posts/Components/ModalSharePost";
 import Auth from "../../../../../helpers/Auth";
 export default {
     props:['playlist'],

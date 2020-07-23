@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import FormSignUp from '../Components/FormSignUp'
-import FormSignUpContributor from '../Components/FormSignUpContributor'
+import FormSignUp from './FormSignUp'
+import FormSignUpContributor from './FormSignUpContributor'
 export default {
     components:{
         FormSignUp,

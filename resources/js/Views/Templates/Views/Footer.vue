@@ -24,8 +24,8 @@
 </template>
 
 <script>
-    import ModalMerch from "../../CommingSoon/Views/ModalMerch";
-    import ModalForMusic from "../../CommingSoon/Views/ModalForMusic";
+    import ModalMerch from "../../CommingSoon/Components/ModalMerch";
+    import ModalForMusic from "../../CommingSoon/Components/ModalForMusic";
 
     export default {
         components:{

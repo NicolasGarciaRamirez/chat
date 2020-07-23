@@ -58,12 +58,10 @@
 </template>
 
 <script>
-    // import FormSignUp from './FormSignUp'
-    // import FormSignUpContributor from './FormSignUpContributor'
-    // import ModalForMusicCompany from '../../ModalsCommingSoon/ModalForMusic'
     import FormSignUp from "../Components/FormSignUp";
     import FormSignUpContributor from "../Components/FormSignUpContributor";
-    import ModalForMusicCompany from "../../CommingSoon/Views/ModalForMusic";
+    import ModalForMusicCompany from "../../CommingSoon/Components/ModalForMusic";
+
     export default {
         props: ['type'],
         components: {

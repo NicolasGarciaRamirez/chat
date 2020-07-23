@@ -296,7 +296,6 @@
                                     <input type="text" class="form-control" placeholder="Link to Noisesharks profile" v-model="profile_information.social_media.Spotify" />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -311,12 +310,14 @@
         </form>
         <modal-select-genres />
         <modal-select-services />
+        <modal-change-release />
     </section>
 </template>
 
 <script>
 import ModalSelectGenres from "./Includes/ModalSelectGenres";
 import ModalSelectServices from "./Includes/ModalSelectServices";
+import ModalChangeRelease from "./Includes/ModalChangeRelease";
 import SingleRelease from "./Releases/SingleRelease";
 import SingleMember from "./Members/SingleMember";
 import Auth from "../../../../helpers/Auth";
@@ -324,10 +325,11 @@ import Auth from "../../../../helpers/Auth";
 export default {
     props:['user'],
     components:{
+        ModalChangeRelease,
         ModalSelectGenres,
         ModalSelectServices,
         SingleRelease,
-        SingleMember
+        SingleMember,
     },
     data(){
         return {
@@ -361,7 +363,7 @@ export default {
             releases_information: [],
             addWork: false,
             addWorkName: '',
-            worked_with:[]
+            worked_with:[],
         }
     },
     mounted(){
@@ -447,25 +449,28 @@ export default {
                 return false
             }
 
-            //let formData = new FormData()
+            let formData = new FormData()
 
-            // if (this.releases_information.length > 0){
-            //     $.each(this.releases_information, function(key, release){
-            //         formData.append(`image[${key}]`, release.image, release.image.name)
-            //     })
-            //     await axios.post(`/${Auth.state.username}/image/save`, formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res =>{
-            //         if (res.data.saved_image){
-            //             let count = 0
-            //             this.releases_information.map(release => {
-            //                 release.image = res.data.image_name.map(name =>{
-            //                     return name
-            //                 })
-            //             })
-            //         }
-            //     }).catch(err => {
-            //         console.log(err)
-            //     })
-            // }
+            if (this.releases_information.length > 0){
+                $.each(this.releases_information, function(key, release){
+                    formData.append(`image[${key}]`, release.image, release.image.name)
+                })
+                await axios.post(`/${Auth.state.username}/image/save`, formData, {headers: {'Content-Type': 'multipart/form-data'}}).then(res =>{
+                    if (res.data.saved_image){
+                        // let count = 0
+                        // this.releases_information.map(release => {
+                        //     release.image = res.data.image_name.map(name =>{
+                        //         console.log(name)
+                        //         return name
+                        //     })
+                        // })
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+            this.disabled = false
+            return false
 
             let data_send =  {
                 profile_information: this.profile_information,
@@ -476,7 +481,7 @@ export default {
             await axios.post(this.url, data_send).then(res => {
                 if (res.data.updated || res.data.saved) {
                     this.disable = false
-                    this.$toasted.show('The profile information has been updated successfully!', {
+                    this.$toasted.show('Your profile information has been updated successfully!', {
                         position: "bottom-right",
                         duration : 4000,
                         className: "p-4 notification bg-primary",
@@ -532,8 +537,6 @@ export default {
             if(this.releases_information.length > 0){
                 this.releases_information.map(release =>{
                     if(release.genre == '' || release.album_name == '') {
-                        // let index =_.findIndex(this.releases_information , function(o){return o.id == release.id} )
-                        // this.releases_information.splice(index,1)
                         swal({
                             text: 'Please fill out the fields marked with (*) to add the release',
                             className: 'swal-alert',
@@ -569,7 +572,7 @@ export default {
             await axios.post(`/${this.user.username}/WorkWith/delete/${work.id}`, this.user).then(res => {
                 let index = _.findIndex(this.worked_with, function(o) { return o.id == work.id; });
                 this.worked_with.splice(index, 1)
-                this.$toasted.show('The profile information has been updated successfully!', {
+                this.$toasted.show('Your profile information has been updated successfully!', {
                     position: "bottom-right",
                     duration : 4000,
                     className: "p-4 notification bg-primary",

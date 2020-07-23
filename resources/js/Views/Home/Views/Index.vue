@@ -164,11 +164,10 @@
     import Auth from "../../../helpers/Auth";
     import FilterPost from "../../../helpers/FilterPost";
     import VueHashtagTextarea from 'vue-hashtag-textarea/src/vue-hashtag-textarea'
-    import Posts from "../../Posts/Components/Posts";
-    import ModalLiveStream from "../../CommingSoon/Views/ModalLiveStream";
-    import ModalMobile from "../../CommingSoon/Views/ModalMobile";
-    import ModalAlert from "../Views/ModalAlert";
-
+    import Posts from "../../Posts/Views/Posts";
+    import ModalLiveStream from "../../CommingSoon/Components/ModalLiveStream";
+    import ModalMobile from "../../CommingSoon/Components/ModalMobile";
+    import ModalAlert from "../Components/ModalAlert";
     export default {
         name: "Index",
         props:['posts'],

@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Comments from "../../Comments/Components/Comments";
+import Comments from "../../Comments/Views/Comments";
 export default {
     props:['post'],
     components:{

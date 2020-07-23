@@ -22,7 +22,7 @@ class ViewUserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'followers.user.personal_information', 'followers.user.profile_information', 'profile_information.members', 'profile_information.releases');
+            $this->user->load('personal_information', 'followers.user.personal_information', 'followers.user.profile_information', 'profile_information.members', 'profile_information.releases','profile_information.worked_with');
             return $next($request);
         });
     }

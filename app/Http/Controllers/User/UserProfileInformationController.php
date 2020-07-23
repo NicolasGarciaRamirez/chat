@@ -89,39 +89,40 @@ class UserProfileInformationController extends Controller
      */
     public function update(Request $request)
     {
-        \DB::beginTransaction();
-
-        try {
-            $profile_information = new UserProfileInformation($request->profile_information);
-            $profile_information->social_media = json_encode($request->profile_information['social_media']);
-            $this->user->profile_information()->update($profile_information->toArray());
-
-            Members::whereProfileInformationId($this->user->profile_information->id)->delete();
-
-            collect($request->members_information)->each(function ($value) {
-                Members::updateOrCreate(
-                    ['id' => $value['id']],
-                    [
-                        'member_name' => $value['member_name'],
-                        'member_type' => $value['member_type'],
-                        'link_profile' => $value['link_profile'],
-                        'role_instrument' => $value['role_instrument'],
-                        'profile_information_id' => $this->user->profile_information->id
-                    ]
-                );
-
-            });
+//        \DB::beginTransaction();
+//
+//        try {
+//            $profile_information = new UserProfileInformation($request->profile_information);
+//            $profile_information->social_media = json_encode($request->profile_information['social_media']);
+//            $this->user->profile_information()->update($profile_information->toArray());
+//
+//            Members::whereProfileInformationId($this->user->profile_information->id)->delete();
+//
+//            collect($request->members_information)->each(function ($value) {
+//                Members::updateOrCreate(
+//                    ['id' => $value['id']],
+//                    [
+//                        'member_name' => $value['member_name'],
+//                        'member_type' => $value['member_type'],
+//                        'link_profile' => $value['link_profile'],
+//                        'role_instrument' => $value['role_instrument'],
+//                        'profile_information_id' => $this->user->profile_information->id
+//                    ]
+//                );
+//
+//            });
 
             Releases::whereProfileInformationId($this->user->profile_information->id)->delete();
 
             collect($request->releases_information)->each(function ($query) {
+                dd($query);
                 Releases::updateOrCreate(
                     ['id' => $query['id']],
                     [
                         'album_name' => $query['album_name'],
                         'artistic_name' => $query['artistic_name'],
                         'genre' => $query['genre'],
-                        'image' => $query['image'],
+                        'image' => $query['image'][0],
                         'label' => $query['label'],
                         'release_date' => $query['release_date'],
                         'profile_information_id' => $this->user->profile_information->id
@@ -130,31 +131,31 @@ class UserProfileInformationController extends Controller
 
             });
 
-            collect($request->profile_information['worked_with'])->each(function ($query) {
-                WorkedWith::updateOrCreate(
-                    ['id' => $query['id']],
-                    [
-                        'name' => $query['name'],
-                        'profile_information_id' => $this->user->profile_information->id,
-                    ]
-                );
-            });
-
-            \DB::commit();
-            return response()->json([
-                'updated' => true,
-                'user' => User::find($this->user->id)->load('profile_information'),
-                'errors' => null
-            ], 200);
-
-        } catch (\Exception $e) {
-            \DB::rollBack();
-            return response()->json([
-                'updated' => false,
-                'user' => null,
-                'errors' => $e
-            ], 422);
-        }
+//            collect($request->profile_information['worked_with'])->each(function ($query) {
+//                WorkedWith::updateOrCreate(
+//                    ['id' => $query['id']],
+//                    [
+//                        'name' => $query['name'],
+//                        'profile_information_id' => $this->user->profile_information->id,
+//                    ]
+//                );
+//            });
+//
+//            \DB::commit();
+//            return response()->json([
+//                'updated' => true,
+//                'user' => User::find($this->user->id)->load('profile_information'),
+//                'errors' => null
+//            ], 200);
+//
+//        } catch (\Exception $e) {
+//            \DB::rollBack();
+//            return response()->json([
+//                'updated' => false,
+//                'user' => null,
+//                'errors' => $e
+//            ], 422);
+//        }
     }
 
     /**
@@ -169,7 +170,7 @@ class UserProfileInformationController extends Controller
             $hash = \Str::random(10);
             $imageName = "/images/profile/releases/{$key}/{$hash}{$image->getClientOriginalName()}";
             $image->move(public_path("/images/profile/releases/{$key}/"), $imageName);
-            array_push($this->images_names, $imageName);
+            array_push($images_names, $imageName);
         };
 
         return response()->json([

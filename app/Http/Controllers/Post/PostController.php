@@ -29,15 +29,6 @@ class PostController extends Controller
         });
     }
 
-    /**
-     * @param User $user
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function show($username, $token)
-    {
-        $post = Post::with('views', 'votes.user', 'likes.user', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
-        return view('post.view', ['post' => $post, 'user' => $this->user]);
-    }
 
     /**
      * @param Request $request

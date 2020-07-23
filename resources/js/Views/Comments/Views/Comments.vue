@@ -11,7 +11,7 @@
 </template>
 
 <script>
-    import SimpleComment from './SimpleComment'
+    import SimpleComment from '../Components/SimpleComment'
     import Auth from "../../../helpers/Auth";
     export default {
         props:['post', 'view_comment'],

@@ -9,7 +9,7 @@
                         </button>
                     </div>
                     <div class="text-center">
-                        <h2 class="font-weight-bold p-4">Set {{this.$parent.type_change_image}} Image</h2>
+                        <h2 class="font-weight-bold p-4">Set {{$parent.type_change_image}} Image</h2>
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form enctype="multipart/form-data" @submit.prevent="save">
@@ -23,7 +23,7 @@
                                     scalable: false,
                                 }"
                                 :restrictions="pixelsRestriction"
-                                v-if="$parent.type_change_image == 'Cover'"
+                                v-if="$parent.type_change_image === 'Cover'"
                             ></cropper>
                             <cropper
                                 classname="cropper"
@@ -42,9 +42,8 @@
                                         east: false,
                                     },
                                 }"
-                                v-if="$parent.type_change_image == 'Profile'"
+                                v-if="$parent.type_change_image === 'Profile'"
                             ></cropper>
-
                             <div class="row p-4">
                                 <div class="col col-sm text-left">
                                     <label class="font-weight-bold" >Use scroll or pinch to zoom</label>
@@ -66,7 +65,6 @@
 </template>
 
 <script>
-// import {Cropper} from "vue-advanced-cropper";
 import Auth from "../../../../../helpers/Auth";
 
 export default {
@@ -84,11 +82,15 @@ export default {
         }
     },
     mounted(){
-        // console.log(this.$parent.type_change_image)
     },
     computed:{
         img(){
-            return this.$parent.img
+            if (this.$parent.type_change_image === 'Releases'){
+                console.log(this.$parent.type_change_image)
+                return '/images/default.png'
+            }else{
+                return this.$parent.img
+            }
         },
         stencil(){
             return this.$parent.type_change_image === 'Profile' ? 'circle-stencil' : 'rectangle-stencil'
@@ -124,9 +126,6 @@ export default {
             }
             if (this.$parent.type_change_image === 'Cover') {
                 url = `/User/Edit/Image/${this.$parent.user.username}/cover`
-            }
-            if (this.$parent.type_change_image === 'Release') {
-                url = `/User/Edit/Image/${this.$parent.user.username}/releases`
             }
             axios.post( url, request ).then(res => {
                 try {

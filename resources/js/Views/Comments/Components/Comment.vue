@@ -4,7 +4,7 @@
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                    <span ><a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white pb-3">{{ comment.user.personal_information.full_name }}</a></span>
+                    <span ><a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white pb-3">{{ comment.user.profile_information && comment.user.profile_information.artistic_name ? comment.user.profile_information.artistic_name : comment.user.personal_information.full_name }}</a></span>
                     <span class="ml-2" :id="`comment_body`+comment.id" >
                         <form @submit.prevent="update" v-if="edit">
                             <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
