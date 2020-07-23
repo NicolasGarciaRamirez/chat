@@ -49,8 +49,8 @@ Route::get('/Terms', 'HomeController@terms')->name('terms');
 Route::get('/Suggestions', 'HomeController@suggestions')->name('suggestions');
 Route::post('/Suggestions/Save', 'Extras\SuggestionsController@save')->name('suggestion_save');
 
-Route::group(['prefix' => '/Watch'], function () {
-    Route::name('post.get')->get('/Post/{token}', 'HomeController@showPost');
+Route::group(['prefix' => '/Post'], function () {
+    Route::name('post.show')->get('/{token}', 'HomeController@showPost');
 });
 Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/Image/{username}/{type}', 'User\UserController@updateImage');

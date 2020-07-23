@@ -42,7 +42,7 @@
                         <div class="dropdown-divider" v-if="post.user.username !== auth.username"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
                         <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
-                        <a :href="`/Watch/Post/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
+                        <a :href="`/Post/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
                         <!--<div class="dropdown-item cursor-pointer" >Hide Post</div>-->
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>

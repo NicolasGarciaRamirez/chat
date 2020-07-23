@@ -272,7 +272,7 @@
                                             <span
                                                 style="padding-left:20px;padding-right:20px;font-size:16px;display:inline-block;"><span
                                                     style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; font-family: 'Encode Sans', sans-serif; mso-line-height-alt: 32px;"><strong><a
-                                                            href="{{ route('post.get', [$username, $post->token])  }}">Go To Comment</a></strong></span></span>
+                                                            href="{{ route('post.show', [$post->token])  }}">Go To Comment</a></strong></span></span>
                                         </div>
                                         <!--[if mso]></center></v:textbox></v:roundrect></td></tr></table><![endif]-->
                                     </div>

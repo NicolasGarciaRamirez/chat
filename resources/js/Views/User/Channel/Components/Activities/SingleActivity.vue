@@ -1,6 +1,6 @@
 <template>
     <section>
-        <a :href="`/Watch/Post/${activity.token}`" class="no-underline text-white" target="_blank">
+        <a :href="`/Post/${activity.token}`" class="no-underline text-white" target="_blank">
             <div class="img-activity bg-primary">
                 <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
                 <video :src="`${activity.resource}`" controls class="img-activity"  v-if="activity.resource_type == 'video'"  />
