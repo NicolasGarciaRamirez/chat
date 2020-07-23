@@ -14,7 +14,7 @@
                                 <div class="form-group m-0">
                                     <div class="input-group">
                                         <input class="form-control pl-3" type="text" placeholder="Search through followers..." autocomplete="none">
-                                        <div class="d-flex align-items-center icons-search">
+                                        <div class="d-flex align-items-center d-md-down-none icons-search">
                                             <div class="divider-vertical mx-2"></div>
                                             <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  width="17px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve">
@@ -28,9 +28,12 @@
                                 </div>
                             </form>
                         </div>
-                        <div class="d-flex flex-column">
-                            <single-follower :class="index % 2 === 0 ? 'd-flex flex-row align-items-center bg-primary justify-content-between p-2':'d-flex flex-row align-items-center justify-content-between p-2'" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'followers'" v-if="array.length > 0 && type_table === 'followers'" />
-                            <single-following :class="index % 2 === 0 ? 'd-flex flex-row align-items-center bg-primary justify-content-between p-2':'d-flex flex-row align-items-center justify-content-between p-2'" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'following'" v-if="array.length > 0 && type_table === 'following'" />
+                        <div class="table-responsive">
+                            <table class="table table-borderless table-striped bg-black text-center  text-white text-justify table-relathions">
+                                <single-follower :class="index % 2 === 0 ? 'bg-primary':''" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'followers'" v-if="array.length > 0 && type_table === 'followers'" />
+                                <single-following :class="index % 2 === 0 ? 'bg-primary':''" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'following'" v-if="array.length > 0 && type_table === 'following'" />
+                            </table>
+                        </div>
                         </div>
                     </div>
                 </div>

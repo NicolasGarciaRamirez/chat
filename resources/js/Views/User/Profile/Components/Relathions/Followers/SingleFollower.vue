@@ -1,16 +1,15 @@
 <template>
-    <section>
-        <label>
+    <tr>
+        <td>
             <a :href="`/${user.username}/Profile`">
                 <img :src="user.avatar" class="rounded-circle " style="width: 4rem" />
             </a>
-        </label>
-        <label>
-            {{user.personal_information.full_name}}
-        </label>
-        <label class="mx-3" :id="`btnFollow`+user.id">
+        </td>
+        <td>
+            <label>{{user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name}}</label>
+        </td>
+        <td class="mx-3" :id="`btnFollow`+user.id">
             <button type="button"  class="align-items-right follow-idle" @click="addClassFollow">
-
                 <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem">
                     <g id="Layer_2">
@@ -21,10 +20,10 @@
                     </g>
                 </svg>
             </button>
-        </label>
-        <label class="d-md-down-none"><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></label>
-        <label class="d-md-down-none font-weight-bold text-white">Message {{ user.personal_information.first_name}}</label>
-    </section>
+        </td>
+        <td ><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>
+        <td class=" font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>
+    </tr>
 </template>
 
 <script>

@@ -6,6 +6,7 @@ use App\Models\Post\Post;
 use App\Models\User\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Http\Request;
+use TheSeer\Tokenizer\Token;
 
 class HomeController extends Controller
 {
@@ -82,12 +83,12 @@ class HomeController extends Controller
     }
 
     /**
-     * @param User $user
+     * @param Token
      * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function showPost($token)
     {
-        $post = Post::with('views', 'votes.user', 'likes.user', 'user.personal_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
+        $post = Post::with('views', 'votes.user', 'likes.user', 'comments.user.personal_information','comments.user.profile_information', 'comments.comments.user.personal_information', 'comments.comments.user.profile_information', 'comments.likes.user', 'comments.comments.likes.user',  'user.personal_information','user.profile_information' ,'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
         return view('post.view', ['post' => $post]);
     }
 }
