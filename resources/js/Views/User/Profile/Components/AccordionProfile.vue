@@ -14,11 +14,11 @@
                             <div class="row text-justify">
                                 <div class="col-md-6">
                                     <input type="radio" id="personProject" value="A Person or A Project" v-model="profile_information.profile_type" required>
-                                    <label>A person or A Project</label>
+                                    <label><span>A person or A Project</span></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input type="radio" id="aBand" value="A Band" v-model="profile_information.profile_type" required>
-                                    <label>A Band</label>
+                                    <label><span>A Band</span></label>
                                 </div>
                             </div>
                         </div>

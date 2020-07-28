@@ -1,4 +1,7 @@
 .c-header{
+    @include media-breakpoint-only(md){
+        font-size: 0.8rem !important;
+    }
     @include media-breakpoint-down(sm){
         height: 1.5rem !important;
         padding: 0 !important;
@@ -19,6 +22,7 @@
     .c-header-brand{
         @include media-breakpoint-down(sm){
             height: 1.5rem !important;
+            transform: translate(0pc, -0.35pc);
         }
         .img-logo{
             width: 7rem;
@@ -110,7 +114,7 @@ button {
 }
 
 .img-head-profile{
-    width: 4em;
+    width: 3rem;
 }
 
 .top-menu{

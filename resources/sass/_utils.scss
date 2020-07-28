@@ -289,6 +289,11 @@ textarea{
 .swal-alert,{
     background: $primary-color !important;
     min-width: 32rem !important;
+    max-width: 32rem !important;
+    @include media-breakpoint-down(sm){
+        min-width: 20rem !important;
+        max-width: 20rem !important;
+    }
     .swal-title{
         color: white !important;
         font-weight: 700!important;
@@ -317,4 +322,20 @@ textarea{
     td{
         vertical-align: middle;
     }
+}
+
+.img-docs{
+    min-height: 13rem;
+    max-height: 13rem;
+    margin-left: 0.45rem;
+    @include media-breakpoint-down(sm){
+        min-height: 8.89rem;
+        max-height: 8.89rem;
+        margin-left: 0.45rem;
+    }
+}
+
+.line{
+    border-top: 2px solid $fourth-color;
+
 }

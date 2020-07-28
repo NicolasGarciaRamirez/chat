@@ -1,6 +1,6 @@
 <template>
     <section>
-        <div class="modal fade modal-personal" tabindex="-1" role="dialog" aria-labelledby="ModalAlert" aria-hidden="true" id="ModalAlert">
+        <div class="modal fade modal-profile-information" role="dialog" id="ModalAlert">
             <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                 <div class="modal-content modal-border-white">
                     <div class="modal-header border-0">
@@ -104,8 +104,6 @@
                             keepOnHover: true
                         })
                     }
-
-
                 }).catch(err =>{
                     window.location.replace('/email/verify')
                 })

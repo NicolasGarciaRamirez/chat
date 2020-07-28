@@ -1,5 +1,5 @@
-<header class="c-header c-header-light c-header-fixed d-fixed main-header position-absolute">
-    <button class="c-header-toggler c-class-toggler d-menu" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true" style="transform: translateY(9px);height: 2.8rem;">
+<header class="c-header c-header-light c-header-fixed navbar navbar-fixed-top main-header position-absolute">
+    <button class="c-header-toggler c-class-toggler d-menu" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true" style="transform: translateY(3px);height: 2.8rem;">
         <i class="cil-hamburger-menu"></i>
     </button>
     <a class="c-header-brand d-flex flex-row align-items-end" href="/">

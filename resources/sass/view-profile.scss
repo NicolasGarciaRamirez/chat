@@ -6,16 +6,16 @@
             position: absolute;
             bottom: -3rem;
             left: 1rem;
-            width: 30%;
-            max-width: 10rem;
-            min-height: 10rem;
-            max-height: 10rem;
+            min-width: 8rem;
+            max-width: 8rem;
+            min-height: 8rem;
+            max-height: 8rem;
             @include media-breakpoint-up(md){
-                width: 10rem;
-                bottom: -6rem;
-                max-width: 10rem;
-                min-height: 10rem;
-                max-height: 10rem;
+                bottom: -5.6rem;
+                min-width: 8rem;
+                max-width: 8rem;
+                min-height: 8rem;
+                max-height: 8rem;
             }
             @include media-breakpoint-down(sm){
                 min-height: 4rem;
@@ -40,7 +40,7 @@
         @include media-breakpoint-up(lg){
             display: flex;
             justify-content: space-between;
-            margin-left: 11rem;
+            margin-left: 9rem;
             margin-top: 0;
         }
         a>img{

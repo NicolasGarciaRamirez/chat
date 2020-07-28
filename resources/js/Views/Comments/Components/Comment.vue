@@ -4,18 +4,18 @@
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">
                 <div class="d-flex flex-row align-items-center">
-                    <span>
+                    <div>
                         <a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white pb-3">
                             {{ comment.user.profile_information && comment.user.profile_information.artistic_name ? comment.user.profile_information.artistic_name : comment.user.personal_information.full_name }}
                         </a>
-                    </span>
-                    <span class="ml-2" :id="`comment_body`+comment.id" >
+                    </div>
+                    <div class="ml-2" :id="`comment_body`+comment.id" >
                         <form @submit.prevent="update" v-if="edit">
                             <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
                         </form>
                         <span v-if="!edit">{{ comment.body }}</span>
-                    </span>
-                    <i class="fas fa-ellipsis-h c-third fa-1x ml-1"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                    </div>
+                    <i class="fas fa-ellipsis-h c-third fa-1x m-2"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
                         <div v-if="comment.user.username == auth.username">
                             <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
@@ -34,7 +34,9 @@
             <div class="comment-footer">
                 <span>{{ comment.time_ago }}</span>
                 <span class="mx-3">{{ likes.length }} lit</span>
-                <span class="cursor-pointer" @click="$parent.form_reply = true"><span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span></span>
+                <span class="cursor-pointer" @click="$parent.form_reply = true">
+                    <span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span>
+                </span>
             </div>
         </div>
     </div>
@@ -118,7 +120,7 @@
                 }
             },
             update(){
-                axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.$parent.comment).then(res =>{
+                axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.comment).then(res =>{
                     if (res.data.updated) {
                         this.edit = false
                         this.$toasted.show('The comment has been updated successfully!', {
@@ -129,7 +131,11 @@
                         })
                     }
                 }).catch(err =>{
-                    alert('the comment cannot be empty')
+                    swal({
+                        text:'the comment cannot be empty',
+                        className:'swal-alert',
+                        buttons:[false, 'Ok']
+                    })
                 })
             },
             deleteComment() {

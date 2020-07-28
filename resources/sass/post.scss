@@ -1,8 +1,11 @@
 .posts{
     .post{
+        @include media-breakpoint-down(sm){
+            font-size: 0.7rem;
+        }
         .post-head{
             display: flex;
-            align-items: center;
+            align-items: start;
             justify-content: space-between;
             @include media-breakpoint-down(sm){
                 display: flex;
@@ -15,11 +18,17 @@
                 min-height: 4.5rem;
                 max-width: 4.5rem;
                 max-height: 4.5rem;
-                @include media-breakpoint-down(sm){
-                    min-width: 3.45rem;
-                    min-height: 3.45rem;
-                    max-width: 3.45rem;
-                    max-height: 3.45rem;
+                @include media-breakpoint-down(md){
+                    min-width: 3rem;
+                    min-height: 3rem;
+                    max-width: 3rem;
+                    max-height: 3rem;
+                }
+            }
+            .fa-ellipsis-h{
+                font-size: 2rem;
+                @include media-breakpoint-down(md){
+                    font-size: 1.5rem;
                 }
             }
             .check-icon{
@@ -30,8 +39,8 @@
                 .post-user-name{
                     font-size: 1.35rem;
                     font-weight: bold;
-                    @include media-breakpoint-down(sm){
-                        font-size: 1rem !important;
+                    @include media-breakpoint-down(md){
+                        font-size: 0.7rem !important;
                     }
                 }
                 .post-user-type{
@@ -70,6 +79,9 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
+                    @include media-breakpoint-only(md){
+                        font-size: 0.6rem;
+                    }
                     @include media-breakpoint-up(md){
                         margin-right: 1rem;
                     }
@@ -81,11 +93,7 @@
                         width: 1rem;
                     }
                 }
-                button.border-danger{
-                    @include media-breakpoint-down(sm) {
-                        font-size: 0.5rem !important;
-                        height: calc(0.9rem + 0.5rem + 2px) !important;
-                    }
+                .border-danger{
                     &:hover{
                         border: 2px solid white !important;
                         background: white !important;
@@ -102,7 +110,7 @@
                     background: $fifth-color !important;
                     border: 2px solid $fifth-color !important;
                     svg{
-                        width: 1rem;
+                        width: 0.8rem !important;
                         margin-left: 0.3rem;
                         path{
                             fill: white;
@@ -124,7 +132,6 @@
                         border-color: $fifth-color !important;
                         background-color: $fifth-color !important;
                         color: white !important;
-
                         svg{
                             width: 1rem !important;
                             margin-left: 0.3rem !important;
@@ -166,6 +173,9 @@
                 max-width: 100%;
                 height: auto;
             }
+        }
+        .post-data{
+            margin-top: 1px;
         }
         .post-footer{
             margin-top: 1px !important;
@@ -401,11 +411,17 @@
     }
     .comment{
         .comment-user-image{
-            width: 2.64rem;
             transform: translateY(-0.7rem);
+            min-width: 2.64rem;
             max-width: 2.64rem;
             min-height: 2.64rem;
             max-height: 2.64rem;
+            @include media-breakpoint-down(sm){
+                min-width: 2rem;
+                max-width: 2rem;
+                min-height: 2rem;
+                max-height: 2rem;
+            }
         }
         .icon{
             width: 1rem;

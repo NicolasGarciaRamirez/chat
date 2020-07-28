@@ -2,7 +2,7 @@
     <section class="profile">
         <div class="img-container wrap">
             <img :src="`${user.cover}`" alt="ImagePortada" class="img-portada">
-            <button type="button" class="edit-cover-photo btn text-white rounded-pill mx-2" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
+            <button type="button" class="edit-cover-photo btn text-white rounded-pill mx-4" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
                 <label class="m-0 font-weight-bold" for="change-image" @click="type_change_image = 'Cover'">Edit Cover Photo
                     <i class="cil-pencil ml-2"></i>
                 </label>
@@ -15,8 +15,8 @@
             <div class="content-primary d-md-none d-xl-none ">
                 <h3 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h3>
                 <div class="d-flex">
-                    <a href="#" class="btn bg-danger rounded-pill text-white mr-3 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
-                    <a href="#" class="btn bg-white rounded-pill c-fifth" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
+                    <a href="#" class="btn bg-danger text-white mr-3 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
+                    <a href="#" class="btn bg-white c-fifth d-flex align-items-center" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" style="width: 1rem; margin-bottom: 0.5rem"></a>
                 </div>
             </div>
             <div class="dropdown-menu bg-primary text-white" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit`">
@@ -28,8 +28,8 @@
             </div>
             <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
-        <div class="head-container align-items-center">
-            <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions pb-2" v-if="auth.token == user.token">
+        <div class="head-container align-items-start">
+            <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions px-4" v-if="auth.token == user.token">
                 <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
                 <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">Share Profile <i class="cil-share  ml-2"></i></a>
                 <a :href="`/${ user.username}/Profile`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
@@ -60,8 +60,8 @@
             <div class="d-sm-down-none">
                 <h2 class="font-weight-bold mb-3">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h2>
                 <div class="d-flex">
-                    <a href="#" class="btn bg-danger rounded-pill text-white mr-2 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
-                    <a href="#" class="btn bg-white rounded-pill c-fifth" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
+                    <a href="#" class="btn bg-danger text-white mr-2 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
+                    <a href="#" class="btn bg-white c-fifth" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" style="width: 0.8rem; margin-bottom: 0.2rem"></a>
                 </div>
             </div>
         </div>

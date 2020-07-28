@@ -2,7 +2,6 @@
     <section>
         <div class="container-fluid account-settings">
             <h2 class="text-center my-5 font-weight-bold">Account Settings</h2>
-
             <div id="accordionAccountSettings" class="accordion">
                 <div class="card">
                     <div class="card-header bg-black" id="headingOne">
@@ -21,7 +20,7 @@
                                 <div><label>Email :</label><b class="text-white">{{ user.email }}</b></div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditAccount" class="border-white font-weight-bold">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditAccount" class="border-white font-weight-bold action">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
@@ -43,7 +42,7 @@
                                 <div><label>Location :</label><label class="text-white">{{ user.personal_information.location }}</label></div>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditPersonalDetails" class="border-white font-weight-bold">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditPersonalDetails" class="border-white font-weight-bold action">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
@@ -68,7 +67,7 @@
                                     <div><label>Payment Method :</label><label class="text-white">****1234 Bank Account</label></div>
                                 </div>
                                 <div class="d-flex justify-content-center">
-                                    <button @click="showModalSubscriptionEdit">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                    <button @click="showModalSubscriptionEdit">Edit <i class="fas fa-pencil-alt rounded-pill ml-2 action"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +163,7 @@
                     aria-labelledby="headingSeven" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditPassword" class="border-white font-weight-bold">Change Password <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditPassword" class="border-white font-weight-bold action">Change Password <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>

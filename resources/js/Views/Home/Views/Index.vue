@@ -14,7 +14,7 @@
                         <img class="preview" :src="imageData" v-if="post.resource_type === 'image'">
                         <video :src="`${imageData}`" controls   class="preview" v-if="post.resource_type === 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3" v-if="post.resource_type === 'audio'" />
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="preview p-3" v-if="post.resource_type === 'docs'">
+                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-docs p-3" v-if="post.resource_type === 'docs'">
                         <i class="fas fa-times cursor-pointer" @click="deleteImage"></i>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                             <input type="checkbox" name="" id="replace_caption" class="m-2" @click="addClassWhite('ReplaceCaption', !replace_caption ? true :false )" v-model="replace_caption" >
                             <label for="replace_caption" ><span id="ReplaceCaption" class="c-fourth font-weight-bold">Replace Caption with Title & Discription (YouTube Style)</span></label>
                         </div>
-                        <div class="checkbox" v-if="imageData.length > 0 && post.resource_type === 'image' || post.resource_type === 'docs'">
+                        <div class="checkbox my-3" v-if="imageData.length > 0 && post.resource_type === 'image' || post.resource_type === 'docs'">
                             <input type="checkbox" name="" id="allow_download" class="m-2" @click="addClassWhite('AllowDownload', !allow_download ? true : false )" v-model="allow_download">
                             <label for="allow_download" ><span id="AllowDownload" class="c-fourth font-weight-bold">Allow Download</span></label>
                         </div>
