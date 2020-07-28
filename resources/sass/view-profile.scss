@@ -18,10 +18,10 @@
                 max-height: 10rem;
             }
             @include media-breakpoint-down(sm){
-                min-height: 6rem;
-                max-width: 5.6rem;
-                max-height: 6rem;
-                min-width: 5.6rem;
+                min-height: 4rem;
+                max-width: 4rem;
+                max-height: 4rem;
+                min-width: 4rem;
             }
         }
         .img-portada{

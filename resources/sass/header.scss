@@ -1,12 +1,40 @@
 .c-header{
+    @include media-breakpoint-down(sm){
+        height: 1.5rem !important;
+        padding: 0 !important;
+    }
     .cil-hamburger-menu{
         color: $fourth-color;
         font-size: 30px;
+        @include media-breakpoint-down(sm){
+            font-size: 1.5rem;
+        }
         &:hover{
             color: white;
         }
         &:active{
             color: white;
+        }
+    }
+    .c-header-brand{
+        @include media-breakpoint-down(sm){
+            height: 1.5rem !important;
+        }
+        .img-logo{
+            width: 7rem;
+            margin-bottom: 0.95rem !important;
+            @include media-breakpoint-down(sm){
+                width: 4rem !important;
+                margin-bottom: 1rem !important;
+            }
+        }
+        .img-version{
+            width: 2.39rem;
+            margin-bottom: 1rem !important;
+            @include media-breakpoint-down(sm){
+                width: 1.5rem !important;
+                margin-bottom: 1rem !important;
+            }
         }
     }
 }
@@ -78,17 +106,19 @@ button {
 }
 
 .nav-btn, .form-inline {
-    padding-right: 20px;   
+    padding-right: 20px;
 }
 
 .img-head-profile{
     width: 4em;
-    height: 4em;
 }
 
 .top-menu{
     img{
         cursor: pointer;
+        @include media-breakpoint-down(sm){
+            width: 1.9rem !important;
+        }
         &:hover{
             opacity: 0.3;
             transition: opacity .6s;

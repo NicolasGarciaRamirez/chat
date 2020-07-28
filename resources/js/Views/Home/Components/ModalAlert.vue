@@ -95,7 +95,7 @@
         methods:{
             saveProfileInformation(){
                 axios.post(`/${Auth.state.username}/Update`, this.profile_information).then(res =>{
-                    console.log(res)
+                    console.log(res.message)
                     if(res.data.updated){
                         this.$toasted.show('Your profile information has been updated successfully!', {
                             position: "bottom-right",
@@ -104,8 +104,10 @@
                             keepOnHover: true
                         })
                     }
+
+
                 }).catch(err =>{
-                    console.log(err)
+                    window.location.replace('/email/verify')
                 })
             }
         }

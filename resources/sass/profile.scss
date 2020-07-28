@@ -13,6 +13,10 @@
             border: 2px solid white;
             position: absolute;
             width: 11rem;
+            @include media-breakpoint-down(sm) {
+                width: 5rem !important;
+                font-size: 0.41rem !important;
+            }
             &:hover{
                 background: white;
                 color: black !important;
@@ -38,19 +42,18 @@
             min-height: 10rem;
             max-height: 10rem;
             @include media-breakpoint-up(md){
-                width: 10rem;
                 bottom: -6rem;
+                min-width: 10rem;
                 max-width: 10rem;
                 min-height: 10rem;
                 max-height: 10rem;
             }
             @include media-breakpoint-down(sm){
                 transform: translateY(-2rem);
-                width: 5.6rem;
-                min-height: 6rem;
-                max-width: 5.6rem;
-                max-height: 6rem;
-                min-width: 5.6rem;
+                min-height: 4rem;
+                max-width: 4rem;
+                max-height: 4rem;
+                min-width: 4rem;
             }
         }
 
@@ -189,6 +192,21 @@
         }
         .check-icon{
             width: 1.2rem;
+        }
+    }
+    .content-primary{
+        position: absolute;
+        transform: translate(-3rem, 3rem);
+        h3{
+            font-size: 0.9rem !important;
+        }
+        a{
+            width: 5rem;
+            font-size: 0.39rem;
+            height: auto;
+            img{
+                width: 0.59rem !important;
+            }
         }
     }
     .content-personal-details{

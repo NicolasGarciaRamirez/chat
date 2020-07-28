@@ -4,6 +4,9 @@
     .cil-hamburger-menu{
         color: $fourth-color;
         font-size: 30px;
+        @include media-breakpoint-down(sm){
+            font-size: 1.5rem;
+        }
         &:hover{
             color: white;
         }
@@ -14,8 +17,21 @@
     .c-sidebar-brand{
         background-color: transparent;
     }
-    .logo{
-        width: 150px;
+    .img-logo{
+        width: 7rem;
+        margin-bottom: 0.95rem !important;
+        @include media-breakpoint-down(sm){
+            width: 4rem !important;
+            margin-bottom: 0.4rem !important;
+        }
+    }
+    .img-version{
+        width: 2.39rem;
+        margin-bottom: 1rem !important;
+        @include media-breakpoint-down(sm){
+            width: 1.5rem !important;
+            margin-bottom: 1rem !important;
+        }
     }
     .c-sidebar-nav{
         li{
@@ -111,6 +127,11 @@
         border-radius: 30px;
         font-weight: 700;
         height: calc(2.18em + 0.75rem + 2px) !important;
+        @include media-breakpoint-down(sm){
+            padding: 10px 10px !important;
+            height: calc(1.98em + 0.5rem + 0px ) !important;
+            font-size: 0.5rem;
+        }
         &:hover{
             background:$six-color !important;
         }
@@ -127,6 +148,11 @@
         color: $fourth-color !important;
         border: 2px solid $fourth-color;
         font-weight: 700;
+        @include media-breakpoint-down(sm){
+            padding: 10px 10px;
+            height: calc(1.98em + 0.5rem + 0px ) !important;
+            font-size: 0.5rem;
+        }
         &:hover{
             padding: 10px 20px;
             border-radius: 30px;

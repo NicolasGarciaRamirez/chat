@@ -1,6 +1,6 @@
 <template>
     <section>
-        <form @submit.prevent="store" enctype="multipart/form-data">
+        <form @submit.prevent="store" enctype="multipart/form-data" class="d-block">
             <div class="form-group post-form">
                 <div class="bg-primary">
                     <textarea
@@ -88,11 +88,14 @@
                             <input id="input-docs" name="docs" type="file" accept=".pdf, .docx, .xlsx, .pptx" @change="previewImage" @click="post.resource_type = 'docs'">
                         </div>
 
-                        <a class="font-weight-bold c-fourth cursor-pointer" @click="showModalLive">GO LIVE <span class="c-fifth ml-1">•</span></a>
+                        <a class="font-weight-bold c-fourth cursor-pointer go-live" @click="showModalLive">
+                            GO LIVE
+                            <span class="c-fifth ml-1">•</span>
+                        </a>
                     </div>
                     <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.description === '' || post.resource === ''">Post</button>
                 </div>
-                <div class="config-post  bg-primary">
+                <div class="config-post bg-primary">
                     <div class="d-flex flex-column py-2" v-if="imageData.length > 0" >
                         <div class="checkbox" v-if="imageData.length > 0 && post.resource_type === 'audio' || post.resource_type === 'video' || post.resource_type === 'docs'">
                             <input type="checkbox" name="" id="replace_caption" class="m-2" @click="addClassWhite('ReplaceCaption', !replace_caption ? true :false )" v-model="replace_caption" >
@@ -108,7 +111,7 @@
                         <textarea class="form-control my-2 m-3 w-auto" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
                     </div>
                     <div class="d-flex flex-row justify-content-between py-3" v-if="post.description != '' || post.resource != ''">
-                        <div class="d-flex flex-row">
+                        <div class="button-select border-0">
                             <div>
                                 <div class="button-select bg-primary text-white ml-1 rounded-pill mx-2 px-3 py-1 font-weight-bold cursor-pointer" id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div> <!-- por que lo hiciste asi y no como select? -->
                                 <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdown">
@@ -122,7 +125,7 @@
                                     <div class="dropdown-item" @click="post.genre = 'World'">World</div>
                                 </div>
                             </div>
-                             <div>
+                            <div>
                                 <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold cursor-pointer" id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdownCategory">
                                     <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
@@ -134,8 +137,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div  class="d-flex flex-row">
-                            <div class="d-flex flex-row float-right justify-content-between align-items-center">
+                        <div  class="button-select border-0">
+                            <div class="d-flex flex-row float-right justify-content-between align-items-center buttons-select">
                                 <div class="button-select bg-primary text-white ml-1 rounded-pill px-3 py-1 font-weight-bold" id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
                                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownEveryone">
                                     <div class="dropdown-item" @click="post.privacy = 'Everyone'">Everyone</div>

@@ -179,7 +179,7 @@ class UserProfileInformationController extends Controller
     public function profileInformationUpdate(Request $request)
     {
         $profile = new UserProfileInformation($request->all());
-        $this->user->personal_information()->save($profile);
+        $this->user->profile_information()->save($profile);
         return response()->json([
             'updated' => true
         ]);

@@ -1,21 +1,71 @@
 .posts{
     .post{
         .post-head{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @include media-breakpoint-down(sm){
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: end !important;
+            }
             .post-user-image{
-                width: 4.5rem;
+                min-width: 4.5rem;
                 min-height: 4.5rem;
                 max-width: 4.5rem;
                 max-height: 4.5rem;
+                @include media-breakpoint-down(sm){
+                    min-width: 3.45rem;
+                    min-height: 3.45rem;
+                    max-width: 3.45rem;
+                    max-height: 3.45rem;
+                }
             }
             .check-icon{
                 width: 1.2rem;
             }
-            .post-user-name{
-                font-size: 1.35rem;
-                font-weight: bold;
+            .content-head{
+                padding-left: 0.5rem;
+                .post-user-name{
+                    font-size: 1.35rem;
+                    font-weight: bold;
+                    @include media-breakpoint-down(sm){
+                        font-size: 1rem !important;
+                    }
+                }
+                .post-user-type{
+                    padding: 0 0.5rem 0 0;
+                    @include media-breakpoint-up(md){
+                        padding: 0;
+                    }
+                    button{
+                        padding: .2rem .5rem .2rem .5rem;
+                        border-radius: 0;
+                        font-size: .5rem;
+                        font-weight: 700;
+                        @include media-breakpoint-up(md){
+                            padding: 0.3rem 0.5rem;
+                            font-size: 0.64rem;
+                        }
+                        img{
+                            width: .5rem;
+                            @include media-breakpoint-up(md){
+                                width: .9rem;
+                                margin-left: 5px;
+                            }
+                        }
+                        &.bg-white{
+                            &:hover{
+                                color: $fifth-color;
+                            }
+                        }
+                    }
+                }
             }
             .post-user-actions{
                 margin-bottom: 1rem;
+                align-self: flex-end;
                 button{
                     display: flex;
                     justify-content: space-between;
@@ -23,23 +73,21 @@
                     @include media-breakpoint-up(md){
                         margin-right: 1rem;
                     }
+                    @include media-breakpoint-down(sm) {
+                        font-size: 0.5rem !important;
+                        height: calc(0.9rem + 0.5rem + 2px) !important;
+                    }
                     img{
                         width: 1rem;
                     }
-                    //&:hover{
-                    //    border-color: white !important;
-                    //    background-color: white !important;
-                    //    color: black;
-                    //}
-                    //&:active{
-                    //    border-color: $fifth-color !important;
-                    //    background-color: $fifth-color !important;
-                    //    color: white !important;
-                    //}
                 }
                 button.border-danger{
+                    @include media-breakpoint-down(sm) {
+                        font-size: 0.5rem !important;
+                        height: calc(0.9rem + 0.5rem + 2px) !important;
+                    }
                     &:hover{
-                        border: 2px solid white;
+                        border: 2px solid white !important;
                         background: white !important;
                         color: $fifth-color;
                         svg.svg-icon{
@@ -49,23 +97,7 @@
                             }
                         }
                     }
-                    &:active{
-                        border: 2px solid $fifth-color !important;
-                        background-color: $fifth-color !important;
-                        color: white !important;
-                        svg.svg-icon{
-                            path{
-                                stroke: white !important;
-                                fill: white !important;
-                            }
-                        }
-                    }
                 }
-                //button.active{
-                //    border-color: $fifth-color !important;
-                //    background-color: $fifth-color !important;
-                //    color: white;
-                //}
                 .follow-active{
                     background: $fifth-color !important;
                     border: 2px solid $fifth-color !important;
@@ -127,34 +159,6 @@
                     }
                 }
             }
-            .post-user-type{
-                padding: 0 .5rem;
-                @include media-breakpoint-up(md){
-                    padding: 0;
-                }
-                button{
-                    padding: 0;
-                    border-radius: 0;
-                    font-size: .5rem;
-                    font-weight: 700;
-                    @include media-breakpoint-up(md){
-                        padding: 0.3rem 0.5rem;
-                        font-size: 0.64rem;
-                    }
-                    img{
-                        width: .5rem;
-                        @include media-breakpoint-up(md){
-                            width: .9rem;
-                            margin-left: 5px;
-                        }
-                    }
-                    &.bg-white{
-                        &:hover{
-                            color: $fifth-color;
-                        }
-                    }
-                }
-            }
         }
         .post-body{
             margin-top: 1px !important;
@@ -179,6 +183,14 @@
                     margin-right: 5px;
                 }
             }
+            .post-reactions{
+                display: flex;
+                @include media-breakpoint-down(sm){
+                    display: flex !important;
+                    justify-content: space-between;
+                }
+            }
+
         }
     }
     .modal-support{

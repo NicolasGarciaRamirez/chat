@@ -15,12 +15,14 @@
                 </div>
             </div>
         </form>
-        <li class="c-header-nav-item mr-2"><a class="c-header-nav-link other-link become-contributor d-md-down-none d-md-block" href="#" @click="showModalContributor">Become a Contributor </a></li>
+        <li class="c-header-nav-item mr-1">
+            <a class="c-header-nav-link other-link become-contributor d-md-block" href="#" @click="showModalContributor">Become a Contributor </a>
+        </li>
         <div v-if="!auth.token">
-            <li class="c-header-nav-item mx-2"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
+            <li class="c-header-nav-item mx-1"><a class="c-header-nav-link other-link login" href="#" @click="showModalLogin">Login</a></li>
         </div>
         <div v-else>
-            <li class="c-header-nav-item mx-2 top-menu">
+            <li class="c-header-nav-item mx-1 top-menu">
                 <img :src="`${auth.avatar}`" alt="img-head-profile" class="img-head-profile rounded-pill dropdown-toggle cursor-pointer" id="dropdownMenuButton"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="dropdown-menu bg-primary text-white dropdown-menu-right p-3" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item" :href="`/${auth.username}/Profile`">
