@@ -7,7 +7,7 @@
                     <i class="cil-pencil ml-2"></i>
                 </label>
             </button>
-            <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white edit-cover-photo d-md-none d-xl-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">
+            <a :href="`/${user.username}/Edit`" class="btn rounded-pill text-white function font-weight-bold border-white edit-cover-photo d-md-none d-xl-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">
                 Edit Profile
                 <i class="cil-pencil ml-2"></i>
             </a>
@@ -28,7 +28,7 @@
             </div>
             <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
-        <div class="head-container align-items-start">
+        <div class="head-container align-items-start mt-lg-1">
             <div class="text-right d-flex justify-content-end align-items-center order-lg-2 functions px-4" v-if="auth.token == user.token">
                 <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
                 <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">Share Profile <i class="cil-share  ml-2"></i></a>

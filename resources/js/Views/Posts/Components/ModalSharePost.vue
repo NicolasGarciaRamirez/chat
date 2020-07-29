@@ -10,13 +10,13 @@
                 <h5 class="font-weight-bold pl-4">Share Post</h5>
                 <div class="p-3" v-if="post">
                     <div class="d-flex flex-row align-items-center">
-                        <a class="text-white" target="_blank" :href="`https://twitter.com/intent/tweet?url=https://www.noisesharks.com/Watch/Post/${post.token}`">
-                            <div class="rounded-circle bg-third m-2 p-3 share-circle">
+                        <a class="text-white" target="_blank" :href="`https://twitter.com/intent/tweet?url=https://www.noisesharks.com/Post/${post.token}`">
+                            <div class="rounded-circle bg-third m-2 p-3 share-circle" @click="saveShare">
                                 <img src="/images/icons/twitter-white.svg" width="30rem">
                             </div>
                         </a>
-                        <a class="text-white"  target="_blank" :href="`http://www.facebook.com/sharer.php?u=https://www.noisesharks.com/Watch/Post/${post.token}`">
-                            <div class="rounded-circle bg-third m-3 p-3 share-circle">
+                        <a class="text-white"  target="_blank" :href="`http://www.facebook.com/sharer.php?u=https://www.noisesharks.com/Post/${post.token}`">
+                            <div class="rounded-circle bg-third m-3 p-3 share-circle" @click="saveShare">
                                 <img src="/images/icons/facebook-white.svg" width="29rem">
                             </div>
                         </a>
@@ -40,7 +40,7 @@
 <!--                    https://plus.google.com/share?url=//www.noisesharks.com/Watch/Post/${post.token}-->
 <!--                    https://www.linkedin.com/shareArticle?mini=true&url=//www.noisesharks.com/Watch/Post/${post.token}-->
                     <div class="d-flex flex-row align-items-end">
-                        <input type="text" :value="`https://www.noisesharks.com/Watch/Post/${post.token}`" class="mt-3 form-control w-50 c-fourth">
+                        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" class="mt-3 form-control w-50 c-fourth">
                     </div>
                 </div>
             </div>
@@ -50,6 +50,18 @@
 
 <script>
 export default {
-    props:['post']
+    props:['post'],
+    methods:{
+        saveShare(){
+            axios.post(`/Share/store/${this.post.id}`).then(res =>{
+                console.log(res)
+                if(res.data.saved){
+                    this.post.shares.push(res.data.share)
+                }
+            }).catch(err =>{
+                console.log(err)
+            })
+        }
+    }
 }
 </script>

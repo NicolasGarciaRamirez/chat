@@ -155,12 +155,13 @@ export default {
 }
 </script>
 
-<style type="text/css">
-    .cropper{
-        max-width: 50rem !important;
-        min-width: 50rem !important;
-        max-height: 25rem !important;
-        min-height: 25rem !important;
-        background: #141414 !important;
-    }
-</style>
+<!--<style type="text/css">-->
+<!--    .cropper{-->
+<!--        max-width: 50rem !important;-->
+<!--        min-width: 50rem !important;-->
+<!--        max-height: 25rem !important;-->
+<!--        min-height: 25rem !important;-->
+<!--        background: #141414 !important;-->
+<!--        @include media-break-point-->
+<!--    }-->
+<!--</style>-->

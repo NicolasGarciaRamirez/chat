@@ -7,15 +7,21 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: end;
         .edit-cover-photo{
             z-index: 1000;
             border: 2px solid white;
             position: absolute;
             width: 11rem;
-            @include media-breakpoint-down(sm) {
+            transform: translate(70.9rem, -2.9rem);
+            @include media-breakpoint-only(md){
                 width: 5rem !important;
                 font-size: 0.41rem !important;
+            }
+            @include media-breakpoint-down(sm) {
+                width: 7rem !important;
+                font-size: 0.41rem !important;
+                transform: translate(9.9rem, -2.9rem);
             }
             &:hover{
                 background: white;
@@ -50,6 +56,7 @@
             }
             @include media-breakpoint-down(sm){
                 transform: translateY(-2rem);
+                bottom: -3.6rem;
                 min-height: 4rem;
                 max-width: 4rem;
                 max-height: 4rem;
@@ -94,24 +101,21 @@
             color: black !important;
         }
         .functions{
+            @include media-breakpoint-down(sm){
+                //transform: translate(0rem, -1rem);
+            }
             a.function{
                 background: $primary-color !important;
                 border: 2px solid white !important;
                 @include media-breakpoint-down(sm){
-                    padding: 0px 6px 0px 6px !important;
+                    padding: 2px 3px 2px 7px !important;
                     font-size: 0.77rem !important;
-                    margin-top: 2rem;
                 }
                 &:hover{
                     border: 2px solid white !important;
                     background: white !important;
                     color: black !important;
                 }
-                //&:active{
-                //    border: 2px solid $fifth-color !important;
-                //    background: $fifth-color !important;
-                //    color: white !important;
-                //}
             }
             button.function{
                 background: $primary-color !important;
@@ -196,7 +200,7 @@
     }
     .content-primary{
         position: absolute;
-        transform: translate(-3rem, 3rem);
+        transform: translate(5.5rem, 2.5rem);
         h3{
             font-size: 0.9rem !important;
         }
@@ -210,9 +214,17 @@
         }
     }
     .content-personal-details{
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        justify-content: space-around;
+        padding: 2rem;
+        @include media-breakpoint-down(sm){
+            flex-direction: column !important;
+        }
         .settings{
             border: 2px solid white !important;
-            padding: 0px 10px 0px 10px;
+            padding: 0 10px 0 10px;
             &:hover{
                 border: 2px solid white !important;
                 background-color: #ffffff !important;
@@ -646,18 +658,6 @@
                 fill: $primary-color !important;
             }
         }
-        //&:hover{
-        //    border-color: white !important;
-        //    background-color: white !important;
-        //    color: black !important;
-        //    svg{
-        //        width: 1rem !important;
-        //        margin-left: 0.3rem !important;
-        //        path{
-        //            fill: black !important;
-        //        }
-        //    }
-        //}
     }
     .follow-following-active{
         background: white !important;
@@ -667,8 +667,6 @@
             content: 'Following';
         }
         svg{
-            //width: 1rem;
-            //margin-left: 0.3rem;
             path{
                 fill: black !important;
             }
@@ -681,8 +679,6 @@
                 content: 'unfollow';
             }
             svg{
-                //width: 1rem !important;
-                //margin-left: 0.3rem !important;
                 path{
                     fill: black !important;
                 }

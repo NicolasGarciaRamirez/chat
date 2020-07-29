@@ -144,6 +144,10 @@ Route::group(['prefix' => '/{username}'], function () {
     });
 });
 
+Route::group(['prefix' => 'Share'], function () {
+    Route::name('share.store')->post('/store/{post}', 'Post\ShareController@save');
+});
+
 Route::get('/report', function () {
     return view('reports');
 });

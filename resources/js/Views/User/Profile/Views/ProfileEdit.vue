@@ -1,14 +1,14 @@
 <template>
     <section>
-        <div class="container bg-black mt-4 row">
-            <div class="mb-3 col col-sm-6">
+        <div class="bg-black mt-4 content-personal-details">
+            <div class=" mb-3">
                 <h3 class="c-white font-weight-bold">Personal Details <i class="fas fa-pencil-alt"></i></h3>
                 <label class="c-fourth">Name: <span class="text-white">{{ user.personal_information.full_name  }}</span></label><br>
                 <label class="c-fourth">Gender: <span class="text-white"> {{ user.personal_information.gender }}</span></label><br>
                 <label class="c-fourth">Location: <span class="text-white">{{ user.personal_information.location }}</span> </label><br>
                 <label class="c-fourth">Email: <span class="text-white">{{ user.email }}</span></label>
             </div>
-            <div class="col col-sm-6 content-personal-details">
+            <div class=" mb-5 ">
                 <h3 class="c-white font-weight-bold">Subscription</h3>
                 <label class="c-fourth">Acount Type: <span class="c-fifth font-weight-bold">{{ user.subscription_type }}</span></label><br>
                 <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white rounded-pill settings font-weight-bold">

@@ -130,4 +130,8 @@ class Post extends Model
     {
         return $this->hasMany(\App\Models\Post\PostViews::class);
     }
+
+    public function shares(){
+        return $this->hasMany(\App\Models\Post\Share::class);
+    }
 }

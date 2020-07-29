@@ -139,7 +139,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-row justify-content-between align-items-center post-user-actions d-block d-xl-none d-md-none">
+            <div class="d-flex flex-row justify-content-between align-items-center post-user-actions pb-3 d-block d-xl-none d-md-none">
                  <button v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username" class="bg-primary border-danger mx-3" @click="showModalSupport">SUPPORT
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
@@ -174,7 +174,7 @@
                     <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                 </div>
                 <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
-                <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-share.svg" alt="">0</div>
+                <div class="information cursor-pointer" @click="showModalSharePost"><img src="/images/icons/post-share.svg" alt="">{{post.shares.length}}</div>
                 <div class="information cursor-pointer" v-if="post.allow_download"><a :href="`${post.resource}`"><img src="/images/icons/post-down.svg" alt=""></a></div>
             </div>
         </div>

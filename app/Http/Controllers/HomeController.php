@@ -16,7 +16,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = collect();
-        $posts = Post::with('views', 'votes.user', 'likes.user', 'user.followers.user.profile_information', 'user.followers.user.personal_information', 'user.personal_information', 'comments.user.personal_information', 'comments.user.profile_information','comments.comments.user.personal_information', 'comments.comments.user.profile_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
+        $posts = Post::with('views','shares' ,'votes.user', 'likes.user', 'user.followers.user.profile_information', 'user.followers.user.personal_information', 'user.personal_information', 'comments.user.personal_information', 'comments.user.profile_information','comments.comments.user.personal_information', 'comments.comments.user.profile_information', 'comments.likes.user', 'comments.comments.likes.user', 'user.profile_information.members', 'user.profile_information.releases')->latest()->get();
         if (\Auth::check()) {
             $user = \Auth::user();
             $user->load('followers.user.profile_information', 'followers.user.personal_information', 'playlists.playlist_post.post.comments');

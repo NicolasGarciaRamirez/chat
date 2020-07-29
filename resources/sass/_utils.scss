@@ -337,5 +337,19 @@ textarea{
 
 .line{
     border-top: 2px solid $fourth-color;
+    width: 5rem !important;
+}
 
+.cropper{
+    max-width: 50rem !important;
+    min-width: 50rem !important;
+    max-height: 25rem !important;
+    min-height: 25rem !important;
+    background: #141414 !important;
+    @include media-breakpoint-down(sm){
+        max-width: 25rem !important;
+        min-width: 25rem !important;
+        max-height: 25rem !important;
+        min-height: 25rem !important;
+    }
 }
