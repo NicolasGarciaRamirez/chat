@@ -1,6 +1,6 @@
 <template>
     <section class="members container-fluid">
-        <div class="d-flex flex-column" v-if="user.profile_information.members">
+        <div class="d-flex flex-column p-1" v-if="current_members.length > 0">
             <h3 class="font-weight-bold text-white">Current Members:</h3><br>
             <div v-for="(member, index) in current_members" :key="index">
                 <div>
@@ -8,7 +8,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-column mt-4">
+        <div class="d-flex flex-column mt-4 p-1" v-if="past_members.length > 0">
             <h3 class="font-weight-bold text-white">Past Members:</h3><br>
             <div v-for="(member, index) in past_members" :key="index">
                 <div>

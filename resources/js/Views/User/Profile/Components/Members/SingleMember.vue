@@ -1,6 +1,7 @@
 <template>
     <section>
         <div class="form-group row c-fifth">
+            *
             <div class="col-md">
                 <input type="text" class="form-control mb-2" placeholder="Member Name" v-model="member_update.member_name">
             </div>
@@ -8,11 +9,11 @@
             <div class="col-md">
                 <input type="text" class="form-control" placeholder="Role/Instrument" v-model="member_update.role_instrument">
             </div>
-            *
-            <div class="col-md">
+
+            <div class="col-md m-lg-0 mt-4">
                 <input type="text" class="form-control" placeholder="Link to noisesharks profile" v-model="member_update.link_profile">
             </div>
-            <i class="fas fa-times-circle c-fourth align-items-center pointer" @click="removeMember"></i>
+            <i class="fas fa-times-circle c-fourth align-items-center cursor-pointer" @click="removeMember"></i>
         </div>
     </section>
 </template>

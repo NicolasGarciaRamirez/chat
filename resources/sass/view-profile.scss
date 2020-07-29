@@ -18,16 +18,21 @@
                 max-height: 8rem;
             }
             @include media-breakpoint-down(sm){
-                min-height: 4rem;
-                max-width: 4rem;
-                max-height: 4rem;
-                min-width: 4rem;
+                bottom: -3.7rem;
+                left: 0.39rem;
+                min-height: 4.2rem;
+                max-width: 4.2rem;
+                max-height: 4.2rem;
+                min-width: 4.2rem;
             }
         }
         .img-portada{
             width: 100%;
             @include media-breakpoint-up(lg){
                 max-height: 15rem;
+            }
+            @include media-breakpoint-down(sm){
+                max-height: 10rem;
             }
         }
     }
@@ -167,14 +172,15 @@
     .releases{
         .release{
             display: flex;
+            align-items: center;
             img{
-                width: 15rem;
-                height: 13rem;
+                width: 13rem;
+                height: auto;
             }
             @include media-breakpoint-down(sm){
-                flex-direction: column;
                 img{
-                    width: auto;
+                    width: 10rem;
+                    height: 10rem;
                 }
             }
         }

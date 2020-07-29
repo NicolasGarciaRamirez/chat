@@ -88,7 +88,7 @@ class HomeController extends Controller
      */
     public function showPost($token)
     {
-        $post = Post::with('views', 'votes.user', 'likes.user', 'comments.user.personal_information','comments.user.profile_information', 'comments.comments.user.personal_information', 'comments.comments.user.profile_information', 'comments.likes.user', 'comments.comments.likes.user',  'user.personal_information','user.profile_information' ,'user.profile_information.members', 'user.profile_information.releases')->whereToken($token)->first();
+        $post = Post::with('views', 'votes.user', 'shares','likes.user', 'comments.user.personal_information','comments.user.profile_information', 'comments.comments.user.personal_information', 'comments.comments.user.profile_information', 'comments.likes.user', 'comments.comments.likes.user',  'user.personal_information','user.profile_information' ,'user.profile_information.members', 'user.profile_information.releases', 'user.followers.user.profile_information', 'user.followers.user.personal_information',)->whereToken($token)->first();
         return view('post.view', ['post' => $post]);
     }
 }

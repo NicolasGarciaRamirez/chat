@@ -5,13 +5,13 @@
         }
         .post-head{
             display: flex;
-            align-items: start;
+            align-items: flex-start;
             justify-content: space-between;
             @include media-breakpoint-down(sm){
                 display: flex;
                 flex-direction: column;
-                align-items: start;
-                justify-content: end !important;
+                align-items: flex-start;
+                justify-content: flex-end !important;
             }
             .post-user-image{
                 min-width: 4.5rem;
@@ -29,7 +29,7 @@
                 font-size: 2rem;
                 @include media-breakpoint-down(md){
                     font-size: 1.5rem;
-                    margin-left: 0.5rem;
+                    margin-left: 0.5rem !important;
                 }
             }
             .check-icon{
@@ -396,6 +396,7 @@
     }
 }
 .comments{
+    margin-top: 1px;
     input.input-comment{
         border-radius: 30px !important;
         border: 1px solid $third-color;

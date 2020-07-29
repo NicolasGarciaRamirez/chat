@@ -353,3 +353,18 @@ textarea{
         min-height: 25rem !important;
     }
 }
+
+.navigation-header{
+    display: flex;
+    justify-content: flex-start;
+    @include media-breakpoint-down(sm){
+        justify-content: center;
+    }
+}
+
+.container{
+    @include media-breakpoint-down(sm){
+        padding-right: 0;
+        padding-left: 0;
+    }
+}

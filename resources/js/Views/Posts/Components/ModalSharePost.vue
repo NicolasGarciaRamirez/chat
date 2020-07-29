@@ -37,8 +37,8 @@
                         <span class="mx-3">Twitter</span>
                         <span class="mx-3">Facebook</span>
                     </div>
-<!--                    https://plus.google.com/share?url=//www.noisesharks.com/Watch/Post/${post.token}-->
-<!--                    https://www.linkedin.com/shareArticle?mini=true&url=//www.noisesharks.com/Watch/Post/${post.token}-->
+<!--                    https://plus.google.com/share?url=//www.noisesharks.com/Post/${post.token}-->
+<!--                    https://www.linkedin.com/shareArticle?mini=true&url=//www.noisesharks.com/Post/${post.token}-->
                     <div class="d-flex flex-row align-items-end">
                         <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" class="mt-3 form-control w-50 c-fourth">
                     </div>

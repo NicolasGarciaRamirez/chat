@@ -1,7 +1,7 @@
 <div>
     @include('user._header-profile' , $user)
 </div>
-<div class="navigation-header my-5 mx-3 d-flex">
+<div class="navigation-header my-5 mx-3">
     <h3>
         <a href="/{{ $user->username }}/Channel/Activity/" class="c-fourth font-weight-bold pt-2 mr-3">Channel</a>
     </h3>

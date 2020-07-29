@@ -22,9 +22,7 @@
                     <span>{{descriptionLess}}</span>
                 </div>
                 <div class="img-activity" v-if="activity.resource_type == 'docs'">
-<!--                    <a :href="`${activity.resource}`" class="no-underline" v-if="resource_extension == 'pdf'">-->
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`" v-if="resource_extension == 'pdf'" class="img-activity img-fluid p-3" style="width: 130px;"  />
-<!--                    </a>-->
+                    <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`" v-if="resource_extension == 'pdf'" class="img-activity img-fluid p-3" style="width: 130px;"  />
                     <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  v-else/>
                 </div>
             </div>
@@ -34,19 +32,19 @@
                 <p class="m-1" v-if="activity.description">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
-                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </p>
             </div>
             <p v-if="activity.resource_type === 'docs' && activity.description">
                 <a :href="`${activity.resource}`" class="text-white" v-if="resource_extension === 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
-                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </a>
                 <label v-if="resource_extension !== 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
-                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </label>
             </p>
         </div>
@@ -56,22 +54,22 @@
                 <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type === 'docs' && resource_extension === 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
-                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </a>
                 <label v-if="activity.resource_type === 'docs' && resource_extension !== 'pdf'">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
-                    <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </label>
             </p>
         </div>
-        <div class="d-flex c-fourth my-3">
+        <div class="d-flex c-fourth my-3 justify-content-between px-3">
             <div :id="`voteUp`+activity.id" class="information cursor-pointer" @click="disable_vote_up ? '' : storeVoteUp(vote_type_up)"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
             <div :id="`voteDown`+activity.id" class="information cursor-pointer" @click="disable_vote_down ? '' : storeVoteDown(vote_type_down)"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
             <div :id="`lit`+activity.id" class="information cursor-pointer" @click="disable_like ? '' : storeLike(lit.like)" >
                 <img src="/images/icons/post-flame.svg" height="22"><span>{{ activity.likes.length }}</span>
             </div>
-            <div class="information cursor-pointer"><img src="/images/icons/post-up.svg" alt="" @click="showModalShare">0</div>
+            <div class="information cursor-pointer"><img src="/images/icons/post-share.svg" alt="" @click="showModalShare">{{activity.shares.length}}</div>
             <div class="information cursor-pointer" v-if="activity.allow_download">
                 <a :href="`${activity.resource}`">
                     <img src="/images/icons/post-down.svg" alt="">

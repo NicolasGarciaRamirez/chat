@@ -7,21 +7,18 @@
         position: relative;
         display: flex;
         align-items: center;
-        justify-content: end;
         .edit-cover-photo{
             z-index: 1000;
             border: 2px solid white;
             position: absolute;
-            width: 11rem;
-            transform: translate(70.9rem, -2.9rem);
+            transform: translate(61.1rem, -4.9rem);
             @include media-breakpoint-only(md){
-                width: 5rem !important;
                 font-size: 0.41rem !important;
+                transform: translate(40.1rem, -3.6rem);
             }
-            @include media-breakpoint-down(sm) {
-                width: 7rem !important;
-                font-size: 0.41rem !important;
-                transform: translate(9.9rem, -2.9rem);
+            @include media-breakpoint-down(sm){
+                font-size: 0.6rem !important;
+                transform: translate(12.3rem, -4.2em);
             }
             &:hover{
                 background: white;
@@ -38,6 +35,38 @@
                     color: white;
                 }
             }
+        }
+        .edit-profile-button{
+            z-index: 1000;
+            border: 2px solid white;
+            position: absolute;
+            @include media-breakpoint-only(md){
+                width: 5rem !important;
+                font-size: 0.41rem !important;
+            }
+            @include media-breakpoint-down(sm) {
+                font-size: 0.7rem !important;
+                transform: translate(14.9rem, -2.6rem);
+            }
+        }
+        .follow-movile-button{
+            z-index: 1000;
+            position: absolute;
+            @include media-breakpoint-only(md){
+                width: 5rem !important;
+                font-size: 0.41rem !important;
+            }
+            @include media-breakpoint-down(sm) {
+                font-size: 0.41rem !important;
+                transform: translate(14.6rem, -2.6rem);
+                button{
+                    font-size: 0.5rem !important;
+                    svg{
+                        width: 0.8rem;
+                    }
+                }
+            }
+
         }
         .img-profile{
             position: absolute;
@@ -57,10 +86,11 @@
             @include media-breakpoint-down(sm){
                 transform: translateY(-2rem);
                 bottom: -3.6rem;
-                min-height: 4rem;
-                max-width: 4rem;
-                max-height: 4rem;
-                min-width: 4rem;
+                left: 0.39rem;
+                min-height: 4.2rem;
+                max-width: 4.2rem;
+                max-height: 4.2rem;
+                min-width: 4.2rem;
             }
         }
 
@@ -77,7 +107,9 @@
                     min-width: 1450px;
                     max-width: 1450px;
                 }
-
+            }
+            @include media-breakpoint-down(sm){
+                max-height: 10rem;
             }
         }
     }
@@ -92,24 +124,32 @@
             margin-left: 9rem;
             margin-top: 0;
         }
-        @include media-breakpoint-down(sm){
-            margin-top: 2rem;
-        }
         a.active{
             border-color: white !important;
             background-color: white !important;
             color: black !important;
         }
         .functions{
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
             @include media-breakpoint-down(sm){
-                //transform: translate(0rem, -1rem);
+                justify-content: flex-end;
+                font-size: 0.6rem;
+            }
+            .svg-icon{
+                width: 1.8rem;
+                margin: 0 0.4rem 0 0.4rem ;
+                @include media-breakpoint-down(sm){
+                    width: 1.4rem;
+                }
             }
             a.function{
                 background: $primary-color !important;
                 border: 2px solid white !important;
                 @include media-breakpoint-down(sm){
-                    padding: 2px 3px 2px 7px !important;
-                    font-size: 0.77rem !important;
+                    padding: 4px !important;
+                    font-size: 0.7rem !important;
                 }
                 &:hover{
                     border: 2px solid white !important;
@@ -117,81 +157,16 @@
                     color: black !important;
                 }
             }
-            button.function{
-                background: $primary-color !important;
-                border: 2px solid white !important;
-                svg{
-                    width: 1rem !important;
-                    margin-left: 0.3rem !important;
-                    path{
-                        fill: $primary-color !important;
-                    }
-                }
+            button.function-contributor{
+                border: 1px solid $fifth-color;
                 @include media-breakpoint-down(sm){
-                    padding: 0px 6px 0px 6px !important;
-                    font-size: 0.77rem !important;
-                    margin-top: 2rem;
-                }
-                &:hover{
-                    border-color: white !important;
-                    background-color: white !important;
-                    color: black !important;
+                    font-size: 0.48rem;
+                    margin: 0 0.1rem 0 0.1rem;
                     svg{
-                        width: 1rem !important;
-                        margin-left: 0.3rem !important;
-                        path{
-                            fill: black !important;
-                        }
+                        width: 0.6rem !important;
+                        margin-left: 0.1rem !important;
                     }
                 }
-                //&:active{
-                //    border-color: $fifth-color !important;
-                //    background-color: $fifth-color !important;
-                //    color: white !important;
-                //    svg{
-                //        width: 1rem !important;
-                //        margin-left: 0.3rem !important;
-                //        path{
-                //            fill: white !important;
-                //        }
-                //    }
-                //}
-            }
-            .function-active{
-                svg{
-                    width: 1rem !important;
-                    margin-left: 0.3rem !important;
-                    path{
-                        fill: white !important;
-                    }
-                }
-                background: $fifth-color !important;
-                border: 2px solid $fifth-color !important;
-
-                &:hover{
-                    border-color: $six-color !important;
-                    background-color: $six-color !important;
-                    color: white !important;
-                    svg{
-                        width: 1rem !important;
-                        margin-left: 0.3rem !important;
-                        path{
-                            fill: white !important;
-                        }
-                    }
-                }
-                //&:active{
-                //    border-color: $fifth-color !important;
-                //    background-color: $fifth-color !important;
-                //    color: white !important;
-                //    svg{
-                //        width: 1rem !important;
-                //        margin-left: 0.3rem !important;
-                //        path{
-                //            fill: white !important;
-                //        }
-                //    }
-                //}
             }
         }
         .check-icon{
@@ -200,23 +175,23 @@
     }
     .content-primary{
         position: absolute;
-        transform: translate(5.5rem, 2.5rem);
+        transform: translate(4.9rem, 2.5rem);
         h3{
             font-size: 0.9rem !important;
         }
         a{
-            width: 5rem;
-            font-size: 0.39rem;
+            font-size: 0.69rem;
             height: auto;
+            padding: 0.2rem;
             img{
-                width: 0.59rem !important;
+                width: 0.69rem !important;
             }
         }
     }
     .content-personal-details{
         display: flex;
         flex-direction: row;
-        align-items: start;
+        align-items: flex-start;
         justify-content: space-around;
         padding: 2rem;
         @include media-breakpoint-down(sm){
@@ -370,6 +345,9 @@
                         min-height: 164px;
                         max-height: 164px;
                     }
+                }
+                .members{
+                    font-size: 0.7rem;
                 }
                 .checkbox{
                     position: relative;

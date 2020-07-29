@@ -66,7 +66,7 @@
                 </div>
             </div>
         </div>
-        <div class="text p-3 item bg-primary" id="description" v-if="!post.replace_caption">
+        <div class="text p-3 item bg-primary" id="description" v-if="!post.replace_caption && post.description">
             <span v-if="!edit && !post.replace_caption && post.resource_type !== 'docs'">
                 <span v-if="showMore">{{description}}</span>
                 <span v-if="!showMore">{{descriptionLess}}</span>
@@ -94,7 +94,7 @@
                 <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
             </form>
         </div>
-        <div class="post-body bg-primary">
+        <div class="post-body bg-primary" v-if="post.resource">
             <div>
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type === 'image'" />
@@ -140,7 +140,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center post-user-actions pb-3 d-block d-xl-none d-md-none">
-                 <button v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username" class="bg-primary border-danger mx-3" @click="showModalSupport">SUPPORT
+                 <button class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalSupport">SUPPORT
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
@@ -149,7 +149,7 @@
                         c153.823-176.912,231.84-336.519,231.84-474.343C1077.045,143.518,941.842,0.807,775.617,0.807"/>
                      </svg>
                 </button>
-                <button v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username" class="bg-primary border-danger mx-3" @click="showModalReward">REWARD
+                <button class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalReward">REWARD
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z

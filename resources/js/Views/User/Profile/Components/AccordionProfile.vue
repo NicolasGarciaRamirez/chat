@@ -84,7 +84,7 @@
                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
                             <input type="text" class="form-control mb-3" placeholder="Artistic Name" v-model="profile_information.artistic_name">
-                            <input type="checkbox"> Use Artistic Name Instead of Personal Name
+<!--                            <input type="checkbox"> Use Artistic Name Instead of Personal Name-->
                         </div>
                     </div>
                 </div>
@@ -113,17 +113,17 @@
                         </h2>
                     </div>
                     <div id="collapseFifth" class="collapse bg-black" aria-labelledby="headingFifth" data-parent="#accordionProfile">
-                        <div class="card-body text-white bg-black text-center">
+                        <div class="text-white bg-black text-center card-body">
                             <div class="d-flex flex-row mb-4">
                                 <h5>Current Members</h5>
-                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember('current')">Add Current Member</button>
+                                <button type="button" class="bg-primary c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('current')">Add Current Member</button>
                             </div>
                             <div>
                                 <single-member v-for="(current, index) in current_members" :key="index" :member="current" :index="index" :type="'current'" />
                             </div>
                             <div class="d-flex flex-row mb-4">
                                 <h5>Former Members</h5>
-                                <button type="button" class="bg-primary c-white  rounded-pill mx-5" v-on:click="addMember('past')">Add Former Member</button>
+                                <button type="button" class="bg-primary c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('past')">Add Former Member</button>
                             </div>
                             <div>
                                 <single-member  v-for="(past, index) in past_members" :key="index" :member="past" :index="index" :type="'past'" />
@@ -141,8 +141,8 @@
                         </h2>
                     </div>
                     <div id="collapseSix" class="collapse text-center bg-black" aria-labelledby="headingSix" data-parent="#accordionProfile">
-                        <button type="button" class="bg-primary c-white rounded-pill" v-on:click="addRelease">Add Release</button>
-                        <div id="releases" class="card-body d-flex text-white bg-black align-items-center flex-wrap">
+                        <button type="button" class="bg-primary c-white rounded-pill mb-4" v-on:click="addRelease">Add Release</button>
+                        <div id="releases" class="d-flex text-white bg-black align-items-center flex-wrap">
                             <single-release v-for="(release, index) in releases_information" :key="index" :release="release" :index="index" />
                         </div>
                     </div>
