@@ -10,9 +10,9 @@
             </div>
             <div class=" mb-5 ">
                 <h3 class="c-white font-weight-bold">Subscription</h3>
-                <label class="c-fourth">Acount Type: <span class="c-fifth font-weight-bold">{{ user.subscription_type }}</span></label><br>
+                <label class="c-fourth">Account Type: <span class="c-fifth font-weight-bold">{{ user.subscription_type }}</span></label><br>
                 <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white rounded-pill settings font-weight-bold">
-                    <label>Account Settings</label><i class="fas fa-cog m-2"></i>
+                    <label class="font-weight-bold">Account Settings</label><i class="fas fa-cog m-2"></i>
                 </a>
             </div>
         </div>

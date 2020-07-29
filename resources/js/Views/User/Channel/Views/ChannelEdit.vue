@@ -1,18 +1,18 @@
 <template>
-    <section>
-        <div class="container-fluid justify-content-between d-md-flex bg-black my-5">
-            <div class="mb-3">
-                <h2 class="c-white">Personal Details <img src="/images/icons/pencil.svg" alt="pencil" style="width: 1.2rem"></h2>
-                <label>Name: <label class="text-white">{{ user.personal_information.full_name }}</label></label><br>
-                <label>Gender: <label class="text-white">{{ user.personal_information.gender }}</label></label><br>
-                <label>Location: <label class="text-white">{{ user.personal_information.location }}</label></label><br>
-                <label>Email: <label class="text-white">{{ user.email }}</label></label>
+    <section class="profile">
+        <div class="bg-black mt-5 content-personal-details">
+            <div class=" mb-3">
+                <h3 class="c-white font-weight-bold">Personal Details <i class="fas fa-pencil-alt"></i></h3>
+                <label class="c-fourth">Name: <span class="text-white">{{ user.personal_information.full_name  }}</span></label><br>
+                <label class="c-fourth">Gender: <span class="text-white"> {{ user.personal_information.gender }}</span></label><br>
+                <label class="c-fourth">Location: <span class="text-white">{{ user.personal_information.location }}</span> </label><br>
+                <label class="c-fourth">Email: <span class="text-white">{{ user.email }}</span></label>
             </div>
-            <div>
-                <h2 class="c-white">Subscription</h2>
-                <label>Acount Type: <span class="c-fifth">FREE</span></label><br>
-                <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white border rounded-pill">
-                    Account Setings <i class="fas fa-cog ml-2"></i>
+            <div class=" mb-5 ">
+                <h3 class="c-white font-weight-bold">Subscription</h3>
+                <label class="c-fourth">Account Type: <span class="c-fifth font-weight-bold">{{ user.subscription_type }}</span></label><br>
+                <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white rounded-pill settings font-weight-bold">
+                    <label class="font-weight-bold">Account Settings</label><i class="fas fa-cog m-2"></i>
                 </a>
             </div>
         </div>
