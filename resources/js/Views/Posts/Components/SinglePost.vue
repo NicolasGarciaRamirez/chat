@@ -252,6 +252,12 @@
                     this.$refs.surf.waveSurfer.stop()
                 })
             }
+
+            $("video").on("play", function() {
+                $("video").not(this).each(function(index, video) {
+                    video.pause();
+                });
+            });
         },
         computed: {
             player() {
