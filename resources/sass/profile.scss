@@ -11,7 +11,10 @@
             z-index: 1000;
             border: 2px solid white;
             position: absolute;
-            transform: translate(61.1rem, -4.9rem);
+            transform: translate(61.1rem, -3.5rem);
+            @include media-breakpoint-only(lg){
+                transform: translate(35.1rem, -3.5rem);
+            }
             @include media-breakpoint-only(md){
                 font-size: 0.41rem !important;
                 transform: translate(40.1rem, -3.6rem);
