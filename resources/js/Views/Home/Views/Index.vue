@@ -168,6 +168,7 @@
     import ModalLiveStream from "../../CommingSoon/Components/ModalLiveStream";
     import ModalMobile from "../../CommingSoon/Components/ModalMobile";
     import ModalAlert from "../Components/ModalAlert";
+
     export default {
         name: "Index",
         props:['posts'],
