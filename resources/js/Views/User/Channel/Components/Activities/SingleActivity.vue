@@ -27,7 +27,7 @@
                 </div>
             </div>
         </a>
-        <div v-if="!activity.replace_caption">
+        <div class="px-3" v-if="!activity.replace_caption">
             <div v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
                 <p class="m-1" v-if="activity.description">
                     <span v-if="showMore">{{description}}</span>
@@ -48,7 +48,7 @@
                 </label>
             </p>
         </div>
-        <div v-if="activity.replace_caption">
+        <div class="px-3" v-if="activity.replace_caption">
             <h5 class="font-weight-bold my-2">{{ activity.replace_caption }}</h5>
             <p v-if="activity.description">
                 <a :href="`${activity.resource}`" class="text-white" v-if="activity.resource_type === 'docs' && resource_extension === 'pdf'">
@@ -76,7 +76,7 @@
                 </a>
             </div>
         </div>
-        <div class="d-flex justify-content-between c-fourth">
+        <div class="d-flex justify-content-between c-fourth px-3">
             <p>{{activity.views.length }} {{activity.resource_type !== 'text' ? 'Plays' : 'Views'}}</p>
             <p>{{ activity.time_ago }}</p>
         </div>
