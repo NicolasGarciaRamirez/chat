@@ -1,0 +1,16 @@
+.search{
+    transform: translate(-19rem, 1.6rem);
+    padding: 1rem;
+    position: absolute;
+    width: 24.5rem;
+    overflow-y: auto;
+    max-height: 40rem;
+    .img-profile-search{
+        width: 2.2rem !important;
+    }
+    .content-info-search{
+        display: flex;
+        flex-direction: row;
+        font-size: 0.8rem;
+    }
+}
