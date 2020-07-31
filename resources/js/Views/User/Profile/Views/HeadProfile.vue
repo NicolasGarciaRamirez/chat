@@ -50,7 +50,7 @@
             </div>
             <div class="order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
                 <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">
-                <img src="/images/icons/post-up.svg" alt="post-up" class="svg-icon cursor-pointer mx-lg-3">
+                <img src="/images/icons/post-share.svg" alt="post-up" class="svg-icon cursor-pointer mx-lg-3">
                 <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
                     <button type="button" class="bg-primary align-items-right border-white function ">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}

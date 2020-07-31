@@ -3,17 +3,17 @@
         <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-circle mr-2">
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">
-                <div class="d-flex flex-row align-items-center">
-                    <div>
-                        <a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white pb-3">
+                <div class="d-flex flex-row align-items-center justify-content-start">
+                    <div class="d-flex flex-column p-1">
+                        <a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white ">
                             {{ comment.user.profile_information && comment.user.profile_information.artistic_name ? comment.user.profile_information.artistic_name : comment.user.personal_information.full_name }}
                         </a>
-                    </div>
-                    <div class="ml-2" :id="`comment_body`+comment.id" >
-                        <form @submit.prevent="update" v-if="edit">
-                            <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
-                        </form>
-                        <span v-if="!edit">{{ comment.body }}</span>
+                        <div :id="`comment_body`+comment.id" >
+                            <form @submit.prevent="update" v-if="edit">
+                                <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
+                            </form>
+                            <span v-if="!edit">{{ comment.body }}</span>
+                        </div>
                     </div>
                     <i class="fas fa-ellipsis-h c-third fa-1x m-2"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                     <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">

@@ -20,6 +20,8 @@ Route::get('/prelaunch', function () {
 Route::name('prelaunch')->post('/join', 'LandingController@store');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/Form', 'HomeController@index')->name('formPost');
+Route::get('/Search', 'HomeController@search')->name('search');
 Route::get('/login', 'HomeController@login')->name('loginmodal');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');

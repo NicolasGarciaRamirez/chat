@@ -20,8 +20,9 @@
                 transform: translate(40.1rem, -3.6rem);
             }
             @include media-breakpoint-down(sm){
+                padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
                 font-size: 0.6rem !important;
-                transform: translate(12.3rem, -4.2em);
+                transform: translate(12.49rem, -2rem);
             }
             &:hover{
                 background: white;
@@ -48,8 +49,9 @@
                 font-size: 0.41rem !important;
             }
             @include media-breakpoint-down(sm) {
+                padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
                 font-size: 0.7rem !important;
-                transform: translate(14.9rem, -2.6rem);
+                transform: translate(14.9rem, -1.6rem);
             }
         }
         .follow-movile-button{
@@ -61,7 +63,7 @@
             }
             @include media-breakpoint-down(sm) {
                 font-size: 0.41rem !important;
-                transform: translate(14.6rem, -2.6rem);
+                transform: translate(15.2rem, -2rem);
                 button{
                     font-size: 0.5rem !important;
                     svg{
@@ -151,7 +153,7 @@
                 background: $primary-color !important;
                 border: 2px solid white !important;
                 @include media-breakpoint-down(sm){
-                    padding: 4px !important;
+                    padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
                     font-size: 0.7rem !important;
                 }
                 &:hover{

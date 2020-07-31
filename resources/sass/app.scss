@@ -31,3 +31,9 @@
 .c-app{
     color: white;
 }
+
+.c-main{
+    @include media-breakpoint-down(sm){
+        padding-top: 0.19rem;
+    }
+}

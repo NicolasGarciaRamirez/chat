@@ -9,3 +9,16 @@
         }
     }
 }
+
+.nav-footer-movile{
+    .active{
+        border-top: 2px solid $fifth-color;
+        svg{
+            path{
+                fill: white;
+            }
+        }
+
+    }
+}
+

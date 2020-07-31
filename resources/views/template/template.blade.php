@@ -34,6 +34,9 @@
                 <modal-contributor />
             </div>
         </div>
+        <div class="d-flex d-lg-none d-md-none fixed-bottom">
+            @include('template._navFooter')
+        </div>
     </div>
     @yield('js')
     <script src="{{ mix('/js/app.js') }}"></script>
