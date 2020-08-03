@@ -33,7 +33,9 @@
 }
 
 .c-main{
+    padding-top: 6rem;
     @include media-breakpoint-down(sm){
-        padding-top: 0.19rem;
+        padding-top: 4.19rem;
+        padding-bottom: 2.5rem;
     }
 }

@@ -75,7 +75,10 @@
             }
             .post-user-actions{
                 margin-bottom: 1rem;
-                align-self: flex-end;
+                align-self: self-start;
+                @include media-breakpoint-down(sm){
+                    align-self: stretch !important;
+                }
                 button{
                     display: flex;
                     justify-content: space-between;
@@ -87,7 +90,7 @@
                         margin-right: 1rem;
                     }
                     @include media-breakpoint-down(sm) {
-                        font-size: 0.5rem !important;
+                        font-size: 0.67rem !important;
                         height: calc(0.9rem + 0.5rem + 2px) !important;
                     }
                     img{
@@ -173,6 +176,14 @@
             video{
                 max-width: 100%;
                 height: auto;
+            }
+            .img-document{
+                min-height: 13rem;
+                max-height: 13rem;
+                @include media-breakpoint-down(sm){
+                    min-height: 6.5rem;
+                    max-height: 6.5rem;
+                }
             }
         }
         .post-data{
@@ -432,10 +443,13 @@
             transform: translateY(0.6rem);
             margin-bottom: 0.3rem;
         }
-        .line{
-            :before{
-                content: '';
-                border-top: 2px solid $fourth-color !important;
+        .content-line{
+            margin-left: 2.39rem;
+            .line{
+                :before{
+                    content: '';
+                    border-top: 2px solid $fourth-color !important;
+                }
             }
         }
     }

@@ -7,7 +7,7 @@
             <h3><a :href="`/${user.username}/Channel/Activity`" :class="'text-white font-weight-bold pt-2 mr-3 active'">Channel</a></h3>
             <h3><a :href="`/${user.username}/Profile`" class="c-fourth font-weight-bold">About</a></h3>
         </div>
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row" v-if="user.profile_information.about_you">
             <p class="text-white p-3">
                 {{ user.profile_information ? user.profile_information.about_you : '' }}
             </p>

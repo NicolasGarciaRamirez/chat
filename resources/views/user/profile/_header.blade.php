@@ -9,8 +9,10 @@
         <a href="/{{ $user->username }}/Profile" class="text-white font-weight-bold active">About</a>
     </h3>
 </div>
-<div class="d-flex flex-row">
-    <p class="text-white p-3">
-        {{ $user->profile_information ?  $user->profile_information->about_you : ''}}
-    </p>
-</div>
+@if($user->profile_information->about_you )
+    <div class="d-flex flex-row">
+        <p class="text-white p-3">
+            {{ $user->profile_information ?  $user->profile_information->about_you : ''}}
+        </p>
+    </div>
+@endif

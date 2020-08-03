@@ -2,7 +2,7 @@
     <div class="comment">
         <div class="d-flex flex-column">
             <text-comment :comment="comment" :view_reply="true" ref="Comment"/>
-            <p class="cursor-pointer mt-2 d-flex align-items-end" style="margin-left: 1.9rem;" @click="view_reply ? view_reply = false : view_reply = true" v-if="comment.comments.length > 0">&nbsp;
+            <p class="cursor-pointer mt-2 d-flex align-items-end content-line" @click="view_reply ? view_reply = false : view_reply = true" v-if="comment.comments.length > 0">&nbsp;
                 <label class="line w-25 mx-2"></label>
                 {{ view_reply ? 'Hide Replies' :  'View Replies' }} ({{ comment.comments.length }})
             </p>

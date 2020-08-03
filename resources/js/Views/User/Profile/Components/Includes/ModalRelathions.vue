@@ -34,7 +34,6 @@
                                 <single-following :class="index % 2 === 0 ? 'bg-primary':''" v-for="(user ,index) in array" :key="index" :user="user" :type_table="'following'" v-if="array.length > 0 && type_table === 'following'" />
                             </table>
                         </div>
-                        </div>
                     </div>
                 </div>
             </div>

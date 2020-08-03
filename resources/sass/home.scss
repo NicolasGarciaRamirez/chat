@@ -40,7 +40,6 @@
         }
         .post-footer{
             margin-top: 2px;
-            height: 40px;
             img{
                 width: 1.8rem;
                 cursor: pointer;
@@ -53,6 +52,13 @@
             }
             .img-upload{
                 margin: 0.5rem;
+                svg{
+                    &:hover{
+                        path{
+                            fill: white !important;
+                        }
+                    }
+                }
                 input{
                     display: none;
                 }
@@ -69,9 +75,8 @@
                 display: block;
                 text-decoration: none;
                 &:hover{
-                    color: $fourth-color;
+                    color: white !important;
                 }
-
                 span{
                     font-size: 1.4rem;
                     @include media-breakpoint-down(sm){

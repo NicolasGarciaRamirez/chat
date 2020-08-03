@@ -10,7 +10,6 @@
         </td>
         <td class="mx-3" :id="`btnFollow`+user.id">
             <button type="button"  class="align-items-right follow-following-active" @click="storeUnFollow" :disable="disable">
-
                 <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem">
                     <g id="Layer_2">
@@ -22,8 +21,8 @@
                 </svg>
             </button>
         </td>
-        <td><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>
-        <td class="font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>
+<!--        <td><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>-->
+<!--        <td class="font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>-->
     </tr>
 </template>
 

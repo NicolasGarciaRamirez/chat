@@ -1,7 +1,7 @@
 <template >
     <section class="post" v-if="view_post" @click="storeView">
         <div class="post-head bg-primary p-3">
-            <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2 order-sm-1">
+            <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
                     <button type="button" class="bg-primary align-items-right border-white follow-idle">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}
@@ -55,8 +55,10 @@
 <!--                    </div>-->
                 </div>
             </div>
-            <div class="d-flex align-items-start order-xl-1 order-md-1 order-sm-2">
-                <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-circle">
+            <div class="d-flex align-items-start order-xl-1 order-md-1">
+                <a :href="`/${post.user.username}/Profile`">
+                    <img :src="`${post.user.avatar}`" alt="" class="post-user-image rounded-circle">
+                </a>
                 <div class="d-flex flex-column content-head">
                     <a :href="`/${post.user.username}/Profile`" class="text-white post-user-name">{{ post.user.profile_information && post.user.profile_information.artistic_name != null ? post.user.profile_information.artistic_name : post.user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon" v-if="post.user.verification_date"></a>
                     <div class="d-flex align-items-center post-user-type mt-2">
@@ -108,17 +110,17 @@
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
                     </div>
                     <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
+                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
                     </a>
                     <div v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"   style="min-height: 13rem; max-height: 13rem;">
+                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
                     </div>
                     <div class="my-3" v-if="post.replace_caption">
                         <a :href="`${post.resource}`" class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
                             <h4>{{ post.replace_caption }}</h4>
                         </a>
                         <h4 class="font-weight-bold" v-if="resource_extension !== 'pdf'">{{ post.replace_caption }}</h4>
-                        <span class="mb-3" v-if="!edit">
+                        <span class="mb-3" v-if="!edit || description != ''">
                             <span v-if="showMore">{{description}}</span>
                             <span v-if="!showMore">{{descriptionLess}}</span>
                             <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description != '' && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
@@ -139,8 +141,8 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-row justify-content-between align-items-center post-user-actions pb-3 d-block d-xl-none d-md-none">
-                 <button class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalSupport">SUPPORT
+            <div class="d-flex flex-row justify-content-between align-items-center post-user-actions pb-3 d-block d-xl-none d-md-none" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username">
+                <button class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalSupport">SUPPORT
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
