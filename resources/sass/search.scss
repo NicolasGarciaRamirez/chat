@@ -1,8 +1,15 @@
 .search{
-    transform: translate(-19rem, 1.6rem);
     padding: 1rem;
     position: absolute;
     width: 24.5rem;
+    left: 0; //no me aucuerdo si va centrado o a un lado
+    a{
+        text-decoration: none;
+        cursor: pointer;
+        &:hover, &:focus, &:visited{
+            background-color: initial !important;
+        }
+    }
     @include media-breakpoint-up(md){
         max-height: 40rem;
         overflow-y: auto;
@@ -30,39 +37,37 @@
             }
         }
     }
-    .header-form-search{
-        .form-group{
-            .input-group{
-                align-items: center;
-                width: 100%;
-                justify-content: flex-end;
-                input.form-control ,textarea.form-control{
-                    border-radius: 30px;
-                    background-color: black;
+}
+.header-form-search{
+    .form-group{
+        .input-group{
+            align-items: center;
+            width: 100%;
+            justify-content: flex-end;
+            input.form-control ,textarea.form-control{
+                border-radius: 30px;
+                background-color: black;
+                color: white;
+                border: 1px solid $third-color;
+                padding: 1rem;
+                caret-color: $fifth-color;
+                &::placeholder{
+                    color: $fourth-color;
+                }
+                &:focus{
+                    background-color: $third-color;
                     color: white;
-                    border: 1px solid $third-color;
-                    padding: 1rem;
-                    caret-color: $fifth-color;
-                    &::placeholder{
-                        color: $fourth-color;
-                    }
-                    &:focus{
-                        background-color: $third-color;
-                        color: white;
-                        border: 0;
-                    }
+                    border: 0;
                 }
-                .divider-vertical{
-                    border-right: 2px solid $third-color;
-                    height: 1.5rem;
-                    position: absolute;
-                    transform: translate(-2.5rem, 0rem);
-                }
-                svg{
-                    transform: translateX(-1rem);
-                }
-
-
+            }
+            .divider-vertical{
+                border-right: 2px solid $third-color;
+                height: 1.5rem;
+                position: absolute;
+                transform: translate(-2.5rem, 0rem);
+            }
+            svg{
+                transform: translateX(-1rem);
             }
         }
     }
