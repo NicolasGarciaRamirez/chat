@@ -1,6 +1,6 @@
 <template>
     <section>
-        <form @submit.prevent="store" enctype="multipart/form-data" class="d-block">
+        <form @submit.prevent="store" enctype="multipart/form-data" :class="route_name === 'http://localhost:8000/Form' ? 'd-block':'d-block d-sm-down-none'">
             <div class="form-group post-form">
                 <div class="bg-primary">
                     <textarea
@@ -15,7 +15,7 @@
                         <video :src="`${imageData}`" controls   class="preview" v-if="post.resource_type === 'video'" />
                         <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3" v-if="post.resource_type === 'audio'" />
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-docs p-3" v-if="post.resource_type === 'docs'">
-                        <i class="fas fa-times cursor-pointer" @click="deleteImage"></i>
+                        <i class="fas fa-times cursor-pointer position-absolute" @click="deleteImage"></i>
                     </div>
                 </div>
                 <div class="bg-primary post-footer d-flex justify-content-between align-items-center pr-3">
@@ -156,7 +156,7 @@
                 </div>
             </div>
         </form>
-        <posts :posts="order_post" ref="posts"/>
+        <posts :posts="order_post" ref="posts" />
         <modal-live-stream></modal-live-stream>
         <modal-mobile/>
         <modal-alert :user="auth"></modal-alert>
@@ -184,6 +184,7 @@
         },
         data(){
             return {
+                route_name: window.location.href,
                 accept_redirect: false,
                 option: {
                     textColor: 'white',

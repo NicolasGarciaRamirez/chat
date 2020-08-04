@@ -11,14 +11,18 @@
                     </div>
                     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionProfile" >
                         <div class="card-body  bg-black">
-                            <div class="row text-justify">
+                            <div class="row text-justify profile-type">
                                 <div class="col-md-6">
-                                    <input type="radio" id="personProject" value="A Person or A Project" v-model="profile_information.profile_type" required>
-                                    <label><span>A person or A Project</span></label>
+                                    <input type="radio" id="personProject" value="A Person or A Project"  v-model="profile_information.profile_type" required>
+                                    <label for="personProject">
+                                        <span>A person or A Project</span>
+                                    </label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="radio" id="aBand" value="A Band" v-model="profile_information.profile_type" required>
-                                    <label><span>A Band</span></label>
+                                    <input type="radio" id="aBand" value="A Band" v-model="profile_information.profile_type"  required>
+                                    <label for="aBand">
+                                        <span>A Band</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>

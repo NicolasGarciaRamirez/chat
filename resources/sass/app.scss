@@ -20,6 +20,7 @@
 @import "extras";
 @import "home";
 @import "view-profile";
+@import "search";
 @import "playlist";
 @import "pace";
 
@@ -29,4 +30,12 @@
 
 .c-app{
     color: white;
+}
+
+.c-main{
+    padding-top: 6rem;
+    @include media-breakpoint-down(sm){
+        padding-top: 4.19rem;
+        padding-bottom: 2.5rem;
+    }
 }

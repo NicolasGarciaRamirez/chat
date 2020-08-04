@@ -16,7 +16,7 @@
     <!--[if !mso]><!-->
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <!--<![endif]-->
-    <title></title>
+    <title>Noisesharks</title>
     <!--[if !mso]><!-->
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans&amp;display=swap" rel="stylesheet" type="text/css"/>
     <!--<![endif]-->

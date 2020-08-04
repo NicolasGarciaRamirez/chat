@@ -3,7 +3,6 @@
         <ul v-for="(genre, index) in genres" :key="index">
             <li>{{ genre }}</li>
         </ul>
-
     </section>
 </template>
 

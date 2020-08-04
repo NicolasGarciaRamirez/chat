@@ -20,6 +20,9 @@ Route::get('/prelaunch', function () {
 Route::name('prelaunch')->post('/join', 'LandingController@store');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/Form', 'HomeController@index')->name('formPost');
+Route::get('/Search', 'HomeController@searchView')->name('search');
+Route::post('/Search', 'HomeController@search');
 Route::get('/login', 'HomeController@login')->name('loginmodal');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
@@ -52,6 +55,7 @@ Route::post('/Suggestions/Save', 'Extras\SuggestionsController@save')->name('sug
 Route::group(['prefix' => '/Post'], function () {
     Route::name('post.show')->get('/{token}', 'HomeController@showPost');
 });
+
 Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.edit.image.profle')->post('/Edit/Image/{username}/{type}', 'User\UserController@updateImage');
     Route::name('profile.edit.user.settings')->get('/Settings/{username}', 'User\UserController@accountSettings');

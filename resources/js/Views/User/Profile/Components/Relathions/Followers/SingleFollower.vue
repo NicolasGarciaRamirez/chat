@@ -21,8 +21,8 @@
                 </svg>
             </button>
         </td>
-        <td ><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>
-        <td class=" font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>
+<!--        <td ><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>-->
+<!--        <td class=" font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>-->
     </tr>
 </template>
 

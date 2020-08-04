@@ -230,6 +230,9 @@ textarea{
     svg{
         width: 1rem;
         margin-left: 0.3rem;
+        @include media-breakpoint-down(sm){
+            width: 0.78rem !important;
+        }
         path{
             fill: white !important;
         }
@@ -251,8 +254,6 @@ textarea{
         background-color: $fifth-color !important;
         color: white !important;
         svg{
-            //width: 1rem !important;
-            //margin-left: 0.3rem !important;
             path{
                 fill: white !important;
             }
@@ -261,13 +262,17 @@ textarea{
 }
 
 .follow-idle{
-    background: $primary-color !important;
+    //background: $primary-color !important;
     border: 2px solid white !important;
     color: white !important;
     svg{
         width: 1rem !important;
         margin-left: 0.3rem !important;
+        @include media-breakpoint-down(sm){
+            width: 0.78rem !important;
+        }
         path{
+            stroke-width: 6rem !important;
             stroke: white !important;
             fill: $primary-color !important;
         }

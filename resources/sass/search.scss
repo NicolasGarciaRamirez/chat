@@ -1,0 +1,88 @@
+.search{
+    padding: 1rem;
+    position: absolute;
+    width: 24.5rem;
+    left: 0; //no me aucuerdo si va centrado o a un lado
+    a{
+        text-decoration: none;
+        cursor: pointer;
+        &:hover, &:focus, &:visited{
+            background-color: initial !important;
+        }
+    }
+    @include media-breakpoint-up(md){
+        max-height: 40rem;
+        overflow-y: auto;
+    }
+    @include media-breakpoint-down(sm){
+        transform: none !important;
+        position: relative;
+        width: 100%;
+        padding: 0;
+        font-size: 0.64rem;
+    }
+    .img-profile-search{
+        width: 2.2rem !important;
+    }
+    .content-info-search{
+        display: flex;
+        flex-direction: row;
+        font-size: 0.8rem;
+        @include media-breakpoint-down(sm){
+            span{
+                font-size: 0.64rem !important;
+            }
+            svg{
+                width: 8rem;
+            }
+        }
+    }
+}
+.header-form-search{
+    .form-group{
+        .input-group{
+            align-items: center;
+            width: 100%;
+            justify-content: flex-end;
+            input.form-control ,textarea.form-control{
+                border-radius: 30px;
+                background-color: black;
+                color: white;
+                border: 1px solid $third-color;
+                padding: 1rem;
+                caret-color: $fifth-color;
+                &::placeholder{
+                    color: $fourth-color;
+                }
+                &:focus{
+                    background-color: $third-color;
+                    color: white;
+                    border: 0;
+                }
+            }
+            .divider-vertical{
+                border-right: 2px solid $third-color;
+                height: 1.5rem;
+                position: absolute;
+                transform: translate(-2.5rem, 0rem);
+            }
+            svg{
+                transform: translateX(-1rem);
+            }
+        }
+    }
+}
+.search::-webkit-scrollbar{
+    width: 8px ;
+}
+.search::-webkit-scrollbar-thumb {
+    background: $fourth-color;
+    border-radius: 4px;
+}
+.search::-webkit-scrollbar-thumb:hover {
+    background: $fourth-color;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.search::-webkit-scrollbar-thumb:active {
+    background-color: $fourth-color;
+}

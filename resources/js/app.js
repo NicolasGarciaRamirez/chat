@@ -24,11 +24,15 @@ Vue.use(VeeValidate);
 import VueWaveSurfer from 'vue-wave-surfer'
 Vue.use(VueWaveSurfer)
 
+import vClickOutside from 'v-click-outside';
+Vue.use(vClickOutside);
+
 // import VueSocialSharing from 'vue-social-sharing'
 // Vue.use(VueSocialSharing);
 
 import AppHeader from './Views/Templates/Views/Header'
 import AppNav from './Views/Templates/Views/Nav'
+import AppFooter from './Views/Templates/Views/NavFooter'
 
 import Login from "./Views/Auth/Components/Login";
 import Register from "./Views/Auth/Views/Register";
@@ -37,6 +41,7 @@ import ValidateLogin from "./Views/Auth/Components/ValidateLogin";
 
 import Home from './Views/Home/Views'
 import Post from './Views/Posts/Components/SinglePost'
+import Search from "./Views/Search/Views/Search";
 
 import ChannelEdit from "./Views/User/Channel/Views/ChannelEdit";
 import ChannelActivity from "./Views/User/Channel/Components/Activities/ChannelActivity";
@@ -65,11 +70,13 @@ new Vue({
     components:{
         AppHeader,
         AppNav,
+        AppFooter,
         Login,
         Register,
         RegisterIndex,
         Home,
         Post,
+        Search,
         ChannelActivity,
         ChannelPlaylist,
         ChannelEdit,

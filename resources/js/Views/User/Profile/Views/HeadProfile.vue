@@ -33,7 +33,7 @@
                     <a href="#" class="btn bg-white c-fifth d-flex align-items-center font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
                 </div>
             </div>
-            <div class="dropdown-menu bg-primary text-white" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit` || route_name == `/${auth.username}/Channel/Edit`">
+            <div class="dropdown-menu bg-primary text-white pl-2" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit` || route_name == `/${auth.username}/Channel/Edit`">
 <!--                <a href="#" class="dropdown-item">View Image</a>-->
 <!--                <a href="#" class="dropdown-item">Edit Crop</a>-->
                 <label class="dropdown-item" for="change-image" @click="type_change_image = 'Profile'">
@@ -42,7 +42,7 @@
             </div>
             <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
-        <div class="head-container align-items-start mt-lg-1 px-3">
+        <div class="head-container align-items-start mt-1 px-3">
             <div class="text-right order-lg-2 functions" v-if="auth.token == user.token">
                 <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
                 <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">Share Profile <i class="cil-share  ml-2"></i></a>
@@ -50,7 +50,7 @@
             </div>
             <div class="order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
                 <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">
-                <img src="/images/icons/post-up.svg" alt="post-up" class="svg-icon cursor-pointer mx-lg-3">
+                <img src="/images/icons/post-share.svg" alt="post-up" class="svg-icon cursor-pointer mx-lg-3">
                 <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
                     <button type="button" class="bg-primary align-items-right border-white function ">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
@@ -83,7 +83,7 @@
                         C712.678,191.25,719.032,191.833,725.56,192.275"/>
                     </svg>
                 </button>
-                <i class="fas fa-ellipsis-h c-third fa-2x mr-1 cursor-pointer"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <i class="fas fa-ellipsis-h c-third fa-2x mx-1 cursor-pointer"  id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdown">
                     <div class="dropdown-item cursor-pointer" >Copy Profile Link</div>
                     <a href="mailto:support@noisesahrks.com" class="dropdown-item">Report</a>

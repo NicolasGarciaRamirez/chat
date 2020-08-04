@@ -147,7 +147,7 @@ class UserController extends Controller
         \DB::beginTransaction();
 
         try {
-            $this->user->update($request->all());
+            $this->user->update(\Arr::except($request->all(), ['artistic_name']));
             \DB::commit();
             $this->user->notify(new PasswordChangedSuccessfully($this->user->personal_information->full_name));
 
