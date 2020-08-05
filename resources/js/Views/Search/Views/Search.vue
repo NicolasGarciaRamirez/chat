@@ -38,9 +38,9 @@
                 <div class="d-flex flex-column ml-2">
                     <span class="font-weight-bold text-white">{{user.artistic_name}}</span>
                     <div class="content-info-search">
-                        <span class="bg-fifth text-white p-1 font-weight-bold mr-2">Rap</span>
+                        <span class="bg-fifth text-white p-1 font-weight-bold mr-2">{{user.profile_information.title}}</span>
                         <!--EL BOTON CONTRIBUTOR SOLO SE MUESTRA CUANDO EL USUARIO ES CONTRIBUTOR -->
-                        <span class="bg-white c-fifth p-1 font-weight-bold d-flex align-items-center">CONTRIBUTOR<img src="/images/icons/music-red.svg" width="14rem" class="ml-1"></span>
+                        <span class="bg-white c-fifth p-1 font-weight-bold d-flex align-items-center" v-if="user.subscription_type === 'CONTRIBUTOR'">CONTRIBUTOR<img src="/images/icons/music-red.svg" width="14rem" class="ml-1"></span>
                     </div>
                 </div>
             </a>
