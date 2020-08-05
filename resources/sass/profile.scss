@@ -12,6 +12,7 @@
             border: 2px solid white;
             position: absolute;
             transform: translate(61.1rem, -3.5rem);
+            box-shadow: 2px 2px 2px $third-color;
             label{
                 text-shadow: 2px 2px 2px $third-color;
             }
@@ -30,6 +31,7 @@
             &:hover{
                 background: white;
                 color: black !important;
+                text-shadow: none;
                 i{
                     color: black;
                 }
@@ -38,6 +40,7 @@
                 border: $fifth-color !important;
                 background: $fifth-color !important;
                 color: white !important;
+                text-shadow: none;
                 i{
                     color: white;
                 }
@@ -48,6 +51,7 @@
             border: 2px solid white;
             position: absolute;
             text-shadow: 2px 2px 2px $third-color;
+            box-shadow: 2px 2px 2px $third-color;
             @include media-breakpoint-only(md){
                 width: 5rem !important;
                 font-size: 0.41rem !important;
@@ -61,6 +65,7 @@
         .follow-movile-button{
             z-index: 1000;
             position: absolute;
+            box-shadow: 2px 2px 2px $third-color;
             text-shadow: 2px 2px 2px $third-color;
             @include media-breakpoint-only(md){
                 width: 5rem !important;
@@ -197,6 +202,10 @@
             img{
                 width: 0.69rem !important;
             }
+        }
+        span{
+            padding: 0.2rem;
+            font-size: 0.79rem;
         }
     }
     .content-personal-details{
@@ -546,6 +555,9 @@
         .btn-social-media{
             @include media-breakpoint-up(md){
                 width: 35%;
+            }
+            @include media-breakpoint-down(sm){
+                width: 100% !important;
             }
             &.bg-white{
                 &:hover{

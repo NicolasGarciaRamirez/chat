@@ -2,29 +2,31 @@
 
 @section('content')
     <div class="about">
-        <div class="d-flex flex-column justify-content-start font-weight-bold p-5">
-            <div>
-                <h1 class="font-weight-bold text-white font-5xl">
-                    About us... you... and the passion
-                    that we call music!
-                </h1>
-            </div>
-            <div class="d-flex flex-column my-5">
+        <div class="d-flex flex-column justify-content-start font-weight-bold">
+            <div class="d-flex flex-column c-head p-5">
                 <div>
-                    Noisesharks® is a social platform and content hub
+                    <h1 class="font-weight-bold text-white">
+                        About us... you... and the passion
+                        that we call music!
+                    </h1>
                 </div>
-                <div>
-                    where <span class="c-fifth">musicians</span> & <span class="c-fifth">music content creators</span> share their content
+                <div class="d-flex flex-column my-4 content">
+                    <span>
+                        Noisesharks® is a social platform and content hub
+                    </span>
+                    <span class="my-1">
+                        where <span class="c-fifth">musicians</span> & <span class="c-fifth">music content creators</span> share their content
+                    </span>
+                    <span>
+                        and get financially supported by each other or by their fans.
+                    </span>
                 </div>
-                <div>
-                    and get financially supported by each other or by their fans.
+                <div class="d-flex justify-content-center align-items-center">
+                    {{--                <img src="/images/help-head.svg" class="position-absolute" style="z-index: -1;">--}}
+                    <img src="/images/icons/sharks.svg" class="sharks">
                 </div>
             </div>
-            <div class="d-flex justify-content-center align-items-center">
-{{--                <img src="/images/help-head.svg" class="position-absolute" style="z-index: -1;">--}}
-                <img src="/images/icons/sharks.svg" class="sharks">
-            </div>
-            <div class="d-flex flex-column justify-content-start my-5">
+            <div class="d-flex flex-column justify-content-start  pl-5 py-5 pr-3">
                 <img src="/images/about/arte-noisesharks.svg" class="arte position-absolute" width="1rem">
                 <h1 class="font-weight-bold text-white font-5xl title position-relative"><span>Who Is Noisesharks® For?</span></h1>
                 <div class="position-relative"><span class="c-fifth">-</span> Bands & Artists that want to get supported directly by their fans and get discovered by more.</div>
@@ -34,14 +36,14 @@
                 <div class="position-relative"><span class="c-fifth">-</span> Home musicians that jam to an audience.</div>
                 <div class="my-2 position-relative"><span class="c-fifth">-</span> Music industry podcast channels.</div>
             </div>
-            <div class="d-flex flex-column justify-content-start my-5">
+            <div class="d-flex flex-column justify-content-start  pl-5 py-5 pr-3">
                 <img src="/images/about/arte-dope.svg" class="arte position-absolute" width="1rem">
                 <h1 class="font-weight-bold text-white font-5xl title position-relative"><span>Dope Features!</span></h1>
                 <div class="position-relative"><span class="c-fifth">-</span> You DON’T need to rely on followers on Noisesharks, our “Stream Filters” allows your posts and content to be seen by users with that specific interest!</div>
                 <div class="my-2 position-relative"><span class="c-fifth">-</span>  We use an Up-vote/Down-vote system in posts which will force the best content to be viewed by more users.</div>
                 <div><span class="c-fifth">-</span> You can switch between paymant plans on the fly as a Contributor.</div>
             </div>
-            <div class="d-flex flex-column justify-content-start my-5">
+            <div class="d-flex flex-column justify-content-start  pl-5 py-5 pr-3">
                 <img src="/images/about/arte-creative.svg" class="arte position-absolute" width="1rem">
                 <h1 class="font-weight-bold text-white font-5xl title position-relative"><span>Creative Ways To Use Noisesharks</span></h1>
                 <div class="position-relative"><span class="c-fifth">-</span> Stream a live jam to your fans, interact with them and take song requests! Posting pre-recorded jam videos also works!</div>
@@ -53,14 +55,14 @@
                 <div class="my-2"><span class="c-fifth">-</span> Create your own podcast, lock some episodes, or segments of your episodes making them available only for your supporters!</div>
 
             </div>
-            <div class="d-flex flex-column justify-content-start my-5">
+            <div class="d-flex flex-column justify-content-start  pl-5 py-5 pr-3">
                 <img src="/images/about/arte-goal.svg" class="arte position-absolute" width="1rem">
                 <h1 class="font-weight-bold text-white font-5xl title position-relative"><span>Our Goal!</span></h1>
                 <div class=" position-relative"><span class="c-fifth">-</span>Providing financial freedom for musicians & music content creators through
                     their passion.</div>
 
             </div>
-            <div class="d-flex flex-column justify-content-start my-5">
+            <div class="d-flex flex-column justify-content-start  pl-5 py-5 pr-3">
                 <img src="/images/about/arte-mission.svg" class="arte position-absolute" width="1rem">
                 <h1 class="font-weight-bold text-white font-5xl title position-relative"><span>Our Mission!</span></h1>
                 <div class="position-relative"><span class="c-fifth">-</span> Crafting a platform that celebrates musicians, music content creators,  and the wholemusic industry in a single place!</div>

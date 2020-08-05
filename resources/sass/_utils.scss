@@ -229,7 +229,7 @@ textarea{
     color: white !important;
     svg{
         width: 1rem;
-        margin-left: 0.3rem;
+        margin-left: 0.3rem !important;
         @include media-breakpoint-down(sm){
             width: 0.78rem !important;
         }
@@ -341,8 +341,16 @@ textarea{
 }
 
 .line{
-    border-top: 2px solid $fourth-color;
-    width: 5rem !important;
+    border-top: 2px solid $fourth-color ;
+    width: 5rem ;
+    &:hover{
+        border-top: 2px solid white ;
+        width: 5rem ;
+    }
+    &:active{
+        border-top: 2px solid white ;
+        width: 5rem ;
+    }
 }
 
 .cropper{

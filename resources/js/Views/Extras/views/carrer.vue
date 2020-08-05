@@ -9,30 +9,30 @@
             <img src="/images/icons/sharks.svg" class="sharks text-center">
             <br>
             <div>
-                <div class="text-center my-5">
+                <div class="text-center mt-5">
                     <h2 class="font-weight-bold">What we're currently looking for</h2><br>
                 </div>
             </div>
             <div class="box">
-                <div class="text-center box-shadow p-2">
+                <div class="text-center box-shadow p-2 mx-auto">
                     <div class="card-body">
                         <img src="/images/icons/laptop.svg" alt="" class="icon"><br><br>
                         <p class="font-weight-bold">Web Development</p><br>
-                        <button class="btn rounded-pill bg-fifth text-white" @click="alert()">Learn More</button>
+                        <button class="btn rounded-pill bg-fifth text-white font-weight-bold" @click="alert()">Learn More</button>
                     </div>
                 </div>
-                <div class="text-center box-shadow p-2">
+                <div class="text-center box-shadow p-2 mx-auto">
                     <div class="card-body">
                         <img src="/images/icons/design.svg" alt="" class="icon"><br><br>
                         <p class="font-weight-bold">UI/IX Design</p><br>
-                        <button class="btn rounded-pill bg-fifth text-white" @click="alert()">Learn More</button>
+                        <button class="btn rounded-pill bg-fifth text-white font-weight-bold" @click="alert()">Learn More</button>
                     </div>
                 </div>
-                <div class="text-center box-shadow p-2">
+                <div class="text-center box-shadow p-2 mx-auto">
                     <div class="card-body">
                         <img src="/images/icons/megaphone.svg" alt="" class="icon"><br><br>
                         <p class="font-weight-bold">Marketing</p><br>
-                        <button type="button" class="btn rounded-pill bg-fifth text-white" @click="alert()" >Learn More</button>
+                        <button type="button" class="btn rounded-pill bg-fifth text-white font-weight-bold" @click="alert()" >Learn More</button>
                     </div>
                 </div>
             </div>

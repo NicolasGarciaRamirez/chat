@@ -446,15 +446,44 @@
         .comment-footer{
             transform: translateY(0.6rem);
             margin-bottom: 0.3rem;
+            span{
+                &:hover{
+                    color: white;
+                }
+                &:active{
+                    color: white;
+                }
+            }
         }
         .content-line{
             margin-left: 2.39rem;
             .line{
-                :before{
-                    content: '';
-                    border-top: 2px solid $fourth-color !important;
+                border-top: 2px solid $third-color !important;
+                width: 5rem !important;
+            }
+            &:hover{
+                color: white;
+                .line{
+                    border-top: 2px solid white !important;
+                    width: 5rem !important;
                 }
             }
+            &:active{
+                color: white;
+                .line{
+                    border-top: 2px solid white !important;
+                    width: 5rem !important;
+                }
+            }
+
+        }
+    }
+    .hide-comments{
+        &:hover{
+            color: white;
+        }
+        &:active{
+            color: white;
         }
     }
 }

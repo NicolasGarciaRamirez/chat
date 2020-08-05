@@ -11,16 +11,15 @@
                             <i class="fas fa-angle-up float-right"></i>
                         </h2>
                     </div>
-                    <div id="collapseOne" class="collapse"
-                    aria-labelledby="headingOne" data-parent="#accordionAccountSettings">
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
-                            <div class="c-fourth flex-column mx-5">
-                                <div><label>Accont Type :</label><b class="c-fifth font-weight-bold">{{user.subscription_type}}</b></div>
-                                <div><label>Joined :</label><b class="text-white">{{ user.created_at }}</b></div>
-                                <div><label>Email :</label><b class="text-white">{{ user.email }}</b></div>
+                            <div class="c-fourth flex-column d-flex justify-content-center mx-lg-5">
+                                <div><label>Accont Type: </label><b class="c-fifth font-weight-bold mx-1">{{user.subscription_type}}</b></div>
+                                <div><label>Joined: </label><b class="text-white mx-1">{{ user.created_at }}</b></div>
+                                <div><label>Email: </label><b class="text-white mx-1">{{ user.email }}</b></div>
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <button @click="showModalEditAccount" class="border-white font-weight-bold action">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                            <div class="d-flex justify-content-center my-2">
+                                <button @click="showModalEditAccount" class="border-white font-weight-bold action text-white">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
@@ -35,14 +34,14 @@
                     </div>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
-                            <div class="c-fourth flex-column mx-5">
-                                <div><label>Name :</label><label class="text-white">{{ user.personal_information.full_name }}</label></div>
-                                <div><label>Date of birth :</label><label class="text-white">{{ user.personal_information.date_of_birth }}</label></div>
-                                <div><label>Gender :</label><label class="text-white">{{ user.personal_information.gender }}</label></div>
-                                <div><label>Location :</label><label class="text-white">{{ user.personal_information.location }}</label></div>
+                            <div class="c-fourth d-flex flex-column mx-lg-5">
+                                <div><label>Name: </label><label class="text-white mx-1">{{ user.personal_information.full_name }}</label></div>
+                                <div><label>Date of birth: </label><label class="text-white mx-1">{{ user.personal_information.date_of_birth }}</label></div>
+                                <div><label>Gender: </label><label class="text-white mx-1">{{ user.personal_information.gender }}</label></div>
+                                <div><label>Location: </label><label class="text-white mx-1">{{ user.personal_information.location }}</label></div>
                             </div>
-                            <div class="d-flex justify-content-center">
-                                <button @click="showModalEditPersonalDetails" class="border-white font-weight-bold action">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                            <div class="d-flex justify-content-center my-2">
+                                <button @click="showModalEditPersonalDetails" class="border-white font-weight-bold text-white action">Edit <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
