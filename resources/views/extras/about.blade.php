@@ -21,6 +21,7 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center align-items-center">
+{{--                <img src="/images/help-head.svg" class="position-absolute" style="z-index: -1;">--}}
                 <img src="/images/icons/sharks.svg" class="sharks">
             </div>
             <div class="d-flex flex-column justify-content-start my-5">
@@ -36,7 +37,7 @@
             <div class="d-flex flex-column justify-content-start my-5">
                 <img src="/images/about/arte-dope.svg" class="arte position-absolute" width="1rem">
                 <h1 class="font-weight-bold text-white font-5xl title position-relative"><span>Dope Features!</span></h1>
-                <div class="position-relative\"><span class="c-fifth">-</span> You DON’T need to rely on followers on Noisesharks, our “Stream Filters” allows your posts and content to be seen by users with that specific interest!</div>
+                <div class="position-relative"><span class="c-fifth">-</span> You DON’T need to rely on followers on Noisesharks, our “Stream Filters” allows your posts and content to be seen by users with that specific interest!</div>
                 <div class="my-2 position-relative"><span class="c-fifth">-</span>  We use an Up-vote/Down-vote system in posts which will force the best content to be viewed by more users.</div>
                 <div><span class="c-fifth">-</span> You can switch between paymant plans on the fly as a Contributor.</div>
             </div>

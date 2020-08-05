@@ -13,19 +13,20 @@
                                 <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
                             </form>
                             <span v-if="!edit">{{ comment.body }}</span>
+                            <i class="fas fa-ellipsis-h c-third fa-1x m-2"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform: rotate(90deg);"></i>
+                            <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
+                                <div v-if="comment.user.username == auth.username">
+                                    <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
+                                    <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
+                                </div>
+                                <div v-else>
+                                    <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
+                                    <a href="#" class="dropdown-item cursor-pointer">Hidden</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <i class="fas fa-ellipsis-h c-third fa-1x m-2"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
-                        <div v-if="comment.user.username == auth.username">
-                            <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
-                            <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
-                        </div>
-                        <div v-else>
-                            <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
-                            <a href="#" class="dropdown-item cursor-pointer">Hidden</a>
-                        </div>
-                    </div>
+
                 </div>
                 <div :id="`litComment`+comment.id" class="cursor-pointer" @click="disable_like ? '' : storeLike(like_type)">
                     <img src="/images/icons/post-flame.svg" alt="flame-red" class="cursor-pointer float-right" height="20">

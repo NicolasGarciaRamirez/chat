@@ -2,7 +2,12 @@
     padding: 1rem;
     position: absolute;
     width: 24.5rem;
-    left: 0; //no me aucuerdo si va centrado o a un lado
+    -webkit-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 7.5px 15px 5px rgba(0,0,0,0.75);
+    @include media-breakpoint-up(md){
+        left: -1.8rem;
+    }
     a{
         text-decoration: none;
         cursor: pointer;
@@ -22,12 +27,12 @@
         font-size: 0.64rem;
     }
     .img-profile-search{
-        width: 2.2rem !important;
+        width: 2.9rem !important;
     }
     .content-info-search{
         display: flex;
         flex-direction: row;
-        font-size: 0.8rem;
+        font-size: 0.67rem;
         @include media-breakpoint-down(sm){
             span{
                 font-size: 0.64rem !important;
@@ -46,9 +51,9 @@
             justify-content: flex-end;
             input.form-control ,textarea.form-control{
                 border-radius: 30px;
-                background-color: black;
                 color: white;
-                border: 1px solid $third-color;
+                background: $primary-color;
+                border: 2px solid $fourth-color;
                 padding: 1rem;
                 caret-color: $fifth-color;
                 &::placeholder{
@@ -64,10 +69,10 @@
                 border-right: 2px solid $third-color;
                 height: 1.5rem;
                 position: absolute;
-                transform: translate(-2.5rem, 0rem);
+                transform: translate(-3.7rem, 0rem);
             }
             svg{
-                transform: translateX(-1rem);
+                transform: translateX(-2.23rem);
             }
         }
     }

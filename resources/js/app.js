@@ -63,6 +63,8 @@ import ProfileSocialMedia from "./Views/User/Profile/Views/SocialMedia";
 import ModalContributorSignup from "./Views/Auth/Components/ModalContributorSignup";
 import ModalContributor from "./Views/CommingSoon/Components/ModalContributor";
 import ModalSharePost from "./Views/Posts/Components/ModalSharePost";
+
+import Carrer from "./Views/Extras/views/carrer"
 import Test from "./Views/User/Test";
 
 new Vue({
@@ -95,6 +97,7 @@ new Vue({
         ValidateLogin,
         PasswordReset,
         Playlist,
+        Carrer,
         Test,
     }
 });

@@ -154,13 +154,11 @@
             font-size: 0.5rem;
         }
         &:hover{
-            padding: 10px 20px;
             border-radius: 30px;
             color: white !important;
             border: 2px solid white;
         }
         &:active{
-            padding: 10px 20px;
             border-radius: 30px;
             color: white;
             border: 2px solid  $fifth-color !important;
@@ -178,7 +176,6 @@
             transform: translateX(-22px);
             input.form-control {
                 border-radius: 30px;
-                background-color: $primary-color;
                 color: white;
                 border: 2px solid $fourth-color ;
                 height: calc(2.18em + 0.75rem + 2px) !important;

@@ -138,8 +138,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-center text-center m-5">
-                    <button class="btn rounded-pill bg-black text-white">Cancel</button>
-                    <button class="btn rounded-pill text-white bg-fifth" type="submit">Save</button>
+                    <button class="btn rounded-pill text-white font-weight-bold">Cancel</button>
+                    <button class="btn rounded-pill text-white bg-fifth font-weight-bold" type="submit">Save</button>
                 </div>
             </form>
         </div>

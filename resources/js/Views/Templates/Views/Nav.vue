@@ -1,8 +1,8 @@
 <template>
     <ul class="c-sidebar-nav ps ps--active-y px-3">
-        <li class="c-sidebar-nav-title p-0 m-0 d-md-none text-center">
-            <a :href="`/${auth.username}/Profile`" class="text-white">Profile</a>
-        </li>
+<!--        <li class="c-sidebar-nav-title p-0 m-0 d-md-none text-center">-->
+<!--            <a :href="`/${auth.username}/Profile`" class="text-white">Profile</a>-->
+<!--        </li>-->
         <li class="c-sidebar-nav-title pb-0">Filter Stream</li>
         <li class="c-sidebar-nav-title p-0 m-0">
             <img src="/images/sharks-menu.svg" alt="">
