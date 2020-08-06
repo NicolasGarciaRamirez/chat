@@ -278,7 +278,7 @@ import Followers from "../../../helpers/Followers";
 import ModalContributor from "../../CommingSoon/Components/ModalContributor";
 import ModalRelathions from "../../User/Profile/Components/Includes/ModalRelathions";
 import ModalContributorSignup from "../../Auth/Components/ModalContributorSignup";
-import vClickOutside from 'v-click-outside'
+
 
 export default {
     components:{
@@ -297,9 +297,6 @@ export default {
             this.location = true
         }
         Auth.initialize()
-    },
-    directives: {
-        clickOutside: vClickOutside.directive
     },
     methods:{
         showModalRelathions(){
