@@ -16,21 +16,21 @@
                     {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                     <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
-                            <g id="Layer_2">
-                                <g id="Layer_2-2">
-                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
-                                        l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
-                                </g>
+                        <g id="Layer_2">
+                            <g id="Layer_2-2">
+                                <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
+                                    l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
                             </g>
-                        </svg>
+                        </g>
+                    </svg>
                 </button>
             </div>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="content-primary d-md-none d-xl-none ">
                 <h3 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h3>
                 <div class="d-flex">
-                    <a href="#" class="btn bg-danger text-white mr-1 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
-                    <a href="#" class="btn bg-white c-fifth d-flex align-items-center font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></a>
+                    <span class="text-decoration-none bg-danger text-white mr-1 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</span>
+                    <span class="text-decoration-none bg-white c-fifth d-flex align-items-center font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></span>
                 </div>
             </div>
             <div class="dropdown-menu bg-primary text-white pl-2" aria-labelledby="dropdownMenuProfile" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit` || route_name == `/${auth.username}/Channel/Edit`">
@@ -52,7 +52,7 @@
                 <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">
                 <img src="/images/icons/post-share.svg" alt="post-up" class="svg-icon cursor-pointer mx-lg-3">
                 <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
-                    <button type="button" class="bg-primary align-items-right border-white function ">
+                    <button type="button" class="align-items-right border-white follow-idle text-white">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                         <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                              x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
@@ -90,10 +90,10 @@
                 </div>
             </div>
             <div class="d-sm-down-none">
-                <h2 class="font-weight-bold mb-3">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h2>
+                <h2 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h2>
                 <div class="d-flex">
-                    <a href="#" class="btn bg-danger text-white mr-2 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</a>
-                    <a href="#" class="btn bg-white c-fifth font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" style="width: 0.8rem; margin-bottom: 0.2rem"></a>
+                    <span class="text-decoration-none p-2 bg-danger text-white mr-2 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</span>
+                    <span class="text-decoration-none p-2 bg-white c-fifth font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" style="width: 0.8rem; margin-bottom: 0.2rem"></span>
                 </div>
             </div>
         </div>

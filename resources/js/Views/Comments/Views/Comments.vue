@@ -1,6 +1,6 @@
 <template>
     <section class="comments bg-primary pb-3 pl-3 pr-3 c-fourth">
-        <p class="font-weight-bold cursor-pointer py-2" v-if="post.comments.length > 0" @click="$parent.view_comment = !$parent.view_comment">
+        <p class="font-weight-bold cursor-pointer py-2 hide-comments" v-if="post.comments.length > 0" @click="$parent.view_comment = !$parent.view_comment">
             {{ $parent.view_comment ? 'Hide' : 'View' }} {{ post.comments.length }} comments
         </p>
         <div v-for="(comment, index) in post.comments" :key="index" v-if="view_comment">

@@ -3,7 +3,7 @@
         <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-circle mr-2">
         <div class="w-100">
             <div class="text-white d-flex align-items-center justify-content-between">
-                <div class="d-flex flex-row align-items-center justify-content-start">
+                <div class="d-flex flex-row align-items-end justify-content-start">
                     <div class="d-flex flex-column p-1">
                         <a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white ">
                             {{ comment.user.profile_information && comment.user.profile_information.artistic_name ? comment.user.profile_information.artistic_name : comment.user.personal_information.full_name }}

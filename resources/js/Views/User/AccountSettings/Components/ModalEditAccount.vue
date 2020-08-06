@@ -8,11 +8,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body justify-content-center p-5">
-
+                    <div class="modal-body justify-content-center p-lg-5 p-sm-2">
                         <form @submit.prevent="update">
                             <div class="d-flex flex-column px-4">
-                                <label class="c-fourth text-center">Account Type : <b class="c-fifth">{{ user.subscription_type }}</b></label>
+                                <label class="c-fourth text-center">Account Type: <b class="c-fifth">{{ user.subscription_type }}</b></label>
                                 <div class="d-flex-flex-column text-center my-4">
                                     <button class="bg-fifth text-white font-weight-bold border-0 rounded-pill mb-4">Become a Contributor</button>
                                     <p class="text-white justify-content-center">
@@ -83,6 +82,7 @@ export default {
                 if (res.data.updated) {
                     this.disable_email = true
                     this.current_password = ''
+                    this.$parent.user = res.data.user
                     $('#ModalEditAccount').modal('toggle')
                     this.$toasted.show('The account information has been updated successfully!', {
                         position: "bottom-right",

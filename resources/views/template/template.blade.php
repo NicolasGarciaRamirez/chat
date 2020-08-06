@@ -34,7 +34,7 @@
                 <modal-contributor />
             </div>
         </div>
-        <div class="d-flex d-lg-none d-md-none fixed-bottom">
+        <div class="d-flex d-lg-none fixed-bottom">
             @include('template._navFooter')
         </div>
     </div>

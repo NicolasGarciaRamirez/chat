@@ -3,7 +3,7 @@
 <!--        <li class="c-sidebar-nav-title p-0 m-0 d-md-none text-center">-->
 <!--            <a :href="`/${auth.username}/Profile`" class="text-white">Profile</a>-->
 <!--        </li>-->
-        <li class="c-sidebar-nav-title pb-0">Filter Stream</li>
+        <li class="c-sidebar-nav-title pb-0 m-0 pt-1">Filter Stream</li>
         <li class="c-sidebar-nav-title p-0 m-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
@@ -68,11 +68,11 @@
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>
-        <li class="c-sidebar-nav-title m-0 pb-0">
-            Following
-            <i class="fas fa-star float-sm-right"></i>
+        <li class="c-sidebar-nav-title m-0 pb-0 pr-1">
+                Following
+            <img src="/images/icons/star-white.svg" width="20px" class="float-right">
         </li>
-        <li class="c-sidebar-nav-title mt-0 pt-0">
+        <li class="c-sidebar-nav-title mt-0 pt-0 pr-1">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
         <div v-if="auth.username || location">

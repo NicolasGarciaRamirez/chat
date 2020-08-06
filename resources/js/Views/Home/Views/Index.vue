@@ -1,6 +1,6 @@
 <template>
     <section>
-        <form @submit.prevent="store" enctype="multipart/form-data" :class="route_name === 'http://localhost:8000/Form' ? 'd-block':'d-block d-sm-down-none'">
+        <form @submit.prevent="store" enctype="multipart/form-data" :class="route_name === 'http://localhost:8000/Form' || route_name === 'https://www.noisesharks.com/Form' ? 'd-block':'d-block d-sm-down-none'">
             <div class="form-group post-form">
                 <div class="bg-primary">
                     <textarea
