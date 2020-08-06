@@ -22,13 +22,17 @@ $theme-colors: (
 $coreui-icons-font-path: "../../fonts";
 $fa-font-path: "../webfonts";
 
-@mixin icons-style($color){
-    .icon-post-color{
-        fill: $fourth-color;
+@mixin icons-style(){
+    svg{
+        path{
+            fill: white;
+        }
     }
     &:hover{
-        .icon-post-color{
-            fill: $color;
+        svg{
+            path{
+                fill: $fifth-color;
+            }
         }
     }
 }

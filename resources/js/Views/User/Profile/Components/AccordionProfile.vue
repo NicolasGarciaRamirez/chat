@@ -89,7 +89,7 @@
                         <div class="card-body text-white bg-black">
                             <input type="text" class="form-control mb-3" placeholder="Artistic Name" v-model="profile_information.artistic_name">
 <!--                            <input type="checkbox"> Use Artistic Name Instead of Personal Name-->
-                            <span class="text-white font-weight-bold">Adding an artistic name will change your display name to the artistic name. This means that you will only appear with your artistic name in searches and other parts of Noisesharks.</span>
+                            <span class="text-white">Adding an artistic name will change your display name to the artistic name. This means that you will only appear with your artistic name in searches and other parts of Noisesharks.</span>
                         </div>
                     </div>
                 </div>

@@ -4,21 +4,44 @@
             <img :src="`${user.cover}`" alt="ImagePortada" class="img-portada">
             <button type="button" class="edit-cover-photo btn text-white rounded-pill mx-4" v-if="auth.token && auth.token == user.token && route_name == `/${auth.username}/Edit` || route_name == `/${auth.username}/Channel/Edit`">
                 <label class="m-0 font-weight-bold" for="change-image" @click="type_change_image = 'Cover'">Edit Cover Photo
-                    <i class="cil-pencil ml-2"></i>
+<!--                    <i class="cil-pencil ml-2"></i>-->
+                    <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         x="0px" y="0px" viewBox="0 0 1242.12 1079.31" xml:space="preserve" class="svg-icon" width="1.23rem">
+                        <g id="Layer_2">
+                            <g id="Layer_2-2">
+                                <path d="M1188.28,269.77c61.65-49.05,71.86-138.8,22.8-200.45c-6.71-8.44-14.36-16.09-22.8-22.8
+                                    c-74.35-62.02-182.42-62.02-256.77,0L128.39,744.08L0,1079.31l385.87-111.98L1188.28,269.77z M905.83,428.11L365.9,895.29
+                                    L213.98,761.2l537.08-468.61L905.83,428.11z M802.41,247.66l53.49-44.94l154.78,134.09l-51.35,44.94L802.41,247.66z M982.87,90.74
+                                    c44.95-36.27,109.11-36.27,154.06,0c37.23,30.4,42.76,85.21,12.37,122.44c-3.7,4.53-7.84,8.67-12.37,12.37l-77.03,67.05
+                                    L905.83,158.5L982.87,90.74z M176.17,819.69l122.68,107.7l-184.02,53.49L176.17,819.69z"/>
+                            </g>
+                        </g>
+                    </svg>
                 </label>
             </button>
-            <a :href="`/${user.username}/Edit`" class="btn rounded-pill text-white function font-weight-bold border-white edit-profile-button d-md-none d-xl-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username === user.username">
+            <a :href="`/${user.username}/Edit`" class="btn d-flex align-items-center rounded-pill text-white function font-weight-bold border-white edit-profile-button d-md-none d-xl-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username === user.username">
                 Edit Profile
-                <i class="cil-pencil ml-2"></i>
+                <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     x="0px" y="0px" viewBox="0 0 1242.12 1079.31" xml:space="preserve" class="svg-icon" width="1.23rem">
+                    <g id="Layer_2">
+                        <g id="Layer_2-2">
+                            <path d="M1188.28,269.77c61.65-49.05,71.86-138.8,22.8-200.45c-6.71-8.44-14.36-16.09-22.8-22.8
+                                c-74.35-62.02-182.42-62.02-256.77,0L128.39,744.08L0,1079.31l385.87-111.98L1188.28,269.77z M905.83,428.11L365.9,895.29
+                                L213.98,761.2l537.08-468.61L905.83,428.11z M802.41,247.66l53.49-44.94l154.78,134.09l-51.35,44.94L802.41,247.66z M982.87,90.74
+                                c44.95-36.27,109.11-36.27,154.06,0c37.23,30.4,42.76,85.21,12.37,122.44c-3.7,4.53-7.84,8.67-12.37,12.37l-77.03,67.05
+                                L905.83,158.5L982.87,90.74z M176.17,819.69l122.68,107.7l-184.02,53.49L176.17,819.69z"/>
+                        </g>
+                    </g>
+                </svg>
             </a>
             <div :id="`follow`+user.token" class="follow-movile-button d-lg-none d-md-none mx-lg-3" @click="colorFollow(follow_type)" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username !== user.username">
-                <button type="button" class="align-items-right border-white function follow-idle ">
+                <button type="button" class="align-items-right border-white function follow-idle">
                     {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                     <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
                         <g id="Layer_2">
                             <g id="Layer_2-2">
-                                <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
+                                <path d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
                                     l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
                             </g>
                         </g>
@@ -42,15 +65,48 @@
             </div>
             <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
-        <div class="head-container align-items-start mt-1 px-3">
+        <div class="head-container align-items-start mt-1 px-1">
             <div class="text-right order-lg-2 functions" v-if="auth.token == user.token">
-                <a :href="`/${user.username}/Edit`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">Edit Profile <i class="cil-pencil ml-2"></i></a>
-                <a href="#" class="btn bg-black rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">Share Profile <i class="cil-share  ml-2"></i></a>
+                <a :href="`/${user.username}/Edit`" class="btn bg-black d-flex align-items-center rounded-pill text-white function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">
+                    Edit Profile
+                    <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         x="0px" y="0px" viewBox="0 0 1242.12 1079.31" xml:space="preserve" class="svg-icon" width="1.23rem">
+                        <g id="Layer_2">
+                            <g id="Layer_2-2">
+                                <path d="M1188.28,269.77c61.65-49.05,71.86-138.8,22.8-200.45c-6.71-8.44-14.36-16.09-22.8-22.8
+                                    c-74.35-62.02-182.42-62.02-256.77,0L128.39,744.08L0,1079.31l385.87-111.98L1188.28,269.77z M905.83,428.11L365.9,895.29
+                                    L213.98,761.2l537.08-468.61L905.83,428.11z M802.41,247.66l53.49-44.94l154.78,134.09l-51.35,44.94L802.41,247.66z M982.87,90.74
+                                    c44.95-36.27,109.11-36.27,154.06,0c37.23,30.4,42.76,85.21,12.37,122.44c-3.7,4.53-7.84,8.67-12.37,12.37l-77.03,67.05
+                                    L905.83,158.5L982.87,90.74z M176.17,819.69l122.68,107.7l-184.02,53.49L176.17,819.69z"/>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                <a href="#" class="btn bg-black d-flex align-items-center rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">
+                    Share Profile
+                    <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                         x="0px" y="0px" viewBox="0 0 966 1080" xml:space="preserve" class="cursor-pointer share-icon ml-2" @click="showModalShare">
+                        <g id="Layer_2">
+                            <g id="Layer_2-2">
+                                <path d="M974,539.86L568.89-0.29v321.93h-85.88c-266.92,0-483.29,263.11-483.29,587.68c0,0,0,0,0,0V1080
+                                    l38.5-51.13C168.2,855.96,351.95,757.44,544.6,757.35h24.28V1080L974,539.86z"/>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
                 <a :href="`/${user.username}/Profile`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
             </div>
             <div class="order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
-                <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">
-                <img src="/images/icons/post-share.svg" alt="post-up" class="svg-icon cursor-pointer mx-lg-3">
+<!--                <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">-->
+                <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     x="0px" y="0px" viewBox="0 0 966 1080" xml:space="preserve" class="svg-icon cursor-pointer share mx-lg-2" @click="showModalShare">
+                    <g id="Layer_2">
+                        <g id="Layer_2-2">
+                            <path fill="#535353" d="M974,539.86L568.89-0.29v321.93h-85.88c-266.92,0-483.29,263.11-483.29,587.68c0,0,0,0,0,0V1080
+                                l38.5-51.13C168.2,855.96,351.95,757.44,544.6,757.35h24.28V1080L974,539.86z"/>
+                        </g>
+                    </g>
+                </svg>
                 <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
                     <button type="button" class="align-items-right border-white follow-idle text-white">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}

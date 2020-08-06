@@ -14,21 +14,21 @@
                 </div>
             </div>
             <div class="box">
-                <div class="text-center box-shadow p-2 mx-auto">
+                <div class="text-center box-shadow p-2 m-auto">
                     <div class="card-body">
                         <img src="/images/icons/laptop.svg" alt="" class="icon"><br><br>
                         <p class="font-weight-bold">Web Development</p><br>
                         <button class="btn rounded-pill bg-fifth text-white font-weight-bold" @click="alert()">Learn More</button>
                     </div>
                 </div>
-                <div class="text-center box-shadow p-2 mx-auto">
+                <div class="text-center box-shadow p-2 m-auto">
                     <div class="card-body">
                         <img src="/images/icons/design.svg" alt="" class="icon"><br><br>
                         <p class="font-weight-bold">UI/IX Design</p><br>
                         <button class="btn rounded-pill bg-fifth text-white font-weight-bold" @click="alert()">Learn More</button>
                     </div>
                 </div>
-                <div class="text-center box-shadow p-2 mx-auto">
+                <div class="text-center box-shadow p-2 m-auto">
                     <div class="card-body">
                         <img src="/images/icons/megaphone.svg" alt="" class="icon"><br><br>
                         <p class="font-weight-bold">Marketing</p><br>

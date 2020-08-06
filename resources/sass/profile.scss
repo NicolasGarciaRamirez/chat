@@ -28,21 +28,36 @@
                 font-size: 0.6rem !important;
                 transform: translate(12.49rem, -2rem);
             }
+            svg{
+                path{
+                    fill: white ;
+                }
+            }
             &:hover{
                 background: white;
                 color: black !important;
-                text-shadow: none;
+                text-shadow: none !important;
                 i{
                     color: black;
                 }
+                svg{
+                    path{
+                        fill: black;
+                    }
+                }
             }
             &:active{
-                border: $fifth-color !important;
-                background: $fifth-color !important;
+                border: blanchedalmond !important;
+                background: blanchedalmond !important;
                 color: white !important;
                 text-shadow: none;
                 i{
                     color: white;
+                }
+                svg{
+                    path{
+                        fill: black;
+                    }
                 }
             }
         }
@@ -65,19 +80,22 @@
         .follow-movile-button{
             z-index: 1000;
             position: absolute;
-            box-shadow: 2px 2px 2px $third-color;
-            text-shadow: 2px 2px 2px $third-color;
+            button{
+                box-shadow: 2px 2px 2px $third-color;
+                text-shadow: 2px 2px 2px $third-color;
+            }
             @include media-breakpoint-only(md){
                 width: 5rem !important;
                 font-size: 0.41rem !important;
             }
             @include media-breakpoint-down(sm) {
                 font-size: 0.41rem !important;
-                transform: translate(15.2rem, -2rem);
+                transform: translate(14.5rem, -2.3rem);
                 button{
-                    font-size: 0.5rem !important;
+                    font-size: 0.69rem !important;
                     svg{
-                        width: 0.8rem;
+                        width: 0.8rem !important;
+                        margin: 0 0.2rem 0.2rem 0.2rem  !important;
                     }
                 }
             }
@@ -159,6 +177,7 @@
                     width: 1.4rem;
                 }
             }
+
             a.function{
                 background: $primary-color !important;
                 border: 2px solid white !important;
@@ -170,7 +189,26 @@
                     border: 2px solid white !important;
                     background: white !important;
                     color: black !important;
+                    svg{
+                        path{
+                            fill: black !important;
+                        }
+                    }
                 }
+                &:active{
+                    opacity: 50%;
+                }
+                svg.share-icon{
+                    width: 1rem;
+                    path{
+                        fill: white;
+                    }
+                    @include media-breakpoint-down(sm){
+                        width: 0.78rem;
+                    }
+
+                }
+
             }
             button.function-contributor{
                 border: 1px solid $fifth-color;
@@ -217,6 +255,22 @@
         @include media-breakpoint-down(sm){
             flex-direction: column !important;
         }
+        .title-details{
+            svg{
+                width: 1.5rem;
+                path{
+                    fill: white !important;
+                }
+            }
+            &:hover{
+                svg{
+                    path{
+                        fill: $fifth-color !important;
+                    }
+                }
+            }
+            //@include icons-style()
+        }
         .settings{
             border: 2px solid white !important;
             padding: 0.1rem 10px 0.1rem 10px;
@@ -231,13 +285,7 @@
                 }
             }
             &:active{
-                border: 2px solid $fifth-color !important;
-                background: $fifth-color !important;
-                color: white !important;
-                .fas.fa-cog{
-                    color: white;
-                }
-
+                opacity: 50%;
             }
         }
     }
@@ -456,9 +504,25 @@
             }
         }
         .modal-select{
+            @include media-breakpoint-down(md){
+                .modal-body{
+                    padding: 1rem !important;
+                }
+                h2{
+                    font-size: 1.2rem !important;
+                }
+            }
+            .line-shark{
+                max-width: 44rem;
+                padding-bottom: 1rem;
+                @include media-breakpoint-down(md){
+                    max-width: 17rem;
+                    height: 2rem !important;
+                }
+            }
             .checkbox{
                 position: relative;
-                padding: 0 18px;
+                //padding: 0 18px;
                 display: flex;
                 align-items: center;
                 label {
@@ -515,7 +579,20 @@
                 border-top: 1px solid $third-color;
             }
         }
-
+        .modal-select::-webkit-scrollbar{
+            width: 8px ;
+        }
+        .modal-select::-webkit-scrollbar-thumb {
+            background: $fourth-color;
+            border-radius: 4px;
+        }
+        .modal-select::-webkit-scrollbar-thumb:hover {
+            background: $fourth-color;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+        }
+        .modal-select::-webkit-scrollbar-thumb:active {
+            background-color: $fourth-color;
+        }
         .form-search{
             @include media-breakpoint-up(md){
                 width: 280px;
@@ -569,12 +646,23 @@
             text-decoration: none;
         }
         button.action{
+            svg{
+                path{
+                    fill: white;
+                }
+            }
             &:hover{
                 background: white;
-                color: black;
+                color: black !important;
+                svg{
+                    width: 1rem;
+                    path{
+                        fill: black !important;
+                    }
+                }
             }
             &:active{
-                background: lemonchiffon;
+                opacity: 50%;
             }
         }
     }
@@ -630,7 +718,7 @@
         }
         svg{
             //width: 1rem;
-            //margin-left: 0.3rem;
+            margin: 0.3rem 0 0.3rem 0.3rem !important;
             path{
                 fill: black !important;
             }
@@ -644,7 +732,7 @@
             }
             svg{
                 //width: 1rem !important;
-                //margin-left: 0.3rem !important;
+                margin: 0.3rem 0 0.3rem 0.3rem !important;
                 path{
                     fill: black !important;
                 }
@@ -657,11 +745,11 @@
         border: 2px solid white !important;
         color: white !important;
         &:before{
-            content: 'Follow Back';
+            content: 'Follow';
         }
         svg{
             width: 1rem !important;
-            margin-left: 0.3rem !important;
+            margin: 0.3rem 0 0.3rem 0.3rem !important;
             path{
                 stroke: white !important;
                 fill: $primary-color !important;
@@ -676,7 +764,7 @@
             content: 'Following';
         }
         svg{
-            margin-left: 0.5rem !important;
+            margin: 0.3rem 0 0.3rem 0.3rem !important;
             width: 0.68rem !important;
             path{
                 fill: black !important;

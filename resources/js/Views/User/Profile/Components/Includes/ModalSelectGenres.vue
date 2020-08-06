@@ -8,14 +8,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body pt-4">
+                    <div class="modal-body">
                         <h2 class="font-weight-bold">Select Genre(s)</h2>
                         <div>
-                            <img src="/images/modal-shark.svg" alt="" style="max-width: 44rem; padding-bottom: 1rem">
+                            <img src="/images/modal-shark.svg" class="line-shark">
                         </div>
                         <div v-for="(genre, index) in genres" :key="index">
-                            <div class="d-flex flex-row mt-5" style="flex-grow: 2">
-                                <div class="col">
+                            <div class="d-flex flex-row mb-2" style="flex-grow: 2">
+                                <div class="col-md">
                                     <div class="d-flex flex-row checkbox">
                                         <input type="checkbox" :id="genre.principal_genre" :value="genre.principal_genre" @click="selectAllSpecificGenre(genre.principal_genre)" v-model="$parent.profile_information.genres">
                                         <label :for="genre.principal_genre" class="text-white font-weight-bold" ><span>{{ genre.principal_genre }}</span></label>
@@ -26,15 +26,15 @@
                                             <label :for="genr" class="text-white"><span>{{ genr }}</span></label>
                                         </div>
                                     </div>
-                                    <div class="divider"></div>
+                                    <div class="divider my-2"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <div class="text-right">
-                            <button class="btn bg-fifth mr-2 text-white"  data-dismiss="modal">save</button>
-                            <button class="btn bg-third text-white" data-dismiss="modal">cancel</button>
+                        <div class="text-right p-2">
+                            <button class="btn text-white font-weight-bold" data-dismiss="modal">Cancel</button>
+                            <button class="btn rounded-pill bg-fifth mx-2 text-white font-weight-bold" data-dismiss="modal">Save</button>
                         </div>
                     </div>
                 </div>
