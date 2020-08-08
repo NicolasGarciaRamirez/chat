@@ -183,9 +183,9 @@ button {
     .main-header{
         @include media-breakpoint-up(lg){
             margin-left: 256px;
-        }
-        .c-header-toggler{
-            display: none;
+            .c-header-toggler{
+                display: none;
+            }
         }
     }
 }
