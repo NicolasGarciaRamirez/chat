@@ -299,6 +299,9 @@ textarea{
     svg{
         width: 1rem;
         margin-left: 0.3rem !important;
+        @include media-breakpoint-up(md){
+            margin-bottom: .1rem;
+        }
         path{
             fill: white;
         }
