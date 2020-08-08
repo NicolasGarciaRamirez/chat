@@ -1,6 +1,6 @@
 <template>
     <section class="position-relative" v-click-outside="hideSearch">
-        <form @submit.prevent="showContentSearch()" class="header-form-search d-none d-md-block" v-if="!only_view">
+        <form @submit.prevent="showContentSearch()" class="header-form-search d-none d-lg-block" v-if="!only_view">
             <div class="form-group m-0">
                 <div class="input-group">
                     <input class="form-control pl-4" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">

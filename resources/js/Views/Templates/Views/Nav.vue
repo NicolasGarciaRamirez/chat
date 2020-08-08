@@ -1,5 +1,5 @@
 <template>
-    <ul class="c-sidebar-nav ps ps--active-y px-3">
+    <ul class="c-sidebar-nav px-3">
         <li class="c-sidebar-nav-title pb-0 m-0 pt-1">Filter Stream</li>
         <li class="c-sidebar-nav-title p-0 m-0">
             <img src="/images/sharks-menu.svg" alt="">

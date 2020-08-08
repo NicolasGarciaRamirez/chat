@@ -18,22 +18,20 @@
         background-color: transparent;
     }
     .img-logo{
-        width: 7rem;
-        margin-bottom: 0.95rem !important;
-        @include media-breakpoint-down(sm){
-            width: 4rem !important;
-            margin-bottom: 0.4rem !important;
+        width: 4rem;
+        @include media-breakpoint-up(md){
+            width: 7rem;
         }
     }
     .img-version{
-        width: 2.39rem;
-        margin-bottom: 1rem !important;
-        @include media-breakpoint-down(sm){
-            width: 1.5rem !important;
-            margin-bottom: 1rem !important;
+        margin-top: 15%;
+        width: 1.5rem;
+        @include media-breakpoint-up(md){
+            width: 2.5rem;
         }
     }
     .c-sidebar-nav{
+        padding-top: 2em;
         li{
             color: white;
         }
@@ -116,7 +114,6 @@
 .main-header{
     background-color: $primary-color;
     border-bottom: none;
-    padding: 10px 0;
     .login{
         background-color: $fifth-color;
         color: white !important;
