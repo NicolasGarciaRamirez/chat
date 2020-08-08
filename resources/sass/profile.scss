@@ -29,8 +29,10 @@
                 transform: translate(12.49rem, -2rem);
             }
             svg{
+                width: 0.8rem;
+                margin-left: 0.3rem;
                 path{
-                    fill: white ;
+                    fill: white;
                 }
             }
             &:hover{
@@ -76,9 +78,17 @@
                 font-size: 0.7rem !important;
                 transform: translate(14.9rem, -1.6rem);
             }
+            svg{
+                width: 0.8rem;
+                margin-left: 0.3rem;
+                path{
+                    fill: white;
+                }
+            }
+
         }
         .follow-movile-button{
-            z-index: 1000;
+            z-index: 1;
             position: absolute;
             button{
                 box-shadow: 2px 2px 2px $third-color;
@@ -89,14 +99,14 @@
                 font-size: 0.41rem !important;
             }
             @include media-breakpoint-down(sm) {
-                font-size: 0.41rem !important;
+                font-size: 0.41rem ;
                 transform: translate(14.5rem, -2.3rem);
                 button{
-                    font-size: 0.69rem !important;
-                    svg{
-                        width: 0.8rem !important;
-                        margin: 0 0.2rem 0.2rem 0.2rem  !important;
-                    }
+                    font-size: 0.69rem;
+                    //svg{
+                    //    width: 0.8rem;
+                    //    margin: 0.07rem 0 0px 0.3rem;
+                    //}
                 }
             }
 
@@ -170,54 +180,64 @@
                 justify-content: flex-end;
                 font-size: 0.6rem;
             }
-            .svg-icon{
-                width: 1.8rem;
-                margin: 0 0.4rem 0 0.4rem ;
-                @include media-breakpoint-down(sm){
-                    width: 1.4rem;
-                }
-            }
 
             a.function{
-                background: $primary-color !important;
-                border: 2px solid white !important;
+                background: transparent;
+                border: 2px solid white;
+                color: white;
                 @include media-breakpoint-down(sm){
-                    padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
-                    font-size: 0.7rem !important;
+                    padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+                    font-size: 0.7rem;
+                }
+                svg{
+                    width: 0.89rem;
+                    margin-left: 0.3rem;
+                    path{
+                        fill: white;
+                    }
+                }
+                svg.share-icon{
+                    width: 0.78rem;
+                    @include media-breakpoint-up(lg){
+                        width: 1rem;
+                    }
+                    path{
+                        fill: white;
+                    }
+
                 }
                 &:hover{
-                    border: 2px solid white !important;
-                    background: white !important;
-                    color: black !important;
+                    border: 2px solid white;
+                    background: white;
+                    color: black;
                     svg{
                         path{
-                            fill: black !important;
+                            fill: black;
                         }
                     }
                 }
                 &:active{
                     opacity: 50%;
                 }
-                svg.share-icon{
-                    width: 1rem;
-                    path{
-                        fill: white;
-                    }
-                    @include media-breakpoint-down(sm){
-                        width: 0.78rem;
-                    }
-
-                }
 
             }
             button.function-contributor{
-                border: 1px solid $fifth-color;
-                @include media-breakpoint-down(sm){
-                    font-size: 0.48rem;
-                    margin: 0 0.1rem 0 0.1rem;
+                font-size: 0.64rem;
+                margin: 0 0.1rem 0 0.1rem;
+                background: transparent;
+                color: white;
+                border: 2px solid $fifth-color;
+                svg{
+                    width: 0.6rem ;
+                    margin-left: 0.1rem;
+                }
+                @include media-breakpoint-up(lg){
+                    font-size: 0.8rem;
+                    border: 1px solid $fifth-color;
                     svg{
-                        width: 0.6rem !important;
-                        margin-left: 0.1rem !important;
+                        width: 1em;
+                        margin-left: 0.3rem;
+                        margin-bottom: 0.3rem;
                     }
                 }
             }
@@ -233,7 +253,7 @@
             font-size: 0.9rem !important;
             text-shadow: 3px 2px 3px $third-color;
         }
-        a{
+        span{
             font-size: 0.69rem;
             height: auto;
             padding: 0.2rem;
@@ -709,30 +729,57 @@
     .nav{
         border-bottom: 0.1rem solid $third-color !important;
     }
+    .follow-following-idle{
+        background: transparent ;
+        border: 2px solid white ;
+        color: white ;
+        &:before{
+            content: 'Follow';
+        }
+        svg{
+            margin: 0.3rem 0 0.3rem 0.3rem ;
+            width: 0.68rem;
+            path{
+                fill: transparent;
+                stroke: white;
+                stroke-width: 4.5em;
+            }
+        }
+        &:hover{
+            background: white;
+            color: black;
+            &:before{
+                content: 'Following';
+            }
+            svg{
+                path{
+                    fill: black;
+                }
+            }
+        }
+    }
     .follow-following-active{
-        background: white !important;
-        border: 2px solid white !important;
-        color: black !important;
+        background: white;
+        border: 2px solid white;
+        color: black;
         &:before{
             content: 'Following';
         }
         svg{
-            margin: 0.3rem 0 0.3rem 0.3rem !important;
-            width: 0.68rem !important;
+            margin: 0.3rem 0 0.3rem 0.3rem ;
+            width: 0.68rem ;
             path{
-                fill: black !important;
+                fill: black ;
             }
         }
         &:hover{
-            border-color: floralwhite !important;
-            background-color: floralwhite !important;
-            color: black;
+            opacity: 50%;
             &:before{
                 content: 'unfollow';
             }
             svg{
                 path{
-                    fill: black !important;
+                    fill: black;
                 }
             }
         }

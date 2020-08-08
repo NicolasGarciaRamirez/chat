@@ -1,4 +1,4 @@
-<template>
+-following-<template>
     <tr>
         <td>
             <a :href="`/${user.username}/Profile`">
@@ -21,8 +21,6 @@
                 </svg>
             </button>
         </td>
-<!--        <td><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>-->
-<!--        <td class="font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>-->
     </tr>
 </template>
 
@@ -48,7 +46,7 @@
         },
         methods:{
             addClassFollow(){
-                $('#btnFollow'+this.user.id+' button').addClass('follow-active').removeClass('follow-idle')
+                $('#btnFollow'+this.user.id+' button').addClass('follow--following-active').removeClass('follow-following--idle')
             },
             storeUnFollow(){
                 this.disable = true

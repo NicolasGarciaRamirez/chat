@@ -1,16 +1,16 @@
 <template>
     <div class="modal fade modal-reward" tabindex="-1" role="dialog" aria-labelledby="ModalReward" aria-hidden="true" id="modalReward">
         <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content modal-border-white">
+            <div class="modal-content modal-border-white" v-if="user">
                 <div class="modal-header border-0 p-0">
-                    <img src="/images/portada.jpg" class="img-fluid support-brand-header ">
+                    <img :src="`${user.cover}`" class="img-fluid support-brand-header ">
                     <div class="head-content d-flex">
-                        <img src="/images/profile.jpg" alt="" class="support-img-profile rounded-pill">
+                        <img :src="`${user.avatar}`" alt="" class="support-img-profile rounded-pill">
                         <div class="d-flex flex-column p-md-3">
-                            <a href="/View/Profile/Releases" class="text-white support-user-name">Jhonathan Holland <img src="/images/icons/check.svg" alt="" class="check-icon"></a>
+                            <a href="/View/Profile/Releases" class="text-white support-user-name">{{user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="check-icon mx-2" v-if="user.verification_date"></a>
                             <div class="d-flex flex-row justify-content-center align-items-center support-user-type">
-                                <button class="btn bg-fifth text-white mr-2">MIXING ENGENIERY</button>
-                                <button class="btn bg-white c-fifth d-flex align-items-center justify-content-center">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red" class="icon"></button>
+                                <button class="btn bg-fifth text-white mr-2 font-weigh-bold">{{user.profile_information && user.profile_information.title ? user.profile_information.title : 'title profile not choseen'}}</button>
+                                <button class="btn bg-white c-fifth d-flex align-items-center justify-content-center font-weigh-bold" v-if="user.subscription_type === 'CONTRIBUTOR'">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></button>
                             </div>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                             By entering an amount below below, you will directly reward  Jonathon Holland  ﬁnancially
                             with a one-off donation. This amount is for this single time only and it doesn’t auto-renew.
                             Noisesharks DOES NOT take any cut from this support.
-                        </p> 
+                        </p>
                         <div class="divider my-4"></div>
                         <h4 class="font-weigh-bold">Why Support Channel?</h4><br>
                         <p class="my-4">I help msuic enthusiasts to ﬁnd ﬁnancial settelment or growth</p>
@@ -44,6 +44,6 @@
 
 <script>
 export default {
-
+    props:['user']
 }
 </script>

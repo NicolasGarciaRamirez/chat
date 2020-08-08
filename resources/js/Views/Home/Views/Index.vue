@@ -156,7 +156,7 @@
                 </div>
             </div>
         </form>
-        <posts :posts="order_post" ref="posts" />
+        <posts :posts="order_post" ref="posts" v-if="!(route_name === 'http://localhost:8000/Form' || route_name === 'https://www.noisesharks.com/Form')" />
         <modal-live-stream></modal-live-stream>
         <modal-mobile/>
         <modal-alert :user="auth"></modal-alert>

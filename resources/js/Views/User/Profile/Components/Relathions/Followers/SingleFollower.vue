@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr v-if="user">
         <td>
             <a :href="`/${user.username}/Profile`">
                 <img :src="user.avatar" class="rounded-circle " style="width: 4rem" />
@@ -9,7 +9,7 @@
             <label>{{user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name}}</label>
         </td>
         <td class="mx-3" :id="`btnFollow`+user.id">
-            <button type="button"  class="align-items-right follow-idle" @click="addClassFollow">
+            <button type="button"  class="align-items-right follow-following-idle" @click="addClassFollow">
                 <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem">
                     <g id="Layer_2">
@@ -47,7 +47,7 @@
         },
         computed:{
             follow_type(){
-                if ($('#btnFollow'+this.user.id+' button').hasClass('follow-active')){
+                if ($('#btnFollow'+this.user.id+' button').hasClass('follow-following-active')){
                     return 'unFollow'
                 }
                 return 'follow'
@@ -56,10 +56,10 @@
         methods:{
             addClassFollow(){
                 if(this.follow_type === 'unFollow'){
-                    $('#btnFollow'+this.user.id+' button').addClass('follow-active').removeClass('follow-idle')
+                    $('#btnFollow'+this.user.id+' button').addClass('follow-following-active').removeClass('follow-following-idle')
                     this.storeUnFollow(this.follow_type)
                 }else if(this.follow_type === 'follow'){
-                    $('#btnFollow'+this.user.id+' button').addClass('follow-idle').removeClass('follow-active')
+                    $('#btnFollow'+this.user.id+' button').addClass('follow-following-idle').removeClass('follow-following-active')
                     this.storeFollow(this.follow_type)
                 }
             },
@@ -70,7 +70,7 @@
 
                     let array_matchs = _.intersectionBy(object, objects, 'id')
                     _.each(array_matchs , match=>{
-                        $('#btnFollow'+match.id+' button').addClass('follow-active').removeClass('follow-idle')
+                        $('#btnFollow'+match.id+' button').addClass('follow-following-active').removeClass('follow-following-idle')
                     })
                 }
             },

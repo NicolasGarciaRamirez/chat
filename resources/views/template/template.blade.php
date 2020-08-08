@@ -40,9 +40,11 @@
         <section>
             <modal-contributor />
         </section>
-        <section>
-            <modal-relathions />
-        </section>
+        @if(\Auth::check())
+            <section>
+                <modal-relathions />
+            </section>
+        @endif
         <section>
             <modal-for-music />
         </section>

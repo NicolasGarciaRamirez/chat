@@ -104,8 +104,10 @@
         <div v-if="auth.username || location">
             <div v-for="(user, index) in followers" :key="index">
                 <li class="c-sidebar-nav-item" v-if="user.username">
-                    <a :href="`/${user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }}</a>
-<!--                    <span class="float-sm-right c-fifth dot">•</span>-->
+                    <div class="filter-nav">
+                        <a :href="`/${user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }}</a>
+                        <!--                    <span class="float-sm-right c-fifth dot">•</span>-->
+                    </div>
                 </li>
             </div>
         </div>

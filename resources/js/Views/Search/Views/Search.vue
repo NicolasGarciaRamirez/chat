@@ -36,9 +36,9 @@
                     <img :src="user.avatar" class="rounded-circle img-profile-search">
                 </div>
                 <div class="d-flex flex-column ml-2">
-                    <span class="font-weight-bold text-white">{{user.artistic_name}}</span>
+                    <span class="font-weight-bold text-white">{{user.artistic_name}}<img src="/images/icons/check.svg" width="14" class="ml-1" v-if="user.verification_date"></span>
                     <div class="content-info-search">
-                        <span class="bg-fifth text-white p-1 font-weight-bold mr-2">{{user.profile_information.title}}</span>
+                        <span class="bg-fifth text-white p-1 font-weight-bold mr-2">{{user.profile_information ? user.profile_information.title : 'Profile Title not choosen'}}</span>
                         <span class="bg-white c-fifth p-1 font-weight-bold d-flex align-items-center" v-if="user.subscription_type === 'CONTRIBUTOR'">CONTRIBUTOR<img src="/images/icons/music-red.svg" width="14rem" class="ml-1"></span>
                     </div>
                 </div>

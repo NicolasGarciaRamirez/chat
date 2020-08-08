@@ -4,8 +4,8 @@
             <single-post :post="post" />
         </div>
         <modal-share-post :post="post" />
-        <modal-support  />
-        <modal-reward  />
+        <modal-support :user="user"  />
+        <modal-reward :user="user"  />
         <register />
         <modal-playlist />
     </section>
@@ -35,7 +35,8 @@
         data(){
             return{
                 view_comment: false,
-                post: null
+                post: null,
+                user: null
             }
         },
     }

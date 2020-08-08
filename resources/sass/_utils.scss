@@ -296,11 +296,17 @@ textarea{
     display: flex;
     align-items: center;
     color: white;
+    font-size: 0.8rem;
     svg{
-        width: 1rem;
-        margin-left: 0.3rem !important;
+        width: 0.8rem;
+        margin-left: 0.3rem;
+        margin-top: 0.05rem;
         @include media-breakpoint-up(md){
+            width: 1rem;
             margin-bottom: .1rem;
+        }
+        @include media-breakpoint-up(lg){
+            width: 1rem;
         }
         path{
             fill: white;
@@ -317,7 +323,10 @@ textarea{
     }
 }
 .follow-idle{
-    background: $primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
     border: 2px solid white;
     color: white;
     svg{
@@ -329,7 +338,7 @@ textarea{
     }
     &:hover{
         background-color: white;
-        color: black;
+        color: black !important;
         svg{
             path{
                 fill: $primary-color;

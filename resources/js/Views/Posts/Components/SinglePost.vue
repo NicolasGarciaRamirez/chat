@@ -146,7 +146,7 @@
                 </div>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center post-user-actions pb-3 d-block d-xl-none d-md-none" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username">
-                <span class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalSupport">SUPPORT
+                <button class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalSupport">SUPPORT
                      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
@@ -154,8 +154,8 @@
                         c118.566,136.343,247.543,241.941,284.236,271.054l19.945,15.792l19.889-15.792c36.693-29.112,165.67-134.653,284.237-271.054
                         c153.823-176.912,231.84-336.519,231.84-474.343C1077.045,143.518,941.842,0.807,775.617,0.807"/>
                      </svg>
-                </span>
-                <span class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalReward">REWARD
+                </button>
+                <button class="bg-primary border-danger mx-3" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username"  @click="showModalReward">REWARD
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-3">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z
@@ -163,7 +163,7 @@
                         C572.497,450.745,571.209,452.544,569.919,454.482 M725.56,192.275c-6.612,0.167-12.882-0.442-18.895-1.855
                         C712.678,191.25,719.032,191.833,725.56,192.275"/>
                     </svg>
-                </span>
+                </button>
             </div>
         </div>
         <div class="px-3 py-1 bg-primary post-data">
@@ -185,7 +185,7 @@
             </div>
         </div>
         <comments :post="post" :view_comment="view_comment"/>
-        <input type="text" :value="`https://www.noisesharks.com/${post.user.username}/Post/get/${post.token}`" :id="'myInput'+`${post.token}`" class="text-black-50 bg-black border-0" >
+        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="text-black-50 bg-black border-0" >
     </section>
 </template>
 
@@ -292,9 +292,11 @@
         methods:{
             // methods show
             showModalSupport(){
+                this.$parent.user = this.post.user
                 $('#modalSupport').modal('show')
             },
             showModalReward(){
+                this.$parent.user = this.post.user
                 $('#modalReward').modal('show')
             },
             showModalRegister(){

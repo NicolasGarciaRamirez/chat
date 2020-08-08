@@ -35,10 +35,10 @@
                 </svg>
             </a>
             <div :id="`follow`+user.token" class="follow-movile-button d-lg-none d-md-none mx-lg-3" @click="colorFollow(follow_type)" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username !== user.username">
-                <button type="button" class="align-items-right border-white function follow-idle">
+                <button type="button" class="align-items-right function follow-idle">
                     {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                     <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                         x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
+                         x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve">
                         <g id="Layer_2">
                             <g id="Layer_2-2">
                                 <path d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
@@ -67,7 +67,7 @@
         </div>
         <div class="head-container align-items-start mt-1 px-1">
             <div class="text-right order-lg-2 functions" v-if="auth.token == user.token">
-                <a :href="`/${user.username}/Edit`" class="btn bg-black d-flex align-items-center rounded-pill text-white function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">
+                <a :href="`/${user.username}/Edit`" class="btn d-flex align-items-center rounded-pill function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">
                     Edit Profile
                     <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          x="0px" y="0px" viewBox="0 0 1242.12 1079.31" xml:space="preserve" class="svg-icon" width="1.23rem">
@@ -82,7 +82,7 @@
                         </g>
                     </svg>
                 </a>
-                <a href="#" class="btn bg-black d-flex align-items-center rounded-pill text-white function mx-3 font-weight-bold border-white" @click="showModalShare">
+                <a href="#" class="btn d-flex align-items-center rounded-pill function mx-3 font-weight-bold border-white" @click="showModalShare">
                     Share Profile
                     <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          x="0px" y="0px" viewBox="0 0 966 1080" xml:space="preserve" class="cursor-pointer share-icon ml-2" @click="showModalShare">
@@ -94,7 +94,9 @@
                         </g>
                     </svg>
                 </a>
-                <a :href="`/${user.username}/Profile`" class="btn bg-black rounded-pill text-white function font-weight-bold border-white">Preview Profile</a>
+                <a :href="`/${user.username}/Profile`" class="btn rounded-pill function font-weight-bold border-white text-center">
+                    Preview Profile
+                </a>
             </div>
             <div class="order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
 <!--                <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">-->
@@ -108,10 +110,10 @@
                     </g>
                 </svg>
                 <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
-                    <button type="button" class="align-items-right border-white follow-idle text-white">
+                    <button type="button" class="align-items-right follow-idle text-white">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                         <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2 mb-1">
+                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" >
                             <g id="Layer_2">
                                 <g id="Layer_2-2">
                                     <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
