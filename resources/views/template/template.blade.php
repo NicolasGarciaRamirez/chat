@@ -41,6 +41,11 @@
     @yield('js')
     <script src="{{ mix('/js/app.js') }}"></script>
     <script>
+        document.documentElement.addEventListener('touchmove', function (event) {
+            event.preventDefault();
+        }, false);
+    </script>
+    <script>
         window.paceOptions = {
             ajax: {
                     trackMethods: ['GET', 'POST', 'DELETE', 'PUT', 'PATCH']

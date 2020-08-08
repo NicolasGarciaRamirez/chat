@@ -3,15 +3,19 @@
         <div class="post-head bg-primary p-3">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
-                    <button type="button" class="bg-primary align-items-right border-white follow-idle">
+                    <button type="button" class="align-items-right follow-idle">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}
-                        <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem" class="ml-2">
-                            <g id="Layer_2">
-                                <g id="Layer_2-2">
-                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
-                                        l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <g>
+                                        <path class="st0" d="M224.9,82.4l-76.1-10.9l-35.6-69L78.7,71.7L2.2,83.8l55.3,54.2l-12.1,76.5l68.6-35.8l69,35.2l-13.3-76.4
+				L224.9,82.4z M112.9,148.8L77,167.9l6.3-40L54.7,99.3L94.9,93l17.6-36l18.4,36.1L171,99l-28.6,28.6l6.7,39.9L112.9,148.8z"/>
+                                    </g>
                                 </g>
+                                <polygon class="st0" points="112.5,54.4 94,92.1 52.1,98.7 82,128.6 75.4,170.5 112.9,150.5 150.8,170.1 143.8,128.3 173.7,98.4
+		                            131.7,92.2 	"/>
                             </g>
                         </svg>
                     </button>

@@ -291,67 +291,51 @@ textarea{
 }
 
 .follow-active{
-    background: $fifth-color !important;
-    border: 2px solid $fifth-color !important;
-    color: white !important;
+    background: $fifth-color;
+    border: 2px solid $fifth-color;
+    display: flex;
+    align-items: center;
+    color: white;
     svg{
         width: 1rem;
         margin-left: 0.3rem !important;
-        @include media-breakpoint-down(sm){
-            width: 0.78rem !important;
-        }
         path{
-            fill: white !important;
+            fill: white;
+        }
+        polygon{
+            fill: white;
+            stroke: white;
+            stroke-width: 20px;
         }
     }
     &:hover{
-        border-color: $six-color !important;
-        background-color: $six-color !important;
-        color: white;
-        svg{
-            width: 1rem !important;
-            margin-left: 0.3rem !important;
-            path{
-                fill: white !important;
-            }
-        }
-    }
-    &:active{
-        border-color: $fifth-color !important;
-        background-color: $fifth-color !important;
-        color: white !important;
-        svg{
-            path{
-                fill: white !important;
-            }
-        }
+        background-color: $six-color;
+        border: 2px solid $six-color;
     }
 }
-
 .follow-idle{
-    border: 2px solid white !important;
-    color: white !important;
+    background: $primary-color;
+    border: 2px solid white;
+    color: white;
     svg{
-        width: 1rem !important;
-        margin-left: 0.3rem !important;
-        @include media-breakpoint-down(sm){
-            width: 0.78rem !important;
-        }
+        width: 1em;
+        margin-left: 0.3rem;
         path{
-            stroke-width: 6rem !important;
-            stroke: white !important;
-            fill: transparent !important;
+            fill: white;
         }
     }
     &:hover{
-        border-color: white !important;
-        background-color: white !important;
-        color: black !important;
+        background-color: white;
+        color: black;
         svg{
-            width: 1rem !important;
-            margin-left: 0.3rem !important;
             path{
-                fill: black !important;
+                fill: $primary-color;
+                stroke: $primary-color;
+            }
+            polygon{
+                fill: $primary-color;
+                stroke: $primary-color;
+                stroke-width: 20px;
             }
         }
     }

@@ -43,13 +43,12 @@
                         </svg>
                     Channel
                     </a>
-                    <a class="dropdown-item  cursor-pointer" @click="showModalRelathions">
-                        <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="20px" class="svg-icon mr-3 star">
+                    <a class="dropdown-item cursor-pointer" @click="showModalRelathions">
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve" class="relationships mr-3">
                             <g id="Layer_2">
                                 <g id="Layer_2-2">
-                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
-                                        l365.48,179.1L886.9,687.89L1179,407.04z"/>
+                                    <path d="M223.9,81.7l-75.8-10.9L112.7,2.1l-34.4,69L2.2,83.2l55.1,54l-12.1,76.2l68.3-35.7l68.7,35l-13.3-76L223.9,81.7z"/>
                                 </g>
                             </g>
                         </svg>

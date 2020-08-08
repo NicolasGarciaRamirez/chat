@@ -709,53 +709,6 @@
     .nav{
         border-bottom: 0.1rem solid $third-color !important;
     }
-    .follow-active{
-        background: white !important;
-        border: 2px solid white !important;
-        color: black !important;
-        &:before{
-            content: 'Following';
-        }
-        svg{
-            //width: 1rem;
-            margin: 0.3rem 0 0.3rem 0.3rem !important;
-            path{
-                fill: black !important;
-            }
-        }
-        &:hover{
-            border-color: floralwhite !important;
-            background-color: floralwhite !important;
-            color: black;
-            &:before{
-                content: 'unfollow';
-            }
-            svg{
-                //width: 1rem !important;
-                margin: 0.3rem 0 0.3rem 0.3rem !important;
-                path{
-                    fill: black !important;
-                }
-            }
-        }
-
-    }
-    .follow-idle{
-        background: $primary-color !important;
-        border: 2px solid white !important;
-        color: white !important;
-        &:before{
-            content: 'Follow';
-        }
-        svg{
-            width: 1rem !important;
-            margin: 0.3rem 0 0.3rem 0.3rem !important;
-            path{
-                stroke: white !important;
-                fill: $primary-color !important;
-            }
-        }
-    }
     .follow-following-active{
         background: white !important;
         border: 2px solid white !important;

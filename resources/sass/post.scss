@@ -110,65 +110,6 @@
                         }
                     }
                 }
-                .follow-active{
-                    background: $fifth-color !important;
-                    border: 2px solid $fifth-color !important;
-                    display: flex;
-                    align-items: center;
-                    svg{
-                        width: 1rem !important;
-                        margin-left: 0.3rem !important;
-                        @include media-breakpoint-down(sm){
-                            width: 0.6rem !important;
-                        }
-                        path{
-                            fill: white;
-                        }
-                    }
-                    &:hover{
-                        border: 2px solid $six-color !important;
-                        background-color: $six-color !important;
-                        svg{
-                            path{
-                                fill: white !important;
-                            }
-                        }
-                    }
-                    &:active{
-                        border-color: $fifth-color !important;
-                        background-color: $fifth-color !important;
-                        color: white !important;
-                        svg{
-                            path{
-                                fill: white !important;
-                            }
-                        }
-                    }
-                }
-                .follow-idle{
-                    background: $primary-color !important;
-                    border: 2px solid white !important;
-                    svg{
-                        width: 1rem;
-                        margin-left: 0.3rem;
-                        path{
-                            stroke: white;
-                            fill: $primary-color;
-                        }
-                    }
-                    &:hover{
-                        border-color: white !important;
-                        background-color: white !important;
-                        color: black;
-                        svg{
-                            width: 1rem !important;
-                            margin-left: 0.3rem !important;
-                            path{
-                                fill: black !important;
-                            }
-                        }
-                    }
-                }
             }
         }
         .post-body{

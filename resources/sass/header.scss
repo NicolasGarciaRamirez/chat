@@ -151,11 +151,10 @@ button {
         margin-right: 1.6rem;
         .dropdown-item{
             color: $fourth-color;
-            svg.star{
+            svg.relationships{
+                width: 20px;
                 path{
-                    stroke-width:12rem;
-                    stroke: $fourth-color;
-                    fill: $primary-color ;
+                    fill: $fourth-color;
                 }
             }
             &:hover{
@@ -166,11 +165,9 @@ button {
                         fill: white;
                     }
                 }
-                svg.star{
+                svg.relationships{
                     path{
-                        stroke-width:0rem;
-                        stroke: $third-color;
-                        fill: #FFFFFF ;
+                        fill: white;
                     }
                 }
             }
