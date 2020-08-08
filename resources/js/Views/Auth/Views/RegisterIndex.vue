@@ -60,14 +60,12 @@
 <script>
     import FormSignUp from "../Components/FormSignUp";
     import FormSignUpContributor from "../Components/FormSignUpContributor";
-    import ModalForMusicCompany from "../../CommingSoon/Components/ModalForMusic";
 
     export default {
         props: ['type'],
         components: {
             FormSignUp,
             FormSignUpContributor,
-            ModalForMusicCompany
         },
         methods:{
             showModalForMusicCompany(){

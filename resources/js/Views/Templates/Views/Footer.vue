@@ -18,32 +18,17 @@
             </div>
             <p class="text-center mt-4">© 2019 Noisesharks ® Registered in England and Wales No. 10670071</p>
         </footer>
-        <modal-for-music />
-        <modal-merch />
     </section>
 </template>
 
 <script>
-    import ModalMerch from "../../CommingSoon/Components/ModalMerch";
-    import ModalForMusic from "../../CommingSoon/Components/ModalForMusic";
-
     export default {
-        components:{
-            ModalMerch,
-            ModalForMusic
-        },
         methods:{
             showModalMerch(){
-                $('#ModalMerch').modal({
-                    backdrop: false,
-                    keyboard: true
-                })
+                $('#ModalMerch').modal('show')
             },
             showModalForMusic(){
-                $('#ModalForMusic').modal({
-                    backdrop: false,
-                    show: true
-                })
+                $('#ModalForMusic').modal('show')
             }
         }
     }

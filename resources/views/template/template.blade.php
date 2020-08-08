@@ -31,12 +31,24 @@
                 {{-- <div>
                     <modal-contributor-signup />
                 </div> --}}
-                <modal-contributor />
+
             </div>
         </div>
         <div class="d-flex d-lg-none fixed-bottom">
             @include('template._navFooter')
         </div>
+        <section>
+            <modal-contributor />
+        </section>
+        <section>
+            <modal-relathions />
+        </section>
+        <section>
+            <modal-for-music />
+        </section>
+        <section>
+            <modal-merch />
+        </section>
     </div>
     @yield('js')
     <script src="{{ mix('/js/app.js') }}"></script>

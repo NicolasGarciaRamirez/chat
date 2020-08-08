@@ -63,9 +63,13 @@ import ProfileSocialMedia from "./Views/User/Profile/Views/SocialMedia";
 import ModalContributorSignup from "./Views/Auth/Components/ModalContributorSignup";
 import ModalContributor from "./Views/CommingSoon/Components/ModalContributor";
 import ModalSharePost from "./Views/Posts/Components/ModalSharePost";
+import ModalRelathions from "./views/User/Profile/Components/Includes/ModalRelathions";
 
 import Carrer from "./Views/Extras/views/carrer"
 import Test from "./Views/User/Test";
+
+import ModalMerch from "./views/CommingSoon/Components/ModalMerch"
+import ModalForMusic from "./views/CommingSoon/Components/ModalForMusic"
 
 new Vue({
     el: '#app',
@@ -93,11 +97,14 @@ new Vue({
         ProfileSocialMedia,
         ModalContributorSignup,
         ModalContributor,
+        ModalRelathions,
         ModalSharePost,
         ValidateLogin,
         PasswordReset,
         Playlist,
         Carrer,
         Test,
+        ModalMerch,
+        ModalForMusic
     }
 });

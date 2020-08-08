@@ -264,8 +264,6 @@
                     logout</a>
                 </div>
             </li>
-            <modal-contributor />
-            <modal-relathions></modal-relathions>
         </div>
     </ul>
 </template>
@@ -274,15 +272,9 @@
 import Search from "../../Search/Views/Search";
 import Auth from "../../../helpers/Auth";
 import Followers from "../../../helpers/Followers";
-import ModalContributor from "../../CommingSoon/Components/ModalContributor";
-import ModalRelathions from "../../User/Profile/Components/Includes/ModalRelathions";
-import ModalContributorSignup from "../../Auth/Components/ModalContributorSignup";
-
 
 export default {
     components:{
-        ModalContributor,
-        ModalRelathions,
         Search
     },
     data(){
@@ -299,9 +291,7 @@ export default {
     },
     methods:{
         showModalRelathions(){
-            $('#ModalRelathions').modal({
-                keyboard: true
-            })
+            $('#ModalRelathions').modal('show')
         },
         showModalLogin(){
             $('#ModalLogin').modal('show')

@@ -1,8 +1,8 @@
 <header class="c-header c-header-light main-header">
-    <button class="c-header-toggler c-class-toggler d-menu d-lg-none" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
+    <button class="c-header-toggler c-class-toggler" type="button" data-target="#sidebar" data-class="c-sidebar-lg-show" responsive="true">
         <i class="cil-hamburger-menu"></i>
     </button>
-    <a class="c-header-brand d-lg-none" href="#">
+    <a class="c-header-brand d-lg-none" href="/">
         <img src="/images/logo-white.svg" class="img-logo" alt="Logo">
         <img src="/images/BETA.svg" class="mx-1 img-version">
     </a>
