@@ -70,7 +70,9 @@ class UserSocialAuthController extends Controller
             $last_name = ' ';
             if ($providerName == 'GoogleProvider') {
                 $first_name = $providerUser->user['given_name'];
-                $last_name = $providerUser->user['family_name'];
+                if (isset($providerUser->user['family_name'])) {
+                    $last_name = $providerUser->user['family_name'];
+                }
             }
             if ($providerName == 'FacebookProvider') {
                 $full_name = explode(" ", $providerUser->name);

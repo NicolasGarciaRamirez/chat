@@ -41,12 +41,11 @@
             font-size: 1.1rem;
         }
         .c-sidebar-nav-item{
-            position: relative;
-            padding: 0 18px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 34px;
+            .filter-nav{
+                position: relative;
+                padding: 0 18px;
+                min-height: 34px;
+            }
             label {
                 min-height: 34px;
                 margin-bottom: 0;
@@ -88,8 +87,6 @@
             input[type="checkbox"] {
                 width: auto;
                 opacity: 0.00000001;
-                position: absolute;
-                left: 0;
                 margin-left: -20px;
                 &:checked ~ label{
                     &:before {

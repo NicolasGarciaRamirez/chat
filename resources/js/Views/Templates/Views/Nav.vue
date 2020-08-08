@@ -1,76 +1,102 @@
 <template>
     <ul class="c-sidebar-nav ps ps--active-y px-3">
-<!--        <li class="c-sidebar-nav-title p-0 m-0 d-md-none text-center">-->
-<!--            <a :href="`/${auth.username}/Profile`" class="text-white">Profile</a>-->
-<!--        </li>-->
         <li class="c-sidebar-nav-title pb-0 m-0 pt-1">Filter Stream</li>
         <li class="c-sidebar-nav-title p-0 m-0">
             <img src="/images/sharks-menu.svg" alt="">
         </li>
         <li class="c-sidebar-nav-title">Genre</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="pop" @click="updateFilterGender('Pop')" data-genre="Pop">
-            <label for="pop"><span>Pop</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="pop" @click="updateFilterGender('Pop')" data-genre="Pop">
+                <label for="pop"><span>Pop</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rap_hip_jop" @click="updateFilterGender('Rap & Hip-Hop')" data-genre="Rap & Hip-Hop">
-            <label for="rap_hip_jop"><span>Rap & Hip-Hop</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="rap_hip_jop" @click="updateFilterGender('Rap & Hip-Hop')" data-genre="Rap & Hip-Hop">
+                <label for="rap_hip_jop"><span>Rap & Hip-Hop</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="edm" @click="updateFilterGender('EDM')" data-genre="EDM">
-            <label for="edm"><span>EDM</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="edm" @click="updateFilterGender('EDM')" data-genre="EDM">
+                <label for="edm"><span>EDM</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="rock_metal" @click="updateFilterGender('Rock & Metal')" data-genre="Rock & Metal">
-            <label for="rock_metal"><span>Rock & Metal</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="rock_metal" @click="updateFilterGender('Rock & Metal')" data-genre="Rock & Metal">
+                <label for="rock_metal"><span>Rock & Metal</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="jazz_blues" @click="updateFilterGender('Jazz & Blues')" data-genre="Jazz & Blues">
-            <label for="jazz_blues"><span>Jazz & Blues</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="jazz_blues" @click="updateFilterGender('Jazz & Blues')" data-genre="Jazz & Blues">
+                <label for="jazz_blues"><span>Jazz & Blues</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="classical" @click="updateFilterGender('Classical')" data-genre="Classical">
-            <label for="classical"><span>Classical</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="classical" @click="updateFilterGender('Classical')" data-genre="Classical">
+                <label for="classical"><span>Classical</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="funk" @click="updateFilterGender('Funk')" data-genre="Funk">
-            <label for="funk"><span>Funk</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="funk" @click="updateFilterGender('Funk')" data-genre="Funk">
+                <label for="funk"><span>Funk</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="world" @click="updateFilterGender('World')" data-genre="World">
-            <label for="world"><span>World</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="world" @click="updateFilterGender('World')" data-genre="World">
+                <label for="world"><span>World</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-title">Category</li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="production_engineering" @click="updateFilterCategory('Production & Engineering')" data-category="Production & Engineering">
-            <label for="production_engineering"><span>Production & Engineering</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="production_engineering" @click="updateFilterCategory('Production & Engineering')" data-category="Production & Engineering">
+                <label for="production_engineering"><span>Production & Engineering</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="vlogs" @click="updateFilterCategory('Vlogs')" data-category="Vlogs">
-            <label for="vlogs"><span>Vlogs</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="vlogs" @click="updateFilterCategory('Vlogs')" data-category="Vlogs">
+                <label for="vlogs"><span>Vlogs</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="instruments" @click="updateFilterCategory('Instruments')" data-category="Instruments">
-            <label for="instruments"><span>Instruments</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="instruments" @click="updateFilterCategory('Instruments')" data-category="Instruments">
+                <label for="instruments"><span>Instruments</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="podcasts" @click="updateFilterCategory('Podcasts')" data-category="Podcasts">
-            <label for="podcasts"><span>Podcasts</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="podcasts" @click="updateFilterCategory('Podcasts')" data-category="Podcasts">
+                <label for="podcasts"><span>Podcasts</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')" data-category="Audio Clips">
-            <label for="audio_clips"><span>Audio Clips</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')" data-category="Audio Clips">
+                <label for="audio_clips"><span>Audio Clips</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item">
-            <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
-            <label for="performance_and_jams"><span>Performances and Jams</span></label>
+            <div class="filter-nav">
+                <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
+                <label for="performance_and_jams"><span>Performances and Jams</span></label>
+            </div>
         </li>
         <li class="c-sidebar-nav-item p-0">
             <div class="divider"></div>
         </li>
         <li class="c-sidebar-nav-title m-0 pb-0 pr-1">
-                Following
-            <img src="/images/icons/star-white.svg" width="20px" class="float-right">
+            <div class="filter-nav">
+                Following <img src="/images/icons/star-white.svg" width="20px" class="float-right">
+            </div>
         </li>
         <li class="c-sidebar-nav-title mt-0 pt-0 pr-1">
             <img src="/images/sharks-menu.svg" alt="">
