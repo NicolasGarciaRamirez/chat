@@ -49,33 +49,100 @@
     fill: $fourth-color;
 }
 .social-login{
-    a{
-        font-weight: bold;
-        border-radius: 20px;
-        &.bg-white{
-            color: #FF3C03 !important;
+    .google{
+        svg{
+            width: 1.5rem !important;
+            margin-right: 0.5rem !important;
+            path{
+                fill: $third-color !important;
+            }
+        }
+        &:hover{
+            svg{
+                path{
+                    fill: white !important;
+                }
+            }
+        }
+        a{
+            font-weight: bold;
+            border-radius: 20px;
+            .bg-white{
+                color: #FF3C03 !important;
+                opacity: 1 !important;
+                &:hover{
+                    opacity: 0.8 !important;
+                    svg{
+                        width: 1rem !important;
+                        path{
+                            fill: #FF3C03 !important;
+                        }
+                    }
+                }
+                &:active{
+                    background: #FF3C03 !important;
+                    color: white !important;
+                    svg{
+                        width: 1rem !important;
+                        path{
+                            fill: $third-color !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .facebook{
+        svg{
+            width: 0.8rem !important;
+            margin-right: 0.5rem !important;
+            path{
+                fill: $third-color !important;
+            }
+        }
+        &:hover{
+            svg{
+                path{
+                    fill: white !important;
+                }
+            }
+        }
+        a.bg-facebook{
+            background: #0055FF !important;
+            opacity: 1 !important;
+            &:hover{
+                opacity: 0.8 !important;
+                svg.svg-social-icon{
+                    width: 2.8rem !important;
+                    path{
+                        fill: #0055FF !important;
+                    }
+                }
+            }
+        }
+    }
+    .twitter{
+        &:hover{
+            svg{
+                path{
+                    fill: white !important;
+                }
+            }
+        }
+        svg{
+            width: 1.25rem !important;
+            margin-right: 0.5rem !important;
+            path{
+                fill: $third-color !important;
+            }
+        }
+        a.bg-twitter{
+            background: #00AAFF !important;
             opacity: 1 !important;
             &:hover{
                 opacity: 0.8 !important;
             }
-            &:active{
-                background: #FF3C03 !important;
-                color: white !important;
-            }
-        }
-    }
-    a.bg-facebook{
-        background: #0055FF !important;
-        opacity: 1 !important;
-        &:hover{
-            opacity: 0.8 !important;
-        }
-    }
-    a.bg-twitter{
-        background: #00AAFF !important;
-        opacity: 1 !important;
-        &:hover{
-            opacity: 0.8 !important;
         }
     }
 }
@@ -262,7 +329,6 @@ textarea{
 }
 
 .follow-idle{
-    //background: $primary-color !important;
     border: 2px solid white !important;
     color: white !important;
     svg{
@@ -274,7 +340,7 @@ textarea{
         path{
             stroke-width: 6rem !important;
             stroke: white !important;
-            fill: $primary-color !important;
+            fill: transparent !important;
         }
     }
     &:hover{
@@ -352,7 +418,17 @@ textarea{
         width: 5rem ;
     }
 }
-
+svg.share{
+    path{
+        fill: $third-color;
+        &:hover{
+            fill: white;
+        }
+        &:active{
+            fill: white;
+        }
+    }
+}
 .cropper{
     max-width: 50rem !important;
     min-width: 50rem !important;

@@ -307,6 +307,9 @@
                                     className: "p-4 notification bg-primary",
                                     keepOnHover: true
                                 })
+                                if (window.screen.width <= 768){
+                                    window.location.replace('/')
+                                }
                             }else{
                                 this.loading = false
                             }

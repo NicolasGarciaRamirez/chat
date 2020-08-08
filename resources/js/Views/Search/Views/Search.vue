@@ -1,5 +1,5 @@
 <template>
-    <section class="position-relative">
+    <section class="position-relative" v-click-outside="hideSearch">
         <form @submit.prevent="showContentSearch()" class="header-form-search d-none d-md-block" v-if="!only_view">
             <div class="form-group m-0">
                 <div class="input-group">
@@ -16,9 +16,9 @@
             </div>
         </form>
         <form @submit.prevent="showContentSearch()" class="header-form-search" v-else>
-            <div class="form-group m-0">
+            <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control pl-4" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">
+                    <input class="form-control pl-4 ml-3" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">
                     <div class="divider-vertical"></div>
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="17px" height="17px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve">
@@ -39,7 +39,6 @@
                     <span class="font-weight-bold text-white">{{user.artistic_name}}</span>
                     <div class="content-info-search">
                         <span class="bg-fifth text-white p-1 font-weight-bold mr-2">{{user.profile_information.title}}</span>
-                        <!--EL BOTON CONTRIBUTOR SOLO SE MUESTRA CUANDO EL USUARIO ES CONTRIBUTOR -->
                         <span class="bg-white c-fifth p-1 font-weight-bold d-flex align-items-center" v-if="user.subscription_type === 'CONTRIBUTOR'">CONTRIBUTOR<img src="/images/icons/music-red.svg" width="14rem" class="ml-1"></span>
                     </div>
                 </div>
@@ -52,6 +51,7 @@
 </template>
 
 <script>
+    import vClickOutside from 'v-click-outside'
     export default {
         name: "Search",
         props:['only_view'],
@@ -62,7 +62,15 @@
                 without_results: false
             }
         },
+        directives: {
+            clickOutside: vClickOutside.directive
+        },
         methods:{
+            hideSearch(){
+                this.result_search = []
+                this.search_body = null
+                this.without_results = false
+            },
             async showContentSearch(){
                 this.without_results = false
 

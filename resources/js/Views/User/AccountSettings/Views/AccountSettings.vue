@@ -162,7 +162,7 @@
                     aria-labelledby="headingSeven" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="d-flex justify-content-center">
-                                <button @click="showModalEditPassword" class="border-white font-weight-bold action">Change Password <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
+                                <button @click="showModalEditPassword" class="border-white font-weight-bold action text-white">Change Password <i class="fas fa-pencil-alt rounded-pill ml-2"></i></button>
                             </div>
                         </div>
                     </div>
@@ -178,16 +178,51 @@
                     <div id="collapseFifth" class="collapse" aria-labelledby="headingFifth" data-parent="#accordionAccountSettings">
                         <div class="card-body bg-black">
                             <div class="d-flex flex-column text-center social-login">
-                                <div class="d-flex justify-content-center align-items-center mb-2">
-                                    <img src="/images/icons/facebook.svg" alt="" class="icon">
+                                <div class="d-flex justify-content-center align-items-center mb-2 facebook">
+                                    <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         x="0px" y="0px" viewBox="0 0 504 1080" xml:space="preserve" class="svg-social-icon">
+                                        <g id="Layer_2">
+                                            <g id="Layer_2-2">
+                                                <path fill="#535353" d="M107.78,1080h225.46V539.97h150.31c0,0,13.96-86.96,20.94-182.52H333.78V232.91
+                                                    c4.56-23.88,24.6-41.72,48.85-43.48h121.86V0.47H338.61c-234.59,0-230.83,181.98-230.83,208.82v148.7H0.42v181.98h107.36V1080z"/>
+                                            </g>
+                                        </g>
+                                    </svg>
                                     <a href="/auth/facebook" class="btn btn-social-media bg-facebook text-white rounded-pill font-weight-bold">{{ auth_facebook == 'FacebookProvider' ? 'Disconnect From Facebook'  : 'Link With Facebook' }}</a>
                                 </div>
-                                <div class="d-flex justify-content-center align-items-center mb-2">
-                                    <img src="/images/icons/twitter.svg" alt="" class="icon">
+                                <div class="d-flex justify-content-center align-items-center mb-2 twitter">
+                                    <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         x="0px" y="0px" viewBox="0 0 1313 1080" xml:space="preserve" class="svg-social-icon">
+                                        <g id="Layer_2">
+                                            <g id="Layer_2-2">
+                                                <path fill="#535353" d="M489.98,1077.7c-58.34-0.2-116.59-4.84-174.22-13.9c-83.32-16.21-163.58-45.43-237.82-86.58L-0.1,934.48
+                                                    l84.44-27.26c91.92-30.46,148.04-49.17,217.51-78.56c-71.14-34.83-124.99-97.17-149.11-172.62l-19.24-59.32l16.03,2.67
+                                                    c-13.78-13.87-26.13-29.09-36.88-45.43c-32.71-48.51-49.18-106.14-47.03-164.6l3.74-53.44l31,11.76
+                                                    c-12.87-24.39-22.22-50.48-27.79-77.49c-12.96-69.26-0.83-140.88,34.2-202.02l26.72-49.7l36.34,43.82
+                                                    C277.2,195.72,431.87,282.63,601.67,304.92c-7.16-46.17-1.8-93.41,15.5-136.81c21.97-50.27,59.42-92.21,106.89-119.71
+                                                    c53.36-32.33,115.1-48.14,177.43-45.43c66.31,3.57,129.44,29.58,179.03,73.75c22.11-5.49,43.88-12.27,65.2-20.31l53.44-18.71
+                                                    l72.68-26.72L1222.68,151h10.15l80.16-3.74l-47.03,64.13l-4.81,5.34c-3.74,5.88-8.55,12.83-73.22,99.94
+                                                    c-16.73,23.04-24.86,51.22-22.98,79.63c6.56,102.34-8,204.94-42.75,301.42c-29.77,81.91-79.13,155.3-143.76,213.77
+                                                    c-85.93,74.55-190.14,124.91-301.95,145.9C615.17,1070.47,552.68,1077.28,489.98,1077.7z"/>
+                                            </g>
+                                        </g>
+                                    </svg>
                                     <a href="/auth/twitter" class="btn btn-social-media bg-twitter text-white rounded-pill font-weight-bold">{{ auth_twitter  == 'TwitterProvider' ? 'Disconnect From Twitter'  : 'Link With Twitter' }}</a>
                                 </div>
-                                <div class="d-flex justify-content-center align-items-center mb-2">
-                                    <img src="/images/icons/google.svg" alt="" class="icon">
+                                <div class="d-flex justify-content-center align-items-center mb-2 google">
+                                    <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         x="0px" y="0px" viewBox="0 0 1682 1080" xml:space="preserve" class="svg-social-icon">
+                                        <g id="Layer_2">
+                                            <g id="Layer_2-2">
+                                                <path fill="#535353" d="M539.43,193.97c109.16,0.63,211.78,52.14,277.51,139.3l140.38-141.47
+                                                    C764.89-37.49,423.01-67.38,193.71,125.05s-259.19,534.31-66.75,763.61s534.31,259.19,763.61,66.75
+                                                    c122.69-102.97,193.56-254.93,193.59-415.1V491H587.13v197.84h262.88c-56.62,121.3-178.34,198.85-312.2,198.92
+                                                    c-192.2-0.29-348.36-155.24-350.14-347.43C189.75,347.79,346.89,193.07,539.43,193.97z"/>
+                                                <path fill="#535353" d="M1530.24,293.16h-198.38v148.51h-148.51v197.84h148.51v149.05h198.38V639.51H1682V441.67h-151.76V293.16z"
+                                                />
+                                            </g>
+                                        </g>
+                                    </svg>
                                     <a href="/auth/google" class="btn btn-social-media c-fifth bg-white rounded-pill font-weight-bold">{{ auth_google == 'GoogleProvider' ? 'Disconnect From Google'  : 'Link With Google' }}</a>
                                 </div>
                             </div>
