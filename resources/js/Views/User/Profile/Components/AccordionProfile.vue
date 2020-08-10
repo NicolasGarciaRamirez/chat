@@ -121,14 +121,14 @@
                         <div class="text-white bg-black text-center card-body">
                             <div class="d-flex flex-row mb-4">
                                 <h5>Current Members</h5>
-                                <button type="button" class="bg-primary c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('current')">Add Current Member</button>
+                                <button type="button" class="bg-black c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('current')">Add Current Member</button>
                             </div>
                             <div>
                                 <single-member v-for="(current, index) in current_members" :key="index" :member="current" :index="index" :type="'current'" />
                             </div>
                             <div class="d-flex flex-row mb-4">
                                 <h5>Former Members</h5>
-                                <button type="button" class="bg-primary c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('past')">Add Former Member</button>
+                                <button type="button" class="bg-black c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('past')">Add Former Member</button>
                             </div>
                             <div>
                                 <single-member  v-for="(past, index) in past_members" :key="index" :member="past" :index="index" :type="'past'" />

@@ -366,7 +366,7 @@
     }
     .comment{
         .comment-user-image{
-            transform: translateY(-0.7rem);
+            transform: translateY(-0.89rem);
             min-width: 2.64rem;
             max-width: 2.64rem;
             min-height: 2.64rem;
@@ -394,7 +394,10 @@
             }
         }
         .content-line{
-            margin-left: 2.39rem;
+            margin-left: 1.9rem;
+            @include media-breakpoint-up(md){
+                margin-left: 2.4rem;
+            }
             .line{
                 border-top: 2px solid $third-color !important;
                 width: 5rem !important;

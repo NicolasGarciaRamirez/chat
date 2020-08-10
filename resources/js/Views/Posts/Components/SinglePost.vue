@@ -1,5 +1,5 @@
 <template >
-    <section class="post" v-if="view_post" @click="storeView">
+    <section class="post my-2" v-if="view_post" @click="storeView">
         <div class="post-head bg-primary p-3">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
@@ -7,6 +7,17 @@
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
+                            <filter id="dropshadow" height="130%">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
+                                <feOffset dx="2" dy="2" result="offsetblur"></feOffset>
+                                <feComponentTransfer>
+                                    <feFuncA type="linear" slope="0.5"></feFuncA>
+                                </feComponentTransfer>
+                                <feMerge>
+                                    <feMergeNode></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
                             <g>
                                 <g>
                                     <g>
@@ -185,7 +196,7 @@
             </div>
         </div>
         <comments :post="post" :view_comment="view_comment"/>
-        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="text-black-50 bg-black border-0" >
+        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: 165pc">
     </section>
 </template>
 

@@ -20,13 +20,13 @@
                 transform: translate(35.1rem, -3.5rem);
             }
             @include media-breakpoint-only(md){
-                font-size: 0.41rem !important;
-                transform: translate(40.1rem, -3.6rem);
+                font-size: 0.8rem !important;
+                transform: translate(36.8rem, -3.6rem);
             }
             @include media-breakpoint-down(sm){
                 padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
                 font-size: 0.6rem !important;
-                transform: translate(12.49rem, -2rem);
+                transform: translate(13.2rem, -2.3rem);
             }
             svg{
                 width: 0.8rem;
@@ -38,7 +38,10 @@
             &:hover{
                 background: white;
                 color: black !important;
-                text-shadow: none !important;
+                box-shadow: none !important;
+                label{
+                    text-shadow:none !important;
+                }
                 i{
                     color: black;
                 }
@@ -52,7 +55,10 @@
                 border: blanchedalmond !important;
                 background: blanchedalmond !important;
                 color: white !important;
-                text-shadow: none;
+                box-shadow: none;
+                label{
+                    text-shadow: none !important;
+                }
                 i{
                     color: white;
                 }
@@ -72,6 +78,7 @@
             @include media-breakpoint-only(md){
                 width: 5rem !important;
                 font-size: 0.41rem !important;
+                transform: translate(15.9rem, -1.6rem);
             }
             @include media-breakpoint-down(sm) {
                 padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
@@ -90,62 +97,59 @@
         .follow-movile-button{
             z-index: 1;
             position: absolute;
-            button{
-                box-shadow: 2px 2px 2px $third-color;
-                text-shadow: 2px 2px 2px $third-color;
-            }
             @include media-breakpoint-only(md){
                 width: 5rem !important;
                 font-size: 0.41rem !important;
             }
             @include media-breakpoint-down(sm) {
                 font-size: 0.41rem ;
-                transform: translate(14.5rem, -2.3rem);
+                transform: translate(16rem, -2.7rem);
+                button.follow-active{
+                    transform: translate(-1.3rem, 0.1rem);
+                }
                 button{
                     font-size: 0.69rem;
-                    //svg{
-                    //    width: 0.8rem;
-                    //    margin: 0.07rem 0 0px 0.3rem;
-                    //}
                 }
             }
 
         }
         .img-profile{
             position: absolute;
-            bottom: -5.6rem;
-            left: 1rem;
-            min-width: 8rem;
-            max-width: 8rem;
-            min-height: 8rem;
-            max-height: 8rem;
-            @include media-breakpoint-up(md){
-                bottom: -5.6rem;
+            transform: translateY(-1.55rem);
+            bottom: -3.6rem;
+            left: 0.39rem;
+            min-height: 4.2rem;
+            max-width: 4.2rem;
+            max-height: 4.2rem;
+            min-width: 4.2rem;
+            @include media-breakpoint-up(lg){
+                bottom: -7.2rem;
+                left: 1rem;
                 min-width: 8rem;
                 max-width: 8rem;
                 min-height: 8rem;
                 max-height: 8rem;
             }
-            @include media-breakpoint-down(sm){
-                transform: translateY(-1.55rem);
-                bottom: -3.6rem;
-                left: 0.39rem;
-                min-height: 4.2rem;
-                max-width: 4.2rem;
-                max-height: 4.2rem;
-                min-width: 4.2rem;
+            @include media-breakpoint-only(md){
+                bottom: -4.6rem;
+                left: 1rem;
+                min-width: 6rem;
+                max-width: 6rem;
+                min-height: 6rem;
+                max-height: 6rem;
             }
         }
-
         .img-portada{
             width: 100%;
             min-height: 10rem;
+            margin-top: 0.8rem;
             img{
                 max-width: 1450px;
                 min-width: 1450px;
             }
             @include media-breakpoint-up(lg){
                 max-height: 15rem;
+                margin-top: 0.8rem ;
                 img{
                     min-width: 1450px;
                     max-width: 1450px;
@@ -153,6 +157,7 @@
             }
             @include media-breakpoint-down(sm){
                 max-height: 10rem;
+                margin-top: 0.8rem;
             }
         }
     }
@@ -249,6 +254,9 @@
     .content-primary{
         position: absolute;
         transform: translate(5.38rem, 3rem);
+        @include media-breakpoint-only(md){
+            transform: translate(7.2rem, 4rem);
+        }
         h3{
             font-size: 0.9rem !important;
             text-shadow: 3px 2px 3px $third-color;
@@ -345,6 +353,20 @@
         }
         a{
             text-decoration: none;
+            &:hover{
+                color: $fifth-color !important;
+            }
+            &:active{
+                color: $fifth-color !important;
+                &:before{
+                    content: '';
+                    top: -8px;
+                    height: 3px;
+                    width: 5%;
+                    background-color: $fifth-color;
+                    position: absolute;
+                }
+            }
         }
         a.active{
             position: relative;

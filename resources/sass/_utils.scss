@@ -329,11 +329,17 @@ textarea{
     background: transparent;
     border: 2px solid white;
     color: white;
+    text-shadow: 2px 2px 2px $third-color;
+    box-shadow: 2px 2px 2px $third-color;
     svg{
         width: 1em;
         margin-left: 0.3rem;
         path{
             fill: white;
+        }
+        polygon{
+            //filter: url(#dropshadow);
+            stroke-width: 20px;
         }
     }
     &:hover{
