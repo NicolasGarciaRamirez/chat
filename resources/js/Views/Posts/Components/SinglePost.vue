@@ -1,5 +1,5 @@
 <template >
-    <section class="post my-2" v-if="view_post" @click="storeView">
+    <section class="post my-2" v-if="view_post">
         <div class="post-head bg-primary p-3">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
@@ -31,7 +31,7 @@
                         </svg>
                     </button>
                 </div>
-                <button v-if="post.user.subscription_type === 'CONTRIBUTOR' && post.user.username !== auth.username" class="bg-primary border-danger d-sm-down-none "  @click="showModalSupport">SUPPORT
+                <button class="bg-primary border-danger d-sm-down-none" @click="showModalSupport" v-if="post.user.subscription_type === 'CONTRIBUTOR' && post.user.username !== auth.username">SUPPORT
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M775.617,0.807c-91.897,0-177.902,44.438-234.538,118.658C484.384,45.246,398.382,0.807,306.482,0.807
@@ -40,7 +40,7 @@
                         c153.823-176.912,231.84-336.519,231.84-474.343C1077.045,143.518,941.842,0.807,775.617,0.807"/>
                     </svg>
                 </button>
-                <button v-if="post.user.subscription_type === 'CONTRIBUTOR' && post.user.username !== auth.username" class="bg-primary border-danger d-sm-down-none " @click="showModalReward">REWARD
+                <button class="bg-primary border-danger d-sm-down-none" @click="showModalReward" v-if="post.user.subscription_type === 'CONTRIBUTOR' && post.user.username !== auth.username">REWARD
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         width="1rem" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve" class="svg-icon ml-2">
                         <path fill="#141414" stroke="red" stroke-width="60" d="M1078.159,1.365h-508.24L3.615,515.729h353.029l-204.69,563.042l895.973-777.405H758.889L1078.159,1.365z
@@ -49,7 +49,7 @@
                         C712.678,191.25,719.032,191.833,725.56,192.275"/>
                     </svg>
                 </button>
-                <i class="fas fa-ellipsis-h c-third fa-2x mfs-auto"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                <i :class="auth.username === post.user.username ? 'fas fa-ellipsis-h c-third fa-2x mfs-auto d-sm-down-none' : 'fas fa-ellipsis-h c-third fa-2x mfs-auto'"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
                     <div v-if="!menuPlaylist">
                         <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item" v-if="post.user.username !== auth.username">Go To User Profile</a>
@@ -81,9 +81,29 @@
                         <span class="p-1 bg-white c-fifth d-flex align-items-center justify-content-center font-weight-bold" v-if="post.user.subscription_type === 'CONTRIBUTOR'">CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="icon-music-red"></span>
                     </div>
                 </div>
+                <i :class="auth.username === post.user.username ? 'fas fa-ellipsis-h c-third fa-2x d-lg-none d-xl-none' : 'fas fa-ellipsis-h c-third fa-2x d-none'"  id="dropdownPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="right: 1px;right: 18px;position: absolute;"></i>
+                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownPost">
+                    <div v-if="!menuPlaylist">
+                        <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item" v-if="post.user.username !== auth.username">Go To User Profile</a>
+                        <!-- <a href="#" class="dropdown-item">Message User</a> -->
+                        <div class="dropdown-divider" v-if="post.user.username !== auth.username"></div>
+                        <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
+                        <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
+                        <a :href="`/Post/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
+                        <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
+                        <!--<div class="dropdown-item cursor-pointer" >Hide Post</div>-->
+                        <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>
+                        <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
+                    </div>
+                    <!--                    <div v-if="menuPlaylist">-->
+                    <!--                        <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>-->
+                    <!--                        <div class="dropdown-divider"></div>-->
+                    <!-- <a href="" class="dropdown-item" v-for="(playlist, index) in playlist" :key="index">{{ playlist.name }}</a> -->
+                    <!--                    </div>-->
+                </div>
             </div>
         </div>
-        <div class="text p-3 item bg-primary" id="description" v-if="!post.replace_caption && post.description">
+        <div class="text p-3 item bg-primary" id="description" v-if="!post.replace_caption && post.description" @click="storeView">
             <span v-if="!edit && !post.replace_caption && post.resource_type !== 'docs'">
                 <span v-if="showMore">{{description}}</span>
                 <span v-if="!showMore">{{descriptionLess}}</span>
@@ -114,20 +134,20 @@
         <div class="post-body bg-primary" v-if="post.resource">
             <div>
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
-                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type === 'image'" />
-                    <video :src="`${post.resource}`" controls  v-if="post.resource_type === 'video'" />
-                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf"></vue-wave-surfer>
-                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'">
+                    <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
+                    <video :src="`${post.resource}`" controls  v-if="post.resource_type === 'video'" @click="storeView" />
+                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf" @click="storeView"></vue-wave-surfer>
+                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio()" >
                             <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
                         </div>
                         <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
                     </div>
-                    <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
+                    <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'" @click="storeView">
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
                     </a>
-                    <div v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'">
+                    <div v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'" @click="storeView">
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
                     </div>
                     <div class="my-3" v-if="post.replace_caption">
@@ -324,7 +344,7 @@
             // showModalPost(){
                 //     $('#ModalPost').modal('show')
             // }
-            //send methods show
+            //end methods show
             //methods player
             getGrad(){
                 let linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
@@ -358,7 +378,7 @@
             forward(){
                 this.audio.skipForward(10)
             },
-            //methods player
+            //end methods player
             copyLink(){
                 var copyText = document.getElementById("myInput"+this.post.token);
                 copyText.select();
@@ -442,13 +462,19 @@
                         this.post.votes.map(vote => {
                             if (vote.type_vote === 'vote_up') {
                                 this.votes.vote_up.push(vote)
-                                $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
-                                $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
+                                if(vote.user.username === Auth.state.username){
+                                    $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up-red.svg" height="22">')
+                                    $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')
+                                    this.vote_type_up = 'unvote_up'
+                                }
                             }
                             if(vote.type_vote === 'vote_down'){
                                 this.votes.vote_down.push(vote)
-                                $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
-                                $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+                                if(vote.user.username === Auth.state.username){
+                                    $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
+                                    $(`#voteUp`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-up.svg" height="22">')
+                                    this.vote_type_down = 'unvote_down'
+                                }
                             }
                         })
                     }
@@ -473,11 +499,15 @@
                         this.url =  `/${Auth.state.username}/VotePost/VoteUp/${this.post.id}`
                         if (this.votes.vote_down.length > 0) {
                             this.votes.vote_down.map(vote => {
-                                axios.post(`/${Auth.state.username}/VotePost/UnVoteDown/${vote.id}`).then(res =>{
-                                    if(res.data.unvoteDown){
-                                        this.vote_type_down = 'vote_down'
-                                    }
-                                })
+                                if(vote.user.username === Auth.state.username){
+                                    axios.post(`/${Auth.state.username}/VotePost/UnVoteDown/${vote.id}`).then(res =>{
+                                        if(res.data.unvoteDown){
+                                            this.vote_type_down = 'vote_down'
+                                            let index = _.findIndex(this.votes.vote_down, function(o) { return o.id === res.data.unvoteDown.id; });
+                                            this.votes.vote_down.splice(index, 1)
+                                        }
+                                    })
+                                }
                             })
                         }
                     }
@@ -496,8 +526,6 @@
                         this.disable_vote_down = false
                         this.disable_like = false
                         this.votes.vote_up.push(res.data.voteUp)
-                        let indice = this.post.votes.indexOf(res.data.voteUp)
-                        this.votes.vote_down.splice(indice, 1)
                         this.vote.type_vote = 'unvote_up'
                         this.vote_type_up = 'unvote_up'
 
@@ -508,8 +536,10 @@
                         this.disable_vote_up = false
                         this.disable_vote_down = false
                         this.disable_like = false
-                        let indice = this.post.votes.indexOf(res.data.unvoteUp)
-                        this.votes.vote_up.splice(indice, 1)
+
+                        let index = _.findIndex(this.votes.vote_up, function(o) { return o.id === res.data.unvoteUp.id; });
+                        this.votes.vote_up.splice(index, 1)
+
                         this.vote.type_vote = 'vote_up'
                         this.vote_type_up = 'vote_up'
 
@@ -536,9 +566,10 @@
                             this.votes.vote_up.map(vote =>{
                                 if (Auth.state.username === vote.user.username) {
                                     axios.post(`/${Auth.state.username}/VotePost/UnVoteUp/${vote.id}`).then(res =>{
-                                        console.log(res)
                                         if(res.data.unvoteUp){
                                             this.vote_type_up = 'vote_up'
+                                            let index = _.findIndex(this.votes.vote_up, function(o) { return o.id == res.data.unvoteUp.id; });
+                                            this.votes.vote_up.splice(index, 1)
                                         }
                                     }).catch(err =>{
                                         console.log(err)
@@ -565,8 +596,7 @@
                             this.disable_vote_up = false
                             this.disable_like = false
                             this.votes.vote_down.push(res.data.voteDown)
-                            let indice = this.post.votes.indexOf(res.data.voteDown)
-                            this.votes.vote_up.splice(indice, 1)
+                            console.log(res.data)
                             this.vote.type_vote = 'unvote_down'
                             this.vote_type_down = 'unvote_down'
                             $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-red.svg" height="22">')
@@ -576,8 +606,10 @@
                             this.disable_vote_down = false
                             this.disable_vote_up = false
                             this.disable_like = false
-                            let indice = this.post.votes.indexOf(res.data.unvoteDown)
-                            this.votes.vote_down.splice(indice, 1)
+                            console.log(res)
+                            let index = _.findIndex(this.votes.vote_down, function(o) { return o.id == res.data.unvoteDown.id; });
+                            this.votes.vote_down.splice(index, 1)
+
                             this.vote.type_vote = 'vote_up'
                             this.vote_type_down = 'vote_down'
                             $(`#voteDown`+this.post.id+` img`).replaceWith('<img src="/images/icons/post-percentage-down-grey.svg" height="22">')

@@ -345,6 +345,8 @@ textarea{
     &:hover{
         background-color: white;
         color: black !important;
+        text-shadow: none;
+        box-shadow: none;
         svg{
             path{
                 fill: $primary-color;

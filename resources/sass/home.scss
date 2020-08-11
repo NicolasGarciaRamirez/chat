@@ -21,6 +21,16 @@
                 border: 0;
             }
         }
+        .post-head{
+            width: auto;
+
+            svg{
+                left: 92%;
+                @include media-breakpoint-up(lg){
+                    left: auto;
+                }
+            }
+        }
         .image-preview{
             @include media-breakpoint-down(md){
                 background: black;
