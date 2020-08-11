@@ -3,7 +3,7 @@
         <form @submit.prevent="showContentSearch()" class="header-form-search d-none d-lg-block" v-if="!only_view">
             <div class="form-group m-0">
                 <div class="input-group">
-                    <input class="form-control pl-4" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">
+                    <input class="form-control pl-4" type="text" placeholder="Search profiles..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">
                     <div class="divider-vertical"></div>
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="17px" height="17px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve">
@@ -18,7 +18,7 @@
         <form @submit.prevent="showContentSearch()" class="header-form-search" v-else>
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control pl-4 ml-3" type="text" placeholder="Search for posts, hashtags, etc..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">
+                    <input class="form-control pl-4 ml-3" type="text" placeholder="Search profiles..." autocomplete="none" v-model="search_body" @keyup="showContentSearch()">
                     <div class="divider-vertical"></div>
                     <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          width="17px" height="17px" viewBox="0 0 1078.387 1080" enable-background="new 0 0 1078.387 1080" xml:space="preserve">

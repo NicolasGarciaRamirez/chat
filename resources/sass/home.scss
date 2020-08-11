@@ -22,6 +22,9 @@
             }
         }
         .image-preview{
+            @include media-breakpoint-down(md){
+                background: black;
+            }
             img.preview, video.preview, audio.preview{
                 min-width: 500px;
                 max-width: 500px;
@@ -40,6 +43,10 @@
         }
         .post-footer{
             margin-top: 2px;
+            background: black;
+            @include media-breakpoint-up(lg){
+                background: $primary-color;
+            }
             img{
                 width: 1.8rem;
                 cursor: pointer;
@@ -51,7 +58,9 @@
                 }
             }
             .img-upload{
-                margin: 0.5rem;
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+                margin-top: 0.4rem;
                 svg{
                     &:hover{
                         path{
@@ -63,6 +72,7 @@
                     display: none;
                 }
                 svg{
+                    width: 1.8rem;
                     @include media-breakpoint-down(sm){
                         width: 1.56rem;
                     }
@@ -74,6 +84,7 @@
                 position: relative;
                 display: block;
                 text-decoration: none;
+                line-height: 1.8rem;
                 &:hover{
                     color: white !important;
                 }
@@ -125,6 +136,11 @@
             }
         }
         .config-post{
+            background:black ;
+
+            @include media-breakpoint-up(sm){
+                background: $primary-color;
+            }
             .checkbox{
                 position: relative;
                 padding: 0 18px;
@@ -204,18 +220,36 @@
             }
             .button-select{
                 border: 0.10rem solid white;
-                display: flex;
-                flex-direction: row;
-                @include media-breakpoint-down(sm){
-                    flex-direction: column !important;
-                    margin: 0.3rem;
+                flex-direction: column;
+                margin: 0.3rem;
+                padding: 0.5rem 0.7rem 0.5rem 0.7rem;
+                background: transparent;
+                color:white;
+                border-radius: 30px;
+                font-weight: bold;
+                cursor: pointer;
+                @include media-breakpoint-up(lg){
+                    display: flex;
+                    flex-direction: row;
                 }
             }
-            .buttons-select{
-                button{
-                    @include media-breakpoint-down(sm){
-                        font-size: 0.7rem;
-                        height: 1.8rem;
+            .content-buttons{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                align-items: self-start;
+                @include media-breakpoint-up(lg){
+                    flex-direction: row;
+                }
+                .button-privacy{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    @include media-breakpoint-up(lg){
+                        display: flex;
+                        flex-direction: row;
+                        float: right;
+                        align-items: center;
                     }
                 }
             }

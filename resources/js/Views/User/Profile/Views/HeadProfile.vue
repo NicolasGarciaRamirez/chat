@@ -7,6 +7,17 @@
 <!--                    <i class="cil-pencil ml-2"></i>-->
                     <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                          x="0px" y="0px" viewBox="0 0 1242.12 1079.31" xml:space="preserve" class="svg-icon" width="1.23rem">
+                         <filter id="dropshadow" height="130%">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
+                                 <feOffset dx="2" dy="2" result="offsetblur"></feOffset>
+                                 <feComponentTransfer>
+                                <feFuncA type="linear" slope="0.5"></feFuncA>
+                            </feComponentTransfer>
+                                 <feMerge>
+                                <feMergeNode></feMergeNode>
+                                     <feMergeNode in="SourceGraphic"></feMergeNode>
+                            </feMerge>
+                        </filter>
                         <g id="Layer_2">
                             <g id="Layer_2-2">
                                 <path d="M1188.28,269.77c61.65-49.05,71.86-138.8,22.8-200.45c-6.71-8.44-14.36-16.09-22.8-22.8
@@ -23,6 +34,17 @@
                 Edit Profile
                 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1242.12 1079.31" xml:space="preserve" class="svg-icon" width="1.23rem">
+                    <filter id="dropshadow" height="130%">
+                        <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
+                        <feOffset dx="2" dy="2" result="offsetblur"></feOffset>
+                        <feComponentTransfer>
+                            <feFuncA type="linear" slope="0.5"></feFuncA>
+                        </feComponentTransfer>
+                        <feMerge>
+                            <feMergeNode></feMergeNode>
+                            <feMergeNode in="SourceGraphic"></feMergeNode>
+                        </feMerge>
+                    </filter>
                     <g id="Layer_2">
                         <g id="Layer_2-2">
                             <path d="M1188.28,269.77c61.65-49.05,71.86-138.8,22.8-200.45c-6.71-8.44-14.36-16.09-22.8-22.8
@@ -37,19 +59,34 @@
             <div :id="`follow`+user.token" class="follow-movile-button d-lg-none d-md-none mx-lg-3" @click="colorFollow(follow_type)" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username !== user.username">
                 <button type="button" class="align-items-right function follow-idle">
                     {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
-                    <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                         x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve">
-                        <g id="Layer_2">
-                            <g id="Layer_2-2">
-                                <path d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
-                                    l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
+                        <filter id="dropshadow" height="130%">
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
+                            <feOffset dx="2" dy="2" result="offsetblur"></feOffset>
+                            <feComponentTransfer>
+                                <feFuncA type="linear" slope="0.5"></feFuncA>
+                            </feComponentTransfer>
+                            <feMerge>
+                                <feMergeNode></feMergeNode>
+                                <feMergeNode in="SourceGraphic"></feMergeNode>
+                            </feMerge>
+                        </filter>
+                        <g>
+                            <g>
+                                <g>
+                                    <path class="st0" d="M224.9,82.4l-76.1-10.9l-35.6-69L78.7,71.7L2.2,83.8l55.3,54.2l-12.1,76.5l68.6-35.8l69,35.2l-13.3-76.4
+                                        L224.9,82.4z M112.9,148.8L77,167.9l6.3-40L54.7,99.3L94.9,93l17.6-36l18.4,36.1L171,99l-28.6,28.6l6.7,39.9L112.9,148.8z"/>
+                                </g>
                             </g>
+                            <polygon class="st0" points="112.5,54.4 94,92.1 52.1,98.7 82,128.6 75.4,170.5 112.9,150.5 150.8,170.1 143.8,128.3 173.7,98.4
+                                131.7,92.2 	"/>
                         </g>
                     </svg>
                 </button>
             </div>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="content-primary d-md-none d-xl-none ">
+            <div class="content-primary d-xl-none ">
                 <h3 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h3>
                 <div class="d-flex">
                     <span class="text-decoration-none bg-danger text-white mr-1 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</span>
@@ -66,7 +103,7 @@
             <input type="file" class="d-none" accept=".jpeg,.jpg,.png,.svg" id="change-image"  @change="showChangeImage">
         </div>
         <div class="head-container align-items-start mt-1 px-1">
-            <div class="text-right order-lg-2 functions" v-if="auth.token == user.token">
+            <div class="text-right order-lg-2 functions mt-lg-1" v-if="auth.token == user.token">
                 <a :href="`/${user.username}/Edit`" class="btn d-flex align-items-center rounded-pill function font-weight-bold border-white d-sm-down-none" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit`">
                     Edit Profile
                     <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -98,7 +135,7 @@
                     Preview Profile
                 </a>
             </div>
-            <div class="order-lg-2 functions pb-2" v-if="!auth.token || auth.token != user.token">
+            <div class="order-lg-2 functions pb-2 mt-lg-1" v-if="!auth.token || auth.token != user.token">
 <!--                <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">-->
                 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 966 1080" xml:space="preserve" class="svg-icon cursor-pointer share mx-lg-2" @click="showModalShare">
@@ -112,13 +149,17 @@
                 <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
                     <button type="button" class="align-items-right follow-idle text-white">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
-                        <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                             x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" >
-                            <g id="Layer_2">
-                                <g id="Layer_2-2">
-                                    <path fill="#141414" d="M1179,407.04l-402.88-55.63L587.74,0L404.99,352.76L0,414.5L292.81,690.6L228.6,1080l363.37-182.49
-                                        l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                             viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <g>
+                                        <path class="st0" d="M224.9,82.4l-76.1-10.9l-35.6-69L78.7,71.7L2.2,83.8l55.3,54.2l-12.1,76.5l68.6-35.8l69,35.2l-13.3-76.4
+				                        L224.9,82.4z M112.9,148.8L77,167.9l6.3-40L54.7,99.3L94.9,93l17.6-36l18.4,36.1L171,99l-28.6,28.6l6.7,39.9L112.9,148.8z"/>
+                                    </g>
                                 </g>
+                                <polygon class="st0" points="112.5,54.4 94,92.1 52.1,98.7 82,128.6 75.4,170.5 112.9,150.5 150.8,170.1 143.8,128.3 173.7,98.4
+		                            131.7,92.2 	"/>
                             </g>
                         </svg>
                     </button>
@@ -147,7 +188,7 @@
                     <a href="mailto:support@noisesahrks.com" class="dropdown-item">Report</a>
                 </div>
             </div>
-            <div class="d-sm-down-none">
+            <div class="d-md-down-none">
                 <h2 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h2>
                 <div class="d-flex">
                     <span class="text-decoration-none p-2 bg-danger text-white mr-2 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</span>

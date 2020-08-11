@@ -32,6 +32,9 @@
     }
     .c-sidebar-nav{
         padding-top: 2em;
+        @include media-breakpoint-down(md){
+            padding-top: 0;
+        }
         li{
             color: white;
         }
@@ -124,7 +127,7 @@
         @include media-breakpoint-down(sm){
             padding: 10px 10px !important;
             height: calc(1.4rem + 0.5rem + 0px ) !important;
-            font-size: 0.5rem;
+            font-size: 0.6rem;
         }
         &:hover{
             background:$six-color !important;
@@ -145,7 +148,7 @@
         @include media-breakpoint-down(sm){
             padding: 10px 10px;
             height: calc(1.4rem + 0.5rem + 0px ) !important;
-            font-size: 0.5rem;
+            font-size: 0.6rem;
         }
         &:hover{
             border-radius: 30px;

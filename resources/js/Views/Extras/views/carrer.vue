@@ -9,7 +9,7 @@
             <img src="/images/icons/sharks.svg" class="sharks text-center">
             <br>
             <div>
-                <div class="text-center mt-5">
+                <div class="text-center">
                     <h2 class="font-weight-bold">What we're currently looking for</h2><br>
                 </div>
             </div>
