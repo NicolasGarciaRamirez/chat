@@ -11,22 +11,11 @@
             z-index: 9;
             border: 2px solid white;
             position: absolute;
-            transform: translate(61.1rem, -3.5rem);
             box-shadow: 2px 2px 2px $third-color;
+            right: -20px;
+            top: 30px;
             label{
                 text-shadow: 2px 2px 2px $third-color;
-            }
-            @include media-breakpoint-only(lg){
-                transform: translate(35.1rem, -3.5rem);
-            }
-            @include media-breakpoint-only(md){
-                font-size: 0.8rem !important;
-                transform: translate(36.8rem, -3.6rem);
-            }
-            @include media-breakpoint-down(sm){
-                padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
-                font-size: 0.6rem !important;
-                transform: translate(13.2rem, -2.3rem);
             }
             svg{
                 width: 0.8rem;
@@ -276,12 +265,18 @@
     }
     .content-personal-details{
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
         padding: 2rem;
-        @include media-breakpoint-down(sm){
-            flex-direction: column !important;
+        @include media-breakpoint-up(md){
+            flex-direction: row;
+            justify-content: start;
+        }
+        .account-settings{
+            @include media-breakpoint-up(md){
+              margin-left: 25vw;
+            }
         }
         .title-details{
             svg{
@@ -297,7 +292,6 @@
                     }
                 }
             }
-            //@include icons-style()
         }
         .settings{
             border: 2px solid white !important;
@@ -462,15 +456,6 @@
                     font-size: 0.7rem;
                 }
                 .profile-type{
-                    //input[type="radio"] + label:before {
-                    //    content: "";
-                    //    width: 15px;
-                    //    height: 15px;
-                    //    float: left;
-                    //    margin: 4rem;
-                    //    border: 2px solid white;
-                    //    background: $fifth-color;
-                    //}
                     position: relative;
                     padding: 0 18px;
                     display: flex;

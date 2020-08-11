@@ -21,7 +21,7 @@
                 <label class="c-fourth">Location: <span class="text-white">{{ user.personal_information.location }}</span> </label><br>
                 <label class="c-fourth">Email: <span class="text-white">{{ user.email }}</span></label>
             </div>
-            <div class=" mb-5 ">
+            <div class=" mb-5 account-settings">
                 <h3 class="c-white font-weight-bold">Subscription</h3>
                 <label class="c-fourth">Account Type: <span class="c-fifth font-weight-bold">{{ user.subscription_type }}</span></label><br>
                 <a :href="`/User/Settings/${user.username}`" class="btn bg-black text-white rounded-pill settings font-weight-bold">
