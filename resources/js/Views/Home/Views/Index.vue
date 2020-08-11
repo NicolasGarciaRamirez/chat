@@ -153,7 +153,7 @@
                     </div>
                 </div>
                 <div class="text-center my-5 d-lg-none">
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading" :disabled="post.category === '' ||post.genre === '' || post.resource === ''">Post</button>
+                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading">Post</button>
                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     </button>

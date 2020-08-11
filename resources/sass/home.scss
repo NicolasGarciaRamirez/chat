@@ -79,19 +79,24 @@
                 }
             }
             a{
-                transform: translate(15px, -4px);
-                color: $fourth-color;
                 position: relative;
                 display: block;
                 text-decoration: none;
-                line-height: 1.8rem;
+                margin-left: .5rem;
+                margin-right: .5rem;
+                float:right;
+                @include media-breakpoint-up(lg){
+                    transform: translate(8px, -4px);
+                    color: $fourth-color;
+                    float: left;
+                }
                 &:hover{
                     color: white !important;
                 }
                 span{
-                    font-size: 1.4rem;
-                    @include media-breakpoint-down(sm){
-                        font-size: 0.8rem;
+                    font-size: 0.8rem;
+                    @include media-breakpoint-up(lg){
+                        font-size: 1.4rem;
                     }
                 }
                 &:after{
@@ -137,7 +142,6 @@
         }
         .config-post{
             background:black ;
-
             @include media-breakpoint-up(sm){
                 background: $primary-color;
             }
@@ -154,6 +158,7 @@
                         position: absolute;
                         top: 10%;
                         transform: translateX(30px);
+                        line-height: 1.35rem;
                     }
                     &:before {
                         content: "";
