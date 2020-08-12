@@ -106,8 +106,8 @@ export default {
         },
         pixelsRestriction() {
             return {
-                maxWidth: 1080,
-                maxHeight: 250,
+                maxWidth: 1790,
+                maxHeight: 480,
             }
         },
         save(){
