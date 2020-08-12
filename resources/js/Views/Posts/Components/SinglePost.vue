@@ -203,7 +203,10 @@
         </div>
         <div class="post-footer bg-primary px-3 py-2">
             <div class="post-reactions c-fourth ">
-                <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="disable_vote_up ? '' : storeVoteUp(vote_type_up)"><img src="/images/icons/post-percentage-up.svg" alt=""><span>{{ votes.vote_up.length  }}</span></div>
+                <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="disable_vote_up ? '' : storeVoteUp(vote_type_up)">
+                    <img src="/images/icons/post-percentage-up.svg" alt="">
+                    <span>{{ votes.vote_up.length  }}</span>
+                </div>
 
                 <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="disable_vote_down ? '' : storeVoteDown(vote_type_down)"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
 
