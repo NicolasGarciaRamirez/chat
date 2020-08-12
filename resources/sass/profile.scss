@@ -14,6 +14,13 @@
             box-shadow: 2px 2px 2px $third-color;
             right: -20px;
             top: 30px;
+            font-size: 0.64rem;
+            @include media-breakpoint-up(lg){
+                font-size: 1rem;
+            }
+            @include media-breakpoint-down(md){
+                padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+            }
             label{
                 text-shadow: 2px 2px 2px $third-color;
             }
@@ -64,15 +71,12 @@
             position: absolute;
             text-shadow: 2px 2px 2px $third-color;
             box-shadow: 2px 2px 2px $third-color;
-            @include media-breakpoint-only(md){
-                width: 5rem !important;
-                font-size: 0.41rem !important;
-                transform: translate(15.9rem, -1.6rem);
-            }
-            @include media-breakpoint-down(sm) {
-                padding: 0.2rem 0.6rem 0.2rem 0.6rem !important;
-                font-size: 0.7rem !important;
-                transform: translate(14.9rem, -1.6rem);
+            right: 4px;
+            top: 30px;
+            font-size: 0.64rem;
+            padding: 0.2rem 1rem 0.2rem 1rem;
+            @include media-breakpoint-up(lg){
+                font-size: 1rem;
             }
             svg{
                 width: 0.8rem;
@@ -86,21 +90,8 @@
         .follow-movile-button{
             z-index: 1;
             position: absolute;
-            @include media-breakpoint-only(md){
-                width: 5rem !important;
-                font-size: 0.41rem !important;
-            }
-            @include media-breakpoint-down(sm) {
-                font-size: 0.41rem ;
-                transform: translate(16rem, -2.7rem);
-                button.follow-active{
-                    transform: translate(-1.3rem, 0.1rem);
-                }
-                button{
-                    font-size: 0.69rem;
-                }
-            }
-
+            right: 6px;
+            top: 30px;
         }
         .img-profile{
             position: absolute;
@@ -151,7 +142,7 @@
         }
     }
     .head-container{
-        padding: 0em 0em 0em 1em;
+        padding: 0 0 0 1em;
         @include media-breakpoint-up(md){
             margin-top: 2rem;
         }
@@ -211,7 +202,7 @@
                     }
                 }
                 &:active{
-                    opacity: 50%;
+                    opacity: 0.5;
                 }
 
             }
@@ -244,7 +235,7 @@
         position: absolute;
         transform: translate(5.38rem, 3rem);
         @include media-breakpoint-only(md){
-            transform: translate(7.2rem, 4rem);
+            transform: translate(7.4rem, 5.4rem);
         }
         h3{
             font-size: 0.9rem !important;
@@ -689,7 +680,7 @@
                 }
             }
             &:active{
-                opacity: 50%;
+                opacity: 0.5;
             }
         }
     }
@@ -756,7 +747,7 @@
             background: white;
             color: black;
             &:before{
-                content: 'Following';
+                content: 'Follow';
             }
             svg{
                 path{
@@ -780,7 +771,6 @@
             }
         }
         &:hover{
-            opacity: 5;
             &:before{
                 content: 'unfollow';
             }

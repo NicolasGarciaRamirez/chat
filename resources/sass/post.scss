@@ -114,7 +114,7 @@
             video{
                 max-width: 100%;
                 height: auto;
-                max-height: 200px;
+                max-height: 250px;
                 @include media-breakpoint-up(md){
                     max-height: 580px;
                 }

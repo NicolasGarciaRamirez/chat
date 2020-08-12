@@ -2,7 +2,7 @@
     <section>
         <form @submit.prevent="store" enctype="multipart/form-data" :class="route_name === 'http://localhost:8000/Form' || route_name === 'https://www.noisesharks.com/Form' ? 'd-block':'d-block d-md-down-none'">
             <div class="form-group post-form">
-                <div class="bg-primary">
+                <div class="bg-primary post-head">
                     <textarea
                         class="form-control bg-primary"
                         placeholder="Add some value to the music industry..."
@@ -11,11 +11,21 @@
                         >
                     </textarea>
                     <div class="d-flex justify-content-start image-preview" v-if="imageData.length > 0">
-                        <img class="preview position-relative" :src="imageData" v-if="post.resource_type === 'image'">
+                        <img :src="imageData" class="preview position-relative" v-if="post.resource_type === 'image'">
                         <video :src="`${imageData}`" controls   class="preview position-relative" v-if="post.resource_type === 'video'" />
-                        <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3" v-if="post.resource_type === 'audio'" />
+                        <audio :src="`${imageData}`" type=”audio/mp3″ controls class="m-3 position-relative" v-if="post.resource_type === 'audio'" />
                         <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-docs p-3 position-relative" v-if="post.resource_type === 'docs'">
-                        <i class="fas fa-times cursor-pointer position-absolute p-2" @click="deleteImage"></i>
+                        <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             x="0px" y="0px" viewBox="0 0 1078.8 1080" xml:space="preserve" width="1.7rem" class="position-absolute p-2" @click="deleteImage">
+                            <g id="Layer_2">
+                                <g id="Layer_2-2">
+                                    <g id="close">
+                                        <polygon fill="#535353" points="1079,108.6 971.09,0.69 539.45,432.33 107.81,0.69 -0.1,108.6 431.54,540.24 -0.1,971.87
+                                            107.81,1079.78 539.45,648.15 971.09,1079.78 1079,971.87 647.36,540.24 			"/>
+                                    </g>
+                                </g>
+                            </g>
+                        </svg>
                     </div>
                 </div>
                 <div class="post-footer d-flex justify-content-between align-items-center pr-3">
@@ -153,7 +163,7 @@
                     </div>
                 </div>
                 <div class="text-center my-5 d-lg-none">
-                    <button class="btn bg-fifth text-white rounded-pill" type="submit" v-if="!loading" :disabled="post.category === '' ||post.genre === '' || post.resource === ''">Post</button>
+                    <button class="btn bg-fifth text-white rounded-pill font-weight-bold" type="submit" v-if="!loading">Post</button>
                     <button class="btn rounded-pill text-white bg-fifth" v-if="loading" disabled>
                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     </button>
@@ -221,9 +231,6 @@
             this.all_post = this.posts
             if(FilterPost.state.genres == null && FilterPost.state.categories == null){
                 this.orderPost()
-            }
-            if (window.screen.width <= 768){
-                $('#ModalMobile').modal('show');
             }
         },
         computed:{
