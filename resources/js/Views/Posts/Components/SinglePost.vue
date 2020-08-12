@@ -275,7 +275,6 @@
                     responsive: true,
                     interact: true,
                     progressColor: this.getGrad(),
-                    partialRender: true
                 },
             }
         },
