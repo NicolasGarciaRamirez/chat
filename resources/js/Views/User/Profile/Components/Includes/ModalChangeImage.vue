@@ -46,7 +46,8 @@
                             ></cropper>
                             <div class="row p-4">
                                 <div class="col col-sm text-left">
-                                    <label class="font-weight-bold" >Use scroll or pinch to zoom</label>
+                                    <label class="font-weight-bold">Use scroll or pinch to zoom</label>
+                                    <label class="font-weight-bold">The cover photo must be at least 1790 horizontal pixels and 240 vertical pixels</label>
                                 </div>
                                 <div class="col col-sm text-right">
                                     <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal" @click="windowReload">Cancel</button>
