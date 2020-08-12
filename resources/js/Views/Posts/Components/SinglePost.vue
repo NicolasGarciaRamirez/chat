@@ -135,8 +135,8 @@
             <div>
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
                     <img :src="`${post.resource}`"  alt="img-post" class="img-fluid cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
-                    <video :src="`${post.resource}`" controls  v-if="post.resource_type === 'video'" @click="storeView" />
-                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf" @click="storeView"></vue-wave-surfer>
+                    <video :src="`${post.resource}`" controls preload v-if="post.resource_type === 'video'" @click="storeView" />
+                    <vue-wave-surfer :id="'waveform'+post.token" preload :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf" @click="storeView"></vue-wave-surfer>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio()" >
