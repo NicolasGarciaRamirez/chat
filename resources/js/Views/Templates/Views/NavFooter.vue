@@ -1,6 +1,7 @@
 <template>
+<!--    || route_name !== 'https://www.noisesharks.com/Search' || route_name !== 'https://www.noisesharks.com/Form'-->
     <footer class="d-flex flex-row justify-content-between align-items-center bg-primary nav-footer-movile w-100" >
-        <div :class="`${route_name === 'http://localhost:8000/' || route_name === 'https://www.noisesharks.com/' || route_name !== 'https://www.noisesharks.com/Search' || route_name !== 'https://www.noisesharks.com/Form' ? 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50'}`">
+        <div :class="`${route_name === 'http://localhost:8000/Form' || route_name === 'http://localhost:8000/Search' ? 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50'}`">
             <a href="/">
                 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1059 1080" xml:space="preserve" width="1.29rem">

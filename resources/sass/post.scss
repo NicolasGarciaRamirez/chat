@@ -111,6 +111,13 @@
         }
         .post-body{
             margin-top: 1px !important;
+            img{
+                max-height: 250px;
+                overflow: hidden;
+                @include media-breakpoint-up(md){
+                    max-height: none;
+                }
+            }
             video{
                 max-width: 100%;
                 height: auto;
