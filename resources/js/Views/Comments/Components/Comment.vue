@@ -1,35 +1,35 @@
 <template>
-    <div class="d-flex align-items-center pt-2 w-100" v-if="view_reply">
-        <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-circle mr-2">
+    <div class="d-flex align-items-start flex-row py-2 w-100" v-if="view_reply">
+        <img :src="`${comment.user.avatar}`" alt="img-user-comment" class="comment-user-image rounded-circle mr-2 mt-1">
         <div class="w-100">
-            <div class="text-white d-flex align-items-center justify-content-between">
+            <div class="text-white d-flex flex-row align-items-start justify-content-between">
                 <div class="d-flex flex-row align-items-end justify-content-start">
-                    <div class="d-flex flex-column p-1">
+                    <div class="d-flex flex-column py-1">
                         <a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white ">
                             {{ comment.user.profile_information && comment.user.profile_information.artistic_name ? comment.user.profile_information.artistic_name : comment.user.personal_information.full_name }}
                         </a>
                         <div :id="`comment_body`+comment.id" >
                             <form @submit.prevent="update" v-if="edit">
-                                <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white" />
+                                <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white position-relative" />
                             </form>
-                            <span v-if="!edit">{{ comment.body }}</span>
-                            <i class="fas fa-ellipsis-h c-third fa-1x m-2"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform: rotate(90deg);"></i>
-                            <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
-                                <div v-if="comment.user.username == auth.username">
-                                    <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
-                                    <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
+                            <span v-if="!edit">{{ comment.body }}
+                                <i class="fas fa-ellipsis-h c-third fa-1x m-auto"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform: rotate(90deg);"></i>
+                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
+                                    <div v-if="comment.user.username == auth.username">
+                                        <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
+                                        <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
+                                    </div>
+                                    <div v-else>
+                                        <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
+                                        <a href="#" class="dropdown-item cursor-pointer">Hidden</a>
+                                    </div>
                                 </div>
-                                <div v-else>
-                                    <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
-                                    <a href="#" class="dropdown-item cursor-pointer">Hidden</a>
-                                </div>
-                            </div>
+                            </span>
                         </div>
                     </div>
-
                 </div>
                 <div :id="`litComment`+comment.id" class="cursor-pointer" @click="disable_like ? '' : storeLike(like_type)">
-                    <img src="/images/icons/post-flame.svg" alt="flame-red" class="cursor-pointer float-right" height="20">
+                    <img src="/images/icons/post-flame.svg" alt="flame-red" class="cursor-pointer float-right icon-lit">
                 </div>
             </div>
             <div class="comment-footer">
@@ -72,7 +72,7 @@
                         this.comment.likes.map(like => {
                             this.likes.push(like)
                             if (Auth.state.username == like.user.username ) {
-                                $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
+                                $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" class="icon-lit">')
                                 this.url = `/${Auth.state.username}/LitLike/unlike/${like.id}`
                                 this.like_type = 'unlike'
                             }
@@ -103,15 +103,14 @@
                             this.disable_like = false
                             this.likes.unshift(res.data.like)
                             this.like_type = 'unlike'
-                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" height="20">')
-
+                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" class="icon-lit">')
                         }
                         if (res.data.unlike) {
                             this.disable_like = false
                             let indice = this.likes.indexOf(res.data.unlike)
                             this.likes.splice(indice, 1)
                             this.like_type = 'like'
-                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" height="20">')
+                            $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame.svg" class="icon-lit">')
                         }
                     }).catch(err =>{
                         console.log(err)
