@@ -34,7 +34,7 @@
 
             </div>
         </div>
-        <div class="d-flex d-lg-none fixed-bottom">
+        <div class="d-flex d-lg-none fixed-bottom" style="z-index: 999;">
             @include('template._navFooter')
         </div>
         <section>

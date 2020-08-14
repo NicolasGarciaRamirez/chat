@@ -32,7 +32,7 @@ class PostController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\JsonResponse
      * @throws \Exception
      */
     public function store(Request $request) //cambiar a form request
@@ -147,19 +147,19 @@ class PostController extends Controller
      */
     public function setImage($request): string
     {
+//        dd($request);
         $key = md5(\Auth::user()->id);
         $hash = \Str::random(10);
         $imageName = "/images/post/images/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
         $request->resource->move(public_path("/images/post/images/{$key}/"), $imageName);
 
-        $background = Image::canvas(1200, 600);
+        $background = Image::canvas(1300, 700);
         $background->fill('#141414');
 
-        $image = Image::make(public_path($imageName))->resize(1200, 600, function ($c) {
+        $image = Image::make(public_path($imageName))->resize(1300, 700, function ($c) {
             $c->aspectRatio();
             $c->upsize();
         });
-
         $background->insert($image, 'center');
         $background->save(public_path($imageName));
 
