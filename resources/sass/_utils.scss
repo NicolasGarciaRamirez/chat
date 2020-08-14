@@ -467,7 +467,11 @@ svg.share{
     margin-top: 1.39rem;
     @include media-breakpoint-up(lg){
         width: 1rem;
-        margin-top: 2rem;
+        margin-top: 1.7rem;
     }
+}
+
+.slider.open{
+    z-index: 1058 !important;
 }
 

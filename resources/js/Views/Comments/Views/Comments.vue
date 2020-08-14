@@ -1,5 +1,5 @@
 <template>
-    <section class="comments bg-primary pb-3 pl-3 pr-3 c-fourth">
+    <section class="comments bg-primary py-3 pl-3 pr-3 c-fourth">
         <span class="font-weight-bold cursor-pointer py-2 hide-comments" v-if="post.comments.length > 0" @click="$parent.view_comment = !$parent.view_comment">
             {{ $parent.view_comment ? 'Hide' : 'View' }} {{ post.comments.length }} comments
         </span>

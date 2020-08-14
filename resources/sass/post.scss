@@ -127,8 +127,8 @@
                 }
             }
             .img-document{
-                min-height: 13rem;
-                max-height: 13rem;
+                min-height: 11rem;
+                max-height: 11rem;
                 @include media-breakpoint-down(sm){
                     min-height: 6.5rem;
                     max-height: 6.5rem;
@@ -150,8 +150,11 @@
                     }
                 }
                 img{
-                    width: 1.5rem;
+                    width: 1.39rem;
                     margin-right: 5px;
+                    @include media-breakpoint-up(lg){
+                        width: 1.5rem;
+                    }
                 }
             }
             .post-reactions{

@@ -8,7 +8,7 @@
         }
     }
     a.forgot-password{
-        color: $fourth-color;
+        color: $fourth-color !important;
         &:hover{
             color: white !important;
         }

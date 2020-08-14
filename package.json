@@ -29,6 +29,7 @@
         "@kevinfaguiar/vue-twemoji-picker": "^5.7.4",
         "@popperjs/core": "^2.4.4",
         "cropperjs": "^1.5.7",
+        "img-vuer": "^0.19.2",
         "perfect-scrollbar": "^1.5.0",
         "popper.js": "^1.16.1",
         "readmore-js": "^2.2.1",
