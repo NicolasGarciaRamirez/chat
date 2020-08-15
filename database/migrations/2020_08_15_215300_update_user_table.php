@@ -14,7 +14,7 @@ class UpdateUserTable extends Migration
     public function up()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->text('avatar')->change();
+            $table->text('avatar')->default('/images/profile/default.svg')->change();
         });
     }
 
@@ -26,7 +26,7 @@ class UpdateUserTable extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->text('avatar')->change();
+            $table->text('avatar')->default('/images/profile/default.svg')->change();
         });
     }
 }
