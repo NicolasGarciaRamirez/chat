@@ -70,7 +70,7 @@ export default {
                 }
             }).catch(err=>{
                 this.validate_password = false
-                this.message = "Your credentials not match"
+                this.message = "The credentials do not match"
             })
         },
         async update(){
