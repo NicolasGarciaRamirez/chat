@@ -95,7 +95,6 @@
         },
         methods:{
             showModalForgotPassword(){
-                // $('#ModalLogin').addAttr('data-dismiss')
                 $('#ModalForgotPassword').modal('show')
             },
             async login(){

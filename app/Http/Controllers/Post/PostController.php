@@ -6,6 +6,7 @@ use App\Models\Post\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
@@ -135,6 +136,7 @@ class PostController extends Controller
      */
     public function delete($username, Post $post)
     {
+        Storage::delete(public_path("{$post->resource}"));
         $post->delete();
         return response()->json([
             'deleted' => true,
@@ -153,16 +155,28 @@ class PostController extends Controller
         $imageName = "/images/post/images/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
         $request->resource->move(public_path("/images/post/images/{$key}/"), $imageName);
 
-        $background = Image::canvas(1300, 700);
-        $background->fill('#141414');
+        $heigth = Image::make(public_path($imageName))->height();
 
-        $image = Image::make(public_path($imageName))->resize(1300, 700, function ($c) {
-            $c->aspectRatio();
-            $c->upsize();
-        });
+        if($heigth >= 600){
+            $background = Image::canvas(1200, 600);
+            $background->fill('#141414');
+            $image = Image::make(public_path($imageName))->resize(1200, 600, function ($c) {
+                $c->aspectRatio();
+                $c->upsize();
+            });
+        }else{
+            $background = Image::canvas(1200, $heigth);
+            $background->fill('#141414');
+            $image = Image::make(public_path($imageName))->resize(1200, $heigth, function ($c) {
+                $c->aspectRatio();
+                $c->upsize();
+            });
+        }
+
         $background->insert($image, 'center');
         $background->save(public_path($imageName));
 
         return $imageName;
     }
+
 }
