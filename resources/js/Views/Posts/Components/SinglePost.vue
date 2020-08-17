@@ -53,21 +53,13 @@
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPost">
                     <div v-if="!menuPlaylist">
                         <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item" v-if="post.user.username !== auth.username">Go To User Profile</a>
-                        <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider" v-if="post.user.username !== auth.username"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
                         <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
                         <a :href="`/Post/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
-                        <!--<div class="dropdown-item cursor-pointer" >Hide Post</div>-->
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>
-                        <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
                     </div>
-<!--                    <div v-if="menuPlaylist">-->
-<!--                        <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>-->
-<!--                        <div class="dropdown-divider"></div>-->
-                        <!-- <a href="" class="dropdown-item" v-for="(playlist, index) in playlist" :key="index">{{ playlist.name }}</a> -->
-<!--                    </div>-->
                 </div>
             </div>
             <div class="d-flex align-items-start order-xl-1 order-md-1">
@@ -85,21 +77,13 @@
                 <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownPost">
                     <div v-if="!menuPlaylist">
                         <a :href="`/${post.user.username}/Profile`" target="_blank" class="dropdown-item" v-if="post.user.username !== auth.username">Go To User Profile</a>
-                        <!-- <a href="#" class="dropdown-item">Message User</a> -->
                         <div class="dropdown-divider" v-if="post.user.username !== auth.username"></div>
                         <div class="dropdown-item cursor-pointer" @click="edit = true" v-if="auth.username === post.user.username">Edit description</div>
                         <div class="dropdown-item cursor-pointer" @click="deletePost" v-if="auth.username === post.user.username">Delete Post</div>
                         <a :href="`/Post/${post.token}`" target="_blank" class="dropdown-item">Go To Post</a>
                         <a href="#" class="dropdown-item link-post" @click="copyLink">Copy Link</a>
-                        <!--<div class="dropdown-item cursor-pointer" >Hide Post</div>-->
                         <a href="mailto:support@noisesahrks.com" class="dropdown-item" v-if="auth.username !== post.user.username">Report</a>
-                        <!-- <div class="dropdown-item" @click="menuPlaylist = true" v-if="post.resource_type == 'audio' || post.resource_type == 'video'">Add To Playlist</div> -->
                     </div>
-                    <!--                    <div v-if="menuPlaylist">-->
-                    <!--                        <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>-->
-                    <!--                        <div class="dropdown-divider"></div>-->
-                    <!-- <a href="" class="dropdown-item" v-for="(playlist, index) in playlist" :key="index">{{ playlist.name }}</a> -->
-                    <!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -136,7 +120,7 @@
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
                     <img v-gallery :src="`${post.resource}`"  alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
                     <video :src="`${post.resource}`" controls preload v-if="post.resource_type === 'video'" @click="storeView" />
-                    <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf" @click="storeView"></vue-wave-surfer>
+                    <div :id="`waveform${post.token}`" ref="surf" @click="storeView"></div>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio()" >
@@ -219,7 +203,7 @@
             </div>
         </div>
         <comments :post="post" :view_comment="view_comment"/>
-        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: 165pc">
+        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: 165px">
     </section>
 </template>
 
@@ -228,6 +212,10 @@
     import DocumentPreview from 'vue-doc-preview'
     import Auth from "../../../helpers/Auth";
     import Followers from "../../../helpers/Followers";
+
+    import WaveSurfer from 'wavesurfer.js';
+    import PeakCache from 'wavesurfer.js/src/peakcache.js'
+
     export default {
         props:['post','user'],
         components:{
@@ -268,17 +256,7 @@
                 view: 0,
                 duration: '',
                 current_time: '',
-                options_audio:{
-                    waveColor: 'gray',
-                    barHeight: 0.8,
-                    cursorColor: 'red',
-                    cursorWidth: 0,
-                    forceDecode: true,
-                    hideScrollbar: true,
-                    responsive: true,
-                    interact: true,
-                    progressColor: this.getGrad(),
-                },
+                wavesurfer: {},
             }
         },
         mounted(){
@@ -287,10 +265,11 @@
             this.getVote()
             this.getFollow()
             if(this.post.resource_type === 'audio'){
-                this.player.on('finish', () => {
-                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
-                    this.$refs.surf.waveSurfer.stop()
-                })
+                this.createAudioWave()
+                // this.wavesurfer.on('finish', () => {
+                //     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+                //     this.WaveSurfer.stop()
+                // })
             }
 
             $("video").on("play", function() {
@@ -300,9 +279,6 @@
             });
         },
         computed: {
-            player() {
-                return this.$refs.surf.waveSurfer
-            },
             resource_extension() {
                 if (this.post.resource_type === 'docs'){
                     let extension = this.post.resource.split(".")
@@ -344,11 +320,23 @@
                 this.$parent.post = this.post
                 $('#ModalShare').modal('show')
             },
-            // showModalPost(){
-                //     $('#ModalPost').modal('show')
-            // }
             //end methods show
             //methods player
+            createAudioWave(){
+                var wave = `#waveform${this.post.token}`
+                this.wavesurfer = WaveSurfer.create({
+                    container: wave,
+                    waveColor: 'gray',
+                    barHeight: 0.8,
+                    cursorColor: 'red',
+                    cursorWidth: 0,
+                    responsive: true,
+                    interact: true,
+                    partialRender: true,
+                    progressColor: this.getGrad(),
+                });
+                this.wavesurfer.load(`${this.post.resource}`);
+            },
             getGrad(){
                 let linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
                 linGrad.addColorStop(0, '#ff0000');
@@ -356,7 +344,7 @@
                 return linGrad
             },
             playAudio(){
-                this.audio = this.$refs.surf.waveSurfer
+                this.audio = this.wavesurfer
                 this.duration = this.audio.getDuration()
                 this.current_time = this.audio.getCurrentTime()
 
@@ -397,11 +385,11 @@
             },
             // methods reactions
             storeView(){
-                axios.post(`/${this.auth.username}/View/store/${this.post.id}`).then(res=>{
-                    // console.log(res)
-                }).catch(err =>{
-                    console.log(err)
-                })
+                if (Auth.state.token) {
+                    axios.post(`/${this.auth.username}/View/store/${this.post.id}`).catch(err => {
+                        console.log(err)
+                    })
+                }
             },
 
             getLike(){

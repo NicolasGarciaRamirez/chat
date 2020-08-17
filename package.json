@@ -41,6 +41,7 @@
         "vue-hashtag-textarea": "^0.3.7",
         "vue-jcrop": "^1.0.3",
         "vue-toasted": "^1.1.28",
-        "vue-wave-surfer": "^1.0.1"
+        "vue-wave-surfer": "^1.0.1",
+        "wavesurfer.js": "^4.0.1"
     }
 }

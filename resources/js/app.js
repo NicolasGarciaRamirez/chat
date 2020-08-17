@@ -21,9 +21,6 @@ Vue.use(Toasted)
 import VeeValidate from 'vee-validate';
 Vue.use(VeeValidate);
 
-import VueWaveSurfer from 'vue-wave-surfer'
-Vue.use(VueWaveSurfer)
-
 import vClickOutside from 'v-click-outside';
 Vue.use(vClickOutside);
 
