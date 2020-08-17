@@ -119,7 +119,7 @@
             <div>
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
                     <img v-gallery :src="`${post.resource}`" alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
-                    <video :src="`${post.resource}`" controls preload="none" v-if="post.resource_type === 'video'" @click="storeView" />
+                    <video :src="`${post.resource}`" controls controlsList="nodownload" preload="none" v-if="post.resource_type === 'video'" @click="storeView" />
                     <div :id="`waveform${post.token}`" @click="storeView"></div>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
@@ -203,7 +203,7 @@
             </div>
         </div>
         <comments :post="post" :view_comment="view_comment"/>
-        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: 500px">
+        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: -500px">
     </section>
 </template>
 
