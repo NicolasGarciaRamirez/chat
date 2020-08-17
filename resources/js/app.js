@@ -74,7 +74,7 @@ import ModalSharePost from "./Views/Posts/Components/ModalSharePost";
 import ModalRelathions from "./views/User/Profile/Components/Includes/ModalRelathions";
 
 import Carrer from "./Views/Extras/views/carrer"
-import Test from "./Views/User/Test";
+import Test from "./views/Test/Test";
 
 import ModalMerch from "./views/CommingSoon/Components/ModalMerch"
 import ModalForMusic from "./views/CommingSoon/Components/ModalForMusic"
