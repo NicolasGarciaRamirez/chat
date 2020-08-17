@@ -12,7 +12,7 @@
 </template>
 
 <script>
-    import SinglePost from '../Components/SinglePost'
+    import SinglePost from '../Components/SinglePost';
     import ModalReward from "../Components/ModalReward";
     import ModalSupport from "../Components/ModalSupport";
     import ModalPost from "../Components/ModalPost";

@@ -150,9 +150,11 @@
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
+
                             <g>
                                 <g>
                                     <g>
+                                        <filter id="dropshadow" height="130%"> <feGaussianBlur in="SourceAlpha" stdDeviation="3"/> <!-- stdDeviation is how much to blur --> <feOffset dx="2" dy="2" result="offsetblur"/> <!-- how much to offset --> <feMerge> <feMergeNode/> <!-- this contains the offset blurred image --> <feMergeNode in="SourceGraphic"/> <!-- this contains the element that the filter is applied to --> </feMerge> </filter>
                                         <path class="st0" d="M224.9,82.4l-76.1-10.9l-35.6-69L78.7,71.7L2.2,83.8l55.3,54.2l-12.1,76.5l68.6-35.8l69,35.2l-13.3-76.4
 				                        L224.9,82.4z M112.9,148.8L77,167.9l6.3-40L54.7,99.3L94.9,93l17.6-36l18.4,36.1L171,99l-28.6,28.6l6.7,39.9L112.9,148.8z"/>
                                     </g>
@@ -239,13 +241,7 @@ export default {
         showChangeImage(w){
             let input = w.target;
             this.resource = w.target.files[0]
-            if (input.files && input.files[0]) {
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                    this.img = e.target.result;
-                }
-                reader.readAsDataURL(input.files[0]);
-            }
+            this.img = URL.createObjectURL(w.target.files[0])
             $('#ModalChangeImage').modal('show')
         },
         getFollow(){

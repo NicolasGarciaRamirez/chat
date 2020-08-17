@@ -134,7 +134,7 @@
         <div class="post-body bg-primary" v-if="post.resource">
             <div>
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
-                    <img :src="`${post.resource}`"  alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
+                    <img v-gallery :src="`${post.resource}`"  alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
                     <video :src="`${post.resource}`" controls preload v-if="post.resource_type === 'video'" @click="storeView" />
                     <vue-wave-surfer :id="'waveform'+post.token" :src="`${post.resource}`" :options="options_audio" v-if="post.resource_type === 'audio'" ref="surf" @click="storeView"></vue-wave-surfer>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >

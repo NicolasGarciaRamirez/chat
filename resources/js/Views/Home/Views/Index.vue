@@ -103,7 +103,7 @@
                             <span class="c-fifth ml-1">•</span>
                         </a>
                     </div>
-                    <button class="btn bg-fifth text-white rounded-pill d-md-down-none" type="submit" v-if="!loading && !imageData && !post.description" :disabled="post.description === '' || post.resource === ''">Post</button>
+                    <button class="btn bg-fifth text-white rounded-pill d-md-down-none" type="submit" v-if="!loading && imageData.length < 0 && !post.description" :disabled="post.description === '' || post.resource === ''">Post</button>
                 </div>
                 <div class="config-post">
                     <div class="d-flex flex-column py-2 content-checkbox" v-if="imageData.length > 0" >

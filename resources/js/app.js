@@ -30,6 +30,14 @@ Vue.use(vClickOutside);
 // import VueSocialSharing from 'vue-social-sharing'
 // Vue.use(VueSocialSharing);
 
+import gallery from 'img-vuer'
+Vue.use(gallery, {
+    swipeThreshold: 150,
+    isIndexShow: true,
+    useCloseButton: true,
+    preload: true,
+})
+
 import AppHeader from './Views/Templates/Views/Header'
 import AppNav from './Views/Templates/Views/Nav'
 import AppFooter from './Views/Templates/Views/NavFooter'
@@ -66,7 +74,7 @@ import ModalSharePost from "./Views/Posts/Components/ModalSharePost";
 import ModalRelathions from "./views/User/Profile/Components/Includes/ModalRelathions";
 
 import Carrer from "./Views/Extras/views/carrer"
-import Test from "./Views/User/Test";
+import Test from "./views/Test/Test";
 
 import ModalMerch from "./views/CommingSoon/Components/ModalMerch"
 import ModalForMusic from "./views/CommingSoon/Components/ModalForMusic"
