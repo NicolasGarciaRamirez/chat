@@ -105,7 +105,7 @@
             <div v-for="(user, index) in followers" :key="index">
                 <li class="c-sidebar-nav-item" v-if="user.username">
                     <div class="filter-nav">
-                        <a :href="`/${user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }}</a>
+                        <a :href="`/${user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="icon-check ml-1" v-if="user.verification_date"></a>
                         <!--                    <span class="float-sm-right c-fifth dot">•</span>-->
                     </div>
                 </li>
@@ -124,11 +124,13 @@
     import FilterPost from "../../../helpers/FilterPost";
     import Followers from "../../../helpers/Followers";
     export default {
+        // props:['followers'],
         data(){
             return {
                 auth: Auth.state,
                 filters: FilterPost.state,
                 location: false,
+                verificationFollowers:false,
             }
         },
         components: {
@@ -138,6 +140,7 @@
             Auth.initialize()
             FilterPost.initialize()
             this.setFilters()
+            // this.getFollowing()
         },
         computed:{
             followers(){
@@ -151,6 +154,15 @@
             }
         },
         methods:{
+            // getFollowing(){
+            //     if (this.followers === undefined){
+            //         this.verificationFollowers = false
+            //         console.log('si es undefined')
+            //     }else{
+            //         this.verificationFollowers = true
+            //         console.log('no es undefined')
+            //     }
+            // },
             updateFilterGender(genre){
                 FilterPost.removeOrAddGenres(genre)
                 this.filterPost()

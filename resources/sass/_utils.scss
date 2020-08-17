@@ -221,7 +221,12 @@ textarea{
 .icon{
     width: 2rem !important;
 }
-
+.icon-check{
+    width: 0.8rem;
+    @include media-breakpoint-up(lg){
+        width: 1.2rem;
+    }
+}
 .no-underline{
     text-decoration: none;
     &:hover{

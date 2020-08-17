@@ -86,7 +86,7 @@
             </div>
             <img :src="`${user.avatar}`" alt="ImageProfile" class="img-profile rounded-circle cursor-pointer" id="dropdownMenuProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="content-primary d-xl-none d-lg-none">
-                <h3 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h3>
+                <h3 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="icon-check" class="icon-check" v-if="user.verification_date"></h3>
                 <div class="d-flex">
                     <span class="text-decoration-none bg-danger text-white mr-1 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</span>
                     <span class="text-decoration-none bg-white c-fifth d-flex align-items-center font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" ></span>
@@ -150,7 +150,6 @@
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
-
                             <g>
                                 <g>
                                     <g>
@@ -190,7 +189,7 @@
                 </div>
             </div>
             <div class="d-md-down-none">
-                <h2 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="check-icon" class="check-icon" v-if="user.verification_date"></h2>
+                <h2 class="font-weight-bold mb-2">{{ user.profile_information && user.profile_information.artistic_name != null ? user.profile_information.artistic_name  : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="icon-check" class="icon-check" v-if="user.verification_date"></h2>
                 <div class="d-flex">
                     <span class="text-decoration-none p-2 bg-danger text-white mr-2 font-weight-bold">{{ user.profile_information ? user.profile_information.title : 'Profile Title Not Chosen' }}</span>
                     <span class="text-decoration-none p-2 bg-white c-fifth font-weight-bold" v-if="user.subscription_type  == 'CONTRIBUTOR'" >CONTRIBUTOR <img src="/images/icons/music-red.svg" alt="music-red-icon" style="width: 0.8rem; margin-bottom: 0.2rem"></span>

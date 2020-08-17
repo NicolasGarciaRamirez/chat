@@ -35,7 +35,6 @@ class UserProfileInformationController extends Controller
      */
     public function save(Request $request)
     {
-//        return $request;
         \DB::beginTransaction();
 
         try {
