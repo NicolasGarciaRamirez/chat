@@ -203,7 +203,7 @@
             </div>
         </div>
         <comments :post="post" :view_comment="view_comment"/>
-        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: 165px">
+        <input type="text" :value="`https://www.noisesharks.com/Post/${post.token}`" :id="'myInput'+`${post.token}`" class="border-0 position-absolute" style="left: 500px">
     </section>
 </template>
 
