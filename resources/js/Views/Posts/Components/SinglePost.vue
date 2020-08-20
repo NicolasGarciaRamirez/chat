@@ -266,10 +266,10 @@
             this.getFollow()
             if(this.post.resource_type === 'audio'){
                 this.createAudioWave()
-                // this.wavesurfer.on('finish', () => {
-                //     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
-                //     this.WaveSurfer.stop()
-                // })
+                this.wavesurfer.on('finish', () => {
+                    $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+                    this.wavesurfer.stop()
+                })
             }
 
             $("video").on("play", function() {
