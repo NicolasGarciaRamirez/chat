@@ -62,13 +62,15 @@
                         _.each(res.data.followings, following =>{
                             this.$parent.followings.push(following.following)
                         })
-                        // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
-                        //     if(post.user.username === this.user.username){
-                        //         post.user.followers = res.data.user.followers
-                        //         post.follow_type = "follow"
-                        //         $(`#follow`+post.token+' button').addClass('follow-idle').removeClass('follow-active')
-                        //     }
-                        // })
+                        let self = this
+                        _.forEach(this.$root.$refs.home.$refs.posts.$children, function(children, key){
+                            if(key > 4){
+                                if(children.post.user.username === self.user.username){
+                                    children.follow_type = 'follow'
+                                    $(`#follow`+children.post.token+' button').addClass('follow-idle').removeClass('follow-active')
+                                }
+                            }
+                        })
                     }
                 }).catch(err =>{
 

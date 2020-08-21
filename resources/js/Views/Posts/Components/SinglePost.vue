@@ -4,7 +4,7 @@
             <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
                     <button type="button" class="align-items-right follow-idle">
-                        <span >{{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}</span>
+                        <span>{{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}</span>
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
                             <g>
@@ -651,13 +651,17 @@
                             _.each(res.data.followings , follow =>{
                                 this.$root.$refs.modalRelathion.followings.push(follow.following)
                             })
-                            // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
-                            //     if(post.user.username === this.post.user.username){
-                            //         // post.follow_type = "unfollow"
-                            //         console.log(post)
-                            //         $(`#follow`+post.token+' button').addClass('follow-active').removeClass('follow-idle')
-                            //     }
-                            // })
+
+                            let self = this
+                            _.forEach(this.$root.$refs.home.$refs.posts.$children, function(children, key){
+                                if(key > 4){
+                                    if(children.post.user.username === self.post.user.username){
+                                        children.follow_type = 'unfollow'
+                                        children.post.user.followers.push(res.data.follow)
+                                        $(`#follow`+children.post.token+' button').addClass('follow-active').removeClass('follow-idle')
+                                    }
+                                }
+                            })
                         }
                         if (res.data.unfollow) {
                             this.disable_follow = false
@@ -668,13 +672,15 @@
                             _.each(res.data.followings , follow =>{
                                 this.$root.$refs.modalRelathion.followings.push(follow.following)
                             })
-                            // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
-                            //     if(post.user.username === this.post.user.username){
-                            //         // post.follow_type = "follow"
-                            //         console.log(post)
-                            //         $(`#follow`+post.token+' button').addClass('follow-idle').removeClass('follow-active')
-                            //     }
-                            // })
+                            let self = this
+                            _.forEach(this.$root.$refs.home.$refs.posts.$children, function(children, key){
+                                if(key > 4){
+                                    if(children.post.user.username === self.post.user.username){
+                                        children.follow_type = 'follow'
+                                        $(`#follow`+children.post.token+' button').addClass('follow-idle').removeClass('follow-active')
+                                    }
+                                }
+                            })
                         }
                     }).catch(err =>{
                         console.log(err)
