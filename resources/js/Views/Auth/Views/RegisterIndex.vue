@@ -39,7 +39,11 @@
                 <img src="/images/icons/success.svg" alt="" class="float-left m-3 ">
                 <p class="text-left pl-5">0% Commision (Noisesharks doesn’t take a cut when you get supported or rewarded)</p>
             </div>
-            <button class="btn bg-fifth text-white my-5 rounded-pill"><a href="/Register/Contributor" class="text-white no-underline">Become a Contributor</a></button>
+            <button class="btn bg-fifth text-white my-5 rounded-pill" @click="showModalVerySoon">
+<!--                <a href="/Register/Contributor" class="text-white no-underline">-->
+                    Become a Contributor
+<!--                </a>-->
+            </button>
         </div>
         <div class="justify-content-between bg-primary mr-3 ml-3 contributor-form w-100" v-if="type === 'Contributor'">
             <div class="p-3 text-center">
@@ -54,22 +58,27 @@
         <div :class="[type === 'Contributor' ? 'w-50' : 'w-100', 'd-flex justify-content-center align-items-center auth-type for-music-company']">
             <h6 @click="showModalForMusicCompany"><a>FOR MUSIC COMPANIES ></a></h6>
         </div>
+        <general-comming-soon></general-comming-soon>
     </section>
 </template>
 
 <script>
     import FormSignUp from "../Components/FormSignUp";
     import FormSignUpContributor from "../Components/FormSignUpContributor";
-
+    import GeneralCommingSoon from "../../CommingSoon/Components/GeneralCommingSoon";
     export default {
         props: ['type'],
         components: {
             FormSignUp,
             FormSignUpContributor,
+            GeneralCommingSoon
         },
         methods:{
             showModalForMusicCompany(){
                 $('#ModalForMusic').modal('show')
+            },
+            showModalVerySoon(){
+                $('#ModalGeneralCommingSoon').modal('show')
             }
         }
     }
