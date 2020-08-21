@@ -35,4 +35,14 @@ class Followers extends Model
         return $this->belongsTo('\App\Models\User\User', 'following_user');
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function following()
+    {
+        return $this->belongsTo('\App\Models\User\User', 'user_id');
+    }
+
 }

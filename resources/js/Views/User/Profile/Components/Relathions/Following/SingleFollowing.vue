@@ -1,4 +1,4 @@
--following-<template>
+<template>
     <tr>
         <td>
             <a :href="`/${user.username}/Profile`">
@@ -6,7 +6,7 @@
             </a>
         </td>
         <td>
-            {{user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name}}
+            {{user.artistic_name}} <img src="/images/icons/check.svg" alt="" class="icon-check ml-1" v-if="user.verification_date">
         </td>
         <td class="mx-3" :id="`btnFollow`+user.id">
             <button type="button"  class="align-items-right follow-following-active" @click="storeUnFollow" :disable="disable">
@@ -28,7 +28,6 @@
 
 <script>
     import Auth from "../../../../../../helpers/Auth";
-    import Followers from "../../../../../../helpers/Followers";
     export default {
         name: "SingleRelathionFollowing",
         props:['user','type_table'],
@@ -43,13 +42,9 @@
             }
         },
         mounted() {
-            Followers.initialize()
             Auth.initialize()
         },
         methods:{
-            addClassFollow(){
-                $('#btnFollow'+this.user.id+' button').addClass('follow--following-active').removeClass('follow-following--idle')
-            },
             storeUnFollow(){
                 this.disable = true
                 if (this.user.followers) {
@@ -62,8 +57,18 @@
                 axios.post(this.url , this.follow).then(res =>{
                     this.disable = false
                     if (res.data.unfollow){
-                        Followers.set(res.data.following)
-                        window.location.reload()
+                        this.$root.$refs.AppNav.followings = res.data.followings
+                        this.$parent.followings = []
+                        _.each(res.data.followings, following =>{
+                            this.$parent.followings.push(following.following)
+                        })
+                        // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
+                        //     if(post.user.username === this.user.username){
+                        //         post.user.followers = res.data.user.followers
+                        //         post.follow_type = "follow"
+                        //         $(`#follow`+post.token+' button').addClass('follow-idle').removeClass('follow-active')
+                        //     }
+                        // })
                     }
                 }).catch(err =>{
 

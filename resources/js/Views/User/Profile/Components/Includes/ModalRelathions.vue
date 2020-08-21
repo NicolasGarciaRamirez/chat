@@ -9,7 +9,7 @@
                             <a :class="type_table === 'following' ? 'text-white font-weight-bold cursor-pointer mx-4 active' : 'text-white font-weight-bold cursor-pointer mx-4'" id="Following-menu"  @click="type_table = 'following', getClassActive()">Following</a>
                         </div>
                         <div class="d-flex flex-row my-4">
-                            <label class="m-2">{{ array ? array.length : '0'}} {{type_table === 'followers' ? 'Followers' : 'Following'}}</label>
+                            <label class="m-2 font-weight-bold">{{type_table === 'followers' ? 'Followers' : 'Following'}} {{ array ? array.length : '0'}}</label>
                             <form action="/" class="form-search ml-1">
                                 <div class="form-group m-0">
                                     <div class="input-group">
@@ -43,7 +43,6 @@
 
 <script>
     import Auth from "../../../../../helpers/Auth";
-    import Followers from "../../../../../helpers/Followers";
     import SingleFollower from "../Relathions/Followers/SingleFollower";
     import SingleFollowing from "../Relathions/Following/SingleFollowing";
 
@@ -51,24 +50,25 @@
         components: {SingleFollowing, SingleFollower},
         data(){
             return {
-                type_table: window.location.href === `/${Auth.state.username}/Channel/Edit` ? this.$parent.type_table : 'followers',
+                type_table: window.location.href === `/${Auth.state.username}/Channel/Edit` ? this.$parent.type_table : 'following',
                 follow_type: 'follow',
                 follow:{
                     type: ''
                 },
-                followers:[]
+                followers:[],
+                followings:[]
             }
         },
         mounted() {
             Auth.initialize()
-            Followers.initialize()
             this.getClassActive()
             this.getUser()
+            this.getFollowings()
         },
         computed:{
             array(){
                 if(this.type_table === 'following'){
-                    return JSON.parse(Followers.data.followers)
+                    return this.followings
                 }else{
                     return this.followers
                 }
@@ -79,6 +79,15 @@
                 axios.post(`/User/get/${Auth.state.username}`).then(res =>{
                     _.each(res.data.user.followers , follow => {
                         this.followers.push(follow.user)
+                    })
+                }).catch(err =>{
+                    console.log(err)
+                })
+            },
+            getFollowings(){
+                axios.post(`/User/get/followings/${Auth.state.username}`).then(res =>{
+                    _.each(res.data.followings, following =>{
+                        this.followings.push(following.following)
                     })
                 }).catch(err =>{
                     console.log(err)

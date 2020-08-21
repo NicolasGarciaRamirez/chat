@@ -42,7 +42,7 @@
         </section>
         @if(\Auth::check())
             <section>
-                <modal-relathions />
+                <modal-relathions ref="modalRelathion"/>
             </section>
         @endif
         <section>

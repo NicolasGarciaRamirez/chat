@@ -6,10 +6,10 @@
             </a>
         </td>
         <td>
-            <label>{{user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name}}</label>
+            <label>{{user.artistic_name}}<img src="/images/icons/check.svg" alt="" class="icon-check ml-1" v-if="user.verification_date"></label>
         </td>
         <td class="mx-3" :id="`btnFollow`+user.id">
-            <button type="button"  class="align-items-right follow-following-idle" @click="addClassFollow">
+            <button type="button"  class="align-items-right follow-following-idle" @click="!disable_follow && follow_type === 'follow' ? storeFollow() : '' || !disable_follow && follow_type === 'unFollow' ? storeUnFollow() : ''">
                 <svg version="1.2" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1179 1080" xml:space="preserve" width="1rem">
                     <g id="Layer_2">
@@ -18,14 +18,10 @@
                             l365.48,179.1L886.9,687.89L1179,407.04z"  stroke="white" stroke-width="2em"/>
                         </g>
                     </g>
-                    <polygon class="st0" points="112.5,54.4 94,92.1 52.1,98.7 82,128.6 75.4,170.5 112.9,150.5 150.8,170.1 143.8,128.3 173.7,98.4
-		                            131.7,92.2 	"/>
-
+                    <polygon class="st0" points="112.5,54.4 94,92.1 52.1,98.7 82,128.6 75.4,170.5 112.9,150.5 150.8,170.1 143.8,128.3 173.7,98.4 131.7,92.2"/>
                 </svg>
             </button>
         </td>
-<!--        <td ><a :href="`/${user.username}/Profile`" class="no-underline font-weight-bold text-white mx-3" >View Profile</a></td>-->
-<!--        <td class=" font-weight-bold text-white">Message {{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.first_name}}</td>-->
     </tr>
 </template>
 
@@ -37,10 +33,11 @@
         props:['user','type_table'],
         data(){
             return {
-                // follow_type:'unFollow',
                 follow:{
                     type:''
                 },
+                follow_type: 'follow',
+                disable_follow: false
             }
         },
         mounted() {
@@ -48,80 +45,82 @@
             Auth.initialize()
             this.getFollowers()
         },
-        computed:{
-            follow_type(){
-                if ($('#btnFollow'+this.user.id+' button').hasClass('follow-following-active')){
-                    return 'unFollow'
-                }
-                return 'follow'
-            }
-        },
         methods:{
-            addClassFollow(){
-                if(this.follow_type === 'unFollow'){
-                    $('#btnFollow'+this.user.id+' button').addClass('follow-following-active').removeClass('follow-following-idle')
-                    this.storeUnFollow(this.follow_type)
-                }else if(this.follow_type === 'follow'){
-                    $('#btnFollow'+this.user.id+' button').addClass('follow-following-idle').removeClass('follow-following-active')
-                    this.storeFollow(this.follow_type)
-                }
-            },
             getFollowers(){
-                if(this.type_table === "followers"){
-                    let object = JSON.parse(Followers.data.followers)
-                    let objects =  this.$parent.followers
+                let object = this.$parent.followings
+                let objects =  this.$parent.followers
 
-                    let array_matchs = _.intersectionBy(object, objects, 'id')
-                    _.each(array_matchs , match=>{
+                let array_matches = _.intersectionBy(object, objects, 'id')
+                _.each(array_matches , match=>{
+                    if(this.user.id === match.id){
                         $('#btnFollow'+match.id+' button').addClass('follow-following-active').removeClass('follow-following-idle')
-                    })
-                }
-            },
-            storeFollow(type){
-                let request = ''
-                if (type === 'follow') {
-                    if (Auth.state.username) {
-                        this.follow.type = 'Followed'
-                    }else{
-                        this.follow.type = 'Follower'
-                    }
-                }
-
-                axios.post(`/${Auth.state.username}/Follow/follow/${this.user.id}`, this.follow).then(res =>{
-                    if (res.data.follow) {
                         this.follow_type = 'unFollow'
-                        Followers.set(res.data.following)
-                        window.location.reload()
                     }
+                })
+            },
+            async storeFollow(){
+                this.disable_follow = true
+                let request = ''
+                if (Auth.state.username === this.user.username) {
+                    this.follow.type = 'Followed'
+                }else{
+                    this.follow.type = 'Follower'
+                }
+                await axios.post(`/${Auth.state.username}/Follow/follow/${this.user.id}`, this.follow).then(res =>{
+                    if (res.data.follow) {
+                        $('#btnFollow'+this.user.id+' button').addClass('follow-following-active').removeClass('follow-following-idle')
+                        this.disable_follow = false
+                        this.user.followers.push(res.data.follow)
+                        this.$root.$refs.AppNav.followings = res.data.followings
+                        this.$parent.followings = []
+                        _.each(res.data.followings, following =>{
+                            this.$parent.followings.push(following.following)
+                        })
+                        this.follow_type = 'unFollow'
+                        // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
+                        //     if(post.user.username === this.user.username){
+                        //         post.follow_type = "unfollow"
+                        //         $(`#follow`+post.token+' button').addClass('follow-active').removeClass('follow-idle')
+                        //     }
+                        // })
 
+                    }
                 }).catch(err =>{
                     console.log(err)
                 })
             },
-            storeUnFollow(type){
-                let request = ''
+            async storeUnFollow(){
+                this.disable_follow = true
                 let url = ''
-                if (type === 'unFollow') {
-                    request = this.follow
-                    if (this.user.followers) {
-                        this.user.followers.map(follow =>{
-                            if (Auth.state.username === follow.user.username) {
-                                url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
-                            }
-                        })
-                    }
-                }
 
-                axios.post(url, request).then(res=>{
+                if (this.user.followers) {
+                    this.user.followers.map(follow =>{
+                        if (Auth.state.username === follow.user.username) {
+                            url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
+                        }
+                    })
+                }
+                await axios.post(url, this.follow).then(res=>{
                     if (res.data.unfollow) {
+                        $('#btnFollow'+this.user.id+' button').removeClass('follow-following-active').addClass('follow-following-idle')
+                        this.disable_follow = false
                         this.follow_type = 'follow'
-                        Followers.set(res.data.following)
-                        window.location.reload()
+                        this.$root.$refs.AppNav.followings = res.data.followings
+                        this.$parent.followings = []
+                        _.each(res.data.followings, following =>{
+                            this.$parent.followings.push(following.following)
+                        })
+                        // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
+                        //     if(post.user.username === this.user.username){
+                        //         post.user.followers = res.data.user.followers
+                        //         post.follow_type = "follow"
+                        //         $(`#follow`+post.token+' button').addClass('follow-idle').removeClass('follow-active')
+                        //     }
+                        // })
                     }
                 }).catch(err=>{
                     console.log(err)
                 })
-
             }
         }
     }

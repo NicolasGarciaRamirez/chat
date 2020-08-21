@@ -4,20 +4,9 @@
             <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
                     <button type="button" class="align-items-right follow-idle">
-                        {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}
+                        <span >{{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW' }}</span>
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
-                            <filter id="dropshadow" height="130%">
-                                <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
-                                <feOffset dx="2" dy="2" result="offsetblur"></feOffset>
-                                <feComponentTransfer>
-                                    <feFuncA type="linear" slope="0.5"></feFuncA>
-                                </feComponentTransfer>
-                                <feMerge>
-                                    <feMergeNode></feMergeNode>
-                                    <feMergeNode in="SourceGraphic"></feMergeNode>
-                                </feMerge>
-                            </filter>
                             <g>
                                 <g>
                                     <g>
@@ -316,7 +305,6 @@
                 $('#ModalPlaylist').modal('show')
             },
             showModalSharePost(){
-
                 this.$parent.post = this.post
                 $('#ModalShare').modal('show')
             },
@@ -371,7 +359,7 @@
             },
             //end methods player
             copyLink(){
-                var copyText = document.getElementById("myInput"+this.post.token);
+                let copyText = document.getElementById("myInput"+this.post.token);
                 copyText.select();
                 copyText.setSelectionRange(0, 99999)
                 document.execCommand("copy");
@@ -637,11 +625,11 @@
                         request = this.follow
                         this.url = `/${Auth.state.username}/Follow/follow/${this.post.user.id}`
                     }
-                    if (type == 'unfollow') {
+                    if (type === 'unfollow') {
                         request = this.follow
                         if (this.post.user.followers) {
                             this.post.user.followers.map(follow =>{
-                                if (Auth.state.username == follow.user.username) {
+                                if (Auth.state.username === follow.user.username) {
                                     this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
                                 }
                             })
@@ -649,19 +637,44 @@
                     }
                     axios.post(this.url, request).then(res =>{
                         if (res.data.follow) {
+                            $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
                             this.disable_follow = false
                             this.post.user.followers.push(res.data.follow)
                             this.follow_type = 'unfollow'
-                            Followers.set(res.data.following)
-                            $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
-                            window.location.reload()
+                            _.each(this.$root.$refs.modalRelathion.followers , user =>{
+                                if (user.username === this.post.user.username){
+                                    user.followers.push(res.data.follow)
+                                }
+                            })
+                            this.$root.$refs.AppNav.followings = res.data.followings
+                            this.$root.$refs.modalRelathion.followings = []
+                            _.each(res.data.followings , follow =>{
+                                this.$root.$refs.modalRelathion.followings.push(follow.following)
+                            })
+                            // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
+                            //     if(post.user.username === this.post.user.username){
+                            //         // post.follow_type = "unfollow"
+                            //         console.log(post)
+                            //         $(`#follow`+post.token+' button').addClass('follow-active').removeClass('follow-idle')
+                            //     }
+                            // })
                         }
                         if (res.data.unfollow) {
                             this.disable_follow = false
                             this.follow_type = 'follow'
-                            Followers.set(res.data.following)
                             $(`#follow`+this.post.token+' button').addClass('follow-idle').removeClass('follow-active')
-                            window.location.reload()
+                            this.$root.$refs.AppNav.followings = res.data.followings
+                            this.$root.$refs.modalRelathion.followings = []
+                            _.each(res.data.followings , follow =>{
+                                this.$root.$refs.modalRelathion.followings.push(follow.following)
+                            })
+                            // _.each(this.$root.$refs.home.$refs.posts.posts, post =>{
+                            //     if(post.user.username === this.post.user.username){
+                            //         // post.follow_type = "follow"
+                            //         console.log(post)
+                            //         $(`#follow`+post.token+' button').addClass('follow-idle').removeClass('follow-active')
+                            //     }
+                            // })
                         }
                     }).catch(err =>{
                         console.log(err)
@@ -670,7 +683,6 @@
                     $('#ModalLogin').modal('show')
                 }
             },
-
             // end methods reactions
             update(){
                 axios.post(`/${Auth.state.username}/Post/update/${this.post.token}`, this.post).then(res =>{

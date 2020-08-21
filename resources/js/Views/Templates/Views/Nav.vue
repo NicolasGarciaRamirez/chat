@@ -102,10 +102,10 @@
             <img src="/images/sharks-menu.svg" alt="">
         </li>
         <div v-if="auth.username || location">
-            <div v-for="(user, index) in followers" :key="index">
-                <li class="c-sidebar-nav-item" v-if="user.username">
+            <div v-for="(follow, index) in array" :key="index">
+                <li class="c-sidebar-nav-item" v-if="follow.following.username">
                     <div class="filter-nav">
-                        <a :href="`/${user.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ user.profile_information && user.profile_information.artistic_name ? user.profile_information.artistic_name : user.personal_information.full_name }} <img src="/images/icons/check.svg" alt="" class="icon-check ml-1" v-if="user.verification_date"></a>
+                        <a :href="`/${follow.following.username}/Channel/Activity`" class="no-underline text-white font-weight-bold">{{ follow.following.artistic_name}} <img src="/images/icons/check.svg" alt="" class="icon-check ml-1" v-if="follow.following.verification_date"></a>
                         <!--                    <span class="float-sm-right c-fifth dot">•</span>-->
                     </div>
                 </li>
@@ -124,45 +124,33 @@
     import FilterPost from "../../../helpers/FilterPost";
     import Followers from "../../../helpers/Followers";
     export default {
-        // props:['followers'],
+        props:['following'],
         data(){
             return {
                 auth: Auth.state,
                 filters: FilterPost.state,
                 location: false,
-                verificationFollowers:false,
+                followings: null
             }
         },
         components: {
             AppFooter
         },
+        computed:{
+            array(){
+                if(this.followings === null) {
+                    return this.following
+                }else{
+                    return this.followings
+                }
+            }
+        },
         mounted(){
             Auth.initialize()
             FilterPost.initialize()
             this.setFilters()
-            // this.getFollowing()
-        },
-        computed:{
-            followers(){
-                Followers.initialize()
-                if (window.location.href !== 'http://localhost:8000/Register'){
-                    if (Followers.data.followers !== 'undefined'){
-                        this.location = true
-                        return JSON.parse(Followers.data.followers)
-                    }
-                }
-            }
         },
         methods:{
-            // getFollowing(){
-            //     if (this.followers === undefined){
-            //         this.verificationFollowers = false
-            //         console.log('si es undefined')
-            //     }else{
-            //         this.verificationFollowers = true
-            //         console.log('no es undefined')
-            //     }
-            // },
             updateFilterGender(genre){
                 FilterPost.removeOrAddGenres(genre)
                 this.filterPost()

@@ -60,17 +60,6 @@
                     {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                          viewBox="0 0 226.1 215.4" style="enable-background:new 0 0 226.1 215.4;" xml:space="preserve">
-                        <filter id="dropshadow" height="130%">
-                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur>
-                            <feOffset dx="2" dy="2" result="offsetblur"></feOffset>
-                            <feComponentTransfer>
-                                <feFuncA type="linear" slope="0.5"></feFuncA>
-                            </feComponentTransfer>
-                            <feMerge>
-                                <feMergeNode></feMergeNode>
-                                <feMergeNode in="SourceGraphic"></feMergeNode>
-                            </feMerge>
-                        </filter>
                         <g>
                             <g>
                                 <g>
@@ -145,7 +134,7 @@
                         </g>
                     </g>
                 </svg>
-                <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="colorFollow(follow_type)" >
+                <div :id="`follow`+user.token" class="mx-3 d-sm-down-none" @click="!disable_follow ? storeFollow(follow_type) : ''" >
                     <button type="button" class="align-items-right follow-idle text-white">
                         {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -207,7 +196,6 @@ import ModalChangeImage from "../Components/Includes/ModalChangeImage";
 import ModalShareProfile from "../Components/Includes/ModalShareProfile";
 import ModalLogin from '../../../Auth/Components/Login';
 import Auth from "../../../../helpers/Auth";
-import Followers from "../../../../helpers/Followers";
 
 export default {
     props:['user'],
@@ -221,7 +209,8 @@ export default {
             follow:{
                 type: ''
             },
-            route_name: window.location.pathname
+            route_name: window.location.pathname,
+            disable_follow: false
         }
     },
     mounted(){
@@ -246,62 +235,63 @@ export default {
         getFollow(){
             if(this.user.followers){
                 this.user.followers.map(follow =>{
-                    if (follow.user.username == Auth.state.username) {
+                    if (follow.user.username === Auth.state.username) {
                         $(`#follow`+this.user.token+` button`).addClass('follow-active').removeClass('follow-idle')
                         this.follow_type = 'unfollow'
                     }
                 })
             }
         },
-        colorFollow(type){
+        storeFollow(type){
             if (Auth.state.token) {
-                if (type == 'follow') {
-                    this.storeFollow(type)
-                } else if (type == 'unfollow') {
-                    this.storeFollow(type)
+                this.disable_follow = true
+                let request = ''
+                if (type === 'follow') {
+                    if (Auth.state.username) {
+                        this.follow.type = 'Followed'
+                    }else{
+                        this.follow.type = 'Follower'
+                    }
+                    request = this.follow
+                    this.url = `/${Auth.state.username}/Follow/follow/${this.user.id}`
                 }
+                if (type === 'unfollow') {
+                    request = this.follow
+                    if (this.user.followers) {
+                        this.user.followers.map(follow =>{
+                            if (Auth.state.username === follow.user.username) {
+                                this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
+                            }
+                        })
+                    }
+                }
+                axios.post(this.url, request).then(res =>{
+                    this.disable_follow = false
+                    if (res.data.follow) {
+                        this.user.followers.push(res.data.follow)
+                        this.follow_type = 'unfollow'
+                        this.$root.$refs.AppNav.followings = res.data.followings
+                        this.$root.$refs.modalRelathion.followings = []
+                        _.each(res.data.followings, following =>{
+                            this.$root.$refs.modalRelathion.followings.push(following.following)
+                        })
+                        $(`#follow`+this.user.token+` button`).addClass('follow-active').removeClass('follow-idle')
+                    }
+                    if (res.data.unfollow) {
+                        this.follow_type = 'follow'
+                        $(`#follow`+this.user.token+` button`).addClass('follow-idle').removeClass('follow-active')
+                        this.$root.$refs.AppNav.followings = res.data.followings
+                        this.$root.$refs.modalRelathion.followings = []
+                        _.each(res.data.followings, following =>{
+                            this.$root.$refs.modalRelathion.followings.push(following.following)
+                        })
+                    }
+                }).catch(err =>{
+                    this.disable_follow = false
+                })
             }else{
                 $('#ModalLogin').modal('show')
             }
-        },
-        storeFollow(type){
-            let request = ''
-            if (type == 'follow') {
-                if (Auth.state.username) {
-                    this.follow.type = 'Followed'
-                }else{
-                    this.follow.type = 'Follower'
-                }
-                request = this.follow
-                this.url = `/${Auth.state.username}/Follow/follow/${this.user.id}`
-            }
-            if (type == 'unfollow') {
-                request = this.follow
-                if (this.user.followers) {
-                    this.user.followers.map(follow =>{
-                        if (Auth.state.username == follow.user.username) {
-                            this.url = `/${Auth.state.username}/Follow/unfollow/${follow.id}`
-                        }
-                    })
-                }
-            }
-            axios.post(this.url, request).then(res =>{
-                if (res.data.follow) {
-                    this.user.followers.push(res.data.follow)
-                    this.follow_type = 'unfollow'
-                    Followers.set(res.data.following)
-                    $(`#follow`+this.user.token+` button`).addClass('follow-active').removeClass('follow-idle')
-                    window.location.reload()
-                }
-                if (res.data.unfollow) {
-                    this.follow_type = 'follow'
-                    Followers.set(res.data.following)
-                    $(`#follow`+this.user.token+` button`).addClass('follow-idle').removeClass('follow-active')
-                    window.location.reload()
-                }
-            }).catch(err =>{
-                console.log(err)
-            })
         }
     },
 }
