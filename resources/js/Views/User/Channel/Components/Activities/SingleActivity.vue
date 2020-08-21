@@ -4,7 +4,15 @@
             <div class="img-activity bg-primary">
                 <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
                 <video :src="`${activity.resource}`" controls class="img-activity"  v-if="activity.resource_type == 'video'"  />
-                <vue-wave-surfer :id="'waveform'+activity.token" :src="`${activity.resource}`" :options="options_audio" v-if="activity.resource_type === 'audio'" ref="surf"></vue-wave-surfer>
+<!--                <vue-wave-surfer :id="'waveform'+activity.token" :src="`${activity.resource}`" :options="options_audio" v-if="activity.resource_type === 'audio'" ref="surf"></vue-wave-surfer>-->
+                <div :id="`waveform${activity.token}`"></div>
+                <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type === 'audio'"   >
+                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+activity.token" @click="backward(audio)" height="30" >
+                    <div :id="`play`+activity.token"  @click="playAudio()" >
+                        <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
+                    </div>
+                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+                </div>
                 <i class="fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-if="showMenuPlaylist"></i>
                 <div class="dropdown-menu bg-primary text-white p-2 menu-activity" aria-labelledby="dropdownMenuPost" v-if="!playlist">
                     <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
@@ -85,6 +93,8 @@
 
 <script>
 import Auth from "../../../../../helpers/Auth";
+import WaveSurfer from 'wavesurfer.js';
+
 export default {
     props: ['activity','user'],
     data(){
@@ -127,6 +137,19 @@ export default {
         Auth.initialize()
         this.getLike()
         this.getVote()
+        if(this.activity.resource_type === 'audio'){
+            this.createAudioWave()
+            // this.wavesurfer.on('finish', () => {
+            //     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+            //     this.WaveSurfer.stop()
+            // })
+        }
+
+        $("video").on("play", function() {
+            $("video").not(this).each(function(index, video) {
+                video.pause();
+            });
+        });
     },
     computed:{
         resource_extension() {
@@ -158,12 +181,55 @@ export default {
             this.$parent.$children[2].post = this.activity
             $('#ModalShare').modal('show')
         },
+        //methods player
+        createAudioWave(){
+            var wave = `#waveform${this.activity.token}`
+            this.wavesurfer = WaveSurfer.create({
+                container: wave,
+                waveColor: 'gray',
+                barHeight: 0.8,
+                cursorColor: 'red',
+                cursorWidth: 0,
+                responsive: true,
+                interact: true,
+                partialRender: true,
+                progressColor: this.getGrad(),
+            });
+            this.wavesurfer.load(`${this.activity.resource}`);
+        },
         getGrad(){
             let linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 250, 0);
             linGrad.addColorStop(0, '#ff0000');
             linGrad.addColorStop(1, 'white');
             return linGrad
         },
+        playAudio(){
+            this.audio = this.wavesurfer
+            this.duration = this.audio.getDuration()
+            this.current_time = this.audio.getCurrentTime()
+
+            while (this.duration == this.current_time) {
+                this.audio.play()
+                this.storeView()
+                return
+            }
+
+            if(this.audio.isPlaying()){
+                $(`#play`+this.activity.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+
+            }else if(!this.audio.isPlaying()){
+                $(`#play`+this.activity.token+` img`).replaceWith(`<img src="/images/iconsplayer/Pause-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
+
+            }
+            this.audio.playPause()
+        },
+        backward(){
+            this.audio.skipBackward(10)
+        },
+        forward(){
+            this.audio.skipForward(10)
+        },
+        //end methods player
         getLike() {
             if (Auth.state.username) {
                 if (this.activity.likes) {
