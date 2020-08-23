@@ -199,8 +199,8 @@
 <script>
     import Comments from '../../Comments/Views/Comments'
     import DocumentPreview from 'vue-doc-preview'
-    import Auth from "../../../helpers/Auth";
-    import WaveSurfer from 'wavesurfer.js';
+    import Auth from "../../../helpers/Auth"
+    import WaveSurfer from 'wavesurfer.js'
 
     export default {
         props:['post','user'],
@@ -311,16 +311,20 @@
                 var wave = `#waveform${this.post.token}`
                 this.wavesurfer = WaveSurfer.create({
                     container: wave,
+                    backend: 'MediaElement',
                     waveColor: 'gray',
                     barHeight: 0.8,
                     cursorColor: 'red',
                     cursorWidth: 0,
                     responsive: true,
                     interact: true,
-                    partialRender: true,
+                    preload:"none",
                     progressColor: this.getGrad(),
                 });
-                this.wavesurfer.load(`${this.post.resource}`);
+                this.wavesurfer.song = `${this.post.resource}`
+                this.wavesurfer.backend.peaks = this.generatePeak()
+                this.wavesurfer.drawBuffer();
+                this.wavesurfer.loaded = false;
             },
             getGrad(){
                 let linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
@@ -328,7 +332,20 @@
                 linGrad.addColorStop(1, 'white');
                 return linGrad
             },
+            generatePeak(){
+                var peak = []
+                for(var i = 0;  i<1000; i++){
+                    peak.push(Math.random() * (0.2999 - 0.0001) + 0.0001)
+                }
+                return peak
+            },
             playAudio(){
+
+                if(!this.wavesurfer.loaded){
+                    this.wavesurfer.loadMediaElement(this.wavesurfer.song, this.wavesurfer.backend.peaks, false, this.wavesurfer.getDuration());
+                    this.wavesurfer.loaded = true
+                }
+
                 this.audio = this.wavesurfer
                 this.duration = this.audio.getDuration()
                 this.current_time = this.audio.getCurrentTime()
