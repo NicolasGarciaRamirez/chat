@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Requests\ImageRequest;
+use App\Models\Reactions\Followers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
@@ -28,11 +29,22 @@ class UserController extends Controller
             return $next($request);
         });
     }
-
+     /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getUser()
     {
         return response()->json([
             'user' => $this->user,
+        ]);
+    }
+     /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getFollowings()
+    {
+        return response()->json([
+            'followings' => Followers::where('following_user', $this->user->id)->with('following.followers.user')->get()
         ]);
     }
 

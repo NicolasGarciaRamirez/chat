@@ -43,21 +43,16 @@ class FollowersController extends Controller
             \Mail::to($user->email)->send(new StartedFollowYou($this->user, $this->user->personal_information->full_name, $user->personal_information->full_name));
 
             \DB::commit();
-            $users_following = Followers::where('following_user', $this->user->id)->get();
-            $followings = [];
-            foreach ($users_following as $follow) {
-                $user = User::with('profile_information', 'personal_information', 'followers.user')->where('id', $follow->user_id)->first();
-                array_push($followings, $user);
-            };
             return response()->json([
                 'follow' => $follow->load('user.personal_information'),
-                'following' => $followings,
+                'followings' => Followers::where('following_user', \Auth::user()->id)->with('following.followers.user')->get(),
                 'errors' => null
             ]);
         } catch (\Exception $e) {
             \DB::rollback();
             return response()->json([
                 'follow' => null,
+                'followings' => null,
                 'errors' => $e
             ]);
         }
@@ -72,17 +67,10 @@ class FollowersController extends Controller
     public function unfollow($username, Followers $follow)
     {
         $follow->delete();
-        $users_following = Followers::where('following_user', $this->user->id)->get();
-        $followings = [];
-        foreach ($users_following as $follow) {
-            $user = User::with('profile_information', 'personal_information','followers.user')->where('id', $follow->user_id)->first();
-            array_push($followings, $user);
-        };
         return response()->json([
-            'unfollow' => $follow,
-            'following' => $followings,
-            'errors' => null
+            'user' => User::with('followers.user')->whereId($follow->user_id)->first(),
+            'unfollow' => true,
+            'followings' => Followers::where('following_user', \Auth::user()->id)->with('following.followers.user')->get(),
         ]);
     }
-
 }

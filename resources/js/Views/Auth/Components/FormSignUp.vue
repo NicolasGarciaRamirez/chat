@@ -97,7 +97,6 @@
                     axios.post(`/Register`, this.user).then(res => {
                         if (res.data.saved) {
                             Auth.set(res.data.user.token, res.data.user.username, res.data.user.avatar)
-                            Followers.set(res.data.user.followers)
                             window.location.replace(`/`)
                         }
                     }).catch(err => {

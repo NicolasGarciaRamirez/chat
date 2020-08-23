@@ -62,6 +62,7 @@ Route::group(['prefix' => 'User', 'middleware' => ['auth']], function () {
     Route::name('profile.update.user')->post('/Settings/Update/{username}', 'User\UserController@updateUser');
     Route::name('profile.update.user.personal')->post('/Settings/Personal/Update/{username}', 'User\UserPersonalInformationController@update');
     Route::name('get.user')->post('/get/{username}', 'User\UserController@getUser');
+    Route::name('get.followings')->post('/get/followings/{username}', 'User\UserController@getFollowings');
 });
 
 Route::group(['prefix' => '/{username}'], function () {

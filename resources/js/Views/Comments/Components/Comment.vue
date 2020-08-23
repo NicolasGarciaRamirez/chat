@@ -21,7 +21,7 @@
                                     </div>
                                     <div v-else>
                                         <a href="mailto:support@noisesahrks.com" class="dropdown-item cursor-pointer">Report</a>
-                                        <a href="#" class="dropdown-item cursor-pointer">Hidden</a>
+                                        <a href="#" class="dropdown-item cursor-pointer">Hide</a>
                                     </div>
                                 </div>
                             </span>

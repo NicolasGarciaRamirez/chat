@@ -8,5 +8,11 @@
             <img src="/images/BETA.svg" class="mx-1 img-version">
         </a>
     </div>
-    <app-nav></app-nav>
+    @php
+        $users_following = collect();
+        if(\Auth::check()){
+            $users_following = \App\Models\Reactions\Followers::where('following_user', \Auth::user()->id)->with('following')->get();
+        }
+    @endphp
+   <app-nav :following="{{$users_following}}" ref="AppNav"></app-nav>
 </div>

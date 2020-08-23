@@ -1,7 +1,7 @@
 <template ref="posts">
     <section class="posts mb-4"  v-if="posts">
         <div v-for="(post, index) in posts" :key="index">
-            <single-post :post="post" />
+            <single-post :post="post"  />
         </div>
         <modal-share-post :post="post" />
         <modal-support :user="user"  />
