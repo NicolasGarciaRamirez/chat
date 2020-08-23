@@ -180,7 +180,7 @@ button {
     }
 }
 
-.c-sidebar.c-sidebar-lg-show:not(.c-sidebar-right).c-sidebar-fixed ~ .c-wrapper{
+.c-sidebar.c-sidebar-show:not(.c-sidebar-right).c-sidebar-fixed ~ .c-wrapper, .c-sidebar.c-sidebar-lg-show:not(.c-sidebar-right).c-sidebar-fixed ~ .c-wrapper{
     .main-header{
         @include media-breakpoint-up(lg){
             margin-left: 256px;
