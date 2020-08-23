@@ -148,4 +148,25 @@ class AuthController extends Controller
             'saved' => true
         ]);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setSession(Request $request)
+    {
+        if(\Auth::guest()){
+            $user = User::where('username', $request->username)->first();
+            \Auth::login($user);
+            return response()->json([
+                'login' => false,
+                'token' => $user->token,
+                'username' => $user->username,
+                'avatar' => $user->avatar
+            ]);
+        }
+        return response()->json([
+            'login' => true
+        ]);
+    }
 }

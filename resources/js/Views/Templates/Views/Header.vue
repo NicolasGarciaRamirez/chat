@@ -290,7 +290,8 @@ export default {
         Auth.initialize()
     },
     methods:{
-        showModalRelathions(){
+        async showModalRelathions(){
+            await Auth.setSession()
             $('#ModalRelathions').modal('show')
         },
         showModalLogin(){

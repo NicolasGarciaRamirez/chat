@@ -13,7 +13,7 @@ export default{
         localStorage.setItem('token', token)
         localStorage.setItem('username', username)
         localStorage.setItem('avatar', avatar)
-        
+
         this.initialize()
     },
     remove(){
@@ -22,7 +22,12 @@ export default{
         localStorage.removeItem('avatar')
         this.initialize()
     },
-    getExpire(){
-        
+    async setSession(){
+        await axios.post(`/setSession`, this.state).then(res => {
+            if(!res.data.login){
+                this.set(res.data.token, res.data.username, res.data.avatar)
+            }
+            return true
+        })
     }
 }

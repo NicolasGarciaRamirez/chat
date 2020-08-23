@@ -200,10 +200,7 @@
     import Comments from '../../Comments/Views/Comments'
     import DocumentPreview from 'vue-doc-preview'
     import Auth from "../../../helpers/Auth";
-    import Followers from "../../../helpers/Followers";
-
     import WaveSurfer from 'wavesurfer.js';
-    import PeakCache from 'wavesurfer.js/src/peakcache.js'
 
     export default {
         props:['post','user'],
@@ -379,7 +376,6 @@
                     })
                 }
             },
-
             getLike(){
                 if (this.post.likes) {
                     this.post.likes.map(val => {
@@ -391,7 +387,7 @@
                     })
                 }
             },
-            storeLike(type){
+            async storeLike(type){
                 if (Auth.state.token) {
                     let request =''
                     this.disable_like = true
@@ -411,7 +407,7 @@
                         request = this.lit
                         this.url =  `/${Auth.state.username}/LitLike/like/Post/${this.post.id}`
                     }
-                    axios.post(this.url, request).then(res =>{
+                    await axios.post(this.url, request).then(res =>{
                         if (res.data.like) {
                             this.disable_like = false
                             this.disable_vote_down = false
@@ -434,7 +430,6 @@
                     $('#ModalLogin').modal('show')
                 }
             },
-
             getVote(){
                 if (Auth.state.token) {
                     if (this.post.votes) {
@@ -599,7 +594,6 @@
                     $('#ModalLogin').modal('show')
                 }
             },
-
             getFollow(){
                 if (Auth.state.username){
                     if (this.post.user.followers) {

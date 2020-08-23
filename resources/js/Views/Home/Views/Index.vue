@@ -276,6 +276,7 @@
             },
             async store(){
                 if (this.auth.token) {
+                    await Auth.setSession()
                     this.loading = true
 
                     if(!this.validateData()){

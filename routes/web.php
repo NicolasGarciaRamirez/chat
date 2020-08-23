@@ -11,6 +11,7 @@
 |
 */
 Route::get('/test', function () {
+    \Auth::logout();
     return view('test');
 });
 
@@ -26,6 +27,7 @@ Route::post('/Search', 'HomeController@search');
 Route::get('/login', 'HomeController@login')->name('loginmodal');
 Route::post('/login', 'Auth\AuthController@login')->name('login');
 Route::get('/logout', 'Auth\AuthController@logout')->name('logout');
+Route::post('/setSession', 'Auth\AuthController@setSession')->name('setSession');
 
 Route::get('auth/{provider}', 'Auth\UserSocialAuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\UserSocialAuthController@handleProviderCallback');
