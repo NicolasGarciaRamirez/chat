@@ -259,8 +259,9 @@ export default {
                 }
             }
         },
-        storeLike(type){
+        async storeLike(type){
             if (Auth.state.token) {
+                await Auth.setSession()
                 let url = ''
                 this.disable_vote_down = true
                 this.disable_vote_up = true
@@ -331,7 +332,7 @@ export default {
                 }
             }
         },
-        storeVoteUp(type){
+        async storeVoteUp(type){
             if (Auth.state.token) {
                 let request = ''
                 this.disable_vote_up = true
@@ -360,7 +361,7 @@ export default {
                     }
                 }
 
-                axios.post(this.url, request).then(res => {
+                await axios.post(this.url, request).then(res => {
                     if (res.data.voteUp) {
                         this.disable_vote_up = false
                         this.disable_vote_down = false
@@ -392,9 +393,9 @@ export default {
                 $('#ModalLogin').modal('show')
             }
         },
-        storeVoteDown(type){
+        async storeVoteDown(type){
             if (Auth.state.token) {
-
+                await Auth.setSession()
                 let request = ''
                 this.disable_vote_down = true
                 this.disable_vote_up = true
@@ -430,7 +431,7 @@ export default {
                     }
 
                 }
-                axios.post(this.url, request).then(res => {
+                await axios.post(this.url, request).then(res => {
                     if (res.data.voteDown) {
                         this.disable_vote_down = false
                         this.disable_vote_up = false
