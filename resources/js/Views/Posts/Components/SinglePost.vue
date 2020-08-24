@@ -176,14 +176,17 @@
         </div>
         <div class="post-footer bg-primary px-3 py-2">
             <div class="post-reactions c-fourth ">
-                <div :id="`voteUp`+this.post.id" class="information cursor-pointer" @click="disable_vote_up ? '' : storeVoteUp(vote_type_up)">
+                <div :id="`voteUp`+post.id" class="information cursor-pointer" @click="disable_vote_up ? '' : storeVoteUp(vote_type_up)">
                     <img src="/images/icons/post-percentage-up.svg" alt="">
                     <span>{{ votes.vote_up.length  }}</span>
                 </div>
 
-                <div :id="`voteDown`+this.post.id" class="information cursor-pointer" @click="disable_vote_down ? '' : storeVoteDown(vote_type_down)"><img src="/images/icons/post-percentage-down-grey.svg" alt=""><span>{{ votes.vote_down.length }}</span></div>
+                <div :id="`voteDown`+post.id" class="information cursor-pointer" @click="disable_vote_down ? '' : storeVoteDown(vote_type_down)">
+                    <img src="/images/icons/post-percentage-down-grey.svg" alt="">
+                    <span>{{ votes.vote_down.length }}</span>
+                </div>
 
-                <div :id="`lit`+this.post.id" class="information cursor-pointer" @click="disable_like ? '': storeLike(lit.like)">
+                <div :id="`lit`+post.id" class="information cursor-pointer" @click="disable_like ? '': storeLike(lit.like)">
                     <img src="/images/icons/post-flame.svg" height="22"><span>{{ post.likes ? post.likes.length : 0 }}</span>
                 </div>
                 <div class="information cursor-pointer" @click="$parent.view_comment = !$parent.view_comment"><img src="/images/icons/post-comment.svg" alt="">{{ post.comments.length }}</div>
@@ -470,16 +473,15 @@
                         })
                     }
                 }else{
-                    if(this.post.votes){
-                        this.post.votes.map(vote => {
-                            if(vote.type === 'vote_up') this.votes.vote_up.push(vote)
-                            if(vote.type === 'vote_down') this.votes.vote_down.push(vote)
-                        })
-                    }
+                    this.post.votes.map(vote => {
+                        if(vote.type_vote === 'vote_up') this.votes.vote_up.push(vote)
+                        if(vote.type_vote === 'vote_down') this.votes.vote_down.push(vote)
+                    })
                 }
             },
-            storeVoteUp(type){
+            async storeVoteUp(type){
                 if (Auth.state.token) {
+                    await Auth.setSession()
                     let request = ''
                     this.disable_vote_up = true
                     this.disable_vote_down = true
@@ -511,7 +513,7 @@
                         }
                     }
 
-                    axios.post(this.url, request).then(res => {
+                    await axios.post(this.url, request).then(res => {
                     if (res.data.voteUp) {
                         this.disable_vote_up = false
                         this.disable_vote_down = false
@@ -543,8 +545,9 @@
                     $('#ModalLogin').modal('show')
                 }
             },
-            storeVoteDown(type){
+            async storeVoteDown(type){
                 if (Auth.state.token) {
+                    await Auth.setSession()
                     let request = ''
                     this.disable_vote_down = true
                     this.disable_vote_up = true
@@ -581,7 +584,7 @@
                         }
 
                     }
-                    axios.post(this.url, request).then(res => {
+                    await axios.post(this.url, request).then(res => {
                         if (res.data.voteDown) {
                             this.disable_vote_down = false
                             this.disable_vote_up = false
@@ -623,8 +626,9 @@
                     }
                 }
             },
-            storeFollow(type){
+            async storeFollow(type){
                 if (Auth.state.username) {
+                    await Auth.setSession()
                     this.disable_follow = true
                     let request =''
                     if (type == 'follow') {
@@ -646,7 +650,7 @@
                             })
                         }
                     }
-                    axios.post(this.url, request).then(res =>{
+                    await axios.post(this.url, request).then(res =>{
                         if (res.data.follow) {
                             $(`#follow`+this.post.token+' button').addClass('follow-active').removeClass('follow-idle')
                             this.disable_follow = false
@@ -701,22 +705,28 @@
                 }
             },
             // end methods reactions
-            update(){
-                axios.post(`/${Auth.state.username}/Post/update/${this.post.token}`, this.post).then(res =>{
-                    if (res.data.updated) {
-                        this.edit = false
-                        this.$toasted.show('The post has been updated successfully!', {
-                            position: "bottom-right",
-                            duration : 4000,
-                            className: "p-4 notification bg-primary",
-                            keepOnHover: true
-                        })
-                    }
-                }).catch(err => {
-                    console.log(err)
-                })
+            async update(){
+                if(Auth.state.username){
+                    await Auth.setSession()
+                    await axios.post(`/${Auth.state.username}/Post/update/${this.post.token}`, this.post).then(res =>{
+                        if (res.data.updated) {
+                            this.edit = false
+                            this.$toasted.show('The post has been updated successfully!', {
+                                position: "bottom-right",
+                                duration : 4000,
+                                className: "p-4 notification bg-primary",
+                                keepOnHover: true
+                            })
+                        }
+                    }).catch(err => {
+                        console.log(err)
+                    })
+                }
             },
-            deletePost(){
+            async deletePost(){
+                if(Auth.state.username){
+                    await Auth.setSession()
+                }
                 swal({
                     title: 'Delete Post',
                     text: 'You are about to delete this post. Would you like to proceed?',

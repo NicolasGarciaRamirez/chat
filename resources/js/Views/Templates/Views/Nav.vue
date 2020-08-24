@@ -53,7 +53,19 @@
                 <label for="world"><span>World</span></label>
             </div>
         </li>
-        <li class="c-sidebar-nav-title">Category</li>
+<!--        <li class="c-sidebar-nav-item">-->
+<!--            <div class="filter-nav">-->
+<!--                <input type="checkbox" id="latin" @click="updateFilterGender('Latin')" data-genre="Latin">-->
+<!--                <label for="latin"><span>Latin</span></label>-->
+<!--            </div>-->
+<!--        </li>-->
+        <li class="c-sidebar-nav-title">Topic</li>
+        <li class="c-sidebar-nav-item">
+            <div class="filter-nav">
+                <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
+                <label for="performance_and_jams"><span>Performances and Jams</span></label>
+            </div>
+        </li>
         <li class="c-sidebar-nav-item">
             <div class="filter-nav">
                 <input type="checkbox" id="production_engineering" @click="updateFilterCategory('Production & Engineering')" data-category="Production & Engineering">
@@ -82,12 +94,6 @@
             <div class="filter-nav">
                 <input type="checkbox" id="audio_clips" @click="updateFilterCategory('Audio Clips')" data-category="Audio Clips">
                 <label for="audio_clips"><span>Audio Clips</span></label>
-            </div>
-        </li>
-        <li class="c-sidebar-nav-item">
-            <div class="filter-nav">
-                <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
-                <label for="performance_and_jams"><span>Performances and Jams</span></label>
             </div>
         </li>
         <li class="c-sidebar-nav-item p-0">

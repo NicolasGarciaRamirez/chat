@@ -59,6 +59,7 @@
                 })
             },
             async storeFollow(){
+                await Auth.setSession()
                 this.disable_follow = true
                 let request = ''
                 if (Auth.state.username === this.user.username) {
@@ -94,6 +95,7 @@
                 })
             },
             async storeUnFollow(){
+                await Auth.setSession()
                 this.disable_follow = true
                 let url = ''
 

@@ -55,7 +55,7 @@
                     </g>
                 </svg>
             </a>
-            <div :id="`follow`+user.token" class="follow-movile-button d-lg-none d-md-none mx-lg-3" @click="colorFollow(follow_type)" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username !== user.username">
+            <div :id="`follow`+user.token" class="follow-movile-button d-lg-none d-md-none mx-lg-3" @click="!disable_follow ? storeFollow(follow_type) : ''" v-if="route_name !== `/${auth.username}/Edit` && route_name !== `/${auth.username}/Channel/Edit` && auth.username !== user.username">
                 <button type="button" class="align-items-right function follow-idle">
                     {{ follow_type === 'unfollow' ? 'FOLLOWING' : 'FOLLOW'}}
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -242,8 +242,9 @@ export default {
                 })
             }
         },
-        storeFollow(type){
+        async storeFollow(type){
             if (Auth.state.token) {
+                await Auth.setSession()
                 this.disable_follow = true
                 let request = ''
                 if (type === 'follow') {
@@ -265,7 +266,7 @@ export default {
                         })
                     }
                 }
-                axios.post(this.url, request).then(res =>{
+                await axios.post(this.url, request).then(res =>{
                     this.disable_follow = false
                     if (res.data.follow) {
                         this.user.followers.push(res.data.follow)

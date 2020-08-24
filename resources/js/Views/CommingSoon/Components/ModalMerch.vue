@@ -14,13 +14,10 @@
                         <p>
                             Very soon, you will be able to list your merch on your channel and allow
                             users to view and purchase them from Noisesharks
-                        </p><br>
-                        <p>
-                            Click below to get notified when we launch this feature.
                         </p>
                     </div>
                     <div class="text-center mb-2">
-                        <button type="button" class="btn rounded-pill text-white bg-fifth font-weight-bold" data-dismiss="modal">Notify Me</button>
+                        <button type="button" class="btn rounded-pill text-white bg-fifth font-weight-bold" data-dismiss="modal">Got It!</button>
                     </div>
                 </div>
             </div>

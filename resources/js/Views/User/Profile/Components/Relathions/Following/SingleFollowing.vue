@@ -45,7 +45,8 @@
             Auth.initialize()
         },
         methods:{
-            storeUnFollow(){
+            async storeUnFollow(){
+                await Auth.setSession()
                 this.disable = true
                 if (this.user.followers) {
                     this.user.followers.map(follow =>{
@@ -54,7 +55,7 @@
                         }
                     })
                 }
-                axios.post(this.url , this.follow).then(res =>{
+                await axios.post(this.url , this.follow).then(res =>{
                     this.disable = false
                     if (res.data.unfollow){
                         this.$root.$refs.AppNav.followings = res.data.followings

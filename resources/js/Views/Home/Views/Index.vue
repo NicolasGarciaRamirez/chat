@@ -121,32 +121,31 @@
                         <textarea class="form-control my-2 m-3 w-auto" rows="5" placeholder="Add Some value to the music industry..." id="textarea" v-model="post.description"></textarea>
                     </div>
                     <div class="content-buttons py-3" v-if="post.description != '' || post.resource != ''">
-<!--                        <div class="button-select border-0">-->
-                            <div style="display: flex; flex-grow: 1">
-                                <div class="button-select" id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div> <!-- por que lo hiciste asi y no como select? -->
-                                <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdown">
-                                    <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
-                                    <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
-                                    <div class="dropdown-item" @click="post.genre = 'EDM'">EDM</div>
-                                    <div class="dropdown-item" @click="post.genre = 'Rock & Metal'">Rock & Metal</div>
-                                    <div class="dropdown-item" @click="post.genre = 'Jazz & Blues'">Jazz & Blues</div>
-                                    <div class="dropdown-item" @click="post.genre = 'Classical'">Classical</div>
-                                    <div class="dropdown-item" @click="post.genre = 'Funk'">Funk</div>
-                                    <div class="dropdown-item" @click="post.genre = 'World'">World</div>
-                                </div>
+                        <div style="display: flex; flex-grow: 1">
+                            <div class="button-select" id="dropdown"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.genre ? post.genre : 'Select Genre' }}</div> <!-- por que lo hiciste asi y no como select? por que querian que se comportara igual que el menu dropdown y con los mismos estilos-->
+                            <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdown">
+                                <div class="dropdown-item" @click="post.genre = 'Pop'">Pop</div>
+                                <div class="dropdown-item" @click="post.genre = 'Rap & Hip-Hop'">Rap & Hip-Hop</div>
+                                <div class="dropdown-item" @click="post.genre = 'EDM'">EDM</div>
+                                <div class="dropdown-item" @click="post.genre = 'Rock & Metal'">Rock & Metal</div>
+                                <div class="dropdown-item" @click="post.genre = 'Jazz & Blues'">Jazz & Blues</div>
+                                <div class="dropdown-item" @click="post.genre = 'Classical'">Classical</div>
+                                <div class="dropdown-item" @click="post.genre = 'Funk'">Funk</div>
+                                <div class="dropdown-item" @click="post.genre = 'World'">World</div>
                             </div>
-                            <div style="display: flex; flex-grow: 29">
-                                <div class="button-select" id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Category' }}</div>
-                                <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdownCategory">
-                                    <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
-                                    <div class="dropdown-item" @click="post.category = 'Vlogs'">Vlogs</div>
-                                    <div class="dropdown-item" @click="post.category = 'Instruments'">Instruments</div>
-                                    <div class="dropdown-item" @click="post.category = 'Podcasts'">Podcasts</div>
-                                    <div class="dropdown-item" @click="post.category = 'Audio Clips'">Audio Clips</div>
-                                    <div class="dropdown-item" @click="post.category = 'Performances and Jams'">Performances and Jams</div>
-                                </div>
+                        </div>
+                        <div style="display: flex; flex-grow: 29">
+                            <div class="button-select" id="dropdownCategory"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.category ? post.category : 'Select Topic' }}</div>
+                            <div class="dropdown-menu bg-primary text-white p-2 cursor-pointer" aria-labelledby="dropdownCategory">
+                                <div class="dropdown-item" @click="post.category = 'Performances and Jams'">Performances and Jams</div>
+                                <div class="dropdown-item" @click="post.category = 'Production & Engineering'">Production & Engineering</div>
+                                <div class="dropdown-item" @click="post.category = 'Vlogs'">Vlogs</div>
+                                <div class="dropdown-item" @click="post.category = 'Instruments'">Instruments</div>
+                                <div class="dropdown-item" @click="post.category = 'Podcasts'">Podcasts</div>
+                                <div class="dropdown-item" @click="post.category = 'Audio Clips'">Audio Clips</div>
+<!--                                <div class="dropdown-item" @click="post.category = 'Latin'">Latin</div>-->
                             </div>
-<!--                        </div>-->
+                        </div>
                         <div class="button-privacy">
                             <div class="button-select" id="dropdownEveryone"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ post.privacy ? post.privacy : 'Everyone' }}</div>
                             <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownEveryone">
@@ -281,7 +280,7 @@
 
                     if(!this.validateData()){
                         swal({
-                            text: 'Please select a genre and category',
+                            text: 'Please select a genre and topic',
                             className: 'swal-alert',
                             buttons: [false, 'Ok'],
                             dangerMode: true,

@@ -15,11 +15,10 @@
                            <p >
                                 <span class="font-weight-bold">Live Streaming (Via YouTube):</span> Soon you will be able to stream your
                                 content live directly on Noisesharks using your YouTube Account (Gmail account).
-                                Click <span class="font-weight-bold">Notify Me</span> below to receive an email when this feature is available!
                            </p>
                        </div>
                          <div class="text-center mb-2">
-                            <button type="button" class="btn rounded-pill text-white bg-fifth font-weight-bold" data-dismiss="modal">Notify Me</button>
+                            <button type="button" class="btn rounded-pill text-white bg-fifth font-weight-bold" data-dismiss="modal">Got It!</button>
                         </div>
                     </div>
                 </div>
