@@ -206,7 +206,7 @@
     import WaveSurfer from 'wavesurfer.js'
 
     export default {
-        props:['post','user'],
+        props:['post', 'user'],
         components:{
             Comments,
             DocumentPreview,
@@ -259,8 +259,6 @@
                     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
                     this.wavesurfer.stop()
                 })
-            }else{
-                this.wavesurfer = {}
             }
 
             $("video").on("play", function() {
@@ -290,6 +288,13 @@
                 return this.post.description
             }
         },
+        updated() {
+            post:{
+               if(this.post.resource_type === 'audio'){
+                   this.createAudioWave()
+               }
+            }
+        },
         methods:{
             // methods show
             showModalSupport(){
@@ -313,7 +318,9 @@
             //end methods show
             //methods player
             createAudioWave(){
+                $(`#waveform${this.post.token}`).html('')
                 var wave = `#waveform${this.post.token}`
+
                 this.wavesurfer = WaveSurfer.create({
                     container: wave,
                     backend: 'MediaElement',
