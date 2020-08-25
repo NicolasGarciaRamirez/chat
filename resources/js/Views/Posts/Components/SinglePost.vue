@@ -259,6 +259,8 @@
                     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
                     this.wavesurfer.stop()
                 })
+            }else{
+                this.wavesurfer = {}
             }
 
             $("video").on("play", function() {
