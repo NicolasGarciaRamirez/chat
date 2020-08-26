@@ -48,7 +48,7 @@
     border-bottom: 1px solid #6c757d;
     text-decoration: none;
     &:visited {
-        color: #808080;
+        color: $third-color;
         text-decoration: none;
     }
 
@@ -65,10 +65,10 @@
     }
 }
 button {
-    border: solid 2px #808080;
+    border: solid 2px $third-color;
     background-color: transparent;
     border-radius: 30px;
-    color: #808080;
+    color: $third-color;
     padding: 5px 15px 5px 15px;
     font-size: 0.8rem;
     font-weight: 700;
@@ -95,10 +95,10 @@ button {
 }
 
 .form-buscar {
-    border: solid 2px #808080;
+    border: solid 2px $third-color;
     background-color: transparent;
     border-radius: 30px;
-    color: #808080;
+    color: $third-color;
     padding: 7px 15px 7px 15px;
     width: 260px;
     font-size: 0.8rem;

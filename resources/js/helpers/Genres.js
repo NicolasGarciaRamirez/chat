@@ -25,7 +25,6 @@ export default {
                 "Lullabies",
                 "Sing-Along",
                 "Stories",
-
             ]
         },
         {
@@ -48,7 +47,6 @@ export default {
                 "Renaissance",
                 "Romantic",
                 "Wedding",
-
             ]
         },
         {
@@ -57,7 +55,6 @@ export default {
                 "Novelty",
                 "Standup Comedy",
                 "Vaudeville",
-
             ]
         },
         {
@@ -75,11 +72,10 @@ export default {
                 "Traditional Bluegrass",
                 "Traditional Country",
                 "Urban Cowboy",
-
             ]
         },
         {
-            principal_genre: 'Dance (EDM)',
+            principal_genre: 'Dance EDM',
             specific_genre:[
                 "Breakbeat",
                 "Breakcore",
@@ -98,7 +94,7 @@ export default {
                 "Grime",
                 "Hard Dance",
                 "Hardcore",
-                "Hi-NRG / Eurodance",
+                "Hi-NRG  Eurodance",
                 "Horrorcore",
                 "House",
                 "Jackin House",
@@ -109,7 +105,6 @@ export default {
                 "Techno",
                 "Trance",
                 "Trap",
-
             ]
         },
         {
@@ -118,7 +113,6 @@ export default {
                 "Bop",
                 "Lounge",
                 "Swing",
-
             ]
         },
         {
@@ -138,22 +132,20 @@ export default {
                 "Electronica",
                 "Electro-swing",
                 "Hardstyle",
-                "IDM/Experimental",
-                "Industrial",
+                "IDM Experimental",
                 "Trip Hop",
-
             ]
         },
         {
             principal_genre: "Enka",
             specific_genre:[
-                "Enka"
+                "Enka "
             ]
         },
         {
             principal_genre: "French Pop",
             specific_genre:[
-                "French Pop"
+                "French Pop "
             ]
         },
         {
@@ -165,13 +157,13 @@ export default {
             ]
         },
         {
-            principal_genre: "Fitness & Workout",
+            principal_genre: "Fitness Workout",
             specific_genre:[
-                "Fitness & Workout"
+                "Fitness & Workout "
             ]
         },
         {
-            principal_genre: "Hip-Hop/Rap",
+            principal_genre: "Hip-Hop-Rap",
             specific_genre:[
                 "Alternative Rap",
                 "Bounce",
@@ -205,7 +197,7 @@ export default {
                 "Christmas: Rock",
                 "Easter",
                 "Halloween",
-                "Holiday",
+                "Holiday ",
                 "Thanksgiving",
 
             ]
@@ -213,17 +205,17 @@ export default {
         {
             principal_genre: "Indie Pop",
             specific_genre:[
-                "Indie Pop"
+                "Indie Pop "
             ]
         },
         {
             principal_genre: "Industrial",
             specific_genre:[
-                "Industrial"
+                "Industrial "
             ]
         },
         {
-            principal_genre: "Inspirational – Christian & Gospel",
+            principal_genre: "Inspirational - Christian - Gospel",
             specific_genre:[
                 "CCM",
                 "Christian & Gospel",
@@ -279,7 +271,6 @@ export default {
                 "K-Rock",
                 "K-Ska",
                 "K-Synth",
-
             ]
         },
         {
@@ -301,7 +292,6 @@ export default {
                 "Reggaeton y Hip-Hop",
                 "Regional Mexicano",
                 "Salsa y Tropical",
-
             ]
         },
         {
@@ -329,7 +319,6 @@ export default {
                 "Melodic Deathcore",
                 "Melodic Heavy Metal",
                 "Melodic Metal",
-                "Metal",
                 "Metalcore",
                 "Middle Eastern Metal",
                 "Norwegian Metal",
@@ -374,7 +363,7 @@ export default {
         {
             principal_genre: "Opera",
             specific_genre:[
-                "Opera"
+                "Opera "
             ]
         },
         {
@@ -405,11 +394,10 @@ export default {
                 "Soft Rock",
                 "Synthpop",
                 "Teen Pop",
-
             ]
         },
         {
-            principal_genre: "R&B/Soul",
+            principal_genre: "R&B-Soul",
             specific_genre: [
                 "Contemporary R&B",
                 "Disco",
@@ -485,7 +473,7 @@ export default {
                 "Roots Rock",
                 "Screamo",
                 "Shoegaze",
-                "Singer/Songwriter",
+                "Singer-Songwriter",
                 "Soft Rock",
                 "Southern Rock",
                 "Spazzcore",
@@ -494,13 +482,13 @@ export default {
                 "Surf Rock",
                 "Swedish Rock",
                 "Symphonic Rock",
-                "Tex-Mex",
+                "Tex-Mex ",
                 "Time Lord Rock (Trock)",
                 "Viking Rock",
             ]
         },
         {
-            principal_genre: "Tex-Mex / Tejano",
+            principal_genre: "Tex-Mex - Tejano",
             specific_genre:[
                 "Chicano",
                 "Classic",
@@ -520,7 +508,6 @@ export default {
                 "Rock Vocal",
                 "Standards",
                 "Traditional Pop",
-
             ]
         },
         {
@@ -563,7 +550,6 @@ export default {
                 "Traditional Celtic",
                 "Worldbeat",
                 "Zydeco",
-
             ]
         }
     ],

@@ -141,11 +141,11 @@
                     padding: 0 0.75rem;
                 }
                 &:hover{
-                    background-color: #FC4444 !important;
+                    background-color: $six-color ;
                 }
                 &:active{
-                    color: $fifth-color !important;
-                    background-color: white !important;
+                    color: $fifth-color ;
+                    background-color: white ;
                 }
             }
         }
@@ -224,7 +224,7 @@
                     font-size: 0.7rem;
                 }
                 &:hover{
-                    background-color: #FC4444 !important;
+                    background-color: $six-color !important;
                 }
                 &:active{
                     color: $fifth-color !important;

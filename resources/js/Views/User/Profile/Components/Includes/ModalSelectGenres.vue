@@ -44,27 +44,33 @@
 </template>
 
 <script>
-import Genres from "../../../../../helpers/Genres";
-export default {
-    data(){
-        return {
-            genres: []
-        }
-    },
-    mounted(){
-        this.getGenres()
-    },
-    methods:{
-        getGenres(){
-            this.genres = Genres.getAllGenres()
+    import Genres from "../../../../../helpers/Genres";
+    export default {
+        data(){
+            return {
+                genres: [],
+            }
         },
-        selectAllSpecificGenre(principal_genre){
-            var self = this
-            let specific_genres = Genres.getSpecificGenre(principal_genre)
-            specific_genres.map(value =>{
-                self.$parent.profile_information.genres.push(value)
-            })
+        mounted(){
+            this.getGenres()
+        },
+        methods:{
+            getGenres(){
+                this.genres = Genres.getAllGenres()
+            },
+            selectAllSpecificGenre(principal_genre){
+                let self = this
+                let specific_genres = Genres.getSpecificGenre(principal_genre)
+                console.log(specific_genres)
+                specific_genres.map(value =>{
+                    self.$parent.profile_information.genres.push(value)
+                })
+                if(!$('#'+principal_genre).prop('checked')){
+                    specific_genres.map(value =>{
+                        _.remove(self.$parent.profile_information.genres, function(n){return n === value;});
+                    })
+                }
+            }
         }
     }
-}
 </script>

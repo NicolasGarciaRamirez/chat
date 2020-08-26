@@ -343,7 +343,6 @@ textarea{
             fill: white;
         }
         polygon{
-            //filter: url(#dropshadow);
             stroke-width: 20px;
         }
     }
@@ -443,7 +442,7 @@ svg.share{
     min-width: 50rem !important;
     max-height: 25rem !important;
     min-height: 25rem !important;
-    background: #141414 !important;
+    background: $primary-color !important;
     @include media-breakpoint-down(sm){
         max-width: 25rem !important;
         min-width: 25rem !important;

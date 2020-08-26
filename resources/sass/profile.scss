@@ -1,8 +1,5 @@
 .profile{
     margin-top: -2rem;
-    hr{
-        border-top: 1px solid $fourth-color;
-    }
     .img-container{
         position: relative;
         display: flex;
@@ -291,7 +288,7 @@
             align-items: baseline;
             &:hover{
                 border: 2px solid white !important;
-                background-color: #ffffff !important;
+                background-color: white !important;
                 color: black !important;
                 .fas.fa-cog{
                     color: black;

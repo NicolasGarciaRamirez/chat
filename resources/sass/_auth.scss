@@ -31,7 +31,7 @@
             content: "";
             position: absolute;
             right: 10px;
-            background-color: #262626;
+            background-color: $third-color;
             height: 3px;
             top: 10px;
             width: 40%;
@@ -40,7 +40,7 @@
             content: "";
             position: absolute;
             left: 10px;
-            background-color: #262626;
+            background-color: $third-color;
             height: 3px;
             top: 10px;
             width: 40%;
@@ -87,7 +87,7 @@
             content: "";
             position: absolute;
             right: 10px;
-            background-color: #262626;
+            background-color: $third-color;
             height: 3px;
             top: 10px;
             width: 40%;
@@ -96,7 +96,7 @@
             content: "";
             position: absolute;
             left: 10px;
-            background-color: #262626;
+            background-color: $third-color;
             height: 3px;
             top: 10px;
             width: 40%;
@@ -147,7 +147,7 @@
             content: "";
             position: absolute;
             right: 10px;
-            background-color: #262626;
+            background-color: $third-color;
             height: 3px;
             top: 10px;
             width: 40%;
@@ -156,7 +156,7 @@
             content: "";
             position: absolute;
             left: 10px;
-            background-color: #262626;
+            background-color: $third-color;
             height: 3px;
             top: 10px;
             width: 40%;
@@ -180,7 +180,7 @@
     }
 
     .for-music-company{
-        border-left: 2px solid #262626;
+        border-left: 2px solid $third-color;
         a{
             border-bottom: 1px solid $fifth-color;
         }

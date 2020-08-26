@@ -334,6 +334,7 @@ export default {
         },
         async storeVoteUp(type){
             if (Auth.state.token) {
+                await Auth.setSession()
                 let request = ''
                 this.disable_vote_up = true
                 this.disable_vote_down = true

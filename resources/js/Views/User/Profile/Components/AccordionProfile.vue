@@ -121,14 +121,14 @@
                         <div class="text-white bg-black text-center card-body">
                             <div class="d-flex flex-row mb-4">
                                 <h5>Current Members</h5>
-                                <button type="button" class="bg-black c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('current')">Add Current Member</button>
+                                <button type="button" class="bg-black c-white  rounded-pill border-white mx-lg-5 mx-sm-2" v-on:click="addMember('current')">Add Current Member</button>
                             </div>
                             <div>
                                 <single-member v-for="(current, index) in current_members" :key="index" :member="current" :index="index" :type="'current'" />
                             </div>
                             <div class="d-flex flex-row mb-4">
                                 <h5>Former Members</h5>
-                                <button type="button" class="bg-black c-white  rounded-pill mx-lg-5 mx-sm-2" v-on:click="addMember('past')">Add Former Member</button>
+                                <button type="button" class="bg-black c-white  rounded-pill border-white mx-lg-5 mx-sm-2" v-on:click="addMember('past')">Add Former Member</button>
                             </div>
                             <div>
                                 <single-member  v-for="(past, index) in past_members" :key="index" :member="past" :index="index" :type="'past'" />
@@ -146,7 +146,7 @@
                         </h2>
                     </div>
                     <div id="collapseSix" class="collapse text-center bg-black" aria-labelledby="headingSix" data-parent="#accordionProfile">
-                        <button type="button" class="bg-primary c-white rounded-pill mb-4" v-on:click="addRelease">Add Release</button>
+                        <button type="button" class="bg-primary c-white rounded-pill mb-4 border-white" v-on:click="addRelease">Add Release</button>
                         <div id="releases" class="d-flex text-white bg-black align-items-center flex-wrap">
                             <single-release v-for="(release, index) in releases_information" :key="index" :release="release" :index="index" />
                         </div>
@@ -165,7 +165,7 @@
                         <div class="card-body text-white bg-black">
                             <div class="d-flex flex-column">
                                 <div class="d-flex flex-column justify-content-center align-items-center text-center">
-                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold my-3" @click="addWork = true" v-if="!addWork">Add Worked With</button>
+                                    <button type="button" class="bg-primary text-white rounded-pill font-weight-bold border-white my-3" @click="addWork = true" v-if="!addWork">Add Worked With</button>
 
                                     <input class="form-control bg-black my-2 work-with" v-model="addWorkName" @keypress.enter.prevent="addedWork($event)" v-else autofocus>
                                     <div class="d-flex flex-row icon-work-with cursor-pointer" v-if="addWork" @click.prevent="addedWork($event)">
@@ -192,7 +192,7 @@
                     <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
                             <div class="text-center select">
-                                <button type="button" class="text-white font-weight-bold" @click="showModalSelectGenres">Select Genre(s)</button>
+                                <button type="button" class="text-white font-weight-bold border-white" @click="showModalSelectGenres">Select Genre(s)</button>
                             </div>
                             <div class="text-left">
                                 <ul v-for="(item , index) in profile_information.genres" :key="index" >
@@ -214,7 +214,7 @@
                     <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordionProfile">
                         <div class="card-body text-white bg-black">
                             <div class="text-center select">
-                                <button type="button" class="text-white font-weight-bold" @click="showModalSelectServices">Select Service(s)</button>
+                                <button type="button" class="text-white font-weight-bold border-white" @click="showModalSelectServices">Select Service(s)</button>
                                 <div class="text-left">
                                     <ul v-for="(item , index) in profile_information.services" :key="index" >
                                         <li>{{ item }}</li>
