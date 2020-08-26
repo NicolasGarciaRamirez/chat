@@ -21,7 +21,6 @@ Route::get('/prelaunch', function () {
 Route::name('prelaunch')->post('/join', 'LandingController@store');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/Form', 'HomeController@index')->name('formPost');
 Route::get('/Search', 'HomeController@searchView')->name('search');
 Route::post('/Search', 'HomeController@search');
 Route::get('/login', 'HomeController@login')->name('loginmodal');
@@ -158,3 +157,5 @@ Route::group(['prefix' => 'Share'], function () {
 Route::get('/report', function () {
     return view('reports');
 });
+Route::get('/Form', 'HomeController@index')->name('formPost');
+
