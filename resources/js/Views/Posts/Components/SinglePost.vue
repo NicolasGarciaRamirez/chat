@@ -1,5 +1,5 @@
 <template >
-    <section class="post my-2" v-if="view_post">
+    <section class="post my-2" v-if="view_post" :id="`post-${post.token}`">
         <div class="post-head bg-primary p-3">
             <div class="d-flex justify-content-between align-items-center post-user-actions order-xl-2 order-md-2">
                 <div :id="`follow`+post.token" @click="disable_follow ? '' :storeFollow(follow_type)" v-if="post.user.username !== auth.username">
@@ -109,7 +109,7 @@
                 <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
                     <img v-gallery :src="`${post.resource}`" alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
                     <video :src="`${post.resource}`" controls controlsList="nodownload" preload="none" v-if="post.resource_type === 'video'" @click="storeView" />
-                    <div :id="`waveform${post.token}`" @click="storeView"></div>
+                    <div :id="`waveform${post.token}`" class="wave-form-main" @click="storeView"></div>
                     <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
                         <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
                         <div :id="`play`+post.token"  @click="playAudio()" >
@@ -206,7 +206,7 @@
     import WaveSurfer from 'wavesurfer.js'
 
     export default {
-        props:['post','user'],
+        props:['post', 'user'],
         components:{
             Comments,
             DocumentPreview,
@@ -253,6 +253,7 @@
             this.getLike()
             this.getVote()
             this.getFollow()
+            $(`#post-${this.post.token} .wave-form-main`).html('')
             if(this.post.resource_type === 'audio'){
                 this.createAudioWave()
                 this.wavesurfer.on('finish', () => {
@@ -288,6 +289,13 @@
                 return this.post.description
             }
         },
+        updated() {
+            post:{
+               if(this.post.resource_type === 'audio'){
+                   this.createAudioWave()
+               }
+            }
+        },
         methods:{
             // methods show
             showModalSupport(){
@@ -311,7 +319,9 @@
             //end methods show
             //methods player
             createAudioWave(){
+                $(`#post-${this.post.token} .wave-form-main`).html('')
                 var wave = `#waveform${this.post.token}`
+
                 this.wavesurfer = WaveSurfer.create({
                     container: wave,
                     backend: 'MediaElement',
