@@ -319,7 +319,7 @@
             //end methods show
             //methods player
             createAudioWave(){
-                $(`#waveform${this.post.token}`).html('')
+                $(`#post-${this.post.token} .wave-form-main`).html('')
                 var wave = `#waveform${this.post.token}`
 
                 this.wavesurfer = WaveSurfer.create({
