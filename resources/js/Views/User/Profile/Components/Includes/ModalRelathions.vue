@@ -75,23 +75,29 @@
             }
         },
         methods:{
-            getUser(){
-                axios.post(`/User/get/${Auth.state.username}`).then(res =>{
-                    _.each(res.data.user.followers , follow => {
-                        this.followers.push(follow.user)
+            async getUser(){
+                if(Auth.state.token){
+                    await Auth.setSession()
+                    axios.post(`/User/get/${Auth.state.username}`).then(res =>{
+                        _.each(res.data.user.followers , follow => {
+                            this.followers.push(follow.user)
+                        })
+                    }).catch(err =>{
+                        console.log(err)
                     })
-                }).catch(err =>{
-                    console.log(err)
-                })
+                }
             },
-            getFollowings(){
-                axios.post(`/User/get/followings/${Auth.state.username}`).then(res =>{
-                    _.each(res.data.followings, following =>{
-                        this.followings.push(following.following)
+            async getFollowings(){
+                if(Auth.state.token){
+                    await Auth.setSession()
+                    axios.post(`/User/get/followings/${Auth.state.username}`).then(res =>{
+                        _.each(res.data.followings, following =>{
+                            this.followings.push(following.following)
+                        })
+                    }).catch(err =>{
+                        console.log(err)
                     })
-                }).catch(err =>{
-                    console.log(err)
-                })
+                }
             },
             getClassActive(){
                 if (this.type_table === 'followers'){

@@ -80,11 +80,10 @@
                     }
                 }
             },
-            storeLike(type){
+            async storeLike(type){
                 if (Auth.state.token) {
+                    await Auth.setSession()
                     this.disable_like = true
-                    console.log(type)
-
                     if (type === 'unlike') {
                         if (this.likes.length > 0) {
                             this.likes.map(value =>{
@@ -119,62 +118,72 @@
                     $('#ModalLogin').modal('show')
                 }
             },
-            update(){
-                axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.comment).then(res =>{
-                    if (res.data.updated) {
-                        this.edit = false
-                        this.$toasted.show('The comment has been updated successfully!', {
-                            position: "bottom-right",
-                            duration : 4000,
-                            className: "p-4 notification bg-primary",
-                            keepOnHover: true
+            async update(){
+                if(Auth.state.token){
+                    await Auth.setSession()
+                    axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.comment).then(res =>{
+                        if (res.data.updated) {
+                            this.edit = false
+                            this.$toasted.show('The comment has been updated successfully!', {
+                                position: "bottom-right",
+                                duration : 4000,
+                                className: "p-4 notification bg-primary",
+                                keepOnHover: true
+                            })
+                        }
+                    }).catch(err =>{
+                        swal({
+                            text:'the comment cannot be empty',
+                            className:'swal-alert',
+                            buttons:[false, 'Ok']
                         })
-                    }
-                }).catch(err =>{
-                    swal({
-                        text:'the comment cannot be empty',
-                        className:'swal-alert',
-                        buttons:[false, 'Ok']
                     })
-                })
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
             },
-            deleteComment() {
-                swal({
-                    title: 'Delete Comment',
-                    text: 'You are about to delete this comment. Would you like to proceed?',
-                    className: 'swal-alert',
-                    buttons: ['Cancel','Delete'],
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if(willDelete){
-                        axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
-                            if (res.data.deleted) {
-                                this.$toasted.show('The comment has been deleted successfully!', {
-                                    position: "bottom-right",
-                                    duration: 4000,
-                                    className: "p-4 notification bg-primary",
-                                    keepOnHover: true
-                                })
-                                if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
-                                    let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
-                                        console.log(comment)
-                                        return comment.id === res.data.comment.id
+            async deleteComment() {
+                if(Auth.state.token){
+                    await Auth.setSession()
+                    swal({
+                        title: 'Delete Comment',
+                        text: 'You are about to delete this comment. Would you like to proceed?',
+                        className: 'swal-alert',
+                        buttons: ['Cancel','Delete'],
+                        dangerMode: true,
+                    }).then((willDelete) => {
+                        if(willDelete){
+                            axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
+                                if (res.data.deleted) {
+                                    this.$toasted.show('The comment has been deleted successfully!', {
+                                        position: "bottom-right",
+                                        duration: 4000,
+                                        className: "p-4 notification bg-primary",
+                                        keepOnHover: true
                                     })
-                                    this.$parent.$parent.post.comments.splice(index, 1)
-                                } else if (res.data.comment.commentable_type === "App\\Models\\Comment\\Comment"){
-                                    if (res.data.comment.commentable_id === this.$parent.comment.id) {
-                                        let index = _.findIndex(this.$parent.comment.comments, function (comment) {
-                                            return comment.id === res.data.comment.id;
+                                    if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
+                                        let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
+                                            console.log(comment)
+                                            return comment.id === res.data.comment.id
                                         })
-                                        this.$parent.comment.comments.splice(index, 1)
+                                        this.$parent.$parent.post.comments.splice(index, 1)
+                                    } else if (res.data.comment.commentable_type === "App\\Models\\Comment\\Comment"){
+                                        if (res.data.comment.commentable_id === this.$parent.comment.id) {
+                                            let index = _.findIndex(this.$parent.comment.comments, function (comment) {
+                                                return comment.id === res.data.comment.id;
+                                            })
+                                            this.$parent.comment.comments.splice(index, 1)
+                                        }
                                     }
                                 }
-                            }
-                        }).catch(err => {
+                            }).catch(err => {
 
-                        })
-                    }
-                })
+                            })
+                        }
+                    })
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
             }
         }
     }

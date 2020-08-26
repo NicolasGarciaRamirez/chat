@@ -419,6 +419,7 @@
             },
             async storeLike(type){
                 if (Auth.state.token) {
+                    await Auth.setSession()
                     let request =''
                     this.disable_like = true
                     this.disable_vote_down = true
@@ -679,7 +680,7 @@
 
                             let self = this
                             _.forEach(this.$root.$refs.home.$refs.posts.$children, function(children, key){
-                                if(key > 4){
+                                if(key > 5){
                                     if(children.post.user.username === self.post.user.username){
                                         children.follow_type = 'unfollow'
                                         children.post.user.followers.push(res.data.follow)
@@ -736,32 +737,32 @@
             async deletePost(){
                 if(Auth.state.username){
                     await Auth.setSession()
+                    swal({
+                        title: 'Delete Post',
+                        text: 'You are about to delete this post. Would you like to proceed?',
+                        className: 'swal-alert',
+                        buttons: ['Cancel','Delete'],
+                        dangerMode: true,
+                    }).then((willDelete) => {
+                        if (willDelete){
+                            const self = this
+                            axios.delete(`/${Auth.state.username}/Post/delete/${self.post.id}`).then(res =>{
+                                if (res.data.deleted) {
+                                    this.$toasted.show('post deleted successfully!', {
+                                        position: "bottom-right",
+                                        duration : 4000,
+                                        className: "p-4 notification bg-primary",
+                                        keepOnHover: true
+                                    })
+                                    let index = _.findIndex(this.$parent.posts, function(o) { return o.id === self.post.id; });
+                                    this.$parent.posts.splice(index, 1)
+                                }
+                            }).catch(err => {
+                                console.log(err)
+                            })
+                        }
+                    })
                 }
-                swal({
-                    title: 'Delete Post',
-                    text: 'You are about to delete this post. Would you like to proceed?',
-                    className: 'swal-alert',
-                    buttons: ['Cancel','Delete'],
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete){
-                        const self = this
-                        axios.delete(`/${Auth.state.username}/Post/delete/${self.post.id}`).then(res =>{
-                            if (res.data.deleted) {
-                                this.$toasted.show('post deleted successfully!', {
-                                    position: "bottom-right",
-                                    duration : 4000,
-                                    className: "p-4 notification bg-primary",
-                                    keepOnHover: true
-                                })
-                                let index = _.findIndex(this.$parent.posts, function(o) { return o.id === self.post.id; });
-                                this.$parent.posts.splice(index, 1)
-                            }
-                        }).catch(err => {
-                            console.log(err)
-                        })
-                    }
-                })
             }
         }
     }

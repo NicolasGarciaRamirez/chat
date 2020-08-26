@@ -40,11 +40,9 @@
         <section>
             <modal-contributor />
         </section>
-        @if(\Auth::check())
-            <section>
-                <modal-relathions ref="modalRelathion"/>
-            </section>
-        @endif
+        <section>
+            <modal-relathions ref="modalRelathion"/>
+        </section>
         <section>
             <modal-for-music />
         </section>

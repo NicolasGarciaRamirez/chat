@@ -35,16 +35,21 @@
             Auth.initialize()
         },
         methods:{
-            store(){
-                axios.post(`/${Auth.state.username}/Comment/store/Comment/${this.comment.id}`, this.reply).then(res =>{
-                    if (res.data.saved) {
-                        this.reply.body = ''
-                        this.comment.comments.push(res.data.comment)
-                    }
+            async store(){
+                if(Auth.state.token){
+                    await Auth.setSession()
+                    axios.post(`/${Auth.state.username}/Comment/store/Comment/${this.comment.id}`, this.reply).then(res =>{
+                        if (res.data.saved) {
+                            this.reply.body = ''
+                            this.comment.comments.push(res.data.comment)
+                        }
 
-                }).catch(err =>{
-                    console.log(err)
-                })
+                    }).catch(err =>{
+                        console.log(err)
+                    })
+                }else{
+                    $('#ModalLogin').modal('show')
+                }
             }
         }
     }

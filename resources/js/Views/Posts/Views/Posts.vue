@@ -20,7 +20,6 @@
     import ModalPlaylist from "../../User/Channel/Components/Playlist/include/ModalNewPlaylist";
     import Register from "../../Auth/Views/Register";
 
-
     export default {
         props:['posts'],
         components:{
