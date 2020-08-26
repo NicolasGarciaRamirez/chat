@@ -16,7 +16,7 @@ export default {
                 'Radio Engineering' ,
                 'Recording' ,
                 'Song Re-Mixing' ,
-                'Studio Setup' ,   
+                'Studio Setup' ,
             ]
         },
         {
@@ -54,7 +54,7 @@ export default {
         {
             principal_service:'DJ',
             specific_service:[
-                'Bars &amp; Pubs',
+                'Bars &amp Pubs',
                 'Ceremonies',
                 'Clubs',
                 'Dj Remixing',
@@ -69,9 +69,9 @@ export default {
         {
             principal_service:'Musicians',
             specific_service:[
-                'Bars &amp; Pubs',
-                'Ceremonies',
-                'Clubs',
+                'Bars &amp Pubs ',
+                'Ceremonies ',
+                'Clubs ',
                 'Instruments Repair',
                 'Live Session (National)',
                 'Live Session (Overseas)',
@@ -81,7 +81,7 @@ export default {
                 'Teacher (Online)',
                 'Touring (National)',
                 'Touring (Overseas)',
-                'Weddings',
+                'Weddings ',
             ]
         }
     ],
@@ -95,7 +95,6 @@ export default {
         return this.services
     }
 }
-            
 
 
 
@@ -106,4 +105,4 @@ export default {
 
 
 
-        
+

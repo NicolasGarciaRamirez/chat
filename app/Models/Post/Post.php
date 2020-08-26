@@ -62,7 +62,8 @@ class Post extends Model
      */
     public function getScoreAttribute()
     {
-        return doubleval(((10 + $this->vote_up_count) / (10 + ($this->vote_up_count + $this->vote_down_count))) * (1 - (0.02 * ($this->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60))) * 1);
+        // return doubleval(((10 + 1.2 * $this->vote_up_count) / (10 +  ($this->vote_up_count + $this->vote_down_count))) * (1 - (0.02 * ($this->created_at->diffInMinutes(\Carbon\Carbon::now()) / 60))) * 1);
+        return doubleval( ((10 + 1.2 * $this->vote_up_count) / (10 + 1.2 * $this->vote_down_count)) - log(10 * ((1 + $this->created_at->diffInMinutes(\Carbon\Carbon::now()) + $this->vote_down_count)/ (1 + $this->likes()->count() + $this->shares()->count() + $this->views()->count()))));
     }
 
     /**

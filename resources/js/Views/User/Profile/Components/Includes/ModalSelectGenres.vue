@@ -17,7 +17,7 @@
                             <div class="d-flex flex-row mb-2" style="flex-grow: 2">
                                 <div class="col-md">
                                     <div class="d-flex flex-row checkbox">
-                                        <input type="checkbox" :id="genre.principal_genre" :value="genre.principal_genre" @click="selectAllSpecificGenre(genre.principal_genre)" v-model="$parent.profile_information.genres">
+                                        <input type="checkbox" :id="genre.principal_genre" :ref="genre.principal_genre" :value="genre.principal_genre" @click="selectAllSpecificGenre(genre.principal_genre)" v-model="$parent.profile_information.genres">
                                         <label :for="genre.principal_genre" class="text-white font-weight-bold" ><span>{{ genre.principal_genre }}</span></label>
                                     </div>
                                     <div v-for="(genr, index) in genre.specific_genre" :key="index">
@@ -61,13 +61,13 @@
             selectAllSpecificGenre(principal_genre){
                 let self = this
                 let specific_genres = Genres.getSpecificGenre(principal_genre)
-                console.log(specific_genres)
-                specific_genres.map(value =>{
-                    self.$parent.profile_information.genres.push(value)
-                })
                 if(!$('#'+principal_genre).prop('checked')){
                     specific_genres.map(value =>{
                         _.remove(self.$parent.profile_information.genres, function(n){return n === value;});
+                    })
+                }else{
+                    specific_genres.map(value =>{
+                        self.$parent.profile_information.genres.push(value)
                     })
                 }
             }

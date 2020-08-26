@@ -58,10 +58,19 @@ export default {
             this.services = Services.getAllServices()
         },
         selectAllSpecificService(principal_service){
-            var self = this
+            let self = this
             let specific_service = Services.getSpecificService(principal_service)
             specific_service.map(value =>{
                 self.$parent.profile_information.services.push(value)
+            })
+            if(!$('#'+principal_service).prop('checked')){
+                this.deselect(principal_service, specific_service)
+            }
+        },
+        deselect(principal_service, specific_service){
+            let self = this
+            specific_service.map(value =>{
+                _.remove(self.$parent.profile_information.services, function(n){return n === value;});
             })
         }
     }

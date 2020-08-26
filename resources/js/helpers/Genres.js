@@ -159,7 +159,7 @@ export default {
         {
             principal_genre: "Fitness Workout",
             specific_genre:[
-                "Fitness & Workout "
+                "Fitness & Workout"
             ]
         },
         {
@@ -257,7 +257,7 @@ export default {
                 "Fusion",
                 "Gypsy Jazz",
                 "Hard Bop",
-                "Latin Jazz",
+                "Latin Jazz ",
                 "Mainstream Jazz",
                 "Ragtime",
                 "Smooth Jazz",
@@ -391,13 +391,13 @@ export default {
                 "Electro Pop",
                 "Orchestral Pop",
                 "Power Pop",
-                "Soft Rock",
+                "Soft Rock ",
                 "Synthpop",
                 "Teen Pop",
             ]
         },
         {
-            principal_genre: "R&B-Soul",
+            principal_genre: "RB-Soul",
             specific_genre: [
                 "Contemporary R&B",
                 "Disco",
