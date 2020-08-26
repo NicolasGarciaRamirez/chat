@@ -260,6 +260,8 @@
                     $(`#play`+this.post.token+` img`).replaceWith(`<img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">`)
                     this.wavesurfer.stop()
                 })
+            }else{
+                $(`#post-${this.post.token} .wave-form-main`).remove()
             }
 
             $("video").on("play", function() {
@@ -293,6 +295,8 @@
             post:{
                if(this.post.resource_type === 'audio'){
                    this.createAudioWave()
+               }else{
+                   $(`#post-${this.post.token} .wave-form-main`).remove()
                }
             }
         },
