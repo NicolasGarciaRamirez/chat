@@ -6,8 +6,8 @@
     </div>
 @endsection
 
-@section('scripts')
+@push('scripts')
     <script>
         console.log($('.post-type-video').find('wave'))
     </script>
-@endsection
+@endpush
