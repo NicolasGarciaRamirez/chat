@@ -335,7 +335,7 @@
             },
             orderPost(){
                 this.order_post = _.orderBy(this.all_post, ['score'], ['desc'])
-                $('.post-body .my-3 wave').remove()
+                $('.my-3 wave').remove()
             },
             filterPost(){
                 this.all_post = this.posts
