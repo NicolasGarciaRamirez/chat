@@ -39,12 +39,21 @@
             </a>
         </div>
         <div class="px-3" v-if="!activity.replace_caption">
-            <div v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
+            <div v-if="activity.resource_type == 'image' || activity.resource_type == 'video'">
                 <p class="m-1" v-if="activity.description">
                     <span v-if="showMore">{{description}}</span>
                     <span v-if="!showMore">{{descriptionLess}}</span>
                     <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
                 </p>
+            </div>
+            <div v-if="activity.resource_type == 'audio'">
+                <a  :href="`/Post/${activity.token}`" class="no-underline text-white">
+                    <p class="m-1" v-if="activity.description">
+                        <span v-if="showMore">{{description}}</span>
+                        <span v-if="!showMore">{{descriptionLess}}</span>
+                        <span class="c-fourth cursor-pointer mx-1 d-sm-down-none" @click="!showMore ? showMore = true : showMore = false" v-if="description.length > 50">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    </p>
+                </a>
             </div>
             <p v-if="activity.resource_type === 'docs' && activity.description">
                 <a :href="`${activity.resource}`" class="text-white" v-if="resource_extension === 'pdf'">
