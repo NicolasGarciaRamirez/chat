@@ -104,49 +104,47 @@
                 <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
             </form>
         </div>
-        <div class="post-body bg-primary" v-if="post.resource">
-            <div>
-                <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
-                    <img v-gallery :src="`${post.resource}`" alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
-                    <video :src="`${post.resource}`" controls controlsList="nodownload" preload="none" v-if="post.resource_type === 'video'" @click="storeView" />
-                    <div :id="`waveform${post.token}`" class="wave-form-main" @click="storeView" v-if="post.resource_type === 'audio'"></div>
-                    <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
-                        <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
-                        <div :id="`play`+post.token"  @click="playAudio()" >
-                            <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
-                        </div>
-                        <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+        <div :class="`post-body bg-primary post-type-${post.resource_type}`" v-if="post.resource">
+            <div class="d-flex flex-column content img-fluid p-3" v-if="post.resource">
+                <img v-gallery :src="`${post.resource}`" alt="img-post" class="cursor-point" v-if="post.resource_type === 'image'" @click="storeView" />
+                <video :src="`${post.resource}`" controls controlsList="nodownload" preload="none" v-if="post.resource_type === 'video'" @click="storeView" />
+                <div :id="`waveform${post.token}`" class="wave-form-main" @click="storeView" v-if="post.resource_type === 'audio'"></div>
+                <div class="d-flex flex-row text-center justify-content-center" v-if="post.resource_type === 'audio'"   >
+                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+post.token" @click="backward(audio)" height="30" >
+                    <div :id="`play`+post.token"  @click="playAudio()" >
+                        <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
                     </div>
-                    <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'" @click="storeView">
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
+                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+                </div>
+                <a :href="`${post.resource}`" target="_blank"  class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'" @click="storeView">
+                    <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
+                </a>
+                <div v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'" @click="storeView">
+                    <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
+                </div>
+                <div class="my-3" v-if="post.replace_caption">
+                    <a :href="`${post.resource}`" class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
+                        <h4>{{ post.replace_caption }}</h4>
                     </a>
-                    <div v-if="post.resource_type === 'docs' && resource_extension !== 'pdf'" @click="storeView">
-                        <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-document">
-                    </div>
-                    <div class="my-3" v-if="post.replace_caption">
-                        <a :href="`${post.resource}`" class="text-white no-underline p-3" v-if="post.resource_type === 'docs' && resource_extension === 'pdf'">
-                            <h4>{{ post.replace_caption }}</h4>
-                        </a>
-                        <h4 class="font-weight-bold" v-if="resource_extension !== 'pdf'">{{ post.replace_caption }}</h4>
-                        <span class="mb-3" v-if="!edit || description != ''">
-                            <span v-if="showMore">{{description}}</span>
-                            <span v-if="!showMore">{{descriptionLess}}</span>
-                            <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description != '' && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
-                        </span>
-                        <form @submit.prevent="update"  v-if="edit && post.replace_caption ">
-                            <input type="text" class="form-control bg-primary rounded-pill my-2" v-model="post.replace_caption" />
-                            <textarea
-                                class="form-control bg-primary "
-                                rows="5"
-                                placeholder="Add Some value to the music industry..."
-                                id="textarea"
-                                v-model="post.description"
-                                >
-                            </textarea>
-                            <div class="btn text-white bg-primary rounded-pill float-right mx-3" @click="edit = false">Cancel Edit</div>
-                            <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
-                        </form>
-                    </div>
+                    <h4 class="font-weight-bold" v-if="resource_extension !== 'pdf'">{{ post.replace_caption }}</h4>
+                    <span class="mb-3" v-if="!edit || description != ''">
+                        <span v-if="showMore">{{description}}</span>
+                        <span v-if="!showMore">{{descriptionLess}}</span>
+                        <span class="c-fourth cursor-pointer mx-1" @click="!showMore ? showMore = true : showMore = false" v-if="description != null && description != '' && description.length > 500">{{!showMore ? 'See More...' : 'See Less'}}</span>
+                    </span>
+                    <form @submit.prevent="update"  v-if="edit && post.replace_caption ">
+                        <input type="text" class="form-control bg-primary rounded-pill my-2" v-model="post.replace_caption" />
+                        <textarea
+                            class="form-control bg-primary "
+                            rows="5"
+                            placeholder="Add Some value to the music industry..."
+                            id="textarea"
+                            v-model="post.description"
+                            >
+                        </textarea>
+                        <div class="btn text-white bg-primary rounded-pill float-right mx-3" @click="edit = false">Cancel Edit</div>
+                        <button type="submit" class="btn text-white bg-fifth rounded-pill float-right">Save Edit</button>
+                    </form>
                 </div>
             </div>
             <div class="d-flex flex-row justify-content-between align-items-center post-user-actions pb-3 d-block d-xl-none d-md-none" v-if="post.user.subscription_type == 'CONTRIBUTOR' && post.user.username !== auth.username">
@@ -270,7 +268,7 @@
         },
         computed: {
             resource_extension() {
-                if (this.post.resource_type === 'docs'){
+                if (this.post.resource_type === 'docs' && this.post.resource != null){
                     let extension = this.post.resource.split(".")
                     return _.last(extension)
                 }else{

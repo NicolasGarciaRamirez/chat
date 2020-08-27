@@ -31,6 +31,11 @@
             ModalPlaylist,
             ModalSharePost,
         },
+        updated() {
+          posts:{
+              $('.my-3 wave').remove()
+          }
+        },
         data(){
             return{
                 view_comment: false,

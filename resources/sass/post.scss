@@ -108,6 +108,11 @@
         }
         .post-body{
             margin-top: 1px !important;
+            .post-type-video{
+                wave{
+                    display: none !important;
+                }
+            }
             img{
                 max-height: 250px;
                 overflow: hidden;
