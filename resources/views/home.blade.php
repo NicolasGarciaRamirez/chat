@@ -5,3 +5,9 @@
         <home :posts="{{ $posts }}" ref="home"/>
     </div>
 @endsection
+
+@section('scripts')
+    <script>
+        console.log($('.post-type-video').find('wave'))
+    </script>
+@endsection
