@@ -265,6 +265,8 @@
                     video.pause();
                 });
             });
+
+            console.log($('.post-type-video').find('wave'))
         },
         computed: {
             resource_extension() {
