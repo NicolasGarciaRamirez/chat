@@ -272,7 +272,7 @@
         },
         computed: {
             resource_extension() {
-                if (this.post.resource_type === 'docs'){
+                if (this.post.resource_type === 'docs' && this.post.resource != null){
                     let extension = this.post.resource.split(".")
                     return _.last(extension)
                 }else{
