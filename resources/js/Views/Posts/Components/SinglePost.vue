@@ -266,9 +266,7 @@
                 });
             });
 
-            $('.post-type-video').find('wave').remove()
-            $('.post-type-docs').find('wave').remove()
-
+            console.log($('.post-type-video').find('wave'))
         },
         computed: {
             resource_extension() {
