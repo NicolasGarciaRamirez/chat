@@ -1,40 +1,43 @@
 <template>
     <section>
-        <a :href="`/Post/${activity.token}`" class="no-underline text-white">
-            <div class="img-activity bg-primary">
+        <div class="img-activity bg-primary">
+            <a :href="`/Post/${activity.token}`" class="no-underline text-white">
                 <img :src="`${activity.resource}`" alt="activity" class="img-activity img-fluid" v-if="activity.resource_type == 'image'">
                 <video :src="`${activity.resource}`" controls class="img-activity"  v-if="activity.resource_type == 'video'"  />
-<!--                <vue-wave-surfer :id="'waveform'+activity.token" :src="`${activity.resource}`" :options="options_audio" v-if="activity.resource_type === 'audio'" ref="surf"></vue-wave-surfer>-->
-                <div :id="`waveform${activity.token}`"></div>
-                <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type === 'audio'"   >
-                    <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+activity.token" @click="backward(audio)" height="30" >
-                    <div :id="`play`+activity.token"  @click="playAudio()" >
-                        <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
-                    </div>
-                    <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+                <div :id="`waveform${activity.token}`" v-if="activity.resource_type === 'audio'"></div>
+            </a>
+            <div class="d-flex flex-row text-center justify-content-center" v-if="activity.resource_type === 'audio'"   >
+                <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" :id="`backward`+activity.token" @click="backward(audio)" height="30" >
+                <div :id="`play`+activity.token"  @click="playAudio()" >
+                    <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
                 </div>
-                <i class="fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-if="showMenuPlaylist"></i>
-                <div class="dropdown-menu bg-primary text-white p-2 menu-activity" aria-labelledby="dropdownMenuPost" v-if="!playlist">
-                    <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
-                    <a href="#" class="dropdown-item link-post">Copy Link</a>
-                    <a @click="view_post = false" class="dropdown-item">Hide Post</a>
-                    <!-- <a href="#" class="dropdown-item">Report</a> -->
-                    <div class="dropdown-item dropdown-submenu"  v-if="activity.resource_type == 'audio' || activity.resource_type == 'video'" @click="playlist = true">Add To Playlist</div>
-                </div>
-                <div class="ml-5 dropdown-menu bg-primary text-white p-2" v-if="playlist">
-                    <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
-                    <div class="dropdown-divider"></div>
-                    <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
-                </div>
+                <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward(audio)" height="30">
+            </div>
+            <i class="fas fa-ellipsis-h text-white fa-2x mr-1 menu-activity"  id="dropdownMenuPost"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" v-if="showMenuPlaylist"></i>
+            <div class="dropdown-menu bg-primary text-white p-2 menu-activity" aria-labelledby="dropdownMenuPost" v-if="!playlist">
+                <a :href="`/${user.username}/Post/get/${activity.token}`" class="dropdown-item">Go To Post</a>
+                <a href="#" class="dropdown-item link-post">Copy Link</a>
+                <a @click="view_post = false" class="dropdown-item">Hide Post</a>
+                <!-- <a href="#" class="dropdown-item">Report</a> -->
+                <div class="dropdown-item dropdown-submenu"  v-if="activity.resource_type == 'audio' || activity.resource_type == 'video'" @click="playlist = true">Add To Playlist</div>
+            </div>
+            <div class="ml-5 dropdown-menu bg-primary text-white p-2" v-if="playlist">
+                <div class="dropdown-item" @click="showModalNewPlaylist"> <i class="fas fa-plus-circle mr-2"></i> new playlist</div>
+                <div class="dropdown-divider"></div>
+                <div class="dropdown-item" v-for="(playlist, index) in user.playlists" :key="index" @click="addPostPlaylist(playlist)">{{ playlist.title }}</div>
+            </div>
+            <a :href="`/Post/${activity.token}`" class="no-underline text-white">
                 <div class="d-flex align-items-center justify-content-center p-5" v-if="activity.resource_type == 'text'">
                     <span>{{descriptionLess}}</span>
                 </div>
+            </a>
+            <a :href="`/Post/${activity.token}`" class="no-underline text-white">
                 <div class="img-activity" v-if="activity.resource_type == 'docs'">
                     <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`" v-if="resource_extension == 'pdf'" class="img-activity img-fluid p-3" style="width: 130px;"  />
                     <img :src="`${resource_extension === 'docx' ? '/images/documments/word-document.svg' : '' || resource_extension === 'pdf' ? '/images/documments/pdf-document.svg' : '' || resource_extension === 'xlsx' ? '/images/documments/excel-document.svg' : '' || resource_extension === 'pptx' ? '/images/documments/power-point-document.svg' : ''}`"  class="img-activity img-fluid p-3" style="width: 130px;"  v-else/>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
         <div class="px-3" v-if="!activity.replace_caption">
             <div v-if="activity.resource_type == 'image' || activity.resource_type == 'audio' || activity.resource_type == 'video'">
                 <p class="m-1" v-if="activity.description">
@@ -128,7 +131,7 @@ export default {
                 forceDecode: true,
                 hideScrollbar: true,
                 responsive: true,
-                interact: true,
+                interact: false,
                 progressColor: this.getGrad(),
             },
         }
