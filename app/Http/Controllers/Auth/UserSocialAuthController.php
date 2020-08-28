@@ -62,7 +62,7 @@ class UserSocialAuthController extends Controller
         $providerUser = $provider->user();
         $providerName = class_basename($provider);
         $cover = '/images/profile/default-cover.svg';
-        if(strlen($provider->avatar) <= 255){
+        if(strlen($providerUser->avatar) <= 255){
             $avatar = $providerUser->avatar;
         }else{
             $avatar = '/images/profile/default.svg';
