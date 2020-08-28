@@ -126,7 +126,7 @@
             <div class="order-lg-2 functions pb-2 mt-lg-1" v-if="!auth.token || auth.token != user.token">
 <!--                <img src="/images/chat.svg" alt="chat" class="svg-icon cursor-pointer">-->
                 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                     x="0px" y="0px" viewBox="0 0 966 1080" xml:space="preserve" class="svg-icon cursor-pointer share mx-lg-2" @click="showModalShare">
+                     x="0px" y="0px" viewBox="0 0 966 1080" xml:space="preserve" width="1.5rem" class="svg-icon cursor-pointer share mx-lg-2" @click="showModalShare">
                     <g id="Layer_2">
                         <g id="Layer_2-2">
                             <path fill="#535353" d="M974,539.86L568.89-0.29v321.93h-85.88c-266.92,0-483.29,263.11-483.29,587.68c0,0,0,0,0,0V1080
