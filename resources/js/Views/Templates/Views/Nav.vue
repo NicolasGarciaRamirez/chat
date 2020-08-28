@@ -62,7 +62,7 @@
         <li class="c-sidebar-nav-title">Topic</li>
         <li class="c-sidebar-nav-item">
             <div class="filter-nav">
-                <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')">
+                <input type="checkbox" id="performance_and_jams" @click="updateFilterCategory('Performances and Jams')" data-category="Performances and Jams">
                 <label for="performance_and_jams"><span>Performances and Jams</span></label>
             </div>
         </li>
