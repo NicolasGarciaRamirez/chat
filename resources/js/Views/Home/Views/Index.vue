@@ -132,6 +132,7 @@
                                 <div class="dropdown-item" @click="post.genre = 'Classical'">Classical</div>
                                 <div class="dropdown-item" @click="post.genre = 'Funk'">Funk</div>
                                 <div class="dropdown-item" @click="post.genre = 'World'">World</div>
+                                <div class="dropdown-item" @click="post.genre = 'Latin'">Latin</div>
                             </div>
                         </div>
                         <div style="display: flex; flex-grow: 29">
@@ -143,7 +144,6 @@
                                 <div class="dropdown-item" @click="post.category = 'Instruments'">Instruments</div>
                                 <div class="dropdown-item" @click="post.category = 'Podcasts'">Podcasts</div>
                                 <div class="dropdown-item" @click="post.category = 'Audio Clips'">Audio Clips</div>
-<!--                                <div class="dropdown-item" @click="post.category = 'Latin'">Latin</div>-->
                             </div>
                         </div>
                         <div class="button-privacy">

@@ -53,12 +53,12 @@
                 <label for="world"><span>World</span></label>
             </div>
         </li>
-<!--        <li class="c-sidebar-nav-item">-->
-<!--            <div class="filter-nav">-->
-<!--                <input type="checkbox" id="latin" @click="updateFilterGender('Latin')" data-genre="Latin">-->
-<!--                <label for="latin"><span>Latin</span></label>-->
-<!--            </div>-->
-<!--        </li>-->
+        <li class="c-sidebar-nav-item">
+            <div class="filter-nav">
+                <input type="checkbox" id="latin" @click="updateFilterGender('Latin')" data-genre="Latin">
+                <label for="latin"><span>Latin</span></label>
+            </div>
+        </li>
         <li class="c-sidebar-nav-title">Topic</li>
         <li class="c-sidebar-nav-item">
             <div class="filter-nav">
