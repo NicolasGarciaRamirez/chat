@@ -1,6 +1,6 @@
 <template>
     <footer class="d-flex flex-row justify-content-between align-items-center bg-primary nav-footer-movile w-100" >
-        <div :class="`${route_name === 'http://localhost:8000/Form' || route_name === 'http://localhost:8000/Search' || route_name === 'https://www.noisesharks.com/Search' || route_name === 'https://www.noisesharks.com/Form' ? 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50'}`">
+        <div :class="`${route_name === 'http://localhost:8000/Form' || route_name === 'http://localhost:8000/Search' || route_name === `http://localhost:8000/${auth.username}/Chat` || route_name === 'https://www.noisesharks.com/Search' || route_name === 'https://www.noisesharks.com/Form' || route_name === `https://www.noisesharks.com/${auth.username}/Chat` ? 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50'}`">
             <a href="/">
                 <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                      x="0px" y="0px" viewBox="0 0 1059 1080" xml:space="preserve" width="1.29rem">
@@ -20,7 +20,6 @@
                     </g>
                 </svg>
             </a>
-            <!--            <label>Stream</label>-->
         </div>
         <div :class="`${route_name === 'http://localhost:8000/Form' || route_name === 'https://www.noisesharks.com/Form' ? 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50'}`">
             <a href="/Form">
@@ -54,7 +53,6 @@
                 </g>
                 </svg>
             </a>
-            <!--            <label>Post</label>-->
         </div>
         <div :class="`${route_name === 'http://localhost:8000/Search' || route_name === 'https://www.noisesharks.com/Search' ? 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50'}`">
             <a href="/Search">
@@ -63,18 +61,32 @@
                 l288.434,289.301l95.771-96.104L798.209,701.259z M443.216,746.904c-168.083,0-304.792-137.148-304.792-305.719
                 s136.709-305.719,304.792-305.719c168.009,0,304.792,137.148,304.792,305.719S611.226,746.904,443.216,746.904"></path></svg>
             </a>
-            <!--            <label>Search</label>-->
+        </div>
+        <div :class="`${route_name === `http://localhost:8000/${auth.username}/Chat` || route_name === 'https://www.noisesharks.com/Chat' ? 'd-flex flex-column align-items-center justify-content-center m-auto active px-3 py-2 w-50' : 'd-flex flex-column align-items-center justify-content-center m-auto px-3 py-2 w-50'}`" v-if="auth.token">
+            <a :href="`/${auth.username}/Chat`">
+                <svg version="1.1" baseProfile="tiny" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     x="0px" y="0px" width="1.29rem" viewBox="0 0 1096 1080" xml:space="preserve">
+                    <path fill="#545454" stroke="#545454" stroke-miterlimit="10" d="M779.58,296.22V-0.71H0.13v576.1h109.49v207.67l206.8-206.8v296.06
+                        h462.28L986.38,1080V872.33h109.49V296.22H779.58z"/>
+                </svg>
+            </a>
         </div>
     </footer>
 </template>
 
 <script>
+    import Auth from "../../../helpers/Auth";
     export default {
         name: "NavFooter",
         data(){
             return{
+                auth: '',
                 route_name: window.location.href
             }
+        },
+        mounted() {
+            Auth.initialize()
+            this.auth = Auth.state
         },
         methods:{
 

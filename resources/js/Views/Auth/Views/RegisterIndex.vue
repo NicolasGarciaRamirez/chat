@@ -66,6 +66,7 @@
     import FormSignUp from "../Components/FormSignUp";
     import FormSignUpContributor from "../Components/FormSignUpContributor";
     import GeneralCommingSoon from "../../CommingSoon/Components/GeneralCommingSoon";
+
     export default {
         props: ['type'],
         components: {

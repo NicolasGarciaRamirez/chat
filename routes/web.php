@@ -11,8 +11,8 @@
 |
 */
 Route::get('/test', function () {
-    \Auth::logout();
-    return view('test');
+    broadcast(new \App\Events\SendMessage('hola'));
+//    return view('test');
 });
 
 Route::get('/prelaunch', function () {
@@ -146,6 +146,14 @@ Route::group(['prefix' => '/{username}'], function () {
     Route::group(['prefix' => 'View'], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::name('view.store')->post('/store/{post}', 'Post\PostViewsController@save');
+        });
+    });
+
+    Route::group(['prefix' => 'Chat'], function () {
+        Route::name('chat.get')->get('/', 'Chats\MessageController@get');
+        Route::name('chat.message.fecth')->get('/messageFecth/{user}', 'Chats\MessageController@fecthMessage');
+        Route::group(['middleware' => ['auth']], function(){
+            Route::name('chat.message.send')->post('/messageSend', 'Chats\MessageController@sendMessage');
         });
     });
 });

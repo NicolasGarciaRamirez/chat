@@ -1,0 +1,44 @@
+.chat-section{
+    .chat-header{
+        height: 5rem;
+        padding: 1rem;
+    }
+    .chat-body{
+        overflow-y: auto;
+        height: 35rem;
+    }
+    .chat-footer{
+        padding: 1rem;
+        input.form-control ,textarea.form-control{
+            border-radius: 30px;
+            color: white;
+            background: $primary-color;
+            border: 2px solid $fourth-color;
+            padding: 1rem;
+            caret-color: $fifth-color;
+            &::placeholder{
+                color: $fourth-color;
+            }
+            &:focus{
+                background-color: $third-color;
+                color: white;
+                border: 0;
+            }
+        }
+    }
+    .chat-body::-webkit-scrollbar{
+        width: 8px ;
+    }
+    .chat-body::-webkit-scrollbar-thumb {
+        background: $fourth-color;
+        border-radius: 4px;
+    }
+    .chat-body::-webkit-scrollbar-thumb:hover {
+        background: $fourth-color;
+        box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+    }
+    .chat-body::-webkit-scrollbar-thumb:active {
+        background-color: $fourth-color;
+    }
+}
+

@@ -76,6 +76,7 @@ import Test from "./views/Test/Test";
 import ModalMerch from "./views/CommingSoon/Components/ModalMerch"
 import ModalForMusic from "./views/CommingSoon/Components/ModalForMusic"
 
+import Chat from "./Views/Chats/views/Chat";
 new Vue({
     el: '#app',
     components:{
@@ -110,6 +111,7 @@ new Vue({
         Carrer,
         Test,
         ModalMerch,
-        ModalForMusic
+        ModalForMusic,
+        Chat
     }
 });
