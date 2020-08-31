@@ -13,6 +13,8 @@
                     <p class="bg-fifth text-white p-2 w-auto">
                         {{message.message}}
                     </p>
+                    <small>{{message.user.artistic_name}}</small>
+                    <small>{{message.data_send}}</small>
                 </div>
             </div>
             <div class="chat-footer bg-black">
@@ -39,17 +41,21 @@
         },
         mounted() {
             Auth.initialize()
+            $('.chat-section').animate({
+                scrollBottom: $(".chat-body").offset().bottom
+            },1);
         },
         created() {
             this.getMessage()
-            Echo.join(`chat.${Auth.state.username}.${this.user.id}`)
+
+            Echo.join(`chat`)
                 .listen('SendMessage', (event) => {
                     this.messages.push({
                         user:event.message.user,
                         message:event.message.message
                     })
-                    $('.chat-body').animate({
-                        scrollBottom: $(".chat-body").offset().top
+                    $('.chat-section').animate({
+                        scrollBottom: $(".chat-body").offset().bottom
                     },1);
                 })
 

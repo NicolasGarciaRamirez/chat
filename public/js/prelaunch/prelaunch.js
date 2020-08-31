@@ -19587,7 +19587,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\noisesharks\resources\js\prelaunch.js */"./resources/js/prelaunch.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\chat\resources\js\prelaunch.js */"./resources/js/prelaunch.js");
 
 
 /***/ })

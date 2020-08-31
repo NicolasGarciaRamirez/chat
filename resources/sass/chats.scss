@@ -5,10 +5,15 @@
     }
     .chat-body{
         overflow-y: auto;
-        height: 35rem;
+        height: auto;
+        margin-bottom: 4rem;
     }
     .chat-footer{
         padding: 1rem;
+        position: fixed;
+        z-index: 1577;
+        bottom: 2.4rem;
+        width: 100%;
         input.form-control ,textarea.form-control{
             border-radius: 30px;
             color: white;
@@ -27,7 +32,7 @@
         }
     }
     .chat-body::-webkit-scrollbar{
-        width: 8px ;
+        width: 8px;
     }
     .chat-body::-webkit-scrollbar-thumb {
         background: $fourth-color;

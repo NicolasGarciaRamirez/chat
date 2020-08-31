@@ -153,4 +153,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(\App\Models\Chats\Message::class);
     }
+
+    public function receptor()
+    {
+        return $this->belongsTo('\App\Models\Chats\Message', 'receptor_id', 'id');
+    }
 }

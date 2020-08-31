@@ -32573,11 +32573,16 @@ button:focus {
 
 .chat-section .chat-body {
   overflow-y: auto;
-  height: 35rem;
+  height: auto;
+  margin-bottom: 4rem;
 }
 
 .chat-section .chat-footer {
   padding: 1rem;
+  position: fixed;
+  z-index: 1577;
+  bottom: 2.4rem;
+  width: 100%;
 }
 
 .chat-section .chat-footer input.form-control,
