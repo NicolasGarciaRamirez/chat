@@ -21,13 +21,26 @@
                     <span class="font-weight-bold ml-3 c-fourth float-left">Recent Chats</span>
                     <span class="font-weight-bold mr-3 c-fourth float-rigth">Bandera</span>
                 </div>
-                <div class="d-flex flex-row justify-content-between align-items-center my-2" v-for="(user, index) in users" :key="index" @click="initializeSummary(user)" v-if="user.username !== auth.username">
-                    <div class="d-flex flex-row">
-                        <img :src="`${user.avatar}`" class="rounded-circle mx-3"  style="width:3rem"/>
-                        <span>{{user.artistic_name}}<img src="/images/icons/check.svg" width="14" class="ml-1" v-if="user.verification_date"></span>
+                <div>
+                    <div class="d-flex flex-row justify-content-between align-items-center my-2" v-for="(actives, index) in users_actives" :key="index" @click="initializeSummary(actives)" v-if="actives.username !== auth.username">
+                        <div class="d-flex flex-row" >
+                            <img :src="`${actives.avatar}`" class="rounded-circle mx-3"  style="width:3rem"/>
+                            <span>{{actives.artistic_name}}<img src="/images/icons/check.svg" width="14" class="ml-1" v-if="actives.verification_date"></span>
+                        </div>
+                        <div class="d-flex align-items-center mx-3">
+                            <span class="text-success" style="font-size: 2rem">•</span>
+                        </div>
                     </div>
-                    <div class="d-flex align-items-center mx-3">
-                        <span :class="user.active_status ? `text-success dot position-relative` : 'text-danger dot position-relative'" style="font-size: 2rem">•</span>
+                </div>
+                <div>
+                    <div class="d-flex flex-row justify-content-between align-items-center my-2" v-for="(user, indexe) in users" :key="indexe" @click="initializeSummary(user)" v-if="user.username !== auth.username">
+                        <div class="d-flex flex-row">
+                            <img :src="`${user.avatar}`" class="rounded-circle mx-3"  style="width:3rem"/>
+                            <span>{{user.artistic_name}}<img src="/images/icons/check.svg" width="14" class="ml-1" v-if="user.verification_date"></span>
+                        </div>
+                        <div class="d-flex align-items-center mx-3">
+                            <span :class="user.active_status ? `text-success dot position-relative` : 'text-danger dot position-relative'" style="font-size: 2rem">•</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -47,6 +60,7 @@
         },
         data(){
             return {
+                users_actives: [],
                 user_chat: '',
                 view_chat: false,
                 message: '',
@@ -54,20 +68,32 @@
             }
         },
         created() {
-            Echo.join('chat').listen('messageSend', function (e) {
-                console.log('message send')
-                console.log(e)
-            }).joining('chat', function (e) {
-                console.log('joining chat')
-                console.log(e)
-            })
+            Echo.join('chat')
+                .listen('messageSend',(event) => {
+                    console.log('message send')
+                    // console.log(event)
+                })
+
+                .here((users) =>{
+                    let self = this
+                    let objects = this.users
+                    let object =  users
+                    let array_matches = _.intersectionBy(object, objects, 'id')
+                    _.each(array_matches , match=>{
+                        self.users_actives.push(match)
+                        _.remove(self.users, function(user) {return user.id === match.id})
+                    })
+                })
+                .joining((user) => {
+                    console.log('joining chat')
+                    // console.log(user)
+                })
         },
         mounted() {
             Auth.initialize()
             this.auth = Auth.state
-            $('.body').animate({
-                scrollTop: $(".body").offset().top
-            },1);
+            $('.body').animate({scrollTop : 10}, 'slow');
+
         },
         methods:{
             initializeSummary(user){

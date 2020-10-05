@@ -39,6 +39,7 @@
         "v-click-outside": "^3.0.1",
         "vee-validate": "2.2.15",
         "vue-advanced-cropper": "^0.16.10",
+        "vue-chat-scroll": "^1.4.0",
         "vue-doc-preview": "^0.3.2",
         "vue-hashtag-textarea": "^0.3.7",
         "vue-jcrop": "^1.0.3",

@@ -2,6 +2,7 @@ export default {
     services : [
         {
             principal_service: 'Audio Engineering',
+            id: 'Audio Engin',
             specific_service:[
                 'Audio Repairing' ,
                 'Broadcasting' ,

@@ -10,6 +10,7 @@
 | used to check if an authenticated user can listen to the channel.
 |
 */
-Broadcast::routes(['middleware' => ['auth']]);
 
-Broadcast::channel('chat', \App\Broadcasting\ChatChannel::class);
+Broadcast::channel('chat', function($user){
+    return $user;
+});

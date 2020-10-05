@@ -24,6 +24,9 @@ Vue.use(VeeValidate);
 import vClickOutside from 'v-click-outside';
 Vue.use(vClickOutside);
 
+import VueChatScroll from 'vue-chat-scroll'
+Vue.use(VueChatScroll)
+
 // import VueSocialSharing from 'vue-social-sharing'
 // Vue.use(VueSocialSharing);
 

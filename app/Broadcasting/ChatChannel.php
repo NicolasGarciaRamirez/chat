@@ -24,5 +24,6 @@ class ChatChannel
      */
     public function join()
     {
+        return $this->user;
     }
 }
