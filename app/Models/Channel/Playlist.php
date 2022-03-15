@@ -5,6 +5,10 @@ namespace App\Models\Channel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Playlist
+ * @package App\Models\Channel
+ */
 class Playlist extends Model
 {
     use SoftDeletes;

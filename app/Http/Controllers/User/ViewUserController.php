@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User\User;
 
+/**
+ * Class ViewUserController
+ * @package App\Http\Controllers\User
+ */
 class ViewUserController extends Controller
 {
 
@@ -22,7 +26,18 @@ class ViewUserController extends Controller
         $this->middleware(function ($request, $next) {
             if (!$user = User::whereUsername($request->username)->first()) return abort(404);
             $this->user = $user;
-            $this->user->load('personal_information', 'followers.user.personal_information', 'followers.user.profile_information', 'profile_information.members', 'profile_information.releases','profile_information.worked_with');
+            $this->user->load(
+                'personal_information',
+                'supports.user',
+                'rewards.user',
+                'channel_information.tiers',
+                'followers.user.personal_information',
+                'followers.user.profile_information',
+                'following.following.profile_information',
+                'following.following.personal_information',
+                'profile_information.members',
+                'profile_information.releases',
+                'profile_information.worked_with')->loadCount('following', 'followers', 'supports');
             return $next($request);
         });
     }

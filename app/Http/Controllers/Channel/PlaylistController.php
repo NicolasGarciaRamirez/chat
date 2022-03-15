@@ -11,6 +11,7 @@ use App\Models\User\User;
 
 class PlaylistController extends Controller
 {
+    private $user;
     /**
      * PlaylistController constructor.
      */

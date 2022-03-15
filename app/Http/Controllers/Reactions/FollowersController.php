@@ -9,8 +9,15 @@ use App\Models\User\User;
 use App\Models\Post\Post;
 use App\Models\Reactions\Followers;
 
+/**
+ * Class FollowersController
+ * @package App\Http\Controllers\Reactions
+ */
 class FollowersController extends Controller
 {
+    /**
+     * @var
+     */
     private $user;
 
     /**
@@ -32,14 +39,19 @@ class FollowersController extends Controller
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function follow(Request $request, $username, User $user)
+    public function follow(Request $request, $username ,$token)
     {
         \DB::beginTransaction();
         try {
+            $user = User::with('followers')->whereToken($token)->first();
             $follow = new Followers($request->all());
             $follow->following_user = $this->user->id;
             $user->followers()->save($follow);
 
+            $data_notify = [
+                'body' => $this->user->artistic_name.'  started following you!'
+            ];
+            $user->sendGeneralNotification($data_notify);
             \Mail::to($user->email)->send(new StartedFollowYou($this->user, $this->user->personal_information->full_name, $user->personal_information->full_name));
 
             \DB::commit();
@@ -53,7 +65,7 @@ class FollowersController extends Controller
             return response()->json([
                 'follow' => null,
                 'followings' => null,
-                'errors' => $e
+                'errors' => $e->getMessage()
             ]);
         }
     }

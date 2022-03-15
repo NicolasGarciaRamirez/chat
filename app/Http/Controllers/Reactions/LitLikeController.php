@@ -9,6 +9,10 @@ use App\Models\Comment\Comment;
 use App\Models\Post\Post;
 use App\Models\User\LitLike;
 
+/**
+ * Class LitLikeController
+ * @package App\Http\Controllers\Reactions
+ */
 class LitLikeController extends Controller
 {
 

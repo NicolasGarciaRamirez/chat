@@ -16,7 +16,7 @@
     <!--[if !mso]><!-->
     <meta content="IE=edge" http-equiv="X-UA-Compatible"/>
     <!--<![endif]-->
-    <title>Noisesharks</title>
+    <title>🎹🦈Noisesharks</title>
     <!--[if !mso]><!-->
     <link href="https://fonts.googleapis.com/css?family=Encode+Sans&amp;display=swap" rel="stylesheet" type="text/css"/>
     <!--<![endif]-->
@@ -416,13 +416,13 @@
                     </div>
                 </div>
             </div>
-            <div style="background-color:#181818;">
+            <div style="background-color:#1c1c1c;">
                 <div class="block-grid"
                      style="Margin: 0 auto; min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; background-color: transparent;">
                     <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
                         <!--[if (mso)|(IE)]>
                         <table width="100%" cellpadding="0" cellspacing="0" border="0"
-                               style="background-color:#181818;">
+                               style="background-color:#1c1c1c;">
                             <tr>
                                 <td align="center">
                                     <table cellpadding="0" cellspacing="0" border="0" style="width:500px">

@@ -8,6 +8,10 @@ use App\Models\User\User;
 use Intervention\Image\Facades\Image;
 use App\Models\User\{UserProfileInformation, Members, Releases, WorkedWith};
 
+/**
+ * Class UserProfileInformationController
+ * @package App\Http\Controllers\User
+ */
 class UserProfileInformationController extends Controller
 {
     /**
@@ -40,6 +44,8 @@ class UserProfileInformationController extends Controller
         try {
             $profile_information = new UserProfileInformation($request->profile_information);
             $profile_information->social_media = json_encode($request->profile_information['social_media']);
+            $profile_information->display_genres = json_encode($request->profile_information['display_genres']);
+            $profile_information->display_services = json_encode($request->profile_information['display_services']);
             $profile_information->user_id = $this->user->id;
 
             $this->user->profile_information()->save($profile_information);
@@ -93,6 +99,8 @@ class UserProfileInformationController extends Controller
         try {
             $profile_information = new UserProfileInformation($request->profile_information);
             $profile_information->social_media = json_encode($request->profile_information['social_media']);
+            $profile_information->display_genres = json_encode($request->profile_information['display_genres']);
+            $profile_information->display_services = json_encode($request->profile_information['display_services']);
             $this->user->profile_information()->update($profile_information->toArray());
 
             Members::whereProfileInformationId($this->user->profile_information->id)->delete();
@@ -161,29 +169,61 @@ class UserProfileInformationController extends Controller
      */
     public function saveImageRelease(Request $request)
     {
-        $key = md5(\Auth::user()->id);
-        $hash = \Str::random(10);
-        $imageName = "/images/profile/releases/{$key}/{$hash}{$request->image->getClientOriginalName()}";
-        $request->image->move(public_path("/images/profile/releases/{$key}/"), $imageName);
+         \DB::beginTransaction();
+         try {
+            $key = md5(\Auth::user()->id);
+            $hash = \Str::random(10);
+            $imageName = "/images/releases/{$key}/{$hash}{$request->image->getClientOriginalName()}";
+            $request->image->move(public_path("/images/releases/{$key}/"), $imageName);
 
-        $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
-        $img->save(public_path($imageName));
-
-        return response()->json([
-            'saved_image' => true,
-            'image_name' => $imageName
-        ]);
+            $img = Image::make(public_path($imageName))->crop($request->width, $request->height, $request->left, $request->top);
+            $img->save(public_path($imageName));
+            \DB::commit();
+            return response()->json([
+                'saved_image' => true,
+                'image_name' => $imageName
+            ]);
+        }catch (\Exception $e){
+            \DB::rollback();
+            return response()->json([
+                'saved_image' => false,
+                'image_name' => null,
+                'error' => $e
+            ]);
+        }
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function profileInformationUpdate(Request $request)
     {
-        $profile = new UserProfileInformation($request->all());
-        $this->user->profile_information()->save($profile);
-        return response()->json([
-            'updated' => true
-        ]);
+        \DB::beginTransaction();
+        try{
+            $profile = new UserProfileInformation($request->all());
+            $this->user->profile_information()->save($profile);
+
+            \DB::commit();
+            return response()->json([
+                'updated' => true,
+                'errors' => null
+            ]);
+        } catch (\Exception $e){
+            \DB::rollBack();
+            return response()->json([
+                'updated'=> false,
+                'errors' => $e->getMessage()
+            ]);
+        }
+
     }
 
+    /**
+     * @param $username
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function saveWorkedWith($username, Request $request)
     {
         $work_with = new WorkedWith($request->all());

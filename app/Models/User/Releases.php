@@ -5,10 +5,14 @@ namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Releases
+ * @package App\Models\User
+ */
 class Releases extends Model
 {
     use SoftDeletes;
-    
+
     /**
      * Undocumented variable
      *

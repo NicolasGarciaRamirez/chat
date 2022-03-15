@@ -23,7 +23,7 @@
                     </span>
                 </div>
 
-                <div class="d-flex justify-content-center align-items-center">
+                <div class="cross-center">
                     {{--                <img src="/images/help-head.svg" class="position-absolute" style="z-index: -1;">--}}
                     <img src="/images/icons/sharks.svg" class="sharks">
                 </div>

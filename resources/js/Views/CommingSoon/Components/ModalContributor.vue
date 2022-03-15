@@ -15,7 +15,7 @@
                             Very Soon, you will be able to become a Noisesharks <span class="font-weight-bold">Contributor</span>.
                             Contributors will unlock the <span class="font-weight-bold">Support</span> & <span class="font-weight-bold">Reward</span> buttons for their profiles which
                             users can use to support them financially!
-                        </p>=
+                        </p>
                     </div>
                     <div class="text-center">
                         <button type="button" class="btn rounded-pill font-weight-bold text-white bg-fifth my-2" data-dismiss="modal">Got It!</button>

@@ -1,59 +1,60 @@
 <template>
-    <section>
-        <div id="waveform"></div>
-        <div class="d-flex flex-row text-center justify-content-center" >
-            <img src="/images/iconsplayer/Backward10sec-grey.svg" alt="" class="cursor-pointer" @click="backward()" height="30" >
-            <div @click="playAudio()" >
-                <img src="/images/iconsplayer/Play-white.svg" alt="" class="cursor-pointer mx-3" height="33">
-            </div>
-            <img src="/images/iconsplayer/Forward10sec-grey.svg" alt="" class="cursor-pointer" @click="forward()" height="30">
-        </div>
+    <section class="text-white">
+
+        {{query}}
+        <button type="button" @click="update" class="btn text-white">update</button>
     </section>
 </template>
 
 <script>
-
-import WaveSurfer from 'wavesurfer.js';
-import PeakCache from 'wavesurfer.js/src/peakcache.js'
-
 export default {
     data(){
         return {
-            wavesurfer: {}
+            channel_information: {
+                why_support: 'Hey there! You found your way to my channel! I work sincerely on my content aiming to add value to you, the Noisesharks community, and the music industry in general! Would really appreciate it if you help me reach my monthly goal!',
+                monthly_goal_last:{
+                    current_earnings: 0,
+                    monthly_goal: 150,
+                    date_end: '',
+                    percentage_completed: ''
+                },
+                tiers: [
+                    {
+                        id: null,
+                        name:'Tier1',
+                        amount: '1',
+                        description:`By selecting this tier you will support  by sending them a monthly subscription of 1!`,
+                    },
+                    {
+                        id: null,
+                        name:'Tier2',
+                        amount: '5',
+                        description:`By selecting this tier you will support  by sending them a monthly subscription of 5!`,
+                    },
+                    {
+                        id: null,
+                        name:'Tier3',
+                        amount: '10',
+                        description:`By selecting this tier you will support  by sending them a monthly subscription of 10!`,
+                    }
+                ]
+            },
+            query: null
         }
     },
     mounted(){
-        this.createAudioWave()
     },
     methods:{
-        createAudioWave(){
-            this.wavesurfer = WaveSurfer.create({
-                container: '#waveform',
-                waveColor: 'gray',
-                barHeight: 0.8,
-                cursorColor: 'red',
-                cursorWidth: 0,
-                responsive: true,
-                interact: true,
-                partialRender: true,
-                progressColor: this.getGrad(),
-            });
-            this.wavesurfer.load('/images/post/audio/R67d1f2epE/c4ca4238a0b923820dcc509a6f75849bAUD-20161126-WA0004.mp3');
-        },
-        getGrad(){
-            let linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 850, 0);
-            linGrad.addColorStop(0, '#ff0000');
-            linGrad.addColorStop(1, 'white');
-            return linGrad
-        },
-        playAudio(){
-            this.wavesurfer.play()
-        },
-        forward(){
-
-        },
-        backward(){
-
+        update(){
+            let data = {
+                channel_information: this.channel_information
+            }
+            // axios.post('/test1', data).then(res =>{
+            //     if(res.data.update) {
+            //         swal('Success','Success','Success')
+            //         this.query = res.data.query
+            //     }
+            // })
         }
     }
 }

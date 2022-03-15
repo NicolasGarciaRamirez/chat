@@ -1,0 +1,193 @@
+.main-header{
+    transition: .3s all ease;
+    background-color: var(--second-color) ; /* */
+    border-bottom: none;
+    padding: 0.5rem;
+    .c-header-toggler i{
+        color: var(--fourth-color);
+        font-size: var(--sidebar-bars-size);
+        &:hover{ color: var(--sidebar-bars-hover); }
+        &:active{ color: var(--sidebar-bars-active); }
+    }
+    &__content-links{
+        @include media-breakpoint-down(md){ display: none; }
+        a{
+            /* se usa important por  conflico con core ui */
+            font-size: var(--navbar-link-size);
+            font-weight: 700;
+            border-bottom:  2px solid currentColor;
+
+            text-decoration: none;
+            padding: 0 0 8px;
+            margin-right: 1rem;
+            text-decoration: none ;
+            color: var(--navbar-link-color) !important;
+            transition: all linear .1s;
+            &:visited {
+                color: var(--navbar-link-color) !important;
+                text-decoration: none;
+            }
+            &:hover {
+                color: var(--navbar-link-hover) !important;
+            }
+            &:active,
+            &.active{
+                color: var(--navbar-link-hover) !important;
+                border-bottom-color: var(--fifth-color) !important;
+            }
+        }
+    }
+    &__action-user{
+        margin-left: auto;
+    }
+    .become-contributor{
+        padding: .5rem 1.25rem .65rem 1.25rem;
+        border-radius: 30px;
+        color: var(--navbar-btn-color);
+        font-weight: 700;
+        background: var(--navbar-btn-bg);
+        transition: all linear .3s;
+        @include media-breakpoint-down(sm){
+            padding: 10px 10px;
+            font-size: 0.6rem;
+        }
+        &:hover{
+            transition: all linear .3s;
+            border-radius: 30px;
+            color: white ;
+            background: linear-gradient(30deg, $fifth-color 0, rgba(255,115,115,1) 20%, $fifth-color 100%); /* var(--navbar-btn-bg) */
+        }
+        &:active{
+            border-radius: 30px;
+            color: $fifth-color;
+            background: white;
+            transform: scale(.95);
+        }
+        &:before{
+            content: '';
+            background: linear-gradient(45deg, #ff0000,$fifth-color, #ff7300, $mustard-color, $seven-color, #00ffd5, #002bff, #7a00ff,purple, #ff00c8,#ff359a, #ff0000);
+            position: absolute;
+            top: -7px;
+            left:-2px;
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(5px);
+            width: calc(100% + 7px);
+            height: calc(100% + 15px);
+            animation: glowing 50s linear infinite;
+            opacity: 1;
+            transition: opacity .3s ease-in-out;
+            border-radius: 30px;
+            @include media-breakpoint-down(sm){
+                width: calc(100% + 4px);
+                height: calc(100% + 7.5px);
+                top: -2px;
+                left:-2px;
+            }
+        }
+    }
+
+    .cta-login{
+        margin: 0 .5rem;
+        &__link{
+            color:white;
+            font-weight: 700;
+            margin: 0 .5rem;
+            text-decoration: none;
+            cursor: pointer;
+            &:hover{
+                color:$fifth-color;
+            }
+        }
+    }
+    .c-avatar{
+        &:hover{
+            border: 1.5px solid #fff;
+        }
+        &:active{
+           opacity: 0.4;
+           transform: scale(.9);
+        }
+    }
+}
+
+.img-logo{
+    background-color: transparent;
+    height: 2rem;
+    @include media-breakpoint-up(md){
+        height: 3.5rem;
+    }
+
+}
+.noisesharks-logo{
+    &:hover{
+        opacity: 0.7;
+    }
+    &:active{
+        opacity: 0;
+        transform: scale(5);
+        transition: all linear 1s;
+    }
+}
+.img-version{
+    margin-top: 15%;
+    width: 1.5rem;
+    @include media-breakpoint-up(md){
+        width: 2.5rem;
+    }
+}
+
+
+.main-header .action-user{
+    &__avatar{
+    }
+
+    &__content{
+        padding: .5rem;
+        background-color: var(--second-color);
+        .dropdown-item{
+            width: 100%;
+            padding: 5px;
+            background-color: transparent;
+            border-radius: .7em;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            svg{
+                width: 1.2rem;
+                margin: 0 .5rem;
+                fill: currentColor;
+            }
+            &:hover{
+                background-color: var(--third-color) !important;
+                color: white;
+            }
+        }
+        .dropdown-header{
+            position: relative;
+            color: var(--fourth-color) !important;
+            &::after{
+                content: "";
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                left: -.5rem;
+                width: 25px;
+                height: 1px;
+                background-color: currentColor;
+            }
+        }
+    }
+}
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.c-header-fixed-none{
+    @include media-breakpoint-down(md){
+        position: relative !important;
+    }
+}

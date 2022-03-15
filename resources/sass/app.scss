@@ -1,43 +1,87 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Encode+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&display=swap');
 
-// Variables
-@import 'variables';
+/* base */
+    @import 'utilities/variables';
 
-@import "~@coreui/coreui/scss/coreui";
-@import "~@coreui/icons/scss/free/free-icons";
-@import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
-@import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+/* vendors */
+    @import "vendors/Master/main.scss";
 
-@import "utils";
-@import "header";
-@import "nav";
-@import "footer";
-@import "auth";
-@import "profile";
-@import "company";
-@import "extras";
-@import "home";
-@import "view-profile";
-@import "search";
-@import "playlist";
-@import "pace";
-@import "zoom";
-@import "chats";
+    // @import "~@coreui/coreui/scss/coreui";
+    @import "~@coreui/icons/scss/free/free-icons";
+    @import "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+    @import "node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
+    // @import "vendors/prelaunch/app.scss";
+
+
+/* utilities */
+    @import "utilities/fonts";
+    @import "utilities/pace";
+
+/* layout */
+    @import "layout/header";
+    @import "layout/sidebar";
+    @import "layout/footer";
+
+/* components */
+    @import "utilities/utils"; /* por recodificar */
+    @import "components/modal-share";
+    @import "components/search";
+    @import "components/public-post";
+    @import "components/post";
+    @import "components/alert";
+    @import "components/modal-payment";
+    @import "components/lds-ripple";
+    @import "components/loading";
+
+    @import "components/notifications";
+    @import "components/share-redes";
+
+    /* views */
+
+    @import "views/auth";
+    @import "views/profile";
+    @import "views/home";
+    @import "views/sections";
+    @import "views/view-profile";
+    @import "views/video";
+
+
+/* themes */
+
+// @import "company";
+*{
+    outline: none !important;
+}
 .c-sidebar-backdrop{
-    background-color: black;
+    background-color: $black;
 }
 
 .c-app{
     color: white;
 }
+.c-body{
 
+}
 .c-main{
-    padding-top: 6rem;
-    @include media-breakpoint-down(sm){
-        padding-top: 4.19rem;
+    padding-top: 1.5rem;
+    .stream{
+        width: 60vw;
+    }
+}
+.c-header.c-header-fixed{
+    z-index: 999;
+}
+@include media-breakpoint-down(md){
+    .c-main .stream{
+        width: 90vw;
+    }
+}
+@include media-breakpoint-down(sm){
+    .c-main{
         padding-bottom: 2.5rem;
     }
+}
+
+.animate__animated.animate__fadeInUp {
+    --animate-duration: .3s;
 }

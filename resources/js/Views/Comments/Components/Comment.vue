@@ -5,16 +5,16 @@
             <div class="text-white d-flex flex-row align-items-start justify-content-between">
                 <div class="d-flex flex-row align-items-end justify-content-start">
                     <div class="d-flex flex-column py-1">
-                        <a :href="`/${comment.user.username}/Profile`" class="font-weight-bold no-underline text-white ">
-                            {{ comment.user.profile_information && comment.user.profile_information.artistic_name ? comment.user.profile_information.artistic_name : comment.user.personal_information.full_name }}
+                        <a :href="`/${comment.user.username}/Profile`" class="comment-user-name">
+                            {{ comment.user.artistic_name }}
                         </a>
                         <div :id="`comment_body`+comment.id" >
                             <form @submit.prevent="update" v-if="edit">
                                 <input type="text"  v-model="comment.body" autofocus class="input-comment form-control bg-second p-3 mt-3 text-white position-relative" />
                             </form>
                             <span v-if="!edit">{{ comment.body }}
-                                <i class="fas fa-ellipsis-h c-third fa-1x m-auto"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform: rotate(90deg);"></i>
-                                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuComment">
+                                <i class="fas fa-ellipsis-h c-fourth fa-1x m-auto"  id="dropdownMenuComment"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="transform: rotate(90deg);"></i>
+                                <div class="dropdown-menu text-white p-2" aria-labelledby="dropdownMenuComment">
                                     <div v-if="comment.user.username == auth.username">
                                         <div class="dropdown-item cursor-pointer" @click="edit = true">Edit</div>
                                         <div class="dropdown-item cursor-pointer" @click="deleteComment">Delete</div>
@@ -32,11 +32,11 @@
                     <img src="/images/icons/post-flame.svg" alt="flame-red" class="cursor-pointer float-right icon-lit">
                 </div>
             </div>
-            <div class="comment-footer">
+            <div class="comment-footer c-fourth">
                 <span>{{ comment.time_ago }}</span>
                 <span class="mx-3">{{ likes.length }} lit</span>
                 <span class="cursor-pointer" @click="$parent.form_reply = true">
-                    <span @click="$parent.reply.body = `@${comment.user.personal_information.full_name} `">Reply</span>
+                    <span @click="$parent.reply.body = `@${comment.user.artistic_name} `, $parent.cancelReply()">{{ $parent.btn_reply ? 'Cancel' : 'Reply' }}</span>
                 </span>
             </div>
         </div>
@@ -56,13 +56,23 @@
                 lit:{
                     like: 'like'
                 },
-                likes:[],
                 url : ``,
                 auth: Auth.state
             }
         },
-        mounted(){
+        mounted() {
             Auth.initialize()
+            this.getLike()
+        },
+        computed:{
+              likes(){
+                return this.comment.likes ? this.comment.likes : []
+              }
+        },
+        updated() {
+            this.getLike()
+        },
+        destroyed() {
             this.getLike()
         },
         methods:{
@@ -70,8 +80,7 @@
                 if (this.comment.likes) {
                     if (this.comment.likes[0] != null) {
                         this.comment.likes.map(like => {
-                            this.likes.push(like)
-                            if (Auth.state.username == like.user.username ) {
+                            if (Auth.state.username === like.user.username ) {
                                 $(`#litComment`+this.comment.id+` img`).replaceWith('<img src="/images/icons/post-flame-red.svg" class="icon-lit">')
                                 this.url = `/${Auth.state.username}/LitLike/unlike/${like.id}`
                                 this.like_type = 'unlike'
@@ -87,7 +96,7 @@
                     if (type === 'unlike') {
                         if (this.likes.length > 0) {
                             this.likes.map(value =>{
-                                if (Auth.state.username == value.user.username) {
+                                if (Auth.state.username === value.user.username) {
                                     this.url = `/${Auth.state.username}/LitLike/unlike/${value.id}`
                                 }
                             })
@@ -96,8 +105,7 @@
                     if(type === 'like'){
                         this.url = `/${Auth.state.username}/LitLike/like/Comment/${this.comment.id}/${this.$parent.$parent.post.id}`
                     }
-                    axios.post(this.url, this.lit).then(res =>{
-                        console.log(res)
+                    await axios.post(this.url, this.lit).then(res =>{
                         if (res.data.like) {
                             this.disable_like = false
                             this.likes.unshift(res.data.like)
@@ -113,77 +121,71 @@
                         }
                     }).catch(err =>{
                         console.log(err)
+                        Auth.keepLogged(err.response.status)
                     })
                 }else{
                     $('#ModalLogin').modal('show')
                 }
             },
             async update(){
-                if(Auth.state.token){
-                    await Auth.setSession()
-                    axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.comment).then(res =>{
-                        if (res.data.updated) {
-                            this.edit = false
-                            this.$toasted.show('The comment has been updated successfully!', {
-                                position: "bottom-right",
-                                duration : 4000,
-                                className: "p-4 notification bg-primary",
-                                keepOnHover: true
-                            })
-                        }
-                    }).catch(err =>{
-                        swal({
-                            text:'the comment cannot be empty',
-                            className:'swal-alert',
-                            buttons:[false, 'Ok']
+                await Auth.setSession()
+                await axios.post(`/${this.auth.username}/Comment/update/${this.comment.id}`, this.comment).then(res =>{
+                    if (res.data.updated) {
+                        this.edit = false
+                        this.$toasted.show('Comment has been updated successfully!', {
+                            position: "bottom-right",
+                            duration : 4000,
+                            className: "notification",
+                            keepOnHover: true
                         })
+                    }
+                }).catch(err =>{
+                    swal({
+                        text:'the comment cannot be empty',
+                        className:'swal-alert',
+                        buttons:[false, 'Ok']
                     })
-                }else{
-                    $('#ModalLogin').modal('show')
-                }
+                    $('.swal-footer').addClass('text-center')
+                    Auth.keepLogged(err.response.status)
+                })
             },
             async deleteComment() {
-                if(Auth.state.token){
-                    await Auth.setSession()
-                    swal({
-                        title: 'Delete Comment',
-                        text: 'You are about to delete this comment. Would you like to proceed?',
-                        className: 'swal-alert',
-                        buttons: ['Cancel','Delete'],
-                        dangerMode: true,
-                    }).then((willDelete) => {
-                        if(willDelete){
-                            axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
-                                if (res.data.deleted) {
-                                    this.$toasted.show('The comment has been deleted successfully!', {
-                                        position: "bottom-right",
-                                        duration: 4000,
-                                        className: "p-4 notification bg-primary",
-                                        keepOnHover: true
+                await Auth.setSession()
+                swal({
+                    title: 'Delete Comment',
+                    text: 'You are about to delete this comment. Would you like to proceed?',
+                    className: 'swal-alert',
+                    buttons: ['Cancel','Delete'],
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if(willDelete){
+                        axios.delete(`/${this.auth.username}/Comment/delete/${this.comment.id}`).then(res => {
+                            if (res.data.deleted) {
+                                this.$toasted.show('Comment has been deleted successfully!', {
+                                    position: "bottom-right",
+                                    duration: 4000,
+                                    className: "notification",
+                                    keepOnHover: true
+                                })
+                                if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
+                                    let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
+                                        return comment.id === res.data.comment.id
                                     })
-                                    if (res.data.comment.commentable_type === "App\\Models\\Post\\Post") {
-                                        let index = _.findIndex(this.$parent.$parent.post.comments, function (comment) {
-                                            console.log(comment)
-                                            return comment.id === res.data.comment.id
+                                    this.$parent.$parent.post.comments.splice(index, 1)
+                                } else if (res.data.comment.commentable_type === "App\\Models\\Comment\\Comment"){
+                                    if (res.data.comment.commentable_id === this.$parent.comment.id) {
+                                        let index = _.findIndex(this.$parent.comment.comments, function (comment) {
+                                            return comment.id === res.data.comment.id;
                                         })
-                                        this.$parent.$parent.post.comments.splice(index, 1)
-                                    } else if (res.data.comment.commentable_type === "App\\Models\\Comment\\Comment"){
-                                        if (res.data.comment.commentable_id === this.$parent.comment.id) {
-                                            let index = _.findIndex(this.$parent.comment.comments, function (comment) {
-                                                return comment.id === res.data.comment.id;
-                                            })
-                                            this.$parent.comment.comments.splice(index, 1)
-                                        }
+                                        this.$parent.comment.comments.splice(index, 1)
                                     }
                                 }
-                            }).catch(err => {
-
-                            })
-                        }
-                    })
-                }else{
-                    $('#ModalLogin').modal('show')
-                }
+                            }
+                        }).catch(err => {
+                            Auth.keepLogged(err.response.status)
+                        })
+                    }
+                })
             }
         }
     }

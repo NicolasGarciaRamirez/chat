@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('content')
-    <div class="d-flex justify-content-center align-items-center flex-column" style="min-height: 80vh">
+    <div class="cross-center flex-column" style="min-height: 80vh">
         <p>Please verify your email address</p>
         @if (session('resent'))
             <div class="alert alert-success" role="alert">

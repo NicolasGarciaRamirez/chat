@@ -31,6 +31,7 @@ class HelpController extends Controller
                 $help->file = $name;
             }
             $help->save();
+
             \DB::commit();
 
             $request->session()->flash('success', 'this information has been saved successfully');

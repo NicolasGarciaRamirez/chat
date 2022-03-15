@@ -1,5 +1,5 @@
 <template>
-        <div class="modal fade modal-register" role="dialog" aria-labelledby="ModalContributorSignup" aria-hidden="true"
+    <div class="modal fade modal-register" role="dialog" aria-labelledby="ModalContributorSignup" aria-hidden="true"
          id="ModalContributorSignup">
         <div class="modal-dialog modal-dialog-centered register" role="document">
             <div class="modal-content modal-border-white">
@@ -21,14 +21,14 @@
                                 <p class="text-left ">
                                     Full access to the stream and all social
                                     activities such as live streaming, posting
-                                    content, interacting with users, and 
+                                    content, interacting with users, and
                                     financially supporting Contributors.
                                 </p>
                             </div>
-                            <div> 
-                                <img src="/images/icons/success.svg" alt="" class="float-left m-3">                          
+                            <div>
+                                <img src="/images/icons/success.svg" alt="" class="float-left m-3">
                                 <p class="text-left my-3">
-                                    Unlock the SUPPORT & REWARD buttons 
+                                    Unlock the SUPPORT & REWARD buttons
                                     so that users can financially support you
                                 </p>
                             </div>

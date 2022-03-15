@@ -5,6 +5,10 @@ namespace App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class VotePosts
+ * @package App\Models\Post
+ */
 class VotePosts extends Model
 {
     use SoftDeletes;

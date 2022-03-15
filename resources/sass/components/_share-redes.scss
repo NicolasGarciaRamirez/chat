@@ -1,0 +1,196 @@
+.share-redes-progress{
+
+    &__btn-public{
+        position: relative;
+        transition: all linear .2s;
+        &::after{
+            position: relative;
+            transition: all linear .2s;
+        }
+    }
+    &__content{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: max-content;
+        margin: auto;
+        z-index: 1;
+        &::after{
+            // content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: .3rem;
+            z-index: -1;
+            // background-color: linear-gradient(to right, #4AFF68 , var(--third-color))
+        // ); /*  var(--third-color) */
+        }
+    }
+
+    &__icon{
+        margin-right: .7rem;
+        --width: 60px;
+        width: var(--width);
+        height: var(--width);
+        border-radius: 100%;
+        background-color: var(--third-color);
+        cursor: pointer;
+        transition: all linear .1s;
+        margin-right: 2rem;
+        position: relative;
+        transition: all linear .2s;
+        &::after,
+        &::before{
+            transition: all linear .2s;
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 2rem;
+            right: 0;
+            height: 0.3rem;
+        }
+
+        &::after{
+            background-color: var(--third-color);
+            width: 100%;
+            z-index: -2;
+        }
+        &::before{
+            width: 0;
+            z-index: -1;
+            background-color: #4AFF68;
+        }
+
+        &:last-child{
+            margin-right: 0;
+            &::after, &::before{ display: none; }
+        }
+        svg{
+            padding: .8rem;
+            position: relative;
+            width: 100%;
+            fill: var(--fourth-color);
+            transition: all linear .1s;
+            &.check{
+                display: none;
+            }
+        }
+    }
+
+    &[state="facebook"] {
+        .share-redes-progress{
+            &__icon{
+                &.active{
+                    background-color: #0055FF;
+                    svg{fill: white;}
+                }
+
+                &.success{
+                    background-color: #4AFF68;
+                    svg{
+                        fill: var(--primary-color);
+                        &:not(.check){
+                            display: none;
+                        }
+                        &.check{
+                            display: block;
+                        }
+                    }
+
+                    &::before{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        & ~ .modal-footer{
+            .share-btn{
+                background-color: #0055FF;
+                &::after{
+                    content : " Facebook";
+                }
+            }
+        }
+    }
+    &[state="twitter"]{
+        .share-redes-progress{
+            &__icon{
+                &.active{
+                    background-color: #00AAFF;
+                    svg{fill: white;}
+                }
+
+                &.success{
+                    background-color: #4AFF68;
+                    svg{
+                        fill: var(--primary-color);
+                        &:not(.check){
+                            display: none;
+                        }
+                        &.check{
+                            display: block;
+                        }
+                    }
+
+                    &::before{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        ~ .modal-footer{
+            .share-btn{
+                background-color: #00AAFF;
+                &::after{
+                    content : " Twitter";
+                }
+            }
+        }
+    }
+    &[state="reddit"]{
+        .share-redes-progress{
+            &__icon{
+                &.active{
+                    background-color: #FF5722;
+                    svg{fill: white;}
+                }
+
+                &.success{
+                    background-color: #4AFF68;
+                    svg{
+                        fill: var(--primary-color);
+                        &:not(.check){
+                            display: none;
+                        }
+                        &.check{
+                            display: block;
+                        }
+                    }
+
+                    &::before{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        ~ .modal-footer{
+            .share-btn{
+                background-color: #FF5722;
+                &::after{
+                    content : " Reddit";
+                }
+            }
+        }
+    }
+}
+ //.share-redes-progress[facebook] + .modal-footer .share-btn {
+ //    background-color: red;
+ //}

@@ -113,7 +113,7 @@ export default {
                     this.$toasted.show('The playlist has been create successfully!', {
                         position: "bottom-right",
                         duration : 4000,
-                        className: "p-4 notification bg-primary",
+                        className: "notification",
                         keepOnHover: true
                     })
                 }
@@ -122,7 +122,7 @@ export default {
                      this.$toasted.show('The playlist has been updated!', {
                         position: "bottom-right",
                         duration : 4000,
-                        className: "p-4 notification bg-primary",
+                        className: "notification",
                         keepOnHover: true
                     })
                 }

@@ -9,7 +9,7 @@
                 </div>
                 <div class="modal-body pt-4 text-center">
                     <h3 class="font-weight-bold">Free User Signup</h3>
-                    <form-sign-up />
+<!--                    <form-sign-up v-if="!auth.username"/>-->
                 </div>
             </div>
         </div>
@@ -18,10 +18,19 @@
 
 <script>
     import FormSignUp from "../Components/FormSignUp";
-
+    import Auth from "../../../helpers/Auth";
     export default {
        components:{
            FormSignUp
+       },
+       data() {
+           return {
+               auth: ''
+           }
+       },
+       mounted(){
+            Auth.initialize()
+            this.auth = Auth.state
        }
     }
 </script>

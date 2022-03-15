@@ -6,10 +6,7 @@
                     <div class="d-flex flex-row justify-content-between contributor-form">
                         <div class="d-flex flex-column p-4">
                             <h5 class="text-center font-weight-bold">Contributor User Signup</h5>
-                            <form-sign-up />
-                        </div>
-                        <div class="d-flex flex-column ml-5 p-4">
-                            <form-sign-up-contributor />
+                            <form-sign-up :type="'Contributor'" v-if="!auth.username"/>
                         </div>
                     </div>
                 </div>
@@ -20,11 +17,19 @@
 
 <script>
 import FormSignUp from './FormSignUp'
-import FormSignUpContributor from './FormSignUpContributor'
+import Auth from '../../../helpers/Auth'
 export default {
     components:{
         FormSignUp,
-        FormSignUpContributor
+    },
+    data(){
+        return {
+            auth: ''
+        }
+    },
+    mounted() {
+        Auth.initialize()
+        this.auth = Auth.state
     }
 }
 </script>

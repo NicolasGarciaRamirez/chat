@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Noisesharks</title>
+    <title>🎹🦈Noisesharks</title>
     <meta name="theme-color" content="#0d0d0d">
     <meta property="og:title" content="Noisesharks - Search For and Hire Audio Professionals, Musicians, Composers, Songwriters, Tutors, DJs, and Studios">
     <meta name="twitter:title" content="Noisesharks - Search For and Hire Audio Professionals, Musicians, Composers, Songwriters, Tutors, DJs, and Studios">

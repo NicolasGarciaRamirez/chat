@@ -1,0 +1,86 @@
+.notification-by-user{
+    &__icon{
+        svg{
+            width: 1rem;
+            fill: var(--fourth-color);
+            &:hover{
+                fill: white;
+            }
+        }
+    }
+    &__notification{
+        overflow: hidden;
+        &:hover{
+            background: var(--third-color);
+        }
+        &--online{
+            position: relative;
+            &::before{
+                content: "";
+                position: absolute;
+                bottom: 6px;
+                right: 19px;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #17DB24;
+            }
+        }
+        &--descript{
+            > div{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+
+            }
+            h4{
+                font-size: 1rem;
+                color:white;
+                font-weight: 700;
+                margin-bottom: 0;
+            }
+            font-size: .8rem;
+            color:white;
+            // margin-bottom: 0;
+            // white-space: nowrap;
+        }
+
+        &--active{
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--fifth-color);
+            margin: 1rem;
+        }
+
+        &.isViewed{
+            background: var(--third-color) !important;
+            &:hover{
+                background: var(--third-color-secondary) !important;
+            }
+        }
+    }
+    &.new-notification{
+        .notification-by-user__icon{
+            position: relative;
+            transform: rotate(20deg);
+            &::before{
+                content: "";
+                position: absolute;
+                top: 30%;
+                right: 0;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background: var(--fifth-color);
+                border: solid 2px var(--second-color);
+            }
+        }
+    }
+
+    @include media-breakpoint-down(lg){
+        &__notification{
+            padding: .5rem 1rem;
+        }
+    }
+}

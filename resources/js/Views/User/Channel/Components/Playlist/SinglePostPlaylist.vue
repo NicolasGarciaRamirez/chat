@@ -4,7 +4,7 @@
             <div class="d-flex flex-row justify-content-between my-3 p-2">
                 <div>{{ post.description }}</div>
                 <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownPostPlaying"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownPostPlaying">
+                <div class="dropdown-menu text-white p-2" aria-labelledby="dropdownPostPlaying">
                     <a href="" class="dropdown-item">Delete From Playlist</a>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item">Share</a>
@@ -74,7 +74,6 @@ export default {
         }
     },
     mounted(){
-        console.log(this.post.description)
         this.getLike()
         this.getVote()
         if (this.post.resource_type == 'audio') {
@@ -88,7 +87,6 @@ export default {
             $('#ModalShare').modal('show')
         },
         getStyleAudio(){
-            console.log(this.post)
             if (this.post.resource_type == 'audio') {
                 var linGrad = document.createElement('canvas').getContext('2d').createLinearGradient(0, 0, 650, 0);
                 linGrad.addColorStop(0, '#ff0000');

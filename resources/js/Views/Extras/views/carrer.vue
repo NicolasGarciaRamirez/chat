@@ -51,6 +51,7 @@
                     buttons: [false,'Ok'],
                     dangerMode: true,
                 })
+                $('.swal-footer').addClass('text-center')
             }
         }
 

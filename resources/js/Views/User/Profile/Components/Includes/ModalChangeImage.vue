@@ -4,12 +4,12 @@
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content modal-border-white">
                     <div class="modal-header border-0">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="$parent.refreshCacheImage()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="text-center">
-                        <h2 class="font-weight-bold p-4">Set {{$parent.type_change_image}} Image</h2>
+                        <h4 class="font-weight-bold pb-3 px-3 pt-0 mb-0">Set {{$parent.type_change_image}} Image</h4>
                     </div>
                     <div class="d-flex text-center justify-content-center align-items-center">
                         <form enctype="multipart/form-data" @submit.prevent="save">
@@ -19,10 +19,19 @@
                                 :src="img"
                                 @change="change"
                                 :stencil-props="{
-                                    handlers: {},
-                                    scalable: false,
+                                    handlers: {
+                                        eastNorth: true,
+                                        north: true,
+                                        westNorth: true,
+                                        west: true,
+                                        westSouth: true,
+                                        south: true,
+                                        eastSouth: true,
+                                        east: true,
+                                    },
+                                    scalable: true,
+                                     aspectRatio: 23/6
                                 }"
-                                :restrictions="pixelsRestriction"
                                 v-if="$parent.type_change_image === 'Cover'"
                             ></cropper>
                             <cropper
@@ -30,27 +39,15 @@
                                 :stencil-component="stencil"
                                 :src="img"
                                 @change="change"
-                                :stencil-props="{
-                                    handlers: {
-                                        eastNorth: true,
-                                        north: false,
-                                        westNorth: true,
-                                        west: false,
-                                        westSouth: true,
-                                        south: false,
-                                        eastSouth: true,
-                                        east: false,
-                                    },
-                                }"
+                                :stencil-props="{}"
                                 v-if="$parent.type_change_image === 'Profile'"
                             ></cropper>
-                            <div class="row p-4">
+                            <div class="row p-3">
                                 <div class="col col-sm text-left">
-                                    <label class="font-weight-bold">Use scroll or pinch to zoom</label>
-                                    <label class="font-weight-bold" v-if="$parent.type_change_image === 'Cover'">The cover photo must be at least 1790 horizontal pixels and 240 vertical pixels</label>
+                                    <label class="font-weight-bold my-2">Use scroll or pinch to zoom in/out</label>
                                 </div>
                                 <div class="col col-sm text-right">
-                                    <button class="btn bg-primary text-white font-weight-bold" data-dismiss="modal" @click="windowReload">Cancel</button>
+                                    <button class="btn" data-dismiss="modal" @click="$parent.refreshCacheImage">Cancel</button>
                                     <button class="btn bg-fifth rounded-pill text-white font-weight-bold" v-if="!disable">Save</button>
                                     <button class="btn rounded-pill text-white bg-fifth" v-if="disable" disabled>
                                         <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
@@ -69,9 +66,6 @@
 import Auth from "../../../../../helpers/Auth";
 
 export default {
-    components:{
-        // Cropper
-    },
     data(){
         return {
             disable: false,
@@ -83,11 +77,11 @@ export default {
         }
     },
     mounted(){
+        Auth.initialize()
     },
     computed:{
         img(){
             if (this.$parent.type_change_image === 'Releases'){
-                console.log(this.$parent.type_change_image)
                 return '/images/default.png'
             }else{
                 return this.$parent.img
@@ -105,13 +99,8 @@ export default {
             this.coordinates = coordinates;
             this.resource = canvas.toDataURL()
         },
-        pixelsRestriction() {
-            return {
-                maxWidth: 1790,
-                maxHeight: 480,
-            }
-        },
         save(){
+            Auth.setSession()
             this.disable = true
             let url = ''
 
@@ -140,8 +129,8 @@ export default {
                         if(this.$parent.type_change_image === 'Cover'){
                             this.$parent.user.cover = res.data.user.cover
                         }
-                        $('#ModalChangeImage').modal('toggle')
-                        window.location.reload()
+                        $('#ModalChangeImage').modal('hide')
+                        this.$parent.refreshCacheImage()
                     }else{
                         alert('error')
                     }
@@ -150,19 +139,9 @@ export default {
                 }
             }).catch(err =>{
                 this.disable = false
+                Auth.keepLogged(err.response.status)
             })
         },
     }
 }
 </script>
-
-<!--<style type="text/css">-->
-<!--    .cropper{-->
-<!--        max-width: 50rem !important;-->
-<!--        min-width: 50rem !important;-->
-<!--        max-height: 25rem !important;-->
-<!--        min-height: 25rem !important;-->
-<!--        background: #141414 !important;-->
-<!--        @include media-break-point-->
-<!--    }-->
-<!--</style>-->

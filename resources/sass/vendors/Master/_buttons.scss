@@ -1,0 +1,230 @@
+// stylelint-disable selector-no-qualifying-type
+
+//
+// Base styles
+//
+
+.btn {
+  display: inline-block;
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  color: $btn-color;
+  text-align: center;
+  text-decoration: if($link-decoration == none, null, none);
+  white-space: $btn-white-space;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: $btn-border-width*2 solid transparent;
+  @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+  @include transition($btn-transition);
+
+  @include hover() {
+    color: $btn-hover-color;
+    text-decoration: none;
+  }
+
+  @include media-breakpoint-down(md){
+    border-width: $btn-border-width*2;
+  }
+  
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
+  }
+  &.icon{
+    svg{
+      width: 1em;
+      margin-left: 0.3rem;
+      path{
+          fill: white;
+      }
+      polygon{
+          stroke-width: 20px;
+      }
+  }
+  }
+
+  &.content-icon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: max-content;
+    white-space: nowrap;
+    padding-right: 0;
+    svg,
+    i{
+      font-size: 1.2rem;
+      width: 1.2rem;
+      color: currentColor;
+      fill: currentColor;
+      margin:0  .5rem;
+    }
+    .icon{
+      position: relative;
+      margin-left: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 2px;
+        height: 80%;
+        margin: auto;
+        background-color: currentColor;
+      }
+      svg,
+      i{
+        margin: 0;
+        transform: none;
+      }
+    }
+  }
+
+  // Disabled comes first so active can properly restyle
+  &.disabled,
+  &:disabled {
+    opacity: $btn-disabled-opacity;
+    @include box-shadow(none);
+  }
+
+  &:not(:disabled):not(.disabled) {
+    cursor: if($enable-pointer-cursor-for-buttons, pointer, null);
+
+    &:active,
+    &.active {
+      color: $btn-active-color;
+      @include box-shadow($btn-active-box-shadow);
+
+      &:focus {
+        @include box-shadow($btn-focus-box-shadow, $btn-active-box-shadow);
+      }
+    }
+  }
+}
+
+// Future-proof disabling of clicks on `<a>` elements
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+
+//
+// Alternate buttons
+//
+
+.btn-red{
+  background-color: $fifth-color;
+  color:white;
+  font-weight: 700;
+  transition: all linear .2s;
+  &:hover{
+      background-color: $six-color;
+      color:white;
+  }
+  &:active{
+      background-color: white;
+      color: $fifth-color !important;
+      transform: scale(.9);
+  }
+}
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button-variant($value, $value);
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    @include button-outline-variant($value);
+  }
+}
+
+.btn-outline-red{
+
+  border-color: $red;
+  @include hover{
+    background-color: rgba($red, .2);
+  }
+  @include active{
+    background-color: white;
+    color: $red !important;
+    border-color: transparent;
+  }
+}
+
+//
+// Link buttons
+//
+
+// Make a button look and behave like a link
+.btn-link {
+  font-weight: $font-weight-normal;
+  color: $link-color;
+  text-decoration: $link-decoration;
+
+  @include hover() {
+    color: $link-hover-color;
+    text-decoration: $link-hover-decoration;
+  }
+  @include active{
+    color: $link-hover-color !important;
+  }
+
+  &:focus,
+  &.focus {
+    text-decoration: $link-hover-decoration;
+  }
+
+  &:disabled,
+  &.disabled {
+    color: $btn-link-disabled-color;
+    pointer-events: none;
+  }
+
+  // No need for an active state here
+}
+
+
+//
+// Button Sizes
+//
+
+.btn-lg {
+  @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+}
+
+.btn-sm {
+  @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+}
+
+
+//
+// Block button
+//
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}

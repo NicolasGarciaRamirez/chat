@@ -9,7 +9,7 @@
                     <img src="/images/icons/video-playlist.svg" alt="" width="25" height="25">
                     <h4 class="font-weight-bold mx-3">{{ playlist.title }}</h4>
                     <i class="fas fa-ellipsis-h c-third fa-2x mr-1"  id="dropdownMenuPlaylist"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-                    <div class="dropdown-menu bg-primary text-white p-2" aria-labelledby="dropdownMenuPlaylist">
+                    <div class="dropdown-menu text-white p-2" aria-labelledby="dropdownMenuPlaylist">
                         <div class="dropdown-item" @click="showModalAddVideos"><i class="fas fa-plus-circle mr-2"></i> Add video(s)</div>
                         <div class="dropdown-divider"></div>
                         <div class="dropdown-item" @click="showModalPlaylist">Edit Playlist Details</div>
@@ -91,15 +91,12 @@ export default {
                     }
                     cont++
                 })
-            }else{
-                console.log('no')
             }
         },
         deletePlaylist(){
             axios.post(`/${Auth.state.username}/Channel/Playlist/delete/${this.playlist.id}`).then(res =>{
                 if (res.data.deleted) {
                     window.location.replace(`/${Auth.state.username}/Channel/Playlist`)
-                    console.log(res)
                 }
             }).catch(err =>{
                 console.log(err)

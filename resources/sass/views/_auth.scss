@@ -1,0 +1,321 @@
+.modal-login{
+    button.login{
+        &:hover{
+            color:$six-color !important;
+        }
+        &:active{
+            color: white !important;
+        }
+    }
+    a.forgot-password{
+        color: $fourth-color !important;
+        &:hover{
+            color: white !important;
+        }
+    }
+    a:not(.btn){
+        color: $third-color;
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{
+            text-decoration: underline;
+        }
+        &:active{
+            text-decoration: underline;
+            color: white !important;
+        }
+    }
+    .or{
+        position: relative;
+        color: $fourth-color;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: $third-color;
+            height: 2px;
+            top: 10px;
+            width: 20%;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: $third-color;
+            height: 2px;
+            top: 10px;
+            width: 40%;
+        }
+    }
+    .social-login{
+        a{
+            font-weight: bold;
+            border-radius: 300px;
+        }
+    }
+    .divider{
+        background-color: $third-color;
+        height: 3px;
+        width: 100%;
+    }
+    .sign-me{
+        width: 100%;
+        border-radius: 30px;
+        &:hover{
+            background: $six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
+    }
+}
+.modal-register{
+    button[type=submit]{
+        &:hover{
+            color: $fifth-color;
+        }
+    }
+    a:not(.btn){
+        text-decoration: none;
+        cursor: pointer;
+        &:hover{
+            color: $fourth-color;
+        }
+    }
+    .or{
+        position: relative;
+        &:after{
+            content: "";
+            position: absolute;
+            right: 10px;
+            background-color: $third-color;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+        &:before{
+            content: "";
+            position: absolute;
+            left: 10px;
+            background-color: $third-color;
+            height: 3px;
+            top: 10px;
+            width: 40%;
+        }
+    }
+    .social-register{
+        a{
+            font-weight: bold;
+            border-radius: 30px;
+        }
+    }
+    .divider{
+        background-color: $third-color !important;
+        height: 3px;
+        width: 100%;
+    }
+    .sign-up{
+        width: 100%;
+        border-radius: 30px;
+        &:hover{
+            background: $six-color !important;
+        }
+        &:active{
+            background: white !important;
+            color: $fifth-color !important;
+        }
+    }
+}
+.register{
+    background-image: url(/images/background-register.svg);
+    background-repeat: repeat-y;
+    background-size: 110%;
+    .content-article{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-gap: 2rem;
+        margin: 0 auto;
+        max-width: 1100px;
+
+        > div{
+            position: relative;
+            padding: 1rem;
+            background-color: var(--second-color);
+            border-radius: $border-radius;
+            box-shadow: $box-shadow;
+            text-align: center;
+            height: 13.75rem;
+            font-size: 0.85rem;
+            > div {
+                text-align: center;
+                p,
+                svg{
+                    color: currentColor;
+                    fill: currentColor;
+                }
+                p{
+                    font-size: 1rem;
+                    text-transform: capitalize;
+                    font-weight: bold;
+                    margin-bottom: 0.25rem,
+                }
+                svg,
+                img{
+                    margin-bottom: 1rem;
+                    width: 80%;
+                    max-height: 60px;
+                    object-fit: contain;
+                    &:not(img){
+                        padding: .5rem 0;
+                    }
+                }
+            }
+
+            &.target{
+                &::before{
+                    content: "Comming Soon!";
+                    position: absolute;
+                    top: 0.5rem;
+                    right: 0.5rem;
+                    background-color: var(--third-color);
+                    color: $fourth-color;
+                    padding: 0.25rem;
+                    font-size: 8px;
+                    border-radius: $border-radius;
+                }
+            }
+        }
+    }
+    .auth-content{
+        width: 80%;
+        margin: auto;
+        @include media-breakpoint-down(md){
+            width: 100%;
+        }
+        .btn-slide{
+            display: flex;
+            position: relative;
+            --width: 130px;
+            background-color:$second-color;
+            border-radius: 5rem;
+            input{ display: none; }
+            label, .glider{
+                padding: 0.5rem 1rem;
+                width: var(--width);
+                margin-bottom: 0;
+                text-align: center;
+                cursor: pointer;
+                z-index: 2;
+            }
+            label{
+                z-index: 4;
+            }
+
+            .glider{
+                position: absolute;
+                height: 100%;
+                background-color: $fifth-color;
+                transition: all linear .3s;
+                border-radius: 100rem;
+                z-index: 3;
+            }
+            input[id="noisesharks"]:checked ~ .glider{
+                transform:  translateX(0);
+            }
+            input[id="noisemeg"]:checked ~ .glider{
+                transform:  translateX( var(--width) );
+            }
+        }
+
+        /* Se usa important para remplazar los estilos  */
+        .accordion{
+            .card{
+                border-radius: var(--general-radius) !important;
+                overflow: hidden !important;
+            }
+            .card{
+                background-color: var(--second-color) !important;
+            }
+
+            .card-header{
+                background-color: var(--second-color) !important;
+                border-bottom: 0 !important;
+                button{ font-size: 0.9rem !important; text-align: left; }
+                svg{ fill: var(--fourth-color) !important; }
+                svg:first-child{
+                    margin-right: 1rem;
+                    max-height: 1.5rem;
+                    width: 1.5rem !important;
+                }
+                svg:nth-child(2){
+                min-width: 1rem !important;
+                }
+
+                &.instagram, &.youtube, &.twitch,
+                &.tiktok, &.soundcloud, &.twitter,
+                &.facebook, &.linkedin, &.whatsapp,
+                &.gmail{
+                    button{ color: black !important; }
+                    svg{ fill: black !important; }
+
+                    & ~ .card-body{
+                        margin-top: 35px;
+                    }
+
+                }
+                &.instagram{ background-color: #FFAFFF !important; }
+                &.youtube{ background-color: #FF0035 !important; }
+                &.twitch{ background-color: #8E45FB !important; }
+                &.tiktok{ background-color: #FFFFFF !important; }
+                &.soundcloud{ background-color: #FF7700 !important; }
+                &.twitter{ background-color: #1DA1F2 !important; }
+                &.facebook{ background-color: #1776F1 !important; }
+                &.linkedin{ background-color: #0A66C2 !important; }
+                &.whatsapp{ background-color: #28C34C !important; }
+                &.gmail{ background-color: #FFFFFF !important; }
+            }
+
+            .card-body{
+                background-color: $third-color;
+                margin-bottom: 35px;
+            }
+
+        }
+
+        .content-porcentage{
+            text-align: center;
+            border-radius: $general-radius;
+            border: solid 2px var(--third-color);
+            width: 400px;
+            min-height: 250px;
+            transition: all linear .3s;
+            padding: 2rem;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            transition: all linear .2s;
+            &__content{
+                text-align: left;
+                margin-bottom: 1rem;
+            }
+        }
+
+    }
+
+
+   .zero-percent-yellow-box{
+        background-color: #f3edd3;
+        color: $mustard-color;
+        font-size: 0.85rem;
+        font-weight: 700;
+        padding: 0.5rem 1rem;
+        border-radius: $border-radius;
+        margin: 1rem 0;
+
+    }
+
+}
+

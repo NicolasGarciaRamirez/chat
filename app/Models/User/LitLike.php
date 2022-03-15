@@ -5,6 +5,10 @@ namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class LitLike
+ * @package App\Models\User
+ */
 class LitLike extends Model
 {
     use SoftDeletes;

@@ -5,6 +5,10 @@ namespace App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Comment
+ * @package App\Models\Comment
+ */
 class Comment extends Model
 {
     use SoftDeletes;
@@ -16,6 +20,9 @@ class Comment extends Model
         'body', 'commentable_id'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $appends = ['time_ago'];
     /**
      * Undocumented variable
@@ -58,6 +65,9 @@ class Comment extends Model
         return $this->morphMany('App\Models\Comment\Comment', 'commentable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function likes()
     {
         return $this->morphMany('App\Models\User\LitLike', 'likeable');

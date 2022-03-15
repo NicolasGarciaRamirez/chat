@@ -5,6 +5,10 @@ namespace App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Post
+ * @package App\Models\Post
+ */
 class Post extends Model
 {
     use SoftDeletes;
@@ -15,7 +19,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'replace_caption', 'allow_download', 'description', 'resource', 'resource_type', 'genre', 'category', 'privacy', 'token'
+        'user_id', 'replace_caption', 'allow_download', 'description', 'resource', 'resource_type', 'genre', 'category', 'privacy', 'token', 'link', 'domain','link_info',
     ];
 
     /**
@@ -126,12 +130,19 @@ class Post extends Model
     }
 
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function views()
     {
         return $this->hasMany(\App\Models\Post\PostViews::class);
     }
 
-    public function shares(){
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function shares()
+    {
         return $this->hasMany(\App\Models\Post\Share::class);
     }
 }

@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Post;
 
 use App\Models\Post\Post;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\User\User;
-use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Carbon\CarbonImmutable;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -39,16 +40,12 @@ class PostController extends Controller
     public function store(Request $request) //cambiar a form request
     {
         \DB::beginTransaction();
-
         try {
             if ($this->user->profile_information) {
-
                 if ($request->resource != null) {
-                    // $request->validate([
-                    //     'imagePost' => 'required|mimes:jpeg,png,jpg,gif,svg,mp3,mp4,pdf,doc,docx,xls'
-                    // ]);
                     $key = md5(\Auth::user()->id);
                     $hash = \Str::random(10);
+                    $credit_first_video = false;
 
                     if ($request->resource_type == 'image') {
                         $resource = $this->setImage($request);
@@ -56,6 +53,10 @@ class PostController extends Controller
                     if ($request->resource_type == 'video') {
                         $resource = "/images/post/videos/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
                         $request->resource->move(public_path("/images/post/videos/{$hash}/"), $resource);
+                        if($request->thumbnail != null){
+                            $thumbnail = "/images/post/videos/thumbnails/{$hash}/{$key}{$request->thumbnail->getClientOriginalName()}";
+                            $request->thumbnail->move(public_path("/images/post/videos/thumbnails/{$hash}/"), $thumbnail);
+                        }
                     }
                     if ($request->resource_type == 'audio') {
                         $resource = "/images/post/audio/{$hash}/{$key}{$request->resource->getClientOriginalName()}";
@@ -65,41 +66,84 @@ class PostController extends Controller
                         $resource = "/images/post/docs/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
                         $request->resource->move(public_path("/images/post/docs/{$key}/"), $resource);
                     }
+                    if ($request->resource_type === 'link') {
+                        $resource = $request->resource;
+                        $thumbnail = $request->thumbnail;
+                    }
 
                 } else {
                     $resource = null;
                 }
 
-                $post = new Post($request->all());
+                $post = new Post($request->except('allow_download'));
                 $post->resource = $resource;
-                if ($request->allow_download) {
-                    $post->allow_download = $request->allow_download;
+                if ($request->allow_download === 'true') {
+                    $post->allow_download = 1;
                 }
                 if ($request->replace_caption) {
                     $post->replace_caption = $request->replace_caption;
                 }
+                if($request->thumbnail){
+                    $post->thumbnail = $thumbnail;
+                }
+                if($request->resource_type === 'link') {
+                    $post->link = $request->link;
+                    $post->domain = $request->domain;
+                    $post->link_info = $request->link_info;
+                }
+                $post->privacy = $request->privacy;
                 $post->resource_type = $request->resource_type;
                 $post->token = \Str::random(15);
                 if ($this->user->profile_information) {
+
+                     //Validacion del primer post es audio, video, link
+                    if($this->user->your_first_post){
+                        if($post->resource_type == 'video' || $post->resource_type == 'link' || $post->resource_type == 'audio'){
+                            
+                            $this->user->credit += 5;
+                            $this->user->update();
+                
+                            $credit_first_video = true;                     
+                            
+                        } 
+                    }
+                    //------------------------------------------------------
+
+                    //Validacion si el usuario ha hecho publicaciones esta semana
+                    $accept_credit = false;
+                    if($this->user->one_credit_week){
+                        $this->user->credit += 1;
+                        $this->user->update();
+            
+                        $accept_credit = true;
+                    }
+
                     $this->user->posts()->save($post);
+                    
+  
+
                     \DB::commit();
                 }
 
                 return response()->json([
                     'saved' => true,
-                    'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'views'),
+                    'post' => $post->load('user.personal_information', 'user.profile_information', 'comments.user.personal_information', 'comments.comments.user.personal_information', 'views' ,'shares', 'likes', 'votes.user'),
                     'valid' => $this->user->profile_information ? true : false,
-                    'errors' => null
+                    'errors' => null,
+                    'credit_first_video' => $credit_first_video,
+                    'credit_post_week' => $accept_credit,
+                    'user' => $this->user
                 ], 200);
             }
-
         } catch (\Exception $e) {
             \DB::rollBack();
             return response()->json([
                 'saved' => false,
                 'post' => null,
-                'errors' => $e
-            ], 422);
+                'credit_first_video' => false,
+                'credit_post_week' => false,
+                'errors' => $e->getMessage()
+           ], 422);
         }
     }
 
@@ -113,7 +157,7 @@ class PostController extends Controller
     {
         \DB::beginTransaction();
         try {
-            Post::whereToken($token)->update($request->only(['description']));
+            Post::whereToken($token)->update($request->only(['description','privacy']));
             \DB::commit();
             return response()->json([
                 'updated' => true,
@@ -136,7 +180,7 @@ class PostController extends Controller
      */
     public function delete($username, Post $post)
     {
-        Storage::delete(public_path("{$post->resource}"));
+        \File::delete(public_path("{$post->resource}"));
         $post->delete();
         return response()->json([
             'deleted' => true,
@@ -149,32 +193,10 @@ class PostController extends Controller
      */
     public function setImage($request): string
     {
-//        dd($request);
         $key = md5(\Auth::user()->id);
         $hash = \Str::random(10);
         $imageName = "/images/post/images/{$key}/{$hash}{$request->resource->getClientOriginalName()}";
         $request->resource->move(public_path("/images/post/images/{$key}/"), $imageName);
-
-        $heigth = Image::make(public_path($imageName))->height();
-
-        if($heigth >= 600){
-            $background = Image::canvas(1200, 600);
-            $background->fill('#141414');
-            $image = Image::make(public_path($imageName))->resize(1200, 600, function ($c) {
-                $c->aspectRatio();
-                $c->upsize();
-            });
-        }else{
-            $background = Image::canvas(1200, $heigth);
-            $background->fill('#141414');
-            $image = Image::make(public_path($imageName))->resize(1200, $heigth, function ($c) {
-                $c->aspectRatio();
-                $c->upsize();
-            });
-        }
-
-        $background->insert($image, 'center');
-        $background->save(public_path($imageName));
 
         return $imageName;
     }

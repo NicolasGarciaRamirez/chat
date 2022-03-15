@@ -10,6 +10,10 @@ use App\Models\Post\Post;
 use App\Models\Post\VotePosts;
 
 
+/**
+ * Class VotePostsController
+ * @package App\Http\Controllers\Reactions
+ */
 class VotePostsController extends Controller
 {
     /**

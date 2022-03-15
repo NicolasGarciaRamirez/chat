@@ -5,10 +5,14 @@ namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class UserPersonalInformation
+ * @package App\Models\User
+ */
 class UserPersonalInformation extends Model
 {
     use SoftDeletes;
-    
+
     /**
      * Undocumented fillable
      *

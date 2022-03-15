@@ -1,0 +1,86 @@
+.accordion{
+    > .card{
+        position: relative;
+        margin-bottom: $accordion-spacer-bottom;
+        background-color: transparent;
+        &:after{
+            content: '';
+            height: $accordion-border-width;
+            position: absolute;
+            background-color:  $accordion-border-color;
+            bottom: 0;
+            width: 100%;
+        }
+        > .card-header{
+            cursor:pointer;
+            background-color: $accordion-bg;
+            padding: $accordion-spacer-y $accordion-spacer-x;
+            &:hover{
+                background-color: $accordion-bg-hover;
+            }
+            @include media-breakpoint-down(sm){
+                padding: ($accordion-spacer-y / 2) ($accordion-spacer-x / 2);
+            }
+            > div{
+                pointer-events: none;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+                button{
+                    font-size: 1.2rem;
+                }
+                svg{
+                    fill: currentColor;
+                    transition: all ease-out .2s;
+                }
+                @include media-breakpoint-down(md){
+                    button{
+                        font-size: 1rem;
+                    }
+                    svg{
+                        width: 1rem;
+                    }
+                }
+                > div#tiers {
+                    > section.ml-2 > div.row:first-child{
+                    margin-top: 1rem;
+                    }
+                }
+            }
+        }
+        > .card-body{
+            margin: .5rem 50px .5rem 35px;
+            max-width: none;
+            border-radius: $border-radius;
+            @include media-breakpoint-down(md){
+                margin: 1rem auto;
+                width: 100%;
+                max-width: 95%;
+            }
+            &:not(.card-simple){
+                background-color: $accordion-cap-bg;
+                box-shadow: $box-shadow;
+            }
+
+            &.card-simple {
+                padding: 0;
+                .card-body-style{
+                    padding: $accordion-spacer-x;
+                    // padding: .5rem 50px .5rem 35px;
+                    background-color: $accordion-cap-bg;
+                    box-shadow: $box-shadow;
+                }
+            }
+        }
+        &.active{
+            .card-header{
+                background-color: $accordion-bg-hover;
+                svg.caret{
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+}

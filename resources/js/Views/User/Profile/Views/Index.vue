@@ -1,19 +1,47 @@
 <template>
-    <section class="index" v-if="user.profile_information">
-        <div class="navigation-body">
-            <a href="#Releases" class="font-weight-bold cursor-pointer text-white mr-3" id="Releases" @click="addClass('releases')" v-if="user.profile_information.releases.length > 0">Releases</a>
-            <a href="#Members" class="font-weight-bold cursor-pointer text-white mr-3" id="Members" @click="addClass('members')" v-if="user.profile_information.members.length > 0">Members</a>
-            <a href="#Genres" class="font-weight-bold cursor-pointer text-white mr-3" id="Genres" @click="addClass('genres')" v-if="user.profile_information.genres">Genres</a>
-            <a href="#Services" class="font-weight-bold cursor-pointer text-white mr-3" id="Services" @click="addClass('services')" v-if="user.profile_information.services">Services</a>
-            <a href="#Social_media" class="font-weight-bold cursor-pointer text-white mr-3" id="Social_media" @click="addClass('social_media')" v-if="social_media">Social Media</a>
-            <a href="#Work_with" class="font-weight-bold cursor-pointer text-white mr-3" id="Work_with" @click="addClass('work_with')" v-if="user.profile_information.worked_with.length > 0">Worked With</a>
+    <section class="index mb-5" v-if="user.profile_information">
+        <div class="row">
+            <div class="col-12 d-lg-none">
+                <div class="navigation-body__content" v-if="(user.profile_information.about_you.length > 0)" >
+                    <h4 class="font-weight-bold text-white mb-3">About</h4>
+                    <p class="mb-0 text-left">
+                        {{ user.profile_information.about_you }}
+                    </p>
+                </div>
+            </div>
         </div>
-        <releases :user="user" v-if="type === 'releases'"></releases>
-        <members :user="user" v-if="type === 'members'"></members>
-        <genres :user="user" v-if="type === 'genres'"></genres>
-        <services :user="user" v-if="type === 'services'"></services>
-        <social-media :user="user" v-if="type === 'social_media'"></social-media>
-        <work-with :user="user" v-if="type === 'work_with'"></work-with>
+        <div class="navigation-body">
+            <div class="navigation-header__select-subsection ">
+                <div>
+                    <a href="#Releases" class="font-weight-bold cursor-pointer text-white mr-3" id="Releases" @click="addClass('releases')" v-if="user.profile_information.releases.length > 0">Releases</a>
+                    <a href="#Members" class="font-weight-bold cursor-pointer text-white mr-3" id="Members" @click="addClass('members')" v-if="user.profile_information.members.length > 0">Members</a>
+                    <a href="#Genres" class="font-weight-bold cursor-pointer text-white mr-3" id="Genres" @click="addClass('genres')" v-if="user.profile_information.genres">Genres</a>
+                    <a href="#Services" class="font-weight-bold cursor-pointer text-white mr-3" id="Services" @click="addClass('services')" v-if="user.profile_information.services">Services</a>
+                    <a href="#Social_media" class="font-weight-bold cursor-pointer text-white mr-3" id="Social_media" @click="addClass('social_media')" v-if="social_media">Social Media</a>
+                    <a href="#Work_with" class="font-weight-bold cursor-pointer text-white mr-3" id="Work_with" @click="addClass('work_with')" v-if="user.profile_information.worked_with.length > 0">Worked With</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mr-lg-3">
+            <div class="col-12 col-lg-7 pr-lg-0">
+                <div class="px-3">
+                    <releases :user="user" v-if="type === 'releases'"></releases>
+                    <members :user="user" v-if="type === 'members'"></members>
+                    <genres :user="user" v-if="type === 'genres'"></genres>
+                    <services :user="user" v-if="type === 'services'"></services>
+                    <social-media :user="user" v-if="type === 'social_media'"></social-media>
+                    <work-with :user="user" v-if="type === 'work_with'"></work-with>
+                </div>
+            </div>
+            <div class="col-12 col-lg-5 px-lg-0 d-none d-lg-block">
+                <div class="navigation-body__content" v-if="(user.profile_information.about_you.length > 0)" >
+                    <h4 class="font-weight-bold text-white mb-3">About</h4>
+                    <p class="mb-0 text-left">
+                        {{ user.profile_information.about_you }}
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
 </template>
 

@@ -1,0 +1,62 @@
+.loading{
+    position: relative;
+    --width: 70px;
+    --bg-gradient: rgba(0,0,0, .8);
+
+    .loading-img,
+    &::before,
+    &::after{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    &::before,
+    &::after{
+        content: "";
+    }
+
+    .loading-img,
+    &::before{
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        max-width: var(--width);
+        max-height: var(--width);
+        border-radius: 50%;
+    }
+
+    .loading-img{
+        overflow: hidden;
+        background: url(/images/logo-white.svg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        z-index: 150;
+    }
+    &::after{
+        background-color: var(--bg-gradient);
+        z-index: 50;
+    } 
+    &::before{
+        border: 5px solid transparent;
+        border-top: 5px solid var(--fifth-color);
+        // background-color: var(--bg-gradient);
+        padding: 2.6rem;
+        z-index: 100;
+        
+        animation-name: girar;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+}
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(720deg);
+    }
+}

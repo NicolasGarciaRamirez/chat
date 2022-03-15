@@ -2,7 +2,7 @@ export default {
     services : [
         {
             principal_service: 'Audio Engineering',
-            id: 'Audio Engin',
+            id: "Audio_Engineering",
             specific_service:[
                 'Audio Repairing' ,
                 'Broadcasting' ,
@@ -22,6 +22,7 @@ export default {
         },
         {
             principal_service: 'Music Production',
+            id: 'Music_Production',
             specific_service:[
                 'Beat Making',
                 'Drum Sampling',
@@ -54,6 +55,7 @@ export default {
         },
         {
             principal_service:'DJ',
+            id:'DJ',
             specific_service:[
                 'Bars &amp Pubs',
                 'Ceremonies',
@@ -69,6 +71,7 @@ export default {
         },
         {
             principal_service:'Musicians',
+            id: 'Musicians',
             specific_service:[
                 'Bars &amp Pubs ',
                 'Ceremonies ',
@@ -91,7 +94,6 @@ export default {
         let principal_service_find = _.find(this.services, function (o) { return o.principal_service == principal_service; });
         return principal_service_find.specific_service
     },
-
     getAllServices(){
         return this.services
     }

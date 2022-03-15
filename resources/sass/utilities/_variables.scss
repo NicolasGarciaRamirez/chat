@@ -1,0 +1,87 @@
+$body-bg: #121212;
+$body-color: rgb(1, 2, 1, 2);
+
+// Typography
+$font-family-sans-serif: 'Encode Sans', sans-serif;
+$font-size-base: 0.9rem;
+$font-size-sm: 0.8rem;
+$line-height-base: 1.6;
+
+$primary-color: #121212;
+$second-color: #1c1c1c;
+$third-color: #252525;
+$third-color-secondary: #303030;
+$fourth-color: #999999;
+$fifth-color: #ff0035;
+$six-color: #FC4444;
+$seven-color: #4AFF68;
+
+$mustard-color: #F0B630;
+// $black: #121212;
+$general-radius: 0.6rem;
+$box-shadow:  0px 8px 18px rgba(0, 0, 0, 0.75);
+
+$coreui-icons-font-path: "../../fonts";
+$fa-font-path: "../webfonts";
+
+// Body
+:root{
+    --box-shadow: 0px 8px 18px rgba(0, 0, 0, 0.75);
+    --general-radius: 0.6rem;
+    // colores
+        --primary-color: #121212;
+        --second-color: #1c1c1c;
+        --third-color: #252525;
+        --third-color-secondary: #303030;
+        --fourth-color: #999999;
+        --fifth-color: #ff0035;
+        --six-color: #FC4444;
+        --seven-color: #4AFF68;
+
+    /* Core UI */
+
+
+    // sidebar
+        --sidebar-width-lg: 270px;
+        --sidebar-width-sm: 56px;
+
+        --sidebar-bars-size: 2rem;
+        --sidebar-bars-color: white;
+        --sidebar-bars-hover: white;
+        --sidebar-bars-active: white;
+
+        --sidebar-title-size: 1.1rem;
+        --sidebar-title-color: white;
+
+        --sidebar-item-color: #838383;
+        --sidebar-item-hover: white;
+
+        --sidebar-input-radius: .375rem;
+        --sidebar-input-border: 2px solid white;
+        --sidebar-input-active: red;
+        --sidebar-input-size: 15px;
+    // header
+        --navbar-link-hover: white;
+        --navbar-link-color: #999;
+        --navbar-link-size: 1rem;
+
+        --navbar-btn-color: white;
+
+        --navbar-btn-bg: linear-gradient(30deg, #ff0035 /* fifth-color */0, rgba(255,115,115,1) 80%);
+
+    // video
+
+        --plyr-color-main: #ff0035;
+        --plyr-video-background: #252525;
+        --plyr-badge-text-color: #ffffff;
+        --plyr-badge-border-radius: 0.6rem;
+        --plyr-video-control-background-hover: #252525;
+        // video menu
+        --plyr-menu-background: #121212;
+        --plyr-menu-color: #ffffff;
+        --plyr-menu-shadow: 0px 8px 18px rgba(0, 0, 0, 0.75);
+        --plyr-menu-radius: 0.6rem;
+        --plyr-menu-arrow-size: 8px;
+        --plyr-menu-item-arrow-color: 8px;
+}
+

@@ -9,6 +9,10 @@ use App\Models\Comment\Comment;
 use App\Models\Post\Post;
 use App\Models\User\User;
 
+/**
+ * Class CommentController
+ * @package App\Http\Controllers\Comment
+ */
 class CommentController extends Controller
 {
     /**
@@ -44,8 +48,10 @@ class CommentController extends Controller
         $comment->user()->associate($this->user);
         $model->comments()->save($comment);
 
-        if ($model->getTable() == 'posts') \Mail::to($model->user->email)->send(new \App\Mail\CommentedOnYourPost($model, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username, $comment->body));
-        if ($model->getTable() == 'comments') \Mail::to($model->user->email)->send(new \App\Mail\RrepliedToYourComment($model->commentable, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username, $comment->body));
+        if($this->user->username !== $model->user->username){
+            if ($model->getTable() == 'posts') \Mail::to($model->user->email)->send(new \App\Mail\CommentedOnYourPost($model, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username, $comment->body));
+            if ($model->getTable() == 'comments') \Mail::to($model->user->email)->send(new \App\Mail\RrepliedToYourComment($model->commentable, $this->user->personal_information->full_name, $model->user->personal_information->full_name, $model->user->username, $comment->body));
+        }
 
         return response()->json([
             'saved' => true,

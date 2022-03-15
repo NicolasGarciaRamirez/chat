@@ -5,23 +5,39 @@ namespace App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class UserProfileInformation
+ * @package App\Models\User
+ */
 class UserProfileInformation extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var string[]
+     */
     protected $fillable = [
-        'profile_type', 'title', 'artistic_name', 'about_you', 'genres', 'services', 'social_media', 'user_id'
+        'profile_type', 'title', 'artistic_name', 'about_you', 'genres', 'services', 'social_media', 'display_genres', 'display_services','user_id'
     ];
 
+    /**
+     * @var string[]
+     */
     protected $hidden = [
         'created_at', 'updated_at', 'deleted_at'
     ];
 
+    /**
+     * @param $value
+     */
     public function setGenresAttribute($value)
     {
         $this->attributes['genres'] = implode(",", $value);
     }
 
+    /**
+     * @param $value
+     */
     public function setServicesAttribute($value)
     {
         $this->attributes['services'] = implode(",", $value);

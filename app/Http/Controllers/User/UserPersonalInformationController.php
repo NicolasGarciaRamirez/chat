@@ -8,6 +8,10 @@ use App\Models\User\User;
 use App\Models\User\UserPersonalInformation;
 use App\Notifications\PersonalInformationUpdatedSuccessfully;
 
+/**
+ * Class UserPersonalInformationController
+ * @package App\Http\Controllers\User
+ */
 class UserPersonalInformationController extends Controller
 {
     /**
@@ -57,14 +61,14 @@ class UserPersonalInformationController extends Controller
             return response()->json([
                 'updated' => true,
                 'user' => User::find($this->user->id),
-                'errros' => null
+                'errors' => null
             ], 200);
         } catch (\Exception $e) {
             \DB::rollBack();
             return response()->json([
                 'updated' => false,
                 'user' => null,
-                'errros' => $e
+                'errors' => $e
             ], 422);
         }
     }

@@ -5,6 +5,10 @@ namespace App\Models\Reactions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Followers
+ * @package App\Models\Reactions
+ */
 class Followers extends Model
 {
     use SoftDeletes;
@@ -22,7 +26,7 @@ class Followers extends Model
      * @var array
      */
     protected $hidden = [
-        'created_at', 'updated_at', 'deleted_at'
+        'created_at', 'updated_at', 'deleted_at', 'user_id' ,'following_user'
     ];
 
     /**

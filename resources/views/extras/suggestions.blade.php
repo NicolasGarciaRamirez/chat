@@ -13,7 +13,7 @@
             <div class="img-bg-container"></div>
             <div class="container-form">
                 @if(Session::get('error') !== null)
-                    <div class="alert bg-fifth">
+                    <div class="alert">
                         {{Session::get('error')}}
                     </div>
                 @endif
