@@ -43,7 +43,9 @@
         "vue-doc-preview": "^0.3.2",
         "vue-hashtag-textarea": "^0.3.7",
         "vue-jcrop": "^1.0.3",
+        "vue-social-sharing": "^3.0.9",
         "vue-toasted": "^1.1.28",
+        "vue-youtube-embed": "^2.2.2",
         "wavesurfer.js": "^4.0.1"
     }
 }
